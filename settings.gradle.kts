@@ -13,9 +13,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GoingGoing"
-include ':app'
-include ':data'
-include ':domain'
-include ':build-src'
-include ':core-ui'
-include ':presentation'
+include(":app")
+include(":core-ui")
+include(":data")
+include(":domain")
+include(":presentation")

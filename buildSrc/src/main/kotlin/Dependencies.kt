@@ -3,7 +3,6 @@ object KotlinDependencies {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroidVersion}"
     const val jsonSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializationJsonVersion}"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTimeVersion}"
-    const val gson = "com.google.code.gson:gson:2.10.1"
 }
 
 object AndroidXDependencies {

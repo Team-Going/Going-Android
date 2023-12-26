@@ -1,10 +1,12 @@
-object Versions {
-    const val buildToolsVersion = "30.0.3"
+import org.gradle.api.JavaVersion
 
+object Versions {
+    const val gradleVersion = "8.0.2"
+
+    const val buildToolsVersion = "30.0.3"
     const val kotlinVersion = "1.8.20"
     const val kotlinSerializationJsonVersion = "1.5.1"
     const val kotlinDateTimeVersion = "0.4.0"
-
     const val coreKtxVersion = "1.10.1"
     const val appCompatVersion = "1.6.1"
     const val materialDesignVersion = "1.9.0"
@@ -22,7 +24,6 @@ object Versions {
     const val ossVersion = "17.0.0"
     const val splashVersion = "1.0.1"
     const val workManagerVersion = "2.8.1"
-    const val billingVersion = "6.0.1"
     const val coilVersion = "2.4.0"
     const val retrofitVersion = "2.9.0"
     const val kotlinSerializationConverterVersion = "1.0.0"
@@ -37,12 +38,10 @@ object Versions {
     const val shimmerVersion = "0.5.0"
     const val navigationVersion = "2.6.0"
     const val amplitudeVersion = "2.23.2"
-
-    const val inAppUpdateVersion = "2.1.0"
-
-    const val gradleVersion = "8.0.1"
-
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
+
+    val javaVersion = JavaVersion.VERSION_17
+    const val jvmVersion = "17"
 }
