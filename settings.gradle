@@ -16,3 +16,6 @@ rootProject.name = "GoingGoing"
 include ':app'
 include ':data'
 include ':domain'
+include ':build-src'
+include ':core-ui'
+include ':presentation'
