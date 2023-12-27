@@ -1,4 +1,4 @@
-package com.going.ui
+package com.going.ui.extension
 
 sealed interface UiState<out T> {
     object Empty : UiState<Nothing>
