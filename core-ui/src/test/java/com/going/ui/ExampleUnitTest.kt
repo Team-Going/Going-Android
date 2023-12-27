@@ -1,4 +1,4 @@
-package com.going.core_ui
+package com.going.ui
 
 import org.junit.Test
 
