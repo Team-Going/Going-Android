@@ -8,7 +8,7 @@
 |                                                      `마이 투두`<br/>`아워 투두`                                                      |                                                         `온보딩`<br/>`여행 성향`                                                          |                                          `취향 태그`<br/>`프로필`                                        |                                                      `여행 생성` <br/>`여행 입장`                                                      |
 <br>
 
-## [MODULE & PACKAGE CONVENTION]()
+## MODULE & PACKAGE CONVENTION
 ```
 
 🗃️app
