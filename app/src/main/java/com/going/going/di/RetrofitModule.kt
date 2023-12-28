@@ -41,7 +41,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        loggingInterceptor: Interceptor
+        loggingInterceptor: Interceptor,
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
@@ -57,3 +57,6 @@ object RetrofitModule {
         .addConverterFactory(factory)
         .build()
 }
+
+fun String?.isJsonObject(): Boolean = this?.startsWith("{") == true && this.endsWith("}")
+fun String?.isJsonArray(): Boolean = this?.startsWith("[") == true && this.endsWith("]")
