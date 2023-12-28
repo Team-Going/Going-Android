@@ -76,11 +76,6 @@ dependencies {
 
     ThirdPartyDependencies.run {
         implementation(coil)
-        implementation(platform(okHttpBom))
-        implementation(okHttp)
-        implementation(okHttpLoggingInterceptor)
-        implementation(retrofit)
-        implementation(retrofitJsonConverter)
         implementation(timber)
         implementation(ossLicense)
         implementation(progressView)

@@ -65,22 +65,12 @@ dependencies {
         implementation(kotlin)
         implementation(coroutines)
         implementation(jsonSerialization)
-        implementation(dateTime)
     }
 
     AndroidXDependencies.run {
         implementation(coreKtx)
         implementation(appCompat)
-        implementation(constraintLayout)
-        implementation(fragment)
-        implementation(startup)
-        implementation(legacy)
-        implementation(security)
         implementation(hilt)
-        implementation(lifeCycleKtx)
-        implementation(lifecycleJava8)
-        implementation(splashScreen)
-        implementation(pagingRuntime)
         implementation(workManager)
         implementation(hiltWorkManager)
     }
@@ -90,8 +80,6 @@ dependencies {
         kapt(hiltWorkManagerCompiler)
     }
 
-    implementation(MaterialDesignDependencies.materialDesign)
-
     TestDependencies.run {
         testImplementation(jUnit)
         androidTestImplementation(androidTest)
@@ -99,7 +87,6 @@ dependencies {
     }
 
     ThirdPartyDependencies.run {
-        implementation(coil)
         implementation(platform(okHttpBom))
         implementation(okHttp)
         implementation(okHttpLoggingInterceptor)
@@ -107,10 +94,5 @@ dependencies {
         implementation(retrofitJsonConverter)
         implementation(timber)
         implementation(ossLicense)
-        implementation(progressView)
-        implementation(balloon)
-        implementation(lottie)
-        implementation(circularProgressBar)
-        implementation(circleIndicator)
     }
 }
