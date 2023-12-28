@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">doorip</string>
+
+    <string name="view_type_error_msg">Unknown View Type : %d</string>
+    <string name="adapter_not_initialized_error_msg">Adapter is not initialized</string>
+    <string name="to_string">%s</string>
+    <string name="dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="server_error">서버 통신에 실패했습니다.</string>
+
+</resources>
