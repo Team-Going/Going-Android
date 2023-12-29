@@ -10,7 +10,46 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#8C8C8C">
+        android:background="@color/black_000">
+
+        <TextView
+            android:id="@+id/tv_mock_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOCK ACTIVITY"
+            android:textAppearance="@style/TextAppearance.Doorip.Body1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/white_000"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_mock_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5sp"
+            android:includeFontPadding="false"
+            android:text="MOCK ACTIVITY"
+            android:textAppearance="@style/TextAppearance.Doorip.Body1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mock_text"
+            android:background="@color/white_000"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_mock_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOCK ACTIVITY"
+            android:includeFontPadding="false"
+            android:textAppearance="@style/TextAppearance.Doorip.Body1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mock_text_1"
+            android:background="@color/white_000"
+            android:layout_marginTop="20dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_follower"
@@ -23,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mock_text_2"
             app:spanCount="2"
             tools:listitem="@layout/item_mock" />
 

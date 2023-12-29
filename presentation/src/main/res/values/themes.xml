@@ -1,10 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GoingGoing" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Base.Theme.Doorip" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
-        <!-- Customize your theme here. -->
+
     </style>
+
+    <style name="Theme.Doorip" parent="Base.Theme.Doorip" />
+
 </resources>
