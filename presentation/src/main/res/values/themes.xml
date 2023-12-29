@@ -5,8 +5,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
-        
-        <item name="textAppearanceHeadline1">@style/TextAppearance.Doorip.Head1</item>
 
     </style>
 
