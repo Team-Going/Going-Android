@@ -8,4 +8,7 @@
 
     <string name="server_error">서버 통신에 실패했습니다.</string>
 
+    <string name="sign_in_tv_title">여행을 시작해보세요</string>
+    <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
+
 </resources>
