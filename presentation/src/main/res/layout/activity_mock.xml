@@ -12,44 +12,21 @@
         android:layout_height="match_parent"
         android:background="@color/black_000">
 
+        <!-- 색상 적용은 @color 활용하기 -->
+        <!-- 폰트 적용은 style 활용하기 -->
+        <!-- 폰트 색상, 형태(italic) 등 필요시 textView에서 지정해서 덮어쓰면 됨! -->
+
         <TextView
             android:id="@+id/tv_mock_text"
+            style="@style/TextAppearance.Doorip.Head1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MOCK ACTIVITY"
-            android:textAppearance="@style/TextAppearance.Doorip.Body1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
             android:background="@color/white_000"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_mock_text_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingVertical="5sp"
-            android:includeFontPadding="false"
             android:text="MOCK ACTIVITY"
-            android:textAppearance="@style/TextAppearance.Doorip.Body1"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_mock_text"
-            android:background="@color/white_000"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_mock_text_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MOCK ACTIVITY"
-            android:includeFontPadding="false"
-            android:textAppearance="@style/TextAppearance.Doorip.Body1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_mock_text_1"
-            android:background="@color/white_000"
-            android:layout_marginTop="20dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_follower"
@@ -62,7 +39,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_mock_text_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_mock_text"
             app:spanCount="2"
             tools:listitem="@layout/item_mock" />
 
