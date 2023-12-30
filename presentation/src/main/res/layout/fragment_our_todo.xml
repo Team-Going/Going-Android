@@ -162,11 +162,12 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_height="wrap_content">
 
-                            <com.google.android.material.divider.MaterialDivider
+                            <ImageView
+                                android:src="@drawable/shape_gray500_dash_line"
+                                android:layerType="software"
+                                android:layout_marginHorizontal="10dp"
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@drawable/shape_gray500_dotted_line"
-                                android:layout_marginHorizontal="10dp"/>
+                                android:layout_height="5dp" />
 
                         </LinearLayout>
 
