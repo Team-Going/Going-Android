@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.Doorip" parent="">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black_000</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Head1">
+        <item name="fontFamily">@font/font_pretendard_extrabold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingVertical">6sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Head2">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingVertical">5sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Head3">
+        <item name="fontFamily">@font/font_pretendard_semibold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingVertical">5sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Head4">
+        <item name="fontFamily">@font/font_pretendard_medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingVertical">5sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingVertical">6sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body1.Bold">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body1.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body2">
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingVertical">4sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body2.Bold">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body2.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body3">
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingVertical">3sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body3.Bold">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Body3.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail1">
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingVertical">3sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail1.Bold">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail1.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingVertical">3sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail2.Bold">
+        <item name="fontFamily">@font/font_pretendard_bold</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail2.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail3">
+        <item name="android:textSize">11sp</item>
+        <item name="android:paddingVertical">3sp</item>
+    </style>
+
+    <style name="TextAppearance.Doorip.Detail3.Regular">
+        <item name="fontFamily">@font/font_pretendard_regular</item>
+    </style>
+
+</resources>
