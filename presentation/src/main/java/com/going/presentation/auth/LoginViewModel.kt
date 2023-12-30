@@ -1,5 +1,81 @@
 package com.going.presentation.auth
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.response.AuthTokenModel
+import com.going.ui.extension.UiState
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApiClient
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel()
+class LoginViewModel : ViewModel() {
+    private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
+    val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
+
+    private val _isAppLoginAvailable = MutableStateFlow(true)
+    val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
+
+    private var webLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        if (error == null && token != null) {
+            changeTokenFromServer(
+                accessToken = token.accessToken,
+            )
+        }
+    }
+
+    private var appLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        if (error != null) {
+            // 뒤로가기 경우 예외 처리
+            if (!(error is ClientError && error.reason == ClientErrorCause.Cancelled)) {
+                _isAppLoginAvailable.value = false
+            }
+        } else if (token != null) {
+            changeTokenFromServer(
+                accessToken = token.accessToken,
+            )
+        }
+    }
+
+    fun startKakaoLogIn(context: Context) {
+        if (UserApiClient.instance.isKakaoTalkLoginAvailable(context) && isAppLoginAvailable.value) {
+            UserApiClient.instance.loginWithKakaoTalk(
+                context = context,
+                callback = appLoginCallback,
+            )
+        } else {
+            UserApiClient.instance.loginWithKakaoAccount(
+                context = context,
+                callback = webLoginCallback,
+            )
+        }
+    }
+
+    // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기
+    private fun changeTokenFromServer(
+        accessToken: String,
+        social: String = KAKAO,
+    ) {
+        _postChangeTokenState.value = UiState.Loading
+        viewModelScope.launch {
+            // 통신 로직
+
+            // 성공시 저러케 서버에서 준 정보를 넣음
+            _postChangeTokenState.value = UiState.Success(
+                AuthTokenModel(
+                    isResigned = true,
+                    accessToken = "testAccessToekn",
+                    refreshToken = "testRefreshToekn",
+                ),
+            )
+        }
+    }
+
+    companion object {
+        const val KAKAO = "KAKAO"
+    }
+}
