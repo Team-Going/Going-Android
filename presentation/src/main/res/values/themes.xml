@@ -10,4 +10,13 @@
 
     <style name="Theme.Doorip" parent="Base.Theme.Doorip" />
 
+    <!-- TextInputLayout Style -->
+    <style name="textInputLayout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxBackgroundColor">@color/white_000</item>
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+    </style>
 </resources>
