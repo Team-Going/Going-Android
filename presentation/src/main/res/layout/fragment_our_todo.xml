@@ -12,9 +12,10 @@
         android:background="@color/white_000">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbar_top_hat_detail"
+            android:id="@+id/toolbar_our"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:background="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -22,21 +23,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/layout_hat_detail"
+            android:id="@+id/layout_our"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_top_hat_detail">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_our">
 
             <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar_hat_detail"
+                android:id="@+id/appbar_our"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white_000">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/toolbar_hat_detail"
+                    android:id="@+id/layout_our_collapsing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:contentScrim="@android:color/transparent"
@@ -46,7 +48,28 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="false">
+                        android:adjustViewBounds="false"
+                        android:paddingHorizontal="24dp">
+
+                        <TextView
+                            android:id="@+id/tv_our_title_up"
+                            style="@style/TextAppearance.Doorip.Head1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="우쥬랑 스페인"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_our_title_down"
+                            style="@style/TextAppearance.Doorip.Head1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="여행일까지 16일 남았어요!"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_our_title_up" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -57,7 +80,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:textSize="14sp"
                     app:tabIndicatorFullWidth="true"
                     app:tabRippleColor="@android:color/transparent"
                     app:tabSelectedTextColor="@color/black_000" />
@@ -70,7 +92,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appbar_hat_detail" />
+                app:layout_constraintTop_toBottomOf="@id/appbar_our" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

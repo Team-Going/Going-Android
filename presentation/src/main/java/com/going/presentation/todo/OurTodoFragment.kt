@@ -1,7 +1,11 @@
 package com.going.presentation.todo
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.ui.base.BaseFragment
@@ -13,6 +17,21 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setDateTextColor()
+    }
+
+    private fun setDateTextColor() {
+        binding.tvOurTitleDown.apply {
+            text = SpannableStringBuilder(text).apply {
+                setSpan(
+                    ForegroundColorSpan(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.red_500
+                        )
+                    ), 6, length - 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
     }
 
 }
