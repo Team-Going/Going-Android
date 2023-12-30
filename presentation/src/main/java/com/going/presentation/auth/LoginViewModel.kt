@@ -55,16 +55,17 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기
+    // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기 - 서버와 협의 후 수정예정
     private fun changeTokenFromServer(
         accessToken: String,
         social: String = KAKAO,
     ) {
         _postChangeTokenState.value = UiState.Loading
+
         viewModelScope.launch {
             // 통신 로직
 
-            // 성공시 저러케 서버에서 준 정보를 넣음
+            // 성공시 서버에서 준 정보를 넣는 예시 코드
             _postChangeTokenState.value = UiState.Success(
                 AuthTokenModel(
                     isResigned = true,
