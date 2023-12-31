@@ -9,6 +9,7 @@ buildscript {
         classpath(ClassPathPlugins.kotlinGradle)
         classpath(ClassPathPlugins.hilt)
         classpath(ClassPathPlugins.oss)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.20")
     }
 }
 
