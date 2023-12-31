@@ -18,11 +18,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initKakaoLoginButtonClickListener()
+        initKakaoLoginBtnClickListener()
         observeInfo()
     }
 
-    private fun initKakaoLoginButtonClickListener() {
+    private fun initKakaoLoginBtnClickListener() {
         binding.btnSignIn.setOnSingleClickListener {
             viewModel.startKakaoLogIn(this)
         }
