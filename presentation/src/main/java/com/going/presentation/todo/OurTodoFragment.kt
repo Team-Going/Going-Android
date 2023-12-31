@@ -18,10 +18,11 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
 
         setDateTextColor()
+        setProgressBarStatus()
     }
 
     private fun setDateTextColor() {
-        binding.tvOurTitleDown.apply {
+        binding.tvOurTodoTitleDown.apply {
             text = SpannableStringBuilder(text).apply {
                 setSpan(
                     ForegroundColorSpan(
@@ -32,6 +33,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 )
             }
         }
+    }
+
+    private fun setProgressBarStatus() {
+        binding.progressBarOurTodo.progress = 40
     }
 
 }
