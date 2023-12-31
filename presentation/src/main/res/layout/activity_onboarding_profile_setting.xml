@@ -55,7 +55,7 @@
                 android:id="@+id/etv_onboarding_profile_setting_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailabe()}"
+                android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLength="@{viewModel.MAX_NAME_LEN}"

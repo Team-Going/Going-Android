@@ -1,5 +1,6 @@
 package com.going.presentation.onboarding
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,7 @@ class OnboardingProfileSettingViewModel : ViewModel() {
     val isNameAvailable = MutableLiveData(false)
     val isInfoAvailable = MutableLiveData(false)
 
-    private val _isProfileAvailable = MutableStateFlow(true)
+    private val _isProfileAvailable = MutableStateFlow(false)
     val isProfileAvailable: StateFlow<Boolean> = _isProfileAvailable
 
     fun checkProfileAvailable() {
@@ -22,7 +23,7 @@ class OnboardingProfileSettingViewModel : ViewModel() {
             (getGraphemeLength(name.value) <= MAX_NAME_LEN) && name.value.isNullOrBlank()
         isInfoAvailable.value = getGraphemeLength(info.value) in 1..MAX_INFO_LEN
 
-        _isProfileAvailable.value = name.value.isNullOrBlank() && info.value.isNullOrBlank()
+        _isProfileAvailable.value = isNameAvailable.value ?: false && isInfoAvailable.value ?: false
     }
 
     // 이모지 포함 글자 수 세는 함수
