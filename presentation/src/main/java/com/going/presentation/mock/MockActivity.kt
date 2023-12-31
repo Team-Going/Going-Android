@@ -58,5 +58,4 @@ class MockActivity() : BaseActivity<ActivityMockBinding>(R.layout.activity_mock)
         super.onDestroy()
         _adapter = null
     }
-
 }
