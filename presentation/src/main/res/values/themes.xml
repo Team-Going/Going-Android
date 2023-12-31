@@ -11,12 +11,18 @@
     <style name="Theme.Doorip" parent="Base.Theme.Doorip" />
 
     <!-- TextInputLayout Style -->
+    <style name="ThemeOverlay.Eggeum.TextInputLayout.CursorColor" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorControlActivated">@color/red_600</item>
+    </style>
+
     <style name="textInputLayout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/red_600</item>
         <item name="boxBackgroundColor">@color/white_000</item>
         <item name="boxCornerRadiusBottomEnd">6dp</item>
         <item name="boxCornerRadiusBottomStart">6dp</item>
         <item name="boxCornerRadiusTopEnd">6dp</item>
         <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
     </style>
 </resources>
