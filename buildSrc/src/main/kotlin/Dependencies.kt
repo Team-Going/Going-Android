@@ -93,3 +93,7 @@ object FirebaseDependencies {
     const val analytics = "com.google.firebase:firebase-analytics-ktx"
     const val remoteConfig = "com.google.firebase:firebase-config-ktx"
 }
+
+object KakaoDependencies {
+    const val user = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
+}

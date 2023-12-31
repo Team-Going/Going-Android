@@ -84,4 +84,8 @@ dependencies {
         implementation(circularProgressBar)
         implementation(circleIndicator)
     }
+
+    KakaoDependencies.run {
+        implementation(user)
+    }
 }

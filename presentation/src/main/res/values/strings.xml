@@ -7,6 +7,9 @@
     <string name="dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <string name="server_error">서버 통신에 실패했습니다.</string>
+  
+    <string name="sign_in_tv_title">여행을 시작해보세요</string>
+    <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
 
     <string name="text_count">%1$d / %2$d</string>
 
