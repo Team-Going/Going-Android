@@ -69,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/text_count(viewModel.nameLen, viewModel.MAX_NAME_LEN)}"
+            android:text="@{@string/text_count(viewModel.nowNameLength, viewModel.MAX_NAME_LEN)}"
             app:layout_constraintEnd_toEndOf="@id/layout_onboarding_profile_setting_name"
             app:layout_constraintTop_toBottomOf="@id/layout_onboarding_profile_setting_name" />
 
@@ -113,7 +113,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/text_count(viewModel.infoLen, viewModel.MAX_INFO_LEN)}"
+            android:text="@{@string/text_count(viewModel.nowInfoLength, viewModel.MAX_INFO_LEN)}"
             app:layout_constraintEnd_toEndOf="@id/layout_onboarding_profile_setting_on_line_info"
             app:layout_constraintTop_toBottomOf="@id/layout_onboarding_profile_setting_on_line_info" />
 

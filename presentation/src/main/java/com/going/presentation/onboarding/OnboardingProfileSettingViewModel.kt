@@ -8,9 +8,9 @@ import java.text.BreakIterator
 
 class OnboardingProfileSettingViewModel : ViewModel() {
     val name = MutableLiveData(String())
-    val nameLen = MutableLiveData(0)
+    val nowNameLength = MutableLiveData(0)
     val info = MutableLiveData(String())
-    val infoLen = MutableLiveData(0)
+    val nowInfoLength = MutableLiveData(0)
 
     // 추후 해당 값을 활용하여 텍스트박스에 변화를 줄 것 예측샷 ㅋㅋ
     val isNameAvailable = MutableLiveData(false)
@@ -20,9 +20,12 @@ class OnboardingProfileSettingViewModel : ViewModel() {
     private val _isMoveScreenAvailable = MutableStateFlow(false)
     val isMoveScreenAvailable: StateFlow<Boolean> = _isMoveScreenAvailable
 
+    fun getMaxNameLen() = MAX_NAME_LEN
+    fun getMaxInfoLen() = MAX_INFO_LEN
+
     fun checkProfileAvailable() {
-        nameLen.value = getGraphemeLength(name.value)
-        infoLen.value = getGraphemeLength(info.value)
+        nowNameLength.value = getGraphemeLength(name.value)
+        nowInfoLength.value = getGraphemeLength(info.value)
 
         isNameAvailable.value =
             (getGraphemeLength(name.value) <= MAX_NAME_LEN) && !name.value.isNullOrBlank()
