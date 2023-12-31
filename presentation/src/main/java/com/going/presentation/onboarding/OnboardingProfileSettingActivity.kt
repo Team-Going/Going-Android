@@ -21,6 +21,7 @@ class OnboardingProfileSettingActivity :
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
         observeIsProfileAvailable()
+        observeTextLength()
     }
 
     private fun initBindingViewModel() {
@@ -38,6 +39,33 @@ class OnboardingProfileSettingActivity :
         viewModel.isMoveScreenAvailable.flowWithLifecycle(lifecycle).onEach { isEnd ->
             if (isEnd) moveSplash()
         }.launchIn(lifecycleScope)
+    }
+
+    // 커스텀 글자수 제한 함수 -> 리펙토링 반드시 필요!!! 그저 기능구현만 해봄
+    private fun observeTextLength() {
+        viewModel.nameLen.observe(this) { length ->
+            if (length > 5) {
+                binding.etvOnboardingProfileSettingName.setText(
+                    binding.etvOnboardingProfileSettingName.text?.subSequence(
+                        0,
+                        5,
+                    ),
+                )
+                binding.etvOnboardingProfileSettingName.setSelection(5)
+            }
+        }
+
+        viewModel.infoLen.observe(this) { length ->
+            if (length > 20) {
+                binding.etvOnboardingProfileSettingOnLineInfo.setText(
+                    binding.etvOnboardingProfileSettingOnLineInfo.text?.subSequence(
+                        0,
+                        20,
+                    ),
+                )
+                binding.etvOnboardingProfileSettingOnLineInfo.setSelection(20)
+            }
+        }
     }
 
     private fun moveSplash() {
