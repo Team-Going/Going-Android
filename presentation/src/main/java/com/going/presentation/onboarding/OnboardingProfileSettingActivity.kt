@@ -1,6 +1,7 @@
 package com.going.presentation.onboarding
 
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,12 +18,24 @@ class OnboardingProfileSettingActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initBindingViewModel()
+        initOnLineInfoEditorActionListener()
         observeIsProfileAvailable()
     }
 
-    // 이거 필요없네 ㅋㅋㅋㅋㅋㅋㅋ
+    private fun initBindingViewModel() {
+        binding.viewModel = viewModel
+    }
+
+    private fun initOnLineInfoEditorActionListener() {
+        binding.etvOnboardingProfileSettingOnLineInfo.setOnEditorActionListener { view, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) view.clearFocus()
+            false
+        }
+    }
+
     private fun observeIsProfileAvailable() {
-        viewModel.isProfileAvailable.flowWithLifecycle(lifecycle).onEach { isEnd ->
+        viewModel.isMoveScreenAvailable.flowWithLifecycle(lifecycle).onEach { isEnd ->
             if (isEnd) moveSplash()
         }.launchIn(lifecycleScope)
     }
