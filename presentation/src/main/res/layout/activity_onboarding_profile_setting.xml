@@ -1,107 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white_000">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/tb_onboarding_profile_setting"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white_000"
-        android:paddingVertical="12dp"
-        android:paddingStart="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/onboarding_title"
-        app:titleTextColor="@color/black_000" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_onboarding_profile_setting_name_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColor="@color/black_000"
-        app:layout_constraintStart_toStartOf="@id/til_onboarding_profile_setting_name_title"
-        app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting"
-        android:text="@string/onboarding_name" />
+        <variable
+            name="viewModel"
+            type="com.going.presentation.onboarding.OnboardingProfileSettingViewModel" />
+    </data>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_onboarding_profile_setting_name_title"
-        style="@style/textInputLayout_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="6dp"
-        app:boxStrokeWidth="2dp"
-        app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_000">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etv_onboarding_profile_setting_name"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tb_onboarding_profile_setting"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1"
-            android:textColor="@color/black_000"
-            android:textSize="15sp"
-            tools:text="@string/onboarding_name" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:background="@color/white_000"
+            android:paddingVertical="12dp"
+            android:paddingStart="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/onboarding_title"
+            app:titleTextColor="@color/black_000" />
 
-    <TextView
-        android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColor="@color/black_000"
-        app:layout_constraintStart_toStartOf="@id/til_onboarding_profile_setting_name_title"
-        app:layout_constraintTop_toBottomOf="@id/til_onboarding_profile_setting_name_title"
-        android:text="@string/onboarding_one_line_info_title" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_music_title2"
-        style="@style/textInputLayout_style"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="6dp"
-        app:boxStrokeWidth="2dp"
-        app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_music_title2"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_onboarding_profile_setting_name_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1"
+            android:layout_marginTop="32dp"
+            android:text="@string/onboarding_name"
             android:textColor="@color/black_000"
-            android:textSize="15sp"
-            tools:text="@string/onboarding_one_line_info" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="@id/layout_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
 
-    <Button
-        android:id="@+id/btn_onboarding_profile_setting_finish"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="60dp"
-        android:text="유형 검사하러 가기"
-        android:textColor="@color/black_000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_onboarding_profile_setting_name"
+            style="@style/textInputLayout_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            app:boxStrokeWidth="2dp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etv_onboarding_profile_setting_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailabe()}"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="@{viewModel.MAX_NAME_LEN}"
+                android:maxLines="1"
+                android:text="@={viewModel.name}"
+                android:textColor="@color/black_000"
+                android:textSize="15sp"
+                tools:text="@string/onboarding_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/onboarding_one_line_info_title"
+            android:textColor="@color/black_000"
+            app:layout_constraintStart_toStartOf="@id/layout_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/layout_onboarding_profile_setting_name" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_onboarding_profile_setting_on_line_info"
+            style="@style/textInputLayout_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            app:boxStrokeWidth="2dp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etv_onboarding_profile_setting_on_line_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="@{viewModel.MAX_INFO_LEN}"
+                android:maxLines="1"
+                android:text="@={viewModel.info}"
+                android:textColor="@color/black_000"
+                android:textSize="15sp"
+                tools:text="@string/onboarding_one_line_info" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_onboarding_profile_setting_finish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="60dp"
+            android:enabled="@{viewModel.isProfileAvailable()}"
+            android:onClick="@{}"
+            android:paddingVertical="10dp"
+            android:text="@string/onboarding_finish_button"
+            android:textColor="@color/black_000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
