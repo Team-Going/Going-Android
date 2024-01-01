@@ -62,7 +62,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/name_blank_error"
-            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_400 : @color/gray_700}"
+            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_500 : @color/gray_700}"
             android:visibility="@{viewModel.isNameAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />

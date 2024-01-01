@@ -55,7 +55,7 @@ class OnboardingProfileSettingActivity :
             setNameCounterColor(R.color.gray_200)
         }
         if (viewModel.isNameAvailable.value == NameState.Blank) {
-            setNameCounterColor(R.color.red_400)
+            setNameCounterColor(R.color.red_500)
         }
     }
 
@@ -97,7 +97,7 @@ class OnboardingProfileSettingActivity :
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
             when (state) {
-                NameState.Blank -> binding.tvNameCounter.setTextColor(getColor(R.color.red_400))
+                NameState.Blank -> binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
                 else -> binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
             }
         }
