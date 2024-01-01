@@ -18,7 +18,7 @@
     <style name="TextAppearance.Doorip.Head2">
         <item name="fontFamily">@font/font_pretendard_bold</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:paddingVertical">5sp</item>
+        <item name="android:paddingVertical">6sp</item>
     </style>
 
     <style name="TextAppearance.Doorip.Head3">
@@ -35,15 +35,15 @@
 
     <style name="TextAppearance.Doorip.Body1">
         <item name="android:textSize">16sp</item>
-        <item name="android:paddingVertical">6sp</item>
+        <item name="android:paddingVertical">4sp</item>
     </style>
 
     <style name="TextAppearance.Doorip.Body1.Bold">
         <item name="fontFamily">@font/font_pretendard_bold</item>
     </style>
 
-    <style name="TextAppearance.Doorip.Body1.Regular">
-        <item name="fontFamily">@font/font_pretendard_regular</item>
+    <style name="TextAppearance.Doorip.Body1.Medi">
+        <item name="fontFamily">@font/font_pretendard_medium</item>
     </style>
 
     <style name="TextAppearance.Doorip.Body2">
@@ -55,21 +55,21 @@
         <item name="fontFamily">@font/font_pretendard_bold</item>
     </style>
 
-    <style name="TextAppearance.Doorip.Body2.Regular">
-        <item name="fontFamily">@font/font_pretendard_regular</item>
+    <style name="TextAppearance.Doorip.Body2.Medi">
+        <item name="fontFamily">@font/font_pretendard_medium</item>
     </style>
 
     <style name="TextAppearance.Doorip.Body3">
         <item name="android:textSize">14sp</item>
-        <item name="android:paddingVertical">3sp</item>
+        <item name="android:paddingVertical">4sp</item>
     </style>
 
     <style name="TextAppearance.Doorip.Body3.Bold">
         <item name="fontFamily">@font/font_pretendard_bold</item>
     </style>
 
-    <style name="TextAppearance.Doorip.Body3.Regular">
-        <item name="fontFamily">@font/font_pretendard_regular</item>
+    <style name="TextAppearance.Doorip.Body3.Medi">
+        <item name="fontFamily">@font/font_pretendard_medium</item>
     </style>
 
     <style name="TextAppearance.Doorip.Detail1">
