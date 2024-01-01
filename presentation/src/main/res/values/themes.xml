@@ -10,17 +10,9 @@
 
     <style name="Theme.Doorip" parent="Base.Theme.Doorip" />
 
-    <!-- TextInputLayout Style -->
-    <style name="ThemeOverlay.Eggeum.TextInputLayout.CursorColor" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+    <!-- EditText Style -->
+    <style name="cursor_color" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
         <item name="colorControlActivated">@color/gray_700</item>
-    </style>
-
-    <style name="textInputLayout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxBackgroundMode">outline</item>
-        <item name="boxStrokeColor">@color/gray_700</item>
-        <item name="boxBackgroundColor">@color/white_000</item>
-        <item name="android:buttonCornerRadius">4dp</item>
-        <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
     </style>
 
     <style name="edit_text_style" parent="Widget.AppCompat.EditText">
@@ -28,9 +20,10 @@
         <item name="boxStrokeColor">@color/gray_700</item>
         <item name="boxBackgroundColor">@color/white_000</item>
         <item name="android:buttonCornerRadius">4dp</item>
-        <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
+        <item name="android:theme">@style/cursor_color</item>
     </style>
 
+    <!-- Button Style -->
     <style name="button_style" parent="Widget.AppCompat.Button">
 
         <item name="android:buttonCornerRadius">46dp</item>
