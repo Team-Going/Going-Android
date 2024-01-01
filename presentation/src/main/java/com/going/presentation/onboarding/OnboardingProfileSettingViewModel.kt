@@ -53,7 +53,7 @@ class OnboardingProfileSettingViewModel : ViewModel() {
     companion object {
         val BREAK_ITERATOR: BreakIterator = BreakIterator.getCharacterInstance()
 
-        const val MAX_NAME_LEN = 5
+        const val MAX_NAME_LEN = 3
         const val MAX_INFO_LEN = 20
     }
 }
