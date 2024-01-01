@@ -40,25 +40,22 @@ class OnboardingProfileSettingActivity :
 
     private fun initSetOnFucusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                setNameCounterColor(R.color.gray_700)
-            } else {
-                setNameCounterColor(R.color.gray_200)
-            }
-            if (viewModel.isNameAvailable.value == NameState.Blank) {
-                setNameCounterColor(R.color.red_400)
-            }
+            judgeCounterColorWithFocus(hasFocus)
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                setNameCounterColor(R.color.gray_700)
-            } else {
-                setNameCounterColor(R.color.gray_200)
-            }
-            if (viewModel.isNameAvailable.value == NameState.Blank) {
-                setNameCounterColor(R.color.red_400)
-            }
+            judgeCounterColorWithFocus(hasFocus)
+        }
+    }
+
+    private fun judgeCounterColorWithFocus(hasFocus: Boolean) {
+        if (hasFocus) {
+            setNameCounterColor(R.color.gray_700)
+        } else {
+            setNameCounterColor(R.color.gray_200)
+        }
+        if (viewModel.isNameAvailable.value == NameState.Blank) {
+            setNameCounterColor(R.color.red_400)
         }
     }
 
