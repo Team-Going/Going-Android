@@ -13,9 +13,7 @@ class OnboardingProfileSettingViewModel : ViewModel() {
     val info = MutableLiveData(String())
     val nowInfoLength = MutableLiveData(0)
 
-    // 추후 해당 값을 활용하여 텍스트박스에 변화를 줄 것 예측샷 ㅋㅋ
     val isNameAvailable = MutableLiveData(NameState.Empty)
-    val isInfoAvailable = MutableLiveData(false)
     val isProfileAvailable = MutableLiveData(false)
 
     private val _isMoveScreenAvailable = MutableStateFlow(false)
@@ -28,12 +26,16 @@ class OnboardingProfileSettingViewModel : ViewModel() {
         nowNameLength.value = getGraphemeLength(name.value)
         nowInfoLength.value = getGraphemeLength(info.value)
 
-        isNameAvailable.value =
-            if (nowNameLength.value == 0) NameState.Empty else if (name.value.isNullOrBlank()) NameState.Blank else NameState.Success
-        isInfoAvailable.value = getGraphemeLength(info.value) in 1..MAX_INFO_LEN
+        isNameAvailable.value = when {
+            nowNameLength.value == 0 -> NameState.Empty
+            name.value.isNullOrBlank() -> NameState.Blank
+            else -> NameState.Success
+        }
+
+        val isInfoAvailable = getGraphemeLength(info.value) in 1..MAX_INFO_LEN
 
         isProfileAvailable.value =
-            isNameAvailable.value == NameState.Success && isInfoAvailable.value ?: false
+            (isNameAvailable.value == NameState.Success) && isInfoAvailable
     }
 
     // 이모지 포함 글자 수 세는 함수
@@ -59,4 +61,3 @@ class OnboardingProfileSettingViewModel : ViewModel() {
         const val MAX_INFO_LEN = 20
     }
 }
-

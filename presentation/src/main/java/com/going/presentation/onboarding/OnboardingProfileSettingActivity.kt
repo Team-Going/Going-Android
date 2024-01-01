@@ -41,29 +41,29 @@ class OnboardingProfileSettingActivity :
     private fun initSetOnFucusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+                setNameCounterColor(R.color.gray_700)
             } else {
-                binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
+                setNameCounterColor(R.color.gray_200)
             }
             if (viewModel.isNameAvailable.value == NameState.Blank) {
-                binding.tvNameCounter.setTextColor(
-                    getColor(R.color.red_400),
-                )
+                setNameCounterColor(R.color.red_400)
             }
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+                setNameCounterColor(R.color.gray_700)
             } else {
-                binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
+                setNameCounterColor(R.color.gray_200)
             }
             if (viewModel.isNameAvailable.value == NameState.Blank) {
-                binding.tvNameCounter.setTextColor(
-                    getColor(R.color.red_400),
-                )
+                setNameCounterColor(R.color.red_400)
             }
         }
+    }
+
+    private fun setNameCounterColor(color: Int) {
+        binding.tvNameCounter.setTextColor(getColor(color))
     }
 
     private fun observeIsProfileAvailable() {
