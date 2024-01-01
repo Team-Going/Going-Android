@@ -12,7 +12,7 @@
 
     <!-- TextInputLayout Style -->
     <style name="ThemeOverlay.Eggeum.TextInputLayout.CursorColor" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
-        <item name="colorControlActivated">@color/red_600</item>
+        <item name="colorControlActivated">@color/gray_700</item>
     </style>
 
     <style name="textInputLayout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

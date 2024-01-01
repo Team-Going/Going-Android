@@ -5,6 +5,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
 import com.going.ui.base.BaseActivity
@@ -23,6 +24,7 @@ class OnboardingProfileSettingActivity :
         initSetOnFucusChangeListener()
         observeIsProfileAvailable()
         observeTextLength()
+        observeIsNameAvailable()
     }
 
     private fun initBindingViewModel() {
@@ -42,8 +44,11 @@ class OnboardingProfileSettingActivity :
                 binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
             } else {
                 binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
-
-                // if 에러면 레드 처리
+            }
+            if (viewModel.isNameAvailable.value == NameState.Blank) {
+                binding.tvNameCounter.setTextColor(
+                    getColor(R.color.red_400),
+                )
             }
         }
 
@@ -52,8 +57,11 @@ class OnboardingProfileSettingActivity :
                 binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
             } else {
                 binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
-
-                // if 에러면 레드 처리
+            }
+            if (viewModel.isNameAvailable.value == NameState.Blank) {
+                binding.tvNameCounter.setTextColor(
+                    getColor(R.color.red_400),
+                )
             }
         }
     }
@@ -85,6 +93,15 @@ class OnboardingProfileSettingActivity :
                     setText(text?.subSequence(0, maxInfoLength))
                     setSelection(maxInfoLength)
                 }
+            }
+        }
+    }
+
+    private fun observeIsNameAvailable() {
+        viewModel.isNameAvailable.observe(this) { state ->
+            when (state) {
+                NameState.Blank -> binding.tvNameCounter.setTextColor(getColor(R.color.red_400))
+                else -> binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
             }
         }
     }
