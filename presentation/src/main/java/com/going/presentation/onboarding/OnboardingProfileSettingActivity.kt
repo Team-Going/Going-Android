@@ -20,9 +20,9 @@ class OnboardingProfileSettingActivity :
 
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
+        initSetOnFucusChangeListener()
         observeIsProfileAvailable()
         observeTextLength()
-        // binding.layoutOnboardingProfileSettingName.error = getString(R.string.name_error)
     }
 
     private fun initBindingViewModel() {
@@ -30,9 +30,31 @@ class OnboardingProfileSettingActivity :
     }
 
     private fun initOnLineInfoEditorActionListener() {
-        binding.etvOnboardingProfileSettingOnLineInfo.setOnEditorActionListener { view, actionId, _ ->
+        binding.etOnboardingProfileSettingInfo.setOnEditorActionListener { view, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) view.clearFocus()
             false
+        }
+    }
+
+    private fun initSetOnFucusChangeListener() {
+        binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+            } else {
+                binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
+
+                // if 에러면 레드 처리
+            }
+        }
+
+        binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+            } else {
+                binding.tvNameCounter.setTextColor(getColor(R.color.gray_200))
+
+                // if 에러면 레드 처리
+            }
         }
     }
 
@@ -48,7 +70,7 @@ class OnboardingProfileSettingActivity :
             val maxNameLength = viewModel.getMaxNameLen()
 
             if (length > maxNameLength) {
-                binding.etvOnboardingProfileSettingName.apply {
+                binding.etOnboardingProfileSettingName.apply {
                     setText(text?.subSequence(0, maxNameLength))
                     setSelection(maxNameLength)
                 }
@@ -59,7 +81,7 @@ class OnboardingProfileSettingActivity :
             val maxInfoLength = viewModel.getMaxInfoLen()
 
             if (length > maxInfoLength) {
-                binding.etvOnboardingProfileSettingOnLineInfo.apply {
+                binding.etOnboardingProfileSettingInfo.apply {
                     setText(text?.subSequence(0, maxInfoLength))
                     setSelection(maxInfoLength)
                 }

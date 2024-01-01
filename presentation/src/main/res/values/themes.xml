@@ -17,12 +17,19 @@
 
     <style name="textInputLayout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxStrokeColor">@color/red_600</item>
+        <item name="boxStrokeColor">@color/gray_700</item>
         <item name="boxBackgroundColor">@color/white_000</item>
         <item name="android:buttonCornerRadius">4dp</item>
         <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
     </style>
 
+    <style name="edit_text_style" parent="Widget.AppCompat.EditText">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxStrokeColor">@color/gray_700</item>
+        <item name="boxBackgroundColor">@color/white_000</item>
+        <item name="android:buttonCornerRadius">4dp</item>
+        <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
+    </style>
 
     <style name="button_style" parent="Widget.AppCompat.Button">
 
