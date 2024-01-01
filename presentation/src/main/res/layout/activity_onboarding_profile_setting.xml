@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <import type="com.going.domain.entity.NameState"/>
         <variable
             name="viewModel"
             type="com.going.presentation.onboarding.OnboardingProfileSettingViewModel" />
@@ -45,7 +46,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:background="@drawable/rounded_corner_edit_text"
+            android:background="@{viewModel.isNameAvailable() == NameState.Blank ? @drawable/rounded_corner_edit_text_error : @drawable/rounded_corner_edit_text}"
             android:hint="@string/onboarding_name"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -55,16 +56,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title" />
 
-        <!--        <TextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="4dp"-->
-        <!--            android:layout_marginStart="4dp"-->
-        <!--            android:text="@string/name_error"-->
-        <!--            android:textColor="@color/red_400"-->
-        <!--            android:visibility="visible"-->
-        <!--            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/name_blank_error"
+            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_400 : @color/gray_700}"
+            android:visibility="@{viewModel.isNameAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
 
         <TextView
             android:id="@+id/tv_name_counter"
@@ -94,8 +95,8 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:hint="@string/onboarding_one_line_info"
             android:background="@drawable/rounded_corner_edit_text"
+            android:hint="@string/onboarding_one_line_info"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
@@ -103,36 +104,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
-
-
-
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/layout_onboarding_profile_setting_on_line_info"-->
-<!--            style="@style/textInputLayout_style"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="24dp"-->
-<!--            android:layout_marginTop="6dp"-->
-<!--            app:boxStrokeWidth="2dp"-->
-<!--            app:errorIconDrawable="@null"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/etv_onboarding_profile_setting_on_line_info"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"-->
-<!--                android:hint="@string/onboarding_one_line_info"-->
-<!--                android:imeOptions="actionDone"-->
-<!--                android:inputType="text"-->
-<!--                android:maxLines="1"-->
-<!--                android:text="@={viewModel.info}"-->
-<!--                android:textColor="@color/black_000"-->
-<!--                android:textSize="15sp" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <TextView
             android:layout_width="wrap_content"
