@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/onboarding_title"
+            app:title="@string/onboarding_tb_title"
             app:titleTextColor="@color/black_000" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/onboarding_name_title"
+            android:text="@string/onboarding_name_tv_title"
             android:textColor="@color/black_000"
             app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
             app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
@@ -47,7 +47,7 @@
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
             android:background="@{viewModel.isNameAvailable() == NameState.Blank ? @drawable/rounded_corner_edit_text_error : @drawable/rounded_corner_edit_text}"
-            android:hint="@string/onboarding_name"
+            android:hint="@string/onboarding_et_name_hint"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
-            android:text="@string/onboarding_one_line_info_title"
+            android:text="@string/onboarding_one_line_info_tv_title"
             android:textColor="@color/black_000"
             app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
@@ -96,7 +96,7 @@
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
             android:background="@drawable/rounded_corner_edit_text"
-            android:hint="@string/onboarding_one_line_info"
+            android:hint="@string/onboarding_one_line_et_info"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
@@ -123,7 +123,7 @@
             android:enabled="@{viewModel.isProfileAvailable()}"
             android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
             android:paddingVertical="10dp"
-            android:text="@string/onboarding_finish_button"
+            android:text="@string/onboarding_finish_btn"
             android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
