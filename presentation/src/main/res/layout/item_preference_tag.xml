@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="345dp"
+    android:layout_height="157dp"
+    android:background="@color/white_000">
+
+    <TextView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@color/gray_300"
+        android:textColor="@color/black_000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:textColor="@color/black_000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="휴식" />
+
+    <Button
+        android:id="@+id/btn_round"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_round_gray"
+        android:backgroundTint="@color/gray_200"
+        android:text="1"
+        android:textColor="@color/black_000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

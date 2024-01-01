@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.going.domain.entity.NameState"/>
+        <variable
+            name="viewModel"
+            type="com.going.presentation.onboarding.OnboardingProfileSettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_onboarding_profile_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white_000"
+            android:elevation="2dp"
+            android:paddingVertical="12dp"
+            android:paddingStart="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/onboarding_tb_title"
+            app:titleTextColor="@color/black_000" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_profile_setting_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/onboarding_name_tv_title"
+            android:textColor="@color/black_000"
+            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_onboarding_profile_setting_name"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
+            android:background="@{viewModel.isNameAvailable() == NameState.Blank ? @drawable/sel_rounded_corner_edit_text_error : @drawable/sel_rounded_corner_edit_text}"
+            android:hint="@string/onboarding_et_name_hint"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={viewModel.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/name_blank_error"
+            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_500 : @color/gray_700}"
+            android:visibility="@{viewModel.isNameAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
+
+        <TextView
+            android:id="@+id/tv_name_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{@string/text_count(viewModel.nowNameLength, viewModel.MAX_NAME_LEN)}"
+            android:textColor="@color/gray_200"
+            app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
+
+        <TextView
+            android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:text="@string/onboarding_one_line_info_tv_title"
+            android:textColor="@color/black_000"
+            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_onboarding_profile_setting_info"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
+            android:background="@drawable/sel_rounded_corner_edit_text"
+            android:hint="@string/onboarding_one_line_et_info"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={viewModel.info}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/text_count(viewModel.nowInfoLength, viewModel.MAX_INFO_LEN)}"
+            app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_info"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_onboarding_profile_setting_finish"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="@{viewModel.isProfileAvailable()}"
+            android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
+            android:paddingVertical="10dp"
+            android:text="@string/onboarding_finish_btn"
+            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
