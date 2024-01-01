@@ -5,7 +5,6 @@
     <color name="red_100">#FAD3C6</color>
     <color name="red_200">#FCAD95</color>
     <color name="red_300">#FE8763</color>
-    <color name="red_400">#FE6032</color>
     <color name="red_500">#FF4F17</color>
     <color name="red_600">#E03600</color>
 
@@ -14,13 +13,13 @@
     <color name="black_000">#151515</color>
 
     <color name="gray_50">#F3F3F6</color>
+    <color name="gray_100">#E4E5ED</color>
     <color name="gray_200">#C3C4CE</color>
     <color name="gray_300">#9093A8</color>
     <color name="gray_400">#4A4D63</color>
     <color name="gray_500">#36394F</color>
     <color name="gray_600">#292C3C</color>
     <color name="gray_700">#1D1F29</color>
-    <color name="gray_900">#15171E</color>
 
     <!-- Transparent -->
     <color name="transparent">#00000000</color>
