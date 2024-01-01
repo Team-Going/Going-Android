@@ -19,7 +19,7 @@
             android:gravity="center"
             android:lineHeight="42dp"
             android:text="@string/sign_in_tv_title"
-            android:textColor="@color/white"
+            android:textColor="@color/white_000"
             app:layout_constraintBottom_toTopOf="@id/iv_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -58,7 +58,7 @@
             android:gravity="center"
             android:lineHeight="42dp"
             android:text="@string/sign_in_tv_terms"
-            android:textColor="@color/white"
+            android:textColor="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />

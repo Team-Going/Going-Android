@@ -41,6 +41,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
