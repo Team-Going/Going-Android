@@ -19,10 +19,16 @@
         <item name="boxBackgroundMode">outline</item>
         <item name="boxStrokeColor">@color/red_600</item>
         <item name="boxBackgroundColor">@color/white_000</item>
-        <item name="boxCornerRadiusBottomEnd">6dp</item>
-        <item name="boxCornerRadiusBottomStart">6dp</item>
-        <item name="boxCornerRadiusTopEnd">6dp</item>
-        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="android:buttonCornerRadius">4dp</item>
         <item name="android:theme">@style/ThemeOverlay.Eggeum.TextInputLayout.CursorColor</item>
+    </style>
+
+
+    <style name="button_style" parent="Widget.AppCompat.Button">
+
+        <item name="android:buttonCornerRadius">46dp</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="android:radius">40dp</item>
+        <item name="badgeRadius">40dp</item>
     </style>
 </resources>

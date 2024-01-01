@@ -7,6 +7,7 @@
     <string name="dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
     <string name="server_error">서버 통신에 실패했습니다.</string>
+    <string name="name_error">이름을 입력해주세요</string>
 
     <string name="text_count">%1$d / %2$d</string>
 
@@ -16,5 +17,6 @@
     <string name="onboarding_name">이름을 입력해주세요.</string>
     <string name="onboarding_one_line_info_title">한줄 소개</string>
     <string name="onboarding_one_line_info">당신을 한줄로 표현해보세요.</string>
-    <string name="onboarding_finish_button">유형 검사하러 가기</string>]
+    <string name="onboarding_finish_button">유형 검사하러 가기</string>
+
 </resources>

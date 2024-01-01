@@ -46,7 +46,9 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             app:boxStrokeWidth="2dp"
-            app:endIconMode="custom"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@null"
+            app:errorTextColor="@color/red_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title">
@@ -90,7 +92,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             app:boxStrokeWidth="2dp"
-            app:endIconMode="custom"
+            app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title">
@@ -116,17 +118,19 @@
             app:layout_constraintEnd_toEndOf="@id/layout_onboarding_profile_setting_on_line_info"
             app:layout_constraintTop_toBottomOf="@id/layout_onboarding_profile_setting_on_line_info" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_onboarding_profile_setting_finish"
+            style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
+            android:background="@drawable/rounded_corner"
             android:layout_marginBottom="60dp"
             android:enabled="@{viewModel.isProfileAvailable()}"
             android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
             android:paddingVertical="10dp"
             android:text="@string/onboarding_finish_button"
-            android:textColor="@color/black_000"
+            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

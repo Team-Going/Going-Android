@@ -22,6 +22,7 @@ class OnboardingProfileSettingActivity :
         initOnLineInfoEditorActionListener()
         observeIsProfileAvailable()
         observeTextLength()
+        // binding.layoutOnboardingProfileSettingName.error = getString(R.string.name_error)
     }
 
     private fun initBindingViewModel() {
