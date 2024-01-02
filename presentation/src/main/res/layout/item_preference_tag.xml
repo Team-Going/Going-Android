@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,16 +16,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tv_preference_number"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@color/gray_300"
+            android:gravity="center"
             android:textColor="@color/black_000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1" />
 
         <TextView
-            android:id="@+id/tv_preference_1"
+            android:id="@+id/tv_preference_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
@@ -43,12 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_line_black"
-            app:layout_constraintEnd_toStartOf="@id/tv_preference_2"
-            app:layout_constraintStart_toEndOf="@id/tv_preference_1"
-            app:layout_constraintTop_toTopOf="@id/tv_preference_1" />
+            app:layout_constraintEnd_toStartOf="@id/tv_preference_right"
+            app:layout_constraintStart_toEndOf="@id/tv_preference_left"
+            app:layout_constraintTop_toTopOf="@id/tv_preference_left" />
 
         <TextView
-            android:id="@+id/tv_preference_2"
+            android:id="@+id/tv_preference_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
@@ -61,7 +64,7 @@
             tools:text="관광" />
 
         <Button
-            android:id="@+id/btn_round_1"
+            android:id="@+id/btn_preference_1"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -70,11 +73,11 @@
             android:text="1"
             android:textColor="@color/black_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_round_2"
+            app:layout_constraintEnd_toStartOf="@id/btn_preference_2"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btn_round_2"
+            android:id="@+id/btn_preference_2"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -83,11 +86,11 @@
             android:text="2"
             android:textColor="@color/black_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_round_3"
-            app:layout_constraintStart_toEndOf="@id/btn_round_1" />
+            app:layout_constraintEnd_toStartOf="@id/btn_preference_3"
+            app:layout_constraintStart_toEndOf="@id/btn_preference_1" />
 
         <Button
-            android:id="@+id/btn_round_3"
+            android:id="@+id/btn_preference_3"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -96,11 +99,11 @@
             android:text="3"
             android:textColor="@color/black_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_round_4"
-            app:layout_constraintStart_toEndOf="@id/btn_round_2" />
+            app:layout_constraintEnd_toStartOf="@id/btn_preference_4"
+            app:layout_constraintStart_toEndOf="@id/btn_preference_2" />
 
         <Button
-            android:id="@+id/btn_round_4"
+            android:id="@+id/btn_preference_4"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -109,11 +112,11 @@
             android:text="4"
             android:textColor="@color/black_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_round_5"
-            app:layout_constraintStart_toEndOf="@id/btn_round_3" />
+            app:layout_constraintEnd_toStartOf="@id/btn_preference_5"
+            app:layout_constraintStart_toEndOf="@id/btn_preference_3" />
 
         <Button
-            android:id="@+id/btn_round_5"
+            android:id="@+id/btn_preference_5"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -123,7 +126,7 @@
             android:textColor="@color/black_000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_round_4" />
+            app:layout_constraintStart_toEndOf="@id/btn_preference_4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
