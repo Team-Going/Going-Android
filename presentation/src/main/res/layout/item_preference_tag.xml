@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="345dp"
-    android:layout_height="157dp"
+    android:layout_height="127dp"
     android:background="@color/white_000">
 
     <TextView
@@ -16,25 +16,106 @@
         tools:text="1" />
 
     <TextView
+        android:id="@+id/tv_preference_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
         android:fontFamily="@font/pretendard_bold"
         android:textColor="@color/black_000"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/iv_preference_line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="휴식" />
 
+
+    <ImageView
+        android:id="@+id/iv_preference_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_line_black"
+        app:layout_constraintEnd_toStartOf="@id/tv_preference_2"
+        app:layout_constraintStart_toEndOf="@id/tv_preference_1"
+        app:layout_constraintTop_toTopOf="@id/tv_preference_1" />
+
+    <TextView
+        android:id="@+id/tv_preference_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:textColor="@color/black_000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_preference_line"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="관광" />
+
     <Button
-        android:id="@+id/btn_round"
+        android:id="@+id/btn_round_1"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="23dp"
         android:background="@drawable/ic_round_gray"
         android:backgroundTint="@color/gray_200"
         android:text="1"
         android:textColor="@color/black_000"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_round_2"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_round_2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/ic_round_gray"
+        android:backgroundTint="@color/gray_200"
+        android:text="2"
+        android:textColor="@color/black_000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_round_3"
+        app:layout_constraintStart_toEndOf="@id/btn_round_1" />
+
+    <Button
+        android:id="@+id/btn_round_3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/ic_round_gray"
+        android:backgroundTint="@color/gray_200"
+        android:text="3"
+        android:textColor="@color/black_000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_round_4"
+        app:layout_constraintStart_toEndOf="@id/btn_round_2" />
+
+    <Button
+        android:id="@+id/btn_round_4"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/ic_round_gray"
+        android:backgroundTint="@color/gray_200"
+        android:text="4"
+        android:textColor="@color/black_000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_round_5"
+        app:layout_constraintStart_toEndOf="@id/btn_round_3" />
+
+    <Button
+        android:id="@+id/btn_round_5"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/ic_round_gray"
+        android:backgroundTint="@color/gray_200"
+        android:text="5"
+        android:textColor="@color/black_000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_round_4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
