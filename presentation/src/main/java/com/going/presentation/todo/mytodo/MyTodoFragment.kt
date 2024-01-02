@@ -1,4 +1,4 @@
-package com.going.presentation.todo
+package com.going.presentation.todo.mytodo
 
 import android.os.Bundle
 import android.view.View

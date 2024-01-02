@@ -6,6 +6,8 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoBinding
+import com.going.presentation.todo.mytodo.MyTodoFragment
+import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
