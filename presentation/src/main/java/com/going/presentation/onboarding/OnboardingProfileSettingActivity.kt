@@ -24,9 +24,9 @@ class OnboardingProfileSettingActivity :
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
         initSetOnFocusChangeListener()
+        observeIsNameAvailable()
         observeIsProfileAvailable()
         observeTextLength()
-        observeIsNameAvailable()
     }
 
     private fun initBindingViewModel() {
@@ -42,84 +42,61 @@ class OnboardingProfileSettingActivity :
 
     private fun initSetOnFocusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(
+            setColors(
+                hasFocus,
                 viewModel.nowNameLength.value ?: 0,
                 binding.tvNameCounter,
-                hasFocus,
-            ) {
+            ) { background ->
                 binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
                     this.resources,
-                    it,
+                    background,
                     theme,
                 )
             }
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(
+            setColors(
+                hasFocus,
                 viewModel.nowInfoLength.value ?: 0,
                 binding.tvInfoCounter,
-                hasFocus,
-            ) {
+            ) { background ->
                 binding.etOnboardingProfileSettingInfo.background = ResourcesCompat.getDrawable(
                     this.resources,
-                    it,
+                    background,
                     theme,
                 )
             }
         }
     }
 
-    private fun judgeCounterColorWithFocus(
-        nowLength: Int,
-        counter: TextView,
-        hasFocus: Boolean,
-        setBackground: (Int) -> Unit,
-    ) {
-        if (hasFocus) {
-            when (counter) {
-                binding.tvNameCounter -> {
-                    setBackground(
-                        R.drawable.sel_rounded_corner_edit_text,
-                    )
-                }
-
-                binding.tvInfoCounter -> {
-                    setBackground(
-                        R.drawable.sel_rounded_corner_edit_text,
-                    )
-                }
-            }
-            setCounterColor(counter, R.color.gray_700)
-        } else {
-            when (counter) {
-                binding.tvNameCounter -> {
-                    setColors(nowLength, counter) { background ->
-                        setBackground(background)
-                    }
-                }
-
-                binding.tvInfoCounter -> {
-                    setColors(nowLength, counter) { background ->
-                        setBackground(background)
-                    }
-                }
-            }
-        }
-
-        if (counter == binding.tvNameCounter) {
-            if (viewModel.isNameAvailable.value == NameState.Blank) {
-                binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
-                setBackground(R.drawable.sel_rounded_corner_edit_text_error)
+    private fun observeIsNameAvailable() {
+        viewModel.isNameAvailable.observe(this) { state ->
+            setColors(
+                false,
+                viewModel.nowNameLength.value ?: 0,
+                binding.tvNameCounter,
+            ) { background ->
+                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
             }
         }
     }
 
-    private fun setColors(length: Int, counter: TextView, setBackground: (Int) -> Unit) {
-        val (color, background) = if (length == 0) {
-            R.color.gray_200 to R.drawable.sel_rounded_corner_edit_text_empty
-        } else {
-            R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
+    private fun setColors(
+        hasFocus: Boolean,
+        length: Int,
+        counter: TextView,
+        setBackground: (Int) -> Unit,
+    ) {
+        val (color, background) = when {
+            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
+            length == 0 -> R.color.gray_200 to R.drawable.sel_rounded_corner_edit_text_empty
+            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.sel_rounded_corner_edit_text_error
+            else -> R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
         }
 
         setCounterColor(counter, color)
@@ -156,34 +133,6 @@ class OnboardingProfileSettingActivity :
                 binding.etOnboardingProfileSettingInfo.apply {
                     setText(text?.subSequence(0, maxInfoLength))
                     setSelection(maxInfoLength)
-                }
-            }
-        }
-    }
-
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            when (state) {
-                NameState.Blank -> {
-                    binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
-                    binding.etOnboardingProfileSettingName.background =
-                        getDrawable(R.drawable.sel_rounded_corner_edit_text_error)
-                }
-
-                else -> {
-                    when (binding.etOnboardingProfileSettingName.hasFocus()) {
-                        true -> {
-                            binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
-                            binding.etOnboardingProfileSettingName.background =
-                                getDrawable(R.drawable.sel_rounded_corner_edit_text)
-                        }
-
-                        false -> if (viewModel.nowNameLength.value == 0) {
-                            binding.tvNameCounter.setTextColor(
-                                getColor(R.color.gray_200),
-                            )
-                        }
-                    }
                 }
             }
         }
