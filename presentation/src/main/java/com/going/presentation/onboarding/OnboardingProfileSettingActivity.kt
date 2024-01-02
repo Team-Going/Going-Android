@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
@@ -22,7 +23,7 @@ class OnboardingProfileSettingActivity :
 
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
-        initSetOnFucusChangeListener()
+        initSetOnFocusChangeListener()
         observeIsProfileAvailable()
         observeTextLength()
         observeIsNameAvailable()
@@ -39,68 +40,90 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun initSetOnFucusChangeListener() {
+    private fun initSetOnFocusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(binding.tvNameCounter, hasFocus)
+            judgeCounterColorWithFocus(
+                viewModel.nowNameLength.value ?: 0,
+                binding.tvNameCounter,
+                hasFocus,
+            ) {
+                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    it,
+                    theme,
+                )
+            }
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(binding.tvInfoCounter, hasFocus)
+            judgeCounterColorWithFocus(
+                viewModel.nowInfoLength.value ?: 0,
+                binding.tvInfoCounter,
+                hasFocus,
+            ) {
+                binding.etOnboardingProfileSettingInfo.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    it,
+                    theme,
+                )
+            }
         }
     }
 
-    private fun judgeCounterColorWithFocus(counter: TextView, hasFocus: Boolean) {
+    private fun judgeCounterColorWithFocus(
+        nowLength: Int,
+        counter: TextView,
+        hasFocus: Boolean,
+        setBackground: (Int) -> Unit,
+    ) {
         if (hasFocus) {
             when (counter) {
                 binding.tvNameCounter -> {
-                    binding.etOnboardingProfileSettingName.background =
-                        getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    setBackground(
+                        R.drawable.sel_rounded_corner_edit_text,
+                    )
                 }
 
                 binding.tvInfoCounter -> {
-                    binding.etOnboardingProfileSettingInfo.background =
-                        getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    setBackground(
+                        R.drawable.sel_rounded_corner_edit_text,
+                    )
                 }
             }
             setCounterColor(counter, R.color.gray_700)
         } else {
             when (counter) {
                 binding.tvNameCounter -> {
-                    if (viewModel.nowNameLength.value == 0) {
-                        setCounterColor(counter, R.color.gray_200)
-                        // background 회색으로 바꾸기
-                        // focus 컨트롤 필요
-                        binding.etOnboardingProfileSettingName.background =
-                            getDrawable(R.drawable.sel_rounded_corner_edit_text_empty)
-                    } else {
-                        setCounterColor(counter, R.color.gray_500)
-                        // background 검정으로 바꾸기 바꾸기
-                        binding.etOnboardingProfileSettingName.background =
-                            getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    setColors(nowLength, counter) { background ->
+                        setBackground(background)
                     }
                 }
 
                 binding.tvInfoCounter -> {
-                    if (viewModel.nowInfoLength.value == 0) {
-                        setCounterColor(counter, R.color.gray_200)
-                        // background 회색으로 바꾸기
-                        // focus 컨트롤 필요
-                        binding.etOnboardingProfileSettingInfo.background =
-                            getDrawable(R.drawable.sel_rounded_corner_edit_text_empty)
-                    } else {
-                        setCounterColor(counter, R.color.gray_500)
-                        // background 검정으로 바꾸기 바꾸기
-                        binding.etOnboardingProfileSettingInfo.background =
-                            getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    setColors(nowLength, counter) { background ->
+                        setBackground(background)
                     }
                 }
             }
         }
-        if (viewModel.isNameAvailable.value == NameState.Blank) {
-            binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
-            binding.etOnboardingProfileSettingName.background =
-                getDrawable(R.drawable.sel_rounded_corner_edit_text_error)
+
+        if (counter == binding.tvNameCounter) {
+            if (viewModel.isNameAvailable.value == NameState.Blank) {
+                binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
+                setBackground(R.drawable.sel_rounded_corner_edit_text_error)
+            }
         }
+    }
+
+    private fun setColors(length: Int, counter: TextView, setBackground: (Int) -> Unit) {
+        val (color, background) = if (length == 0) {
+            R.color.gray_200 to R.drawable.sel_rounded_corner_edit_text_empty
+        } else {
+            R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
+        }
+
+        setCounterColor(counter, color)
+        setBackground(background)
     }
 
     private fun setCounterColor(counter: TextView, color: Int) {
@@ -154,6 +177,7 @@ class OnboardingProfileSettingActivity :
                             binding.etOnboardingProfileSettingName.background =
                                 getDrawable(R.drawable.sel_rounded_corner_edit_text)
                         }
+
                         false -> if (viewModel.nowNameLength.value == 0) {
                             binding.tvNameCounter.setTextColor(
                                 getColor(R.color.gray_200),
