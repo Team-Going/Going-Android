@@ -2,6 +2,7 @@ package com.going.presentation.onboarding
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -40,27 +41,70 @@ class OnboardingProfileSettingActivity :
 
     private fun initSetOnFucusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(hasFocus)
+            judgeCounterColorWithFocus(binding.tvNameCounter, hasFocus)
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(hasFocus)
+            judgeCounterColorWithFocus(binding.tvInfoCounter, hasFocus)
         }
     }
 
-    private fun judgeCounterColorWithFocus(hasFocus: Boolean) {
+    private fun judgeCounterColorWithFocus(counter: TextView, hasFocus: Boolean) {
         if (hasFocus) {
-            setNameCounterColor(R.color.gray_700)
+            when (counter) {
+                binding.tvNameCounter -> {
+                    binding.etOnboardingProfileSettingName.background =
+                        getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                }
+
+                binding.tvInfoCounter -> {
+                    binding.etOnboardingProfileSettingInfo.background =
+                        getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                }
+            }
+            setCounterColor(counter, R.color.gray_700)
         } else {
-            setNameCounterColor(R.color.gray_200)
+            when (counter) {
+                binding.tvNameCounter -> {
+                    if (viewModel.nowNameLength.value == 0) {
+                        setCounterColor(counter, R.color.gray_200)
+                        // background 회색으로 바꾸기
+                        // focus 컨트롤 필요
+                        binding.etOnboardingProfileSettingName.background =
+                            getDrawable(R.drawable.sel_rounded_corner_edit_text_empty)
+                    } else {
+                        setCounterColor(counter, R.color.gray_500)
+                        // background 검정으로 바꾸기 바꾸기
+                        binding.etOnboardingProfileSettingName.background =
+                            getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    }
+                }
+
+                binding.tvInfoCounter -> {
+                    if (viewModel.nowInfoLength.value == 0) {
+                        setCounterColor(counter, R.color.gray_200)
+                        // background 회색으로 바꾸기
+                        // focus 컨트롤 필요
+                        binding.etOnboardingProfileSettingInfo.background =
+                            getDrawable(R.drawable.sel_rounded_corner_edit_text_empty)
+                    } else {
+                        setCounterColor(counter, R.color.gray_500)
+                        // background 검정으로 바꾸기 바꾸기
+                        binding.etOnboardingProfileSettingInfo.background =
+                            getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                    }
+                }
+            }
         }
         if (viewModel.isNameAvailable.value == NameState.Blank) {
-            setNameCounterColor(R.color.red_500)
+            binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
+            binding.etOnboardingProfileSettingName.background =
+                getDrawable(R.drawable.sel_rounded_corner_edit_text_error)
         }
     }
 
-    private fun setNameCounterColor(color: Int) {
-        binding.tvNameCounter.setTextColor(getColor(color))
+    private fun setCounterColor(counter: TextView, color: Int) {
+        counter.setTextColor(getColor(color))
     }
 
     private fun observeIsProfileAvailable() {
@@ -97,8 +141,26 @@ class OnboardingProfileSettingActivity :
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
             when (state) {
-                NameState.Blank -> binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
-                else -> binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+                NameState.Blank -> {
+                    binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
+                    binding.etOnboardingProfileSettingName.background =
+                        getDrawable(R.drawable.sel_rounded_corner_edit_text_error)
+                }
+
+                else -> {
+                    when (binding.etOnboardingProfileSettingName.hasFocus()) {
+                        true -> {
+                            binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
+                            binding.etOnboardingProfileSettingName.background =
+                                getDrawable(R.drawable.sel_rounded_corner_edit_text)
+                        }
+                        false -> if (viewModel.nowNameLength.value == 0) {
+                            binding.tvNameCounter.setTextColor(
+                                getColor(R.color.gray_200),
+                            )
+                        }
+                    }
+                }
             }
         }
     }
