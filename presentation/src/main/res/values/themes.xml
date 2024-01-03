@@ -25,7 +25,7 @@
 
     <!-- Button Style -->
     <style name="button_style" parent="Widget.AppCompat.Button">
-
+        <item name="android:textAppearance">@style/TextAppearance.Doorip.Body2.Bold</item>
         <item name="android:buttonCornerRadius">46dp</item>
         <item name="cornerRadius">40dp</item>
         <item name="android:radius">40dp</item>
