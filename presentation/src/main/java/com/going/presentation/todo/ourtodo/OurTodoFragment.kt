@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
-import com.going.presentation.mock.MockAdapter
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +27,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAdapter()
         setDateTextColor()
         setProgressBarStatus()
+        setTabLayout()
     }
 
     private fun initAdapter() {
@@ -54,9 +54,24 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         binding.progressBarOurTodo.progress = 40
     }
 
+    private fun setTabLayout() {
+        binding.tabOurTodo.apply {
+            for (tabName in listOf(TAB_UNCOMPLETE, TAB_COMPLETE)) {
+                val tab = this.newTab()
+                tab.text = tabName
+                this.addTab(tab)
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
+    }
+
+    companion object {
+        const val TAB_UNCOMPLETE = "미완료 todo"
+        const val TAB_COMPLETE = "완료 todo"
     }
 
 }
