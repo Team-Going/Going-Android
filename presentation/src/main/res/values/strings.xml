@@ -29,7 +29,7 @@
 
     <!--tendency_test-->
     <string name="tendency_test_title">나의 여행 성향은?</string>
-    <string name="tendency_test_button">다음</string>
+    <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
 
 </resources>

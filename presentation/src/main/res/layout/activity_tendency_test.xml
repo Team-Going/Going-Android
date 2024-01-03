@@ -109,5 +109,20 @@
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
         </RadioGroup>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tendency_next"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:paddingVertical="10dp"
+            android:text="@string/tendency_test_button_next"
+            android:textColor="@color/white_000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
