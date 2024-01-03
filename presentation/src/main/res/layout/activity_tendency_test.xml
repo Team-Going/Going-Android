@@ -50,13 +50,53 @@
 
         <TextView
             android:id="@+id/tv_tendency_test_question"
+            style="@style/TextAppearance.Doorip.Head3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.Doorip.Head3"
-            android:textColor="@color/gray_700"
             android:text="계획을 세울 때 나는?"
+            android:textColor="@color/gray_700"
             app:layout_constraintStart_toStartOf="@id/tv_tendency_test_counter"
-            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter" />
+
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_question">
+            <RadioButton
+                android:id="@+id/rb_first_answer"
+                style="@style/radio_button_style"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
+                android:background="@drawable/sel_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시간 단위 어쩌구"/>
+            <RadioButton
+                android:id="@+id/rb_second_answer"
+                style="@style/radio_button_style"
+                android:background="@drawable/sel_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시간 단위 어쩌구"/>
+            <RadioButton
+                android:id="@+id/rb_third_answer"
+                style="@style/radio_button_style"
+                android:background="@drawable/sel_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시간 단위 어쩌구"/>
+            <RadioButton
+                android:id="@+id/rb_fourth_answer"
+                style="@style/radio_button_style"
+                android:background="@drawable/sel_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시간 단위 어쩌구"/>
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

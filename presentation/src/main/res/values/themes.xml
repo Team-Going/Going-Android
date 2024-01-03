@@ -32,9 +32,18 @@
         <item name="badgeRadius">40dp</item>
     </style>
 
+    <!-- Toolbar Style -->
     <style name="toolbar_style" parent="Widget.AppCompat.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.Doorip.Body1.Bold</item>
         <item name="android:titleTextColor">@color/black_000</item>
         <item name="android:background">@color/white_000</item>
+    </style>
+
+    <!-- Radio Button Style -->
+    <style name="radio_button_style" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingVertical">17dp</item>
+        <item name="android:layout_marginVertical">6dp</item>
     </style>
 </resources>
