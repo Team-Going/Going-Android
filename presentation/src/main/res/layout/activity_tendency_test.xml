@@ -33,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="8dp"
             android:animateLayoutChanges="true"
+            android:animationResolution="1000"
             android:max="@{viewModel.MAX_STEP}"
             android:progress="@{viewModel.step}"
             android:progressDrawable="@drawable/ll_progressbar"

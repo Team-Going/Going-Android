@@ -91,7 +91,7 @@ class TendencyTestActivity :
     }
 
     private fun initAnswersClickListener() {
-        binding.rgAnswers.setOnCheckedChangeListener { group, checkedId ->
+        binding.rgAnswers.setOnCheckedChangeListener { _, checkedId ->
             viewModel.isChecked.value = true
 
             viewModel.tendencyResultList[viewModel.step.value - 1] = when (checkedId) {
@@ -105,6 +105,6 @@ class TendencyTestActivity :
     }
 
     companion object {
-        const val DURATION = 1000L
+        const val DURATION = 500L
     }
 }
