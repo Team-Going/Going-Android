@@ -29,13 +29,34 @@
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="8dp"
-            android:progressDrawable="@drawable/ll_progressbar"
             android:max="9"
             android:progress="6"
+            android:progressDrawable="@drawable/ll_progressbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_tendency_test" />
 
+        <TextView
+            android:id="@+id/tv_tendency_test_counter"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:text="@{@string/counter(6, 9)}"
+            android:textColor="@color/gray_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb_tendency_test" />
+
+        <TextView
+            android:id="@+id/tv_tendency_test_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:textColor="@color/gray_700"
+            android:text="계획을 세울 때 나는?"
+            app:layout_constraintStart_toStartOf="@id/tv_tendency_test_counter"
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

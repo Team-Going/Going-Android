@@ -13,6 +13,7 @@
     <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
 
     <string name="text_count">%1$d / %2$d</string>
+    <string name="counter">%1$d/%2$d</string>
 
     <!--onboarding-->
     <string name="onboarding_tb_title">프로필 생성</string>
