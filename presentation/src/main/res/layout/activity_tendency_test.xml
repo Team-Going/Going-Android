@@ -32,8 +32,8 @@
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="8dp"
-            android:max="9"
-            android:progress="6"
+            android:max="@{viewModel.MAX_STEP}"
+            android:progress="@{viewModel.step}"
             android:progressDrawable="@drawable/ll_progressbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
-            android:text="@{@string/counter(6, 9)}"
+            android:text="@{@string/counter(viewModel.step, viewModel.MAX_STEP)}"
             android:textColor="@color/gray_300"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pb_tendency_test" />
@@ -56,7 +56,7 @@
             style="@style/TextAppearance.Doorip.Head3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="계획을 세울 때 나는?"
+            android:text="@{viewModel.mockList.get(viewModel.step - 1).component1()}"
             android:textColor="@color/gray_700"
             app:layout_constraintStart_toStartOf="@id/tv_tendency_test_counter"
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter" />
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_radiobutton"
-                android:text="시간 단위 어쩌구"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component2()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
 
             <RadioButton
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_radiobutton"
-                android:text="시간 단위 어쩌구"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component3()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
 
             <RadioButton
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_radiobutton"
-                android:text="시간 단위 어쩌구"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component4()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
 
             <RadioButton
@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_radiobutton"
-                android:text="시간 단위 어쩌구"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component5()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
         </RadioGroup>
 
@@ -118,7 +118,8 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:paddingVertical="10dp"
-            android:text="@string/tendency_test_button_next"
+            android:enabled="@{viewModel.isChecked()}"
+            android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
