@@ -62,8 +62,9 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="관광" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_1"
+            style="@style/button_style"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -75,8 +76,9 @@
             app:layout_constraintEnd_toStartOf="@id/btn_preference_2"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_2"
+            style="@style/button_style"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -88,8 +90,9 @@
             app:layout_constraintEnd_toStartOf="@id/btn_preference_3"
             app:layout_constraintStart_toEndOf="@id/btn_preference_1" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_3"
+            style="@style/button_style"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -101,8 +104,9 @@
             app:layout_constraintEnd_toStartOf="@id/btn_preference_4"
             app:layout_constraintStart_toEndOf="@id/btn_preference_2" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_4"
+            style="@style/button_style"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
@@ -114,8 +118,9 @@
             app:layout_constraintEnd_toStartOf="@id/btn_preference_5"
             app:layout_constraintStart_toEndOf="@id/btn_preference_3" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_5"
+            style="@style/button_style"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="23dp"
