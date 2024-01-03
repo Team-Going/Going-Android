@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Doorip" parent="Theme.MaterialComponents.Light.NoActionBar">
 
@@ -30,5 +30,11 @@
         <item name="cornerRadius">40dp</item>
         <item name="android:radius">40dp</item>
         <item name="badgeRadius">40dp</item>
+    </style>
+
+    <style name="toolbar_style" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textAppearance">@style/TextAppearance.Doorip.Body1.Bold</item>
+        <item name="android:titleTextColor">@color/black_000</item>
+        <item name="android:background">@color/white_000</item>
     </style>
 </resources>

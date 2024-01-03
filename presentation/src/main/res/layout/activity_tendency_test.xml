@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_000">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_tendency_test"
+            style="@style/toolbar_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/tendency_test_title" />
+
+        <ProgressBar
+            android:id="@+id/pb_tendency_test"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:progressDrawable="@drawable/ll_progressbar"
+            android:max="9"
+            android:progress="6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_tendency_test" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

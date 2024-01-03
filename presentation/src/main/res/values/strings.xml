@@ -26,4 +26,9 @@
     <string name="tendency_splash_title">9개의 질문으로\n여행 성향을 분석해보세요</string>
     <string name="tendency_splash_start_btn">시작하기</string>
 
+    <!--tendency_test-->
+    <string name="tendency_test_title">나의 여행 성향은?</string>
+    <string name="tendency_test_button">다음</string>
+    <string name="tendency_test_button_final">제출하기</string>
+
 </resources>
