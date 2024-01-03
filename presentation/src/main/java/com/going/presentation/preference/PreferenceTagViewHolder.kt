@@ -14,4 +14,5 @@ class PreferenceTagViewHolder(val binding: ItemPreferenceTagBinding) :
             tvPreferenceRight.text = item.rightPrefer
         }
     }
+
 }

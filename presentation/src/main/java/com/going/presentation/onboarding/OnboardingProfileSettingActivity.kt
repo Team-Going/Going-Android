@@ -2,7 +2,9 @@ package com.going.presentation.onboarding
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
@@ -21,10 +23,10 @@ class OnboardingProfileSettingActivity :
 
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
-        initSetOnFucusChangeListener()
+        initSetOnFocusChangeListener()
+        observeIsNameAvailable()
         observeIsProfileAvailable()
         observeTextLength()
-        observeIsNameAvailable()
     }
 
     private fun initBindingViewModel() {
@@ -38,29 +40,71 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun initSetOnFucusChangeListener() {
+    private fun initSetOnFocusChangeListener() {
         binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(hasFocus)
+            setColors(
+                hasFocus,
+                viewModel.nowNameLength.value ?: 0,
+                binding.tvNameCounter,
+            ) { background ->
+                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
+            }
         }
 
         binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
-            judgeCounterColorWithFocus(hasFocus)
+            setColors(
+                hasFocus,
+                viewModel.nowInfoLength.value ?: 0,
+                binding.tvInfoCounter,
+            ) { background ->
+                binding.etOnboardingProfileSettingInfo.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
+            }
         }
     }
 
-    private fun judgeCounterColorWithFocus(hasFocus: Boolean) {
-        if (hasFocus) {
-            setNameCounterColor(R.color.gray_700)
-        } else {
-            setNameCounterColor(R.color.gray_200)
-        }
-        if (viewModel.isNameAvailable.value == NameState.Blank) {
-            setNameCounterColor(R.color.red_500)
+    private fun observeIsNameAvailable() {
+        viewModel.isNameAvailable.observe(this) { state ->
+            setColors(
+                false,
+                viewModel.nowNameLength.value ?: 0,
+                binding.tvNameCounter,
+            ) { background ->
+                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
+            }
         }
     }
 
-    private fun setNameCounterColor(color: Int) {
-        binding.tvNameCounter.setTextColor(getColor(color))
+    private fun setColors(
+        hasFocus: Boolean,
+        length: Int,
+        counter: TextView,
+        setBackground: (Int) -> Unit,
+    ) {
+        val (color, background) = when {
+            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
+            length == 0 -> R.color.gray_200 to R.drawable.sel_rounded_corner_edit_text_empty
+            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.sel_rounded_corner_edit_text_error
+            else -> R.color.gray_700 to R.drawable.sel_rounded_corner_edit_text
+        }
+
+        setCounterColor(counter, color)
+        setBackground(background)
+    }
+
+    private fun setCounterColor(counter: TextView, color: Int) {
+        counter.setTextColor(getColor(color))
     }
 
     private fun observeIsProfileAvailable() {
@@ -90,15 +134,6 @@ class OnboardingProfileSettingActivity :
                     setText(text?.subSequence(0, maxInfoLength))
                     setSelection(maxInfoLength)
                 }
-            }
-        }
-    }
-
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            when (state) {
-                NameState.Blank -> binding.tvNameCounter.setTextColor(getColor(R.color.red_500))
-                else -> binding.tvNameCounter.setTextColor(getColor(R.color.gray_700))
             }
         }
     }

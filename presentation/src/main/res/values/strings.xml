@@ -22,6 +22,10 @@
     <string name="onboarding_one_line_et_info">당신을 한줄로 표현해보세요</string>
     <string name="onboarding_finish_btn">유형 검사하러 가기</string>
 
+    <!--tendency_test_splash-->
+    <string name="tendency_splash_title">9개의 질문으로\n여행 성향을 분석해보세요</string>
+    <string name="tendency_splash_start_btn">시작하기</string>
+
     <!--preference-->
     <string name="preference_tv_title">이번 여행은 어땠으면 좋겠나요?</string>
     <string name="preference_btn_start">시작하기</string>
