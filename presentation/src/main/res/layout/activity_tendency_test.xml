@@ -32,6 +32,7 @@
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="8dp"
+            android:animateLayoutChanges="true"
             android:max="@{viewModel.MAX_STEP}"
             android:progress="@{viewModel.step}"
             android:progressDrawable="@drawable/ll_progressbar"
