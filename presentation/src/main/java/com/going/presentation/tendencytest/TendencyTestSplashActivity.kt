@@ -6,7 +6,7 @@ import com.going.presentation.databinding.ActivityTendencyTestSplashBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
-class TendencyTestActivity :
+class TendencyTestSplashActivity :
     BaseActivity<ActivityTendencyTestSplashBinding>(R.layout.activity_tendency_test_splash) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
