@@ -1,4 +1,4 @@
-package com.going.presentation.preference
+package com.going.presentation.preferencetag
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.PreferenceData

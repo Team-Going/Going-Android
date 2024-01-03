@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".preference.PreferenceTagActivity">
+        tools:context=".preferencetag.PreferenceTagActivity">
 
         <TextView
             android:id="@+id/tv_preference_title"

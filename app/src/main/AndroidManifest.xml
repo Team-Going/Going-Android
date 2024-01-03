@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.preference.PreferenceTagActivity"
+            android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

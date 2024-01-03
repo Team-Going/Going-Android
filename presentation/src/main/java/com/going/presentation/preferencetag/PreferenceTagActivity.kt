@@ -1,6 +1,5 @@
-package com.going.presentation.preference
+package com.going.presentation.preferencetag
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
@@ -18,17 +17,13 @@ class PreferenceTagActivity() :
         super.onCreate(savedInstanceState)
 
         initAdapter()
-        setPreferenceList()
     }
 
     private fun initAdapter() {
-        _adapter = PreferenceTagAdapter()
+        _adapter = PreferenceTagAdapter(this)
         binding.rvPreferenceTag.adapter = adapter
-    }
-    private fun setPreferenceList(){
         adapter.submitList(viewModel.preferenceTagList)
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
