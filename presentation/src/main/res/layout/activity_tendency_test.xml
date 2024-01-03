@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.going.presentation.tendencytest.TendencyTestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +62,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter" />
 
         <RadioGroup
+            android:id="@+id/rg_answers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -67,35 +71,42 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_question">
+
             <RadioButton
                 android:id="@+id/rb_first_answer"
                 style="@style/radio_button_style"
-                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
-                android:background="@drawable/sel_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="시간 단위 어쩌구"/>
+                android:background="@drawable/sel_radiobutton"
+                android:text="시간 단위 어쩌구"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+
             <RadioButton
                 android:id="@+id/rb_second_answer"
                 style="@style/radio_button_style"
-                android:background="@drawable/sel_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="시간 단위 어쩌구"/>
+                android:background="@drawable/sel_radiobutton"
+                android:text="시간 단위 어쩌구"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+
             <RadioButton
                 android:id="@+id/rb_third_answer"
                 style="@style/radio_button_style"
-                android:background="@drawable/sel_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="시간 단위 어쩌구"/>
+                android:background="@drawable/sel_radiobutton"
+                android:text="시간 단위 어쩌구"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+
             <RadioButton
                 android:id="@+id/rb_fourth_answer"
                 style="@style/radio_button_style"
-                android:background="@drawable/sel_radiobutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="시간 단위 어쩌구"/>
+                android:background="@drawable/sel_radiobutton"
+                android:text="시간 단위 어쩌구"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
         </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
