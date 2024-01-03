@@ -67,21 +67,19 @@
                         <TextView
                             android:id="@+id/tv_our_todo_title_up"
                             style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="24dp"
                             android:text="우쥬랑 스페인"
-                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_our_todo_title_down"
                             style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="여행일까지 16일 남았어요!"
-                            app:layout_constraintEnd_toEndOf="@id/tv_our_todo_title_up"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
                             app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up" />
 
@@ -89,10 +87,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_todo_trip_fix"
+                            android:layout_marginStart="4dp"
                             app:layout_constraintTop_toTopOf="@id/tv_our_todo_title_down"
                             app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_title_down"
                             app:layout_constraintStart_toEndOf="@id/tv_our_todo_title_down"/>
-
 
                         <ImageView
                             android:id="@+id/iv_our_todo_title_date"
@@ -112,7 +110,8 @@
                             android:layout_marginTop="5dp"
                             android:text="12월 16일 - 12월 25일"
                             android:textColor="@color/gray_300"
-                            app:layout_constraintEnd_toEndOf="@id/tv_our_todo_title_up"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="24dp"
                             app:layout_constraintStart_toEndOf="@id/iv_our_todo_title_date"
                             app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_down" />
 
@@ -169,7 +168,7 @@
                                 style="@style/TextAppearance.Doorip.Body1"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:paddingHorizontal="18dp"
+                                android:layout_marginHorizontal="18dp"
                                 android:text="여행 친구들"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +270,7 @@
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_our"
+                    android:id="@+id/tab_our_todo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
@@ -282,6 +281,7 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_our_todo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
