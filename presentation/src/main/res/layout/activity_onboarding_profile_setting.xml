@@ -46,7 +46,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:background="@{viewModel.isNameAvailable() == NameState.Blank ? @drawable/sel_rounded_corner_edit_text_error : @drawable/sel_rounded_corner_edit_text}"
+            android:background="@drawable/sel_rounded_corner_edit_text_empty"
             android:hint="@string/onboarding_et_name_hint"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -95,7 +95,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="6dp"
             android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:background="@drawable/sel_rounded_corner_edit_text"
+            android:background="@drawable/sel_rounded_corner_edit_text_empty"
             android:hint="@string/onboarding_one_line_et_info"
             android:imeOptions="actionDone"
             android:inputType="text"
@@ -106,9 +106,11 @@
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
 
         <TextView
+            android:id="@+id/tv_info_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/text_count(viewModel.nowInfoLength, viewModel.MAX_INFO_LEN)}"
+            android:textColor="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_info"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
 
