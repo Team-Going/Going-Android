@@ -1,5 +1,6 @@
-package com.going.presentation.preference
+package com.going.presentation.preferencetag
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.going.domain.entity.PreferenceData
@@ -7,11 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class PreferenceTagAdapter : ListAdapter<PreferenceData, PreferenceTagViewHolder>(diffUtil) {
+class PreferenceTagAdapter(context: Context) :
+    ListAdapter<PreferenceData, PreferenceTagViewHolder>(diffUtil) {
+
+    private val inflater by lazy { LayoutInflater.from(context) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferenceTagViewHolder {
         val binding: ItemPreferenceTagBinding =
-            ItemPreferenceTagBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemPreferenceTagBinding.inflate(inflater, parent, false)
         return PreferenceTagViewHolder(binding)
     }
 
