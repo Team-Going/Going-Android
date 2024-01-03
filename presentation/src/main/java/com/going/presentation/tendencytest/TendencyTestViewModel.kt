@@ -3,10 +3,13 @@ package com.going.presentation.tendencytest
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.TendencyTestMock
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class TendencyTestViewModel : ViewModel() {
-    val step = MutableLiveData(1)
+    val step = MutableStateFlow(1)
     val isChecked = MutableLiveData(false)
+
+    val tendencyResultList: MutableList<Int> = MutableList(9) { 0 }
 
     val mockList: List<TendencyTestMock> = listOf(
         TendencyTestMock(
@@ -75,7 +78,7 @@ class TendencyTestViewModel : ViewModel() {
     )
 
     fun stepUp() {
-        step.value = step.value?.plus(1)
+        step.value = step.value.plus(1)
     }
 
     companion object {

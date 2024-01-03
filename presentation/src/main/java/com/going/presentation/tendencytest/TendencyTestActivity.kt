@@ -93,6 +93,14 @@ class TendencyTestActivity :
     private fun initAnswersClickListener() {
         binding.rgAnswers.setOnCheckedChangeListener { group, checkedId ->
             viewModel.isChecked.value = true
+
+            viewModel.tendencyResultList[viewModel.step.value - 1] = when (checkedId) {
+                R.id.rb_first_answer -> 1
+                R.id.rb_second_answer -> 2
+                R.id.rb_third_answer -> 3
+                R.id.rb_fourth_answer -> 4
+                else -> 0
+            }
         }
     }
 
