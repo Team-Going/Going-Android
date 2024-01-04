@@ -14,8 +14,6 @@ import com.going.ui.extension.setOnSingleClickListener
 class TendencyTestActivity :
     BaseActivity<ActivityTendencyTestBinding>(R.layout.activity_tendency_test) {
 
-    private lateinit var fadeInQuestion: ObjectAnimator
-    private lateinit var fadeOutQuestion: ObjectAnimator
     private lateinit var fadeInList: List<ObjectAnimator>
     private lateinit var fadeOutList: List<ObjectAnimator>
 
@@ -35,16 +33,6 @@ class TendencyTestActivity :
     }
 
     private fun initFadeAnimation() {
-        fadeInQuestion =
-            ObjectAnimator.ofFloat(binding.tvTendencyTestQuestion, "alpha", 0f, 1f).apply {
-                duration = DURATION
-            }
-
-        fadeOutQuestion =
-            ObjectAnimator.ofFloat(binding.tvTendencyTestQuestion, "alpha", 1f, 0f).apply {
-                duration = DURATION
-            }
-
         fadeOutList = listOf<ObjectAnimator>(
             ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
                 duration = DURATION
@@ -77,9 +65,11 @@ class TendencyTestActivity :
     }
 
     private fun initFadeListener() {
-        fadeOutQuestion.addListener(
+        fadeOutList[0].addListener(
             object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
+                    viewModel.clearAllChecked()
+                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value + 1)
                     fadeOutList.map {
                         it.start()
                     }
@@ -87,14 +77,10 @@ class TendencyTestActivity :
 
                 override fun onAnimationEnd(animation: Animator) {
                     viewModel.plusStepValue()
-                    viewModel.clearAllChecked()
 
-                    fadeInQuestion.start()
                     fadeInList.map {
                         it.start()
                     }
-
-                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value)
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
@@ -120,7 +106,7 @@ class TendencyTestActivity :
         binding.btnTendencyNext.setOnSingleClickListener {
             when (viewModel.step.value) {
                 9 -> moveTendencyTestResultActivity()
-                else -> fadeOutQuestion.start()
+                else -> fadeOutList[0].start()
             }
         }
     }
