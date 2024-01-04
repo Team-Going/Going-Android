@@ -134,7 +134,7 @@
                                 style="@style/TextAppearance.Doorip.Body2.Medi"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="우리 여행 진행률"
+                                android:text="@string/our_todo_tv_tirp_percent_title"
                                 app:layout_constraintEnd_toStartOf="@id/tv_our_trip_info_percent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -180,7 +180,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="18dp"
-                                android:text="여행 친구들"
+                                android:text="@string/our_todo_tv_trip_friend_title"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -234,7 +234,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="초대"
+                                android:text="@string/our_todo_btn_invite_friend"
                                 android:textColor="@color/gray_500"
                                 app:layout_constraintEnd_toEndOf="@id/btn_our_todo_add_friend"
                                 app:layout_constraintStart_toStartOf="@id/btn_our_todo_add_friend"
@@ -325,7 +325,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="같이 할 일"
+                android:text="@string/our_todo_btn_add_todo"
                 style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:textColor="@color/white_000"
                 app:layout_constraintStart_toStartOf="parent"

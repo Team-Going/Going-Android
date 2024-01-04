@@ -31,4 +31,10 @@
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
 
+    <!--our_todo-->
+    <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
+    <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
+    <string name="our_todo_btn_invite_friend">초대</string>
+    <string name="our_todo_btn_add_todo">같이 할 일</string>
+
 </resources>
