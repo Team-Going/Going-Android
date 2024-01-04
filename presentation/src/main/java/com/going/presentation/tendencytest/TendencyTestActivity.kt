@@ -44,13 +44,21 @@ class TendencyTestActivity :
                 duration = DURATION
             }
 
-        fadeOutAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 1f, 0f).apply {
+        fadeOutAnswer = ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
             duration = DURATION
         }
 
-        fadeInAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 0f, 1f).apply {
+        fadeInAnswer = ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
             duration = DURATION
         }
+
+//        fadeOutAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 1f, 0f).apply {
+//            duration = DURATION
+//        }
+//
+//        fadeInAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 0f, 1f).apply {
+//            duration = DURATION
+//        }
     }
 
     private fun initFadeListener() {
@@ -58,12 +66,36 @@ class TendencyTestActivity :
             object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                     fadeOutAnswer.start()
+                    ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 1f, 0f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 1f, 0f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
+                        duration = DURATION
+                    }.start()
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
                     viewModel.stepUp()
-                    binding.rgAnswers.clearCheck()
-                    viewModel.isChecked.value = false
+                    // 체크 해제 로직
+                    ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 0f, 1f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 0f, 1f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 0f, 1f).apply {
+                        duration = DURATION
+                    }.start()
+                    ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
+                        duration = DURATION
+                    }.start()
+                    viewModel.clearAllChecked()
                     fadeInQuestion.start()
                     fadeInAnswer.start()
                 }
@@ -91,17 +123,17 @@ class TendencyTestActivity :
     }
 
     private fun initAnswersClickListener() {
-        binding.rgAnswers.setOnCheckedChangeListener { _, checkedId ->
-            viewModel.isChecked.value = true
-
-            viewModel.tendencyResultList[viewModel.step.value - 1] = when (checkedId) {
-                R.id.rb_first_answer -> 1
-                R.id.rb_second_answer -> 2
-                R.id.rb_third_answer -> 3
-                R.id.rb_fourth_answer -> 4
-                else -> 0
-            }
-        }
+//        binding.rgAnswers.setOnCheckedChangeListener { _, checkedId ->
+//            viewModel.isChecked.value = true
+//
+//            viewModel.tendencyResultList[viewModel.step.value - 1] = when (checkedId) {
+//                R.id.rb_first_answer -> 1
+//                R.id.rb_second_answer -> 2
+//                R.id.rb_third_answer -> 3
+//                R.id.rb_fourth_answer -> 4
+//                else -> 0
+//            }
+//        }
     }
 
     companion object {

@@ -63,53 +63,114 @@
             app:layout_constraintStart_toStartOf="@id/tv_tendency_test_counter"
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter" />
 
-        <RadioGroup
-            android:id="@+id/rg_answers"
-            android:layout_width="0dp"
+        <FrameLayout
+            android:id="@+id/fl_first"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="18dp"
-            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_question">
 
-            <RadioButton
-                android:id="@+id/rb_first_answer"
+            <TextView
+                android:id="@+id/tv_first_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sel_radiobutton"
+                android:background="@{viewModel.isFirstChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_first_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.check(1)}"
                 android:text="@{viewModel.mockList.get(viewModel.step - 1).component2()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
 
-            <RadioButton
-                android:id="@+id/rb_second_answer"
+        <FrameLayout
+            android:id="@+id/fl_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_first">
+
+            <TextView
+                android:id="@+id/tv_second_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sel_radiobutton"
+                android:background="@{viewModel.isSecondChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_second_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.check(2)}"
                 android:text="@{viewModel.mockList.get(viewModel.step - 1).component3()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
 
-            <RadioButton
-                android:id="@+id/rb_third_answer"
+        <FrameLayout
+            android:id="@+id/fl_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_second">
+
+            <TextView
+                android:id="@+id/tv_third_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sel_radiobutton"
+                android:background="@{viewModel.isThirdChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_third_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.check(3)}"
                 android:text="@{viewModel.mockList.get(viewModel.step - 1).component4()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
 
-            <RadioButton
-                android:id="@+id/rb_fourth_answer"
+        <FrameLayout
+            android:id="@+id/fl_fourth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_third">
+
+            <TextView
+                android:id="@+id/tv_fourth_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/sel_radiobutton"
+                android:background="@{viewModel.isFourthChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_fourth_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.check(4)}"
                 android:text="@{viewModel.mockList.get(viewModel.step - 1).component5()}"
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
-        </RadioGroup>
+        </FrameLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_next"
@@ -119,8 +180,8 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:paddingVertical="10dp"
             android:enabled="@{viewModel.isChecked()}"
+            android:paddingVertical="10dp"
             android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
