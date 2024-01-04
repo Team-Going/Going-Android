@@ -310,37 +310,38 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_our_todo_add_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="14dp"
-            android:paddingHorizontal="18dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="2dp"
             android:layout_marginEnd="16dp"
-            android:id="@+id/btn_our_todo_add_todo"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/shape_rect_56_red500_fill"
+            android:elevation="2dp"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
+                android:id="@+id/tv_our_todo_add_todo"
+                style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/our_todo_btn_add_todo"
-                style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:textColor="@color/white_000"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/tv_our_todo_add_todo"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/iv_our_todo_add_todo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/tv_our_todo_add_todo"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/ic_plus"
-                android:layout_marginStart="8dp"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_our_todo_add_todo"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
