@@ -43,6 +43,14 @@
 
         <activity
             android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.going.presentation.tendencytest.TendencyTestActivity"
             android:exported="true" />
 
 <!--        <activity-->

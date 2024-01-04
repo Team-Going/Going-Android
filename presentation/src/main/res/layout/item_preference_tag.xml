@@ -1,120 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+<layout>
+<data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="345dp"
-        android:layout_height="127dp"
-        android:background="@color/white_000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <variable
+        name="viewModel"
+        type="com.going.presentation.preferencetag.PreferenceTagViewHolder" />
 
-        <TextView
-            android:id="@+id/tv_preference_number"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@color/gray_300"
-            android:gravity="center"
-            android:textColor="@color/black_000"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1" />
+</data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
 
-        <TextView
-            android:id="@+id/tv_preference_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:fontFamily="@font/pretendard_bold"
-            android:textColor="@color/black_000"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@id/iv_preference_line"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="휴식" />
-
-
-        <ImageView
-            android:id="@+id/iv_preference_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_line_black"
-            app:layout_constraintEnd_toStartOf="@id/tv_preference_right"
-            app:layout_constraintStart_toEndOf="@id/tv_preference_left"
-            app:layout_constraintTop_toTopOf="@id/tv_preference_left" />
-
-        <TextView
-            android:id="@+id/tv_preference_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:fontFamily="@font/pretendard_bold"
-            android:textColor="@color/black_000"
-            android:textSize="14sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="345dp"
+            android:layout_height="127dp"
+            android:background="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_preference_line"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="관광" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:id="@+id/rg_preference_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="23dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/tv_preference_number"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@color/gray_300"
+                android:gravity="center"
+                android:textColor="@color/black_000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1" />
 
-            <RadioButton
-                android:id="@+id/rb_preference_1"
-                style="@style/radio_preference_button_style"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_rounded_corner_preference_tag_button"
-                android:text="1"
-                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+            <TextView
+                android:id="@+id/tv_preference_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:fontFamily="@font/pretendard_bold"
+                android:textColor="@color/black_000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/iv_preference_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="휴식" />
 
-            <RadioButton
-                android:id="@+id/rb_preference_2"
-                style="@style/radio_preference_button_style"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_rounded_corner_preference_tag_button"
-                android:text="2" />
 
-            <RadioButton
-                android:id="@+id/rb_preference_3"
-                style="@style/radio_preference_button_style"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_rounded_corner_preference_tag_button"
-                android:text="3" />
+            <ImageView
+                android:id="@+id/iv_preference_line"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_line_black"
+                app:layout_constraintEnd_toStartOf="@id/tv_preference_right"
+                app:layout_constraintStart_toEndOf="@id/tv_preference_left"
+                app:layout_constraintTop_toTopOf="@id/tv_preference_left" />
 
-            <RadioButton
-                android:id="@+id/rb_preference_4"
-                style="@style/radio_preference_button_style"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_rounded_corner_preference_tag_button"
-                android:text="4" />
+            <TextView
+                android:id="@+id/tv_preference_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:fontFamily="@font/pretendard_bold"
+                android:textColor="@color/black_000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_preference_line"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="관광" />
 
-            <RadioButton
-                android:id="@+id/rb_preference_5"
-                style="@style/radio_preference_button_style"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_rounded_corner_preference_tag_button"
-                android:text="5" />
+            <RadioGroup
+                android:id="@+id/rg_preference_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="23dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/rb_preference_1"
+                    style="@style/radio_preference_button_style"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                    android:text="1"
+                    android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+
+                <RadioButton
+                    android:id="@+id/rb_preference_2"
+                    style="@style/radio_preference_button_style"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/rb_preference_3"
+                    style="@style/radio_preference_button_style"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/rb_preference_4"
+                    style="@style/radio_preference_button_style"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                    android:text="4" />
+
+                <RadioButton
+                    android:id="@+id/rb_preference_5"
+                    style="@style/radio_preference_button_style"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                    android:text="5" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

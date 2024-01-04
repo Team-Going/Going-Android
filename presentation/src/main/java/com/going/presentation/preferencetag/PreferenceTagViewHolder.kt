@@ -17,20 +17,24 @@ class PreferenceTagViewHolder(
             tvPreferenceLeft.text = item.leftPrefer
             tvPreferenceRight.text = item.rightPrefer
 
-            btnPreference1.setOnClickListener {
-                listener.onPreferenceSelected(item)
-            }
-            btnPreference2.setOnClickListener {
-                listener.onPreferenceSelected(item)
-            }
-            btnPreference3.setOnClickListener{
-                listener.onPreferenceSelected(item)
-            }
-            btnPreference4.setOnClickListener{
-                listener.onPreferenceSelected(item)
-            }
-            btnPreference5.setOnClickListener{
-                listener.onPreferenceSelected(item)
+            rgPreferenceTag.setOnCheckedChangeListener { group, checkedId ->
+                when(checkedId) {
+                    R.id.rb_preference_1 -> {
+                        listener.onPreferenceSelected(item)
+                    }
+                    R.id.rb_preference_2 -> {
+                        listener.onPreferenceSelected(item)
+                    }
+                    R.id.rb_preference_3 -> {
+                        listener.onPreferenceSelected(item)
+                    }
+                    R.id.rb_preference_4 -> {
+                        listener.onPreferenceSelected(item)
+                    }
+                    R.id.rb_preference_5 -> {
+                        listener.onPreferenceSelected(item)
+                    }
+                }
             }
 
         }

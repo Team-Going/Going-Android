@@ -3,7 +3,6 @@ package com.going.presentation.preferencetag
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.PreferenceData
 
-
 class PreferenceTagViewModel : ViewModel() {
 
     val preferenceTagList = listOf<PreferenceData>(
