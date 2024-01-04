@@ -9,11 +9,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment_our_todo) {
+
+    private val tabTextList = listOf(TAB_UNCOMPLETE, TAB_COMPLETE)
 
     private var _adapter: OurTodoAdapter? = null
     private val adapter
@@ -28,6 +32,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setDateTextColor()
         setProgressBarStatus()
         setTabLayout()
+        setViewPager()
     }
 
     private fun initAdapter() {
@@ -56,12 +61,19 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setTabLayout() {
         binding.tabOurTodo.apply {
-            for (tabName in listOf(TAB_UNCOMPLETE, TAB_COMPLETE)) {
+            for (tabName in tabTextList) {
                 val tab = this.newTab()
                 tab.text = tabName
                 this.addTab(tab)
             }
         }
+    }
+
+    private fun setViewPager() {
+        binding.vpOurTodo.adapter = OurTodoViewPagerAdapter(this)
+        TabLayoutMediator(binding.tabOurTodo, binding.vpOurTodo) { tab, pos ->
+            tab.text = tabTextList[pos]
+        }.attach()
     }
 
     override fun onDestroyView() {

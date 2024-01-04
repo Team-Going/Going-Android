@@ -179,19 +179,19 @@
                                 style="@style/TextAppearance.Doorip.Body2.Medi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="여행 친구들"
                                 android:layout_marginStart="18dp"
+                                android:text="여행 친구들"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <ImageView
+                                android:id="@+id/btn_our_todo_friend"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/btn_our_todo_friend"
-                                app:layout_constraintStart_toEndOf="@id/tv_our_trip_friend_title"
-                                app:layout_constraintTop_toTopOf="@id/tv_our_trip_friend_title"
+                                android:src="@drawable/ic_enter"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_our_trip_friend_title"
-                                android:src="@drawable/ic_enter"/>
+                                app:layout_constraintStart_toEndOf="@id/tv_our_trip_friend_title"
+                                app:layout_constraintTop_toTopOf="@id/tv_our_trip_friend_title" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_our_trip_friend"
@@ -291,22 +291,21 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_our_todo"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_height="wrap_content"
+                    app:tabIndicatorColor="@color/black_000"
                     app:tabIndicatorFullWidth="true"
                     app:tabRippleColor="@android:color/transparent"
-                    app:tabSelectedTextColor="@color/black_000" />
+                    app:tabSelectedTextColor="@color/black_000"
+                    app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
+                    app:tabTextColor="@color/gray_200" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_our_todo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appbar_our_todo" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
