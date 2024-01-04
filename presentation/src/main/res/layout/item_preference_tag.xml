@@ -62,75 +62,58 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="관광" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_preference_1"
-            style="@style/button_style"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+        <RadioGroup
+            android:id="@+id/rg_preference_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_round_gray"
-            android:backgroundTint="@color/gray_200"
-            android:text="1"
-            android:textColor="@color/black_000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_preference_2"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_preference_2"
-            style="@style/button_style"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_round_gray"
-            android:backgroundTint="@color/gray_200"
-            android:text="2"
-            android:textColor="@color/black_000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_preference_3"
-            app:layout_constraintStart_toEndOf="@id/btn_preference_1" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_preference_3"
-            style="@style/button_style"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_round_gray"
-            android:backgroundTint="@color/gray_200"
-            android:text="3"
-            android:textColor="@color/black_000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_preference_4"
-            app:layout_constraintStart_toEndOf="@id/btn_preference_2" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_preference_4"
-            style="@style/button_style"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_round_gray"
-            android:backgroundTint="@color/gray_200"
-            android:text="4"
-            android:textColor="@color/black_000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_preference_5"
-            app:layout_constraintStart_toEndOf="@id/btn_preference_3" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_preference_5"
-            style="@style/button_style"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/ic_round_gray"
-            android:backgroundTint="@color/gray_200"
-            android:text="5"
-            android:textColor="@color/black_000"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_preference_4" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_preference_1"
+                style="@style/radio_preference_button_style"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                android:text="1"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+
+            <RadioButton
+                android:id="@+id/rb_preference_2"
+                style="@style/radio_preference_button_style"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                android:text="2" />
+
+            <RadioButton
+                android:id="@+id/rb_preference_3"
+                style="@style/radio_preference_button_style"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                android:text="3" />
+
+            <RadioButton
+                android:id="@+id/rb_preference_4"
+                style="@style/radio_preference_button_style"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                android:text="4" />
+
+            <RadioButton
+                android:id="@+id/rb_preference_5"
+                style="@style/radio_preference_button_style"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/sel_rounded_corner_preference_tag_button"
+                android:text="5" />
+
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
