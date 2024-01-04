@@ -88,6 +88,7 @@ class TendencyTestViewModel : ViewModel() {
     fun check(id: Int) {
         clearAllChecked()
         isChecked.value = true
+        tendencyResultList[step.value - 1] = id
 
         when (id) {
             1 -> isFirstChecked.value = true

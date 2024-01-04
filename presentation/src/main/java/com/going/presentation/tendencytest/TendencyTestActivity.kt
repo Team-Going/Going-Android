@@ -14,8 +14,8 @@ class TendencyTestActivity :
 
     private lateinit var fadeInQuestion: ObjectAnimator
     private lateinit var fadeOutQuestion: ObjectAnimator
-    private lateinit var fadeInAnswer: ObjectAnimator
-    private lateinit var fadeOutAnswer: ObjectAnimator
+    private lateinit var fadeInList: List<ObjectAnimator>
+    private lateinit var fadeOutList: List<ObjectAnimator>
 
     private val viewModel by viewModels<TendencyTestViewModel>()
 
@@ -26,7 +26,6 @@ class TendencyTestActivity :
         initFadeAnimation()
         initFadeListener()
         initNextBtnClickListener()
-        initAnswersClickListener()
     }
 
     private fun initBindingViewModel() {
@@ -44,60 +43,54 @@ class TendencyTestActivity :
                 duration = DURATION
             }
 
-        fadeOutAnswer = ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
-            duration = DURATION
-        }
+        fadeOutList = listOf<ObjectAnimator>(
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 1f, 0f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 1f, 0f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
+                duration = DURATION
+            },
+        )
 
-        fadeInAnswer = ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
-            duration = DURATION
-        }
-
-//        fadeOutAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 1f, 0f).apply {
-//            duration = DURATION
-//        }
-//
-//        fadeInAnswer = ObjectAnimator.ofFloat(binding.rgAnswers, "alpha", 0f, 1f).apply {
-//            duration = DURATION
-//        }
+        fadeInList = listOf<ObjectAnimator>(
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 0f, 1f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 0f, 1f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 0f, 1f).apply {
+                duration = DURATION
+            },
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
+                duration = DURATION
+            },
+        )
     }
 
     private fun initFadeListener() {
         fadeOutQuestion.addListener(
             object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
-                    fadeOutAnswer.start()
-                    ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 1f, 0f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 1f, 0f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
-                        duration = DURATION
-                    }.start()
+                    fadeOutList.map {
+                        it.start()
+                    }
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
                     viewModel.stepUp()
-                    // 체크 해제 로직
-                    ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 0f, 1f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 0f, 1f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 0f, 1f).apply {
-                        duration = DURATION
-                    }.start()
-                    ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
-                        duration = DURATION
-                    }.start()
                     viewModel.clearAllChecked()
+
                     fadeInQuestion.start()
-                    fadeInAnswer.start()
+                    fadeInList.map {
+                        it.start()
+                    }
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
@@ -118,22 +111,9 @@ class TendencyTestActivity :
                 fadeOutQuestion.start()
             } else {
                 // 페이지 이동
+                // viewModel.tendencyResultList 이걸 활용해서 결과값 도출 필요
             }
         }
-    }
-
-    private fun initAnswersClickListener() {
-//        binding.rgAnswers.setOnCheckedChangeListener { _, checkedId ->
-//            viewModel.isChecked.value = true
-//
-//            viewModel.tendencyResultList[viewModel.step.value - 1] = when (checkedId) {
-//                R.id.rb_first_answer -> 1
-//                R.id.rb_second_answer -> 2
-//                R.id.rb_third_answer -> 3
-//                R.id.rb_fourth_answer -> 4
-//                else -> 0
-//            }
-//        }
     }
 
     companion object {
