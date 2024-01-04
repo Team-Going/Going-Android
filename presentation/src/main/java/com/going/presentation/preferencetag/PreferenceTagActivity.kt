@@ -14,6 +14,7 @@ class PreferenceTagActivity :
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
+
     private val viewModel by viewModels<PreferenceTagViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

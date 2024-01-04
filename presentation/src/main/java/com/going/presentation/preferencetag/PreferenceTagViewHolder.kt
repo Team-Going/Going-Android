@@ -18,26 +18,16 @@ class PreferenceTagViewHolder(
             tvPreferenceRight.text = item.rightPrefer
 
             rgPreferenceTag.setOnCheckedChangeListener { group, checkedId ->
-                when (checkedId) {
-                    R.id.rb_preference_1 -> {
-                        listener.onPreferenceSelected(item)
-                    }
+                val selectedButtonIdList = listOf(
+                    R.id.rb_preference_1,
+                    R.id.rb_preference_2,
+                    R.id.rb_preference_3,
+                    R.id.rb_preference_4,
+                    R.id.rb_preference_5
+                )
 
-                    R.id.rb_preference_2 -> {
-                        listener.onPreferenceSelected(item)
-                    }
-
-                    R.id.rb_preference_3 -> {
-                        listener.onPreferenceSelected(item)
-                    }
-
-                    R.id.rb_preference_4 -> {
-                        listener.onPreferenceSelected(item)
-                    }
-
-                    R.id.rb_preference_5 -> {
-                        listener.onPreferenceSelected(item)
-                    }
+                if (checkedId in selectedButtonIdList) {
+                    listener.onPreferenceSelected(item)
                 }
             }
         }
