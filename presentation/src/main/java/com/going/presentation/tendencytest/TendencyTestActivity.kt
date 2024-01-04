@@ -3,6 +3,8 @@ package com.going.presentation.tendencytest
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.animation.DecelerateInterpolator
+import android.widget.ProgressBar
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
@@ -91,6 +93,8 @@ class TendencyTestActivity :
                     fadeInList.map {
                         it.start()
                     }
+
+                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value)
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
@@ -103,6 +107,14 @@ class TendencyTestActivity :
             },
         )
     }
+
+    private fun setProgressAnimate(pb: ProgressBar, progressTo: Int) =
+        ObjectAnimator.ofInt(pb, "progress", pb.progress, progressTo * 100).apply {
+            duration = DURATION
+            setAutoCancel(true)
+            interpolator = DecelerateInterpolator()
+            start()
+        }
 
     private fun initNextBtnClickListener() {
         binding.btnTendencyNext.setOnSingleClickListener {
