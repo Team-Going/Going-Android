@@ -30,7 +30,6 @@ class PreferenceTagActivity :
 
     override fun onPreferenceSelected(preference: PreferenceData) {
         // 선택된 취향 태그 처리
-        toast(" ${preference.number} 가 클릭 되었음!")
     }
 
     override fun onDestroy() {

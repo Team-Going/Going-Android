@@ -18,25 +18,28 @@ class PreferenceTagViewHolder(
             tvPreferenceRight.text = item.rightPrefer
 
             rgPreferenceTag.setOnCheckedChangeListener { group, checkedId ->
-                when(checkedId) {
+                when (checkedId) {
                     R.id.rb_preference_1 -> {
                         listener.onPreferenceSelected(item)
                     }
+
                     R.id.rb_preference_2 -> {
                         listener.onPreferenceSelected(item)
                     }
+
                     R.id.rb_preference_3 -> {
                         listener.onPreferenceSelected(item)
                     }
+
                     R.id.rb_preference_4 -> {
                         listener.onPreferenceSelected(item)
                     }
+
                     R.id.rb_preference_5 -> {
                         listener.onPreferenceSelected(item)
                     }
                 }
             }
-
         }
     }
 }
