@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.going.presentation.tendencytest.TendencyTestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_000">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_tendency_test"
+            style="@style/toolbar_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/tendency_test_title" />
+
+        <ProgressBar
+            android:id="@+id/pb_tendency_test"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:animateLayoutChanges="true"
+            android:animationResolution="1000"
+            android:max="@{viewModel.MAX_STEP * 100}"
+            android:progress="@{viewModel.step * 100}"
+            android:progressDrawable="@drawable/ll_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_tendency_test" />
+
+        <TextView
+            android:id="@+id/tv_tendency_test_counter"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:text="@{@string/counter(viewModel.step, viewModel.MAX_STEP)}"
+            android:textColor="@color/gray_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb_tendency_test" />
+
+        <TextView
+            android:id="@+id/tv_tendency_test_question"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.mockList.get(viewModel.step - 1).component1()}"
+            android:textColor="@color/gray_700"
+            app:layout_constraintStart_toStartOf="@id/tv_tendency_test_counter"
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_counter" />
+
+        <FrameLayout
+            android:id="@+id/fl_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_question">
+
+            <TextView
+                android:id="@+id/tv_first_answer_bg"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isFirstChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_first_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/transparent"
+                android:onClick="@{() -> viewModel.setCheckedValue(1)}"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component2()}"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_first">
+
+            <TextView
+                android:id="@+id/tv_second_answer_bg"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isSecondChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_second_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/transparent"
+                android:onClick="@{() -> viewModel.setCheckedValue(2)}"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component3()}"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_third"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_second">
+
+            <TextView
+                android:id="@+id/tv_third_answer_bg"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isThirdChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_third_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/transparent"
+                android:onClick="@{() -> viewModel.setCheckedValue(3)}"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component4()}"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_fourth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_third">
+
+            <TextView
+                android:id="@+id/tv_fourth_answer_bg"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{viewModel.isFourthChecked ? @drawable/sel_radiobutton_checked : @drawable/sel_radiobutton_unchecked}" />
+
+            <TextView
+                android:id="@+id/tv_fourth_answer"
+                style="@style/radio_button_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:background="@color/transparent"
+                android:onClick="@{() -> viewModel.setCheckedValue(4)}"
+                android:text="@{viewModel.mockList.get(viewModel.step - 1).component5()}"
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tendency_next"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="@{viewModel.isChecked()}"
+            android:paddingVertical="10dp"
+            android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
+            android:textColor="@color/white_000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
