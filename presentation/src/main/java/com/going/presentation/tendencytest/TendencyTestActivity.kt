@@ -84,7 +84,7 @@ class TendencyTestActivity :
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
-                    viewModel.stepUp()
+                    viewModel.plusStepValue()
                     viewModel.clearAllChecked()
 
                     fadeInQuestion.start()
@@ -106,14 +106,15 @@ class TendencyTestActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnTendencyNext.setOnSingleClickListener {
-            if (viewModel.step.value != 9) {
-                viewModel.isChecked.value = false
-                fadeOutQuestion.start()
-            } else {
-                // 페이지 이동
-                // viewModel.tendencyResultList 이걸 활용해서 결과값 도출 필요
+            when (viewModel.step.value) {
+                9 -> moveTendencyTestResultActivity()
+                else -> fadeOutQuestion.start()
             }
         }
+    }
+
+    private fun moveTendencyTestResultActivity() {
+        // 페이지 이동 기능 추가 예정
     }
 
     companion object {

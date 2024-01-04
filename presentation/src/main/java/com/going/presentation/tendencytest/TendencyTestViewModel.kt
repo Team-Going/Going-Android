@@ -81,11 +81,11 @@ class TendencyTestViewModel : ViewModel() {
         ),
     )
 
-    fun stepUp() {
+    fun plusStepValue() {
         step.value = step.value.plus(1)
     }
 
-    fun check(id: Int) {
+    fun setCheckedValue(id: Int) {
         clearAllChecked()
         isChecked.value = true
         tendencyResultList[step.value - 1] = id
