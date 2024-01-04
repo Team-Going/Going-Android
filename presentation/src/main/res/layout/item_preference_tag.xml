@@ -7,9 +7,10 @@
     android:layout_marginBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="345dp"
-        android:layout_height="127dp"
-        android:background="@color/white_000"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:background="@drawable/shape_rect_5_white000_fill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +19,7 @@
             android:id="@+id/tv_preference_number"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@color/gray_300"
+            android:background="@drawable/shape_rect_topleft5_gray300_fill"
             android:gravity="center"
             android:textColor="@color/black_000"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,11 +67,12 @@
             android:id="@+id/rg_preference_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="23dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="23dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_preference_right">
 
             <RadioButton
                 android:id="@+id/rb_preference_1"
