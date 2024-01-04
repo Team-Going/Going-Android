@@ -81,7 +81,9 @@
                 android:background="@drawable/sel_rounded_corner_preference_tag_button"
                 android:gravity="center"
                 android:text="1"
-                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
+                android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
+                android:textColor="@drawable/sel_radiobutton_text_color" />
+
 
             <RadioButton
                 android:id="@+id/rb_preference_2"
@@ -91,7 +93,8 @@
                 android:layout_marginEnd="17dp"
                 android:background="@drawable/sel_rounded_corner_preference_tag_button"
                 android:gravity="center"
-                android:text="2" />
+                android:text="2"
+                android:textColor="@drawable/sel_radiobutton_text_color" />
 
             <RadioButton
                 android:id="@+id/rb_preference_3"
@@ -101,7 +104,8 @@
                 android:layout_marginEnd="17dp"
                 android:background="@drawable/sel_rounded_corner_preference_tag_button"
                 android:gravity="center"
-                android:text="3" />
+                android:text="3"
+                android:textColor="@drawable/sel_radiobutton_text_color" />
 
             <RadioButton
                 android:id="@+id/rb_preference_4"
@@ -111,7 +115,8 @@
                 android:layout_marginEnd="17dp"
                 android:background="@drawable/sel_rounded_corner_preference_tag_button"
                 android:gravity="center"
-                android:text="4" />
+                android:text="4"
+                android:textColor="@drawable/sel_radiobutton_text_color" />
 
             <RadioButton
                 android:id="@+id/rb_preference_5"
@@ -120,7 +125,8 @@
                 android:layout_height="48dp"
                 android:background="@drawable/sel_rounded_corner_preference_tag_button"
                 android:gravity="center"
-                android:text="5" />
+                android:text="5"
+                android:textColor="@drawable/sel_radiobutton_text_color" />
 
         </RadioGroup>
 

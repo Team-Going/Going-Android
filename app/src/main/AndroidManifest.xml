@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.mock.MockActivity"
+            android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -53,9 +53,9 @@
             android:name="com.going.presentation.tendencytest.TendencyTestActivity"
             android:exported="true" />
 
-        <activity
-            android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
-            android:exported="true" />
+<!--        <activity-->
+<!--            android:name="com.going.presentation.preferencetag.PreferenceTagActivity"-->
+<!--            android:exported="true" />-->
 
     </application>
 
