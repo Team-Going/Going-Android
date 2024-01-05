@@ -17,8 +17,8 @@
 
         <TextView
             android:id="@+id/tv_preference_number"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_rect_topleft5_gray300_fill"
             android:gravity="center"
             android:textColor="@color/black_000"
