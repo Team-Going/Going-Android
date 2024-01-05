@@ -43,7 +43,7 @@
             android:id="@+id/btn_preference_start"
             style="@style/button_style"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/sel_rounded_corner_button"
