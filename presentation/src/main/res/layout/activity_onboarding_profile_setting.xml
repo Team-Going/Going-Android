@@ -16,6 +16,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_onboarding_profile_setting"
+            app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/white_000"
@@ -31,6 +32,7 @@
         <TextView
             android:id="@+id/tv_onboarding_profile_setting_name_title"
             android:layout_width="wrap_content"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/onboarding_name_tv_title"
@@ -51,6 +53,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             android:text="@={viewModel.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/name_blank_error"
@@ -79,6 +83,7 @@
 
         <TextView
             android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
@@ -100,6 +105,7 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             android:text="@={viewModel.info}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
