@@ -34,31 +34,31 @@ class TendencyTestActivity :
 
     private fun initFadeAnimation() {
         fadeOutList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
         )
 
         fadeInList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
         )
@@ -95,7 +95,7 @@ class TendencyTestActivity :
     }
 
     private fun setProgressAnimate(pb: ProgressBar, progressTo: Int) =
-        ObjectAnimator.ofInt(pb, "progress", pb.progress, progressTo * 100).apply {
+        ObjectAnimator.ofInt(pb, PROGRESS, pb.progress, progressTo * 100).apply {
             duration = DURATION
             setAutoCancel(true)
             interpolator = DecelerateInterpolator()
@@ -117,5 +117,8 @@ class TendencyTestActivity :
 
     companion object {
         const val DURATION = 500L
+
+        const val PROGRESS = "progress"
+        const val ALPHA = "alpha"
     }
 }
