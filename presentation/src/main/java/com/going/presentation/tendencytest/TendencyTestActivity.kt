@@ -122,44 +122,26 @@ class TendencyTestActivity :
 
     private fun observeButtonSelected() {
         viewModel.isFirstChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvFirstAnswer.setTextAppearance(
-                if (it) {
-                    R.style.TextAppearance_Doorip_Body3_Bold
-                } else {
-                    R.style.TextAppearance_Doorip_Body1
-                },
-            )
+            binding.tvFirstAnswer.setTextAppearance(setFont(it))
         }.launchIn(lifecycleScope)
 
         viewModel.isSecondChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvSecondAnswer.setTextAppearance(
-                if (it) {
-                    R.style.TextAppearance_Doorip_Body3_Bold
-                } else {
-                    R.style.TextAppearance_Doorip_Body1
-                },
-            )
+            binding.tvSecondAnswer.setTextAppearance(setFont(it))
         }.launchIn(lifecycleScope)
 
         viewModel.isThirdChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvThirdAnswer.setTextAppearance(
-                if (it) {
-                    R.style.TextAppearance_Doorip_Body3_Bold
-                } else {
-                    R.style.TextAppearance_Doorip_Body1
-                },
-            )
+            binding.tvThirdAnswer.setTextAppearance(setFont(it))
         }.launchIn(lifecycleScope)
 
         viewModel.isFourthChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvFourthAnswer.setTextAppearance(
-                if (it) {
-                    R.style.TextAppearance_Doorip_Body3_Bold
-                } else {
-                    R.style.TextAppearance_Doorip_Body1
-                },
-            )
+            binding.tvFourthAnswer.setTextAppearance(setFont(it))
         }.launchIn(lifecycleScope)
+    }
+
+    private fun setFont(checked: Boolean) = if (checked) {
+        R.style.TextAppearance_Doorip_Body3_Bold
+    } else {
+        R.style.TextAppearance_Doorip_Body3_Medi
     }
 
     companion object {
