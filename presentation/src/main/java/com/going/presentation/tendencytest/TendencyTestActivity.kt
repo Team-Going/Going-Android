@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class TendencyTestActivity :
     BaseActivity<ActivityTendencyTestBinding>(R.layout.activity_tendency_test) {
@@ -26,6 +30,7 @@ class TendencyTestActivity :
         initFadeAnimation()
         initFadeListener()
         initNextBtnClickListener()
+        observeButtonSelected()
     }
 
     private fun initBindingViewModel() {
@@ -113,6 +118,48 @@ class TendencyTestActivity :
 
     private fun moveTendencyTestResultActivity() {
         // 페이지 이동 기능 추가 예정
+    }
+
+    private fun observeButtonSelected() {
+        viewModel.isFirstChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvFirstAnswer.setTextAppearance(
+                if (it) {
+                    R.style.TextAppearance_Doorip_Body3_Bold
+                } else {
+                    R.style.TextAppearance_Doorip_Body1
+                },
+            )
+        }.launchIn(lifecycleScope)
+
+        viewModel.isSecondChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvSecondAnswer.setTextAppearance(
+                if (it) {
+                    R.style.TextAppearance_Doorip_Body3_Bold
+                } else {
+                    R.style.TextAppearance_Doorip_Body1
+                },
+            )
+        }.launchIn(lifecycleScope)
+
+        viewModel.isThirdChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvThirdAnswer.setTextAppearance(
+                if (it) {
+                    R.style.TextAppearance_Doorip_Body3_Bold
+                } else {
+                    R.style.TextAppearance_Doorip_Body1
+                },
+            )
+        }.launchIn(lifecycleScope)
+
+        viewModel.isFourthChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvFourthAnswer.setTextAppearance(
+                if (it) {
+                    R.style.TextAppearance_Doorip_Body3_Bold
+                } else {
+                    R.style.TextAppearance_Doorip_Body1
+                },
+            )
+        }.launchIn(lifecycleScope)
     }
 
     companion object {

@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 class TendencyTestViewModel : ViewModel() {
     val step = MutableStateFlow(1)
     val isChecked = MutableLiveData(false)
-    val isFirstChecked = MutableLiveData(false)
-    val isSecondChecked = MutableLiveData(false)
-    val isThirdChecked = MutableLiveData(false)
-    val isFourthChecked = MutableLiveData(false)
+    val isFirstChecked = MutableStateFlow(false)
+    val isSecondChecked = MutableStateFlow(false)
+    val isThirdChecked = MutableStateFlow(false)
+    val isFourthChecked = MutableStateFlow(false)
 
     val tendencyResultList: MutableList<Int> = MutableList(9) { 0 }
 
