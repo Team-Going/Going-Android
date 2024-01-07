@@ -51,6 +51,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
             android:exported="false"

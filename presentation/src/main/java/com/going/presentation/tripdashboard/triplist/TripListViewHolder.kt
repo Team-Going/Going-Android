@@ -5,9 +5,9 @@ import com.going.domain.entity.response.TripCreateListModel
 import com.going.presentation.databinding.ItemDashBoardTripCreateBinding
 import com.going.ui.extension.setOnSingleClickListener
 
-class OngoingTripViewHolder(
+class TripListViewHolder(
     val binding: ItemDashBoardTripCreateBinding,
-    private val listener: OngoingTripAdapter.OnDashBoardSelectedListener
+    private val listener: TripListAdapter.OnDashBoardSelectedListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: TripCreateListModel) {

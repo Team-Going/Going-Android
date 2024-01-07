@@ -7,27 +7,29 @@ import com.going.domain.entity.response.TripCreateListModel
 import com.going.presentation.databinding.ItemDashBoardTripCreateBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class OngoingTripAdapter(
+class TripListAdapter(
     private val listener: OnDashBoardSelectedListener
-) : ListAdapter<TripCreateListModel, OngoingTripViewHolder>(diffUtil) {
+) : ListAdapter<TripCreateListModel, TripListViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
         fun onDashBoardSelectedListener(tripCreate: TripCreateListModel)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingTripViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripListViewHolder {
         val binding: ItemDashBoardTripCreateBinding =
             ItemDashBoardTripCreateBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
-        return OngoingTripViewHolder(binding, listener)
+        return TripListViewHolder(binding, listener)
     }
 
-    override fun onBindViewHolder(holder: OngoingTripViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TripListViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
+
+
 
     companion object {
         private val diffUtil = ItemDiffCallback<TripCreateListModel>(

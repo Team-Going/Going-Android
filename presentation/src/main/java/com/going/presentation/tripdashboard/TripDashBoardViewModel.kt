@@ -41,6 +41,36 @@ class TripDashBoardViewModel : ViewModel() {
             startDate = "2028.03.24",
             endDate = "2028.03.31",
             day = 400
+        ),
+        TripCreateListModel(
+            title ="솝트랑 MT",
+            startDate = "2021.03.24",
+            endDate = "2021.03.31",
+            day = -10
+        ),
+        TripCreateListModel(
+            title ="굉굉 신년회",
+            startDate = "2024.01.02",
+            endDate = "2024.01.32",
+            day = -10
+        ),
+        TripCreateListModel(
+            title ="안드 단체 여행",
+            startDate = "2020.03.24",
+            endDate = "2021.03.31",
+            day = -100
+        ),
+        TripCreateListModel(
+            title ="유빈이 생일 파티",
+            startDate = "2022.09.22",
+            endDate = "2022.09.23",
+            day = -120
+        ),
+        TripCreateListModel(
+            title ="두릅",
+            startDate = "2003.03.24",
+            endDate = "2004.03.31",
+            day = -1000
         )
     )
 }
