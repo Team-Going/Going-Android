@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_tendency_test_result"
+            style="@style/toolbar_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_tb_tendency_test_result"
+            app:title="@string/tendency_test_result_toolbar" />
+
+        <ImageView
+            android:id="@+id/img_tendency_test_result"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_tendency_test_result"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/img_sign_in_main" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/shape_radius_top_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingHorizontal="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/tv_tendency_test_result_type"
+                style="@style/TextAppearance.Doorip.Head1"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서버에서 받아오는 값~"
+                android:textColor="@color/red_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_title"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_tendency_test_result_title"
+                style="@style/TextAppearance.Doorip.Body2.Medi"
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tendency_test_result_title"
+                android:textColor="@color/gray_600"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_tendency_test_result_sub_type"
+                style="@style/TextAppearance.Doorip.Detail1.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="얘도 아마 서버에서 받아올겨~"
+                android:textColor="@color/gray_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_type"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
