@@ -56,7 +56,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun setProgressBarStatus() {
-        binding.progressBarOurTodo.progress = 40
+        binding.progressBarOurTodo.progress = 62
     }
 
     private fun setTabLayout() {

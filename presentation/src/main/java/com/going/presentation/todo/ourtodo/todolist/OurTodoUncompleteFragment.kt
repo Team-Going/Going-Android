@@ -26,9 +26,9 @@ class OurTodoUncompleteFragment() :
     }
 
     private fun setRecyclerView() {
-        _adapter = OurTodoListAdapter()
+        _adapter = OurTodoListAdapter(false)
         binding.rvOurTodoUncomplete.adapter = adapter
-        adapter.submitList(viewModel.mockTodoList)
+        adapter.submitList(viewModel.mockUncompleteTodoList)
     }
 
     override fun onDestroyView() {

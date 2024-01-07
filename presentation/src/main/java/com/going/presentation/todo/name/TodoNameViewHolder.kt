@@ -5,16 +5,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
 
-class TodoNameViewHolder(val binding: ItemTodoNameBinding) : RecyclerView.ViewHolder(binding.root) {
+class TodoNameViewHolder(
+    val binding: ItemTodoNameBinding,
+    private val isCompleted: Boolean
+) : RecyclerView.ViewHolder(binding.root) {
 
     private val redColor = ContextCompat.getColor(binding.root.context, R.color.red_500)
     private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_400)
+    private val completedColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
 
     fun onBind(item: String) {
         binding.run {
             tvTodoName.text = item
-            tvTodoName.setTextColor(if (item == "김상호") redColor else grayColor)
-            if (item == "김상호") layoutTodoName.isSelected = true
+            if (isCompleted) {
+                tvTodoName.setTextColor(completedColor)
+                tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
+            } else {
+                tvTodoName.setTextColor(if (item == "김상호") redColor else grayColor)
+                if (item == "김상호") tvTodoName.isSelected = true
+            }
         }
     }
 

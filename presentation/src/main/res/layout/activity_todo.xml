@@ -36,4 +36,5 @@
             app:menu="@menu/menu_todo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

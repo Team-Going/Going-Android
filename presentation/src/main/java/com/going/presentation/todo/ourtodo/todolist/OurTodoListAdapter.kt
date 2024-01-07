@@ -7,12 +7,14 @@ import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemOurTodoBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class OurTodoListAdapter : ListAdapter<TodoModel, OurTodoListViewHolder>(diffUtil) {
+class OurTodoListAdapter(
+    private val isCompleted: Boolean
+) : ListAdapter<TodoModel, OurTodoListViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoListViewHolder {
         val binding: ItemOurTodoBinding =
             ItemOurTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OurTodoListViewHolder(binding)
+        return OurTodoListViewHolder(binding, isCompleted)
     }
 
     override fun onBindViewHolder(holder: OurTodoListViewHolder, position: Int) {

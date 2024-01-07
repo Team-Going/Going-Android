@@ -17,7 +17,7 @@ class OurTodoViewModel : ViewModel() {
         TripParticipantModel(6, "칠지민", 100)
     )
 
-    val mockTodoList: List<TodoModel> = listOf(
+    val mockUncompleteTodoList: List<TodoModel> = listOf(
         TodoModel(0,"숙소 예약하기", "2024-01-12", listOf("김상호", "박동민")),
         TodoModel(1,"기차 왕복 예약하기", "2024-01-14", listOf("조세연")),
         TodoModel(2,"와사비맛 아몬드 먹기", "2024-01-15", listOf("이유빈", "김상호")),
@@ -26,5 +26,9 @@ class OurTodoViewModel : ViewModel() {
         TodoModel(5,"기차 왕복 예약하기", "2024-01-14", listOf("조세연")),
         TodoModel(6,"와사비맛 아몬드 먹기", "2024-01-15", listOf("이유빈", "김상호")),
         TodoModel(7,"커피 사기", "2024-01-15", listOf("이유빈"))
+    )
+
+    val mockCompleteTodoList: List<TodoModel> = listOf(
+        TodoModel(0,"숙소 예약하기", "2024-01-12", listOf("김상호", "박동민")),
     )
 }
