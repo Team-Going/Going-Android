@@ -39,7 +39,11 @@
     <string name="create_trip_start_date">시작일</string>
     <string name="create_trip_slash">-</string>
     <string name="create_trip_end_date">종료일</string>
-    <string name="create_trip_finish_btn">생성하기</string>
+    <string name="create_trip_finish_btn">다음</string>
+
+    <!--date_content-->
+    <string name="date_content_btn">확인</string>
+
 
     <!--our_todo-->
     <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>

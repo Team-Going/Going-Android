@@ -52,11 +52,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
+            android:afterTextChanged="@{(text) -> viewModel.checkNameAvailable()}"
             android:hint="@string/create_trip_et_name_hint"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
             android:text="@={viewModel.name}"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_create_trip_name_title" />
@@ -91,27 +93,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="13dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_create_trip_start_date"
-                style="@style/edit_text_style"
+            <TextView
+                android:id="@+id/tv_create_trip_start_date"
+                android:background="@drawable/shape_rect_4_gray200_line"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="24dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="12dp"
                 android:hint="@string/create_trip_start_date"
-                android:imeOptions="actionNext"
-                android:inputType="text"
                 android:maxLines="1"
                 android:text="@={viewModel.StartDate}" />
-
-            <DatePicker
-                android:id="@+id/dp_create_trip_start_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                android:spinnersShown="true"
-                android:visibility="gone" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,27 +114,18 @@
                 app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
                 app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_create_trip_end_date"
-                style="@style/edit_text_style"
+            <TextView
+                android:id="@+id/tv_create_trip_end_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="24dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="12dp"
+                android:background="@drawable/shape_rect_4_gray200_line"
                 android:hint="@string/create_trip_end_date"
-                android:imeOptions="actionNext"
-                android:inputType="text"
                 android:maxLines="1"
                 android:text="@={viewModel.EndDate}" />
-
-            <DatePicker
-                android:id="@+id/dp_create_trip_end_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                android:spinnersShown="true"
-                android:visibility="gone" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

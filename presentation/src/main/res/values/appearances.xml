@@ -107,4 +107,9 @@
         <item name="fontFamily">@font/font_pretendard_regular</item>
     </style>
 
+    <style name="CustomDatePicker">
+        <item name="android:textColorPrimary">@color/gray_700</item><!-- text color -->
+        <item name="android:textAppearance">@style/TextAppearance.Doorip.Body2.Medi</item>
+    </style>
+
 </resources>

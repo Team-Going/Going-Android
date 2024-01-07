@@ -58,4 +58,14 @@
         <item name="android:textAppearance">@style/TextAppearance.Doorip.Body3.Medi</item>
     </style>
 
+    <style name="RoundCornerBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/RoundCornerStyle</item>
+    </style>
+
+    <style name="RoundCornerStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+
+
 </resources>

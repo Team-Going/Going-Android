@@ -39,14 +39,6 @@ class CreateTripViewModel : ViewModel() {
         _ButtonAvailable.value = true
     }
 
-
-
-
-
-
-
-
-
     companion object {
         const val MAX_TRIP_LEN = 15
     }
