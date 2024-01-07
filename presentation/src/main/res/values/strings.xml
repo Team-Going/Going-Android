@@ -31,4 +31,14 @@
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
 
+    <!--create_trip-->
+    <string name="create_trip_tb_title">여행 생성하기</string>
+    <string name="create_trip_name_tv_title">여행 이름</string>
+    <string name="create_trip_et_name_hint">여행 이름을 입력해주세요</string>
+    <string name="create_trip_one_line_info_tv_title">한줄 소개</string>
+    <string name="create_trip_start_date">시작일</string>
+    <string name="create_trip_slash">-</string>
+    <string name="create_trip_end_date">종료일</string>
+    <string name="create_trip_finish_btn">생성하기</string>
+
 </resources>
