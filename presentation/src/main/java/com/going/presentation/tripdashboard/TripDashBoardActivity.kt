@@ -9,8 +9,6 @@ import com.going.ui.base.BaseActivity
 
 class TripDashBoardActivity :BaseActivity<ActivityTripDashBoardBinding>(R.layout.activity_trip_dash_board) {
 
-    private val viewModel by viewModels<TripDashBoardViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

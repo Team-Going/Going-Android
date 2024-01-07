@@ -43,5 +43,7 @@
 
     <!--trip_dash_board-->
     <string name="dashboard_tv_title">지민님의 여행</string>
+    <string name="dashboard_tv_empty">생성된 여행이 없어요.</string>
+    <string name="dashboard_btn_create_trip">여행 생성하기</string>
 
 </resources>
