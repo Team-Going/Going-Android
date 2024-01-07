@@ -38,4 +38,5 @@ TripListAdapter.OnDashBoardSelectedListener{
         super.onDestroyView()
         _adapter = null
     }
+
 }

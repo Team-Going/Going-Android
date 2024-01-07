@@ -29,8 +29,6 @@ class TripListAdapter(
         holder.onBind(getItem(position))
     }
 
-
-
     companion object {
         private val diffUtil = ItemDiffCallback<TripCreateListModel>(
             onItemsTheSame = { old, new -> old.title == new.title },

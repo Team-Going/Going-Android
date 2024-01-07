@@ -11,7 +11,7 @@ class TripListViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: TripCreateListModel) {
-        binding.run{
+        binding.run {
             tvDashboardTripTitle.text = item.title
             tvDashboardDateStart.text = item.startDate
             tvDashboardDateEnd.text = item.endDate

@@ -21,7 +21,6 @@ class OngoingTripFragment :
     private var _adapter: TripListAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-//    private val itemDeco = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,7 +39,7 @@ class OngoingTripFragment :
         adapter.submitList(viewModel.mockDataList)
     }
 
-    private fun initItemDecoration(){
+    private fun initItemDecoration() {
         val itemDeco = TripDecoration(requireContext())
         binding.rvDashboardOngoingTrip.addItemDecoration(itemDeco)
     }
