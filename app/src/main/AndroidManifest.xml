@@ -49,15 +49,18 @@
         <activity
             android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
 
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestActivity"
-            android:exported="true" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
