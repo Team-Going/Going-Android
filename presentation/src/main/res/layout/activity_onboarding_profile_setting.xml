@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="com.going.domain.entity.NameState"/>
+
+        <import type="android.view.View" />
+
+        <import type="com.going.domain.entity.NameState" />
+
         <variable
             name="viewModel"
             type="com.going.presentation.onboarding.OnboardingProfileSettingViewModel" />
@@ -16,7 +19,6 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_onboarding_profile_setting"
-            app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/white_000"
@@ -27,12 +29,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/onboarding_tb_title"
+            app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
             app:titleTextColor="@color/black_000" />
 
         <TextView
             android:id="@+id/tv_onboarding_profile_setting_name_title"
-            android:layout_width="wrap_content"
             style="@style/TextAppearance.Doorip.Body3.Bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/onboarding_name_tv_title"
@@ -53,16 +56,16 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             android:text="@={viewModel.name}"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title" />
 
         <TextView
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/name_blank_error"
@@ -105,8 +108,8 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             android:text="@={viewModel.info}"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
