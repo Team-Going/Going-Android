@@ -45,7 +45,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_dashboard"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:layout_constraintBottom_toTopOf="@id/btn_dashboard_create_trip"

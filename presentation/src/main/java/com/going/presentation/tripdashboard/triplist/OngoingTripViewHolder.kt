@@ -21,6 +21,5 @@ class OngoingTripViewHolder(
                 listener.onDashBoardSelectedListener(item)
             }
         }
-
     }
 }
