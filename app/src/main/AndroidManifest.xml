@@ -43,7 +43,7 @@
 
         <activity
             android:name="com.going.presentation.todo.TodoActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
