@@ -46,4 +46,12 @@
         <item name="android:paddingVertical">17dp</item>
         <item name="android:layout_marginVertical">6dp</item>
     </style>
+
+    <!--    preference_tag Button Style-->
+    <style name="radio_preference_button_style" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/sel_rounded_corner_preference_tag_button</item>
+        <item name="android:textAppearance">@style/TextAppearance.Doorip.Body3.Medi</item>
+    </style>
+
 </resources>
