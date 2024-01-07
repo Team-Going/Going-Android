@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <data>
         <import type="android.view.View"/>
         <import type="com.going.domain.entity.NameState"/>
@@ -42,6 +41,7 @@
             android:layout_marginStart="24dp"
             android:text="@string/create_trip_name_tv_title"
             android:textColor="@color/black_000"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             app:layout_constraintStart_toStartOf="@id/tb_create_trip"
             app:layout_constraintTop_toBottomOf="@id/tb_create_trip" />
 
@@ -52,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/sel_rounded_corner_edit_text_empty"
             android:hint="@string/create_trip_et_name_hint"
             android:imeOptions="actionNext"
             android:inputType="text"
@@ -67,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{@string/counter(viewModel.nowNameLength, viewModel.MAX_NAME_LEN)}"
+            android:text="@{@string/counter(viewModel.NameLength, viewModel.MAX_TRIP_LEN)}"
             android:textColor="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@id/et_create_trip_name"
             app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
@@ -79,6 +78,7 @@
             android:layout_marginTop="37dp"
             android:text="@string/create_trip_one_line_info_tv_title"
             android:textColor="@color/black_000"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
             app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
 
@@ -98,12 +98,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="24dp"
-                android:background="@drawable/sel_rounded_corner_edit_text_empty"
                 android:hint="@string/create_trip_start_date"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={viewModel.name}" />
+                android:text="@={viewModel.StartDate}" />
 
             <DatePicker
                 android:id="@+id/dp_create_trip_start_date"
@@ -129,12 +128,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="24dp"
-                android:background="@drawable/sel_rounded_corner_edit_text_empty"
                 android:hint="@string/create_trip_end_date"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={viewModel.name}" />
+                android:text="@={viewModel.EndDate}" />
 
             <DatePicker
                 android:id="@+id/dp_create_trip_end_date"
@@ -155,7 +153,7 @@
             android:layout_marginBottom="60dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isProfileAvailable()}"
-            android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
+            android:onClick="@{() -> viewModel.setButtonAvailable()}"
             android:paddingVertical="10dp"
             android:text="@string/create_trip_finish_btn"
             android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"

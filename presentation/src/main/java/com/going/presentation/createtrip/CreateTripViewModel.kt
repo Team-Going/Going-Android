@@ -3,57 +3,43 @@ package com.going.presentation.createtrip
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.NameState
-import com.going.presentation.onboarding.OnboardingProfileSettingViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import java.text.BreakIterator
 
 class CreateTripViewModel : ViewModel() {
-    val name = MutableLiveData(String())
-    val nowNameLength = MutableLiveData(0)
+    val name = MutableLiveData<String>()
+    val NameLength = MutableLiveData(0)
 
-    val isNameAvailable = MutableLiveData(NameState.Empty)
+    val StartDate = MutableLiveData<String>()
+    val EndDate = MutableLiveData<String>()
+
+    val isNameAvailable = MutableLiveData<NameState>(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
+    private val _ButtonAvailable = MutableStateFlow(false)
+    val ButtonAvailable: StateFlow<Boolean> = _ButtonAvailable
 
-    private val _isMoveScreenAvailable = MutableStateFlow(false)
-    val isMoveScreenAvailable: StateFlow<Boolean> = _isMoveScreenAvailable
+    fun getMaxNameLen() = CreateTripViewModel.MAX_TRIP_LEN
 
-
-    fun getMaxNameLen() = OnboardingProfileSettingViewModel.MAX_NAME_LEN
-
-    fun checkProfileAvailable() {
-        nowNameLength.value = getGraphemeLength(name.value)
+    fun checkNameAvailable() {
+        NameLength.value = getNameLength(name.value)
 
         isNameAvailable.value = when {
-            nowNameLength.value == 0 -> NameState.Empty
+            NameLength.value == 0 -> NameState.Empty
             name.value.isNullOrBlank() -> NameState.Blank
             else -> NameState.Success
         }
-
-        val isInfoAvailable = getGraphemeLength(info.value) in 1..OnboardingProfileSettingViewModel.MAX_INFO_LEN
-
-        isProfileAvailable.value =
-            (isNameAvailable.value == NameState.Success) && isInfoAvailable
     }
 
-    // 이모지 포함 글자 수 세는 함수
-    private fun getGraphemeLength(value: String?): Int {
-        OnboardingProfileSettingViewModel.BREAK_ITERATOR.setText(value)
-
-        var count = 0
-        while (OnboardingProfileSettingViewModel.BREAK_ITERATOR.next() != BreakIterator.DONE) {
-            count++
-        }
-
-        return count
+    private fun getNameLength(value: String?): Int {
+        return value?.length ?: 0
     }
-    fun setIsMoveScreenAvailable() {
-        _isMoveScreenAvailable.value = true
+
+    fun setButtonAvailable() {
+        _ButtonAvailable.value = true
     }
+
     companion object {
-        val BREAK_ITERATOR: BreakIterator = BreakIterator.getCharacterInstance()
-
-        const val MAX_NAME_LEN = 3
+        const val MAX_TRIP_LEN = 15
     }
 }
