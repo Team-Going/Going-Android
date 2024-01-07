@@ -180,7 +180,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-
                         <LinearLayout
                             android:id="@+id/linear_layout_first_description"
                             android:layout_width="0dp"
@@ -258,6 +257,19 @@
                             app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/testid"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            app:layout_constraintHorizontal_weight="10"
+                            android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layerType="software" />
 
                         <LinearLayout
                             android:id="@+id/linear_layout_second_description"
@@ -428,12 +440,13 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button"
+            android:background="@drawable/shape_rect_4_gray500_fill"
             android:gravity="center"
             android:paddingVertical="10dp"
             android:text="@string/tendency_test_result_finish_button"
             android:textColor="@color/white_000"
             android:textSize="16sp"
+            android:outlineProvider="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_tendency_test_result_save" />

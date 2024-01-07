@@ -185,6 +185,7 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isChecked()}"
+            android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
             android:textColor="@color/gray_200"

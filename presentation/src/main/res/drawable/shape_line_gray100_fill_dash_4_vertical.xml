@@ -2,4 +2,4 @@
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
     android:fromDegrees="90"
     android:toDegrees="90"
-    android:drawable="@drawable/shape_line_gray100_fill_dash_8"/>
+    android:drawable="@drawable/shape_line_gray100_fill_dash_4"/>

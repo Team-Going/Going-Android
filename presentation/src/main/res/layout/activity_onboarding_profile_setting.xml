@@ -123,7 +123,7 @@
             app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_info"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/btn_onboarding_profile_setting_finish"
             style="@style/button_style"
             android:layout_width="0dp"
@@ -133,6 +133,7 @@
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isProfileAvailable()}"
             android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
+            android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/onboarding_finish_btn"
             android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_200}"
