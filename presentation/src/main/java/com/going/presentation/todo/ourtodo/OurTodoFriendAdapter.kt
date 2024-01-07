@@ -7,22 +7,16 @@ import com.going.domain.entity.response.TripParticipantsListModel.TripParticipan
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class OurTodoAdapter : ListAdapter<TripParticipantModel, OurTodoViewHolder>(diffUtil) {
+class OurTodoFriendAdapter : ListAdapter<TripParticipantModel, OurTodoFriendViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoFriendViewHolder {
         val binding: ItemTodoFriendsBinding =
             ItemTodoFriendsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OurTodoViewHolder(binding)
+        return OurTodoFriendViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: OurTodoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OurTodoFriendViewHolder, position: Int) {
         holder.onBind(getItem(position))
-    }
-
-    fun addList(newItems: List<TripParticipantModel>) {
-        val currentItems = currentList.toMutableList()
-        currentItems.addAll(newItems)
-        submitList(currentItems)
     }
 
     companion object {
