@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:paddingBottom="22dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <DatePicker
+        android:calendarViewShown="false"
+        style="@style/CustomDatePicker"
+        android:datePickerMode="spinner"
+        android:id="@+id/dp_create_trip_date"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:spinnersShown="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:background="@drawable/sel_rounded_corner_button"
+        android:id="@+id/btn_create_trip_finish"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="0dp"
+        android:textColor="@color/white_000"
+        android:paddingVertical="13dp"
+        android:text="@string/date_content_btn"
+        style="@style/TextAppearance.Doorip.Body2.Bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dp_create_trip_date" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
