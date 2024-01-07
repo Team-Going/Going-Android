@@ -41,7 +41,7 @@ class TendencyTestResultActivity :
 
     private fun setBulletPoint(text: String): SpannableString {
         val string = SpannableString(text)
-        string.setSpan(BulletSpan(), 0, text.length - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        string.setSpan(BulletSpan(10), 0, text.length - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         return string
     }

@@ -35,7 +35,7 @@
     <!-- Toolbar Style -->
     <style name="toolbar_style" parent="Widget.AppCompat.Toolbar">
         <item name="android:theme">@style/TextAppearance.Doorip.Body1.Bold</item>
-        <item name="android:titleTextColor">@color/black_000</item>
+        <item name="android:titleTextColor">@color/gray_700</item>
         <item name="android:background">@color/white_000</item>
     </style>
 

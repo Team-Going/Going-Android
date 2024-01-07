@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.going.presentation.tendencytest.result.TendencyTestResultViewModel" />
@@ -18,11 +19,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/menu_tb_tendency_test_result"
-            app:title="@string/tendency_test_result_toolbar" />
+            app:title="@string/tendency_test_title" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
@@ -40,9 +42,8 @@
                     android:id="@+id/img_tendency_test_result"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/img_sign_in_main"
                     android:background="@color/black_000"
+                    android:src="@drawable/img_sign_in_main"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -170,58 +171,67 @@
                         <TextView
                             android:id="@+id/tv_first_description_title"
                             style="@style/TextAppearance.Doorip.Detail2.Bold"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
+                            app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/first_vertical_dash_lline"
-                            android:layout_width="4dp"
-                            android:layout_height="0dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="@drawable/shape_line_gray100_fill_dash_16_vertical"
-                            android:layerType="software"
+
+                        <LinearLayout
+                            android:id="@+id/linear_layout_first_description"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="7"
                             app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/tv_first_description_first_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@id/tv_first_description_second_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_first_description_first_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBottom_toTopOf="@id/tv_first_description_second_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_weight="2"
+                                app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_first_description_second_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_first_description_first_text"
-                            app:layout_constraintBottom_toTopOf="@id/tv_first_description_third_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_first_description_second_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toTopOf="@id/tv_first_description_third_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_weight="2"
+                                app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_first_description_first_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_first_description_third_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_first_description_second_text"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_first_description_third_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_weight="2"
+                                app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_first_description_second_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
+                        </LinearLayout>
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -240,58 +250,61 @@
                         <TextView
                             android:id="@+id/tv_second_description_title"
                             style="@style/TextAppearance.Doorip.Detail2.Bold"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_weight="3"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/second_vertical_dash_lline"
-                            android:layout_width="4dp"
-                            android:layout_height="0dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="@drawable/shape_line_gray100_fill_dash_16_vertical"
-                            android:layerType="software"
+                        <LinearLayout
+                            android:id="@+id/linear_layout_second_description"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="7"
                             app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/tv_second_description_first_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@id/tv_second_description_second_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_second_description_first_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBottom_toTopOf="@id/tv_second_description_second_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_second_description_second_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_second_description_first_text"
-                            app:layout_constraintBottom_toTopOf="@id/tv_second_description_third_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_second_description_second_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toTopOf="@id/tv_second_description_third_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_second_description_first_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_second_description_third_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_second_description_second_text"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_second_description_third_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_second_description_second_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
+                        </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -311,65 +324,68 @@
                         <TextView
                             android:id="@+id/tv_third_description_title"
                             style="@style/TextAppearance.Doorip.Detail2.Bold"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/third_vertical_dash_lline"
-                            android:layout_width="4dp"
-                            android:layout_height="0dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="@drawable/shape_line_gray100_fill_dash_16_vertical"
-                            android:layerType="software"
+                        <LinearLayout
+                            android:id="@+id/linear_layout_third_description"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="7"
                             app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/tv_third_description_first_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@id/tv_third_description_second_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_third_description_first_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBottom_toTopOf="@id/tv_third_description_second_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_third_description_second_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_third_description_first_text"
-                            app:layout_constraintBottom_toTopOf="@id/tv_third_description_third_text"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_third_description_second_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toTopOf="@id/tv_third_description_third_text"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_third_description_first_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
 
-                        <TextView
-                            android:id="@+id/tv_third_description_third_text"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            android:layout_width="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_third_description_second_text"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            style="@style/TextAppearance.Doorip.Detail3.Regular"/>
+                            <TextView
+                                android:id="@+id/tv_third_description_third_text"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
+                                app:layout_constraintTop_toBottomOf="@id/tv_third_description_second_text"
+                                app:layout_constraintVertical_chainStyle="packed" />
+                        </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.legacy.widget.Space
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_third"
                         android:layout_width="0dp"
-                        android:layout_height="25dp" />
+                        android:layout_height="25dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_third" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
