@@ -8,7 +8,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
-import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
+import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,7 +51,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
     }
 
     private fun setViewPager() {
-        binding.vpMyTodo.adapter = OurTodoViewPagerAdapter(this)
+        binding.vpMyTodo.adapter = MyTodoViewPagerAdapter(this)
         TabLayoutMediator(binding.tabMyTodo, binding.vpMyTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
