@@ -42,6 +42,11 @@
         </activity>
 
         <activity
+            android:name="com.going.presentation.auth.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.todo.TodoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
