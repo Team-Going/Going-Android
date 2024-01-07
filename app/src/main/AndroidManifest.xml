@@ -42,8 +42,14 @@
         </activity>
 
         <activity
+            android:name="com.going.presentation.todo.TodoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
