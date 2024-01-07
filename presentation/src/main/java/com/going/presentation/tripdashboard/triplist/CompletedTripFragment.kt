@@ -6,4 +6,5 @@ import com.going.ui.base.BaseFragment
 
 class CompletedTripFragment : BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip){
 
+
 }
