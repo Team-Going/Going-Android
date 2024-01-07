@@ -25,10 +25,10 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_tendency_test_result_finish"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_tendency_test_result"
-            app:layout_constraintBottom_toTopOf="@id/btn_tendency_test_result_finish">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_tendency_test_result">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -49,11 +49,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="-6dp"
                     android:background="@drawable/shape_radius_top_bg"
-                    app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingHorizontal="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:paddingHorizontal="24dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result"
+                    app:layout_constraintVertical_bias="0.985">
 
                     <TextView
                         android:id="@+id/tv_tendency_test_result_type"
@@ -150,62 +152,102 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
                     </LinearLayout>
-                    
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_box_description_first"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="16dp"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/shape_rect_6_gray200_line"
+                        android:minHeight="142dp"
                         android:paddingHorizontal="14dp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:paddingVertical="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ll_tags">
+
                         <TextView
+                            android:id="@+id/first_description_title"
                             style="@style/TextAppearance.Doorip.Detail2.Bold"
-                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:gravity="center"
+                            android:text="이런점이\n좋아요"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:text="이런점이\n좋아요" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/shape_line_gray100_fill_dash_16_vertical"
+                            android:layerType="software"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/first_description_title"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:id="@+id/img_tendency_test_result4"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_box_description_second"
                         android:layout_width="0dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/img_sign_in_main"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_rect_6_gray200_line"
+                        android:minHeight="142dp"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_first" />
+                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_first">
 
-                    <ImageView
-                        android:id="@+id/img_tendency_test_result2"
+                        <TextView
+                            android:id="@+id/second_description_title"
+                            style="@style/TextAppearance.Doorip.Detail2.Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="이런점이\n좋아요"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_box_description_third"
                         android:layout_width="0dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/img_sign_in_main"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_rect_6_gray200_line"
+                        android:minHeight="142dp"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result4" />
+                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_second">
 
-                    <ImageView
-                        android:id="@+id/img_tendency_test_result3"
-                        android:layout_width="0dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/img_sign_in_main"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        <TextView
+                            android:id="@+id/third_description_title"
+                            style="@style/TextAppearance.Doorip.Detail2.Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="이런점이\n좋아요"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.legacy.widget.Space
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result2" />
-
+                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_third"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -229,13 +271,12 @@
             style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
             android:text="@string/tendency_test_result_restart_button"
             android:textColor="@color/gray_300"
-            android:layout_marginBottom="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
