@@ -18,25 +18,43 @@ class TendencyTestResultActivity :
 
         bindTendencyInfo()
 
+        initSaveImgBtnClickListener()
         initFinishBtnClickListener()
-        initRestartBtnClickListener()
     }
 
     private fun bindTendencyInfo() {
-        binding.tvFirstDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[0].title
-        binding.tvFirstDescriptionFirstText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].first)
-        binding.tvFirstDescriptionSecondText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].second)
-        binding.tvFirstDescriptionThirdText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].third)
+        binding.tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
+        binding.tvTendencyTestResultType.text = viewModel.mockTendencyResult.tendencyTitle
+        binding.tvTendencyTestResultSubType.text = viewModel.mockTendencyResult.tendencySubTitle
 
-        binding.tvSecondDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[1].title
-        binding.tvSecondDescriptionFirstText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].first)
-        binding.tvSecondDescriptionSecondText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].second)
-        binding.tvSecondDescriptionThirdText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].third)
+        binding.tvTendencyTestResultTag1.text = viewModel.mockTendencyResult.tags[0]
+        binding.tvTendencyTestResultTag2.text = viewModel.mockTendencyResult.tags[1]
+        binding.tvTendencyTestResultTag3.text = viewModel.mockTendencyResult.tags[2]
+
+        binding.tvFirstDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[0].title
+        binding.tvFirstDescriptionFirstText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].first)
+        binding.tvFirstDescriptionSecondText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].second)
+        binding.tvFirstDescriptionThirdText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].third)
+
+        binding.tvSecondDescriptionTitle.text =
+            viewModel.mockTendencyResult.tendencyBoxInfo[1].title
+        binding.tvSecondDescriptionFirstText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].first)
+        binding.tvSecondDescriptionSecondText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].second)
+        binding.tvSecondDescriptionThirdText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].third)
 
         binding.tvThirdDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[2].title
-        binding.tvThirdDescriptionFirstText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].first)
-        binding.tvThirdDescriptionSecondText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].second)
-        binding.tvThirdDescriptionThirdText.text = setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].third)
+        binding.tvThirdDescriptionFirstText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].first)
+        binding.tvThirdDescriptionSecondText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].second)
+        binding.tvThirdDescriptionThirdText.text =
+            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].third)
     }
 
     private fun setBulletPoint(text: String): SpannableString {
@@ -46,15 +64,15 @@ class TendencyTestResultActivity :
         return string
     }
 
-    private fun initFinishBtnClickListener() {
-        binding.btnTendencyTestResultFinish.setOnSingleClickListener {
-            // 페이지 이동
+    private fun initSaveImgBtnClickListener() {
+        binding.btnTendencyTestResultSave.setOnSingleClickListener {
+            // 이미지 저장
         }
     }
 
-    private fun initRestartBtnClickListener() {
-        binding.btnTendencyTestResultRestart.setOnSingleClickListener {
-            // 다시 시작
+    private fun initFinishBtnClickListener() {
+        binding.btnTendencyTestResultFinish.setOnSingleClickListener {
+            // 페이지 이동
         }
     }
 }

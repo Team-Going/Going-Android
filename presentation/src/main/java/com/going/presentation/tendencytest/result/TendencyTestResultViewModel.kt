@@ -6,11 +6,11 @@ import com.going.domain.entity.TendencyResultMock
 class TendencyTestResultViewModel : ViewModel() {
     val mockTendencyResult: TendencyResultMock = TendencyResultMock(
         tendencyTitle = "배려심 많은 인간 플래너",
-        tendencySubTitle = "꼼꼼하고 세심ㄴ하게 여행을 준비하는 친구",
+        tendencySubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",
         tags = listOf(
-            "친구중심",
-            "꼼꼼함",
-            "세심함",
+            "#친구중심",
+            "#꼼꼼함",
+            "#세심함",
         ),
         tendencyBoxInfo = listOf(
             TendencyResultMock.BoxInfo(

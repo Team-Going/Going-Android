@@ -60,18 +60,6 @@
                     app:layout_constraintTop_toBottomOf="@id/img_tendency_test_result">
 
                     <TextView
-                        android:id="@+id/tv_tendency_test_result_type"
-                        style="@style/TextAppearance.Doorip.Head1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="서버에서 받아오는 값~"
-                        android:textColor="@color/red_500"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_title" />
-
-                    <TextView
                         android:id="@+id/tv_tendency_test_result_title"
                         style="@style/TextAppearance.Doorip.Body2.Medi"
                         android:layout_width="wrap_content"
@@ -84,11 +72,22 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_tendency_test_result_type"
+                        style="@style/TextAppearance.Doorip.Head1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/red_500"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_title" />
+
+
+                    <TextView
                         android:id="@+id/tv_tendency_test_result_sub_type"
                         style="@style/TextAppearance.Doorip.Detail1.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="얘도 아마 서버에서 받아올겨~"
                         android:textColor="@color/gray_300"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -254,8 +253,8 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
+                            app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -328,9 +327,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
                             app:layout_constraintHorizontal_weight="3"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
@@ -381,44 +380,60 @@
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <TextView
+                        android:id="@+id/tv_tendency_test_restart"
+                        style="@style/TextAppearance.Doorip.Detail2.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tendency_test_result_restart_button"
+                        android:textColor="@color/gray_300"
+                        app:layout_constraintEnd_toEndOf="@id/cl_box_description_third"
+                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_third" />
+
+
                     <androidx.legacy.widget.Space
                         android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_height="13dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cl_box_description_third" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_restart" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tendency_test_result_save"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/shape_rect_4_gray200_line"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="@string/tendency_test_result_save"
+            android:textColor="@color/gray_600"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_tendency_test_result_finish"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_test_result_finish"
-            style="@style/button_style"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
+            android:gravity="center"
             android:paddingVertical="10dp"
             android:text="@string/tendency_test_result_finish_button"
             android:textColor="@color/white_000"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_tendency_test_result_restart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/btn_tendency_test_result_restart"
-            style="@style/TextAppearance.Doorip.Detail2.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="22dp"
-            android:text="@string/tendency_test_result_restart_button"
-            android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            app:layout_constraintStart_toEndOf="@id/btn_tendency_test_result_save" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
