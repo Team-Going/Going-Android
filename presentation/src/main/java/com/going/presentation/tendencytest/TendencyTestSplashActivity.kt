@@ -11,10 +11,10 @@ class TendencyTestSplashActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initStartBtnSingleClickListener()
+        initStartBtnClickListener()
     }
 
-    private fun initStartBtnSingleClickListener() {
+    private fun initStartBtnClickListener() {
         binding.btnTendencySplashStart.setOnSingleClickListener {
             // 페이지 이동~
         }

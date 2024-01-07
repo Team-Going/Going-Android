@@ -6,10 +6,14 @@ import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class TendencyTestActivity :
     BaseActivity<ActivityTendencyTestBinding>(R.layout.activity_tendency_test) {
@@ -26,6 +30,7 @@ class TendencyTestActivity :
         initFadeAnimation()
         initFadeListener()
         initNextBtnClickListener()
+        observeButtonSelected()
     }
 
     private fun initBindingViewModel() {
@@ -34,31 +39,31 @@ class TendencyTestActivity :
 
     private fun initFadeAnimation() {
         fadeOutList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 1f, 0f).apply {
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 1f, 0f).apply {
                 duration = DURATION
             },
         )
 
         fadeInList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, "alpha", 0f, 1f).apply {
+            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 0f, 1f).apply {
                 duration = DURATION
             },
         )
@@ -95,7 +100,7 @@ class TendencyTestActivity :
     }
 
     private fun setProgressAnimate(pb: ProgressBar, progressTo: Int) =
-        ObjectAnimator.ofInt(pb, "progress", pb.progress, progressTo * 100).apply {
+        ObjectAnimator.ofInt(pb, PROGRESS, pb.progress, progressTo * 100).apply {
             duration = DURATION
             setAutoCancel(true)
             interpolator = DecelerateInterpolator()
@@ -115,7 +120,34 @@ class TendencyTestActivity :
         // 페이지 이동 기능 추가 예정
     }
 
+    private fun observeButtonSelected() {
+        viewModel.isFirstChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvFirstAnswer.setTextAppearance(setFont(it))
+        }.launchIn(lifecycleScope)
+
+        viewModel.isSecondChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvSecondAnswer.setTextAppearance(setFont(it))
+        }.launchIn(lifecycleScope)
+
+        viewModel.isThirdChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvThirdAnswer.setTextAppearance(setFont(it))
+        }.launchIn(lifecycleScope)
+
+        viewModel.isFourthChecked.flowWithLifecycle(lifecycle).onEach {
+            binding.tvFourthAnswer.setTextAppearance(setFont(it))
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun setFont(checked: Boolean) = if (checked) {
+        R.style.TextAppearance_Doorip_Body3_Bold
+    } else {
+        R.style.TextAppearance_Doorip_Body3_Medi
+    }
+
     companion object {
         const val DURATION = 500L
+
+        const val PROGRESS = "progress"
+        const val ALPHA = "alpha"
     }
 }
