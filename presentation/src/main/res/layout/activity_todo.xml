@@ -21,13 +21,19 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_todo"
+            style="@style/TextAppearance.Doorip.Detail2.Bold"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:background="@color/white_000"
+            app:itemRippleColor="@null"
+            app:labelVisibilityMode="labeled"
+            android:paddingBottom="10dp"
+            android:paddingTop="8dp"
+            app:itemTextColor="@drawable/sel_bnv_label_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_todo"/>
+            app:menu="@menu/menu_todo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
