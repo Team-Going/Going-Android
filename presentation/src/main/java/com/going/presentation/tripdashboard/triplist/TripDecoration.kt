@@ -16,7 +16,7 @@ class TripDecoration(val context: Context) : RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
 
-        if (position == 0) outRect.top = 20
+        if (position == 0) outRect.top = 50
         else outRect.top = 0
         outRect.bottom = 20
     }

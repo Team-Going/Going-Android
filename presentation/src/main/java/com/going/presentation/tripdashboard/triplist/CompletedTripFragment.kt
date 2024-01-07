@@ -33,6 +33,7 @@ TripListAdapter.OnDashBoardSelectedListener{
         binding.rvDashboardCompletedTrip.adapter = adapter
         adapter.submitList(viewModel.mockDataList)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
