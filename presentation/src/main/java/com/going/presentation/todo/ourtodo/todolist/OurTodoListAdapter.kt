@@ -19,12 +19,6 @@ class OurTodoListAdapter : ListAdapter<TodoModel, OurTodoListViewHolder>(diffUti
         holder.onBind(getItem(position))
     }
 
-    fun addList(newItems: List<TodoModel>) {
-        val currentItems = currentList.toMutableList()
-        currentItems.addAll(newItems)
-        submitList(currentItems)
-    }
-
     companion object {
         private val diffUtil = ItemDiffCallback<TodoModel>(
             onItemsTheSame = { old, new -> old.todoId == new.todoId },

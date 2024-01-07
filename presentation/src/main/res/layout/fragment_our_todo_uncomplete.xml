@@ -10,15 +10,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_our_todo_uncomplete"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white_000">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_our_todo_uncomplete"
+            android:overScrollMode="never"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="23dp"
-            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

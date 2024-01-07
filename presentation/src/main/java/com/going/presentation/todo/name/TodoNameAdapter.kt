@@ -18,12 +18,6 @@ class TodoNameAdapter : ListAdapter<String, TodoNameViewHolder>(diffUtil) {
         holder.onBind(getItem(position))
     }
 
-    fun addList(newItems: List<String>) {
-        val currentItems = currentList.toMutableList()
-        currentItems.addAll(newItems)
-        submitList(currentItems)
-    }
-
     companion object {
         private val diffUtil = ItemDiffCallback<String>(
             onItemsTheSame = { old, new -> old.length == new.length },

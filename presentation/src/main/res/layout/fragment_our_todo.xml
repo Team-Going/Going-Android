@@ -292,8 +292,10 @@
                     android:id="@+id/tab_our_todo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/layer_list_todo_unselected_indicator"
                     app:tabIndicatorColor="@color/black_000"
                     app:tabIndicatorFullWidth="true"
+                    app:tabIndicatorHeight="2dp"
                     app:tabRippleColor="@android:color/transparent"
                     app:tabSelectedTextColor="@color/black_000"
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
@@ -304,7 +306,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_our_todo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

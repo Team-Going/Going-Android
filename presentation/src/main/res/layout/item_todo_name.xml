@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/gray_50"
-    android:paddingEnd="4dp">
+    android:paddingEnd="5dp">
 
     <TextView
         android:id="@+id/tv_todo_name"
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/sel_todo_shape_tv_name"
-        android:paddingHorizontal="4dp"
+        android:paddingHorizontal="5dp"
         android:textColor="@color/gray_400"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

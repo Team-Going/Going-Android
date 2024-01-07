@@ -14,6 +14,7 @@ class TodoNameViewHolder(val binding: ItemTodoNameBinding) : RecyclerView.ViewHo
         binding.run {
             tvTodoName.text = item
             tvTodoName.setTextColor(if (item == "김상호") redColor else grayColor)
+            if (item == "김상호") layoutTodoName.isSelected = true
         }
     }
 

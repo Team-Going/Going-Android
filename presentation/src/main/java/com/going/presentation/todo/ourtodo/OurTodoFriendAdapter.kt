@@ -19,12 +19,6 @@ class OurTodoFriendAdapter : ListAdapter<TripParticipantModel, OurTodoFriendView
         holder.onBind(getItem(position))
     }
 
-    fun addList(newItems: List<TripParticipantModel>) {
-        val currentItems = currentList.toMutableList()
-        currentItems.addAll(newItems)
-        submitList(currentItems)
-    }
-
     companion object {
         private val diffUtil = ItemDiffCallback<TripParticipantModel>(
             onItemsTheSame = { old, new -> old.participantId == new.participantId },
