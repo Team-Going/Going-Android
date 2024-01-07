@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="14dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_dashboard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -55,7 +57,7 @@
             style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginStart="2dp"
             android:text="-"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2024 .03 .31"
+            android:layout_marginStart="2dp"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_dash"
             app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_dash"

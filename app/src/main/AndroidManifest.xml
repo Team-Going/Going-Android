@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
+            android:name="com.going.presentation.mock.MockActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -67,10 +67,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"-->
-<!--            android:exported="false"-->
-<!--            android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
     </application>
 
