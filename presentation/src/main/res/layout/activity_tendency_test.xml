@@ -36,7 +36,7 @@
             android:animationResolution="1000"
             android:max="@{viewModel.MAX_STEP * 100}"
             android:progress="@{viewModel.step * 100}"
-            android:progressDrawable="@drawable/ll_progressbar"
+            android:progressDrawable="@drawable/layer_list_progressbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_tendency_test" />
@@ -78,7 +78,7 @@
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@{viewModel.isFirstChecked ? @drawable/shape_radiobutton_checked : @drawable/shape_radiobutton_unchecked}" />
+                android:background="@{viewModel.isFirstChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
                 android:id="@+id/tv_first_answer"
@@ -106,7 +106,7 @@
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@{viewModel.isSecondChecked ? @drawable/shape_radiobutton_checked : @drawable/shape_radiobutton_unchecked}" />
+                android:background="@{viewModel.isSecondChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
                 android:id="@+id/tv_second_answer"
@@ -134,7 +134,7 @@
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@{viewModel.isThirdChecked ? @drawable/shape_radiobutton_checked : @drawable/shape_radiobutton_unchecked}" />
+                android:background="@{viewModel.isThirdChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
                 android:id="@+id/tv_third_answer"
@@ -162,7 +162,7 @@
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@{viewModel.isFourthChecked ? @drawable/shape_radiobutton_checked : @drawable/shape_radiobutton_unchecked}" />
+                android:background="@{viewModel.isFourthChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
                 android:id="@+id/tv_fourth_answer"

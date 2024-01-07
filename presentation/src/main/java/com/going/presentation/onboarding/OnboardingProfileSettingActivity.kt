@@ -93,10 +93,10 @@ class OnboardingProfileSettingActivity :
         setBackground: (Int) -> Unit,
     ) {
         val (color, background) = when {
-            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rounded_corner_edit_text
-            length == 0 -> R.color.gray_200 to R.drawable.shape_rounded_corner_edit_text_empty
-            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.shape_rounded_corner_edit_text_error
-            else -> R.color.gray_700 to R.drawable.shape_rounded_corner_edit_text
+            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            length == 0 -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+            else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
         }
 
         setCounterColor(counter, color)
