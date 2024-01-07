@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.going.presentation.databinding.ItemTodoNameBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class TodNameAdapter : ListAdapter<String, TodoNameViewHolder>(diffUtil) {
+class TodoNameAdapter : ListAdapter<String, TodoNameViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoNameViewHolder {
         val binding: ItemTodoNameBinding =
