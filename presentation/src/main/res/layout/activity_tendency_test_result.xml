@@ -17,6 +17,7 @@
             android:id="@+id/tb_tendency_test_result"
             style="@style/toolbar_style"
             android:layout_width="0dp"
+            android:elevation="1dp"
             android:layout_height="wrap_content"
             android:paddingStart="24dp"
             android:paddingTop="32dp"
@@ -108,7 +109,7 @@
                             style="@style/TextAppearance.Doorip.Detail1.Regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_tag_bg"
+                            android:background="@drawable/shape_rect_10_red300_line"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="1dp"
                             android:text="#tag1"
@@ -126,7 +127,7 @@
                             style="@style/TextAppearance.Doorip.Detail1.Regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_tag_bg"
+                            android:background="@drawable/shape_rect_10_red300_line"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="1dp"
                             android:text="#tag2"
@@ -144,7 +145,7 @@
                             style="@style/TextAppearance.Doorip.Detail1.Regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_tag_bg"
+                            android:background="@drawable/shape_rect_10_red300_line"
                             android:paddingHorizontal="8dp"
                             android:paddingVertical="1dp"
                             android:text="#tag3"
@@ -385,6 +386,7 @@
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:text="@string/tendency_test_result_restart_button"
                         android:textColor="@color/gray_300"
                         app:layout_constraintEnd_toEndOf="@id/cl_box_description_third"
@@ -393,7 +395,7 @@
 
                     <androidx.legacy.widget.Space
                         android:layout_width="0dp"
-                        android:layout_height="13dp"
+                        android:layout_height="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_restart" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -435,5 +437,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_tendency_test_result_save" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:src="@drawable/img_blur"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
