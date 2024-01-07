@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestResultBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setOnSingleClickListener
 
 class TendencyTestResultActivity :
     BaseActivity<ActivityTendencyTestResultBinding>(R.layout.activity_tendency_test_result) {
@@ -29,6 +30,21 @@ class TendencyTestResultActivity :
         binding.tvThirdDescriptionFirstText.text = test(viewModel.mockList[2].first)
         binding.tvThirdDescriptionSecondText.text = test(viewModel.mockList[2].second)
         binding.tvThirdDescriptionThirdText.text = test(viewModel.mockList[2].third)
+
+        initFinishBtnClickListener()
+        initRestartBtnClickListener()
+    }
+
+    private fun initFinishBtnClickListener() {
+        binding.btnTendencyTestResultFinish.setOnSingleClickListener {
+            // 페이지 이동
+        }
+    }
+
+    private fun initRestartBtnClickListener() {
+        binding.btnTendencyTestResultRestart.setOnSingleClickListener {
+            // 다시 시작
+        }
     }
 
     fun test(text: String): SpannableString {
