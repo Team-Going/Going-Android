@@ -21,22 +21,26 @@ class MyTodoListViewHolder(
             layoutMyTodoLock.isVisible = item.secret
             rvMyTodoName.isVisible = !item.secret
 
+            cbMyTodoSelected.isVisible = isCompleted
+            cbMyTodoUnselected.isVisible = !isCompleted
+
             rvMyTodoName.adapter = TodoNameAdapter(isCompleted).apply {
                 submitList(item.allocation)
             }
 
             if (isCompleted) {
-                tvMyTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_300))
-                tvMyTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_200))
+                tvMyTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_300))
+                tvMyTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_200))
                 layoutMyTodoLock.setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
+                ivMyTodoLock.setImageResource(R.drawable.ic_lock_complete)
+                tvMyTodoLock.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_300))
             } else {
-                tvMyTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context,R.color.black_000))
-                tvMyTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_300))
+                tvMyTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.black_000))
+                tvMyTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_300))
                 layoutMyTodoLock.setBackgroundResource(R.drawable.shape_rect_2_gray400_line)
+                ivMyTodoLock.setImageResource(R.drawable.ic_lock_uncomplete)
+                tvMyTodoLock.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_400))
             }
-
-            cbMyTodoSelected.isVisible = isCompleted
-            cbMyTodoUnselected.isVisible = !isCompleted
         }
     }
 

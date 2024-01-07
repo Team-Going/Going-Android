@@ -12,7 +12,8 @@
         android:id="@+id/cb_my_todo_unselected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="4dp"
+        android:padding="8dp"
         android:src="@drawable/ic_my_todo_checkbox_unselected"
         app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_item_title"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +23,8 @@
         android:id="@+id/cb_my_todo_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="4dp"
+        android:padding="8dp"
         android:src="@drawable/ic_my_todo_checkbox_selected"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_item_title"
@@ -81,7 +83,7 @@
             android:id="@+id/iv_my_todo_lock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_lock"
+            android:src="@drawable/ic_lock_uncomplete"
             app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_lock"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_my_todo_lock" />
@@ -99,6 +101,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
