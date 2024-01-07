@@ -19,7 +19,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private val tabTextList = listOf(TAB_UNCOMPLETE, TAB_COMPLETE)
 
-    private var _adapter: OurTodoAdapter? = null
+    private var _adapter: OurTodoFriendAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -36,7 +36,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initAdapter() {
-        _adapter = OurTodoAdapter()
+        _adapter = OurTodoFriendAdapter()
         binding.rvOurTripFriend.adapter = adapter
         adapter.submitList(viewModel.mockParticipantsList)
     }
@@ -56,7 +56,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun setProgressBarStatus() {
-        binding.progressBarOurTodo.progress = 40
+        binding.progressBarOurTodo.progress = 62
     }
 
     private fun setTabLayout() {
