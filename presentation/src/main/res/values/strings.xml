@@ -35,7 +35,7 @@
     <string name="tendency_test_result_toolbar">유형 검사 결과</string>
     <string name="tendency_test_result_title">%1$s님의 여행 유형은</string>
     <string name="tendency_test_result_finish_button">완성된 프로필 보기</string>
-    <string name="tendency_test_result_restart_button">다시 해볼래요</string>
+    <string name="tendency_test_result_restart_button"><u>다시 해볼래요</u></string>
     <string name="tendency_test_result_tb_menu_save">저장하기</string>
 
     <!--preference_tag-->

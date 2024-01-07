@@ -126,7 +126,7 @@
             android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
             android:paddingVertical="10dp"
             android:text="@string/onboarding_finish_btn"
-            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"
+            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
