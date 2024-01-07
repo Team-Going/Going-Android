@@ -17,8 +17,8 @@
             android:id="@+id/tb_tendency_test_result"
             style="@style/toolbar_style"
             android:layout_width="0dp"
-            android:elevation="1dp"
             android:layout_height="wrap_content"
+            android:elevation="1dp"
             android:paddingStart="24dp"
             android:paddingTop="32dp"
             android:paddingBottom="16dp"
@@ -176,14 +176,27 @@
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
-                            app:layout_constraintHorizontal_weight="3"
+                            app:layout_constraintHorizontal_weight="2"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/img_dash_vertical_1"
+                            android:layout_width="100dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                            android:layerType="software"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:id="@+id/linear_layout_first_description"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="26dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -254,27 +267,27 @@
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
-                            app:layout_constraintHorizontal_weight="3"
+                            app:layout_constraintHorizontal_weight="2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <View
-                            android:id="@+id/testid"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            app:layout_constraintHorizontal_weight="10"
+                        <ImageView
+                            android:id="@+id/img_dash_vertical_2"
+                            android:layout_width="100dp"
+                            android:layout_height="0dp"
                             android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
-                            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                            app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:layerType="software"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:layerType="software" />
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:id="@+id/linear_layout_second_description"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="26dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -341,14 +354,28 @@
                             android:gravity="center"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
-                            app:layout_constraintHorizontal_weight="3"
+                            app:layout_constraintHorizontal_weight="2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/img_dash_vertical_3"
+                            android:layout_width="100dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                            android:layerType="software"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
+                            app:layout_constraintTop_toTopOf="parent" />
+
 
                         <LinearLayout
                             android:id="@+id/linear_layout_third_description"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_marginStart="26dp"
                             android:orientation="vertical"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -442,21 +469,21 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/shape_rect_4_gray500_fill"
             android:gravity="center"
+            android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/tendency_test_result_finish_button"
             android:textColor="@color/white_000"
             android:textSize="16sp"
-            android:outlineProvider="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btn_tendency_test_result_save" />
 
         <ImageView
             android:layout_width="0dp"
-            android:src="@drawable/img_blur"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/img_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
