@@ -6,8 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
 
 class TodoNameViewHolder(
-    val binding: ItemTodoNameBinding,
-    private val isCompleted: Boolean
+    val binding: ItemTodoNameBinding, private val isCompleted: Boolean
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val redColor = ContextCompat.getColor(binding.root.context, R.color.red_500)
@@ -21,8 +20,12 @@ class TodoNameViewHolder(
                 tvTodoName.setTextColor(completedColor)
                 tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
             } else {
-                tvTodoName.setTextColor(if (item == "김상호") redColor else grayColor)
-                if (item == "김상호") tvTodoName.isSelected = true
+                if (item == "김상호") {
+                    tvTodoName.setTextColor(redColor)
+                    tvTodoName.isSelected = true
+                } else {
+                    tvTodoName.setTextColor(grayColor)
+                }
             }
         }
     }

@@ -67,30 +67,23 @@
                         <TextView
                             android:id="@+id/tv_our_todo_title_up"
                             style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="24dp"
                             android:text="우쥬랑 스페인"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_our_todo_title_down"
                             style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="여행일까지 16일 남았어요!"
+                            app:layout_constraintEnd_toEndOf="@id/tv_our_todo_title_up"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
                             app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:src="@drawable/ic_todo_trip_fix"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_title_down"
-                            app:layout_constraintStart_toEndOf="@id/tv_our_todo_title_down"
-                            app:layout_constraintTop_toTopOf="@id/tv_our_todo_title_down" />
 
                         <ImageView
                             android:id="@+id/iv_our_todo_title_date"

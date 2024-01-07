@@ -19,11 +19,14 @@ class OurTodoListViewHolder(
             rvOurTodoName.adapter = TodoNameAdapter(isCompleted).apply {
                 submitList(item.allocation)
             }
-            if(isCompleted) {
-                tvOurTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_200))
-            } else {
-                tvOurTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_300))
-            }
+            tvOurTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context,
+                    if (isCompleted) {
+                        R.color.gray_200
+                    } else {
+                        R.color.gray_300
+                    }
+                )
+            )
         }
     }
 
