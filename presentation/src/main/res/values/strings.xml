@@ -30,13 +30,19 @@
     <string name="tendency_test_title">나의 여행 성향은?</string>
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
-
+    
     <!--tendency_test_result-->
     <string name="tendency_test_result_toolbar">유형 검사 결과</string>
     <string name="tendency_test_result_title">%1$s님의 여행 유형은</string>
     <string name="tendency_test_result_finish_button">완성된 프로필 보기</string>
     <string name="tendency_test_result_restart_button"><u>다시 해볼래요</u></string>
     <string name="tendency_test_result_tb_menu_save">저장하기</string>
+
+    <!--our_todo-->
+    <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
+    <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
+    <string name="our_todo_btn_invite_friend">초대</string>
+    <string name="our_todo_btn_add_todo">같이 할 일</string>
 
     <!--preference_tag-->
     <string name="preference_tv_title">이번 여행은 어땠으면 좋겠나요?</string>
