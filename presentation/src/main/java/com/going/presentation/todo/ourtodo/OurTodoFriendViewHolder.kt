@@ -7,7 +7,7 @@ import com.going.domain.entity.response.TripParticipantsListModel.TripParticipan
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 
-class OurTodoViewHolder(val binding: ItemTodoFriendsBinding) : RecyclerView.ViewHolder(binding.root) {
+class OurTodoFriendViewHolder(val binding: ItemTodoFriendsBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: TripParticipantModel) {
         binding.run {
