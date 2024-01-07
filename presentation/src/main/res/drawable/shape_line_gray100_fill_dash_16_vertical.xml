@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="line">
-            <stroke
-                android:width="2dp"
-                android:color="#FF0000"
-                android:dashWidth="4dp"
-                android:dashGap="4dp" />
-        </shape>
-    </item>
-</layer-list>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromDegrees="90"
+    android:toDegrees="90"
+    android:drawable="@drawable/shape_line_gray100_fill_dash_8"/>
