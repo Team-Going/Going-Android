@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:background="@drawable/shape_rect_4_gray50_fill"
+    android:paddingBottom="15dp">
+
+    <ImageView
+        android:id="@+id/cb_my_todo_unselected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/ic_my_todo_checkbox_unselected"
+        app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_item_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_my_todo_item_title" />
+
+    <ImageView
+        android:id="@+id/cb_my_todo_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/ic_my_todo_checkbox_selected"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_item_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_my_todo_item_title" />
+
+    <TextView
+        android:id="@+id/tv_my_todo_item_title"
+        style="@style/TextAppearance.Doorip.Body3.Medi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/gray_700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="숙소 예약금 걸기" />
+
+    <TextView
+        android:id="@+id/tv_my_todo_item_date"
+        style="@style/TextAppearance.Doorip.Detail3.Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/gray_300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2023.09.23까지" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_my_todo_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_my_todo_item_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_todo_item_title"
+        tools:listitem="@layout/item_todo_name" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_my_todo_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_rect_2_gray400_line"
+        android:paddingHorizontal="5dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/tv_my_todo_item_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_todo_item_title">
+
+        <ImageView
+            android:id="@+id/iv_my_todo_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_todo_lock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_todo_lock" />
+
+        <TextView
+            android:id="@+id/tv_my_todo_lock"
+            style="@style/TextAppearance.Doorip.Detail2.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/my_todo_tv_lock"
+            android:textColor="@color/gray_400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_todo_lock"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
