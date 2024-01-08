@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="14dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_dashboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/shape_rect_4_white000_fill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_dashboard_trip_title"
+            style="@style/TextAppearance.Doorip.Body3.Medi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="굉굉이들이랑 합숙" />
+
+
+        <ImageView
+            android:id="@+id/iv_dashboard_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
+            app:layout_constraintEnd_toStartOf="@id/tv_dashboard_date_start"
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start" />
+
+        <TextView
+            android:id="@+id/tv_dashboard_date_start"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_dashboard_trip_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_trip_title"
+            tools:text="2024 .03 .24" />
+
+        <TextView
+            android:id="@+id/tv_dashboard_date_dash"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
+            app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_start"
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start"
+            tools:text="@string/dashboard_tv_dash" />
+
+        <TextView
+            android:id="@+id/tv_dashboard_date_end"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_dash"
+            app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_dash"
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash"
+            tools:text="2024 .03 .31" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_dashboard_day_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_rect_2_red100_fill"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_dashboard_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingVertical="2dp"
+                android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+                android:textColor="@color/red_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="D - " />
+
+            <TextView
+                android:id="@+id/tv_dashboard_deadline_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:paddingVertical="2dp"
+                android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+                android:textColor="@color/red_500"
+                app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_deadline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_dashboard_deadline"
+                app:layout_constraintTop_toTopOf="@id/tv_dashboard_deadline"
+                tools:text="16" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_dashboard_traveling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_rect_2_red100_fill"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_dashboard_traveling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+                android:textColor="@color/red_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="여행중" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
