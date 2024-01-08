@@ -45,11 +45,11 @@ class MyTodoListViewHolder(
                 tvMyTodoLock.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_400))
             }
 
-            binding.cbMyTodoUnselected.setOnSingleClickListener {
+            cbMyTodoUnselected.setOnSingleClickListener {
                 itemSelect(position)
             }
 
-            binding.cbMyTodoSelected.setOnSingleClickListener {
+            cbMyTodoSelected.setOnSingleClickListener {
                 itemUnselect(position)
             }
         }
