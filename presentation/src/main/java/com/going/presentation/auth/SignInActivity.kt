@@ -1,11 +1,13 @@
 package com.going.presentation.auth
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityLoginBinding
+import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -14,19 +16,28 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initKakaoLoginBtnClickListener()
+        initTermsBtnClickListener()
         observeInfo()
     }
 
     private fun initKakaoLoginBtnClickListener() {
         binding.btnSignIn.setOnSingleClickListener {
             viewModel.startKakaoLogIn(this)
+        }
+    }
+
+    private fun initTermsBtnClickListener() {
+        binding.btnTerms.setOnSingleClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
+                startActivity(this)
+            }
         }
     }
 
@@ -61,5 +72,9 @@ class SignInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_logi
                 }
             }
         }.launchIn(lifecycleScope)
+    }
+
+    companion object{
+        const val TERMS_URL = "http://www.naver.com"
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_sign_in_title"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:text="@string/sign_in_tv_title"
+            android:textColor="@color/gray_500"
+            app:layout_constraintBottom_toTopOf="@id/iv_sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/text_logo_doorip_red500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/img_sign_in_kakao_button"
+            app:layout_constraintBottom_toTopOf="@id/btn_terms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tv_sign_in_terms_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/ic_warning_mini"
+                app:layout_constraintBottom_toBottomOf="@id/tv_sign_in_terms_text"
+                app:layout_constraintEnd_toStartOf="@id/tv_sign_in_terms_text"
+                app:layout_constraintTop_toTopOf="@id/tv_sign_in_terms_text" />
+
+            <TextView
+                android:id="@+id/tv_sign_in_terms_text"
+                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:text="@string/sign_in_tv_terms"
+                android:textColor="@color/gray_300"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="@id/tv_sign_in_terms_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_in_terms_text"
+                app:layout_constraintEnd_toEndOf="@id/tv_sign_in_terms_text"
+                android:background="@color/gray_300" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
