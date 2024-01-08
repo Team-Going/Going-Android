@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApp"
@@ -11,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_doorip_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Doorip"
+        android:theme="@style/splash_delete"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
@@ -32,6 +33,11 @@
 
         <activity
             android:name="com.going.presentation.mock.MockActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -42,7 +48,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.auth.LoginActivity"
+            android:name="com.going.presentation.auth.SignInActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -55,7 +61,6 @@
             android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
 
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
@@ -80,7 +85,7 @@
         <activity
             android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
     </application>
 

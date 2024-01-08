@@ -3,7 +3,6 @@ package com.going.presentation.tripdashboard
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
-import com.going.presentation.tripdashboard.triplist.OngoingTripFragment
 import com.going.ui.base.BaseActivity
 import com.google.android.material.tabs.TabLayoutMediator
 

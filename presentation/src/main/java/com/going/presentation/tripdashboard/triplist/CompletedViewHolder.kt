@@ -2,9 +2,7 @@ package com.going.presentation.tripdashboard.triplist
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.CompletedListModel
-import com.going.domain.entity.response.OngoingListModel
 import com.going.presentation.databinding.ItemDashBoardCompletedBinding
-import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.setOnSingleClickListener
 
 class CompletedViewHolder(

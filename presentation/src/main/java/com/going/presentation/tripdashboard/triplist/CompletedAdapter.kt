@@ -7,8 +7,9 @@ import com.going.domain.entity.response.CompletedListModel
 import com.going.presentation.databinding.ItemDashBoardCompletedBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class CompletedAdapter (
-    private val listener: OnDashBoardSelectedListener) : ListAdapter<CompletedListModel, CompletedViewHolder>(diffUtil) {
+class CompletedAdapter(
+    private val listener: OnDashBoardSelectedListener
+) : ListAdapter<CompletedListModel, CompletedViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
         fun onDashBoardSelectedListener(tripCreate: CompletedListModel)

@@ -8,7 +8,8 @@ import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class OngoingAdapter(
-    private val listener: OnDashBoardSelectedListener) : ListAdapter<OngoingListModel, OngoingViewHolder>(diffUtil) {
+    private val listener: OnDashBoardSelectedListener
+) : ListAdapter<OngoingListModel, OngoingViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
         fun onDashBoardSelectedListener(tripCreate: OngoingListModel)
