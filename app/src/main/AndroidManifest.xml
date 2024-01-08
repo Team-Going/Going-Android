@@ -98,6 +98,12 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.going.presentation.starttrip.finishtrip.FinshTripActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+
 
     </application>
 

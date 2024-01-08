@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/create_trip_tb_title"
-            app:titleTextColor="@color/black_000" />
+            app:titleTextColor="@color/gray_700" />
 
         <TextView
             android:id="@+id/tv_create_trip_name_title"
