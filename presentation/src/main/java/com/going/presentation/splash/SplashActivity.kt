@@ -6,22 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
-import com.going.presentation.BuildConfig
 import com.going.presentation.R
 import com.going.presentation.auth.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.toast
-import com.google.android.play.core.appupdate.AppUpdateInfo
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.appupdate.AppUpdateOptions
-import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
-import com.google.android.play.core.install.model.UpdateAvailability
-import timber.log.Timber
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
-    private val appUpdateManager by lazy { AppUpdateManagerFactory.create(this) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -72,20 +63,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         finish()
     }
 
-    private fun requestUpdate(appUpdateInfo: AppUpdateInfo) {
-        runCatching {
-            appUpdateManager.startUpdateFlowForResult(
-                appUpdateInfo,
-                activityResultLauncher,
-                AppUpdateOptions.newBuilder(IMMEDIATE)
-                    .setAllowAssetPackDeletion(true)
-                    .build(),
-            )
-        }.onFailure {
-            Timber.e(it)
-        }
-    }
-
     private val activityResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             if (it.resultCode != RESULT_OK) {
@@ -93,25 +70,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
                 finishAffinity()
             }
         }
-
-    override fun onResume() {
-        super.onResume()
-
-        if (!BuildConfig.DEBUG) {
-            appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-                if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    runCatching {
-                        appUpdateManager.startUpdateFlowForResult(
-                            appUpdateInfo,
-                            activityResultLauncher,
-                            AppUpdateOptions.newBuilder(IMMEDIATE)
-                                .build(),
-                        )
-                    }.onFailure { errorMessage ->
-                        Timber.e(errorMessage)
-                    }
-                }
-            }
-        }
-    }
 }
