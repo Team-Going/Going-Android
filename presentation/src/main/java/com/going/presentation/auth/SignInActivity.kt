@@ -74,7 +74,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         }.launchIn(lifecycleScope)
     }
 
-    companion object{
+    companion object {
         const val TERMS_URL = "http://www.naver.com"
     }
 }

@@ -23,6 +23,4 @@ object DataSourceModule {
     @Singleton
     fun provideLoginDataSource(loginDataSourceImpl: LoginDataSourceImpl): LoginDataSource =
         loginDataSourceImpl
-
-
 }

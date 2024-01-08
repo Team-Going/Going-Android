@@ -1,6 +1,7 @@
 package com.going.presentation.auth
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
@@ -28,10 +29,14 @@ class SignInViewModel @Inject constructor(
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
 
     private var webLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        Log.e("TAG", "startKakaoLogIn: 2번")
         if (error == null && token != null) {
+            Log.e("TAG", "startKakaoLogIn: 3번")
             changeTokenFromServer(
                 accessToken = token.accessToken,
             )
+        } else {
+            Log.e("TAG", "startKakaoLogIn: 4번")
         }
     }
 
@@ -59,6 +64,7 @@ class SignInViewModel @Inject constructor(
                 context = context,
                 callback = webLoginCallback,
             )
+            Log.e("TAG", "startKakaoLogIn: 1번")
         }
     }
 

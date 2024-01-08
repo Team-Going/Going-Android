@@ -1,7 +1,9 @@
 package com.going.going.di
 
+import com.going.data.repositoryImpl.AuthRepositoryImpl
 import com.going.data.repositoryImpl.LoginRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
+import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.LoginRepository
 import com.going.domain.repository.MockRepository
 import dagger.Module
@@ -23,4 +25,9 @@ object RepositoryModule {
     @Singleton
     fun provideLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository =
         loginRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository =
+        authRepositoryImpl
 }
