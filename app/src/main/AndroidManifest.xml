@@ -98,6 +98,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
 
+
     </application>
 
 </manifest>

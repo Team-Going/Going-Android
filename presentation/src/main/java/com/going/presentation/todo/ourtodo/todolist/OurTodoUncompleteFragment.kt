@@ -22,10 +22,10 @@ class OurTodoUncompleteFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRecyclerView()
+        initTodoListAdapter()
     }
 
-    private fun setRecyclerView() {
+    private fun initTodoListAdapter() {
         _adapter = OurTodoListAdapter(false)
         binding.rvOurTodoUncomplete.adapter = adapter
         adapter.submitList(viewModel.mockUncompleteTodoList)
