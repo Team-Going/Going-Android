@@ -13,30 +13,32 @@
         android:background="@color/white_000"
         tools:context=".preferencetag.PreferenceTagActivity">
 
-        <TextView
-            android:id="@+id/tv_preference_title"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_preference_tag"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/pretendard_bold"
-            android:text="@string/preference_tv_title"
-            android:textColor="@color/black_000"
-            android:textSize="18sp"
+            android:background="@color/white_000"
+            android:paddingVertical="12dp"
+            android:paddingStart="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/preference_tv_title"
+            app:titleTextColor="@color/gray_700" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_preference_tag"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/gray_100"
+            android:background="@color/gray_50"
             android:paddingTop="17dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/btn_preference_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_preference_title"
+            app:layout_constraintTop_toBottomOf="@id/tb_preference_tag"
             tools:listitem="@layout/item_preference_tag" />
 
         <androidx.appcompat.widget.AppCompatButton

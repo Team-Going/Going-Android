@@ -70,8 +70,9 @@
     <string name="my_todo_tv_title_down">할일이 %s개 남았어요</string>
 
     <!--preference_tag-->
-    <string name="preference_tv_title">이번 여행은 어땠으면 좋겠나요?</string>
+    <string name="preference_tv_title">이번 여행은!</string>
     <string name="preference_btn_start">시작하기</string>
+    <string name="preference_no_matter">상관없어</string>
 
     <!--trip_dash_board-->
     <string name="dashboard_tv_title">지민님의 여행</string>

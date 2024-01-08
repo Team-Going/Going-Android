@@ -13,9 +13,10 @@ class PreferenceTagViewHolder(
 
     fun onBind(item: PreferenceData) {
         binding.run {
-            tvPreferenceNumber.text = item.number.toString()
-            tvPreferenceLeft.text = item.leftPrefer
-            tvPreferenceRight.text = item.rightPrefer
+            tvPreferenceNumber.text = item.number
+            tvPreferenceQuestion.text = item.question
+            tvPreferenceTag1.text = item.leftPrefer
+            tvPreferenceTag3.text = item.rightPrefer
 
             rgPreferenceTag.setOnCheckedChangeListener { _, checkedId ->
                 val selectedButtonIdList = listOf(
