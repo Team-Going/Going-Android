@@ -1,7 +1,6 @@
 package com.going.presentation.auth
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
@@ -29,7 +28,6 @@ class LoginViewModel @Inject constructor(
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
 
     private var webLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-        Log.e("TAG", "error : $error / token : $token")
         if (error == null && token != null) {
             changeTokenFromServer(
                 accessToken = token.accessToken,
@@ -40,14 +38,10 @@ class LoginViewModel @Inject constructor(
     private var appLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             // 뒤로가기 경우 예외 처리
-            Log.e("TAG", "error : $error / token : $token")
             if (!(error is ClientError && error.reason == ClientErrorCause.Cancelled)) {
-                Log.e("TAG", "이 무슨 error : $error / token : $token")
                 _isAppLoginAvailable.value = false
             }
         } else if (token != null) {
-            Log.e("TAG", "전부 error : $error / token : $token")
-            Log.e("TAG", "${token.accessToken}")
             changeTokenFromServer(
                 accessToken = token.accessToken,
             )
@@ -56,13 +50,11 @@ class LoginViewModel @Inject constructor(
 
     fun startKakaoLogIn(context: Context) {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context) && isAppLoginAvailable.value) {
-            Log.e("TAG", "startKakaoLogIn: app")
             UserApiClient.instance.loginWithKakaoTalk(
                 context = context,
                 callback = appLoginCallback,
             )
         } else {
-            Log.e("TAG", "startKakaoLogIn: web")
             UserApiClient.instance.loginWithKakaoAccount(
                 context = context,
                 callback = webLoginCallback,
@@ -89,7 +81,6 @@ class LoginViewModel @Inject constructor(
                     ),
                 )
             }.onFailure { err ->
-                Log.e("TAG", "changeTokenFromServer: ${err.message}", )
                 Timber.e("실패패패패패패")
             }
         }
