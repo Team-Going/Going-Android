@@ -1,4 +1,4 @@
-package com.going.presentation.createtrip
+package com.going.presentation.starttrip.createtrip
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
