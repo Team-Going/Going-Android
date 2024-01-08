@@ -104,14 +104,18 @@
             style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
             android:text="철저하게"
             android:textColor="@color/gray_700"
-            app:layout_constraintStart_toStartOf="@id/rg_preference_tag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rg_preference_tag" />
 
         <TextView
             android:id="@+id/tv_preference_tag2"
+            style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -119,6 +123,18 @@
             android:textColor="@color/gray_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rg_preference_tag" />
+
+        <TextView
+            android:id="@+id/tv_preference_tag3"
+            style="@style/TextAppearance.Doorip.Detail2.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:text="즉흥으로"
+            android:textColor="@color/gray_700"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rg_preference_tag" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
