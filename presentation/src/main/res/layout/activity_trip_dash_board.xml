@@ -21,9 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="44dp"
-            android:text="@string/dashboard_tv_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dashboard_tv_title" />
 
         <ImageView
             android:id="@+id/iv_dashboard_setting"
@@ -54,7 +54,6 @@
             android:id="@+id/vp_dashboard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             app:layout_constraintBottom_toTopOf="@id/btn_dashboard_create_trip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_dashboard" />
@@ -78,10 +77,10 @@
             android:background="@drawable/sel_rounded_corner_button"
             android:backgroundTint="@color/gray_500"
             android:outlineProvider="none"
-            android:text="@string/dashboard_btn_create_trip"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/dashboard_btn_create_trip" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

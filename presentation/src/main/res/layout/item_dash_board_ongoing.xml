@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="14dp">
@@ -22,9 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="굉굉이들이랑 합숙"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="굉굉이들이랑 합숙" />
 
 
         <ImageView
@@ -45,11 +46,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
-            android:text="2024 .03 .24"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_dashboard_trip_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_trip_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_trip_title"
+            tools:text="2024 .03 .24" />
 
         <TextView
             android:id="@+id/tv_dashboard_date_dash"
@@ -57,11 +58,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="-"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
             app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_start"
-            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start" />
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start"
+            tools:text="@string/dashboard_tv_dash" />
 
         <TextView
             android:id="@+id/tv_dashboard_date_end"
@@ -69,11 +70,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="2024 .03 .31"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_dash"
             app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_dash"
-            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash" />
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash"
+            tools:text="2024 .03 .31" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_dashboard_day_left"
@@ -92,11 +93,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:paddingVertical="2dp"
-                android:text="D - "
                 android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
                 android:textColor="@color/red_500"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="D - " />
 
             <TextView
                 android:id="@+id/tv_dashboard_deadline_day"
@@ -104,13 +105,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:paddingVertical="2dp"
-                android:text="16"
                 android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
                 android:textColor="@color/red_500"
                 app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_deadline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_dashboard_deadline"
-                app:layout_constraintTop_toTopOf="@id/tv_dashboard_deadline" />
+                app:layout_constraintTop_toTopOf="@id/tv_dashboard_deadline"
+                tools:text="16" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,11 +132,11 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
-                android:text="여행중"
                 android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
                 android:textColor="@color/red_500"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="여행중" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

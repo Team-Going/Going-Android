@@ -73,6 +73,7 @@
     <string name="dashboard_tv_empty">생성된 여행이 없어요.</string>
     <string name="dashboard_btn_create_trip">여행 생성하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
+    <string name="dashboard_tv_dash">-</string>
 
     <!--menu-->
     <string name="menu_our_todo">우리의 투두</string>
