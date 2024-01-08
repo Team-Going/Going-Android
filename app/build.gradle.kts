@@ -33,7 +33,7 @@ android {
             gradleLocalProperties(rootDir).getProperty("native.app.key"),
         )
         manifestPlaceholders["NATIVE_APP_KEY"] =
-            gradleLocalProperties(rootDir).getProperty("native.app.key")
+            gradleLocalProperties(rootDir).getProperty("nativeAppKey")
     }
 
     buildTypes {
