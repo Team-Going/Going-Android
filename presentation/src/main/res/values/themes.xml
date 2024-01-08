@@ -59,4 +59,8 @@
     </style>
 
 
+    <style name="splash_delete" parent="Base.Theme.Doorip">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
