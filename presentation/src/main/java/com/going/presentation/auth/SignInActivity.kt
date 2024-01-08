@@ -1,5 +1,7 @@
 package com.going.presentation.auth
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -21,12 +23,21 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         super.onCreate(savedInstanceState)
 
         initKakaoLoginBtnClickListener()
+        initTermsBtnClickListener()
         observeInfo()
     }
 
     private fun initKakaoLoginBtnClickListener() {
         binding.btnSignIn.setOnSingleClickListener {
             viewModel.startKakaoLogIn(this)
+        }
+    }
+
+    private fun initTermsBtnClickListener() {
+        binding.btnTerms.setOnSingleClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
+                startActivity(this)
+            }
         }
     }
 
@@ -61,5 +72,9 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
                 }
             }
         }.launchIn(lifecycleScope)
+    }
+
+    companion object{
+        const val TERMS_URL = "http://www.naver.com"
     }
 }
