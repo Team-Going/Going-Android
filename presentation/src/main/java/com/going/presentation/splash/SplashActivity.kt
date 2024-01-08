@@ -25,40 +25,29 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initAppUpdate()
+        isConnectedNetwork()
     }
 
-    private fun initAppUpdate() {
+    private fun isConnectedNetwork() {
         if (NetworkManager.checkNetworkState(this)) {
-            if (BuildConfig.DEBUG) {
-                initSplash()
-            } else {
-                val appUpdateInfoTask = appUpdateManager.appUpdateInfo
-                appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-                    if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                        appUpdateInfo.isUpdateTypeAllowed(IMMEDIATE)
-                        requestUpdate(appUpdateInfo)
-                    } else {
-                        initSplash()
-                    }
-                }.addOnFailureListener {
-                    initSplash()
-                }
-            }
+            initSplash()
         } else {
-            AlertDialog.Builder(this)
-                .setTitle(R.string.notice)
-                .setMessage(R.string.internet_connect_error)
-                .setCancelable(false)
-                .setPositiveButton(
-                    R.string.okay,
-                ) { _, _ ->
-                    finishAffinity()
-                }
-                .create()
-                .show()
+            showNetworkErrorAlertDialog()
         }
     }
+
+    private fun showNetworkErrorAlertDialog() =
+        AlertDialog.Builder(this)
+            .setTitle(R.string.notice)
+            .setMessage(R.string.internet_connect_error)
+            .setCancelable(false)
+            .setPositiveButton(
+                R.string.okay,
+            ) { _, _ ->
+                finishAffinity()
+            }
+            .create()
+            .show()
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
