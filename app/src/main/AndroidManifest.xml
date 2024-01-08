@@ -79,6 +79,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
