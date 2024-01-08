@@ -16,10 +16,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        isConnectedNetwork()
+        checkConnectedNetwork()
     }
 
-    private fun isConnectedNetwork() {
+    private fun checkConnectedNetwork() {
         if (NetworkManager.checkNetworkState(this)) {
             initSplash()
         } else {
