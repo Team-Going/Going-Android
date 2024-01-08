@@ -6,10 +6,8 @@ import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
-import com.going.presentation.todo.ourtodo.todolist.OurTodoListAdapter
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MyTodoUncompleteFragment() :
@@ -30,18 +28,14 @@ class MyTodoUncompleteFragment() :
 
     private fun initAdapterWithClickListener() {
         _adapter = MyTodoListAdapter(false, { position ->
-            Timber.tag("sangho").d("delete position : ${position}")
-            Timber.tag("sangho").d("delete id : ${adapter.currentList[position].todoId}")
             adapter.removeItem(position)
             adapter.notifyDataSetChanged()
-            Timber.tag("sangho").d("list update : ${adapter.currentList}")
-        },{ })
+        }, { })
         binding.rvMyTodoUncomplete.adapter = adapter
     }
 
     private fun setTodoList() {
-        adapter.submitList(viewModel.mockUncompleteTodoList)
-        Timber.tag("sangho").d("list set : ${adapter.currentList}")
+        adapter.setItemList(viewModel.mockUncompleteTodoList)
     }
 
     override fun onDestroyView() {

@@ -30,7 +30,7 @@ class MyTodoCompleteFragment() :
             // adapter.removeItem(position)
         })
         binding.rvMyTodoComplete.adapter = adapter
-        adapter.submitList(viewModel.mockCompleteTodoList)
+        //adapter.submitList(viewModel.mockCompleteTodoList)
     }
 
     override fun onDestroyView() {
