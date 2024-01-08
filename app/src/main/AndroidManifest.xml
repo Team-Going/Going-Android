@@ -84,7 +84,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.createtrip.CreateTripActivity"
+            android:name="com.going.presentation.starttrip.createtrip.CreateTripActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
 

@@ -10,7 +10,7 @@
     <string name="name_blank_error">이름에는 공백만 입력할 수 없어요</string>
 
     <string name="sign_in_tv_title">여행을 시작해보세요</string>
-    <string name="sign_in_tv_terms">개인정보처리방침</string>
+    <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
 
     <string name="counter">%1$d/%2$d</string>
 
@@ -34,7 +34,7 @@
     <string name="tendency_test_title">나의 여행 성향은?</string>
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
-    
+
     <!--tendency_test_result-->
     <string name="tendency_test_result_toolbar">유형 검사 결과</string>
     <string name="tendency_test_result_title">%1$s님의 여행 유형은</string>
@@ -71,5 +71,10 @@
     <!--menu-->
     <string name="menu_our_todo">우리의 투두</string>
     <string name="menu_my_todo">나의 투두</string>
+
+    <!--start_trip_splash-->
+    <string name="start_trip_splash_title">여행을 시작해보세요.</string>
+    <string name="start_trip_splash_btn_new_trip">새로운 여행 시작하기</string>
+    <string name="start_trip_splash_btn_enter_trip">여행 입장하기</string>
 
 </resources>
