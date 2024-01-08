@@ -23,38 +23,43 @@ class TendencyTestResultActivity :
     }
 
     private fun bindTendencyInfo() {
-        binding.tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
-        binding.tvTendencyTestResultType.text = viewModel.mockTendencyResult.tendencyTitle
-        binding.tvTendencyTestResultSubType.text = viewModel.mockTendencyResult.tendencySubTitle
+        with(binding) {
+            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
-        binding.tvTendencyTestResultTag1.text = viewModel.mockTendencyResult.tags[0]
-        binding.tvTendencyTestResultTag2.text = viewModel.mockTendencyResult.tags[1]
-        binding.tvTendencyTestResultTag3.text = viewModel.mockTendencyResult.tags[2]
+            viewModel.mockTendencyResult.apply {
+                tvTendencyTestResultType.text = tendencyTitle
+                tvTendencyTestResultSubType.text = tendencySubTitle
 
-        binding.tvFirstDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[0].title
-        binding.tvFirstDescriptionFirstText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].first)
-        binding.tvFirstDescriptionSecondText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].second)
-        binding.tvFirstDescriptionThirdText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[0].third)
+                tvTendencyTestResultTag1.text = tags[0]
+                tvTendencyTestResultTag2.text = tags[1]
+                tvTendencyTestResultTag3.text = tags[2]
 
-        binding.tvSecondDescriptionTitle.text =
-            viewModel.mockTendencyResult.tendencyBoxInfo[1].title
-        binding.tvSecondDescriptionFirstText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].first)
-        binding.tvSecondDescriptionSecondText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].second)
-        binding.tvSecondDescriptionThirdText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[1].third)
+                tvFirstDescriptionTitle.text = tendencyBoxInfo[0].title
+                tvFirstDescriptionFirstText.text =
+                    setBulletPoint(tendencyBoxInfo[0].first)
+                tvFirstDescriptionSecondText.text =
+                    setBulletPoint(tendencyBoxInfo[0].second)
+                tvFirstDescriptionThirdText.text =
+                    setBulletPoint(tendencyBoxInfo[0].third)
 
-        binding.tvThirdDescriptionTitle.text = viewModel.mockTendencyResult.tendencyBoxInfo[2].title
-        binding.tvThirdDescriptionFirstText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].first)
-        binding.tvThirdDescriptionSecondText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].second)
-        binding.tvThirdDescriptionThirdText.text =
-            setBulletPoint(viewModel.mockTendencyResult.tendencyBoxInfo[2].third)
+                tvSecondDescriptionTitle.text =
+                    tendencyBoxInfo[1].title
+                tvSecondDescriptionFirstText.text =
+                    setBulletPoint(tendencyBoxInfo[1].first)
+                tvSecondDescriptionSecondText.text =
+                    setBulletPoint(tendencyBoxInfo[1].second)
+                tvSecondDescriptionThirdText.text =
+                    setBulletPoint(tendencyBoxInfo[1].third)
+
+                tvThirdDescriptionTitle.text = tendencyBoxInfo[2].title
+                tvThirdDescriptionFirstText.text =
+                    setBulletPoint(tendencyBoxInfo[2].first)
+                tvThirdDescriptionSecondText.text =
+                    setBulletPoint(tendencyBoxInfo[2].second)
+                tvThirdDescriptionThirdText.text =
+                    setBulletPoint(tendencyBoxInfo[2].third)
+            }
+        }
     }
 
     private fun setBulletPoint(text: String): SpannableString {
