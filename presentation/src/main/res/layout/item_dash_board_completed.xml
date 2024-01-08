@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:text="-"
+            android:text="@string/dashboard_tv_dash"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
             app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_start"
