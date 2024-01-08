@@ -41,7 +41,6 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
-    const val googlePlayUpdate = "2.1.0"
 
     val javaVersion = JavaVersion.VERSION_17
     const val jvmVersion = "17"

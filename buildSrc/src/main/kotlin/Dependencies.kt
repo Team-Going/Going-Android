@@ -97,8 +97,3 @@ object FirebaseDependencies {
 object KakaoDependencies {
     const val user = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
 }
-
-object GooglePlayDependencies {
-    const val update = "com.google.android.play:app-update:${Versions.googlePlayUpdate}"
-    const val updateKtx = "com.google.android.play:app-update-ktx:${Versions.googlePlayUpdate}"
-}

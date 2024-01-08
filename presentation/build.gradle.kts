@@ -88,9 +88,4 @@ dependencies {
     KakaoDependencies.run {
         implementation(user)
     }
-
-    GooglePlayDependencies.run {
-        implementation(update)
-        implementation(updateKtx)
-    }
 }
