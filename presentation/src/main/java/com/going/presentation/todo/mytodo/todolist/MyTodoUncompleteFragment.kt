@@ -30,18 +30,18 @@ class MyTodoUncompleteFragment() :
 
     private fun initAdapterWithClickListener() {
         _adapter = MyTodoListAdapter(false, { position ->
-            Timber.tag("sangho").d("@${position}")
-            Timber.tag("sangho").d("@${adapter.currentList[position]}")
+            Timber.tag("sangho").d("delete position : ${position}")
+            Timber.tag("sangho").d("delete id : ${adapter.currentList[position].todoId}")
             adapter.removeItem(position)
             adapter.notifyDataSetChanged()
-            Timber.tag("sangho").d("@@${adapter.currentList}")
+            Timber.tag("sangho").d("list update : ${adapter.currentList}")
         },{ })
         binding.rvMyTodoUncomplete.adapter = adapter
     }
 
     private fun setTodoList() {
         adapter.submitList(viewModel.mockUncompleteTodoList)
-        Timber.tag("sangho").d("@@@${adapter.currentList}")
+        Timber.tag("sangho").d("list set : ${adapter.currentList}")
     }
 
     override fun onDestroyView() {

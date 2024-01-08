@@ -25,8 +25,7 @@ class MyTodoListAdapter(
     }
 
     fun removeItem(position: Int) {
-        Timber.tag("sangho").d("& $position")
-        if (currentList.isNotEmpty()) {
+        if (currentList.size >= position) {
             val list = currentList.toMutableList()
             list.removeAt(position)
             this.submitList(list)
