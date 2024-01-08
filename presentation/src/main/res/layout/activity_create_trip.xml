@@ -4,8 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="com.going.domain.entity.NameState"/>
         <variable
             name="viewModel"
             type="com.going.presentation.createtrip.CreateTripViewModel" />
@@ -68,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{@string/counter(viewModel.NameLength, viewModel.MAX_TRIP_LEN)}"
+            android:text="@{@string/counter(viewModel.nameLength, viewModel.MAX_TRIP_LEN)}"
             android:textColor="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@id/et_create_trip_name"
             app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
@@ -104,7 +102,7 @@
                 android:paddingHorizontal="12dp"
                 android:maxLines="1"
                 android:hint="@string/create_trip_start_date"
-                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.StartYear, viewModel.StartMonth, viewModel.StartDay) : @string/create_trip_start_date}"/>
+                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,7 +123,7 @@
                 android:background="@drawable/shape_rect_4_gray200_line"
                 android:hint="@string/create_trip_end_date"
                 android:maxLines="1"
-                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.EndYear, viewModel.EndMonth, viewModel.EndDay) : @string/create_trip_end_date}"/>
+                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

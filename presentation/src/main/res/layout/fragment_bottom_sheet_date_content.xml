@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="com.going.domain.entity.NameState"/>
+
+        <import type="android.view.View" />
+
+        <import type="com.going.domain.entity.NameState" />
+
         <variable
             name="viewModel"
             type="com.going.presentation.createtrip.CreateTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:paddingBottom="22dp"
-    android:background="@drawable/shape_rect_40_white000_fill">
-
-    <DatePicker
-        android:id="@+id/dp_create_trip_date"
-        android:calendarViewShown="false"
-        style="@style/CustomDatePicker"
-        android:datePickerMode="spinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:spinnersShown="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:background="@drawable/shape_rect_top40_white000_fill"
+        android:paddingBottom="22dp">
 
-    <TextView
-        android:id="@+id/btn_create_trip_finish"
-        android:background="@drawable/sel_rounded_corner_button"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="40dp"
-        android:layout_width="0dp"
-        android:textColor="@color/white_000"
-        android:paddingVertical="13dp"
-        android:text="@string/date_content_btn"
-        style="@style/TextAppearance.Doorip.Body2.Bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dp_create_trip_date" />
+        <DatePicker
+            android:id="@+id/dp_create_trip_date"
+            android:headerDayOfMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerYearTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:calendarTextColor="@color/gray_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:spinnersShown="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_create_trip_finish"
+            style="@style/TextAppearance.Doorip.Body2.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:gravity="center"
+            android:paddingVertical="13dp"
+            android:text="@string/date_content_btn"
+            android:textColor="@color/white_000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dp_create_trip_date" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

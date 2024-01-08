@@ -14,6 +14,9 @@ class CreateTripActivity :
     BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
     private val viewModel by viewModels<CreateTripViewModel>()
 
+    private lateinit var startBottomSheetDialog: DateBottomSheet
+    private lateinit var endBottomSheetDialog: DateBottomSheet
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,7 +38,7 @@ class CreateTripActivity :
         viewModel.isNameAvailable.observe(this) { state ->
             setColors(
                 false,
-                viewModel.NameLength.value ?: 0,
+                viewModel.nameLength.value ?: 0,
                 binding.tvNameCounter,
             ) { background ->
                 binding.etCreateTripName.background = ResourcesCompat.getDrawable(
@@ -129,15 +132,15 @@ class CreateTripActivity :
 
     private fun initStartDateClickListener() {
         binding.tvCreateTripStartDate.setOnSingleClickListener {
-            val bottomSheetDialog = DateBottomSheet(viewModel, true)
-            bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
+            startBottomSheetDialog = DateBottomSheet(viewModel, true)
+            startBottomSheetDialog.show(supportFragmentManager, startBottomSheetDialog.tag)
         }
     }
 
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
-            val bottomSheetDialog = DateBottomSheet(viewModel, false)
-            bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
+            endBottomSheetDialog = DateBottomSheet(viewModel, false)
+            endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
         }
     }
 

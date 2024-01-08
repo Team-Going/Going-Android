@@ -8,15 +8,15 @@ import kotlinx.coroutines.flow.StateFlow
 
 class CreateTripViewModel : ViewModel() {
     val name = MutableLiveData<String>()
-    val NameLength = MutableLiveData(0)
+    val nameLength = MutableLiveData(0)
 
-    val StartYear = MutableLiveData<Int>()
-    val StartMonth = MutableLiveData<Int>()
-    val StartDay = MutableLiveData<Int>()
+    val startYear = MutableLiveData<Int>()
+    val startMonth = MutableLiveData<Int>()
+    val startDay = MutableLiveData<Int>()
 
-    val EndYear = MutableLiveData<Int>()
-    val EndMonth = MutableLiveData<Int>()
-    val EndDay = MutableLiveData<Int>()
+    val endYear = MutableLiveData<Int>()
+    val endMonth = MutableLiveData<Int>()
+    val endDay = MutableLiveData<Int>()
 
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
@@ -27,27 +27,21 @@ class CreateTripViewModel : ViewModel() {
     private val _ButtonAvailable = MutableStateFlow(false)
     val ButtonAvailable: StateFlow<Boolean> = _ButtonAvailable
 
-
     fun checkNameAvailable() {
-        NameLength.value = getNameLength(name.value)
+        nameLength.value = getNameLength(name.value)
 
         isNameAvailable.value = when {
-            NameLength.value == 0 -> NameState.Empty
+            nameLength.value == 0 -> NameState.Empty
             name.value.isNullOrBlank() -> NameState.Blank
             else -> NameState.Success
         }
     }
 
     fun checkStartDateAvailable() {
-        if (StartYear.value != null && StartMonth.value != null && StartDay.value != null) {
-            isStartDateAvailable.value = true
-        } else {
-            isStartDateAvailable.value = false
-        }
+        isStartDateAvailable.value = (startYear.value != null && startMonth.value != null && startDay.value != null)
     }
-
     fun checkEndDateAvailable() {
-        if (EndYear.value != null && EndMonth.value != null && EndDay.value != null) {
+        if (endYear.value != null && endMonth.value != null && endDay.value != null) {
             isEndDateAvailable.value = true
             checkTripAvailable()
         } else {
@@ -75,3 +69,5 @@ class CreateTripViewModel : ViewModel() {
         const val MAX_TRIP_LEN = 15
     }
 }
+
+

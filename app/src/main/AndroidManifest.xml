@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.mock.MockActivity"
+            android:name="com.going.presentation.createtrip.CreateTripActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -41,10 +41,10 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.going.presentation.auth.LoginActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+<!--        <activity-->
+<!--            android:name="com.going.presentation.auth.LoginActivity"-->
+<!--            android:exported="false"-->
+<!--            android:screenOrientation="portrait" />-->
 
         <activity
             android:name="com.going.presentation.todo.TodoActivity"
@@ -77,10 +77,10 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
 
-        <activity
-            android:name="com.going.presentation.createtrip.CreateTripActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+<!--        <activity-->
+<!--            android:name="com.going.presentation.createtrip.CreateTripActivity"-->
+<!--            android:exported="false"-->
+<!--            android:screenOrientation="portrait"/>-->
 
 
     </application>
