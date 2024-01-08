@@ -18,7 +18,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class SignInViewModel @Inject constructor(
     private val loginRepository: LoginRepository,
 ) : ViewModel() {
     private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
