@@ -9,8 +9,14 @@ import javax.inject.Inject
 class LoginRepositoryImpl @Inject constructor(
     private val loginDataSource: LoginDataSource,
 ) : LoginRepository {
-    override suspend fun postSignin(Authorization: String, platform: String): Result<AuthTokenModel> =
+    override suspend fun postSignin(
+        Authorization: String,
+        platform: String,
+    ): Result<AuthTokenModel> =
         runCatching {
-            loginDataSource.postLogin(Authorization, RequestLoginDto(platform)).toAuthTokenModel()
+            loginDataSource.postLogin(
+                Authorization,
+                RequestLoginDto(platform),
+            ).data.toAuthTokenModel()
         }
 }

@@ -1,8 +1,9 @@
 package com.going.data.datasourceImpl
 
 import com.going.data.datasource.LoginDataSource
+import com.going.data.dto.BaseResponse
 import com.going.data.dto.request.RequestLoginDto
-import com.going.data.dto.response.ResponseLoginDto
+import com.going.data.dto.response.LoginResponseDto
 import com.going.data.service.LoginService
 import javax.inject.Inject
 
@@ -12,6 +13,6 @@ class LoginDataSourceImpl @Inject constructor(
     override suspend fun postLogin(
         Authorization: String,
         platform: RequestLoginDto,
-    ): ResponseLoginDto =
+    ): BaseResponse<LoginResponseDto> =
         loginService.postSignin(Authorization, platform)
 }

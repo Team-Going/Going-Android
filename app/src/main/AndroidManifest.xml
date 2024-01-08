@@ -73,7 +73,7 @@
 
         <activity
             android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait"/>
 
     </application>
