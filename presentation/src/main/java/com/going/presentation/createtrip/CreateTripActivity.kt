@@ -90,7 +90,6 @@ class CreateTripActivity :
             viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
             else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
         }
-
         setCounterColor(counter, color)
         setBackground(background)
     }
@@ -132,7 +131,6 @@ class CreateTripActivity :
         binding.tvCreateTripStartDate.setOnSingleClickListener {
             val bottomSheetDialog = DateBottomSheet(viewModel, true)
             bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
-
         }
     }
 
@@ -140,7 +138,6 @@ class CreateTripActivity :
         binding.tvCreateTripEndDate.setOnSingleClickListener {
             val bottomSheetDialog = DateBottomSheet(viewModel, false)
             bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
-
         }
     }
 
