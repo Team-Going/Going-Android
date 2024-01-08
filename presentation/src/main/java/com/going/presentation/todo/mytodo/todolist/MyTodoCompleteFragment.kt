@@ -22,15 +22,20 @@ class MyTodoCompleteFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRecyclerView()
+        initAdapterWithClickListener()
+        setTodoList()
     }
 
-    private fun setRecyclerView() {
-        _adapter = MyTodoListAdapter(true, { }, { position ->
-            // adapter.removeItem(position)
-        })
+    private fun initAdapterWithClickListener() {
+        _adapter = MyTodoListAdapter(true, { position ->
+            adapter.removeItem(position)
+            adapter.notifyDataSetChanged()
+        }, { })
         binding.rvMyTodoComplete.adapter = adapter
-        //adapter.submitList(viewModel.mockCompleteTodoList)
+    }
+
+    private fun setTodoList() {
+        adapter.setItemList(viewModel.mockCompleteTodoList)
     }
 
     override fun onDestroyView() {

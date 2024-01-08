@@ -36,13 +36,13 @@
                 android:id="@+id/btn_my_todo_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="18dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/ic_profile"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -105,11 +105,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/layer_list_todo_unselected_indicator"
-                    app:tabIndicatorColor="@color/black_000"
+                    app:tabIndicatorColor="@color/gray_500"
                     app:tabIndicatorFullWidth="true"
                     app:tabIndicatorHeight="2dp"
                     app:tabRippleColor="@android:color/transparent"
-                    app:tabSelectedTextColor="@color/black_000"
+                    app:tabSelectedTextColor="@color/gray_500"
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
                     app:tabTextColor="@color/gray_200" />
 
