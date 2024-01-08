@@ -1,6 +1,8 @@
 package com.going.going.di
 
+import com.going.data.datasource.LoginDataSource
 import com.going.data.datasource.MockDataSource
+import com.going.data.datasourceImpl.LoginDataSourceImpl
 import com.going.data.datasourceImpl.MockDataSourceImpl
 import dagger.Module
 import dagger.Provides
@@ -16,5 +18,11 @@ object DataSourceModule {
     @Singleton
     fun provideMockDataSource(mockDataSourceImpl: MockDataSourceImpl): MockDataSource =
         mockDataSourceImpl
+
+    @Provides
+    @Singleton
+    fun provideLoginDataSource(loginDataSourceImpl: LoginDataSourceImpl): LoginDataSource =
+        loginDataSourceImpl
+
 
 }

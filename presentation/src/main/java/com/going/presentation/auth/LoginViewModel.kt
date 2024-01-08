@@ -4,16 +4,23 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
+import com.going.domain.repository.LoginRepository
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val loginRepository: LoginRepository,
+) : ViewModel() {
     private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
     val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
 
@@ -64,19 +71,22 @@ class LoginViewModel : ViewModel() {
 
         viewModelScope.launch {
             // 통신 로직
-
-            // 성공시 서버에서 준 정보를 넣는 예시 코드
-            _postChangeTokenState.value = UiState.Success(
-                AuthTokenModel(
-                    isResigned = true,
-                    accessToken = "testAccessToekn",
-                    refreshToken = "testRefreshToekn",
-                ),
-            )
+            loginRepository.postSignin(accessToken, social).onSuccess {
+                // 성공시 서버에서 준 정보를 넣는 예시 코드
+                Timber.e("성공고오고오고공")
+                _postChangeTokenState.value = UiState.Success(
+                    AuthTokenModel(
+                        accessToken = "testAccessToekn",
+                        refreshToken = "testRefreshToekn",
+                    ),
+                )
+            }.onFailure { err ->
+                Timber.e("실패패패패패패")
+            }
         }
     }
 
     companion object {
-        const val KAKAO = "KAKAO"
+        const val KAKAO = "kakao"
     }
 }
