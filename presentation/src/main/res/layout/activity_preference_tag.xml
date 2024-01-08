@@ -30,7 +30,7 @@
             android:id="@+id/rv_preference_tag"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/gray_200"
+            android:background="@color/gray_100"
             android:paddingTop="17dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/btn_preference_start"
