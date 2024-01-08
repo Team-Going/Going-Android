@@ -5,7 +5,6 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
-import com.going.presentation.DateBottomSheet
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
 import com.going.ui.base.BaseActivity

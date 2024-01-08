@@ -1,9 +1,9 @@
-package com.going.presentation
+package com.going.presentation.createtrip
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import com.going.presentation.createtrip.CreateTripViewModel
+import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
