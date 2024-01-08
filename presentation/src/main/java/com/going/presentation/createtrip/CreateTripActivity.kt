@@ -1,11 +1,9 @@
 package com.going.presentation.createtrip
 
 import android.os.Bundle
-import android.widget.DatePicker
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
-import androidx.fragment.app.DialogFragment
 import com.going.domain.entity.NameState
 import com.going.presentation.DateBottomSheet
 import com.going.presentation.R
@@ -22,15 +20,17 @@ class CreateTripActivity :
 
         initBindingViewModel()
         observeIsNameAvailable()
+        observeCheckStartDateAvailable()
+        observeCheckEndDateAvailable()
         initStartDateClickListener()
         initEndDateClickListener()
-
-
+        initNextBtnClickListener()
     }
 
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }
+
 
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
@@ -44,6 +44,37 @@ class CreateTripActivity :
                     background,
                     theme,
                 )
+            }
+        }
+    }
+
+    private fun observeCheckStartDateAvailable() {
+        viewModel.isStartDateAvailable.observe(this) { isAvailable ->
+            if (isAvailable) {
+                setStartDateColors(
+                binding.tvCreateTripStartDate)
+                { background ->
+                    binding.tvCreateTripStartDate.background = ResourcesCompat.getDrawable(
+                        this.resources,
+                        background,
+                        theme,
+                    )
+                }
+            }
+        }
+    }
+    private fun observeCheckEndDateAvailable() {
+        viewModel.isEndDateAvailable.observe(this) { isAvailable ->
+            if (isAvailable) {
+                setEndDateColors(
+                    binding.tvCreateTripEndDate)
+                { background ->
+                    binding.tvCreateTripEndDate.background = ResourcesCompat.getDrawable(
+                        this.resources,
+                        background,
+                        theme,
+                    )
+                }
             }
         }
     }
@@ -65,39 +96,66 @@ class CreateTripActivity :
         setBackground(background)
     }
 
+    private fun setStartDateColors(
+        date: TextView,
+        setDatecolor: (Int) -> Unit,
+    ) {
+        val (color, background) = when {
+            viewModel.isStartDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+        }
+        setDateColor(date,color)
+        setDatecolor(background)
+    }
+
+    private fun setEndDateColors(
+        date: TextView,
+        setDatecolor: (Int) -> Unit,
+    ) {
+        val (color, background) = when {
+            viewModel.isEndDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+        }
+        setDateColor(date,color)
+        setDatecolor(background)
+    }
+
+    private fun setDateColor(date: TextView, color: Int){
+        date.setTextColor(getColor(color))
+    }
+
     private fun setCounterColor(counter: TextView, color: Int) {
         counter.setTextColor(getColor(color))
     }
 
-    private fun initBtnClickListener(){
-        binding.btnCreateTripFinish.setOnSingleClickListener{
-            // 년 월 일 값 받아오고 다시 create_trip 액티비티로 돌아감
-        }
-    }
 
     private fun initStartDateClickListener() {
         binding.tvCreateTripStartDate.setOnSingleClickListener {
-            val bottomSheetDialog = DateBottomSheet()
+            val bottomSheetDialog = DateBottomSheet(viewModel, true)
             bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
 
-            initBtnClickListener()
-            //val year: DatePicker =
         }
     }
 
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
-            val bottomSheetDialog = DateBottomSheet()
+            val bottomSheetDialog = DateBottomSheet(viewModel, false)
             bottomSheetDialog.show(supportFragmentManager, bottomSheetDialog.tag)
 
-            initBtnClickListener()
         }
     }
 
-
+    private fun initNextBtnClickListener() {
+        binding.btnCreateTripNext.setOnSingleClickListener {
+            //성향 태그로 움직임
+            finish()
+        }
+    }
 }
 
-//
-//    private fun moveSplash() {
-//        // 스플래시로 이동
-//    }
+    private fun moveSplash() {
+        // 스플래시로 이동
+    }
+
+
+

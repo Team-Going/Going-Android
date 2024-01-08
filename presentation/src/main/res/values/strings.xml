@@ -40,6 +40,7 @@
     <string name="create_trip_slash">-</string>
     <string name="create_trip_end_date">종료일</string>
     <string name="create_trip_finish_btn">다음</string>
+    <string name="create_trip_date">%1$d.%2$d.%3$d</string>
 
     <!--date_content-->
     <string name="date_content_btn">확인</string>

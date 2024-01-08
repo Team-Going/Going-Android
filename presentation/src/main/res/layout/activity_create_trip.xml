@@ -102,9 +102,9 @@
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
                 android:paddingHorizontal="12dp"
-                android:hint="@string/create_trip_start_date"
                 android:maxLines="1"
-                android:text="@={viewModel.StartDate}" />
+                android:hint="@string/create_trip_start_date"
+                android:text="@{@string/create_trip_date(viewModel.StartYear, viewModel.StartMonth, viewModel.StartDay)}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,27 +125,27 @@
                 android:background="@drawable/shape_rect_4_gray200_line"
                 android:hint="@string/create_trip_end_date"
                 android:maxLines="1"
-                android:text="@={viewModel.EndDate}" />
+                android:text="@{@string/create_trip_date(viewModel.EndYear, viewModel.EndMonth, viewModel.EndDay)}"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_create_trip_finish"
+            android:id="@+id/btn_create_trip_next"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="60dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{viewModel.isProfileAvailable()}"
+            android:outlineProvider="none"
+            android:enabled="@{viewModel.isCheckTripAvailable}"
             android:onClick="@{() -> viewModel.setButtonAvailable()}"
             android:paddingVertical="10dp"
+            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_50}"
             android:text="@string/create_trip_finish_btn"
-            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_50}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
