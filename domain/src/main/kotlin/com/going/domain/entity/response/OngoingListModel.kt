@@ -1,6 +1,6 @@
 package com.going.domain.entity.response
 
-data class TripCreateListModel(
+data class OngoingListModel(
     val title : String,
     val startDate : String,
     val endDate : String,

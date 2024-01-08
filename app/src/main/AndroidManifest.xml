@@ -42,6 +42,11 @@
         </activity>
 
         <activity
+            android:name="com.going.presentation.auth.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.todo.TodoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -71,6 +76,11 @@
             android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
     </application>
 

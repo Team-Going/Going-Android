@@ -1,6 +1,8 @@
 package com.going.going.di
 
+import com.going.data.repositoryImpl.LoginRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
+import com.going.domain.repository.LoginRepository
 import com.going.domain.repository.MockRepository
 import dagger.Module
 import dagger.Provides
@@ -17,4 +19,8 @@ object RepositoryModule {
     fun provideMockRepository(mockRepositoryImpl: MockRepositoryImpl): MockRepository =
         mockRepositoryImpl
 
+    @Provides
+    @Singleton
+    fun provideLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository =
+        loginRepositoryImpl
 }
