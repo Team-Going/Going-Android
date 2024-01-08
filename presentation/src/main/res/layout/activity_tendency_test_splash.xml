@@ -44,6 +44,7 @@
             android:background="@drawable/sel_rounded_corner_button"
             android:paddingVertical="10dp"
             android:text="@string/tendency_splash_start_btn"
+            android:outlineProvider="none"
             android:textColor="@color/white_000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

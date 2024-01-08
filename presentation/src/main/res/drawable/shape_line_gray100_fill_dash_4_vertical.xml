@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromDegrees="90"
+    android:toDegrees="90"
+    android:drawable="@drawable/shape_line_gray100_fill_dash_4"/>

@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.createtrip.CreateTripActivity"
+            android:name="com.going.presentation.mock.MockActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -40,6 +40,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.going.presentation.auth.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.todo.TodoActivity"
@@ -67,11 +72,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name="com.going.presentation.createtrip.CreateTripActivity"-->
-<!--            android:exported="false"-->
-<!--            android:screenOrientation="portrait"/>-->
+        <activity
+            android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.going.presentation.createtrip.CreateTripActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
 
     </application>
