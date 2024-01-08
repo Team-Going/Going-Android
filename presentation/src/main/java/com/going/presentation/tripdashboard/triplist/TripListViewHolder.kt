@@ -1,6 +1,5 @@
 package com.going.presentation.tripdashboard.triplist
 
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,13 @@ class TripListViewHolder(
             } else {
                 layoutDashboardDayInprogress.visibility = View.INVISIBLE
                 layoutDashboardDayCompleted.visibility = View.VISIBLE
-                tvDashboardTripTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_300))
+                tvDashboardTripTitle.text = item.title
+                tvDashboardTripTitle.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.gray_300
+                    )
+                )
             }
             layoutDashboard.setOnSingleClickListener {
                 listener.onDashBoardSelectedListener(item)
