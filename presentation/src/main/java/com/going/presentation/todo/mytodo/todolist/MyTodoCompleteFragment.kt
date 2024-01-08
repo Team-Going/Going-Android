@@ -27,10 +27,10 @@ class MyTodoCompleteFragment() :
     }
 
     private fun initAdapterWithClickListener() {
-        _adapter = MyTodoListAdapter(true, { position ->
+        _adapter = MyTodoListAdapter(true, { }, { position ->
             adapter.removeItem(position)
             adapter.notifyDataSetChanged()
-        }, { })
+        })
         binding.rvMyTodoComplete.adapter = adapter
     }
 
