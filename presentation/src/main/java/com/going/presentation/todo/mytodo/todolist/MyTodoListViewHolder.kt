@@ -19,7 +19,7 @@ class MyTodoListViewHolder(
     fun onBind(item: TodoModel,  position: Int) {
         binding.run {
             tvMyTodoItemTitle.text = item.title
-            tvMyTodoItemDate.text = item.endDate
+            tvMyTodoItemDate.text =  item.endDate.replace("-", ".") + "까지"
 
             layoutMyTodoLock.isVisible = item.secret
             rvMyTodoName.isVisible = !item.secret

@@ -15,7 +15,7 @@ class OurTodoListViewHolder(
     fun onBind(item: TodoModel) {
         binding.run {
             tvOurTodoItemTitle.text = item.title
-            tvOurTodoItemDate.text = item.endDate
+            tvOurTodoItemDate.text = item.endDate.replace("-", ".") + "까지"
             rvOurTodoName.adapter = TodoNameAdapter(isCompleted).apply {
                 submitList(item.allocation)
             }
