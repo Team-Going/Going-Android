@@ -1,5 +1,6 @@
 package com.going.presentation.tripdashboard.triplist
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.OngoingListModel
 import com.going.presentation.databinding.ItemDashBoardOngoingBinding
@@ -16,7 +17,13 @@ class OngoingViewHolder(
             tvDashboardTripTitle.text = item.title
             tvDashboardDateStart.text = item.startDate
             tvDashboardDateEnd.text = item.endDate
-            tvDashboardDeadlineDay.text = item.day.toString()
+
+            if(item.day <= 0){
+                layoutDashboardTraveling.visibility = View.VISIBLE
+                layoutDashboardDayLeft.visibility = View.INVISIBLE
+            }else{
+                tvDashboardDeadlineDay.text = item.day.toString()
+            }
 
             layoutDashboard.setOnSingleClickListener {
                 listener.onDashBoardSelectedListener(item)

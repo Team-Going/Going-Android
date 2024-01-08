@@ -17,7 +17,7 @@ class TripDashBoardViewModel : ViewModel() {
             title = "여행 제목 자리",
             startDate = "2002.09.22",
             endDate = "2005.03.31",
-            day = 10
+            day = -10
         ),
         OngoingListModel(
             title = "상호랑 제주도 여행",
@@ -47,25 +47,19 @@ class TripDashBoardViewModel : ViewModel() {
             title = "솝트랑 MT",
             startDate = "2021.03.24",
             endDate = "2021.03.31",
-            day = -10
+            day = 0
         ),
         OngoingListModel(
             title = "굉굉 신년회",
             startDate = "2024.01.02",
             endDate = "2024.01.32",
-            day = 10
+            day = 0
         ),
         OngoingListModel(
             title = "안드 단체 여행",
             startDate = "2020.03.24",
             endDate = "2021.03.31",
             day = 100
-        ),
-        OngoingListModel(
-            title = "유빈이 생일 파티",
-            startDate = "2022.09.22",
-            endDate = "2022.09.23",
-            day = 120
         ),
         OngoingListModel(
             title = "두릅",

@@ -76,10 +76,11 @@
             app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_dashboard_day_inprogress"
+            android:id="@+id/layout_dashboard_day_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:visibility="visible"
             android:background="@drawable/shape_rect_2_red100_fill"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,6 +111,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_dashboard_deadline"
                 app:layout_constraintTop_toTopOf="@id/tv_dashboard_deadline" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_dashboard_traveling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            android:background="@drawable/shape_rect_2_red100_fill"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_dashboard_traveling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="2dp"
+                android:paddingHorizontal="8dp"
+                android:text="여행중"
+                android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+                android:textColor="@color/red_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

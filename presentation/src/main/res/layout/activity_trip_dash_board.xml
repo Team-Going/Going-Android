@@ -37,13 +37,17 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_dashboard"
-            style="@style/TextAppearance.Doorip.Body2.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_dashboard_setting"
             app:tabIndicatorColor="@color/gray_500"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorHeight="2dp"
+            android:background="@color/white_000"
+            app:tabRippleColor="@android:color/transparent"
             app:tabSelectedTextColor="@color/gray_500"
+            app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
             app:tabTextColor="@color/gray_200" />
 
         <androidx.viewpager2.widget.ViewPager2
@@ -55,6 +59,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_dashboard" />
 
+        <ImageView
+            android:id="@+id/iv_dashboard_blur"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dash_board_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_dashboard_create_trip"
             style="@style/button_style"
@@ -64,6 +77,7 @@
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:backgroundTint="@color/gray_500"
+            android:outlineProvider="none"
             android:text="@string/dashboard_btn_create_trip"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
