@@ -93,6 +93,10 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.going.presentation.starttrip.StartTripSplashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
     </application>
 
