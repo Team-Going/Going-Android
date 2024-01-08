@@ -1,4 +1,4 @@
-package com.going.presentation.createtrip
+package com.going.presentation.starttrip.createtrip
 
 import android.os.Bundle
 import android.widget.TextView
