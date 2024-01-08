@@ -12,7 +12,7 @@
     <string name="sign_in_tv_title">여행을 시작해보세요</string>
     <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
 
-    <string name="counter">%1$d/%2$d</string>
+    <string name="counter">%1$d/%2$d</string>제
 
     <string name="notice">안내</string>
     <string name="okay">확인</string>
