@@ -8,8 +8,7 @@ import com.going.presentation.databinding.ItemDashBoardTripCreateBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class TripListAdapter(
-    private val listener: OnDashBoardSelectedListener
-) : ListAdapter<TripCreateListModel, TripListViewHolder>(diffUtil) {
+    private val listener: OnDashBoardSelectedListener) : ListAdapter<TripCreateListModel, TripListViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
         fun onDashBoardSelectedListener(tripCreate: TripCreateListModel)

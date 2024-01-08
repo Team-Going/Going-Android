@@ -20,7 +20,7 @@ TripListAdapter.OnDashBoardSelectedListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRecycler()
+        setRecyclerView()
 
     }
 
@@ -28,7 +28,7 @@ TripListAdapter.OnDashBoardSelectedListener{
         // 여행 생성 레이아웃 클릭 시 처리
     }
 
-    private fun setRecycler() {
+    private fun setRecyclerView() {
         _adapter = TripListAdapter(this)
         binding.rvDashboardCompletedTrip.adapter = adapter
         adapter.submitList(viewModel.mockDataList)

@@ -16,7 +16,7 @@ class TripDashBoardViewModel : ViewModel() {
             title = "여행 제목 자리",
             startDate = "2024.03.24",
             endDate = "2024.03.31",
-            day = 16
+            day = 10
         ),
         TripCreateListModel(
             title = "상호랑 제주도 여행",
