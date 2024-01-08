@@ -22,8 +22,8 @@ class StartTripSplashActivity :
             Intent(this, CreateTripActivity::class.java).apply {
                 startActivity(this)
             }
+            finish()
         }
-        finish()
     }
 
     private fun initEnterTripBtnClickListener() {
