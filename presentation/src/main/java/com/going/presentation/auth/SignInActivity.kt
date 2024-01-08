@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityLoginBinding
+import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
