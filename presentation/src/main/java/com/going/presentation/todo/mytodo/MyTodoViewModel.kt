@@ -2,7 +2,6 @@ package com.going.presentation.todo.mytodo
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.response.TodoModel
-import com.going.domain.entity.response.TripParticipantsListModel
 
 // @HiltViewModel
 class MyTodoViewModel : ViewModel() {

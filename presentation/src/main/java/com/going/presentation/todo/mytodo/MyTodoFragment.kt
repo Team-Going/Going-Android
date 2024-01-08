@@ -6,6 +6,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
@@ -18,17 +19,21 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private val tabTextList = listOf(TAB_UNCOMPLETE, TAB_COMPLETE)
 
+    private val viewModel by activityViewModels<MyTodoViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setDateTextColor()
+        setTodoCountText()
         setTabLayout()
         setViewPager()
     }
 
-    private fun setDateTextColor() {
+    private fun setTodoCountText() {
         binding.tvMyTodoTitleDown.apply {
-            text = SpannableStringBuilder(text).apply {
+            text = SpannableStringBuilder(
+                getString(R.string.my_todo_tv_title_down).format(viewModel.mockUncompleteTodoList.size)
+            ).apply {
                 setSpan(
                     ForegroundColorSpan(
                         ContextCompat.getColor(
