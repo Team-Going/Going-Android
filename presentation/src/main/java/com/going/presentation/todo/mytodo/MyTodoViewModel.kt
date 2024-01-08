@@ -2,9 +2,22 @@ package com.going.presentation.todo.mytodo
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.response.TodoModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 // @HiltViewModel
 class MyTodoViewModel : ViewModel() {
+
+    private val _totalUncompletedTodoCount = MutableStateFlow<Int>(0)
+    val totalUncompletedTodoCount: StateFlow<Int> = _totalUncompletedTodoCount
+
+    fun setTodoCount() {
+        _totalUncompletedTodoCount.value = mockUncompleteTodoList.size
+    }
+
+    fun decreaseTodoCount() {
+        _totalUncompletedTodoCount.value = _totalUncompletedTodoCount.value - 1
+    }
 
     val mockUncompleteTodoList: List<TodoModel> = listOf(
         TodoModel(0, "숙소 예약하기", "2024-01-12", listOf("김상호", "박동민"), false),

@@ -30,6 +30,7 @@ class MyTodoUncompleteFragment() :
         _adapter = MyTodoListAdapter(false, { position ->
             adapter.removeItem(position)
             adapter.notifyDataSetChanged()
+            viewModel.decreaseTodoCount()
         }, { })
         binding.rvMyTodoUncomplete.adapter = adapter
     }
