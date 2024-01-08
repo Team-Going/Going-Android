@@ -86,7 +86,7 @@ class TripDashBoardViewModel : ViewModel() {
             endDate = "2024.01.09",
         ),
         CompletedListModel(
-            title = "광굉이랑 고기 구워 먹기",
+            title = "굉굉이랑 고기 구워 먹기",
             startDate = "2020.04.10",
             endDate = "2020.04.22",
         )
