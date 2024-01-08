@@ -90,7 +90,7 @@ dependencies {
     }
 
     GooglePlayDependencies.run {
-        implementation(core)
         implementation(update)
+        implementation(updateKtx)
     }
 }

@@ -99,6 +99,6 @@ object KakaoDependencies {
 }
 
 object GooglePlayDependencies {
-    const val core = "com.google.android.play:core:${Versions.googlePlayCore}"
-    const val update = "com.google.android.play:app-update-ktx:+"
+    const val update = "com.google.android.play:app-update:${Versions.googlePlayUpdate}"
+    const val updateKtx = "com.google.android.play:app-update-ktx:${Versions.googlePlayUpdate}"
 }
