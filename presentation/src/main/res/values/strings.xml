@@ -34,7 +34,7 @@
     <string name="tendency_test_title">나의 여행 성향은?</string>
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">제출하기</string>
-    
+
     <!--tendency_test_result-->
     <string name="tendency_test_result_toolbar">유형 검사 결과</string>
     <string name="tendency_test_result_title">%1$s님의 여행 유형은</string>
@@ -67,6 +67,13 @@
     <!--preference_tag-->
     <string name="preference_tv_title">이번 여행은 어땠으면 좋겠나요?</string>
     <string name="preference_btn_start">시작하기</string>
+
+    <!--trip_dash_board-->
+    <string name="dashboard_tv_title">지민님의 여행</string>
+    <string name="dashboard_tv_empty">생성된 여행이 없어요.</string>
+    <string name="dashboard_btn_create_trip">여행 생성하기</string>
+    <string name="dashboard_tv_completed_trip">여행종료</string>
+    <string name="dashboard_tv_dash">-</string>
 
     <!--menu-->
     <string name="menu_our_todo">우리의 투두</string>
