@@ -140,7 +140,7 @@
             android:enabled="@{viewModel.isCheckTripAvailable}"
             android:onClick="@{() -> viewModel.setButtonAvailable()}"
             android:paddingVertical="10dp"
-            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_50}"
+            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:text="@string/create_trip_finish_btn"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
