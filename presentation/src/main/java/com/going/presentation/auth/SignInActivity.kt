@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
-    private val viewModel by viewModels<LoginViewModel>()
+class SignInActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
