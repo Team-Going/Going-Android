@@ -1,5 +1,6 @@
-package com.going.presentation.createtrip
+package com.going.presentation.starttrip.createtrip
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
+import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -20,6 +22,7 @@ class CreateTripActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initBackBtnClickListener()
         initBindingViewModel()
         observeIsNameAvailable()
         observeCheckStartDateAvailable()
@@ -29,6 +32,14 @@ class CreateTripActivity :
         initNextBtnClickListener()
     }
 
+    private fun initBackBtnClickListener(){
+        binding.tbCreateTrip.setNavigationOnClickListener() {
+            Intent(this, StartTripSplashActivity::class.java).apply {
+                startActivity(this)
+            }
+            finish()
+        }
+    }
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }

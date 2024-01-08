@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.createtrip.CreateTripViewModel" />
+            type="com.going.presentation.starttrip.createtrip.CreateTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

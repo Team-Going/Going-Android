@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.going.presentation.createtrip.CreateTripViewModel" />
+            type="com.going.presentation.starttrip.createtrip.CreateTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".createtrip.CreateTripActivity">
+        tools:context=".starttrip.createtrip.CreateTripActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_create_trip"
