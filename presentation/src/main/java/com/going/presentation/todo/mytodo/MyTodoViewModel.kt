@@ -6,15 +6,6 @@ import com.going.domain.entity.response.TripParticipantsListModel
 
 // @HiltViewModel
 class MyTodoViewModel : ViewModel() {
-    val mockParticipantsList: List<TripParticipantsListModel.TripParticipantModel> = listOf(
-        TripParticipantsListModel.TripParticipantModel(0, "일지민", 100),
-        TripParticipantsListModel.TripParticipantModel(1, "이지민", 100),
-        TripParticipantsListModel.TripParticipantModel(2, "삼지민", 100),
-        TripParticipantsListModel.TripParticipantModel(3, "사지민", 100),
-        TripParticipantsListModel.TripParticipantModel(4, "오지민", 100),
-        TripParticipantsListModel.TripParticipantModel(5, "육지민", 100),
-        TripParticipantsListModel.TripParticipantModel(6, "칠지민", 100)
-    )
 
     val mockUncompleteTodoList: List<TodoModel> = listOf(
         TodoModel(0, "숙소 예약하기", "2024-01-12", listOf("김상호", "박동민"), false),

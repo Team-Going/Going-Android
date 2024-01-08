@@ -9,6 +9,7 @@ import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.ourtodo.todolist.OurTodoListAdapter
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MyTodoUncompleteFragment() :
@@ -23,13 +24,18 @@ class MyTodoUncompleteFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRecyclerView()
+        initAdapterWithClickListener()
     }
 
-    private fun setRecyclerView() {
-        _adapter = MyTodoListAdapter(false)
+    private fun initAdapterWithClickListener() {
+        _adapter = MyTodoListAdapter(false, { position ->
+            Timber.tag("sangho").d("@${adapter.currentList[position]}")
+            // adapter.removeItem(position)
+            Timber.tag("sangho").d("@@${adapter.currentList}")
+        },{ })
         binding.rvMyTodoUncomplete.adapter = adapter
         adapter.submitList(viewModel.mockUncompleteTodoList)
+        Timber.tag("sangho").d("@@@${adapter.currentList}")
     }
 
     override fun onDestroyView() {

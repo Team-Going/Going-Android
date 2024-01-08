@@ -7,13 +7,16 @@ import com.going.domain.entity.response.TodoModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemMyTodoBinding
 import com.going.presentation.todo.name.TodoNameAdapter
+import com.going.ui.extension.setOnSingleClickListener
 
 class MyTodoListViewHolder(
     val binding: ItemMyTodoBinding,
-    private val isCompleted: Boolean
+    private val isCompleted: Boolean,
+    private val itemSelect: (Int) -> Unit,
+    private val itemUnselect: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(item: TodoModel) {
+    fun onBind(item: TodoModel,  position: Int) {
         binding.run {
             tvMyTodoItemTitle.text = item.title
             tvMyTodoItemDate.text = item.endDate
@@ -40,6 +43,14 @@ class MyTodoListViewHolder(
                 layoutMyTodoLock.setBackgroundResource(R.drawable.shape_rect_2_gray400_line)
                 ivMyTodoLock.setImageResource(R.drawable.ic_lock_uncomplete)
                 tvMyTodoLock.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_400))
+            }
+
+            binding.cbMyTodoUnselected.setOnSingleClickListener {
+                itemSelect(position)
+            }
+
+            binding.cbMyTodoSelected.setOnSingleClickListener {
+                itemUnselect(position)
             }
         }
     }

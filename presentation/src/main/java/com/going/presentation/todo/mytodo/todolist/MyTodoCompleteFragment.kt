@@ -26,7 +26,9 @@ class MyTodoCompleteFragment() :
     }
 
     private fun setRecyclerView() {
-        _adapter = MyTodoListAdapter(true)
+        _adapter = MyTodoListAdapter(true, { }, { position ->
+            // adapter.removeItem(position)
+        })
         binding.rvMyTodoComplete.adapter = adapter
         adapter.submitList(viewModel.mockCompleteTodoList)
     }
