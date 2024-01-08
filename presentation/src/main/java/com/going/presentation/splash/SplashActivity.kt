@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.result.contract.ActivityResultContracts
 import com.going.presentation.R
 import com.going.presentation.auth.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.toast
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +25,17 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
+    private fun initSplash() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            navigateToSignInScreen()
+            if (false) { // 자동 로그인 판정으로 변경 예정
+                navigateToMainScreen()
+            } else {
+                navigateToSignInScreen()
+            }
+        }, 3000)
+    }
+
     private fun showNetworkErrorAlertDialog() =
         AlertDialog.Builder(this)
             .setTitle(R.string.notice)
@@ -40,17 +49,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             .create()
             .show()
 
-    private fun initSplash() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            navigateToSignInScreen()
-            if (false) { // 자동 로그인 판정으로 변경 예정
-                navigateToMainScreen()
-            } else {
-                navigateToSignInScreen()
-            }
-        }, 3000)
-    }
-
     private fun navigateToMainScreen() {
         // Main이 나오면 구현 예정
         finish()
@@ -62,12 +60,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
         finish()
     }
-
-    private val activityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
-            if (it.resultCode != RESULT_OK) {
-                toast(getString(R.string.splash_update_error))
-                finishAffinity()
-            }
-        }
 }
