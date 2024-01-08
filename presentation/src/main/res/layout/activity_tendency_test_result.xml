@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="-6dp"
-                    android:background="@drawable/shape_rect_topleft_8_topright_8_white000_fill"
+                    android:background="@drawable/shape_rect_top8_white000_fill"
                     android:paddingHorizontal="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
