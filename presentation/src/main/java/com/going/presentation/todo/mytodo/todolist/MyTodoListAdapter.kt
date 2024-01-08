@@ -23,15 +23,17 @@ class MyTodoListAdapter(
     override fun onBindViewHolder(holder: MyTodoListViewHolder, position: Int) {
         holder.onBind(getItem(position), position)
     }
-//
-//    fun removeItem(position: Int) {
-//        Timber.tag("sangho").d("& $position")
-//        if (this.itemList.isNotEmpty()) {
-//            this.itemList.removeAt(position)
-//            notifyItemRemoved(position)
-//            notifyItemRangeChanged(position, itemCount)
-//        }
-//    }
+
+    fun removeItem(position: Int) {
+        Timber.tag("sangho").d("& $position")
+        if (currentList.isNotEmpty()) {
+            val list = currentList.toMutableList()
+            list.removeAt(position)
+            this.submitList(list)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, itemCount)
+        }
+    }
 
     companion object {
         private val diffUtil = ItemDiffCallback<TodoModel>(

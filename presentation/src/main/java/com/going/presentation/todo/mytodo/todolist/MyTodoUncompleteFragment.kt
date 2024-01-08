@@ -25,15 +25,21 @@ class MyTodoUncompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
+        setTodoList()
     }
 
     private fun initAdapterWithClickListener() {
         _adapter = MyTodoListAdapter(false, { position ->
+            Timber.tag("sangho").d("@${position}")
             Timber.tag("sangho").d("@${adapter.currentList[position]}")
-            // adapter.removeItem(position)
+            adapter.removeItem(position)
+            adapter.notifyDataSetChanged()
             Timber.tag("sangho").d("@@${adapter.currentList}")
         },{ })
         binding.rvMyTodoUncomplete.adapter = adapter
+    }
+
+    private fun setTodoList() {
         adapter.submitList(viewModel.mockUncompleteTodoList)
         Timber.tag("sangho").d("@@@${adapter.currentList}")
     }
