@@ -123,7 +123,7 @@
             app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_info"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_onboarding_profile_setting_finish"
             style="@style/button_style"
             android:layout_width="0dp"
