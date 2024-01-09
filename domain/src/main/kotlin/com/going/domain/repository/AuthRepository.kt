@@ -1,5 +1,6 @@
 package com.going.domain.repository
 
+import com.going.domain.entity.request.RequestSignUpModel
 import com.going.domain.entity.response.AuthTokenModel
 
 interface AuthRepository {
@@ -9,8 +10,6 @@ interface AuthRepository {
     ): Result<AuthTokenModel>
 
     suspend fun postSignUp(
-        name: String,
-        intro: String,
-        platform: String,
+        data: RequestSignUpModel,
     ): Result<AuthTokenModel>
 }

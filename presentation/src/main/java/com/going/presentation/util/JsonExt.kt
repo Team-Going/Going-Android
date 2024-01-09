@@ -8,5 +8,5 @@ fun toErrorCode(throwable: Throwable): String = if (throwable is HttpException) 
     val json = jsonTemp.slice(6 until jsonTemp.length)
     JSONObject(json).getString("code")
 } else {
-    "EXCEPTION"
+    "NOT_HTTP"
 }

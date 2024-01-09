@@ -2,21 +2,31 @@ package com.going.presentation.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
+import com.going.domain.entity.request.RequestSignUpModel
 import com.going.domain.entity.response.AuthTokenModel
+import com.going.domain.repository.AuthRepository
+import com.going.presentation.util.toErrorCode
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import java.text.BreakIterator
+import javax.inject.Inject
 
-class OnboardingProfileSettingViewModel : ViewModel() {
-    val name = MutableLiveData(String())
+@HiltViewModel
+class OnboardingProfileSettingViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
+) : ViewModel() {
+    val name = MutableStateFlow("")
     val nowNameLength = MutableLiveData(0)
-    val info = MutableLiveData(String())
+    val info = MutableStateFlow("")
     val nowInfoLength = MutableLiveData(0)
 
     val isNameAvailable = MutableLiveData(NameState.Empty)
@@ -78,11 +88,28 @@ class OnboardingProfileSettingViewModel : ViewModel() {
 
     private fun signUpWithServer(kakaoAccessToken: String) {
         // 서버와 통신 예정
+        _isTokenState.value = UiState.Loading
+
+        viewModelScope.launch {
+            authRepository.postSignUp(RequestSignUpModel(name.value, info.value, KAKAO)).onSuccess {
+                _isTokenState.value = UiState.Success(
+                    AuthTokenModel(
+                        accessToken = it.accessToken,
+                        refreshToken = it.refreshToken,
+                    ),
+                )
+            }.onFailure {
+                val errorCode = toErrorCode(it)
+
+                _isTokenState.value = UiState.Failure(errorCode)
+            }
+        }
     }
 
     companion object {
         val BREAK_ITERATOR: BreakIterator = BreakIterator.getCharacterInstance()
 
+        const val KAKAO = "kakao"
         const val MAX_NAME_LEN = 3
         const val MAX_INFO_LEN = 20
     }

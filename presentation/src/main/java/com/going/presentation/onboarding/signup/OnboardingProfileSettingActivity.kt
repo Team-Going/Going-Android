@@ -15,9 +15,11 @@ import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class OnboardingProfileSettingActivity :
     BaseActivity<ActivityOnboardingProfileSettingBinding>(R.layout.activity_onboarding_profile_setting) {
     private val viewModel by viewModels<OnboardingProfileSettingViewModel>()

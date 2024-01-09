@@ -2,7 +2,8 @@ package com.going.data.repositoryImpl
 
 import com.going.data.datasource.AuthDataSource
 import com.going.data.dto.request.SignInRequestDto
-import com.going.data.dto.request.SignUpRequestDto
+import com.going.data.dto.request.toSignUpRequestDto
+import com.going.domain.entity.request.RequestSignUpModel
 import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.AuthRepository
 import javax.inject.Inject
@@ -22,17 +23,11 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
     override suspend fun postSignUp(
-        name: String,
-        intro: String,
-        platform: String,
+        requestSignUpModel: RequestSignUpModel,
     ): Result<AuthTokenModel> =
         runCatching {
             authDataSource.postSignUp(
-                SignUpRequestDto(
-                    name,
-                    intro,
-                    platform,
-                ),
+                requestSignUpModel.toSignUpRequestDto(),
             ).data.toAuthTokenModel()
         }
 }

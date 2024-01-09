@@ -1,5 +1,6 @@
 package com.going.data.dto.request
 
+import com.going.domain.entity.request.RequestSignUpModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,3 +13,6 @@ data class SignUpRequestDto(
     @SerialName("platform")
     val platform: String,
 )
+
+fun RequestSignUpModel.toSignUpRequestDto(): SignUpRequestDto =
+    SignUpRequestDto(name, intro, platform)
