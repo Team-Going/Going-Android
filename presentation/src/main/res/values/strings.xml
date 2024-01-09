@@ -131,5 +131,6 @@
     <string name="setting_dialog_message">탈퇴시, 정보가 모두 없어져요.</string>
     <string name="setting_dialog_negative">탈퇴하기</string>
     <string name="setting_dialog_positive">남아있기</string>
+    <string name="setting_dialog_quit">회원탈퇴</string>
 
 </resources>

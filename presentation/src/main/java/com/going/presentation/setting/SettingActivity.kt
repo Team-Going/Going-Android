@@ -1,5 +1,6 @@
 package com.going.presentation.setting
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.going.presentation.R
@@ -55,7 +56,8 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     private fun showLogoutAlertDialog() {
         settingDialog = SettingCustomDialogFragment()
         settingDialog.show(supportFragmentManager, settingDialog.tag)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_50)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_60)
     }
+
 
 }

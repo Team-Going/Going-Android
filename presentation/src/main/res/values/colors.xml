@@ -24,6 +24,7 @@
     <!-- Transparent -->
     <color name="transparent">#00000000</color>
     <color name="transparent_70">#B3000000</color>
+    <color name="transparent_60">#99000000</color>
     <color name="transparent_50">#80000000</color>
     <color name="transparent_30">#4D000000</color>
 
