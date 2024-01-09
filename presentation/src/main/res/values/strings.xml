@@ -101,4 +101,7 @@
     <string name="finish_trip_tv_invite">입장하기</string>
     <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
 
+    <!--profile-->
+    <string name="profile_tv_title">프로필 생성</string>
+
 </resources>

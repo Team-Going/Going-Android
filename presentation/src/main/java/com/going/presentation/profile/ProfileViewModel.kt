@@ -1,4 +1,6 @@
 package com.going.presentation.profile
 
-class ProfileViewModel {
+import androidx.lifecycle.ViewModel
+
+class ProfileViewModel : ViewModel() {
 }
