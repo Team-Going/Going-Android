@@ -103,6 +103,11 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.going.presentation.profile.ProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
 
 
     </application>
