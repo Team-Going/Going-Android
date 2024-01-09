@@ -9,6 +9,7 @@ import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
+import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,6 +37,7 @@ class MyTodoUncompleteFragment() :
             viewModel.decreaseTodoCount()
         }, { }, { todoId ->
             Intent(activity, MyTodoDetailActivity::class.java).apply {
+                putExtra(EXTRA_TODO_ID, todoId)
                 startActivity(this)
             }
         })
