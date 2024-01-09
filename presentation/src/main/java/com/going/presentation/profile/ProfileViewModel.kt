@@ -5,14 +5,14 @@ import com.going.domain.entity.ProfileMock
 
 class ProfileViewModel : ViewModel() {
     val mockProfileResult: ProfileMock = ProfileMock(
-        tendencyTitle = "배려심 많은 인간 플래너",
-        tendencySubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",
+        profileTitle = "배려심 많은 인간 플래너",
+        profileSubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",
         tags = listOf(
             "#친구중심",
             "#꼼꼼함",
             "#세심함",
         ),
-        tendencyBoxInfo = listOf(
+        profileBoxInfo = listOf(
             ProfileMock.BoxInfo(
                 "이런점이\n좋아요",
                 "같이 가는 친구들을 잘 챙기고 배려해요",
