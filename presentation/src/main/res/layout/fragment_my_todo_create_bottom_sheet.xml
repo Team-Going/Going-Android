@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect_top40_white000_fill"
+        android:paddingBottom="22dp">
+
+        <DatePicker
+            android:id="@+id/dp_create_trip_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:calendarTextColor="@color/gray_700"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:headerDayOfMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerYearTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:spinnersShown="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_create_trip_finish"
+            style="@style/TextAppearance.Doorip.Body2.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:gravity="center"
+            android:paddingVertical="13dp"
+            android:text="@string/date_content_btn"
+            android:textColor="@color/white_000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dp_create_trip_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
