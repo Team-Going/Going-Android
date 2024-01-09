@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View" />
-        <import type="com.going.domain.entity.NameState" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,15 +14,15 @@
 
         <DatePicker
             android:id="@+id/dp_create_trip_date"
-            android:headerDayOfMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
-            android:headerMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
-            android:headerYearTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
-            android:calendarTextColor="@color/gray_700"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:calendarTextColor="@color/gray_700"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
+            android:headerDayOfMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerMonthTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
+            android:headerYearTextAppearance="@style/TextAppearance.Doorip.Body2.Medi"
             android:spinnersShown="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +44,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dp_create_trip_date" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -273,7 +273,7 @@
                                 android:layout_height="5dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layerType="software"
-                                android:src="@drawable/shape_line_gray100_fill_dash_8" />
+                                android:src="@drawable/shape_line_gray100_fill_dash_5" />
 
                         </LinearLayout>
 

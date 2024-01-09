@@ -57,7 +57,6 @@
     <!--date_content-->
     <string name="date_content_btn">확인</string>
 
-
     <!--our_todo-->
     <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
     <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
@@ -69,16 +68,31 @@
     <string name="my_todo_tv_lock">나만보기</string>
     <string name="my_todo_tv_title_down">할일이 %s개 남았어요</string>
 
+    <!--my_todo_create-->
+    <string name="my_todo_create_tv_title">여행 생성하기</string>
+    <string name="my_todo_create_tv_todo">할일</string>
+    <string name="my_todo_create_tv_todo_hint">할일을 입력해주세요.</string>
+    <string name="my_todo_create_tv_date">언제까지</string>
+    <string name="my_todo_create_tv_date_hint">날짜를 입력해주세요.</string>
+    <string name="my_todo_create_tv_person">누가하나요?</string>
+    <string name="my_todo_create_tv_person_lock">나만보기</string>
+    <string name="my_todo_create_tv_memo">메모</string>
+    <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
+    <string name="my_todo_create_btn_finish">저장</string>
+
     <!--preference_tag-->
-    <string name="preference_tv_title">이번 여행은 어땠으면 좋겠나요?</string>
-    <string name="preference_btn_start">시작하기</string>
+    <string name="preference_tv_title">이번 여행은!</string>
+    <string name="preference_btn_next">다음</string>
+    <string name="preference_no_matter">상관없어</string>
 
     <!--trip_dash_board-->
-    <string name="dashboard_tv_title">지민님의 여행</string>
+    <string name="dashboard_tv_title">%s님의 여행</string>
     <string name="dashboard_tv_empty">생성된 여행이 없어요.</string>
     <string name="dashboard_btn_create_trip">여행 생성하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
     <string name="dashboard_tv_dash">-</string>
+    <string name="dashboard_tv_deadline">D - %d</string>
+    <string name="dashboard_tv_traveling">여행중</string>
 
     <!--menu-->
     <string name="menu_our_todo">우리의 투두</string>
@@ -88,5 +102,14 @@
     <string name="start_trip_splash_title">여행을 시작해보세요.</string>
     <string name="start_trip_splash_btn_new_trip">새로운 여행 시작하기</string>
     <string name="start_trip_splash_btn_enter_trip">여행 입장하기</string>
+
+    <!--finish_trip_splash-->
+    <string name="finish_trip_tv_title">새로운 여행이 생성되었어요!</string>
+    <string name="finish_trip_tv_trip_name">굉굉이랑 스페인</string>
+    <string name="finish_trip_tv_invite_code">친구 초대코드</string>
+    <string name="finish_trip_tv_copy_code">초대코드 복사하기</string>
+    <string name="finish_trip_tv_send_code">카카오톡으로 초대코드 보내기</string>
+    <string name="finish_trip_tv_invite">입장하기</string>
+    <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
 
 </resources>

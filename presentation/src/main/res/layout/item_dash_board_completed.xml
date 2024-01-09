@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:paddingBottom="14dp">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_dashboard"
         android:layout_width="0dp"

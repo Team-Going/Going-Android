@@ -37,7 +37,7 @@ class OngoingTripFragment :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TripDecoration(requireContext())
+        val itemDeco = DashBoardDecoration(requireContext())
         binding.rvDashboardOngoingTrip.addItemDecoration(itemDeco)
     }
 

@@ -84,7 +84,7 @@
 
         <activity
             android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
@@ -95,8 +95,17 @@
         <activity
             android:name="com.going.presentation.starttrip.StartTripSplashActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.todo.mytodo.create.MyTodoCreateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.starttrip.finishtrip.FinishTripActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
     </application>
 
