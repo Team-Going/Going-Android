@@ -96,5 +96,6 @@
     <string name="finish_trip_tv_copy_code">초대코드 복사하기</string>
     <string name="finish_trip_tv_send_code">카카오톡으로 초대코드 보내기</string>
     <string name="finish_trip_tv_invite">입장하기</string>
+    <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
 
 </resources>

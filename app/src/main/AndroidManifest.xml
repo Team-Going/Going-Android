@@ -99,8 +99,8 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name="com.going.presentation.starttrip.finishtrip.FinshTripActivity"
-            android:exported="true"
+            android:name="com.going.presentation.starttrip.finishtrip.FinishTripActivity"
+            android:exported="false"
             android:screenOrientation="portrait"/>
 
 

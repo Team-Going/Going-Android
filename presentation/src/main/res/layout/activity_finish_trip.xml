@@ -84,7 +84,7 @@
                     android:textColor="@color/red_500"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="D - " />
+                    android:text="D - " />
 
                 <TextView
                     android:id="@+id/tv_finish_trip_deadline_day"
@@ -98,7 +98,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/tv_finish_trip_deadline"
                     app:layout_constraintTop_toTopOf="@id/tv_finish_trip_deadline"
-                    tools:text="16" />
+                    android:text="16" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,7 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_finish_trip_icon"
                 app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_name"
-                tools:text="2024 .03 .24" />
+                android:text="2024 .03 .24" />
 
             <TextView
                 android:id="@+id/tv_finish_trip_dash"
@@ -138,7 +138,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_start"
                 app:layout_constraintStart_toEndOf="@id/tv_finish_trip_start"
                 app:layout_constraintTop_toTopOf="@id/tv_finish_trip_start"
-                tools:text="@string/dashboard_tv_dash" />
+                android:text="@string/dashboard_tv_dash" />
 
             <TextView
                 android:id="@+id/tv_finish_trip_date_end"
@@ -150,7 +150,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_dash"
                 app:layout_constraintStart_toEndOf="@id/tv_finish_trip_dash"
                 app:layout_constraintTop_toTopOf="@id/tv_finish_trip_dash"
-                tools:text="2024 .03 .31" />
+                android:text="2024 .03 .31" />
 
             <ImageView
                 android:id="@+id/iv_finish_trip_top"
@@ -173,7 +173,6 @@
                 app:layout_constraintStart_toStartOf="@id/layout_finish_trip_ticket" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_finish_trip_copy"
