@@ -1,5 +1,6 @@
 package com.going.presentation.todo.mytodo
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -11,8 +12,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
+import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -28,10 +31,19 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initAddTodoListener()
         setTabLayout()
         setViewPager()
         setTodoCountText()
         observeTotalUncompletedTodoCount()
+    }
+
+    private fun initAddTodoListener() {
+        binding.btnMyTodoAddTodo.setOnSingleClickListener {
+            Intent(activity, MyTodoCreateActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 
     private fun setTabLayout() {
