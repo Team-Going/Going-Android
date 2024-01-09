@@ -1,5 +1,6 @@
-package com.going.presentation.onboarding
+package com.going.presentation.onboarding.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -10,10 +11,16 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
+import com.going.presentation.onboarding.splash.SplashActivity
+import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class OnboardingProfileSettingActivity :
     BaseActivity<ActivityOnboardingProfileSettingBinding>(R.layout.activity_onboarding_profile_setting) {
     private val viewModel by viewModels<OnboardingProfileSettingViewModel>()
@@ -24,9 +31,10 @@ class OnboardingProfileSettingActivity :
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
         initSetOnFocusChangeListener()
+        initSignUpBtnClickListener()
         observeIsNameAvailable()
-        observeIsProfileAvailable()
         observeTextLength()
+        observeIsSignUpState()
     }
 
     private fun initBindingViewModel() {
@@ -70,6 +78,12 @@ class OnboardingProfileSettingActivity :
         }
     }
 
+    private fun initSignUpBtnClickListener() {
+        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
+            viewModel.startSignUp()
+        }
+    }
+
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
             setColors(
@@ -107,12 +121,6 @@ class OnboardingProfileSettingActivity :
         counter.setTextColor(getColor(color))
     }
 
-    private fun observeIsProfileAvailable() {
-        viewModel.isMoveScreenAvailable.flowWithLifecycle(lifecycle).onEach { isEnd ->
-            if (isEnd) moveSplash()
-        }.launchIn(lifecycleScope)
-    }
-
     // 커스텀 글자수 제한 함수
     private fun observeTextLength() {
         viewModel.nowNameLength.observe(this) { length ->
@@ -138,7 +146,30 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun moveSplash() {
-        // 스플래시로 이동
+    private fun observeIsSignUpState() {
+        viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is SignUpState.SUCCESS -> navigateToTendencyTestScreen()
+                is SignUpState.FAIL -> toast(getString(R.string.server_error))
+                is SignUpState.LOG_IN -> navigateToSplashScreen()
+                is SignUpState.LOADING -> {}
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun navigateToSplashScreen() {
+        Intent(this, SplashActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
+    private fun navigateToTendencyTestScreen() {
+        Intent(this, TendencyTestActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
     }
 }

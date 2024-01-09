@@ -1,11 +1,12 @@
-package com.going.presentation.auth
+package com.going.presentation.onboarding.signin
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.AuthTokenModel
-import com.going.domain.repository.LoginRepository
-import com.going.ui.extension.UiState
+import com.going.domain.entity.request.RequestSignInModel
+import com.going.domain.repository.AuthRepository
+import com.going.domain.repository.TokenRepository
+import com.going.presentation.util.toErrorCode
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -14,15 +15,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val loginRepository: LoginRepository,
+    private val authRepository: AuthRepository,
+    private val tokenRepository: TokenRepository,
 ) : ViewModel() {
-    private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
-    val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
+    private val _postChangeTokenState = MutableStateFlow<SignInState>(SignInState.LOADING)
+    val postChangeTokenState: StateFlow<SignInState> = _postChangeTokenState
 
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
@@ -65,28 +66,30 @@ class SignInViewModel @Inject constructor(
     // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기 - 서버와 협의 후 수정예정
     private fun changeTokenFromServer(
         accessToken: String,
-        social: String = KAKAO,
+        platform: String = KAKAO,
     ) {
-        _postChangeTokenState.value = UiState.Loading
+        _postChangeTokenState.value = SignInState.LOADING
 
         viewModelScope.launch {
-            // 통신 로직
-            loginRepository.postSignin(accessToken, social).onSuccess {
-                // 성공시 서버에서 준 정보를 넣는 예시 코드
-                Timber.e("성공고오고오고공")
-                _postChangeTokenState.value = UiState.Success(
-                    AuthTokenModel(
-                        accessToken = "testAccessToekn",
-                        refreshToken = "testRefreshToekn",
-                    ),
-                )
-            }.onFailure { err ->
-                Timber.e("실패패패패패패")
+            authRepository.postSignIn(accessToken, RequestSignInModel(platform)).onSuccess {
+                tokenRepository.setTokens(it.accessToken, it.refreshToken)
+
+                _postChangeTokenState.value = SignInState.SUCCESS
+            }.onFailure {
+                val errorCode = toErrorCode(it)
+
+                _postChangeTokenState.value = when (errorCode) {
+                    SIGN_UP -> SignInState.SIGN_UP
+                    TENDENCY -> SignInState.TENDENCY
+                    else -> SignInState.FAIL
+                }
             }
         }
     }
 
     companion object {
         const val KAKAO = "kakao"
+        const val SIGN_UP = "e4041"
+        const val TENDENCY = "e4045"
     }
 }
