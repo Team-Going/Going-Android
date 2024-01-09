@@ -56,7 +56,7 @@
 
     <!--date_content-->
     <string name="date_content_btn">확인</string>
-    
+
     <!--our_todo-->
     <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
     <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
