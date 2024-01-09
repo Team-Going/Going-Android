@@ -20,12 +20,19 @@ class PreferenceTagActivity :
         super.onCreate(savedInstanceState)
 
         initAdapter()
+        initItemDecoration()
     }
+
 
     private fun initAdapter() {
         _adapter = PreferenceTagAdapter(this, this)
         binding.rvPreferenceTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
+    }
+
+    private fun initItemDecoration() {
+        val itemDeco = PreferenceTagDecoration(this)
+        binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
     override fun onPreferenceSelected(preference: PreferenceData) {

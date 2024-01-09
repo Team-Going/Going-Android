@@ -5,7 +5,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class TripDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+class DashBoardDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
