@@ -2,9 +2,11 @@ package com.going.going.di
 
 import com.going.data.repositoryImpl.AuthRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
+import com.going.data.repositoryImpl.SettingRepositoryImpl
 import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.MockRepository
+import com.going.domain.repository.SettingRepository
 import com.going.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -30,4 +32,9 @@ object RepositoryModule {
     @Singleton
     fun provideTokenRepository(tokenRepositoryImpl: TokenRepositoryImpl): TokenRepository =
         tokenRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun provideSettingRepository(settingRepositoryImpl: SettingRepositoryImpl): SettingRepository =
+        settingRepositoryImpl
 }

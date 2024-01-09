@@ -2,6 +2,8 @@ package com.going.going.di
 
 import com.going.data.service.AuthService
 import com.going.data.service.MockService
+import com.going.data.service.SettingService
+import com.going.going.di.qualifier.JWT
 import com.going.going.di.qualifier.KAKAO
 import dagger.Module
 import dagger.Provides
@@ -23,4 +25,9 @@ object ServiceModule {
     @Singleton
     fun provideAuthService(@KAKAO retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSettingService(@JWT retrofit: Retrofit): SettingService =
+        retrofit.create(SettingService::class.java)
 }
