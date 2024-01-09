@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.onboarding.OnboardingProfileSettingViewModel" />
+            type="com.going.presentation.onboarding.signup.OnboardingProfileSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

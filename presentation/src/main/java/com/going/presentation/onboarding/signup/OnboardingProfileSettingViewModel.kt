@@ -1,4 +1,4 @@
-package com.going.presentation.onboarding
+package com.going.presentation.onboarding.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

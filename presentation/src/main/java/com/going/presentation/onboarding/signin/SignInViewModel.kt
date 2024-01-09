@@ -1,10 +1,10 @@
-package com.going.presentation.auth
+package com.going.presentation.onboarding.signin
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
-import com.going.domain.repository.SignInRepository
+import com.going.domain.repository.AuthRepository
 import com.going.presentation.util.toErrorCode
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val loginRepository: SignInRepository,
+    private val loginRepository: AuthRepository,
 ) : ViewModel() {
     private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
     val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState

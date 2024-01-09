@@ -1,16 +1,15 @@
-package com.going.presentation.splash
+package com.going.presentation.onboarding.splash
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.auth.SignInActivity
+import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
-import com.going.presentation.onboarding.OnboardingProfileSettingActivity
+import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 

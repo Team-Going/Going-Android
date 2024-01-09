@@ -1,8 +1,16 @@
 package com.going.domain.repository
 
-interface AuthRepository {
-    fun getAccessToken(): String
-    fun setTokens(accessToken: String, refreshToken: String)
+import com.going.domain.entity.response.AuthTokenModel
 
-    fun getRefreshToken(): String
+interface AuthRepository {
+    suspend fun postSignIn(
+        Authorization: String,
+        platform: String,
+    ): Result<AuthTokenModel>
+
+    suspend fun postSignUp(
+        name: String,
+        intro: String,
+        platform: String,
+    ): Result<AuthTokenModel>
 }

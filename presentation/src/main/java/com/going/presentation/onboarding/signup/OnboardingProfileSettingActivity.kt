@@ -1,4 +1,4 @@
-package com.going.presentation.onboarding
+package com.going.presentation.onboarding.signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
-import com.going.presentation.splash.SplashActivity
+import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener

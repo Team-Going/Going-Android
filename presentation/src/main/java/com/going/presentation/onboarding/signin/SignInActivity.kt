@@ -1,4 +1,4 @@
-package com.going.presentation.auth
+package com.going.presentation.onboarding.signin
 
 import android.content.Intent
 import android.net.Uri
@@ -8,7 +8,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
-import com.going.presentation.onboarding.OnboardingProfileSettingActivity
+import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
