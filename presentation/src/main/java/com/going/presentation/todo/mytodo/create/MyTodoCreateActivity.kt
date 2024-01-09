@@ -24,6 +24,8 @@ class MyTodoCreateActivity :
         initTodoFocusListener()
         initMemoFocusListener()
         initDateClickListener()
+        initFinishBtnListener()
+        initBackBtnListener()
         observeTextLength()
         observeMemoLength()
         observeDateEmpty()
@@ -61,6 +63,19 @@ class MyTodoCreateActivity :
         binding.etMyTodoCreateDate.setOnSingleClickListener {
             myTodoCreateBottomSheet = MyTodoCreateBottomSheet()
             myTodoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
+        }
+    }
+
+    private fun initFinishBtnListener() {
+        binding.btnMyTodoMemoFinish.setOnSingleClickListener {
+            // 서버통신 진행
+            finish()
+        }
+    }
+
+    private fun initBackBtnListener() {
+        binding.btnMyTodoMemoFinish.setOnSingleClickListener {
+            finish()
         }
     }
 
