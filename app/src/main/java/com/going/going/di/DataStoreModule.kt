@@ -2,8 +2,8 @@ package com.going.going.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.going.data.local.GoingDataStoreImpl
 import com.going.data.local.GoingDataStore
+import com.going.data.local.GoingDataStoreImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

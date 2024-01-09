@@ -1,11 +1,11 @@
 package com.going.going.di
 
-import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.data.repositoryImpl.AuthRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
-import com.going.domain.repository.TokenRepository
+import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.MockRepository
+import com.going.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
