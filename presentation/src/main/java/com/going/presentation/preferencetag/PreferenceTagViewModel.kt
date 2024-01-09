@@ -21,7 +21,7 @@ class PreferenceTagViewModel : ViewModel() {
         PreferenceData(
             number = "03",
             question = "음식을 고를 때 무엇을 더 중요시 하나요?",
-            leftPrefer = "철처한 계획",
+            leftPrefer = "철저한 계획",
             rightPrefer = "무계획"
         ),
         PreferenceData(
