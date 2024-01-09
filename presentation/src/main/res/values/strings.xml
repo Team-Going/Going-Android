@@ -112,4 +112,13 @@
     <string name="finish_trip_tv_invite">입장하기</string>
     <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
 
+    <!--    setting-->
+    <string name="setting_tv_toolbar">설정</string>
+    <string name="setting_tv_profile">프로필</string>
+    <string name="setting_tv_inquire">문의하기</string>
+    <string name="setting_tv_service_version">서비스 버전</string>
+    <string name="setting_tv_policy">약관 및 정책</string>
+    <string name="setting_tv_about_doorip">About doorip</string>
+    <string name="setting_tv_logout">로그아웃</string>
+
 </resources>
