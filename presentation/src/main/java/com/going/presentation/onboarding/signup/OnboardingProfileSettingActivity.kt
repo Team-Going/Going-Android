@@ -16,6 +16,7 @@ import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -149,24 +150,10 @@ class OnboardingProfileSettingActivity :
     private fun observeIsSignUpState() {
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    navigateToTendencyTestScreen()
-                }
-
-                is UiState.Failure -> {
-                    // when + error code로 분기처리 예정
-                    if (state.msg == "kakao") {
-                        navigateToSplashScreen()
-                    }
-                }
-
-                is UiState.Empty -> {
-                    // 여튼 로직
-                }
-
-                is UiState.Loading -> {
-                    // 로딩 중 로직
-                }
+                is SignUpState.SUCCESS -> navigateToTendencyTestScreen()
+                is SignUpState.FAIL -> toast(getString(R.string.server_error))
+                is SignUpState.LOG_IN -> navigateToSplashScreen()
+                is SignUpState.LOADING -> {}
             }
         }.launchIn(lifecycleScope)
     }

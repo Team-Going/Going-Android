@@ -5,13 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.RequestSignUpModel
-import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.AuthRepository
 import com.going.presentation.util.toErrorCode
-import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
-import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,8 +29,8 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     val isNameAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
-    private val _isSignUpState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
-    val isSignUpState: StateFlow<UiState<AuthTokenModel?>> = _isSignUpState
+    private val _isSignUpState = MutableStateFlow<SignUpState>(SignUpState.LOADING)
+    val isSignUpState: StateFlow<SignUpState> = _isSignUpState
 
     fun getMaxNameLen() = MAX_NAME_LEN
     fun getMaxInfoLen() = MAX_INFO_LEN
@@ -67,22 +64,20 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     }
 
     fun startSignUp() {
+        _isSignUpState.value = SignUpState.LOADING
+
         if (AuthApiClient.instance.hasToken()) {
-            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-                if (error != null) {
-                    if (error is KakaoSdkError && error.isInvalidTokenError()) {
-                        _isSignUpState.value = UiState.Failure("kakao error")
-                    } else {
-                        _isSignUpState.value = UiState.Failure("kakao error")
-                    }
-                } else {
+            UserApiClient.instance.accessTokenInfo { _, error ->
+                if (error == null) {
                     val kakaoAccessToken =
                         TokenManagerProvider.instance.manager.getToken()?.accessToken
                     signUpWithServer(kakaoAccessToken.toString())
+                } else {
+                    _isSignUpState.value = SignUpState.LOG_IN
                 }
             }
         } else {
-            _isSignUpState.value = UiState.Failure("kakao error")
+            _isSignUpState.value = SignUpState.LOG_IN
         }
     }
 
@@ -92,16 +87,9 @@ class OnboardingProfileSettingViewModel @Inject constructor(
                 kakaoAccessToken,
                 RequestSignUpModel(name.value, info.value, KAKAO),
             ).onSuccess {
-                _isSignUpState.value = UiState.Success(
-                    AuthTokenModel(
-                        accessToken = it.accessToken,
-                        refreshToken = it.refreshToken,
-                    ),
-                )
+                _isSignUpState.value = SignUpState.SUCCESS
             }.onFailure {
-                val errorCode = toErrorCode(it)
-
-                _isSignUpState.value = UiState.Failure(errorCode)
+                _isSignUpState.value = SignUpState.FAIL
             }
         }
     }
@@ -112,5 +100,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         const val KAKAO = "kakao"
         const val MAX_NAME_LEN = 3
         const val MAX_INFO_LEN = 20
+        const val SIGN_UP = "e4041"
+        const val TENDENCY = "e4045"
     }
 }
