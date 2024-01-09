@@ -1,7 +1,8 @@
 package com.going.domain.entity
 
 data class PreferenceData(
-    val number: Int,
-    val leftPrefer: String,
+    val number: String,
+    val question : String,
     val rightPrefer: String,
+    val leftPrefer : String,
 )
