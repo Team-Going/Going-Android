@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.going.presentation.starttrip.finishtrip.FinishTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray_50"
-        tools:context=".starttrip.finishtrip.FinshTripActivity">
+        tools:context=".starttrip.finishtrip.FinishTripActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_finish_trip"
@@ -184,6 +186,19 @@
             app:layout_constraintTop_toTopOf="@id/tv_finish_trip_terms_text" />
 
         <TextView
+            android:id="@+id/tv_invite_code"
+            style="@style/TextAppearance.Doorip.Head4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="a1b2c3"
+            android:textColor="@color/gray_700"
+            app:layout_constraintBottom_toTopOf="@id/iv_finish_trip_copy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_ticket" />
+
+        <TextView
             android:id="@+id/tv_finish_trip_terms_text"
             style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
@@ -199,12 +214,12 @@
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
-            app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text"
+            android:background="@color/gray_300"
             app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
-            android:background="@color/gray_300" />
+            app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
+            app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text" />
 
-    <TextView
+        <TextView
             android:id="@+id/btn_finish_trip_send_code"
             style="@style/TextAppearance.Doorip.Body2.Bold"
             android:layout_width="0dp"
