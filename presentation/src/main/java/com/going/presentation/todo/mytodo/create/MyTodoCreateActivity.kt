@@ -1,4 +1,4 @@
-package com.going.presentation.todo.mytodo.detail
+package com.going.presentation.todo.mytodo.create
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -8,11 +8,14 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoCreateBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setOnSingleClickListener
 
 class MyTodoCreateActivity :
     BaseActivity<ActivityMyTodoCreateBinding>(R.layout.activity_my_todo_create) {
 
     private val viewModel by viewModels<MyTodoCreateViewModel>()
+
+    private var myTodoCreateBottomSheet: MyTodoCreateBottomSheet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +23,10 @@ class MyTodoCreateActivity :
         initViewModel()
         initTodoFocusListener()
         initMemoFocusListener()
+        initDateClickListener()
         observeTextLength()
         observeMemoLength()
+        observeDateEmpty()
     }
 
     private fun initViewModel() {
@@ -49,6 +54,13 @@ class MyTodoCreateActivity :
             ) { background ->
                 binding.etMyTodoCreateMemo.background = setBackgroundColor(background)
             }
+        }
+    }
+
+    private fun initDateClickListener() {
+        binding.etMyTodoCreateDate.setOnSingleClickListener {
+            myTodoCreateBottomSheet = MyTodoCreateBottomSheet()
+            myTodoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
@@ -91,6 +103,16 @@ class MyTodoCreateActivity :
         }
     }
 
+    private fun observeDateEmpty() {
+        viewModel.endDate.observe(this) { text ->
+            if (text.isEmpty()) {
+                binding.etMyTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray200_line)
+            } else {
+                binding.etMyTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray700_line)
+            }
+        }
+    }
+
     private fun setColors(
         hasFocus: Boolean,
         length: Int,
@@ -110,11 +132,20 @@ class MyTodoCreateActivity :
         counter.setTextColor(getColor(color))
     }
 
-    private fun setBackgroundColor(background: Int) : Drawable? {
+    private fun setBackgroundColor(background: Int): Drawable? {
         return ResourcesCompat.getDrawable(
             this.resources,
             background,
             theme,
         )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (myTodoCreateBottomSheet?.isAdded == true) myTodoCreateBottomSheet?.dismiss()
+    }
+
+    companion object {
+        private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
     }
 }
