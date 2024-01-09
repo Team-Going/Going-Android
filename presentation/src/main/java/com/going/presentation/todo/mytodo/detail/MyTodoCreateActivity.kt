@@ -1,4 +1,4 @@
-package com.going.presentation.todo.mytodo.create
+package com.going.presentation.todo.mytodo.detail
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle

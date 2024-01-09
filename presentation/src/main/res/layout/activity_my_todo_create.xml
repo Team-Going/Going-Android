@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.going.presentation.todo.mytodo.create.MyTodoCreateViewModel" />
+            type="com.going.presentation.todo.mytodo.detail.MyTodoCreateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
