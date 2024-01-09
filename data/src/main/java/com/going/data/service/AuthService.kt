@@ -17,6 +17,7 @@ interface AuthService {
 
     @POST("api/users/signup")
     suspend fun postSignUp(
+        @Header("Authorization") Authorization: String,
         @Body body: SignUpRequestDto,
     ): BaseResponse<AuthResponseDto>
 }

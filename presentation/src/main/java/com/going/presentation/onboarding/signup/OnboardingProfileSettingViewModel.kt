@@ -32,8 +32,8 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     val isNameAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
-    private val _isTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
-    val isTokenState: StateFlow<UiState<AuthTokenModel?>> = _isTokenState
+    private val _isSignUpState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
+    val isSignUpState: StateFlow<UiState<AuthTokenModel?>> = _isSignUpState
 
     fun getMaxNameLen() = MAX_NAME_LEN
     fun getMaxInfoLen() = MAX_INFO_LEN
@@ -71,9 +71,9 @@ class OnboardingProfileSettingViewModel @Inject constructor(
             UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
                 if (error != null) {
                     if (error is KakaoSdkError && error.isInvalidTokenError()) {
-                        _isTokenState.value = UiState.Failure("kakao error")
+                        _isSignUpState.value = UiState.Failure("kakao error")
                     } else {
-                        _isTokenState.value = UiState.Failure("kakao error")
+                        _isSignUpState.value = UiState.Failure("kakao error")
                     }
                 } else {
                     val kakaoAccessToken =
@@ -82,17 +82,20 @@ class OnboardingProfileSettingViewModel @Inject constructor(
                 }
             }
         } else {
-            _isTokenState.value = UiState.Failure("kakao error")
+            _isSignUpState.value = UiState.Failure("kakao error")
         }
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
         // 서버와 통신 예정
-        _isTokenState.value = UiState.Loading
+        _isSignUpState.value = UiState.Loading
 
         viewModelScope.launch {
-            authRepository.postSignUp(RequestSignUpModel(name.value, info.value, KAKAO)).onSuccess {
-                _isTokenState.value = UiState.Success(
+            authRepository.postSignUp(
+                kakaoAccessToken,
+                RequestSignUpModel(name.value, info.value, KAKAO),
+            ).onSuccess {
+                _isSignUpState.value = UiState.Success(
                     AuthTokenModel(
                         accessToken = it.accessToken,
                         refreshToken = it.refreshToken,
@@ -101,7 +104,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
-                _isTokenState.value = UiState.Failure(errorCode)
+                _isSignUpState.value = UiState.Failure(errorCode)
             }
         }
     }

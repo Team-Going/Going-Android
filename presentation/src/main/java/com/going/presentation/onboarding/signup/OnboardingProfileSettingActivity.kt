@@ -12,6 +12,7 @@ import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
 import com.going.presentation.onboarding.splash.SplashActivity
+import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -30,36 +31,10 @@ class OnboardingProfileSettingActivity :
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
         initSetOnFocusChangeListener()
+        initSignUpBtnClickListener()
         observeIsNameAvailable()
         observeTextLength()
-
-        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
-            viewModel.startSignUp()
-        }
-
-        viewModel.isTokenState.flowWithLifecycle(lifecycle).onEach { state ->
-            when (state) {
-                is UiState.Success -> {
-                    // 성공 했을 때 로직
-                    // 페이지 이동
-                }
-
-                is UiState.Failure -> {
-                    // when + error code로 분기처리 예정
-                    if (state.msg == "kakao") {
-                        navigateToSplashScreen()
-                    }
-                }
-
-                is UiState.Empty -> {
-                    // 여튼 로직
-                }
-
-                is UiState.Loading -> {
-                    // 로딩 중 로직
-                }
-            }
-        }.launchIn(lifecycleScope)
+        observeIsSignUpState()
     }
 
     private fun initBindingViewModel() {
@@ -100,6 +75,12 @@ class OnboardingProfileSettingActivity :
                     theme,
                 )
             }
+        }
+    }
+
+    private fun initSignUpBtnClickListener() {
+        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
+            viewModel.startSignUp()
         }
     }
 
@@ -165,8 +146,42 @@ class OnboardingProfileSettingActivity :
         }
     }
 
+    private fun observeIsSignUpState() {
+        viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    // 쉐어드 프리퍼런스 저장 로직 구현 필요
+                    navigateToTendencyTestScreen()
+                }
+
+                is UiState.Failure -> {
+                    // when + error code로 분기처리 예정
+                    if (state.msg == "kakao") {
+                        navigateToSplashScreen()
+                    }
+                }
+
+                is UiState.Empty -> {
+                    // 여튼 로직
+                }
+
+                is UiState.Loading -> {
+                    // 로딩 중 로직
+                }
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     private fun navigateToSplashScreen() {
         Intent(this, SplashActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
+    private fun navigateToTendencyTestScreen() {
+        Intent(this, TendencyTestActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

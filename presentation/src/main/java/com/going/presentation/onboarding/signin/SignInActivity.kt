@@ -57,7 +57,8 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    // 성공 했을 때 로직
+                    // 쉐어드 프리퍼런스 값 저장 로직
+                    navigateToMainScreen()
                 }
 
                 is UiState.Failure -> {

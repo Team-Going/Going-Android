@@ -12,6 +12,7 @@ interface AuthDataSource {
     ): BaseResponse<AuthResponseDto>
 
     suspend fun postSignUp(
-        platform: SignUpRequestDto,
+        Authorization: String,
+        data: SignUpRequestDto,
     ): BaseResponse<AuthResponseDto>
 }

@@ -23,10 +23,12 @@ class AuthRepositoryImpl @Inject constructor(
         }
 
     override suspend fun postSignUp(
+        Authorization: String,
         requestSignUpModel: RequestSignUpModel,
     ): Result<AuthTokenModel> =
         runCatching {
             authDataSource.postSignUp(
+                Authorization,
                 requestSignUpModel.toSignUpRequestDto(),
             ).data.toAuthTokenModel()
         }

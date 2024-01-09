@@ -10,6 +10,7 @@ interface AuthRepository {
     ): Result<AuthTokenModel>
 
     suspend fun postSignUp(
+        Authorization: String,
         data: RequestSignUpModel,
     ): Result<AuthTokenModel>
 }
