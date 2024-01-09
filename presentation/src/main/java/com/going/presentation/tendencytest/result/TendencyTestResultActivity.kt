@@ -27,37 +27,37 @@ class TendencyTestResultActivity :
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
             viewModel?.mockTendencyResult?.apply {
-                tvTendencyTestResultType.text = tendencyTitle
-                tvTendencyTestResultSubType.text = tendencySubTitle
+                tvTendencyTestResultType.text = profileTitle
+                tvTendencyTestResultSubType.text = profileSubTitle
 
                 tvTendencyTestResultTag1.text = tags[0]
                 tvTendencyTestResultTag2.text = tags[1]
                 tvTendencyTestResultTag3.text = tags[2]
 
-                tvFirstDescriptionTitle.text = tendencyBoxInfo[0].title
+                tvFirstDescriptionTitle.text = profileBoxInfo[0].title
                 tvFirstDescriptionFirstText.text =
-                    setBulletPoint(tendencyBoxInfo[0].first)
+                    setBulletPoint(profileBoxInfo[0].first)
                 tvFirstDescriptionSecondText.text =
-                    setBulletPoint(tendencyBoxInfo[0].second)
+                    setBulletPoint(profileBoxInfo[0].second)
                 tvFirstDescriptionThirdText.text =
-                    setBulletPoint(tendencyBoxInfo[0].third)
+                    setBulletPoint(profileBoxInfo[0].third)
 
                 tvSecondDescriptionTitle.text =
-                    tendencyBoxInfo[1].title
+                    profileBoxInfo[1].title
                 tvSecondDescriptionFirstText.text =
-                    setBulletPoint(tendencyBoxInfo[1].first)
+                    setBulletPoint(profileBoxInfo[1].first)
                 tvSecondDescriptionSecondText.text =
-                    setBulletPoint(tendencyBoxInfo[1].second)
+                    setBulletPoint(profileBoxInfo[1].second)
                 tvSecondDescriptionThirdText.text =
-                    setBulletPoint(tendencyBoxInfo[1].third)
+                    setBulletPoint(profileBoxInfo[1].third)
 
-                tvThirdDescriptionTitle.text = tendencyBoxInfo[2].title
+                tvThirdDescriptionTitle.text = profileBoxInfo[2].title
                 tvThirdDescriptionFirstText.text =
-                    setBulletPoint(tendencyBoxInfo[2].first)
+                    setBulletPoint(profileBoxInfo[2].first)
                 tvThirdDescriptionSecondText.text =
-                    setBulletPoint(tendencyBoxInfo[2].second)
+                    setBulletPoint(profileBoxInfo[2].second)
                 tvThirdDescriptionThirdText.text =
-                    setBulletPoint(tendencyBoxInfo[2].third)
+                    setBulletPoint(profileBoxInfo[2].third)
             }
         }
     }
