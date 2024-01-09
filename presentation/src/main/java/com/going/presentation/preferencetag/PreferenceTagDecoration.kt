@@ -1,11 +1,11 @@
-package com.going.presentation.tripdashboard.triplist
+package com.going.presentation.preferencetag
 
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class TripDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+class PreferenceTagDecoration (val context: Context) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -18,6 +18,6 @@ class TripDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
         if (position == 0) outRect.top = 50
         else outRect.top = 0
-        outRect.bottom = 20
+        outRect.bottom = 10
     }
 }
