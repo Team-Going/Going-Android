@@ -77,10 +77,10 @@
             android:background="@drawable/sel_rounded_corner_button"
             android:backgroundTint="@color/gray_500"
             android:outlineProvider="none"
+            android:text="@string/dashboard_btn_create_trip"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="@string/dashboard_btn_create_trip" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

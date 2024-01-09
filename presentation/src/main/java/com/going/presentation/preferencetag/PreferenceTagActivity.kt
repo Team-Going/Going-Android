@@ -26,7 +26,6 @@ class PreferenceTagActivity :
 
     }
 
-
     private fun initAdapter() {
         _adapter = PreferenceTagAdapter(this, this)
         binding.rvPreferenceTag.adapter = adapter
