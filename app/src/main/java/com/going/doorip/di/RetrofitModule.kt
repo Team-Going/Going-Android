@@ -1,6 +1,6 @@
-package com.going.going.di
+package com.going.doorip.di
 
-import com.going.going.BuildConfig.BASE_URL
+import com.going.doorip.BuildConfig.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

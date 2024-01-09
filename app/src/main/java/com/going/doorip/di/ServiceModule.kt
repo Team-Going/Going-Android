@@ -1,4 +1,4 @@
-package com.going.going.di
+package com.going.doorip.di
 
 import com.going.data.service.AuthService
 import com.going.data.service.MockService
