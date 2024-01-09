@@ -8,7 +8,7 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 
-class MyTodoCreateActivity :
+class MyTodoDetailActivity :
     BaseActivity<ActivityMyTodoDetailBinding>(R.layout.activity_my_todo_detail) {
 
     private val viewModel by viewModels<MyTodoDetailViewModel>()
@@ -52,6 +52,5 @@ class MyTodoCreateActivity :
         viewModel.endDate.value = "2024.1.10"
         viewModel.memo.value = "오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지"
     }
-
 
 }

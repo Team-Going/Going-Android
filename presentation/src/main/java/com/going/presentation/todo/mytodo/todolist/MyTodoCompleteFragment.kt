@@ -30,7 +30,7 @@ class MyTodoCompleteFragment() :
         _adapter = MyTodoListAdapter(true, { }, { position ->
             adapter.removeItem(position)
             adapter.notifyDataSetChanged()
-        })
+        }, {})
         binding.rvMyTodoComplete.adapter = adapter
     }
 
