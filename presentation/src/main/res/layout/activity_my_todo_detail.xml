@@ -62,7 +62,7 @@
             android:id="@+id/sv_my_todo_detail"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_my_todo_memo_finish"
+            app:layout_constraintBottom_toTopOf="@id/btn_my_todo_detail_delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_detail">
@@ -253,21 +253,40 @@
 
         </ScrollView>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_my_todo_memo_finish"
-            style="@style/button_style"
+        <TextView
+            android:id="@+id/btn_my_todo_detail_delete"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button"
-            android:outlineProvider="none"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_rect_4_gray200_line"
+            android:gravity="center"
             android:paddingVertical="10dp"
-            android:text="@string/my_todo_create_btn_finish"
-            android:textSize="16sp"
+            android:text="삭제하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_my_todo_detail_mod"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_my_todo_detail_mod"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_rect_4_gray500_fill"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="수정하기"
+            android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/btn_my_todo_detail_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
