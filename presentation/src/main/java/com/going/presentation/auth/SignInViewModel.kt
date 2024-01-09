@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.SignInRepository
+import com.going.presentation.util.toErrorCode
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
@@ -14,7 +15,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,9 +26,6 @@ class SignInViewModel @Inject constructor(
 
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
-
-    private val _isMoveAvailable = MutableStateFlow(true)
-    val isMoveAvailable: StateFlow<Boolean> = _isMoveAvailable
 
     private var webLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error == null && token != null) {
@@ -73,9 +70,7 @@ class SignInViewModel @Inject constructor(
         _postChangeTokenState.value = UiState.Loading
 
         viewModelScope.launch {
-            // 통신 로직
             loginRepository.postSignIn(accessToken, social).onSuccess {
-                // 이때 받은 토큰은 JWT가 아니기 때문에 Shared에 저장하지 않는다. -> Intent로 온보딩으로 옮기고 사용
                 _postChangeTokenState.value = UiState.Success(
                     AuthTokenModel(
                         accessToken = it.accessToken,
@@ -83,13 +78,9 @@ class SignInViewModel @Inject constructor(
                     ),
                 )
             }.onFailure {
-                if (it is retrofit2.HttpException) {
-                    val jsonTemp = it.response()?.errorBody()?.byteString().toString()
-                    val json = jsonTemp.slice(6 until jsonTemp.length)
-                    val errorCode = JSONObject(json).getString("code")
+                val errorCode = toErrorCode(it)
 
-                    _postChangeTokenState.value = UiState.Failure(errorCode)
-                }
+                _postChangeTokenState.value = UiState.Failure(errorCode)
             }
         }
     }
