@@ -29,15 +29,18 @@ class MyTodoCompleteFragment() :
     }
 
     private fun initAdapterWithClickListener() {
-        _adapter = MyTodoListAdapter(true, { }, { position ->
-            adapter.removeItem(position)
-            adapter.notifyDataSetChanged()
-        }, { todoId ->
-            Intent(activity, MyTodoDetailActivity::class.java).apply {
-                putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
-                startActivity(this)
-            }
-        })
+        _adapter = MyTodoListAdapter(true,
+            { },
+            { position ->
+                adapter.removeItem(position)
+                adapter.notifyDataSetChanged()
+            },
+            { todoId ->
+                Intent(activity, MyTodoDetailActivity::class.java).apply {
+                    putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
+                    startActivity(this)
+                }
+            })
         binding.rvMyTodoComplete.adapter = adapter
     }
 
