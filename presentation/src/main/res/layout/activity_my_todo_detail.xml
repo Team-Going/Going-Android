@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.going.presentation.todo.mytodo.create.MyTodoCreateViewModel" />
+            type="com.going.presentation.todo.mytodo.detail.MyTodoDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -227,7 +227,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="6dp"
-                    android:afterTextChanged="@{(text) -> vm.checkIsFinishAvailable()}"
                     android:background="@drawable/shape_rect_4_gray200_line"
                     android:gravity="top"
                     android:hint="@string/my_todo_create_tv_memo_hint"
@@ -268,11 +267,9 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{vm.isFinishAvailable()}"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/my_todo_create_btn_finish"
-            android:textColor="@{vm.isFinishAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
