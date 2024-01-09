@@ -8,6 +8,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
+import com.going.presentation.onboarding.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -53,14 +54,17 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     }
 
     private fun observePostChangeTokenState() {
-        viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { tokenState ->
-            when (tokenState) {
+        viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
                 is UiState.Success -> {
                     // 성공 했을 때 로직
                 }
 
                 is UiState.Failure -> {
                     // 실패 했을 때 로직
+                    when (state.msg) {
+                        "e4041" -> navigateToOnboardingScreen()
+                    }
                 }
 
                 is UiState.Empty -> {
@@ -74,7 +78,16 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         }.launchIn(lifecycleScope)
     }
 
+    private fun navigateToOnboardingScreen() {
+        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
     companion object {
         const val TERMS_URL = "http://www.naver.com"
+        
     }
 }

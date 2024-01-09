@@ -1,11 +1,11 @@
 package com.going.presentation.auth
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
-import com.going.domain.repository.LoginRepository
+import com.going.domain.repository.AuthRepository
+import com.going.domain.repository.SignInRepository
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
@@ -15,12 +15,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val loginRepository: LoginRepository,
+    private val loginRepository: SignInRepository,
 ) : ViewModel() {
     private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
     val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
@@ -28,15 +28,14 @@ class SignInViewModel @Inject constructor(
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
 
+    private val _isMoveAvailable = MutableStateFlow(true)
+    val isMoveAvailable: StateFlow<Boolean> = _isMoveAvailable
+
     private var webLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-        Log.e("TAG", "startKakaoLogIn: 2번")
         if (error == null && token != null) {
-            Log.e("TAG", "startKakaoLogIn: 3번")
             changeTokenFromServer(
                 accessToken = token.accessToken,
             )
-        } else {
-            Log.e("TAG", "startKakaoLogIn: 4번")
         }
     }
 
@@ -64,7 +63,6 @@ class SignInViewModel @Inject constructor(
                 context = context,
                 callback = webLoginCallback,
             )
-            Log.e("TAG", "startKakaoLogIn: 1번")
         }
     }
 
@@ -77,17 +75,22 @@ class SignInViewModel @Inject constructor(
 
         viewModelScope.launch {
             // 통신 로직
-            loginRepository.postSignin(accessToken, social).onSuccess {
-                // 성공시 서버에서 준 정보를 넣는 예시 코드
-                Timber.e("성공고오고오고공")
+            loginRepository.postSignIn(accessToken, social).onSuccess {
+                // 이때 받은 토큰은 JWT가 아니기 때문에 Shared에 저장하지 않는다. -> Intent로 온보딩으로 옮기고 사용
                 _postChangeTokenState.value = UiState.Success(
                     AuthTokenModel(
-                        accessToken = "testAccessToekn",
-                        refreshToken = "testRefreshToekn",
+                        accessToken = it.accessToken,
+                        refreshToken = it.refreshToken,
                     ),
                 )
-            }.onFailure { err ->
-                Timber.e("실패패패패패패")
+            }.onFailure {
+                if (it is retrofit2.HttpException) {
+                    val jsonTemp = it.response()?.errorBody()?.byteString().toString()
+                    val json = jsonTemp.slice(6 until jsonTemp.length)
+                    val errorCode = JSONObject(json).getString("code")
+
+                    _postChangeTokenState.value = UiState.Failure(errorCode)
+                }
             }
         }
     }

@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.auth.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
+import com.going.presentation.onboarding.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,8 +33,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            navigateToSignInScreen()
-            // Log.e("TAG", "initSplash: ${viewModel.getHasAccessToken()}", )
+            // JWT 토큰 보유 여부 확인
             if (viewModel.getHasAccessToken()) {
                 navigateToMainScreen()
             } else {
@@ -56,6 +57,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun navigateToMainScreen() {
         // Main이 나오면 구현 예정
+        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
         finish()
     }
 
