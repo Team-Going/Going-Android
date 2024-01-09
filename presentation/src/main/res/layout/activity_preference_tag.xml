@@ -13,20 +13,39 @@
         android:background="@color/white_000"
         tools:context=".preferencetag.PreferenceTagActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_preference_tag"
-            style="@style/TextAppearance.Doorip.Body1.Bold"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_preference_tag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white_000"
-            android:paddingVertical="12dp"
-            android:paddingStart="18dp"
+            android:background="@drawable/layer_list_preference_tag_gray200_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/preference_tv_title"
-            app:titleTextColor="@color/gray_700" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_preference_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/preference_tv_title"
+                android:textColor="@color/gray_700"
+                app:layout_constraintBottom_toBottomOf="@id/btn_preference_back"
+                app:layout_constraintStart_toEndOf="@id/btn_preference_back"
+                app:layout_constraintTop_toTopOf="@id/btn_preference_back" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_preference_tag"
@@ -37,19 +56,28 @@
             app:layout_constraintBottom_toTopOf="@id/btn_preference_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_preference_tag"
+            app:layout_constraintTop_toBottomOf="@id/layout_preference_tag"
             tools:listitem="@layout/item_preference_tag" />
+
+        <ImageView
+            android:id="@+id/iv_preference_blur"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_preference_tag_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_preference_start"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:backgroundTint="@color/black_000"
-            android:text="@string/preference_btn_start"
+            android:backgroundTint="@color/gray_500"
+            android:text="@string/preference_btn_next"
             android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

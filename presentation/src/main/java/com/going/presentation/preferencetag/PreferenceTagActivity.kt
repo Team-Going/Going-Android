@@ -6,6 +6,7 @@ import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPreferenceTagBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setOnSingleClickListener
 
 class PreferenceTagActivity :
     BaseActivity<ActivityPreferenceTagBinding>(R.layout.activity_preference_tag),
@@ -21,6 +22,8 @@ class PreferenceTagActivity :
 
         initAdapter()
         initItemDecoration()
+        initBackClickListener()
+
     }
 
 
@@ -33,6 +36,12 @@ class PreferenceTagActivity :
     private fun initItemDecoration() {
         val itemDeco = PreferenceTagDecoration(this)
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
+    }
+
+    private fun initBackClickListener(){
+        binding.btnPreferenceBack.setOnSingleClickListener {
+            finish()
+        }
     }
 
     override fun onPreferenceSelected(preference: PreferenceData) {

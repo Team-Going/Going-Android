@@ -18,6 +18,6 @@ class PreferenceTagDecoration (val context: Context) : RecyclerView.ItemDecorati
 
         if (position == 0) outRect.top = 50
         else outRect.top = 0
-        outRect.bottom = 20
+        outRect.bottom = 10
     }
 }

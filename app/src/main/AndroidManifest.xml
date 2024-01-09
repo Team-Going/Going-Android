@@ -75,7 +75,7 @@
 
         <activity
             android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
