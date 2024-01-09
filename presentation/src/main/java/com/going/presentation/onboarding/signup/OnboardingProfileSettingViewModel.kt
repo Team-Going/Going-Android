@@ -87,9 +87,6 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
-        // 서버와 통신 예정
-        _isSignUpState.value = UiState.Loading
-
         viewModelScope.launch {
             authRepository.postSignUp(
                 kakaoAccessToken,

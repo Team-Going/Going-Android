@@ -7,8 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
+import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +32,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            // JWT 토큰 보유 여부 확인
             if (viewModel.getHasAccessToken()) {
                 navigateToMainScreen()
             } else {

@@ -1,10 +1,12 @@
 package com.going.presentation.onboarding.signin
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.AuthRepository
+import com.going.domain.repository.TokenRepository
 import com.going.presentation.util.toErrorCode
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
@@ -19,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val loginRepository: AuthRepository,
+    private val authRepository: AuthRepository,
+    private val tokenRepository: TokenRepository,
 ) : ViewModel() {
     private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
     val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
@@ -70,7 +73,9 @@ class SignInViewModel @Inject constructor(
         _postChangeTokenState.value = UiState.Loading
 
         viewModelScope.launch {
-            loginRepository.postSignIn(accessToken, social).onSuccess {
+            authRepository.postSignIn(accessToken, social).onSuccess {
+                tokenRepository.setTokens(it.accessToken, it.refreshToken)
+
                 _postChangeTokenState.value = UiState.Success(
                     AuthTokenModel(
                         accessToken = it.accessToken,

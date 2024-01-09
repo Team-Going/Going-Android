@@ -150,7 +150,6 @@ class OnboardingProfileSettingActivity :
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    // 쉐어드 프리퍼런스 저장 로직 구현 필요
                     navigateToTendencyTestScreen()
                 }
 
