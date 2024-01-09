@@ -1,5 +1,6 @@
 package com.going.presentation.setting
 
+import android.app.AlertDialog
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
@@ -14,7 +15,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
         initProfileClickListener()
         initInquireClickListener()
-        initServiceVersionClickListener()
         initPolicyClickListener()
         initAboutDoorip()
         initLogoutClickListener()
@@ -33,12 +33,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         }
     }
 
-    private fun initServiceVersionClickListener(){
-        binding.btnSettingServiceVersionEnter.setOnSingleClickListener {
-
-        }
-    }
-
     private fun initPolicyClickListener(){
         binding.btnSettingPolicyEnter.setOnSingleClickListener {
 
@@ -53,8 +47,23 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initLogoutClickListener(){
         binding.btnSettingLogoutEnter.setOnSingleClickListener {
-
+            showLogoutAlertDialog()
         }
     }
+    private fun showLogoutAlertDialog() =
+        AlertDialog.Builder(this)
+            .setTitle("정말 탈퇴하시겠어요?")
+            .setMessage("탈퇴시, 정보가 모두 없어져요.")
+            .    setNegativeButton("탈퇴하기",
+                { dialog, id ->
+                    // User cancelled the dialog
+                })
+            .setPositiveButton(
+                "남아있기",
+            ) { _, _ ->
+                finishAffinity()
+            }
+            .create()
+            .show()
 
 }
