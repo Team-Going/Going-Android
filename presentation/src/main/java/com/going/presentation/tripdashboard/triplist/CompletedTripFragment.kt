@@ -22,6 +22,7 @@ class CompletedTripFragment :
         super.onViewCreated(view, savedInstanceState)
 
         setRecyclerView()
+        initItemDecoration()
 
     }
 
@@ -33,6 +34,11 @@ class CompletedTripFragment :
         _adapter = CompletedAdapter(this)
         binding.rvDashboardCompletedTrip.adapter = adapter
         adapter.submitList(viewModel.mockCompletedList)
+    }
+
+    private fun initItemDecoration() {
+        val itemDeco = DashBoardDecoration(requireContext())
+        binding.rvDashboardCompletedTrip.addItemDecoration(itemDeco)
     }
 
     override fun onDestroyView() {
