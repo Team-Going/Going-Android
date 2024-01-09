@@ -57,50 +57,117 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_my_todo_create_todo_title"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/sv_my_todo_create"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="40dp"
-            android:text="할일"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_create" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_create">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_my_todo_create_todo"
-            style="@style/edit_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="6dp"
-            android:afterTextChanged="@{(text) -> vm.checkNameLength()}"
-            android:background="@drawable/shape_rect_4_gray200_line"
-            android:hint="할일을 입력해주세요."
-            android:imeOptions="actionNext"
-            android:includeFontPadding="false"
-            android:inputType="text"
-            android:maxLines="1"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="19dp"
-            android:text="@={vm.todo}"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_todo_title" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_my_todo_todo_counter"
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{@string/counter(vm.nowTodoLength, vm.MAX_TODO_LEN)}"
-            android:textColor="@color/gray_200"
-            app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_todo"
-            app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_todo" />
+                <TextView
+                    android:id="@+id/tv_my_todo_create_todo_title"
+                    style="@style/TextAppearance.Doorip.Body3.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="40dp"
+                    android:text="할일"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_my_todo_create_todo"
+                    style="@style/edit_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="6dp"
+                    android:afterTextChanged="@{(text) -> vm.checkNameLength()}"
+                    android:background="@drawable/shape_rect_4_gray200_line"
+                    android:hint="할일을 입력해주세요."
+                    android:imeOptions="actionNext"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="19dp"
+                    android:text="@={vm.todo}"
+                    android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:textColorHint="@color/gray_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_todo_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_todo_todo_counter"
+                    style="@style/TextAppearance.Doorip.Detail3.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{@string/counter(vm.nowTodoLength, vm.MAX_TODO_LEN)}"
+                    android:textColor="@color/gray_200"
+                    app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_todo"
+                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_todo" />
+
+                <TextView
+                    android:id="@+id/tv_my_todo_create_date_title"
+                    style="@style/TextAppearance.Doorip.Body3.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="언제까지"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_todo_counter" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/et_my_todo_create_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_rect_4_gray200_line"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_date_title">
+
+                    <TextView
+                        android:id="@+id/tv_my_todo_create_date_hint"
+                        style="@style/TextAppearance.Doorip.Body3.Medi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:text="날짜를 입력해주세요."
+                        android:textColor="@color/gray_200"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/iv_my_todo_create_date"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_my_todo_create_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_dropdown"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
