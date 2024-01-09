@@ -80,6 +80,7 @@
     <string name="dashboard_btn_create_trip">여행 생성하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
     <string name="dashboard_tv_dash">-</string>
+    <string name="dashboard_tv_day">D - %d</string>
 
     <!--menu-->
     <string name="menu_our_todo">우리의 투두</string>

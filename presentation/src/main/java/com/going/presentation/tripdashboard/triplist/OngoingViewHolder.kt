@@ -18,12 +18,12 @@ class OngoingViewHolder(
             tvDashboardDateStart.text = item.startDate
             tvDashboardDateEnd.text = item.endDate
 
-            if (item.day <= 0) {
-                layoutDashboardTraveling.visibility = View.VISIBLE
-                layoutDashboardDayLeft.visibility = View.INVISIBLE
-            } else {
-                tvDashboardDeadlineDay.text = item.day.toString()
-            }
+//            if (item.day <= 0) {
+//                layoutDashboardTraveling.visibility = View.VISIBLE
+//                layoutDashboardDayLeft.visibility = View.INVISIBLE
+//            } else {
+//                tvDashboardDeadlineDay.text = item.day.toString()
+//            }
 
             layoutDashboard.setOnSingleClickListener {
                 listener.onDashBoardSelectedListener(item)
