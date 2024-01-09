@@ -28,6 +28,7 @@ class MyTodoCreateBottomSheet() :
         binding.btnCreateTripFinish.setOnSingleClickListener {
             viewModel.endDate.value =
                 binding.dpCreateTripDate.year.toString() + "." + (binding.dpCreateTripDate.month + 1).toString() + "." + binding.dpCreateTripDate.dayOfMonth.toString()
+            viewModel.checkIsFinishAvailable()
             dismiss()
         }
     }

@@ -14,21 +14,18 @@ class MyTodoCreateViewModel : ViewModel() {
     val memo = MutableLiveData("")
     val nowMemoLength = MutableLiveData(0)
 
+    val isFinishAvailable = MutableLiveData(false)
+
     fun getMaxTodoLen() = MAX_TODO_LEN
 
     fun getMaxMemoLen() = MAX_MEMO_LEN
 
-    fun checkTodoLength() {
+    fun checkIsFinishAvailable() {
         nowTodoLength.value = getGraphemeLength(todo.value)
-    }
-
-    fun checkMemoLength() {
         nowMemoLength.value = getGraphemeLength(memo.value)
+        isFinishAvailable.value =
+            todo.value?.isNotEmpty() == true && memo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
     }
-
-    fun isFinishAvailable() =
-        todo.value?.isNotEmpty() == true && memo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
-
 
     // 이모지 포함 글자 수 세는 함수
     private fun getGraphemeLength(value: String?): Int {
