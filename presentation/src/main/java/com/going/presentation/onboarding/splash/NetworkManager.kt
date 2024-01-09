@@ -1,4 +1,4 @@
-package com.going.presentation.splash
+package com.going.presentation.onboarding.splash
 
 import android.content.Context
 import android.net.ConnectivityManager

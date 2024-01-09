@@ -1,6 +1,6 @@
 package com.going.going.di
 
-import com.going.data.service.LoginService
+import com.going.data.service.AuthService
 import com.going.data.service.MockService
 import dagger.Module
 import dagger.Provides
@@ -20,7 +20,6 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideLoginService(retrofit: Retrofit): LoginService =
-        retrofit.create(LoginService::class.java)
-
+    fun provideLoginService(retrofit: Retrofit): AuthService =
+        retrofit.create(AuthService::class.java)
 }

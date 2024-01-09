@@ -21,12 +21,11 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="oauth"
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
                     android:scheme="kakao${NATIVE_APP_KEY}" />
             </intent-filter>
         </activity>
@@ -37,7 +36,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.splash.SplashActivity"
+            android:name="com.going.presentation.onboarding.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -48,7 +47,7 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.auth.SignInActivity"
+            android:name="com.going.presentation.onboarding.signin.SignInActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -58,7 +57,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.onboarding.OnboardingProfileSettingActivity"
+            android:name="com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
