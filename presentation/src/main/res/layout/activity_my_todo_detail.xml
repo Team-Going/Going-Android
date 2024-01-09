@@ -143,9 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="4dp"
-                        android:hint="@string/my_todo_create_tv_date_hint"
                         android:text="@={vm.endDate}"
-                        android:textColorHint="@color/gray_200"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/iv_my_todo_detail_date"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,27 +218,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_my_todo_detail_person_lock" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <TextView
                     android:id="@+id/et_my_todo_create_memo"
-                    style="@style/edit_text_style"
+                    style="@style/TextAppearance.Doorip.Body3.Medi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/shape_rect_4_gray200_line"
                     android:gravity="top"
-                    android:hint="@string/my_todo_create_tv_memo_hint"
-                    android:includeFontPadding="false"
-                    android:inputType="textMultiLine"
                     android:minLines="6"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="19dp"
                     android:text="@={vm.memo}"
-                    android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
-                    android:textColorHint="@color/gray_200"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_memo_title" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_memo_title"
+                    tools:text="오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지" />
 
                 <TextView
                     android:id="@+id/tv_my_todo_memo_counter"
