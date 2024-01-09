@@ -25,11 +25,11 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_preference_union"
             android:gravity="center"
-            android:text="01"
             android:textColor="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="01" />
 
         <TextView
             android:id="@+id/tv_preference_question"
@@ -37,11 +37,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="계획은 얼만큼 짤까요?"
             android:textColor="@color/gray_700"
             app:layout_constraintEnd_toEndOf="@id/tv_preference_number"
             app:layout_constraintStart_toStartOf="@id/tv_preference_number"
-            app:layout_constraintTop_toBottomOf="@id/tv_preference_number" />
+            app:layout_constraintTop_toBottomOf="@id/tv_preference_number"
+            tools:text="계획은 얼만큼 짤까요?" />
 
         <RadioGroup
             android:id="@+id/rg_preference_tag"
@@ -109,11 +109,11 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
-            android:text="철저하게"
             android:textColor="@color/gray_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rg_preference_tag" />
+            app:layout_constraintTop_toBottomOf="@id/rg_preference_tag"
+            tools:text="철저하게" />
 
         <TextView
             android:id="@+id/tv_preference_tag2"
@@ -137,11 +137,11 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="16dp"
-            android:text="즉흥으로"
             android:textColor="@color/gray_700"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rg_preference_tag" />
+            app:layout_constraintTop_toBottomOf="@id/rg_preference_tag"
+            tools:text="즉흥으로" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
