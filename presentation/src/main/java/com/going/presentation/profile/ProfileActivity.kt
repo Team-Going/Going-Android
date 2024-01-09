@@ -1,4 +1,4 @@
-package com.going.presentation.tendencytest.result
+package com.going.presentation.profile
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -6,33 +6,28 @@ import android.text.Spanned
 import android.text.style.BulletSpan
 import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityTendencyTestResultBinding
+import com.going.presentation.databinding.ActivityProfileBinding
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.setOnSingleClickListener
 
-class TendencyTestResultActivity :
-    BaseActivity<ActivityTendencyTestResultBinding>(R.layout.activity_tendency_test_result) {
-    private val viewModel by viewModels<TendencyTestResultViewModel>()
+class ProfileActivity :
+    BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
+    private val profileViewModel by viewModels<ProfileViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bindTendencyInfo()
-
-        initSaveImgBtnClickListener()
-        initFinishBtnClickListener()
+        bindProfileInfo()
     }
 
-    private fun bindTendencyInfo() {
+    private fun bindProfileInfo() {
         with(binding) {
-            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
+            profileViewModel.mockProfileResult.apply {
+                tvProfileType.text = profileTitle
+                tvProfileSubType.text = profileSubTitle
 
-            viewModel?.mockTendencyResult?.apply {
-                tvTendencyTestResultType.text = profileTitle
-                tvTendencyTestResultSubType.text = profileSubTitle
-
-                tvTendencyTestResultTag1.text = tags[0]
-                tvTendencyTestResultTag2.text = tags[1]
-                tvTendencyTestResultTag3.text = tags[2]
+                tvProfileTag1.text = tags[0]
+                tvProfileTag2.text = tags[1]
+                tvProfileTag3.text = tags[2]
 
                 tvFirstDescriptionTitle.text = profileBoxInfo[0].title
                 tvFirstDescriptionFirstText.text =
@@ -67,17 +62,5 @@ class TendencyTestResultActivity :
         string.setSpan(BulletSpan(10), 0, text.length - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
         return string
-    }
-
-    private fun initSaveImgBtnClickListener() {
-        binding.btnTendencyTestResultSave.setOnSingleClickListener {
-            // 이미지 저장
-        }
-    }
-
-    private fun initFinishBtnClickListener() {
-        binding.btnTendencyTestResultFinish.setOnSingleClickListener {
-            // 페이지 이동
-        }
     }
 }

@@ -119,4 +119,10 @@
     <string name="finish_trip_tv_invite">입장하기</string>
     <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
 
+    <!--profile-->
+    <string name="profile_tv_title">프로필 생성</string>
+    <string name="profile_tv_name">두릅이</string>
+    <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
+    <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
+
 </resources>
