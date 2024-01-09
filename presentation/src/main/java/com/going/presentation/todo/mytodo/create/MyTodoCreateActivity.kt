@@ -74,7 +74,7 @@ class MyTodoCreateActivity :
     }
 
     private fun initBackBtnListener() {
-        binding.btnMyTodoMemoFinish.setOnSingleClickListener {
+        binding.btnMyTodoCreateBack.setOnSingleClickListener {
             finish()
         }
     }
