@@ -1,11 +1,14 @@
 package com.going.presentation.todo.mytodo.todolist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
+import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
+import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,11 +30,19 @@ class MyTodoUncompleteFragment() :
     }
 
     private fun initAdapterWithClickListener() {
-        _adapter = MyTodoListAdapter(false, { position ->
-            adapter.removeItem(position)
-            adapter.notifyDataSetChanged()
-            viewModel.decreaseTodoCount()
-        }, { })
+        _adapter = MyTodoListAdapter(false,
+            { position ->
+                adapter.removeItem(position)
+                adapter.notifyDataSetChanged()
+                viewModel.decreaseTodoCount()
+            },
+            { },
+            { todoId ->
+                Intent(activity, MyTodoDetailActivity::class.java).apply {
+                    putExtra(EXTRA_TODO_ID, todoId)
+                    startActivity(this)
+                }
+            })
         binding.rvMyTodoUncomplete.adapter = adapter
     }
 

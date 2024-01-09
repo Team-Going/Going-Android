@@ -13,7 +13,8 @@ class MyTodoListViewHolder(
     val binding: ItemMyTodoBinding,
     private val isCompleted: Boolean,
     private val itemSelect: (Int) -> Unit,
-    private val itemUnselect: (Int) -> Unit
+    private val itemUnselect: (Int) -> Unit,
+    private val itemDetailClick: (Long) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: TodoModel,  position: Int) {
@@ -51,6 +52,10 @@ class MyTodoListViewHolder(
 
             cbMyTodoSelected.setOnSingleClickListener {
                 itemUnselect(position)
+            }
+
+            root.setOnSingleClickListener {
+                itemDetailClick(item.todoId)
             }
         }
     }

@@ -9,6 +9,8 @@
     <string name="server_error">서버 통신에 실패했습니다.</string>
     <string name="name_blank_error">이름에는 공백만 입력할 수 없어요</string>
 
+    <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
+
     <string name="sign_in_tv_title">여행을 시작해보세요</string>
     <string name="sign_in_tv_terms"><u>개인정보처리방침</u></string>
 
@@ -79,6 +81,11 @@
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
     <string name="my_todo_create_btn_finish">저장</string>
+
+    <!--my_todo_detail-->
+    <string name="my_todo_detail_tv_title">할일 조회</string>
+    <string name="my_todo_detail_btn_delete">삭제하기</string>
+    <string name="my_todo_detail_btn_mod">수정하기</string>
 
     <!--preference_tag-->
     <string name="preference_tv_title">이번 여행은!</string>
