@@ -11,7 +11,7 @@ import javax.inject.Inject
 class AuthDataSourceImpl @Inject constructor(
     private val authService: AuthService,
 ) : AuthDataSource {
-    override suspend fun postLogin(
+    override suspend fun postSignIn(
         Authorization: String,
         platform: SignInRequestDto,
     ): BaseResponse<AuthResponseDto> =

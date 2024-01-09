@@ -17,7 +17,7 @@ class AuthRepositoryImpl @Inject constructor(
         data: RequestSignInModel,
     ): Result<AuthTokenModel> =
         runCatching {
-            authDataSource.postLogin(
+            authDataSource.postSignIn(
                 Authorization,
                 data.toSignInRequestDto(),
             ).data.toAuthTokenModel()

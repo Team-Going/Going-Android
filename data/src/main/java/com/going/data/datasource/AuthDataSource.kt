@@ -6,7 +6,7 @@ import com.going.data.dto.request.SignUpRequestDto
 import com.going.data.dto.response.AuthResponseDto
 
 interface AuthDataSource {
-    suspend fun postLogin(
+    suspend fun postSignIn(
         Authorization: String,
         platform: SignInRequestDto,
     ): BaseResponse<AuthResponseDto>
