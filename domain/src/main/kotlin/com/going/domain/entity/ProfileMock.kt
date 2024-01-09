@@ -1,10 +1,10 @@
 package com.going.domain.entity
 
-data class TendencyResultMock(
-    val tendencyTitle: String,
-    val tendencySubTitle: String,
+data class ProfileMock(
+    val profileTitle: String,
+    val profileSubTitle: String,
     val tags: List<String>,
-    val tendencyBoxInfo: List<BoxInfo>,
+    val profileBoxInfo: List<BoxInfo>,
 ) {
     data class BoxInfo(
         val title: String,

@@ -133,4 +133,10 @@
     <string name="setting_dialog_positive">남아있기</string>
     <string name="setting_dialog_quit">회원탈퇴</string>
 
+    <!--profile-->
+    <string name="profile_tv_title">프로필 생성</string>
+    <string name="profile_tv_name">두릅이</string>
+    <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
+    <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
+
 </resources>
