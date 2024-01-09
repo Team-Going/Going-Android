@@ -93,7 +93,5 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
 
     companion object {
         const val TERMS_URL = "http://www.naver.com"
-        const val CODE_NOT_SIGNED_IN = "e4041"
-        const val CODE_ALREADY_SIGNED_UP = "e4090"
     }
 }

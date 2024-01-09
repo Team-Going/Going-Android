@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.RequestSignUpModel
 import com.going.domain.repository.AuthRepository
-import com.going.presentation.util.toErrorCode
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.user.UserApiClient

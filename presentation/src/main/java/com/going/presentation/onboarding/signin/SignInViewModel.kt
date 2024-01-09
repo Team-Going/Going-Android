@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
 import com.going.presentation.util.toErrorCode
-import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause

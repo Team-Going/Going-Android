@@ -14,7 +14,6 @@ import com.going.presentation.databinding.ActivityOnboardingProfileSettingBindin
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
