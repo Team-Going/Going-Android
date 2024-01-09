@@ -9,10 +9,8 @@ import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityFinishTripBinding
 import com.going.presentation.preferencetag.PreferenceTagActivity
-import com.going.presentation.starttrip.createtrip.CreateTripViewModel
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
@@ -24,15 +22,14 @@ class FinishTripActivity :
         initCopyCodetvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
+        //checkDayLeft()
     }
 
     private fun initCopyCodetvClickListener() {
-        val inviteCode =  viewModel.INVITE_CODE
-
         binding.tvFinishTripTermsText.setOnSingleClickListener {
             val clipboardManager =
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clipData = ClipData.newPlainText("Invite Code", inviteCode)
+            val clipData = ClipData.newPlainText("INVITE_CODE_LABEL", viewModel.INVITE_CODE)
             clipboardManager.setPrimaryClip(clipData)
         }
     }
@@ -52,6 +49,17 @@ class FinishTripActivity :
             finish()
         }
     }
-}
 
+//    private fun checkDayLeft(){
+//       그 전 뷰에서 서버 붙여서 보내주는 day 값 알게 되면 맞게 로직 구현하겠습니다
+//        if(dayLeft > 0) {
+//            binding.tvFinishTripDayLeft.text = dayLeft
+//        }else{
+//            binding.tvFinishTripDayLeft.text =
+//        }
+//    }
+    companion object {
+        const val INVITE_CODE_LABEL = "Invite Code"
+    }
+}
 

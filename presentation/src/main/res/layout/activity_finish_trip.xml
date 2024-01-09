@@ -20,11 +20,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/white_000"
-            android:elevation="2dp"
             android:paddingVertical="12dp"
             android:paddingStart="18dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back"
@@ -63,44 +61,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_finish_trip_day_left"
+            <TextView
+                android:id="@+id/tv_finish_trip_day_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="34dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
                 android:background="@drawable/shape_rect_2_red100_fill"
-                android:visibility="visible"
+                android:text="D - 16"
+                android:textColor="@color/red_500"
+                android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
                 app:layout_constraintStart_toEndOf="@id/iv_finish_trip_icon"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_finish_trip_deadline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:paddingVertical="2dp"
-                    android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
-                    android:textColor="@color/red_500"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="D - " />
-
-                <TextView
-                    android:id="@+id/tv_finish_trip_deadline_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:paddingVertical="2dp"
-                    android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
-                    android:textColor="@color/red_500"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_deadline"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_finish_trip_deadline"
-                    app:layout_constraintTop_toTopOf="@id/tv_finish_trip_deadline"
-                    android:text="16" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_finish_trip_name"
@@ -112,7 +86,7 @@
                 android:text="@string/finish_trip_tv_trip_name"
                 android:textColor="@color/gray_700"
                 app:layout_constraintStart_toEndOf="@id/iv_finish_trip_icon"
-                app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_day_left" />
+                app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_day_left" />
 
             <TextView
                 android:id="@+id/tv_finish_trip_start"
