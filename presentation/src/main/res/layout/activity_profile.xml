@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.going.presentation.profile.ProfileViewModel" />
@@ -42,407 +43,420 @@
                 app:layout_constraintBottom_toBottomOf="@id/btn_profile_back"
                 app:layout_constraintStart_toEndOf="@id/btn_profile_back"
                 app:layout_constraintTop_toTopOf="@id/btn_profile_back" />
-            
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/iv_profile"
+        <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/img_sign_in_main"
-            android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@id/layout_profile_tag"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintWidth_percent="0.33"/>
-
-        <TextView
-            android:id="@+id/tv_profile_name"
-            style="@style/TextAppearance.Doorip.Head2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="@string/profile_tv_name"
-            android:textColor="@color/gray_600"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_profile"/>
-
-        <TextView
-            android:id="@+id/tv_profile_one_line"
-            style="@style/TextAppearance.Doorip.Detail1.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="center"
-            android:text="@string/profile_tv_one_line"
-            android:textColor="@color/gray_300"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_name"/>
-
-        <TextView
-            android:id="@+id/tv_profile_type"
-            style="@style/TextAppearance.Doorip.Head1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/red_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_one_line" />
+            app:layout_constraintTop_toBottomOf="@id/layout_profile_tag">
 
-        <TextView
-            android:id="@+id/tv_profile_sub_type"
-            style="@style/TextAppearance.Doorip.Detail1.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_300"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_type" />
-
-        <LinearLayout
-            android:id="@+id/ll_tags"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile_sub_type">
-
-            <TextView
-                android:id="@+id/tv_profile_tag1"
-                style="@style/TextAppearance.Doorip.Detail1.Regular"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_rect_10_red300_line"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="1dp"
-                android:text="#tag1"
-                android:textColor="@color/red_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+                android:layout_height="wrap_content">
 
-            <androidx.legacy.widget.Space
-                android:layout_width="8dp"
-                android:layout_height="0dp" />
-
-            <TextView
-                android:id="@+id/tv_profile_tag2"
-                style="@style/TextAppearance.Doorip.Detail1.Regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_rect_10_red300_line"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="1dp"
-                android:text="#tag2"
-                android:textColor="@color/red_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
-
-            <androidx.legacy.widget.Space
-                android:layout_width="8dp"
-                android:layout_height="0dp" />
-
-            <TextView
-                android:id="@+id/tv_profile_tag3"
-                style="@style/TextAppearance.Doorip.Detail1.Regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_rect_10_red300_line"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="1dp"
-                android:text="#tag3"
-                android:textColor="@color/red_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_box_description_first"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_rect_6_gray200_line"
-            android:minHeight="142dp"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="16dp"
-            android:layout_marginHorizontal="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_tags">
-
-            <TextView
-                android:id="@+id/tv_first_description_title"
-                style="@style/TextAppearance.Doorip.Detail2.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
-                app:layout_constraintHorizontal_weight="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_dash_vertical_1"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
-                android:layerType="software"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/linear_layout_first_description"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="26dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="7"
-                app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_first_description_first_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@id/tv_first_description_second_text"
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/img_sign_in_main"
+                    app:layout_constraintDimensionRatio="1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="2"
-                    app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintWidth_percent="0.33" />
 
                 <TextView
-                    android:id="@+id/tv_first_description_second_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_profile_name"
+                    style="@style/TextAppearance.Doorip.Head2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="@string/profile_tv_name"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+                <TextView
+                    android:id="@+id/tv_profile_one_line"
+                    style="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_first_description_third_text"
+                    android:gravity="center"
+                    android:text="@string/profile_tv_one_line"
+                    android:textColor="@color/gray_300"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="2"
-                    app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_first_description_first_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_name" />
 
                 <TextView
-                    android:id="@+id/tv_first_description_third_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_profile_type"
+                    style="@style/TextAppearance.Doorip.Head1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/red_500"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="2"
-                    app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_first_description_second_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
-            </LinearLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_box_description_second"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect_6_gray200_line"
-            android:minHeight="142dp"
-            android:layout_marginStart="24dp"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_box_description_first">
-
-            <TextView
-                android:id="@+id/tv_second_description_title"
-                style="@style/TextAppearance.Doorip.Detail2.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
-                app:layout_constraintHorizontal_weight="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_dash_vertical_2"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
-                android:layerType="software"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/linear_layout_second_description"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="26dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="7"
-                app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_one_line" />
 
                 <TextView
-                    android:id="@+id/tv_second_description_first_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_profile_sub_type"
+                    style="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@id/tv_second_description_second_text"
+                    android:textColor="@color/gray_300"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_type" />
+
+                <LinearLayout
+                    android:id="@+id/ll_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_sub_type">
+
+                    <TextView
+                        android:id="@+id/tv_profile_tag1"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:text="#tag1"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="8dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_tag2"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:text="#tag2"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="8dp"
+                        android:layout_height="0dp" />
+
+                    <TextView
+                        android:id="@+id/tv_profile_tag3"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:text="#tag3"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_box_description_first"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_rect_6_gray200_line"
+                    android:minHeight="142dp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_tags">
+
+                    <TextView
+                        android:id="@+id/tv_first_description_title"
+                        style="@style/TextAppearance.Doorip.Detail2.Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_dash_vertical_1"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                        android:layerType="software"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_first_description"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_first_description"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="26dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="7"
+                        app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_first_description_first_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@id/tv_first_description_second_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="2"
+                            app:layout_constraintStart_toEndOf="@id/tv_first_description_title"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_first_description_second_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_first_description_third_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="2"
+                            app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_first_description_first_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_first_description_third_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_weight="2"
+                            app:layout_constraintStart_toStartOf="@id/tv_first_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_first_description_second_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_box_description_second"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_rect_6_gray200_line"
+                    android:minHeight="142dp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_box_description_first">
+
+                    <TextView
+                        android:id="@+id/tv_second_description_title"
+                        style="@style/TextAppearance.Doorip.Detail2.Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_dash_vertical_2"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                        android:layerType="software"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_second_description"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_second_description"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="26dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="7"
+                        app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_second_description_first_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@id/tv_second_description_second_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_second_description_second_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_second_description_third_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_second_description_first_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_second_description_third_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_second_description_second_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_box_description_third"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_rect_6_gray200_line"
+                    android:minHeight="142dp"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_box_description_second">
+
+                    <TextView
+                        android:id="@+id/tv_third_description_title"
+                        style="@style/TextAppearance.Doorip.Detail2.Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
+                        app:layout_constraintHorizontal_weight="2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_dash_vertical_3"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+                        android:layerType="software"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_third_description"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="26dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="7"
+                        app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_third_description_first_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toTopOf="@id/tv_third_description_second_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_third_description_second_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toTopOf="@id/tv_third_description_third_text"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_third_description_first_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_third_description_third_text"
+                            style="@style/TextAppearance.Doorip.Detail3.Regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
+                            app:layout_constraintTop_toBottomOf="@id/tv_third_description_second_text"
+                            app:layout_constraintVertical_chainStyle="packed" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/tv_second_description_second_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tv_profile_restart"
+                    style="@style/TextAppearance.Doorip.Detail2.Regular"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_second_description_third_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_second_description_first_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    android:layout_marginTop="12dp"
+                    android:text="@string/profile_tv_restart_button"
+                    android:textColor="@color/gray_300"
+                    app:layout_constraintEnd_toEndOf="@id/cl_box_description_third"
+                    app:layout_constraintTop_toBottomOf="@id/cl_box_description_third" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tv_second_description_third_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_second_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_second_description_second_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_box_description_third"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect_6_gray200_line"
-            android:minHeight="142dp"
-            android:layout_marginStart="24dp"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_box_description_second">
-
-            <TextView
-                android:id="@+id/tv_third_description_title"
-                style="@style/TextAppearance.Doorip.Detail2.Bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
-                app:layout_constraintHorizontal_weight="2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_dash_vertical_3"
-                android:layout_width="100dp"
-                android:layout_height="0dp"
-                android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
-                android:layerType="software"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/linear_layout_third_description"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <LinearLayout
-                android:id="@+id/linear_layout_third_description"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="26dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="7"
-                app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_third_description_first_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@id/tv_third_description_second_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tv_third_description_title"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
-
-                <TextView
-                    android:id="@+id/tv_third_description_second_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_third_description_third_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_third_description_first_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
-
-                <TextView
-                    android:id="@+id/tv_third_description_third_text"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_third_description_first_text"
-                    app:layout_constraintTop_toBottomOf="@id/tv_third_description_second_text"
-                    app:layout_constraintVertical_chainStyle="packed" />
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tv_profile_restart"
-            style="@style/TextAppearance.Doorip.Detail2.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/profile_tv_restart_button"
-            android:textColor="@color/gray_300"
-            app:layout_constraintEnd_toEndOf="@id/cl_box_description_third"
-            app:layout_constraintTop_toBottomOf="@id/cl_box_description_third"/>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
