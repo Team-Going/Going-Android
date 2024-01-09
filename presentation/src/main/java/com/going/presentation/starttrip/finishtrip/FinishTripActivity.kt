@@ -34,7 +34,6 @@ class FinishTripActivity :
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("Invite Code", inviteCode)
             clipboardManager.setPrimaryClip(clipData)
-            toast(getString(R.string.finish_trip_tv_copy_code_complete))
         }
     }
 
