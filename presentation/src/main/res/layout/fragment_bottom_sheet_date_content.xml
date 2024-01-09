@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
-
         <import type="com.going.domain.entity.NameState" />
-
-        <variable
-            name="viewModel"
-            type="com.going.presentation.starttrip.createtrip.CreateTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

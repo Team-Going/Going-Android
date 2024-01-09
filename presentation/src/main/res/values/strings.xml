@@ -91,4 +91,13 @@
     <string name="start_trip_splash_btn_new_trip">새로운 여행 시작하기</string>
     <string name="start_trip_splash_btn_enter_trip">여행 입장하기</string>
 
+    <!--finish_trip_splash-->
+    <string name="finish_trip_tv_title">새로운 여행이 생성되었어요!</string>
+    <string name="finish_trip_tv_trip_name">굉굉이랑 스페인</string>
+    <string name="finish_trip_tv_invite_code">친구 초대코드</string>
+    <string name="finish_trip_tv_copy_code">초대코드 복사하기</string>
+    <string name="finish_trip_tv_send_code">카카오톡으로 초대코드 보내기</string>
+    <string name="finish_trip_tv_invite">입장하기</string>
+    <string name="finish_trip_tv_copy_code_complete">초대코드가 복사되었어요.</string>
+
 </resources>
