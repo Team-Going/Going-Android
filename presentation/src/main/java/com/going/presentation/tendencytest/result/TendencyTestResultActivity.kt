@@ -26,7 +26,7 @@ class TendencyTestResultActivity :
         with(binding) {
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
-            viewModel?.mockTendencyResult?.apply {
+            viewModel.mockTendencyResult.apply {
                 tvTendencyTestResultType.text = tendencyTitle
                 tvTendencyTestResultSubType.text = tendencySubTitle
 
