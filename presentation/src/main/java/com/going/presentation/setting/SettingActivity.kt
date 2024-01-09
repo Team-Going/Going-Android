@@ -7,6 +7,10 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
@@ -20,6 +24,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initPolicyClickListener()
         initAboutDoorip()
         initLogoutClickListener()
+        initQuitClickListener()
 
     }
 
@@ -56,8 +61,17 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     private fun showLogoutAlertDialog() {
         settingDialog = SettingCustomDialogFragment()
         settingDialog.show(supportFragmentManager, settingDialog.tag)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_60)
+        val scope = CoroutineScope(Dispatchers.Main)
+        scope.launch {
+            delay(190)
+            window.statusBarColor = ContextCompat.getColor(this@SettingActivity, R.color.transparent_60)
+        }
     }
 
+   private fun initQuitClickListener(){
+        binding.btnSettingQuit.setOnSingleClickListener {
+
+        }
+    }
 
 }
