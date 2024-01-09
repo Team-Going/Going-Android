@@ -9,9 +9,10 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
+import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -56,29 +57,22 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    // 쉐어드 프리퍼런스 값 저장 로직
-                    navigateToMainScreen()
-                }
-
-                is UiState.Failure -> {
-                    // 실패 했을 때 로직
-                    when (state.msg) {
-                        CODE_NOT_SIGNED_IN -> navigateToOnboardingScreen()
-                        CODE_ALREADY_SIGNED_UP -> navigateToMainScreen()
-                        // else로 에러 컨트롤 필요! else는 client error / server error만 존재
-                    }
-                }
-
-                is UiState.Empty -> {
-                    // 여튼 로직
-                }
-
-                is UiState.Loading -> {
-                    // 로딩 중 로직
-                }
+                SignInState.SUCCESS -> navigateToMainScreen()
+                SignInState.SIGN_UP -> navigateToOnboardingScreen()
+                SignInState.TENDENCY -> navigateToTendencyScreen()
+                SignInState.FAIL -> toast(getString(R.string.server_error))
+                SignInState.LOADING -> {}
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun navigateToMainScreen() {
+        // 추후 대시보드 연결시 연결 예정
+        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
     }
 
     private fun navigateToOnboardingScreen() {
@@ -89,9 +83,8 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         finish()
     }
 
-    private fun navigateToMainScreen() {
-        // 추후 대시보드 연결시 연결 예정
-        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+    private fun navigateToTendencyScreen() {
+        Intent(this, TendencyTestActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

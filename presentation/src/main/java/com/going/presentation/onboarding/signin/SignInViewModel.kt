@@ -1,10 +1,8 @@
 package com.going.presentation.onboarding.signin
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
 import com.going.presentation.util.toErrorCode
@@ -24,8 +22,8 @@ class SignInViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
-    private val _postChangeTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
-    val postChangeTokenState: StateFlow<UiState<AuthTokenModel?>> = _postChangeTokenState
+    private val _postChangeTokenState = MutableStateFlow<SignInState>(SignInState.LOADING)
+    val postChangeTokenState: StateFlow<SignInState> = _postChangeTokenState
 
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
@@ -70,27 +68,28 @@ class SignInViewModel @Inject constructor(
         accessToken: String,
         social: String = KAKAO,
     ) {
-        _postChangeTokenState.value = UiState.Loading
+        _postChangeTokenState.value = SignInState.LOADING
 
         viewModelScope.launch {
             authRepository.postSignIn(accessToken, social).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
 
-                _postChangeTokenState.value = UiState.Success(
-                    AuthTokenModel(
-                        accessToken = it.accessToken,
-                        refreshToken = it.refreshToken,
-                    ),
-                )
+                _postChangeTokenState.value = SignInState.SUCCESS
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
-                _postChangeTokenState.value = UiState.Failure(errorCode)
+                _postChangeTokenState.value = when (errorCode) {
+                    SIGN_UP -> SignInState.SIGN_UP
+                    TENDENCY -> SignInState.TENDENCY
+                    else -> SignInState.FAIL
+                }
             }
         }
     }
 
     companion object {
         const val KAKAO = "kakao"
+        const val SIGN_UP = "e4041"
+        const val TENDENCY = "e4045"
     }
 }
