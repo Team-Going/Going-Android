@@ -1,6 +1,6 @@
 package com.going.data.repositoryImpl
 
-import com.going.domain.GoingDataStore
+import com.going.data.local.GoingDataStore
 import com.going.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -9,13 +9,10 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
     override fun getAccessToken(): String = goingDataStore.accessToken
 
-    override fun setAccessToken(accessToken: String) {
+    override fun setTokens(accessToken: String, refreshToken: String) {
         goingDataStore.accessToken = accessToken
+        goingDataStore.refreshToken = refreshToken
     }
 
     override fun getRefreshToken(): String = goingDataStore.refreshToken
-
-    override fun setRefreshToken(refreshToken: String) {
-        goingDataStore.refreshToken = refreshToken
-    }
 }

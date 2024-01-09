@@ -2,7 +2,6 @@ package com.going.data.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.going.domain.GoingDataStore
 import javax.inject.Inject
 
 class GoingDataStoreImpl @Inject constructor(
