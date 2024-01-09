@@ -1,5 +1,6 @@
 package com.going.presentation.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -10,7 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
+import com.going.presentation.splash.SplashActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
+import com.going.ui.extension.setOnSingleClickListener
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -25,8 +29,35 @@ class OnboardingProfileSettingActivity :
         initOnLineInfoEditorActionListener()
         initSetOnFocusChangeListener()
         observeIsNameAvailable()
-        observeIsProfileAvailable()
         observeTextLength()
+
+        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
+            viewModel.startSignUp()
+        }
+
+        viewModel.isTokenState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    // 성공 했을 때 로직
+                    // 페이지 이동
+                }
+
+                is UiState.Failure -> {
+                    // when + error code로 분기처리 예정
+                    if (state.msg == "kakao") {
+                        navigateToSplashScreen()
+                    }
+                }
+
+                is UiState.Empty -> {
+                    // 여튼 로직
+                }
+
+                is UiState.Loading -> {
+                    // 로딩 중 로직
+                }
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initBindingViewModel() {
@@ -107,12 +138,6 @@ class OnboardingProfileSettingActivity :
         counter.setTextColor(getColor(color))
     }
 
-    private fun observeIsProfileAvailable() {
-        viewModel.isMoveScreenAvailable.flowWithLifecycle(lifecycle).onEach { isEnd ->
-            if (isEnd) moveSplash()
-        }.launchIn(lifecycleScope)
-    }
-
     // 커스텀 글자수 제한 함수
     private fun observeTextLength() {
         viewModel.nowNameLength.observe(this) { length ->
@@ -138,7 +163,11 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun moveSplash() {
-        // 스플래시로 이동
+    private fun navigateToSplashScreen() {
+        Intent(this, SplashActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
     }
 }

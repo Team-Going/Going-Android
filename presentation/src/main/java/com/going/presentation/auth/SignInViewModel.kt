@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.AuthTokenModel
-import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.SignInRepository
 import com.going.ui.extension.UiState
 import com.kakao.sdk.auth.model.OAuthToken

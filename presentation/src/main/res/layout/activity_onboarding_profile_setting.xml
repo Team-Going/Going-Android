@@ -132,7 +132,6 @@
             android:layout_marginBottom="60dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isProfileAvailable()}"
-            android:onClick="@{() -> viewModel.setIsMoveScreenAvailable()}"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/onboarding_finish_btn"

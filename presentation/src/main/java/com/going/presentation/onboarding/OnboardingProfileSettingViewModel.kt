@@ -3,6 +3,12 @@ package com.going.presentation.onboarding
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.NameState
+import com.going.domain.entity.response.AuthTokenModel
+import com.going.ui.extension.UiState
+import com.kakao.sdk.auth.AuthApiClient
+import com.kakao.sdk.auth.TokenManagerProvider
+import com.kakao.sdk.common.model.KakaoSdkError
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.text.BreakIterator
@@ -16,8 +22,8 @@ class OnboardingProfileSettingViewModel : ViewModel() {
     val isNameAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
-    private val _isMoveScreenAvailable = MutableStateFlow(false)
-    val isMoveScreenAvailable: StateFlow<Boolean> = _isMoveScreenAvailable
+    private val _isTokenState = MutableStateFlow<UiState<AuthTokenModel>>(UiState.Empty)
+    val isTokenState: StateFlow<UiState<AuthTokenModel?>> = _isTokenState
 
     fun getMaxNameLen() = MAX_NAME_LEN
     fun getMaxInfoLen() = MAX_INFO_LEN
@@ -50,8 +56,28 @@ class OnboardingProfileSettingViewModel : ViewModel() {
         return count
     }
 
-    fun setIsMoveScreenAvailable() {
-        _isMoveScreenAvailable.value = true
+    fun startSignUp() {
+        if (AuthApiClient.instance.hasToken()) {
+            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+                if (error != null) {
+                    if (error is KakaoSdkError && error.isInvalidTokenError()) {
+                        _isTokenState.value = UiState.Failure("kakao error")
+                    } else {
+                        _isTokenState.value = UiState.Failure("kakao error")
+                    }
+                } else {
+                    val kakaoAccessToken =
+                        TokenManagerProvider.instance.manager.getToken()?.accessToken
+                    signUpWithServer(kakaoAccessToken.toString())
+                }
+            }
+        } else {
+            _isTokenState.value = UiState.Failure("kakao error")
+        }
+    }
+
+    private fun signUpWithServer(kakaoAccessToken: String) {
+        // 서버와 통신 예정
     }
 
     companion object {
