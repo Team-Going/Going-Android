@@ -90,7 +90,12 @@
         <activity
             android:name="com.going.presentation.createtrip.CreateTripActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.mytodo.create.MyTodoCreateActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -4,6 +4,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.going.presentation.todo.mytodo.create.MyTodoCreateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,14 +50,57 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:dividerColor="@color/gray_200"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
+        <TextView
+            android:id="@+id/tv_my_todo_create_todo_title"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="40dp"
+            android:text="할일"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_create" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_my_todo_create_todo"
+            style="@style/edit_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="6dp"
+            android:afterTextChanged="@{(text) -> vm.checkNameLength()}"
+            android:background="@drawable/shape_rect_4_gray200_line"
+            android:hint="할일을 입력해주세요."
+            android:imeOptions="actionNext"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="19dp"
+            android:text="@={vm.todo}"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_todo_title" />
+
+        <TextView
+            android:id="@+id/tv_my_todo_todo_counter"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{@string/counter(vm.nowTodoLength, vm.MAX_TODO_LEN)}"
+            android:textColor="@color/gray_200"
+            app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_todo"
+            app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_todo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
