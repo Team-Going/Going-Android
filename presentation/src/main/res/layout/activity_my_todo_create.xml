@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -57,18 +58,18 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <ScrollView
             android:id="@+id/sv_my_todo_create"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_my_todo_memo_finish"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_create">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_my_todo_create_todo_title"
@@ -89,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="6dp"
-                    android:afterTextChanged="@{(text) -> vm.checkNameLength()}"
+                    android:afterTextChanged="@{(text) -> vm.checkTodoLength()}"
                     android:background="@drawable/shape_rect_4_gray200_line"
                     android:hint="할일을 입력해주세요."
                     android:imeOptions="actionNext"
@@ -114,7 +115,8 @@
                     android:text="@{@string/counter(vm.nowTodoLength, vm.MAX_TODO_LEN)}"
                     android:textColor="@color/gray_200"
                     app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_todo"
-                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_todo" />
+                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_todo"
+                    tools:text="0/15" />
 
                 <TextView
                     android:id="@+id/tv_my_todo_create_date_title"
@@ -147,7 +149,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
-                        android:text="날짜를 입력해주세요."
+                        android:hint="날짜를 입력해주세요."
+                        android:text="@={vm.endDate}"
                         android:textColor="@color/gray_200"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/iv_my_todo_create_date"
@@ -192,10 +195,10 @@
                         android:id="@+id/iv_my_todo_create_lock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/ic_lock_my_todo"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:src="@drawable/ic_lock_my_todo" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_my_todo_create_lock"
@@ -203,17 +206,92 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        app:layout_constraintStart_toEndOf="@id/iv_my_todo_create_lock"
                         android:text="나만보기"
                         android:textColor="@color/red_500"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_my_todo_create_lock"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/tv_my_todo_create_memo_title"
+                    style="@style/TextAppearance.Doorip.Body3.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="40dp"
+                    android:text="메모"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_my_todo_create_person_lock" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_my_todo_create_memo"
+                    style="@style/edit_text_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="6dp"
+                    android:afterTextChanged="@{(text) -> vm.checkMemoLength()}"
+                    android:background="@drawable/shape_rect_4_gray200_line"
+                    android:gravity="top"
+                    android:hint="메모를 입력해주세요."
+                    android:imeOptions="actionNext"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:minHeight="140dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="19dp"
+                    android:text="@={vm.memo}"
+                    android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:textColorHint="@color/gray_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_memo_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_todo_memo_counter"
+                    style="@style/TextAppearance.Doorip.Detail3.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{@string/counter(vm.nowMemoLength, vm.MAX_MEMO_LEN)}"
+                    android:textColor="@color/gray_200"
+                    app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_memo"
+                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_memo"
+                    tools:text="0/1000" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_my_todo_memo_finish"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="@{vm.isFinishAvailable()}"
+            android:outlineProvider="none"
+            android:paddingVertical="10dp"
+            android:text="저장"
+            android:textColor="@{vm.isFinishAvailable() == true ? @color/white_000 : @color/gray_200}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

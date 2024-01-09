@@ -17,6 +17,7 @@ class MyTodoCreateActivity :
         super.onCreate(savedInstanceState)
 
         observeTextLength()
+        observeMemoLength()
         binding.vm = viewModel
 
         binding.etMyTodoCreateTodo.setOnFocusChangeListener { _, hasFocus ->
@@ -40,6 +41,34 @@ class MyTodoCreateActivity :
                 binding.tvMyTodoTodoCounter,
             ) { background ->
                 binding.etMyTodoCreateTodo.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
+            }
+        }
+
+        binding.etMyTodoCreateMemo.setOnFocusChangeListener { _, hasFocus ->
+            setColors(
+                hasFocus,
+                viewModel.nowMemoLength.value ?: 0,
+                binding.tvMyTodoMemoCounter,
+            ) { background ->
+                binding.etMyTodoCreateMemo.background = ResourcesCompat.getDrawable(
+                    this.resources,
+                    background,
+                    theme,
+                )
+            }
+        }
+
+        viewModel.nowMemoLength.observe(this) {
+            setColors(
+                false,
+                viewModel.nowMemoLength.value ?: 0,
+                binding.tvMyTodoMemoCounter,
+            ) { background ->
+                binding.etMyTodoCreateMemo.background = ResourcesCompat.getDrawable(
                     this.resources,
                     background,
                     theme,
@@ -75,6 +104,19 @@ class MyTodoCreateActivity :
                 binding.etMyTodoCreateTodo.apply {
                     setText(text?.subSequence(0, maxTodoLen))
                     setSelection(maxTodoLen)
+                }
+            }
+        }
+    }
+
+    private fun observeMemoLength() {
+        viewModel.nowMemoLength.observe(this) { length ->
+            val maxMemoLen = viewModel.getMaxMemoLen()
+
+            if (length > maxMemoLen) {
+                binding.etMyTodoCreateTodo.apply {
+                    setText(text?.subSequence(0, maxMemoLen))
+                    setSelection(maxMemoLen)
                 }
             }
         }
