@@ -63,7 +63,9 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
                 is UiState.Failure -> {
                     // 실패 했을 때 로직
                     when (state.msg) {
-                        "e4041" -> navigateToOnboardingScreen()
+                        CODE_NOT_SIGNED_IN -> navigateToOnboardingScreen()
+                        CODE_ALREADY_SIGNED_UP -> navigateToMainScreen()
+                        // else로 에러 컨트롤 필요! else는 client error / server error만 존재
                     }
                 }
 
@@ -86,8 +88,18 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         finish()
     }
 
+    private fun navigateToMainScreen() {
+        // 추후 대시보드 연결시 연결 예정
+        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
     companion object {
         const val TERMS_URL = "http://www.naver.com"
-        
+        const val CODE_NOT_SIGNED_IN = "e4041"
+        const val CODE_ALREADY_SIGNED_UP = "e4090"
     }
 }
