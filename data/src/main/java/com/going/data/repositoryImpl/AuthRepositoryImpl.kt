@@ -14,12 +14,12 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
     override suspend fun postSignIn(
         Authorization: String,
-        data: RequestSignInModel,
+        requestSignIpModel: RequestSignInModel,
     ): Result<AuthTokenModel> =
         runCatching {
             authDataSource.postSignIn(
                 Authorization,
-                data.toSignInRequestDto(),
+                requestSignIpModel.toSignInRequestDto(),
             ).data.toAuthTokenModel()
         }
 
