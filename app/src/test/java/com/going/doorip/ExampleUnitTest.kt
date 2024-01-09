@@ -1,4 +1,4 @@
-package com.going.going
+package com.going.doorip
 
 import org.junit.Test
 
