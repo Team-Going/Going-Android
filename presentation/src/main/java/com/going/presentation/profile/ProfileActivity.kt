@@ -12,6 +12,7 @@ import com.going.ui.base.BaseActivity
 class ProfileActivity :
     BaseActivity<ActivityProfileBinding>(R.layout.activity_profile) {
     private val profileViewModel by viewModels<ProfileViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
