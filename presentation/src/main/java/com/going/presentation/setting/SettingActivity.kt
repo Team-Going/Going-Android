@@ -1,17 +1,15 @@
 package com.going.presentation.setting
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.view.View
+import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
-import com.skydoves.balloon.balloon
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
-    private lateinit var settingDialog: CustomDialogSettingFragment
+    private lateinit var settingDialog: SettingCustomDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +53,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     }
 
     private fun showLogoutAlertDialog() {
-        settingDialog = CustomDialogSettingFragment()
-        settingDialog.show(supportFragmentManager, settingDialog.tag )
+        settingDialog = SettingCustomDialogFragment()
+        settingDialog.show(supportFragmentManager, settingDialog.tag)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.transparent_50)
     }
 
 }
