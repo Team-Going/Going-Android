@@ -3,6 +3,7 @@ package com.going.presentation.onboarding.signin
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.request.RequestSignInModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
 import com.going.presentation.util.toErrorCode
@@ -65,12 +66,12 @@ class SignInViewModel @Inject constructor(
     // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기 - 서버와 협의 후 수정예정
     private fun changeTokenFromServer(
         accessToken: String,
-        social: String = KAKAO,
+        platform: String = KAKAO,
     ) {
         _postChangeTokenState.value = SignInState.LOADING
 
         viewModelScope.launch {
-            authRepository.postSignIn(accessToken, social).onSuccess {
+            authRepository.postSignIn(accessToken, RequestSignInModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
 
                 _postChangeTokenState.value = SignInState.SUCCESS
