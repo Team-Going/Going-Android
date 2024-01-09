@@ -1,16 +1,21 @@
-package com.going.presentation.splash
+package com.going.presentation.onboarding.splash
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.auth.SignInActivity
 import com.going.presentation.databinding.ActivitySplashBinding
+import com.going.presentation.onboarding.signin.SignInActivity
+import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
 import com.going.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
+    private val viewModel by viewModels<SplashViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,8 +32,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            navigateToSignInScreen()
-            if (false) { // 자동 로그인 판정으로 변경 예정
+            if (viewModel.getHasAccessToken()) {
                 navigateToMainScreen()
             } else {
                 navigateToSignInScreen()
@@ -51,6 +55,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun navigateToMainScreen() {
         // Main이 나오면 구현 예정
+        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
         finish()
     }
 
