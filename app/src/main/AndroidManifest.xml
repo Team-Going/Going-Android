@@ -135,6 +135,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.going.presentation.entertrip.EnterTripActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.checkfriends.CheckFriendsActivity"
             android:exported="true"
             android:screenOrientation="portrait" />

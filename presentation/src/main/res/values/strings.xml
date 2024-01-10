@@ -142,6 +142,13 @@
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
 
+    <!--enter_trip-->
+    <string name="enter_trip_tv_layout">여행 입장하기</string>
+    <string name="enter_trip_tv_invite_code">초대코드</string>
+    <string name="enter_trip_tv_hint">초대코드를 입력해주세요.</string>
+    <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
+    <string name="enter_trip_tv_next_button">다음</string>
+
     <!--check friends-->
     <string name="check_friends_tool_bar">여행 친구들</string>
     <string name="check_friends_member">멤버</string>
@@ -161,18 +168,5 @@
     <string name="check_friends_preference_5_title">여행 일정</string>
     <string name="check_friends_preference_5_left">느긋하게</string>
     <string name="check_friends_preference_5_right">효율적으로</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </resources>

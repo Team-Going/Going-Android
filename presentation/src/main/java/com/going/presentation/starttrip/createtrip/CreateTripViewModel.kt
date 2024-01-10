@@ -3,8 +3,7 @@ package com.going.presentation.starttrip.createtrip
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.NameState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import java.text.BreakIterator
 
 class CreateTripViewModel : ViewModel() {
     val name = MutableLiveData<String>()
@@ -21,25 +20,51 @@ class CreateTripViewModel : ViewModel() {
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
 
-    val isNameAvailable = MutableLiveData<NameState>(NameState.Empty)
+    val isNameAvailable = MutableLiveData(NameState.Empty)
+    val isTripAvailable = MutableLiveData(false)
     var isCheckTripAvailable = MutableLiveData(false)
 
-    private val _ButtonAvailable = MutableStateFlow(false)
-    val ButtonAvailable: StateFlow<Boolean> = _ButtonAvailable
+
+    fun getMaxNameLen() = MAX_TRIP_LEN
 
     fun checkNameAvailable() {
-        nameLength.value = getNameLength(name.value)
+        nameLength.value = getGraphemeLength(name.value)
 
         isNameAvailable.value = when {
             nameLength.value == 0 -> NameState.Empty
             name.value.isNullOrBlank() -> NameState.Blank
             else -> NameState.Success
         }
+
+        val isInfoAvailable = nameLength.value in 1..MAX_TRIP_LEN
+
+        isTripAvailable.value =
+            (isNameAvailable.value == NameState.Success) && isInfoAvailable
+
+        checkTripAvailable()
+
+    }
+
+    private fun getGraphemeLength(value: String?): Int {
+        BREAK_ITERATOR.setText(value)
+
+        var count = 0
+        while (BREAK_ITERATOR.next() != BreakIterator.DONE) {
+            count++
+        }
+
+        return count
     }
 
     fun checkStartDateAvailable() {
-        isStartDateAvailable.value = (startYear.value != null && startMonth.value != null && startDay.value != null)
+        if (startYear.value != null && startMonth.value != null && startDay.value != null) {
+            isStartDateAvailable.value = true
+            checkTripAvailable()
+        } else {
+            isStartDateAvailable.value = false
+        }
     }
+
     fun checkEndDateAvailable() {
         if (endYear.value != null && endMonth.value != null && endDay.value != null) {
             isEndDateAvailable.value = true
@@ -49,23 +74,13 @@ class CreateTripViewModel : ViewModel() {
         }
     }
 
-    fun checkTripAvailable() {
-        if (isNameAvailable.value == NameState.Success && isStartDateAvailable.value == true && isEndDateAvailable.value == true) {
-            isCheckTripAvailable.value = true
-        } else {
-            isCheckTripAvailable.value = false
-        }
+    private fun checkTripAvailable() {
+        isCheckTripAvailable.value = (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
     }
 
-    private fun getNameLength(value: String?): Int {
-        return value?.length ?: 0
-    }
-
-    fun setButtonAvailable() {
-        _ButtonAvailable.value = true
-    }
 
     companion object {
+        val BREAK_ITERATOR: BreakIterator = BreakIterator.getCharacterInstance()
         const val MAX_TRIP_LEN = 15
     }
 }
