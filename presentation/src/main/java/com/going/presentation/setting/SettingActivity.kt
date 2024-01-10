@@ -17,7 +17,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initProfileClickListener()
         initInquireClickListener()
         initPolicyClickListener()
-        initAboutDoorip()
+        initAboutDooripClickListener()
         initLogoutClickListener()
         initQuitClickListener()
 
@@ -41,7 +41,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         }
     }
 
-    private fun initAboutDoorip() {
+    private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDooripEnter.setOnSingleClickListener {
 
         }
