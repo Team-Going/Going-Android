@@ -6,7 +6,7 @@ import com.going.domain.entity.NameState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class EnterTripViewModel : ViewModel(){
+class EnterTripViewModel : ViewModel() {
 
     val inviteCode = MutableLiveData<String>()
     val codeLength = MutableLiveData(0)
@@ -34,7 +34,6 @@ class EnterTripViewModel : ViewModel(){
     fun checkEnterAvailable() {
         isCheckEnterAvailable.value = isCodeAvailable.value == NameState.Success
     }
-
 
 
     fun setButtonAvailable() {
