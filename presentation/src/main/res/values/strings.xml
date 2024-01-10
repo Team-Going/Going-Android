@@ -153,4 +153,24 @@
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
     <string name="invite_finish_tv_enter">초대받은 여행이 맞아요!</string>
 
+    <!--check friends-->
+    <string name="check_friends_tool_bar">여행 친구들</string>
+    <string name="check_friends_member">멤버</string>
+    <string name="check_friends_our_tag">우리의 취향 태그</string>
+    <string name="check_friends_preference_1_title">여행 계획</string>
+    <string name="check_friends_preference_1_left">철저하게</string>
+    <string name="check_friends_preference_1_right">즉흥적으로</string>
+    <string name="check_friends_preference_2_title">여행 장소</string>
+    <string name="check_friends_preference_2_left">관광지</string>
+    <string name="check_friends_preference_2_right">로컬장소</string>
+    <string name="check_friends_preference_3_title">식당</string>
+    <string name="check_friends_preference_3_left">유명 맛집</string>
+    <string name="check_friends_preference_3_right">가까운 곳</string>
+    <string name="check_friends_preference_4_title">사진</string>
+    <string name="check_friends_preference_4_left">사진필수</string>
+    <string name="check_friends_preference_4_right">눈에 담기</string>
+    <string name="check_friends_preference_5_title">여행 일정</string>
+    <string name="check_friends_preference_5_left">알차게</string>
+    <string name="check_friends_preference_5_right">여유롭게</string>
+
 </resources>

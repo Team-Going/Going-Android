@@ -132,11 +132,12 @@
         <activity
             android:name="com.going.presentation.profile.ProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name="com.going.presentation.enter.entertrip.EnterTripActivity"
+            android:name="com.going.presentation.entertrip.EnterTripActivity"
             android:exported="false"
+            android:screenOrientation="portrait" />
             android:screenOrientation="portrait" />
 
         <activity
@@ -144,6 +145,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.checkfriends.CheckFriendsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
     </application>
 
