@@ -3,7 +3,6 @@
 
     <data>
 
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -62,11 +61,12 @@
                 <TextView
                     android:id="@+id/tv_check_friends_member"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="24dp"
                     android:text="@string/check_friends_member"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,7 +74,6 @@
                     android:id="@+id/rv_check_friends_member"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="23dp"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
@@ -87,6 +86,7 @@
 
                 <TextView
                     android:id="@+id/tv_check_friends_our_tag"
+                    style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -101,9 +101,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/shape_rect_6_white000_fill_gray200_line"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_check_friends_our_tag">
@@ -126,9 +128,26 @@
                         android:id="@+id/progress_bar_check_friends_1"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
-                        android:layout_height="16dp"
+                        android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_todo_progress_bar"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_title" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_check_friends_1_revert"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:scaleX="-1"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_title" />
@@ -144,26 +163,37 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_1" />
 
+
                     <TextView
                         android:id="@+id/tv_check_friends_preference_1_right"
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="@string/check_friends_preference_1_right"
                         android:textColor="@color/gray_700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_1" />
 
-                    <ImageView
-                        android:id="@+id/img_dash_vertical_1"
+                    <LinearLayout
+                        android:id="@+id/layout_trip_friends_dash_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_line_gray100_fill_dash_4"
-                        android:layerType="software"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white_000"
+                        android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_right" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_right">
+
+                        <ImageView
+                            android:id="@+id/iv_trip_friends_dash_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layerType="software"
+                            android:src="@drawable/shape_line_gray100_fill_dash_5" />
+
+                    </LinearLayout>
 
 
                     <TextView
@@ -177,15 +207,31 @@
                         android:text="@string/check_friends_preference_2_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_dash_vertical_1" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_trip_friends_dash_1" />
 
                     <ProgressBar
                         android:id="@+id/progress_bar_check_friends_2"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
-                        android:layout_height="16dp"
+                        android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_todo_progress_bar"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_title" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_check_friends_2_revert"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:scaleX="-1"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_title" />
@@ -206,22 +252,30 @@
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="@string/check_friends_preference_2_right"
-                        android:textColor="@color/gray_700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_2" />
 
-                    <ImageView
-                        android:id="@+id/img_dash_vertical_2"
+                    <LinearLayout
+                        android:id="@+id/layout_trip_friends_dash_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_line_gray100_fill_dash_4"
-                        android:layerType="software"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white_000"
+                        android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_right" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_right">
 
+                        <ImageView
+                            android:id="@+id/iv_trip_friends_dash_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layerType="software"
+                            android:src="@drawable/shape_line_gray100_fill_dash_5" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_check_friends_preference_3_title"
@@ -234,15 +288,31 @@
                         android:text="@string/check_friends_preference_3_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_dash_vertical_2" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_trip_friends_dash_2" />
 
                     <ProgressBar
                         android:id="@+id/progress_bar_check_friends_3"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
-                        android:layout_height="16dp"
+                        android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_todo_progress_bar"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_title" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_check_friends_3_revert"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:scaleX="-1"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_title" />
@@ -263,22 +333,31 @@
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="@string/check_friends_preference_3_right"
                         android:textColor="@color/gray_700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_3" />
 
-                    <ImageView
-                        android:id="@+id/img_dash_vertical_3"
+                    <LinearLayout
+                        android:id="@+id/layout_trip_friends_dash_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_line_gray100_fill_dash_4"
-                        android:layerType="software"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white_000"
+                        android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_right" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_right">
 
+                        <ImageView
+                            android:id="@+id/iv_trip_friends_dash_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layerType="software"
+                            android:src="@drawable/shape_line_gray100_fill_dash_5" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_check_friends_preference_4_title"
@@ -291,15 +370,31 @@
                         android:text="@string/check_friends_preference_4_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_dash_vertical_3" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_trip_friends_dash_3" />
 
                     <ProgressBar
                         android:id="@+id/progress_bar_check_friends_4"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
-                        android:layout_height="16dp"
+                        android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_todo_progress_bar"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_title" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_check_friends_4_revert"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:scaleX="-1"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_title" />
@@ -320,22 +415,31 @@
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="@string/check_friends_preference_4_right"
                         android:textColor="@color/gray_700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_4" />
 
-                    <ImageView
-                        android:id="@+id/img_dash_vertical_4"
+                    <LinearLayout
+                        android:id="@+id/layout_trip_friends_dash_4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_line_gray100_fill_dash_4"
-                        android:layerType="software"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white_000"
+                        android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_right" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_right">
 
+                        <ImageView
+                            android:id="@+id/iv_trip_friends_dash_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layerType="software"
+                            android:src="@drawable/shape_line_gray100_fill_dash_5" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_check_friends_preference_5_title"
@@ -348,15 +452,31 @@
                         android:text="@string/check_friends_preference_5_title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/img_dash_vertical_4" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_trip_friends_dash_4" />
 
                     <ProgressBar
                         android:id="@+id/progress_bar_check_friends_5"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="0dp"
-                        android:layout_height="16dp"
+                        android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_todo_progress_bar"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_5_title" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_check_friends_5_revert"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="5"
+                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
+                        android:scaleX="-1"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_5_title" />
@@ -377,21 +497,11 @@
                         style="@style/TextAppearance.Doorip.Detail2.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
                         android:text="@string/check_friends_preference_5_right"
                         android:textColor="@color/gray_700"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_5" />
-
-                    <ImageView
-                        android:id="@+id/img_dash_vertical_5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/shape_line_gray100_fill_dash_4"
-                        android:layerType="software"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_5_right" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

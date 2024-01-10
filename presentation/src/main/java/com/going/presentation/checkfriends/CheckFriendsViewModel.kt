@@ -3,7 +3,7 @@ package com.going.presentation.checkfriends
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.response.TripParticipantsListModel
 
-class CheckFriendsViewModel: ViewModel() {
+class CheckFriendsViewModel : ViewModel() {
 
     val mockParticipantsList: List<TripParticipantsListModel.TripParticipantModel> = listOf(
         TripParticipantsListModel.TripParticipantModel(0, "일지민", 100),
@@ -12,7 +12,6 @@ class CheckFriendsViewModel: ViewModel() {
         TripParticipantsListModel.TripParticipantModel(3, "사지민", 100),
         TripParticipantsListModel.TripParticipantModel(4, "오지민", 100),
         TripParticipantsListModel.TripParticipantModel(5, "육지민", 100),
-        TripParticipantsListModel.TripParticipantModel(6, "칠지민", 100)
     )
 
 }
