@@ -1,17 +1,15 @@
 package com.going.presentation.util
 
-import android.util.Log
-import org.json.JSONObject
 import retrofit2.HttpException
 
 fun toErrorCode(throwable: Throwable): String = if (throwable is HttpException) {
     val jsonTemp = throwable.response()?.errorBody()?.byteString().toString()
-    Log.e("TAG", "toErrorCode: $jsonTemp", )
-    val json = jsonTemp.slice(6 until jsonTemp.length - 2) + "}"
-    Log.e("TAG", "toErrorCode: $json", )
-    JSONObject(json).getString("code")
+    val codeIndex = jsonTemp.indexOf("code")
+    var errorCode = jsonTemp.slice(codeIndex + 7..codeIndex + 12)
+
+    if (errorCode.endsWith('\"')) errorCode = errorCode.slice(0 until errorCode.length - 1)
+
+    errorCode
 } else {
     "NOT_HTTP"
 }
-
-// 기능 오류 발견!!!! 반드시 수정 필요!!!!!!
