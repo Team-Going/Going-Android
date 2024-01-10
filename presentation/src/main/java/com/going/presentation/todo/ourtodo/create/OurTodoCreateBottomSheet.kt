@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentMyTodoCreateBottomSheetBinding
-import com.going.presentation.todo.mytodo.create.MyTodoCreateViewModel
+import com.going.presentation.databinding.FragmentOurTodoCreateBottomSheetBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
 class OurTodoCreateBottomSheet() :
-    BaseBottomSheet<FragmentMyTodoCreateBottomSheetBinding>(R.layout.fragment_my_todo_create_bottom_sheet) {
+    BaseBottomSheet<FragmentOurTodoCreateBottomSheetBinding>(R.layout.fragment_our_todo_create_bottom_sheet) {
 
-    private val viewModel by activityViewModels<MyTodoCreateViewModel>()
+    private val viewModel by activityViewModels<OurTodoCreateViewModel>()
 
     override fun onStart() {
         super.onStart()

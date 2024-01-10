@@ -2,6 +2,7 @@ package com.going.presentation.todo.name
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
 
@@ -13,14 +14,14 @@ class TodoNameViewHolder(
     private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_400)
     private val completedColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
 
-    fun onBind(item: String) {
+    fun onBind(item: TodoAllocatorModel) {
         binding.run {
-            tvTodoName.text = item
+            tvTodoName.text = item.name
             if (isCompleted) {
                 tvTodoName.setTextColor(completedColor)
                 tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
             } else {
-                if (item == "김상호") {
+                if (item.isOwner) {
                     tvTodoName.setTextColor(redColor)
                     tvTodoName.isSelected = true
                 } else {

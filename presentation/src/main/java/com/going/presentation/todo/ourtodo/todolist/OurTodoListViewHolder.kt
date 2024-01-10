@@ -19,7 +19,7 @@ class OurTodoListViewHolder(
             tvOurTodoItemTitle.text = item.title
             tvOurTodoItemDate.text = item.endDate.replace("-", ".") + "까지"
             rvOurTodoName.adapter = TodoNameAdapter(isCompleted).apply {
-                submitList(item.allocation)
+                submitList(item.allocators)
             }
 
             if (isCompleted) {
