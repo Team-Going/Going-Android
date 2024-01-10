@@ -149,4 +149,9 @@
     <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
     <string name="enter_trip_tv_next_button">다음</string>
 
+    <!--invite_finish-->
+    <string name="invite_finish_tv_title">멋진 여행에 초대받으셨네요!</string>
+    <string name="invite_finish_tv_enter">입장하기</string>
+
+
 </resources>

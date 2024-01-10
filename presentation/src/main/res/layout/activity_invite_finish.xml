@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.going.presentation.entertrip.EnterTripViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_50"
+        tools:context=".entertrip.invitefinish.InviteFinishActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_enter_trip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_enter_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_invite_finish_title"
+            style="@style/TextAppearance.Doorip.Head3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/invite_finish_tv_title"
+            android:textColor="@color/gray_700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_enter_trip" />
+
+        <TextView
+            android:id="@+id/tv_invite_finish_day_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shape_rect_2_red100_fill"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="D - 16"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+            android:textColor="@color/red_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_title"/>
+
+        <TextView
+            android:id="@+id/tv_enter_trip_name"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/finish_trip_tv_trip_name"
+            android:textColor="@color/gray_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_day_left"/>
+
+        <TextView
+            android:id="@+id/tv_enter_trip_start"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_enter_trip_name"
+            android:text="2024 .03 .24" />
+
+        <TextView
+            android:id="@+id/tv_enter_trip_dash"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/tv_enter_trip_start"
+            app:layout_constraintStart_toEndOf="@id/tv_enter_trip_start"
+            app:layout_constraintTop_toTopOf="@id/tv_enter_trip_start"
+            android:text="@string/dashboard_tv_dash" />
+
+        <TextView
+            android:id="@+id/tv_enter_trip_date_end"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toBottomOf="@id/tv_enter_trip_dash"
+            app:layout_constraintStart_toEndOf="@id/tv_enter_trip_dash"
+            app:layout_constraintTop_toTopOf="@id/tv_enter_trip_dash"
+            android:text="2024 .03 .31" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_invite_finish_enter"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:outlineProvider="none"
+            android:paddingVertical="10dp"
+            android:text="@string/invite_finish_tv_enter"
+            android:textColor="@color/white_000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
