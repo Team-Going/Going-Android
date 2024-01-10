@@ -55,7 +55,7 @@
 
         <activity
             android:name="com.going.presentation.todo.TodoActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
@@ -141,7 +141,7 @@
 
         <activity
             android:name="com.going.presentation.checkfriends.CheckFriendsActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
     </application>
