@@ -1,7 +1,10 @@
 package com.going.doorip.di
 
+import com.going.data.interceptor.AuthInterceptor
 import com.going.doorip.BuildConfig.BASE_URL
 import com.going.doorip.di.qualifier.JWT
+import com.going.ui.extension.isJsonArray
+import com.going.ui.extension.isJsonObject
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -79,6 +82,3 @@ object RetrofitModule {
         .addConverterFactory(factory)
         .build()
 }
-
-fun String?.isJsonObject(): Boolean = this?.startsWith("{") == true && this.endsWith("}")
-fun String?.isJsonArray(): Boolean = this?.startsWith("[") == true && this.endsWith("]")
