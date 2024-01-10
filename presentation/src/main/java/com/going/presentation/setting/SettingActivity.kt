@@ -1,7 +1,6 @@
 package com.going.presentation.setting
 
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.ui.base.BaseActivity
@@ -9,7 +8,8 @@ import com.going.ui.extension.setOnSingleClickListener
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
-    private lateinit var settingDialog: SettingCustomDialogFragment
+    private lateinit var quitDialog: SettingQuitDialogFragment
+    private lateinit var logoutDialog: SettingLogoutDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,19 +49,24 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initLogoutClickListener() {
         binding.btnSettingLogoutEnter.setOnSingleClickListener {
-
+            showLogoutAlertDialog()
         }
     }
 
     private fun initQuitClickListener() {
         binding.btnSettingQuit.setOnSingleClickListener {
-            showLogoutAlertDialog()
+            showQuitAlertDialog()
         }
     }
 
     private fun showLogoutAlertDialog() {
-        settingDialog = SettingCustomDialogFragment()
-        settingDialog.show(supportFragmentManager, settingDialog.tag)
+        logoutDialog = SettingLogoutDialogFragment()
+        logoutDialog.show(supportFragmentManager, logoutDialog.tag)
+    }
+
+    private fun showQuitAlertDialog() {
+        quitDialog = SettingQuitDialogFragment()
+        quitDialog.show(supportFragmentManager, quitDialog.tag)
     }
 
 }

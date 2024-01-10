@@ -3,14 +3,13 @@ package com.going.presentation.setting
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentSettingCustomDialogBinding
+import com.going.presentation.databinding.FragmentSettingLogoutDialogBinding
 import com.going.ui.base.BaseDialog
 import com.going.ui.extension.setOnSingleClickListener
 
-class SettingCustomDialogFragment :
-    BaseDialog<FragmentSettingCustomDialogBinding>(R.layout.fragment_setting_custom_dialog) {
+class SettingLogoutDialogFragment :
+    BaseDialog<FragmentSettingLogoutDialogBinding>(R.layout.fragment_setting_logout_dialog) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,14 +32,14 @@ class SettingCustomDialogFragment :
 
     private fun initPositiveClickListener() {
         binding.tvDialogPositive.setOnSingleClickListener {
-            dismiss()
+            // 로그아웃 버튼 눌렀을 때의 로직
         }
     }
 
     private fun initNegativeClickListener() {
-        // 탈퇴하기 버튼을 눌렀을 때의 처리
+        binding.btnDialogNegative.setOnSingleClickListener {
+            dismiss()
+        }
     }
 
 }
-
-

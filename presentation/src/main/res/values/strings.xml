@@ -127,11 +127,14 @@
     <string name="setting_tv_policy">약관 및 정책</string>
     <string name="setting_tv_about_doorip">About doorip</string>
     <string name="setting_tv_logout">로그아웃</string>
-    <string name="setting_dialog_title">정말 탈퇴하시겠어요?</string>
-    <string name="setting_dialog_message">탈퇴시, 정보가 모두 없어져요.</string>
-    <string name="setting_dialog_negative">탈퇴하기</string>
-    <string name="setting_dialog_positive">남아있기</string>
-    <string name="setting_dialog_quit">회원탈퇴</string>
+    <string name="setting_quit_dialog_title">정말 탈퇴하시겠어요?</string>
+    <string name="setting_quit_dialog_message">탈퇴시, 정보가 모두 없어져요.</string>
+    <string name="setting_quit_dialog_negative">탈퇴하기</string>
+    <string name="setting_quit_dialog_positive">남아있기</string>
+    <string name="setting_quit_dialog_quit">회원탈퇴</string>
+    <string name="setting_logout_title">정말 로그아웃하시겠어요?</string>
+    <string name="setting_logout_negative">취소</string>
+    <string name="setting_logout_positive">로그아웃</string>
 
     <!--profile-->
     <string name="profile_tv_title">프로필 생성</string>
