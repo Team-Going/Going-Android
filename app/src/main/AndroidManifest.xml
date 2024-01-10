@@ -21,11 +21,13 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao${NATIVE_APP_KEY}" />
             </intent-filter>
         </activity>
@@ -90,7 +92,7 @@
         <activity
             android:name="com.going.presentation.starttrip.createtrip.CreateTripActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.starttrip.StartTripSplashActivity"
@@ -120,7 +122,12 @@
         <activity
             android:name="com.going.presentation.starttrip.finishtrip.FinishTripActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.setting.SettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.profile.ProfileActivity"

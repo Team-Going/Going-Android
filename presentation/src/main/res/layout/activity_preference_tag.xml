@@ -14,7 +14,7 @@
         tools:context=".preferencetag.PreferenceTagActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_preference_tag"
+            android:id="@+id/toolbar_preference_tag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/layer_list_preference_tag_gray200_line"
@@ -56,7 +56,7 @@
             app:layout_constraintBottom_toTopOf="@id/btn_preference_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_preference_tag"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_preference_tag"
             tools:listitem="@layout/item_preference_tag" />
 
         <ImageView
