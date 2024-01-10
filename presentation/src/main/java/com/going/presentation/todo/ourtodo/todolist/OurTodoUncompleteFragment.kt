@@ -8,6 +8,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoUncompleteBinding
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.detail.OurTodoDetailActivity
+import com.going.presentation.todo.ourtodo.detail.OurTodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,7 @@ class OurTodoUncompleteFragment() :
             false
         ) { todoId ->
             Intent(activity, OurTodoDetailActivity::class.java).apply {
-                putExtra(OurTodoDetailActivity.EXTRA_TODO_ID, todoId)
+                putExtra(EXTRA_TODO_ID, todoId)
                 startActivity(this)
             }
         }
@@ -41,7 +42,7 @@ class OurTodoUncompleteFragment() :
     }
 
     private fun setTodoList() {
-        adapter.submitList(viewModel.mockCompleteTodoList)
+        adapter.submitList(viewModel.mockUncompleteTodoList)
     }
 
     override fun onDestroyView() {

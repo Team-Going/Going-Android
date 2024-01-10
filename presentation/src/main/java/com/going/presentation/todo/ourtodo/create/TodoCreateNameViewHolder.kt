@@ -7,7 +7,8 @@ import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.setOnSingleClickListener
 
 class TodoCreateNameViewHolder(
-    val binding: ItemTodoCreateNameBinding
+    val binding: ItemTodoCreateNameBinding,
+    private val isFixed: Boolean
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white_000)
@@ -23,12 +24,17 @@ class TodoCreateNameViewHolder(
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)
             }
 
-            layoutTodoName.setOnSingleClickListener {
-                tvTodoName.isSelected = !tvTodoName.isSelected
-                if (tvTodoName.isSelected) {
-                    tvTodoName.setTextColor(whiteColor)
-                } else {
-                    tvTodoName.setTextColor(grayColor)
+            if (isFixed) {
+                tvTodoName.isSelected = true
+                tvTodoName.setTextColor(whiteColor)
+            } else {
+                layoutTodoName.setOnClickListener {
+                    tvTodoName.isSelected = !tvTodoName.isSelected
+                    if (tvTodoName.isSelected) {
+                        tvTodoName.setTextColor(whiteColor)
+                    } else {
+                        tvTodoName.setTextColor(grayColor)
+                    }
                 }
             }
         }

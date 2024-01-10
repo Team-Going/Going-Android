@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class TodoCreateNameAdapter : ListAdapter<String, TodoCreateNameViewHolder>(diffUtil) {
+class TodoCreateNameAdapter(
+    private val isFixed: Boolean
+) : ListAdapter<String, TodoCreateNameViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoCreateNameViewHolder {
         val binding: ItemTodoCreateNameBinding =
             ItemTodoCreateNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TodoCreateNameViewHolder(binding)
+        return TodoCreateNameViewHolder(binding, isFixed)
     }
 
     override fun onBindViewHolder(holder: TodoCreateNameViewHolder, position: Int) {
