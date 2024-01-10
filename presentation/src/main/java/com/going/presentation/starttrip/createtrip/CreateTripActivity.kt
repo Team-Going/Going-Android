@@ -24,6 +24,7 @@ class CreateTripActivity :
 
         initBackBtnClickListener()
         initBindingViewModel()
+        observeTextLength()
         observeIsNameAvailable()
         observeCheckStartDateAvailable()
         observeCheckEndDateAvailable()
@@ -32,18 +33,30 @@ class CreateTripActivity :
         initNextBtnClickListener()
     }
 
-    private fun initBackBtnClickListener(){
-        binding.tbCreateTrip.setNavigationOnClickListener() {
+    private fun initBackBtnClickListener() {
+        binding.tbCreateTrip.setOnSingleClickListener {
             Intent(this, StartTripSplashActivity::class.java).apply {
                 startActivity(this)
             }
-            finish()
         }
     }
+
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }
 
+    private fun observeTextLength() {
+        viewModel.nameLength.observe(this) { length ->
+            val maxNameLength = viewModel.getMaxNameLen()
+
+            if (length > maxNameLength) {
+                binding.etCreateTripName.apply {
+                    setText(text?.subSequence(0, maxNameLength))
+                    setSelection(maxNameLength)
+                }
+            }
+        }
+    }
 
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
@@ -61,11 +74,13 @@ class CreateTripActivity :
         }
     }
 
+
     private fun observeCheckStartDateAvailable() {
         viewModel.isStartDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setStartDateColors(
-                binding.tvCreateTripStartDate)
+                    binding.tvCreateTripStartDate
+                )
                 { background ->
                     binding.tvCreateTripStartDate.background = ResourcesCompat.getDrawable(
                         this.resources,
@@ -76,11 +91,13 @@ class CreateTripActivity :
             }
         }
     }
+
     private fun observeCheckEndDateAvailable() {
         viewModel.isEndDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setEndDateColors(
-                    binding.tvCreateTripEndDate)
+                    binding.tvCreateTripEndDate
+                )
                 { background ->
                     binding.tvCreateTripEndDate.background = ResourcesCompat.getDrawable(
                         this.resources,
@@ -116,7 +133,7 @@ class CreateTripActivity :
             viewModel.isStartDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
-        setDateColor(date,color)
+        setDateColor(date, color)
         setDatecolor(background)
     }
 
@@ -128,11 +145,11 @@ class CreateTripActivity :
             viewModel.isEndDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
-        setDateColor(date,color)
+        setDateColor(date, color)
         setDatecolor(background)
     }
 
-    private fun setDateColor(date: TextView, color: Int){
+    private fun setDateColor(date: TextView, color: Int) {
         date.setTextColor(getColor(color))
     }
 
@@ -157,15 +174,10 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            //성향 태그로 움직임
-            finish()
+            //다음으로 넘어감
         }
     }
 }
-
-    private fun moveSplash() {
-        // 스플래시로 이동
-    }
 
 
 
