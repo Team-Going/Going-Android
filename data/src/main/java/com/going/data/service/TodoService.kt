@@ -12,7 +12,7 @@ interface TodoService {
     suspend fun getTodoList(
         @Path("tripId") tripId: Long,
         @Query("category") category: String,
-        @Query("process") process: String
+        @Query("progress") progress: String
     ): BaseResponse<List<TodoResponseDto>>
 
 }

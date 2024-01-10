@@ -21,10 +21,10 @@ class OurTodoViewModel @Inject constructor(
     private val _todoListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoListState: StateFlow<UiState<List<TodoModel>>> = _todoListState
 
-    fun getTodoListFromServer(tripId: Long, category: String, process: String) {
+    fun getTodoListFromServer(tripId: Long, category: String, progress: String) {
         _todoListState.value = UiState.Loading
         viewModelScope.launch {
-            todoRepository.getTodoList(tripId, category, process)
+            todoRepository.getTodoList(tripId, category, progress)
                 .onSuccess { response ->
                     _todoListState.value =UiState.Success(response)
                 }

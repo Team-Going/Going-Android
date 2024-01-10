@@ -64,7 +64,6 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
     }
 
     private fun setTodoCountText() {
-        viewModel.setTodoCount()
         setTodoCount(viewModel.totalUncompletedTodoCount.value)
     }
 

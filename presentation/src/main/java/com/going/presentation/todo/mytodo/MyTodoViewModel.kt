@@ -23,20 +23,17 @@ class MyTodoViewModel @Inject constructor(
     private val _todoListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoListState: StateFlow<UiState<List<TodoModel>>> = _todoListState
 
-    fun setTodoCount() {
-        _totalUncompletedTodoCount.value = mockUncompleteTodoList.size
-    }
-
     fun decreaseTodoCount() {
         _totalUncompletedTodoCount.value = _totalUncompletedTodoCount.value - 1
     }
 
-    fun getTodoListFromServer(tripId: Long, category: String, process: String) {
+    fun getTodoListFromServer(tripId: Long, category: String, progress: String) {
         _todoListState.value = UiState.Loading
         viewModelScope.launch {
-            todoRepository.getTodoList(tripId, category, process)
+            todoRepository.getTodoList(tripId, category, progress)
                 .onSuccess { response ->
                     _todoListState.value =UiState.Success(response)
+                    _totalUncompletedTodoCount.value = response.size
                 }
                 .onFailure {
                     _todoListState.value = UiState.Failure(it.message.orEmpty())
@@ -49,77 +46,4 @@ class MyTodoViewModel @Inject constructor(
         const val UNCOMPLETE = "incomplete"
         const val COMPLETE = "complete"
     }
-
-    val mockUncompleteTodoList: List<TodoModel> = listOf(
-        TodoModel(
-            0,
-            "숙소 예약하기",
-            "2024-01-12",
-            listOf(TodoAllocatorModel("김상호", true), TodoAllocatorModel("박동민", false)),
-            false
-        ),
-        TodoModel(
-            1,
-            "기차 왕복 예약하기",
-            "2024-01-14",
-            listOf(TodoAllocatorModel("이유빈", false)),
-            false
-        ),
-        TodoModel(
-            2,
-            "와사비맛 아몬드 먹기",
-            "2024-01-15",
-            listOf(TodoAllocatorModel("조세연", false)),
-            false
-        ),
-        TodoModel(
-            3,
-            "커피 사기",
-            "2024-01-15",
-            listOf(
-                TodoAllocatorModel("김상호", true),
-                TodoAllocatorModel("박동민", false),
-                TodoAllocatorModel("이유빈", false)
-            ),
-            false
-        ),
-        TodoModel(
-            4,
-            "숙소 예약하기",
-            "2024-01-12",
-            listOf(TodoAllocatorModel("박동민", false)),
-            false
-        ),
-        TodoModel(
-            5,
-            "기차 왕복 예약하기",
-            "2024-01-14",
-            listOf(TodoAllocatorModel("김상호", true)),
-            false
-        ),
-        TodoModel(
-            6,
-            "와사비맛 아몬드 먹기",
-            "2024-01-15",
-            listOf(TodoAllocatorModel("이유빈", false)),
-            false
-        ),
-        TodoModel(
-            7,
-            "커피 사기",
-            "2024-01-15",
-            listOf(TodoAllocatorModel("조세연", false), TodoAllocatorModel("박동민", false)),
-            false
-        )
-    )
-
-    val mockCompleteTodoList: List<TodoModel> = listOf(
-        TodoModel(
-            0,
-            "숙소 예약하기",
-            "2024-01-12",
-            listOf(TodoAllocatorModel("김상호", true), TodoAllocatorModel("박동민", false)),
-            false
-        ),
-    )
 }

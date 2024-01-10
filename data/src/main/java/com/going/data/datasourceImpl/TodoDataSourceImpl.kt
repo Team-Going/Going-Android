@@ -13,8 +13,8 @@ class TodoDataSourceImpl @Inject constructor(
     override suspend fun getTodoListData(
         tripId: Long,
         category: String,
-        process: String
+        progress: String
     ): BaseResponse<List<TodoResponseDto>> =
-        todoService.getTodoList(tripId, category, process)
+        todoService.getTodoList(tripId, category, progress)
 
 }

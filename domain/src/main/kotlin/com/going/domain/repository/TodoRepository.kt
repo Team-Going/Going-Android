@@ -7,7 +7,7 @@ interface TodoRepository {
     suspend fun getTodoList(
         tripId: Long,
         category: String,
-        process: String
+        progress: String
     ): Result<List<TodoModel>>
 
 }

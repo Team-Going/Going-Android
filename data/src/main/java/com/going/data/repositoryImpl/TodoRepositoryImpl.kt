@@ -12,10 +12,10 @@ class TodoRepositoryImpl @Inject constructor(
     override suspend fun getTodoList(
         tripId: Long,
         category: String,
-        process: String
+        progress: String
     ): Result<List<TodoModel>> =
         runCatching {
-            todoDataSource.getTodoListData(tripId, category, process).data.map { it.toTodoModel() }
+            todoDataSource.getTodoListData(tripId, category, progress).data.map { it.toTodoModel() }
         }
 
 }
