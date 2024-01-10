@@ -1,4 +1,4 @@
-package com.going.going.di.qualifier
+package com.going.doorip.di.qualifier
 
 import javax.inject.Qualifier
 

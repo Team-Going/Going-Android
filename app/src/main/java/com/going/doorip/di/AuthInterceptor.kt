@@ -1,4 +1,4 @@
-package com.going.going.di
+package com.going.doorip.di
 
 import android.content.Context
 import com.going.data.dto.BaseResponse
