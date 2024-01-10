@@ -97,7 +97,7 @@
         <activity
             android:name="com.going.presentation.starttrip.StartTripSplashActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.todo.mytodo.create.MyTodoCreateActivity"
@@ -132,8 +132,12 @@
         <activity
             android:name="com.going.presentation.profile.ProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.checkfriends.CheckFriendsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
     </application>
 

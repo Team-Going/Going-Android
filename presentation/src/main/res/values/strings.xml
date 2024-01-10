@@ -142,4 +142,37 @@
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
 
+    <!--check friends-->
+    <string name="check_friends_tool_bar">여행 친구들</string>
+    <string name="check_friends_member">멤버</string>
+    <string name="check_friends_our_tag">우리의 취향 태그</string>
+    <string name="check_friends_preference_1_title">여행 스타일</string>
+    <string name="check_friends_preference_1_left">휴식</string>
+    <string name="check_friends_preference_1_right">관광</string>
+    <string name="check_friends_preference_2_title">여행 장소</string>
+    <string name="check_friends_preference_2_left">관광지</string>
+    <string name="check_friends_preference_2_right">로컬플레이스</string>
+    <string name="check_friends_preference_3_title">일정 계획</string>
+    <string name="check_friends_preference_3_left">철저한 계획</string>
+    <string name="check_friends_preference_3_right">무계획</string>
+    <string name="check_friends_preference_4_title">맛집</string>
+    <string name="check_friends_preference_4_left">찾아온 맛집</string>
+    <string name="check_friends_preference_4_right">끌리는 곳</string>
+    <string name="check_friends_preference_5_title">여행 일정</string>
+    <string name="check_friends_preference_5_left">느긋하게</string>
+    <string name="check_friends_preference_5_rigjt">효율적으로</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>
