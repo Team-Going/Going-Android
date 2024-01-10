@@ -72,6 +72,7 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:maxLines="1"
+            android:maxLength="15"
             android:text="@={viewModel.name}"
             android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"

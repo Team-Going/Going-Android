@@ -32,14 +32,15 @@ class CreateTripActivity :
         initNextBtnClickListener()
     }
 
-    private fun initBackBtnClickListener(){
-        binding.tbCreateTrip.setNavigationOnClickListener() {
+    private fun initBackBtnClickListener() {
+        binding.tbCreateTrip.setOnSingleClickListener {
             Intent(this, StartTripSplashActivity::class.java).apply {
                 startActivity(this)
             }
             finish()
         }
     }
+
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }
@@ -65,7 +66,8 @@ class CreateTripActivity :
         viewModel.isStartDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setStartDateColors(
-                binding.tvCreateTripStartDate)
+                    binding.tvCreateTripStartDate
+                )
                 { background ->
                     binding.tvCreateTripStartDate.background = ResourcesCompat.getDrawable(
                         this.resources,
@@ -76,11 +78,13 @@ class CreateTripActivity :
             }
         }
     }
+
     private fun observeCheckEndDateAvailable() {
         viewModel.isEndDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setEndDateColors(
-                    binding.tvCreateTripEndDate)
+                    binding.tvCreateTripEndDate
+                )
                 { background ->
                     binding.tvCreateTripEndDate.background = ResourcesCompat.getDrawable(
                         this.resources,
@@ -116,7 +120,7 @@ class CreateTripActivity :
             viewModel.isStartDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
-        setDateColor(date,color)
+        setDateColor(date, color)
         setDatecolor(background)
     }
 
@@ -128,11 +132,11 @@ class CreateTripActivity :
             viewModel.isEndDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
-        setDateColor(date,color)
+        setDateColor(date, color)
         setDatecolor(background)
     }
 
-    private fun setDateColor(date: TextView, color: Int){
+    private fun setDateColor(date: TextView, color: Int) {
         date.setTextColor(getColor(color))
     }
 
@@ -162,10 +166,6 @@ class CreateTripActivity :
         }
     }
 }
-
-    private fun moveSplash() {
-        // 스플래시로 이동
-    }
 
 
 

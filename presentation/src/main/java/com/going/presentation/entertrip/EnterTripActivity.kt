@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import com.going.domain.entity.CodeState
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
@@ -63,9 +64,9 @@ class EnterTripActivity :
         setBackground: (Int) -> Unit,
     ) {
         val (color, background) = when {
-            viewModel.isCodeAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            viewModel.isCodeAvailable.value != CodeState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             length == 0 -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            viewModel.isCodeAvailable.value == NameState.Blank && counter == binding.tvCodeCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+            viewModel.isCodeAvailable.value == CodeState.Blank && counter == binding.tvCodeCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
             else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
         }
         setCounterColor(counter, color)
@@ -81,6 +82,5 @@ class EnterTripActivity :
             finish()
         }
     }
-
 
 }

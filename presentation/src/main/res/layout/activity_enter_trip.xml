@@ -7,8 +7,7 @@
 
         <import type="android.view.View" />
 
-
-        <import type="com.going.domain.entity.NameState" />
+        <import type="com.going.domain.entity.CodeState" />
 
         <variable
             name="viewModel"
@@ -77,6 +76,7 @@
             android:hint="@string/enter_trip_tv_hint"
             android:imeOptions="actionNext"
             android:inputType="text"
+            android:maxLength="6"
             android:maxLines="1"
             android:text="@={viewModel.inviteCode}"
             android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
@@ -91,8 +91,8 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="@string/enter_trip_tv_error"
-            android:textColor="@{viewModel.isCodeAvailable() == NameState.Blank ? @color/red_500 : @color/gray_700}"
-            android:visibility="@{viewModel.isCodeAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
+            android:textColor="@{viewModel.isCodeAvailable() == CodeState.Blank || viewModel.isCodeAvailable() == CodeState.Invalid ? @color/red_500 : @color/gray_700}"
+            android:visibility="@{viewModel.isCodeAvailable() == CodeState.Blank || viewModel.isCodeAvailable() == CodeState.Invalid ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@id/et_enter_trip_name"
             app:layout_constraintTop_toBottomOf="@id/et_enter_trip_name" />
 
