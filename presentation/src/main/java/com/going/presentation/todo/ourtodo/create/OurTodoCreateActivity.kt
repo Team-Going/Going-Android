@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOurTodoCreateBinding
-import com.going.presentation.todo.mytodo.create.MyTodoCreateBottomSheet
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -62,7 +61,7 @@ class OurTodoCreateActivity :
 
     private fun initDateClickListener() {
         binding.etOurTodoCreateDate.setOnSingleClickListener {
-            ourTodoCreateBottomSheet = MyTodoCreateBottomSheet()
+            ourTodoCreateBottomSheet = OurTodoCreateBottomSheet()
             ourTodoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
