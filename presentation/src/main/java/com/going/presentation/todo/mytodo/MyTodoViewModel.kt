@@ -46,7 +46,6 @@ class MyTodoViewModel @Inject constructor(
 
     companion object {
         const val MY_TODO = "my"
-        const val OUR_TODO = "our"
         const val UNCOMPLETE = "incomplete"
         const val COMPLETE = "complete"
     }

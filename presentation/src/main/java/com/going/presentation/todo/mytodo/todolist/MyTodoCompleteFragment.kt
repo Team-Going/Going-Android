@@ -38,21 +38,24 @@ class MyTodoCompleteFragment() :
     }
 
     private fun initAdapterWithClickListener() {
-        _adapter = MyTodoListAdapter(true, { }, { position ->
-            adapter.removeItem(position)
-            adapter.notifyDataSetChanged()
-        }, { todoId ->
-            Intent(activity, MyTodoDetailActivity::class.java).apply {
-                putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
-                startActivity(this)
-            }
-        })
+        _adapter = MyTodoListAdapter(true,
+            { },
+            { position ->
+                adapter.removeItem(position)
+                adapter.notifyDataSetChanged()
+            },
+            { todoId ->
+                Intent(activity, MyTodoDetailActivity::class.java).apply {
+                    putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
+                    startActivity(this)
+                }
+            })
         binding.rvMyTodoComplete.adapter = adapter
     }
 
     private fun setTodoList() {
         // 추후 tripId 설정
-        val tripId : Long = 1
+        val tripId: Long = 1
         viewModel.getTodoListFromServer(tripId, MY_TODO, COMPLETE)
     }
 
