@@ -8,8 +8,8 @@ import com.going.ui.extension.setOnSingleClickListener
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
-    private lateinit var quitDialog: SettingQuitDialogFragment
-    private lateinit var logoutDialog: SettingLogoutDialogFragment
+    private var quitDialog: SettingQuitDialogFragment ?= null
+    private var logoutDialog: SettingLogoutDialogFragment ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +61,18 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun showLogoutAlertDialog() {
         logoutDialog = SettingLogoutDialogFragment()
-        logoutDialog.show(supportFragmentManager, logoutDialog.tag)
+        logoutDialog?.show(supportFragmentManager, logoutDialog?.tag)
     }
 
     private fun showQuitAlertDialog() {
         quitDialog = SettingQuitDialogFragment()
-        quitDialog.show(supportFragmentManager, quitDialog.tag)
+        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(logoutDialog?.isAdded == true) logoutDialog?.dismiss()
+        if(quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
 }
