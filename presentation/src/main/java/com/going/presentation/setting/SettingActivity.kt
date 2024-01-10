@@ -62,7 +62,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     private fun showLogoutAlertDialog() {
         settingDialog = SettingCustomDialogFragment()
         settingDialog.show(supportFragmentManager, settingDialog.tag)
-        window.statusBarColor = ContextCompat.getColor(this@SettingActivity, R.color.transparent_60)
     }
 
 }

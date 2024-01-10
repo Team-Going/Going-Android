@@ -33,8 +33,6 @@ class SettingCustomDialogFragment :
 
     private fun initPositiveClickListener() {
         binding.tvDialogPositive.setOnSingleClickListener {
-            activity?.window?.statusBarColor =
-                ContextCompat.getColor(requireContext(), R.color.white_000)
             dismiss()
         }
     }
