@@ -17,18 +17,28 @@ class OurTodoViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
 
-    private val _todoListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
-    val todoListState: StateFlow<UiState<List<TodoModel>>> = _todoListState
+    private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
+    val todoUncompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoUncompleteListState
 
-    fun getTodoListFromServer(tripId: Long, category: String, progress: String) {
-        _todoListState.value = UiState.Loading
+    private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
+    val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
+
+    fun getTodoListFromServer(
+        tripId: Long, category: String, progress: String
+    ) {
+        val todoListState = if (progress == COMPLETE) {
+            _todoCompleteListState
+        } else {
+            _todoUncompleteListState
+        }
+        todoListState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
                 .onSuccess { response ->
-                    _todoListState.value = UiState.Success(response)
+                    todoListState.value = UiState.Success(response)
                 }
                 .onFailure {
-                    _todoListState.value = UiState.Failure(it.message.orEmpty())
+                    todoListState.value = UiState.Failure(it.message.orEmpty())
                 }
         }
     }
