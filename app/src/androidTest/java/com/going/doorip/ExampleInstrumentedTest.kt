@@ -1,4 +1,4 @@
-package com.going.going
+package com.going.doorip
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

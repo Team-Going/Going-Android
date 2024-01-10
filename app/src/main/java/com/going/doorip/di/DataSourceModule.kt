@@ -1,4 +1,4 @@
-package com.going.going.di
+package com.going.doorip.di
 
 import com.going.data.datasource.AuthDataSource
 import com.going.data.datasource.MockDataSource
