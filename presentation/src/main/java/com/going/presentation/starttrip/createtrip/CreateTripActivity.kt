@@ -24,6 +24,7 @@ class CreateTripActivity :
 
         initBackBtnClickListener()
         initBindingViewModel()
+        observeTextLength()
         observeIsNameAvailable()
         observeCheckStartDateAvailable()
         observeCheckEndDateAvailable()
@@ -37,7 +38,6 @@ class CreateTripActivity :
             Intent(this, StartTripSplashActivity::class.java).apply {
                 startActivity(this)
             }
-            finish()
         }
     }
 
@@ -45,6 +45,18 @@ class CreateTripActivity :
         binding.viewModel = viewModel
     }
 
+    private fun observeTextLength() {
+        viewModel.nameLength.observe(this) { length ->
+            val maxNameLength = viewModel.getMaxNameLen()
+
+            if (length > maxNameLength) {
+                binding.etCreateTripName.apply {
+                    setText(text?.subSequence(0, maxNameLength))
+                    setSelection(maxNameLength)
+                }
+            }
+        }
+    }
 
     private fun observeIsNameAvailable() {
         viewModel.isNameAvailable.observe(this) { state ->
@@ -61,6 +73,7 @@ class CreateTripActivity :
             }
         }
     }
+
 
     private fun observeCheckStartDateAvailable() {
         viewModel.isStartDateAvailable.observe(this) { isAvailable ->
@@ -161,8 +174,7 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            //성향 태그로 움직임
-            finish()
+            //다음으로 넘어감
         }
     }
 }

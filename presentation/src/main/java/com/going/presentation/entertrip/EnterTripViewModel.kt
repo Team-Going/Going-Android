@@ -3,8 +3,6 @@ package com.going.presentation.entertrip
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.CodeState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import java.util.regex.Pattern
 
 class EnterTripViewModel : ViewModel() {
@@ -14,9 +12,6 @@ class EnterTripViewModel : ViewModel() {
 
     val isCodeAvailable = MutableLiveData(CodeState.Empty)
     var isCheckEnterAvailable = MutableLiveData(false)
-
-    private val _ButtonAvailable = MutableStateFlow(false)
-    val ButtonAvailable: StateFlow<Boolean> = _ButtonAvailable
 
     fun checkCodeAvailable() {
         codeLength.value = getCodeLength(inviteCode.value)
@@ -36,10 +31,6 @@ class EnterTripViewModel : ViewModel() {
         isCheckEnterAvailable.value = isCodeAvailable.value == CodeState.Success
     }
 
-
-    fun setButtonAvailable() {
-        _ButtonAvailable.value = true
-    }
 
     companion object {
         private const val ENG_NUM_PATTERN = "^[a-z0-9]*$"

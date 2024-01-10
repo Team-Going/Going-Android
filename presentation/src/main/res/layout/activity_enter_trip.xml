@@ -115,7 +115,6 @@
             android:layout_marginBottom="60dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isCheckEnterAvailable}"
-            android:onClick="@{() -> viewModel.setButtonAvailable()}"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/enter_trip_tv_next_button"

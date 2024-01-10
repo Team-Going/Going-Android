@@ -78,7 +78,7 @@ class EnterTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {
-            finish()
+            //다음 뷰로 이동
         }
     }
 

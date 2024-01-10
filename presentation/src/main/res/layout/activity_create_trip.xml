@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.going.domain.entity.NameState" />
+
         <variable
             name="viewModel"
             type="com.going.presentation.starttrip.createtrip.CreateTripViewModel" />
@@ -15,48 +20,48 @@
         android:background="@color/white_000"
         tools:context=".starttrip.createtrip.CreateTripActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/tb_create_trip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layer_list_preference_tag_gray200_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/btn_create_back"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tb_create_trip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/ic_back"
+            android:background="@drawable/layer_list_preference_tag_gray200_line"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            style="@style/TextAppearance.Doorip.Body1.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/create_trip_tb_title"
-            android:textColor="@color/gray_700"
-            app:layout_constraintBottom_toBottomOf="@id/btn_create_back"
-            app:layout_constraintStart_toEndOf="@id/btn_create_back"
-            app:layout_constraintTop_toTopOf="@id/btn_create_back" />
+            <ImageView
+                android:id="@+id/btn_create_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/create_trip_tb_title"
+                android:textColor="@color/gray_700"
+                app:layout_constraintBottom_toBottomOf="@id/btn_create_back"
+                app:layout_constraintStart_toEndOf="@id/btn_create_back"
+                app:layout_constraintTop_toTopOf="@id/btn_create_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_create_trip_name_title"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
             android:text="@string/create_trip_name_tv_title"
             android:textColor="@color/black_000"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
             app:layout_constraintStart_toStartOf="@id/tb_create_trip"
             app:layout_constraintTop_toBottomOf="@id/tb_create_trip" />
 
@@ -79,6 +84,18 @@
             app:layout_constraintTop_toBottomOf="@id/tv_create_trip_name_title" />
 
         <TextView
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/name_blank_error"
+            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_500 : @color/gray_700}"
+            android:visibility="@{viewModel.isNameAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
+            app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
+
+        <TextView
             android:id="@+id/tv_name_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,36 +107,36 @@
 
         <TextView
             android:id="@+id/tv_create_trip_on_line_info_title"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
             android:text="@string/create_trip_one_line_info_tv_title"
             android:textColor="@color/black_000"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
             app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
             app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tv_create_trip_on_line_info_title"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="13dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_create_trip_on_line_info_title">
 
             <TextView
                 android:id="@+id/tv_create_trip_start_date"
-                android:background="@drawable/shape_rect_4_gray200_line"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_weight="1"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="12dp"
-                android:maxLines="1"
+                android:background="@drawable/shape_rect_4_gray200_line"
                 android:hint="@string/create_trip_start_date"
-                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}"/>
+                android:maxLines="1"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
+                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,12 +152,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_weight="1"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="12dp"
                 android:background="@drawable/shape_rect_4_gray200_line"
                 android:hint="@string/create_trip_end_date"
                 android:maxLines="1"
-                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}"/>
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
+                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -149,14 +166,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="56dp"
             android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="@{viewModel.isCheckTripAvailable()}"
             android:outlineProvider="none"
-            android:enabled="@{viewModel.isCheckTripAvailable}"
-            android:onClick="@{() -> viewModel.setButtonAvailable()}"
             android:paddingVertical="10dp"
-            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:text="@string/create_trip_finish_btn"
+            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
