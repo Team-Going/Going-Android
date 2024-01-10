@@ -2,7 +2,6 @@ package com.going.presentation.todo.mytodo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
@@ -32,7 +31,7 @@ class MyTodoViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
                 .onSuccess { response ->
-                    _todoListState.value =UiState.Success(response)
+                    _todoListState.value = UiState.Success(response)
                     _totalUncompletedTodoCount.value = response.size
                 }
                 .onFailure {
