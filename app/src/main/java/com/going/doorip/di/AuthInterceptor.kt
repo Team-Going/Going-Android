@@ -19,6 +19,7 @@ class AuthInterceptor @Inject constructor(
     private val dataStore: GoingDataStore,
     @ApplicationContext private val context: Context,
 ) : Interceptor {
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
