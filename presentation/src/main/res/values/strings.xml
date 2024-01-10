@@ -70,8 +70,8 @@
     <string name="my_todo_tv_lock">나만보기</string>
     <string name="my_todo_tv_title_down">할일이 %s개 남았어요</string>
 
-    <!--my_todo_create-->
-    <string name="my_todo_create_tv_title">여행 생성하기</string>
+    <!--todo_create-->
+    <string name="my_todo_create_tv_title">할일 추가</string>
     <string name="my_todo_create_tv_todo">할일</string>
     <string name="my_todo_create_tv_todo_hint">할일을 입력해주세요.</string>
     <string name="my_todo_create_tv_date">언제까지</string>

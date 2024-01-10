@@ -5,17 +5,18 @@
     android:id="@+id/layout_todo_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/gray_50"
+    android:background="@color/white_000"
     android:paddingEnd="5dp">
 
     <TextView
         android:id="@+id/tv_todo_name"
-        style="@style/TextAppearance.Doorip.Detail2.Regular"
+        style="@style/TextAppearance.Doorip.Detail1.Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/sel_todo_shape_red500_line"
-        android:paddingHorizontal="5dp"
-        android:textColor="@color/gray_400"
+        android:background="@drawable/shape_rect_2_gray300_line"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/gray_300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
