@@ -1,16 +1,11 @@
 package com.going.presentation.setting
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
@@ -54,6 +49,12 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initLogoutClickListener() {
         binding.btnSettingLogoutEnter.setOnSingleClickListener {
+
+        }
+    }
+
+    private fun initQuitClickListener() {
+        binding.btnSettingQuit.setOnSingleClickListener {
             showLogoutAlertDialog()
         }
     }
@@ -61,17 +62,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     private fun showLogoutAlertDialog() {
         settingDialog = SettingCustomDialogFragment()
         settingDialog.show(supportFragmentManager, settingDialog.tag)
-        val scope = CoroutineScope(Dispatchers.Main)
-        scope.launch {
-            delay(190)
-            window.statusBarColor = ContextCompat.getColor(this@SettingActivity, R.color.transparent_60)
-        }
-    }
-
-   private fun initQuitClickListener(){
-        binding.btnSettingQuit.setOnSingleClickListener {
-
-        }
+        window.statusBarColor = ContextCompat.getColor(this@SettingActivity, R.color.transparent_60)
     }
 
 }
