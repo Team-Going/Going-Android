@@ -3,7 +3,6 @@ package com.going.doorip.di
 import com.going.doorip.BuildConfig.BASE_URL
 import com.going.going.di.AuthInterceptor
 import com.going.going.di.qualifier.JWT
-import com.going.going.di.qualifier.KAKAO
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -57,16 +56,11 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    @KAKAO
-    fun provideKAKAOOkHttpClient(
-        loggingInterceptor: Interceptor,
-    ): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)
-        .build()
+    @JWT
+    fun provideAuthInterceptor(authInterceptor: AuthInterceptor): Interceptor = authInterceptor
 
     @Provides
     @Singleton
-    @JWT
     fun provideJWTOkHttpClient(
         loggingInterceptor: Interceptor,
         @JWT authInterceptor: Interceptor,
@@ -77,26 +71,8 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    @JWT
-    fun provideAuthInterceptor(interceptor: AuthInterceptor): Interceptor = interceptor
-
-    @Provides
-    @Singleton
-    @KAKAO
-    fun provideKAKAORetrofit(
-        @KAKAO client: OkHttpClient,
-        factory: Converter.Factory,
-    ): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(client)
-        .addConverterFactory(factory)
-        .build()
-
-    @Provides
-    @Singleton
-    @JWT
     fun provideJWTRetrofit(
-        @JWT client: OkHttpClient,
+        client: OkHttpClient,
         factory: Converter.Factory,
     ): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
