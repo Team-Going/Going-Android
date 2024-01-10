@@ -15,21 +15,38 @@
         android:background="@color/white_000"
         tools:context=".starttrip.createtrip.CreateTripActivity">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_create_trip"
-            android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tb_create_trip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layer_list_preference_tag_gray200_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_create_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white_000"
-            android:elevation="2dp"
-            android:paddingVertical="12dp"
-            android:paddingStart="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="@string/create_trip_tb_title"
-            app:titleTextColor="@color/gray_700" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/create_trip_tb_title"
+            android:textColor="@color/gray_700"
+            app:layout_constraintBottom_toBottomOf="@id/btn_create_back"
+            app:layout_constraintStart_toEndOf="@id/btn_create_back"
+            app:layout_constraintTop_toTopOf="@id/btn_create_back" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_create_trip_name_title"
