@@ -15,12 +15,17 @@ class OurTodoCreateActivity :
 
     private val viewModel by viewModels<OurTodoCreateViewModel>()
 
+    private var _adapter: TodoCreateNameAdapter? = null
+    private val adapter
+        get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
+
     private var ourTodoCreateBottomSheet: OurTodoCreateBottomSheet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initViewModel()
+        initNameListAdapter()
         initTodoFocusListener()
         initMemoFocusListener()
         initDateClickListener()
@@ -33,6 +38,13 @@ class OurTodoCreateActivity :
 
     private fun initViewModel() {
         binding.vm = viewModel
+    }
+
+    private fun initNameListAdapter() {
+        // 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
+        _adapter = TodoCreateNameAdapter()
+        binding.rvOurTodoCreatePerson.adapter = adapter
+        adapter.submitList(listOf("김상호", "박동민", "조세연", "이유빈"))
     }
 
     private fun initTodoFocusListener() {
@@ -157,6 +169,7 @@ class OurTodoCreateActivity :
 
     override fun onDestroy() {
         super.onDestroy()
+        _adapter = null
         if (ourTodoCreateBottomSheet?.isAdded == true) ourTodoCreateBottomSheet?.dismiss()
     }
 

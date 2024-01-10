@@ -53,7 +53,7 @@
 
         <activity
             android:name="com.going.presentation.todo.TodoActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
@@ -104,6 +104,11 @@
 
         <activity
             android:name="com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
