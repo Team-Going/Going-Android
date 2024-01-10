@@ -4,6 +4,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
+import com.going.ui.extension.setOnSingleClickListener
 
 class TodoCreateNameViewHolder(
     val binding: ItemTodoCreateNameBinding
@@ -22,10 +23,13 @@ class TodoCreateNameViewHolder(
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)
             }
 
-            if (tvTodoName.isSelected) {
-                tvTodoName.setTextColor(whiteColor)
-            } else {
-                tvTodoName.setTextColor(grayColor)
+            layoutTodoName.setOnSingleClickListener {
+                tvTodoName.isSelected = !tvTodoName.isSelected
+                if (tvTodoName.isSelected) {
+                    tvTodoName.setTextColor(whiteColor)
+                } else {
+                    tvTodoName.setTextColor(grayColor)
+                }
             }
         }
     }
