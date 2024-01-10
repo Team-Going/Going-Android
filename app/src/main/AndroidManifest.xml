@@ -136,6 +136,11 @@
 
         <activity
             android:name="com.going.presentation.enter.entertrip.EnterTripActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.enter.invitefinish.InviteFinishActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 

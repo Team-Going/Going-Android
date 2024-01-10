@@ -145,13 +145,12 @@
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
     <string name="enter_trip_tv_invite_code">초대코드</string>
-    <string name="enter_trip_tv_hint">초대코드를 입력해주세요.</string>
+    <string name="enter_trip_tv_hint">친구에게 받은 초대 코드 6자리를 입력해 주세요</string>
     <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
-    <string name="enter_trip_tv_next_button">다음</string>
+    <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
 
     <!--invite_finish-->
-    <string name="invite_finish_tv_title">멋진 여행에 초대받으셨네요!</string>
-    <string name="invite_finish_tv_enter">입장하기</string>
-
+    <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
+    <string name="invite_finish_tv_enter">초대받은 여행이 맞아요!</string>
 
 </resources>

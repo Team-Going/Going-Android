@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="-22dp"
             android:src="@drawable/ic_invite_finish_doorips"
             app:layout_constraintBottom_toBottomOf="@id/iv_invite_finish_letter"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -68,7 +68,6 @@
             android:layout_marginTop="86dp"
             android:gravity="center"
             android:text="@string/invite_finish_tv_title"
-            android:textColor="@color/gray_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_invite_finish_trip" />
@@ -95,7 +94,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="굉굉이랑 스페인"
-            android:textColor="@color/gray_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_day_left" />
