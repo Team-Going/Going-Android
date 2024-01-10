@@ -10,4 +10,7 @@ class OurTodoDetailActivity :
 
     private val viewModel by viewModels<OurTodoDetailViewModel>()
 
+    companion object {
+        const val EXTRA_TODO_ID = "EXTRA_TODO_ID"
+    }
 }
