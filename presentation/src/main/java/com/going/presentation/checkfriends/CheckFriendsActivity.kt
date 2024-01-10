@@ -4,14 +4,13 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
-import com.going.presentation.todo.ourtodo.OurTodoFriendAdapter
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
 class CheckFriendsActivity :
     BaseActivity<ActivityCheckFriendsBinding>(R.layout.activity_check_friends) {
 
-    private var _adapter: OurTodoFriendAdapter? = null
+    private var _adapter: CheckFriendsAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -32,7 +31,7 @@ class CheckFriendsActivity :
     }
 
     private fun initAdapter() {
-        _adapter = OurTodoFriendAdapter()
+        _adapter = CheckFriendsAdapter()
         binding.rvCheckFriendsMember.adapter = adapter
         adapter.submitList(viewModel.mockParticipantsList)
     }
