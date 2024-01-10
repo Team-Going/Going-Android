@@ -1,5 +1,6 @@
 package com.going.presentation.todo.ourtodo
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -9,8 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +32,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
+        initAddTodoBtnListener()
         setDateTextColor()
         setProgressBarStatus()
         setTabLayout()
@@ -39,6 +43,14 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         _adapter = OurTodoFriendAdapter()
         binding.rvOurTripFriend.adapter = adapter
         adapter.submitList(viewModel.mockParticipantsList)
+    }
+
+    private fun initAddTodoBtnListener() {
+        binding.btnOurTodoAddTodo.setOnSingleClickListener {
+            Intent(activity, OurTodoCreateActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 
     private fun setDateTextColor() {
