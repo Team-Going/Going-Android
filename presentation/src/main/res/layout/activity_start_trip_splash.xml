@@ -12,18 +12,27 @@
         android:layout_height="match_parent"
         android:background="@color/white_000">
 
-        <androidx.appcompat.widget.Toolbar
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tb_start_trip_splash"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white_000"
-            android:elevation="2dp"
-            android:paddingVertical="12dp"
-            android:paddingStart="18dp"
+            android:background="@drawable/layer_list_preference_tag_gray200_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_enter_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_start_trip_splash_title"
