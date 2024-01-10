@@ -13,3 +13,5 @@ fun toErrorCode(throwable: Throwable): String = if (throwable is HttpException) 
 } else {
     "NOT_HTTP"
 }
+
+// 기능 오류 발견!!!! 반드시 수정 필요!!!!!!
