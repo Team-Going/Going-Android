@@ -83,6 +83,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setViewPager() {
         binding.vpOurTodo.adapter = OurTodoViewPagerAdapter(this)
+        binding.vpOurTodo.isUserInputEnabled = false
         TabLayoutMediator(binding.tabOurTodo, binding.vpOurTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
