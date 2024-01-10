@@ -8,8 +8,8 @@ import com.going.ui.extension.setOnSingleClickListener
 
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
-    private var quitDialog: SettingQuitDialogFragment ?= null
-    private var logoutDialog: SettingLogoutDialogFragment ?= null
+    private var quitDialog: SettingQuitDialogFragment? = null
+    private var logoutDialog: SettingLogoutDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +20,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initAboutDooripClickListener()
         initLogoutClickListener()
         initQuitClickListener()
+        setVersionCode()
 
     }
 
@@ -69,10 +70,18 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         quitDialog?.show(supportFragmentManager, quitDialog?.tag)
     }
 
+    private fun setVersionCode() {
+        binding.tvSettingShowServiceVersion.text = VERSION_CODE
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        if(logoutDialog?.isAdded == true) logoutDialog?.dismiss()
-        if(quitDialog?.isAdded == true) quitDialog?.dismiss()
+        if (logoutDialog?.isAdded == true) logoutDialog?.dismiss()
+        if (quitDialog?.isAdded == true) quitDialog?.dismiss()
+    }
+
+    companion object {
+        private const val VERSION_CODE = "v1.0"
     }
 
 }

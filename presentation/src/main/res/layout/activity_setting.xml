@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_preference_tag">
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_setting_profile">
@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_setting_inquire">
@@ -141,7 +141,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/btn_setting_service_version_enter"
+                android:id="@+id/tv_setting_show_service_version"
                 style="@style/TextAppearance.Doorip.Detail1.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_setting_service_version">
@@ -197,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_setting_policy">
@@ -233,7 +233,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/shape_rect6_white000_fill"
+            android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_setting_about_doorip">
