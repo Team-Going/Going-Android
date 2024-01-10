@@ -1,5 +1,6 @@
 package com.going.presentation.tendencytest
 
+import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestSplashBinding
@@ -16,7 +17,13 @@ class TendencyTestSplashActivity :
 
     private fun initStartBtnClickListener() {
         binding.btnTendencySplashStart.setOnSingleClickListener {
-            // 페이지 이동~
+            navigateToTendencyTestScreen()
+        }
+    }
+
+    private fun navigateToTendencyTestScreen() {
+        Intent(this, TendencyTestActivity::class.java).apply {
+            startActivity(this)
         }
     }
 }

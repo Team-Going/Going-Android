@@ -35,6 +35,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             if (viewModel.getHasAccessToken()) {
                 navigateToMainScreen()
             } else {
+                // api 호출로 변경 예정
                 navigateToSignInScreen()
             }
         }, 3000)
