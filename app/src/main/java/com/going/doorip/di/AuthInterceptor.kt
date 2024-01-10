@@ -4,7 +4,7 @@ import android.content.Context
 import com.going.data.dto.BaseResponse
 import com.going.data.local.GoingDataStore
 import com.going.domain.entity.response.AuthTokenModel
-import com.going.going.BuildConfig.BASE_URL
+import com.going.doorip.BuildConfig.BASE_URL
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -32,7 +32,7 @@ class AuthInterceptor @Inject constructor(
             CODE_TOKEN_EXPIRED -> {
                 try {
                     val refreshTokenRequest = originalRequest.newBuilder().post("".toRequestBody())
-                        .url("$BASE_URL/api/v1/auth/token/issue")
+                        .url("$BASE_URL/api/users/reissue")
                         .addHeader(AUTHORIZATION, dataStore.refreshToken)
                         .build()
                     val refreshTokenResponse = chain.proceed(refreshTokenRequest)

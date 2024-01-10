@@ -1,5 +1,6 @@
 package com.going.presentation.tendencytest.result
 
+import android.media.SubtitleData
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -27,8 +28,8 @@ class TendencyTestResultActivity :
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
             viewModel.mockTendencyResult.apply {
-                tvTendencyTestResultType.text = tendencyTitle
-                tvTendencyTestResultSubType.text = tendencySubTitle
+                tvTendencyTestResultType.text = profileTitle
+                tvTendencyTestResultSubType.text = profileSubTitle
 
                 tvTendencyTestResultTag1.text = tags[0]
                 tvTendencyTestResultTag2.text = tags[1]

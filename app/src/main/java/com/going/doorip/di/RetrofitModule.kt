@@ -1,11 +1,9 @@
 package com.going.doorip.di
 
-
-
 import com.going.doorip.BuildConfig.BASE_URL
-import com.going.doorip.BuildConfig.BASE_URL
-import com.going.doorip.di.qualifier.JWT
-import com.going.doorip.di.qualifier.KAKAO
+import com.going.going.di.AuthInterceptor
+import com.going.going.di.qualifier.JWT
+import com.going.going.di.qualifier.KAKAO
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
