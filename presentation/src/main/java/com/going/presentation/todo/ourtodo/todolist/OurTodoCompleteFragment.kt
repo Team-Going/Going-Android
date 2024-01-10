@@ -57,7 +57,7 @@ class OurTodoCompleteFragment() :
     }
 
     private fun observeTodoListState() {
-        viewModel.todoListState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> adapter.submitList(state.data)
 

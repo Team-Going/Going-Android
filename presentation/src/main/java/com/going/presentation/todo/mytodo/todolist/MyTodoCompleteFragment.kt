@@ -56,11 +56,11 @@ class MyTodoCompleteFragment() :
     private fun setTodoList() {
         // 추후 tripId 설정
         val tripId: Long = 1
-        viewModel.getTodoListFromServer(tripId, MY_TODO, COMPLETE)
+        viewModel.getCompleteTodoListFromServer(tripId, MY_TODO, COMPLETE)
     }
 
     private fun observeTodoListState() {
-        viewModel.todoListState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> adapter.setItemList(state.data)
 
