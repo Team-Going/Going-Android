@@ -29,7 +29,7 @@ class MyTodoListViewHolder(
             cbMyTodoUnselected.isVisible = !isCompleted
 
             rvMyTodoName.adapter = TodoNameAdapter(isCompleted).apply {
-                submitList(item.allocation)
+                submitList(item.allocators)
             }
 
             if (isCompleted) {

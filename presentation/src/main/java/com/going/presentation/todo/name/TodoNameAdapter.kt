@@ -3,12 +3,13 @@ package com.going.presentation.todo.name
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.databinding.ItemTodoNameBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class TodoNameAdapter(
     private val isCompleted: Boolean
-) : ListAdapter<String, TodoNameViewHolder>(diffUtil) {
+) : ListAdapter<TodoAllocatorModel, TodoNameViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoNameViewHolder {
         val binding: ItemTodoNameBinding =
@@ -21,8 +22,8 @@ class TodoNameAdapter(
     }
 
     companion object {
-        private val diffUtil = ItemDiffCallback<String>(
-            onItemsTheSame = { old, new -> old.length == new.length },
+        private val diffUtil = ItemDiffCallback<TodoAllocatorModel>(
+            onItemsTheSame = { old, new -> old.name == new.name },
             onContentsTheSame = { old, new -> old == new },
         )
     }
