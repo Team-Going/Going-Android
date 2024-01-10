@@ -3,10 +3,12 @@ package com.going.doorip.di
 import com.going.data.repositoryImpl.AuthRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
 import com.going.data.repositoryImpl.SettingRepositoryImpl
+import com.going.data.repositoryImpl.TodoRepositoryImpl
 import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.MockRepository
 import com.going.domain.repository.SettingRepository
+import com.going.domain.repository.TodoRepository
 import com.going.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -37,4 +39,10 @@ object RepositoryModule {
     @Singleton
     fun provideSettingRepository(settingRepositoryImpl: SettingRepositoryImpl): SettingRepository =
         settingRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun provideTodoRepository(todoRepositoryImpl: TodoRepositoryImpl): TodoRepository =
+        todoRepositoryImpl
+
 }
