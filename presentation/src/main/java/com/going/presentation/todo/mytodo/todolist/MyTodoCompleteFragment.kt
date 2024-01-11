@@ -49,15 +49,15 @@ class MyTodoCompleteFragment() :
             },
             { todoModel ->
                 if (todoModel.allocators.size <= 1) {
-                    startDetailActivity(activity, PrivateDetailActivity::class.java, todoModel.todoId)
+                    startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
                 } else {
-                    startDetailActivity(activity, PublicDetailActivity::class.java, todoModel.todoId)
+                    startDetailActivity(PublicDetailActivity::class.java, todoModel.todoId)
                 }
             })
         binding.rvMyTodoComplete.adapter = adapter
     }
 
-    private fun startDetailActivity(activity: Activity?, targetActivity: Class<*>, todoId: Long) {
+    private fun startDetailActivity(targetActivity: Class<*>, todoId: Long) {
         Intent(activity, targetActivity).apply {
             putExtra(EXTRA_TODO_ID, todoId)
             activity?.startActivity(this)
@@ -65,7 +65,7 @@ class MyTodoCompleteFragment() :
     }
 
     private fun setTodoList() {
-        // 추후 tripId 설정
+        // TODO: 추후 tripId 설정
         val tripId: Long = 1
         viewModel.getCompleteTodoListFromServer(tripId, MY_TODO, COMPLETE)
     }

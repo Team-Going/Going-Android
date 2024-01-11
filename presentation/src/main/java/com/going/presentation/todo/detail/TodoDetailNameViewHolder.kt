@@ -16,9 +16,9 @@ class TodoDetailNameViewHolder(
             tvTodoName.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white_000))
 
             if (item.isOwner) {
-                tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
+                tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_red500_fill)
             } else {
-                tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)
+                tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_gray400_fill)
             }
         }
     }

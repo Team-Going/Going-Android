@@ -18,7 +18,7 @@ class TodoCreateNameViewHolder(
         binding.run {
             tvTodoName.text = item.name
 
-            // 추후 수정
+            // TODO: 추후 수정
             if (item.participantId.toInt() == 3) {
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
             } else {

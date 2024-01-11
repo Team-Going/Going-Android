@@ -33,6 +33,7 @@ class OurTodoCreateViewModel @Inject constructor(
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
+    // TODO: 추후 수정
     var totalParticipantList: List<TripParticipantModel> = listOf(
         TripParticipantModel(3,"삼삼삼",1), TripParticipantModel(21, "이십일",2)
     )

@@ -11,15 +11,17 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class PublicDetailActivity :
     BaseActivity<ActivityPublicDetailBinding>(R.layout.activity_public_detail) {
 
     private val viewModel by viewModels<PublicDetailViewModel>()
 
-    private var _adapter: TodoCreateNameAdapter? = null
+    private var _adapter: TodoDetailNameAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -40,7 +42,7 @@ class PublicDetailActivity :
     }
 
     private fun initNameListAdapter() {
-        _adapter = TodoCreateNameAdapter(true)
+        _adapter = TodoDetailNameAdapter()
         binding.rvOurTodoDetailPerson.adapter = adapter
     }
 
