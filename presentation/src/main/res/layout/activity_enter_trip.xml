@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.entertrip.EnterTripViewModel" />
+            type="com.going.presentation.enter.entertrip.EnterTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:id="@+id/layout_enter_trip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/layer_list_preference_tag_gray200_line"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/enter_trip_tv_layout"
-                android:textColor="@color/gray_700"
                 app:layout_constraintBottom_toBottomOf="@id/btn_enter_back"
                 app:layout_constraintStart_toEndOf="@id/btn_enter_back"
                 app:layout_constraintTop_toTopOf="@id/btn_enter_back" />
@@ -56,13 +55,14 @@
         <TextView
             android:id="@+id/tv_enter_trip_name_title"
             style="@style/TextAppearance.Doorip.Body3.Bold"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="40dp"
             android:text="@string/enter_trip_tv_invite_code"
-            android:textColor="@color/black_000"
-            app:layout_constraintStart_toStartOf="@id/layout_enter_trip"
+            android:textColor="@color/gray_700"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_enter_trip" />
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -101,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
             android:text="@{@string/counter(viewModel.codeLength, viewModel.MAX_INVITE_LEN)}"
             android:textColor="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@id/et_enter_trip_name"
@@ -112,7 +113,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isCheckEnterAvailable}"
             android:outlineProvider="none"

@@ -24,7 +24,7 @@
             android:id="@+id/tb_create_trip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/layer_list_preference_tag_gray200_line"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/create_trip_tb_title"
-                android:textColor="@color/gray_700"
                 app:layout_constraintBottom_toBottomOf="@id/btn_create_back"
                 app:layout_constraintStart_toEndOf="@id/btn_create_back"
                 app:layout_constraintTop_toTopOf="@id/btn_create_back" />
@@ -61,7 +60,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
             android:text="@string/create_trip_name_tv_title"
-            android:textColor="@color/black_000"
             app:layout_constraintStart_toStartOf="@id/tb_create_trip"
             app:layout_constraintTop_toBottomOf="@id/tb_create_trip" />
 
@@ -166,7 +164,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="56dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="@{viewModel.isCheckTripAvailable()}"
             android:outlineProvider="none"
