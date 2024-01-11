@@ -5,11 +5,19 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoCreateBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MyTodoCreateActivity :
     BaseActivity<ActivityMyTodoCreateBinding>(R.layout.activity_my_todo_create) {
 
@@ -26,6 +34,7 @@ class MyTodoCreateActivity :
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
+        observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
         observeDateEmpty()
@@ -68,8 +77,10 @@ class MyTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnMyTodoMemoFinish.setOnSingleClickListener {
-            // 서버통신 진행
-            finish()
+            // tripId, allocatorId 는 임시 설정
+            val tripId: Long = 1
+            val allocatorId: Long = 6
+            viewModel.postToCreateTodoFromServer(tripId, allocatorId)
         }
     }
 
@@ -77,6 +88,23 @@ class MyTodoCreateActivity :
         binding.btnMyTodoCreateBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    private fun observeTodoCreateState() {
+        viewModel.todoCreateState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    toast(getString(R.string.todo_create_toast))
+                    finish()
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun observeTextLength() {

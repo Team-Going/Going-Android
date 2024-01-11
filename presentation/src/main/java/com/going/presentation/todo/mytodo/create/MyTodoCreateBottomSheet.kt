@@ -26,8 +26,10 @@ class MyTodoCreateBottomSheet() :
 
     private fun initFinishBtnClickListener() {
         binding.btnCreateTripFinish.setOnSingleClickListener {
+            val createdMonth = String.format("%02d", binding.dpCreateTripDate.month + 1)
+            val createdDay = String.format("%02d", binding.dpCreateTripDate.dayOfMonth)
             viewModel.endDate.value =
-                binding.dpCreateTripDate.year.toString() + "." + (binding.dpCreateTripDate.month + 1).toString() + "." + binding.dpCreateTripDate.dayOfMonth.toString()
+                binding.dpCreateTripDate.year.toString() + "." + createdMonth + "." + createdDay
             viewModel.checkIsFinishAvailable()
             dismiss()
         }

@@ -81,6 +81,7 @@
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
     <string name="my_todo_create_btn_finish">저장</string>
+    <string name="todo_create_toast">할일을 추가했어요</string>
 
     <!--my_todo_detail-->
     <string name="my_todo_detail_tv_title">할일 조회</string>
