@@ -132,7 +132,7 @@
         <activity
             android:name="com.going.presentation.profile.ProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.enter.entertrip.EnterTripActivity"

@@ -20,7 +20,7 @@ class InviteFinishActivity :
         super.onCreate(savedInstanceState)
 
         initBackBtnClickListener()
-        initNextBtnClickListener()
+        initEnterBtnClickListener()
 
     }
 
@@ -32,7 +32,7 @@ class InviteFinishActivity :
         }
     }
 
-    private fun initNextBtnClickListener() {
+    private fun initEnterBtnClickListener() {
         binding.btnInviteFinishEnter.setOnSingleClickListener {
             Intent(this, PreferenceTagActivity::class.java).apply {
                 startActivity(this)

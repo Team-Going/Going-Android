@@ -166,8 +166,8 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@color/gray_300"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
                 app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
                 app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text" />
