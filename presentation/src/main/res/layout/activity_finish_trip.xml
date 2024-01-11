@@ -59,6 +59,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="-26dp"
             android:background="@drawable/shape_rect_8_white000_fill_gray100_line"
+            android:paddingBottom="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_finish_trip_icon">
@@ -96,7 +97,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="35dp"
                 android:gravity="center"
                 android:maxLines="2"
                 android:text="2023.03.24 - 2023.03.31"
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:background="@drawable/shape_rect_8_white000_fill_gray100_line"
-            android:paddingVertical="22dp"
+            android:paddingVertical="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_info_top">
@@ -142,27 +142,31 @@
                 style="@style/TextAppearance.Doorip.Head4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginBottom="2dp"
                 android:text="a1b2c3"
                 app:layout_constraintBottom_toTopOf="@id/iv_finish_trip_copy"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_info_bottom" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_finish_trip_terms_text"
                 style="@style/TextAppearance.Doorip.Detail2.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="49dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/finish_trip_tv_copy_code"
                 android:textColor="@color/gray_300"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:background="@color/gray_300"
                 app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
                 app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
@@ -177,11 +181,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="51dp"
+            android:layout_marginBottom="-9dp"
             android:src="@drawable/ic_todo_ticket_left"
-            app:layout_constraintBottom_toTopOf="@id/layout_finish_trip_info_top"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_info_bottom" />
+            app:layout_constraintBottom_toBottomOf="@id/layout_finish_trip_info_top"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/iv_our_trip_right"
