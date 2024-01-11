@@ -16,4 +16,8 @@ interface TodoRepository {
         request: TodoCreateRequestModel
     ): Result<Unit>
 
+    suspend fun deleteTodo(
+        todoId: Long
+    ): Result<Unit>
+
 }

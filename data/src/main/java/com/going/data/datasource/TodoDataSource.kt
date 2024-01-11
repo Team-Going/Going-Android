@@ -18,4 +18,8 @@ interface TodoDataSource {
         request: TodoCreateRequestDto
     ): NullableBaseResponse<Unit>
 
+    suspend fun deleteTodoData(
+        todoId: Long
+    ): NullableBaseResponse<Unit>
+
 }

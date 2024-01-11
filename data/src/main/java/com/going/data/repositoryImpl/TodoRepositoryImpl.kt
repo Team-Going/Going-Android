@@ -28,4 +28,11 @@ class TodoRepositoryImpl @Inject constructor(
             todoDataSource.postToCreateTodoData(tripId, request.toTodoCreateRequestDto())
         }
 
+    override suspend fun deleteTodo(
+        todoId: Long
+    ): Result<Unit> =
+        runCatching {
+            todoDataSource.deleteTodoData(todoId)
+        }
+
 }

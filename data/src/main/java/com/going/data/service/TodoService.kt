@@ -5,6 +5,7 @@ import com.going.data.dto.NullableBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.TodoResponseDto
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -23,6 +24,11 @@ interface TodoService {
     suspend fun postToCreateTodo(
         @Path("tripId") tripId: Long,
         @Body request: TodoCreateRequestDto
+    ): NullableBaseResponse<Unit>
+
+    @DELETE("/api/trips/todos/{todoId}")
+    suspend fun deleteTodo(
+        @Path("todoId") todoId: Long
     ): NullableBaseResponse<Unit>
 
 }
