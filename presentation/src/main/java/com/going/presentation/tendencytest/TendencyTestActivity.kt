@@ -2,6 +2,7 @@ package com.going.presentation.tendencytest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
@@ -10,6 +11,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
+import com.going.presentation.tendencytest.result.TendencyTestResultActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -79,7 +81,7 @@ class TendencyTestActivity :
             object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                     viewModel.clearAllChecked()
-                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value + 1)
+                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value)
                     fadeOutList.map {
                         it.start()
                     }
@@ -149,15 +151,19 @@ class TendencyTestActivity :
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 EnumUiState.LOADING -> {}
-                EnumUiState.SUCCESS -> moveTendencyTestResultActivity()
+                EnumUiState.SUCCESS -> navigateToTendencyTestResultScreen()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 EnumUiState.EMPTY -> {}
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
-    private fun moveTendencyTestResultActivity() {
-        // 페이지 이동 기능 추가 예정
+    private fun navigateToTendencyTestResultScreen() {
+        Intent(this, TendencyTestResultActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
     }
 
     companion object {

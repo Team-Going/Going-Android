@@ -105,10 +105,10 @@ class TendencyTestViewModel @Inject constructor(
         tendencyResultList[step.value - 1] = id
 
         when (id) {
-            1 -> isFirstChecked.value = true
-            2 -> isSecondChecked.value = true
-            3 -> isThirdChecked.value = true
-            4 -> isFourthChecked.value = true
+            0 -> isFirstChecked.value = true
+            1 -> isSecondChecked.value = true
+            2 -> isThirdChecked.value = true
+            3 -> isFourthChecked.value = true
         }
     }
 
