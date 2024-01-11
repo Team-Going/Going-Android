@@ -26,27 +26,30 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     }
 
     private fun initProfileClickListener() {
-        binding.btnSettingProfileEnter.setOnSingleClickListener {
+        binding.layoutSettingProfile.setOnSingleClickListener {
+
         }
     }
 
     private fun initInquireClickListener() {
-        binding.btnSettingInquireEnter.setOnSingleClickListener {
+        binding.layoutSettingInquire.setOnSingleClickListener {
+
         }
     }
 
     private fun initPolicyClickListener() {
-        binding.btnSettingPolicyEnter.setOnSingleClickListener {
+        binding.layoutSettingPolicy.setOnSingleClickListener {
+
         }
     }
 
     private fun initAboutDooripClickListener() {
-        binding.btnSettingAboutDooripEnter.setOnSingleClickListener {
+        binding.layoutSettingAboutDoorip.setOnSingleClickListener {
         }
     }
 
     private fun initLogoutClickListener() {
-        binding.btnSettingLogoutEnter.setOnSingleClickListener {
+        binding.layoutSettingLogout.setOnSingleClickListener {
             showLogoutAlertDialog()
         }
     }

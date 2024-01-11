@@ -33,6 +33,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
         initAdapter()
         initAddTodoBtnListener()
+        initItemDecoration()
         setDateTextColor()
         setProgressBarStatus()
         setTabLayout()
@@ -52,6 +53,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             }
         }
     }
+
+    private fun initItemDecoration() {
+        val itemDeco = OurTodoDecoration(requireContext())
+        binding.rvOurTripFriend.addItemDecoration(itemDeco)
+    }
+
 
     private fun setDateTextColor() {
         binding.tvOurTodoTitleDown.apply {
@@ -83,6 +90,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setViewPager() {
         binding.vpOurTodo.adapter = OurTodoViewPagerAdapter(this)
+        binding.vpOurTodo.isUserInputEnabled = false
         TabLayoutMediator(binding.tabOurTodo, binding.vpOurTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()

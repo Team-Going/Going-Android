@@ -58,13 +58,13 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun setViewPager() {
         binding.vpMyTodo.adapter = MyTodoViewPagerAdapter(this)
+        binding.vpMyTodo.isUserInputEnabled = false
         TabLayoutMediator(binding.tabMyTodo, binding.vpMyTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
     }
 
     private fun setTodoCountText() {
-        viewModel.setTodoCount()
         setTodoCount(viewModel.totalUncompletedTodoCount.value)
     }
 
