@@ -10,8 +10,8 @@ data class TodoCreateRequestDto(
     val title: String,
     @SerialName("endDate")
     val endDate: String,
-    @SerialName("allocator")
-    val allocator: List<Long>,
+    @SerialName("allocators")
+    val allocators: List<Long>,
     @SerialName("memo")
     val memo: String?,
     @SerialName("secret")
@@ -19,4 +19,4 @@ data class TodoCreateRequestDto(
 )
 
 fun TodoCreateRequestModel.toTodoCreateRequestDto(): TodoCreateRequestDto =
-    TodoCreateRequestDto(title, endDate, allocator, memo, secret)
+    TodoCreateRequestDto(title, endDate, allocators, memo, secret)

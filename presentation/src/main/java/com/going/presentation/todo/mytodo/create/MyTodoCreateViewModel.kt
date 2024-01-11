@@ -50,7 +50,7 @@ class MyTodoCreateViewModel @Inject constructor(
                 request = TodoCreateRequestModel(
                     title = todo.value ?: "",
                     endDate = endDate.value ?: "",
-                    allocator = listOf(allocatorId),
+                    allocators = listOf(allocatorId),
                     memo = memo.value,
                     secret = true
                 )
