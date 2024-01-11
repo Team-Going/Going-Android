@@ -5,6 +5,7 @@ import com.going.data.dto.BaseResponse
 import com.going.data.dto.request.SignInRequestDto
 import com.going.data.dto.request.SignUpRequestDto
 import com.going.data.dto.response.AuthResponseDto
+import com.going.data.dto.response.SignInResponseDto
 import com.going.data.service.AuthService
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun postSignIn(
         Authorization: String,
         platform: SignInRequestDto,
-    ): BaseResponse<AuthResponseDto> =
+    ): BaseResponse<SignInResponseDto> =
         authService.postSignin(Authorization, platform)
 
     override suspend fun postSignUp(

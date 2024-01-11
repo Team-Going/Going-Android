@@ -1,6 +1,7 @@
 package com.going.doorip.di
 
 import com.going.data.service.AuthService
+import com.going.data.service.DashBoardService
 import com.going.data.service.MockService
 import com.going.data.service.SettingService
 import com.going.data.service.TodoService
@@ -34,5 +35,10 @@ object ServiceModule {
     @Singleton
     fun provideTodoService(retrofit: Retrofit): TodoService =
         retrofit.create(TodoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDashBoardService(retrofit: Retrofit): DashBoardService =
+        retrofit.create(DashBoardService::class.java)
 
 }

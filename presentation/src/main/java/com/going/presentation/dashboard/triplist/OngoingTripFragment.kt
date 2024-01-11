@@ -3,12 +3,18 @@ package com.going.presentation.dashboard.triplist
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import com.going.domain.entity.response.OngoingListModel
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.response.DashBoardModel
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.presentation.dashboard.DashBoardViewModel
+import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.UiState
+import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class OngoingTripFragment :
@@ -26,12 +32,11 @@ class OngoingTripFragment :
         setRecyclerView()
         initItemDecoration()
         setTripList()
+        observeDashBoardListState()
 
     }
 
-    override fun onDashBoardSelectedListener(tripCreate: OngoingListModel) {
-        // 여행 생성 레이아웃 클릭 시 처리
-    }
+
 
     private fun setRecyclerView() {
         _adapter = OngoingAdapter(this)
@@ -44,12 +49,33 @@ class OngoingTripFragment :
         binding.rvDashboardOngoingTrip.addItemDecoration(itemDeco)
     }
 
-    private fun setTripList(){
-
+    private fun setTripList() {
+        val progress = "incomplete"
+        viewModel.getTripListFromServer(progress)
     }
+
+    private fun observeDashBoardListState() {
+        viewModel.dashBoardOngoingListState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> adapter.submitList(state.data.trips)
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
     }
+
+    override fun onDashBoardSelectedListener(tripCreate: DashBoardModel.DashBoardTripModel) {
+        TODO("Not yet implemented")
+    }
+
 
 }

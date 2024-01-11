@@ -1,6 +1,8 @@
 package com.going.presentation.dashboard
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.ui.base.BaseActivity
@@ -13,11 +15,13 @@ class DashBoardActivity :
 
     private val tabTextList = listOf(TAB_ONGOING, TAB_COMPLETED)
 
+    private val viewModel by viewModels<DashBoardViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setTabLayout()
         setViewPager()
+//        setTravelerName()
 
     }
 
@@ -39,6 +43,10 @@ class DashBoardActivity :
         }.attach()
     }
 
+//    private fun setTravelerName(){
+//        val progress = "incomplete"
+//        viewModel.getTravelerNameFromServer(progress)
+//    }
     companion object {
         const val TAB_ONGOING = "진행중인 여행"
         const val TAB_COMPLETED = "완료된 여행"

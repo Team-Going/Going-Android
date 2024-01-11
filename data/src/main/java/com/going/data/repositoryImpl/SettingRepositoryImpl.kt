@@ -11,4 +11,8 @@ class SettingRepositoryImpl @Inject constructor(
     override suspend fun patchSignOut(): Result<SignOutModel> = runCatching {
         settingDataSource.patchSignOut().toSignOutModel()
     }
+
+    override suspend fun deleteWithDraw(): Result<Unit> = runCatching {
+        settingDataSource.deleteWithDraw()
+    }
 }

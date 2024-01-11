@@ -1,14 +1,14 @@
 package com.going.domain.entity.response
 
 data class DashBoardModel(
-    val name : String,
-    val trips : List<TripsModel>
+    val name: String,
+    val trips: List<DashBoardTripModel>
 ){
-    data class TripsModel(
-        val tripId : Long,
-        val title : String,
-        val startDate : String,
-        val endDate : String,
-        val day : Int
+    data class DashBoardTripModel(
+        val tripId: Long,
+        val title: String,
+        val startDate: String,
+        val endDate: String,
+        val day: Int
     )
 }

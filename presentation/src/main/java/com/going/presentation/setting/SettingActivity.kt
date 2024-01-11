@@ -5,7 +5,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
     private var quitDialog: SettingQuitDialogFragment? = null
@@ -21,30 +23,25 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initLogoutClickListener()
         initQuitClickListener()
         setVersionCode()
-
     }
 
     private fun initProfileClickListener() {
         binding.btnSettingProfile.setOnSingleClickListener {
-
         }
     }
 
     private fun initInquireClickListener() {
         binding.btnSettingInquire.setOnSingleClickListener {
-
         }
     }
 
     private fun initPolicyClickListener() {
         binding.btnSettingPolicy.setOnSingleClickListener {
-
         }
     }
 
     private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDoorip.setOnSingleClickListener {
-
         }
     }
 
@@ -83,5 +80,4 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     companion object {
         private const val VERSION_CODE = "v1.0"
     }
-
 }

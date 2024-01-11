@@ -26,7 +26,7 @@ data class DashBoardResponseDto(
         val day: Int
     ) {
         fun toTripsModel() =
-            DashBoardModel.TripsModel(tripId, title, startDate, endDate, day)
+            DashBoardModel.DashBoardTripModel(tripId, title, startDate, endDate, day)
     }
 
     fun toDashBoardEntity() =

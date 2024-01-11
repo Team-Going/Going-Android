@@ -10,10 +10,8 @@ class DashBoardRepositoryImpl @Inject constructor(
 ) : DashBoardRepository {
     override suspend fun getDashBoardList(
         progress: String
-    ): Result<List<DashBoardModel>> =
+    ): Result<DashBoardModel> =
         runCatching {
-            dashBoardSource.getTripList(progress).data.map {
-                it.toDashBoardEntity()
-            }
+            dashBoardSource.getTripList(progress).data.toDashBoardEntity()
         }
 }

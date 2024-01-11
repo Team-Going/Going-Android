@@ -3,16 +3,16 @@ package com.going.presentation.dashboard.triplist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.going.domain.entity.response.OngoingListModel
+import com.going.domain.entity.response.DashBoardModel
 import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class OngoingAdapter(
     private val listener: OnDashBoardSelectedListener
-) : ListAdapter<OngoingListModel, OngoingViewHolder>(diffUtil) {
+) : ListAdapter<DashBoardModel.DashBoardTripModel, OngoingViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
-        fun onDashBoardSelectedListener(tripCreate: OngoingListModel)
+        fun onDashBoardSelectedListener(tripCreate: DashBoardModel.DashBoardTripModel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
@@ -30,7 +30,7 @@ class OngoingAdapter(
     }
 
     companion object {
-        private val diffUtil = ItemDiffCallback<OngoingListModel>(
+        private val diffUtil = ItemDiffCallback<DashBoardModel.DashBoardTripModel>(
             onItemsTheSame = { old, new -> old.title == new.title },
             onContentsTheSame = { old, new -> old == new },
         )

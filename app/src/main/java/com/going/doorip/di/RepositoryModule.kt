@@ -2,6 +2,7 @@ package com.going.doorip.di
 
 import com.going.data.datasourceImpl.DashBoardDataSourceImpl
 import com.going.data.repositoryImpl.AuthRepositoryImpl
+import com.going.data.repositoryImpl.DashBoardRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
 import com.going.data.repositoryImpl.SettingRepositoryImpl
 import com.going.data.repositoryImpl.TodoRepositoryImpl
@@ -49,7 +50,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesDashBoardRepository(dashBoardDataSourceImpl: DashBoardDataSourceImpl): DashBoardRepository =
-        dashBoardDataSourceImpl
+    fun providesDashBoardRepository(dashBoardRepositoryImpl: DashBoardRepositoryImpl): DashBoardRepository =
+        dashBoardRepositoryImpl
 
 }
