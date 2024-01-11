@@ -3,7 +3,6 @@ package com.going.presentation.setting
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.activityViewModels
@@ -50,7 +49,6 @@ class SettingLogoutDialogFragment() :
 
     private fun observeUserSignOutState() {
         viewModel.userSignOutState.flowWithLifecycle(lifecycle).onEach { state ->
-            Log.e("TAG", "observeUserSignOutState: $state")
             when (state) {
                 true -> restartApp(requireContext())
                 false -> toast(getString(R.string.server_error))

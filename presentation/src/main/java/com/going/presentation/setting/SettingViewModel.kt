@@ -19,8 +19,11 @@ class SettingViewModel @Inject constructor(
     private val _userSignOutState = MutableStateFlow<Boolean?>(null)
     val userSignOutState: StateFlow<Boolean?> = _userSignOutState
 
+    private val _userWithDrawState = MutableStateFlow<Boolean?>(null)
+    val userWithDrawState: StateFlow<Boolean?> = _userWithDrawState
+
     fun signOutKakao() {
-        UserApiClient.instance.unlink { error ->
+        UserApiClient.instance.logout { error ->
             _userSignOutState.value = null
 
             if (error == null) {
@@ -39,6 +42,30 @@ class SettingViewModel @Inject constructor(
                 _userSignOutState.value = true
             }.onFailure {
                 _userSignOutState.value = false
+            }
+        }
+    }
+
+    fun startWithDrawKakao() {
+        UserApiClient.instance.unlink { error ->
+            _userWithDrawState.value = null
+
+            if (error == null) {
+                startWithDrawJwt()
+            } else {
+                _userWithDrawState.value = false
+            }
+        }
+    }
+
+    fun startWithDrawJwt() {
+        viewModelScope.launch {
+            settingRepository.deleteWithDraw().onSuccess {
+                tokenRepository.clearTokens()
+
+                _userWithDrawState.value = true
+            }.onFailure {
+                _userWithDrawState.value = false
             }
         }
     }
