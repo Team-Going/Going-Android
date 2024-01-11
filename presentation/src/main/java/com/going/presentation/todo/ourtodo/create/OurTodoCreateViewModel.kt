@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.TodoCreateRequestModel
+import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +30,11 @@ class OurTodoCreateViewModel @Inject constructor(
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
+    var totalParticipantList: List<TripParticipantModel> = listOf(
+        TripParticipantModel(3,"삼삼삼",1), TripParticipantModel(21, "이십일",2)
+    )
+    var participantList: List<TripParticipantModel> = listOf()
+
     fun getMaxTodoLen() = MAX_TODO_LEN
 
     fun getMaxMemoLen() = MAX_MEMO_LEN
@@ -40,7 +46,7 @@ class OurTodoCreateViewModel @Inject constructor(
             todo.value?.isNotEmpty() == true && memo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
     }
 
-    fun postToCreateTodoFromServer(tripId: Long, participantId: Long) {
+    fun postToCreateTodoFromServer(tripId: Long) {
         _todoCreateState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.postToCreateTodo(
@@ -48,7 +54,7 @@ class OurTodoCreateViewModel @Inject constructor(
                 request = TodoCreateRequestModel(
                     title = todo.value ?: "",
                     endDate = endDate.value ?: "",
-                    allocators = listOf(participantId),
+                    allocators = participantList.map { it.participantId },
                     memo = memo.value,
                     secret = false
                 )
