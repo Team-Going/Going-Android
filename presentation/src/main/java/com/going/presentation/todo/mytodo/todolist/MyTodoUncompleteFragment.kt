@@ -11,8 +11,8 @@ import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.UNCOMPLETE
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.PrivateDetailActivity
+import com.going.presentation.todo.detail.PrivateDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -52,7 +52,7 @@ class MyTodoUncompleteFragment() :
             },
             { },
             { todoId ->
-                Intent(activity, MyTodoDetailActivity::class.java).apply {
+                Intent(activity, PrivateDetailActivity::class.java).apply {
                     putExtra(EXTRA_TODO_ID, todoId)
                     startActivity(this)
                 }

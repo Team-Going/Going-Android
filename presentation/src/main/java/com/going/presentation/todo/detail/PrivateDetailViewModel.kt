@@ -1,12 +1,10 @@
-package com.going.presentation.todo.mytodo.detail
+package com.going.presentation.todo.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.EnumUiState
-import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +13,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class MyTodoDetailViewModel @Inject constructor(
+class PrivateDetailViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
 

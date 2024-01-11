@@ -11,7 +11,7 @@ import com.going.presentation.databinding.FragmentMyTodoCompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
+import com.going.presentation.todo.detail.PrivateDetailActivity
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -45,8 +45,8 @@ class MyTodoCompleteFragment() :
                 adapter.notifyDataSetChanged()
             },
             { todoId ->
-                Intent(activity, MyTodoDetailActivity::class.java).apply {
-                    putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
+                Intent(activity, PrivateDetailActivity::class.java).apply {
+                    putExtra(PrivateDetailActivity.EXTRA_TODO_ID, todoId)
                     startActivity(this)
                 }
             })

@@ -1,10 +1,10 @@
-package com.going.presentation.todo.mytodo.detail
+package com.going.presentation.todo.detail
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityMyTodoDetailBinding
+import com.going.presentation.databinding.ActivityPrivateDetailBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -13,10 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class MyTodoDetailActivity :
-    BaseActivity<ActivityMyTodoDetailBinding>(R.layout.activity_my_todo_detail) {
+class PrivateDetailActivity :
+    BaseActivity<ActivityPrivateDetailBinding>(R.layout.activity_private_detail) {
 
-    private val viewModel by viewModels<MyTodoDetailViewModel>()
+    private val viewModel by viewModels<PrivateDetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

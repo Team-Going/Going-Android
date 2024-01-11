@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.going.presentation.todo.mytodo.detail.MyTodoDetailViewModel" />
+            type="com.going.presentation.todo.detail.PublicDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         android:background="@color/white_000">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbar_my_todo_detail"
+            android:id="@+id/toolbar_our_todo_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/btn_my_todo_detail_back"
+                android:id="@+id/btn_our_todo_detail_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -38,15 +38,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_my_todo_create_title"
+                android:id="@+id/tv_our_todo_create_title"
                 style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/my_todo_detail_tv_title"
-                app:layout_constraintBottom_toBottomOf="@id/btn_my_todo_detail_back"
-                app:layout_constraintStart_toEndOf="@id/btn_my_todo_detail_back"
-                app:layout_constraintTop_toTopOf="@id/btn_my_todo_detail_back" />
+                app:layout_constraintBottom_toBottomOf="@id/btn_our_todo_detail_back"
+                app:layout_constraintStart_toEndOf="@id/btn_our_todo_detail_back"
+                app:layout_constraintTop_toTopOf="@id/btn_our_todo_detail_back" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="0dp"
@@ -59,20 +59,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
-            android:id="@+id/sv_my_todo_detail"
+            android:id="@+id/sv_our_todo_detail"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_my_todo_detail_delete"
+            app:layout_constraintBottom_toTopOf="@id/btn_our_todo_detail_delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo_detail">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_our_todo_detail">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_my_todo_detail_todo_title"
+                    android:id="@+id/tv_our_todo_detail_todo_title"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/et_my_todo_detail_todo"
+                    android:id="@+id/et_our_todo_detail_todo"
                     style="@style/TextAppearance.Doorip.Body3.Medi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -96,23 +96,23 @@
                     android:text="@={vm.todo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_detail_todo_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_our_todo_detail_todo_title"
                     tools:text="맛있는 밥 먹기" />
 
                 <TextView
-                    android:id="@+id/tv_my_todo_todo_counter"
+                    android:id="@+id/tv_our_todo_todo_counter"
                     style="@style/TextAppearance.Doorip.Detail3.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@{@string/counter(vm.nowTodoLength, vm.MAX_TODO_LEN)}"
+                    android:text="@{@string/counter(vm.todo.length, vm.MAX_TODO_LEN)}"
                     android:textColor="@color/gray_400"
-                    app:layout_constraintEnd_toEndOf="@id/et_my_todo_detail_todo"
-                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_detail_todo"
+                    app:layout_constraintEnd_toEndOf="@id/et_our_todo_detail_todo"
+                    app:layout_constraintTop_toBottomOf="@id/et_our_todo_detail_todo"
                     tools:text="0/15" />
 
                 <TextView
-                    android:id="@+id/tv_my_todo_detail_date_title"
+                    android:id="@+id/tv_our_todo_detail_date_title"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -121,10 +121,10 @@
                     android:text="@string/my_todo_create_tv_date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_todo_counter" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_our_todo_todo_counter" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/et_my_todo_detail_date"
+                    android:id="@+id/et_our_todo_detail_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
@@ -134,10 +134,10 @@
                     android:paddingVertical="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_detail_date_title">
+                    app:layout_constraintTop_toBottomOf="@id/tv_our_todo_detail_date_title">
 
                     <TextView
-                        android:id="@+id/tv_my_todo_detail_date"
+                        android:id="@+id/tv_our_todo_detail_date"
                         style="@style/TextAppearance.Doorip.Body3.Medi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/tv_my_todo_detail_person_title"
+                    android:id="@+id/tv_our_todo_detail_person_title"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -162,44 +162,24 @@
                     android:text="@string/my_todo_create_tv_person"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_detail_date" />
+                    app:layout_constraintTop_toBottomOf="@id/et_our_todo_detail_date" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layout_my_todo_detail_person_lock"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_our_todo_detail_person"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="9dp"
-                    android:background="@drawable/shape_rect_4_red500_line"
-                    android:paddingHorizontal="5dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_detail_person_title">
-
-                    <ImageView
-                        android:id="@+id/iv_my_todo_detail_lock"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_lock_my_todo"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_my_todo_create_lock"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        android:text="@string/my_todo_create_tv_person_lock"
-                        android:textColor="@color/red_500"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/iv_my_todo_detail_lock"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@id/tv_our_todo_detail_person_title"
+                    tools:listitem="@layout/item_todo_create_name"/>
 
                 <TextView
-                    android:id="@+id/tv_my_todo_create_memo_title"
+                    android:id="@+id/tv_our_todo_create_memo_title"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -208,10 +188,10 @@
                     android:text="@string/my_todo_create_tv_memo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_my_todo_detail_person_lock" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_our_todo_detail_person" />
 
                 <TextView
-                    android:id="@+id/et_my_todo_create_memo"
+                    android:id="@+id/et_our_todo_create_memo"
                     style="@style/TextAppearance.Doorip.Body3.Medi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -225,20 +205,20 @@
                     android:text="@={vm.memo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_todo_create_memo_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_our_todo_create_memo_title"
                     tools:text="오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지" />
 
                 <TextView
-                    android:id="@+id/tv_my_todo_memo_counter"
+                    android:id="@+id/tv_our_todo_memo_counter"
                     style="@style/TextAppearance.Doorip.Detail3.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="20dp"
-                    android:text="@{@string/counter(vm.nowMemoLength, vm.MAX_MEMO_LEN)}"
+                    android:text="@{@string/counter(vm.memo.length, vm.MAX_MEMO_LEN)}"
                     android:textColor="@color/gray_400"
-                    app:layout_constraintEnd_toEndOf="@id/et_my_todo_create_memo"
-                    app:layout_constraintTop_toBottomOf="@id/et_my_todo_create_memo"
+                    app:layout_constraintEnd_toEndOf="@id/et_our_todo_create_memo"
+                    app:layout_constraintTop_toBottomOf="@id/et_our_todo_create_memo"
                     tools:text="0/1000" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -246,7 +226,7 @@
         </ScrollView>
 
         <TextView
-            android:id="@+id/btn_my_todo_detail_delete"
+            android:id="@+id/btn_our_todo_detail_delete"
             style="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -258,12 +238,12 @@
             android:paddingVertical="10dp"
             android:text="@string/my_todo_detail_btn_delete"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_my_todo_detail_mod"
+            app:layout_constraintEnd_toStartOf="@id/btn_our_todo_detail_mod"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/btn_my_todo_detail_mod"
+            android:id="@+id/btn_our_todo_detail_mod"
             style="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -278,7 +258,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/btn_my_todo_detail_delete" />
+            app:layout_constraintStart_toEndOf="@id/btn_our_todo_detail_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,18 +1,18 @@
-package com.going.presentation.todo.ourtodo.detail
+package com.going.presentation.todo.detail
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityOurTodoDetailBinding
+import com.going.presentation.databinding.ActivityPublicDetailBinding
 import com.going.presentation.todo.ourtodo.create.TodoCreateNameAdapter
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 
-class OurTodoDetailActivity :
-    BaseActivity<ActivityOurTodoDetailBinding>(R.layout.activity_our_todo_detail) {
+class PublicDetailActivity :
+    BaseActivity<ActivityPublicDetailBinding>(R.layout.activity_public_detail) {
 
-    private val viewModel by viewModels<OurTodoDetailViewModel>()
+    private val viewModel by viewModels<PublicDetailViewModel>()
 
     private var _adapter: TodoCreateNameAdapter? = null
     private val adapter
@@ -59,7 +59,7 @@ class OurTodoDetailActivity :
     }
 
     private fun setDetailData() {
-        intent.getLongExtra(EXTRA_TODO_ID,0)
+        intent.getLongExtra(EXTRA_TODO_ID, 0)
         // 추후 todoId를 보내서 받는 서버통신으로 변경
         viewModel.todo.value = "맛있는 밥 먹기"
         viewModel.endDate.value = "2024.1.10"
@@ -70,7 +70,7 @@ class OurTodoDetailActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
-       }
+    }
 
     companion object {
         const val EXTRA_TODO_ID = "EXTRA_TODO_ID"

@@ -1,9 +1,9 @@
-package com.going.presentation.todo.ourtodo.detail
+package com.going.presentation.todo.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class OurTodoDetailViewModel : ViewModel() {
+class PublicDetailViewModel : ViewModel() {
 
     val todo = MutableLiveData("")
     val endDate = MutableLiveData("")
