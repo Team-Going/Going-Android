@@ -37,11 +37,9 @@ class OngoingTripFragment :
     }
 
 
-
     private fun setRecyclerView() {
         _adapter = OngoingAdapter(this)
         binding.rvDashboardOngoingTrip.adapter = adapter
-//        adapter.submitList(viewModel.mockOngoingList)
     }
 
     private fun initItemDecoration() {
