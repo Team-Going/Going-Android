@@ -74,13 +74,16 @@ class SignInViewModel @Inject constructor(
             authRepository.postSignIn(accessToken, RequestSignInModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
 
-                _postChangeTokenState.value = SignInState.SUCCESS
+                if (it.isResult) {
+                    _postChangeTokenState.value = SignInState.SUCCESS
+                } else {
+                    _postChangeTokenState.value = SignInState.TENDENCY
+                }
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
                 _postChangeTokenState.value = when (errorCode) {
                     SIGN_UP -> SignInState.SIGN_UP
-                    TENDENCY -> SignInState.TENDENCY
                     else -> SignInState.FAIL
                 }
             }
@@ -90,6 +93,5 @@ class SignInViewModel @Inject constructor(
     companion object {
         const val KAKAO = "kakao"
         const val SIGN_UP = "e4041"
-        const val TENDENCY = "e4045"
     }
 }

@@ -1,22 +1,35 @@
 package com.going.presentation.setting
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentSettingLogoutDialogBinding
 import com.going.ui.base.BaseDialog
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
-class SettingLogoutDialogFragment :
+@AndroidEntryPoint
+class SettingLogoutDialogFragment() :
     BaseDialog<FragmentSettingLogoutDialogBinding>(R.layout.fragment_setting_logout_dialog) {
+
+    private val viewModel by activityViewModels<SettingViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initNegativeClickListener()
         initPositiveClickListener()
-
+        observeUserSignOutState()
     }
 
     override fun onStart() {
@@ -31,8 +44,18 @@ class SettingLogoutDialogFragment :
 
     private fun initPositiveClickListener() {
         binding.tvDialogPositive.setOnSingleClickListener {
-            // 로그아웃 버튼 눌렀을 때의 로직
+            viewModel.signOutKakao()
         }
+    }
+
+    private fun observeUserSignOutState() {
+        viewModel.userSignOutState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.SUCCESS -> restartApp(requireContext())
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+                EnumUiState.LOADING -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initNegativeClickListener() {
@@ -41,4 +64,11 @@ class SettingLogoutDialogFragment :
         }
     }
 
+    private fun restartApp(context: Context) {
+        val packageManager = context.packageManager
+        val packageName = context.packageName
+        val componentName = packageManager.getLaunchIntentForPackage(packageName)?.component
+        context.startActivity(Intent.makeRestartActivityTask(componentName))
+        Runtime.getRuntime().exit(0)
+    }
 }
