@@ -1,6 +1,6 @@
 package com.going.data.dto.request
 
-import com.going.domain.entity.request.RequestSignInModel
+import com.going.domain.entity.request.SignInRequestModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,5 +10,5 @@ data class SignInRequestDto(
     val platform: String,
 )
 
-fun RequestSignInModel.toSignInRequestDto(): SignInRequestDto =
+fun SignInRequestModel.toSignInRequestDto(): SignInRequestDto =
     SignInRequestDto(platform)

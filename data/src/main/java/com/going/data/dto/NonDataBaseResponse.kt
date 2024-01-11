@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NonDataBaseResponse<T>(
+data class NonDataBaseResponse(
     @SerialName("status")
     val status: Int,
     @SerialName("code")
