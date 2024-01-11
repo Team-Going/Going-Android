@@ -3,20 +3,26 @@ package com.going.presentation.setting
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.flowWithLifecycle
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentSettingLogoutDialogBinding
 import com.going.ui.base.BaseDialog
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import kotlinx.coroutines.flow.onEach
 
-class SettingLogoutDialogFragment :
+class SettingLogoutDialogFragment(var navigateToSplashScreen: () -> Unit) :
     BaseDialog<FragmentSettingLogoutDialogBinding>(R.layout.fragment_setting_logout_dialog) {
+
+    private val viewModel by activityViewModels<SettingViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initNegativeClickListener()
         initPositiveClickListener()
-
+        observeUserSignOutState()
     }
 
     override fun onStart() {
@@ -31,7 +37,17 @@ class SettingLogoutDialogFragment :
 
     private fun initPositiveClickListener() {
         binding.tvDialogPositive.setOnSingleClickListener {
-            // 로그아웃 버튼 눌렀을 때의 로직
+            viewModel.signOutKakao()
+        }
+    }
+
+    private fun observeUserSignOutState() {
+        viewModel.userSignOutState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                true -> navigateToSplashScreen()
+                false -> toast(getString(R.string.server_error))
+                null -> {}
+            }
         }
     }
 
@@ -40,5 +56,4 @@ class SettingLogoutDialogFragment :
             dismiss()
         }
     }
-
 }

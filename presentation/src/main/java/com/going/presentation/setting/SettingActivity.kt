@@ -1,8 +1,10 @@
 package com.going.presentation.setting
 
+import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
+import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -21,30 +23,25 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initLogoutClickListener()
         initQuitClickListener()
         setVersionCode()
-
     }
 
     private fun initProfileClickListener() {
         binding.btnSettingProfileEnter.setOnSingleClickListener {
-
         }
     }
 
     private fun initInquireClickListener() {
         binding.btnSettingInquireEnter.setOnSingleClickListener {
-
         }
     }
 
     private fun initPolicyClickListener() {
         binding.btnSettingPolicyEnter.setOnSingleClickListener {
-
         }
     }
 
     private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDooripEnter.setOnSingleClickListener {
-
         }
     }
 
@@ -61,7 +58,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     }
 
     private fun showLogoutAlertDialog() {
-        logoutDialog = SettingLogoutDialogFragment()
+        logoutDialog = SettingLogoutDialogFragment() {
+            navigateToSplashScreen()
+        }
         logoutDialog?.show(supportFragmentManager, logoutDialog?.tag)
     }
 
@@ -80,8 +79,15 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         if (quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
+    fun navigateToSplashScreen() {
+        Intent(this, SplashActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
     companion object {
         private const val VERSION_CODE = "v1.0"
     }
-
 }

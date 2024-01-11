@@ -16,7 +16,6 @@ class SettingQuitDialogFragment :
 
         initNegativeClickListener()
         initPositiveClickListener()
-
     }
 
     override fun onStart() {
@@ -36,9 +35,5 @@ class SettingQuitDialogFragment :
     }
 
     private fun initNegativeClickListener() {
-        // 탈퇴하기 버튼을 눌렀을 때의 로직
     }
-
 }
-
-

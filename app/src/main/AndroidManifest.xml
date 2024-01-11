@@ -126,7 +126,7 @@
 
         <activity
             android:name="com.going.presentation.setting.SettingActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
