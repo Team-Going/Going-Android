@@ -4,4 +4,6 @@ import com.going.domain.entity.response.SignOutModel
 
 interface SettingRepository {
     suspend fun patchSignOut(): Result<SignOutModel>
+
+    suspend fun deleteWithDraw(): Result<Unit>
 }

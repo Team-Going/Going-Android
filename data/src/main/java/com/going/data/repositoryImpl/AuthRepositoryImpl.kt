@@ -6,6 +6,7 @@ import com.going.data.dto.request.toSignUpRequestDto
 import com.going.domain.entity.request.RequestSignInModel
 import com.going.domain.entity.request.RequestSignUpModel
 import com.going.domain.entity.response.AuthTokenModel
+import com.going.domain.entity.response.SignInModel
 import com.going.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -15,12 +16,12 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun postSignIn(
         Authorization: String,
         requestSignIpModel: RequestSignInModel,
-    ): Result<AuthTokenModel> =
+    ): Result<SignInModel> =
         runCatching {
             authDataSource.postSignIn(
                 Authorization,
                 requestSignIpModel.toSignInRequestDto(),
-            ).data.toAuthTokenModel()
+            ).data.toSignInModel()
         }
 
     override suspend fun postSignUp(
