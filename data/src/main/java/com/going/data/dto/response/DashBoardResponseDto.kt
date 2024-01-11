@@ -1,5 +1,6 @@
 package com.going.data.dto.response
 
+import com.going.domain.entity.response.DashBoardModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -23,9 +24,14 @@ data class DashBoardResponseDto(
         val endDate: String,
         @SerialName("day")
         val day: Int
-    )
-
-    fun toNameEntity(){
-
+    ) {
+        fun toTripsModel() =
+            DashBoardModel.TripsModel(tripId, title, startDate, endDate, day)
     }
+
+    fun toDashBoardEntity() =
+        DashBoardModel(name, trips.map {
+            it.toTripsModel()
+        })
 }
+

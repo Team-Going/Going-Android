@@ -8,7 +8,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OngoingTripFragment :
     BaseFragment<FragmentOngoingTripBinding>(R.layout.fragment_ongoing_trip),
     OngoingAdapter.OnDashBoardSelectedListener {
@@ -33,7 +35,7 @@ class OngoingTripFragment :
     private fun setRecyclerView() {
         _adapter = OngoingAdapter(this)
         binding.rvDashboardOngoingTrip.adapter = adapter
-        adapter.submitList(viewModel.mockOngoingList)
+//        adapter.submitList(viewModel.mockOngoingList)
     }
 
     private fun initItemDecoration() {

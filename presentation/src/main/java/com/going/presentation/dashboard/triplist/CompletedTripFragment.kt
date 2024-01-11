@@ -8,7 +8,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentCompletedTripBinding
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CompletedTripFragment :
     BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip),
     CompletedAdapter.OnDashBoardSelectedListener {
@@ -33,7 +35,7 @@ class CompletedTripFragment :
     private fun setRecyclerView() {
         _adapter = CompletedAdapter(this)
         binding.rvDashboardCompletedTrip.adapter = adapter
-        adapter.submitList(viewModel.mockCompletedList)
+//        adapter.submitList(viewModel.mockCompletedList)
     }
 
     private fun initItemDecoration() {

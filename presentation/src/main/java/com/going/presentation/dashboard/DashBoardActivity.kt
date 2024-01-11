@@ -5,7 +5,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.ui.base.BaseActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashBoardActivity :
     BaseActivity<ActivityTripDashBoardBinding>(R.layout.activity_trip_dash_board) {
 
