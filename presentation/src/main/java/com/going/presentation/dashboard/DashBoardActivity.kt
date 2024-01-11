@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard
+package com.going.presentation.dashboard
 
 import android.os.Bundle
 import com.going.presentation.R
@@ -6,7 +6,7 @@ import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.ui.base.BaseActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
-class TripDashBoardActivity :
+class DashBoardActivity :
     BaseActivity<ActivityTripDashBoardBinding>(R.layout.activity_trip_dash_board) {
 
     private val tabTextList = listOf(TAB_ONGOING, TAB_COMPLETED)

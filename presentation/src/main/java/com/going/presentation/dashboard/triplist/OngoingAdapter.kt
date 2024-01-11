@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.triplist
+package com.going.presentation.dashboard.triplist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

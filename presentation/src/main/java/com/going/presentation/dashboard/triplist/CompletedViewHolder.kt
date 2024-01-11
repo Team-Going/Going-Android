@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.triplist
+package com.going.presentation.dashboard.triplist
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.CompletedListModel

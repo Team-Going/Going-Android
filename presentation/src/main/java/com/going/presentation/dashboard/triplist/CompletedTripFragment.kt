@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.triplist
+package com.going.presentation.dashboard.triplist
 
 import android.os.Bundle
 import android.view.View
@@ -6,14 +6,14 @@ import androidx.fragment.app.activityViewModels
 import com.going.domain.entity.response.CompletedListModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentCompletedTripBinding
-import com.going.presentation.tripdashboard.TripDashBoardViewModel
+import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.ui.base.BaseFragment
 
 class CompletedTripFragment :
     BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip),
     CompletedAdapter.OnDashBoardSelectedListener {
 
-    private val viewModel by activityViewModels<TripDashBoardViewModel>()
+    private val viewModel by activityViewModels<DashBoardViewModel>()
 
     private var _adapter: CompletedAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
