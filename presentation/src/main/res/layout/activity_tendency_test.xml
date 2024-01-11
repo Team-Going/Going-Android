@@ -176,17 +176,24 @@
                 android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi" />
         </FrameLayout>
 
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintWidth_percent="0.33"
+            android:src="@drawable/img_tendency_test"
+            app:layout_constraintBottom_toTopOf="@id/btn_tendency_next"
+            app:layout_constraintEnd_toEndOf="@id/btn_tendency_next" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_next"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button"
+            android:background="@drawable/sel_full_button"
             android:enabled="@{viewModel.isChecked()}"
             android:outlineProvider="none"
-            android:paddingVertical="10dp"
+            android:paddingVertical="23dp"
             android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
             android:textColor="@color/gray_200"
             app:layout_constraintBottom_toBottomOf="parent"
