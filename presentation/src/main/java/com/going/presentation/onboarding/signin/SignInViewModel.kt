@@ -3,7 +3,7 @@ package com.going.presentation.onboarding.signin
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.request.RequestSignInModel
+import com.going.domain.entity.request.SignInRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
 import com.going.presentation.util.toErrorCode
@@ -71,7 +71,7 @@ class SignInViewModel @Inject constructor(
         _postChangeTokenState.value = SignInState.LOADING
 
         viewModelScope.launch {
-            authRepository.postSignIn(accessToken, RequestSignInModel(platform)).onSuccess {
+            authRepository.postSignIn(accessToken, SignInRequestModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
 
                 if (it.isResult) {
