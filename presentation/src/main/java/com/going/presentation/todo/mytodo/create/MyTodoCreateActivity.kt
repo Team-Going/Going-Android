@@ -79,7 +79,7 @@ class MyTodoCreateActivity :
         binding.btnMyTodoMemoFinish.setOnSingleClickListener {
             // tripId, allocatorId 는 임시 설정
             val tripId: Long = 1
-            val participantId: Long = 1
+            val participantId: Long = 3
             viewModel.postToCreateTodoFromServer(tripId, participantId)
         }
     }

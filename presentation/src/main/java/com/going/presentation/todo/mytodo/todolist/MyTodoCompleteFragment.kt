@@ -62,7 +62,7 @@ class MyTodoCompleteFragment() :
     private fun observeTodoListState() {
         viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.setItemList(state.data)
+                is UiState.Success -> adapter.submitList(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
