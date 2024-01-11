@@ -14,7 +14,7 @@ data class DashBoardResponseDto(
     @Serializable
     data class TripsResponseDto(
         @SerialName("tripId")
-        val tripId: Int,
+        val tripId: Long,
         @SerialName("title")
         val title: String,
         @SerialName("startDate")
@@ -24,5 +24,8 @@ data class DashBoardResponseDto(
         @SerialName("day")
         val day: Int
     )
-}
 
+    fun toNameEntity(){
+
+    }
+}

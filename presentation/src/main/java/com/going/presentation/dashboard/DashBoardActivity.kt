@@ -31,6 +31,7 @@ class DashBoardActivity :
 
     private fun setViewPager() {
         binding.vpDashboard.adapter = DashBoardViewPagerAdapter(this)
+        binding.vpDashboard.isUserInputEnabled = false
         TabLayoutMediator(binding.tabDashboard, binding.vpDashboard) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
