@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.repository.SettingRepository
 import com.going.domain.repository.TokenRepository
 import com.kakao.sdk.user.UserApiClient
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SettingViewModel @Inject constructor(
     private val settingRepository: SettingRepository,
     private val tokenRepository: TokenRepository,

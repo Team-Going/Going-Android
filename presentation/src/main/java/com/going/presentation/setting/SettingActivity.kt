@@ -1,13 +1,13 @@
 package com.going.presentation.setting
 
-import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
-import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
 
     private var quitDialog: SettingQuitDialogFragment? = null
@@ -27,19 +27,16 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initProfileClickListener() {
         binding.layoutSettingProfile.setOnSingleClickListener {
-
         }
     }
 
     private fun initInquireClickListener() {
         binding.layoutSettingInquire.setOnSingleClickListener {
-
         }
     }
 
     private fun initPolicyClickListener() {
         binding.layoutSettingPolicy.setOnSingleClickListener {
-
         }
     }
 
@@ -61,9 +58,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     }
 
     private fun showLogoutAlertDialog() {
-        logoutDialog = SettingLogoutDialogFragment() {
-            navigateToSplashScreen()
-        }
+        logoutDialog = SettingLogoutDialogFragment()
         logoutDialog?.show(supportFragmentManager, logoutDialog?.tag)
     }
 
@@ -80,14 +75,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         super.onDestroy()
         if (logoutDialog?.isAdded == true) logoutDialog?.dismiss()
         if (quitDialog?.isAdded == true) quitDialog?.dismiss()
-    }
-
-    fun navigateToSplashScreen() {
-        Intent(this, SplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
     }
 
     companion object {
