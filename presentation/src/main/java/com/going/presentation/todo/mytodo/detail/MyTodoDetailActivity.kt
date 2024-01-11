@@ -2,12 +2,17 @@ package com.going.presentation.todo.mytodo.detail
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoDetailBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class MyTodoDetailActivity :
     BaseActivity<ActivityMyTodoDetailBinding>(R.layout.activity_my_todo_detail) {
 
@@ -21,6 +26,7 @@ class MyTodoDetailActivity :
         initDeleteBtnClickListener()
         initModBtnClickListener()
         setDetailData()
+        observeTodoDetailState()
     }
 
     private fun initViewModel() {
@@ -47,11 +53,18 @@ class MyTodoDetailActivity :
     }
 
     private fun setDetailData() {
-        intent.getLongExtra(EXTRA_TODO_ID,0)
-        // 추후 todoId를 보내서 받는 서버통신으로 변경
-        viewModel.todo.value = "맛있는 밥 먹기"
-        viewModel.endDate.value = "2024.1.10"
-        viewModel.memo.value = "오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지"
+        viewModel.getTodoDetailFromServer(intent.getLongExtra(EXTRA_TODO_ID, 0))
+    }
+
+    private fun observeTodoDetailState() {
+        viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+                EnumUiState.SUCCESS -> return@onEach
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+                EnumUiState.EMPTY -> return@onEach
+            }
+        }
     }
 
     companion object {
