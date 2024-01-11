@@ -25,6 +25,7 @@ class OngoingTripFragment :
 
         setRecyclerView()
         initItemDecoration()
+        setTripList()
 
     }
 
@@ -43,6 +44,9 @@ class OngoingTripFragment :
         binding.rvDashboardOngoingTrip.addItemDecoration(itemDeco)
     }
 
+    private fun setTripList(){
+
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
