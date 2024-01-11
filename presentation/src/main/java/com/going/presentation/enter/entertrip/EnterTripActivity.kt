@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip
+package com.going.presentation.enter.entertrip
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,7 @@ import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
-class EnterTripActivity :
-    BaseActivity<ActivityEnterTripBinding>(R.layout.activity_enter_trip) {
+class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activity_enter_trip) {
     private val viewModel by viewModels<EnterTripViewModel>()
 
 
@@ -24,6 +23,7 @@ class EnterTripActivity :
         initBindingViewModel()
         observeIsCodeAvailable()
         initNextBtnClickListener()
+
 
     }
 
@@ -44,7 +44,7 @@ class EnterTripActivity :
         viewModel.isCodeAvailable.observe(this) { state ->
             setColors(
                 false,
-                viewModel.codeLength.value ?:0,
+                viewModel.codeLength.value ?: 0,
                 binding.tvCodeCounter,
             ) { background ->
                 binding.etEnterTripName.background = ResourcesCompat.getDrawable(

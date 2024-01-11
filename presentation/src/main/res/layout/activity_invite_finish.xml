@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.going.presentation.enter.invitefinish.InviteFinishViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_50"
+        tools:context=".enter.invitefinish.InviteFinishActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_invite_finish_trip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_invite_finish_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_invite_finish_letter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_invite_finish_letter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_title" />
+
+        <ImageView
+            android:id="@+id/iv_invite_finish_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="-22dp"
+            android:src="@drawable/ic_invite_finish_doorips"
+            app:layout_constraintBottom_toBottomOf="@id/iv_invite_finish_letter"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_invite_finish_title"
+            style="@style/TextAppearance.Doorip.Head2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="86dp"
+            android:gravity="center"
+            android:text="@string/invite_finish_tv_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_invite_finish_trip" />
+
+        <TextView
+            android:id="@+id/tv_invite_finish_day_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="51dp"
+            android:background="@drawable/shape_rect_2_red100_fill"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="D - 16"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
+            android:textColor="@color/red_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_invite_finish_letter" />
+
+        <TextView
+            android:id="@+id/tv_invite_finish_name"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="굉굉이랑 스페인"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_day_left" />
+
+        <TextView
+            android:id="@+id/tv_invite_finish_day"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:text="2023.03.24 - 2023.03.31"
+            android:textColor="@color/gray_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_name" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_invite_finish_enter"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:outlineProvider="none"
+            android:paddingVertical="10dp"
+            android:text="@string/invite_finish_tv_enter"
+            android:textColor="@color/white_000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
