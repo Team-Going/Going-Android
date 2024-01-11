@@ -52,7 +52,7 @@ class CompletedTripFragment :
     }
 
     private fun observeDashBoardListState() {
-        viewModel.dashBoardOngoingListState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.dashBoardCompletedListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> adapter.submitList(state.data.trips)
 
