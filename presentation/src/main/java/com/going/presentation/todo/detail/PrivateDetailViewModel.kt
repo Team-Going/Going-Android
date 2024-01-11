@@ -36,6 +36,8 @@ class PrivateDetailViewModel @Inject constructor(
                     todo.value = response.title
                     endDate.value = response.endDate
                     memo.value = response.memo
+                    nowTodoLength.value = response.title.length
+                    nowMemoLength.value = response.memo.length
                 }
                 .onFailure {
                     _todoDetailState.value = EnumUiState.FAILURE
