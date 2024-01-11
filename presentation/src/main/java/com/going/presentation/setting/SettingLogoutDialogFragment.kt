@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentSettingLogoutDialogBinding
 import com.going.ui.base.BaseDialog
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +51,9 @@ class SettingLogoutDialogFragment() :
     private fun observeUserSignOutState() {
         viewModel.userSignOutState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                true -> restartApp(requireContext())
-                false -> toast(getString(R.string.server_error))
-                null -> {}
+                EnumUiState.SUCCESS -> restartApp(requireContext())
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+                EnumUiState.LOADING -> {}
             }
         }.launchIn(lifecycleScope)
     }

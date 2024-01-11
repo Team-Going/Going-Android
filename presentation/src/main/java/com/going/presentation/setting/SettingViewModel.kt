@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.repository.SettingRepository
 import com.going.domain.repository.TokenRepository
+import com.going.ui.extension.EnumUiState
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,20 +17,20 @@ class SettingViewModel @Inject constructor(
     private val settingRepository: SettingRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
-    private val _userSignOutState = MutableStateFlow<Boolean?>(null)
-    val userSignOutState: StateFlow<Boolean?> = _userSignOutState
+    private val _userSignOutState = MutableStateFlow(EnumUiState.LOADING)
+    val userSignOutState: StateFlow<EnumUiState> = _userSignOutState
 
-    private val _userWithDrawState = MutableStateFlow<Boolean?>(null)
-    val userWithDrawState: StateFlow<Boolean?> = _userWithDrawState
+    private val _userWithDrawState = MutableStateFlow(EnumUiState.LOADING)
+    val userWithDrawState: StateFlow<EnumUiState> = _userWithDrawState
 
     fun signOutKakao() {
         UserApiClient.instance.logout { error ->
-            _userSignOutState.value = null
+            _userSignOutState.value = EnumUiState.LOADING
 
             if (error == null) {
                 signOutJwt()
             } else {
-                _userSignOutState.value = false
+                _userSignOutState.value = EnumUiState.FAILURE
             }
         }
     }
@@ -39,33 +40,33 @@ class SettingViewModel @Inject constructor(
             settingRepository.patchSignOut().onSuccess {
                 tokenRepository.clearTokens()
 
-                _userSignOutState.value = true
+                _userSignOutState.value = EnumUiState.SUCCESS
             }.onFailure {
-                _userSignOutState.value = false
+                _userSignOutState.value = EnumUiState.FAILURE
             }
         }
     }
 
     fun startWithDrawKakao() {
         UserApiClient.instance.unlink { error ->
-            _userWithDrawState.value = null
+            _userWithDrawState.value = EnumUiState.LOADING
 
             if (error == null) {
                 startWithDrawJwt()
             } else {
-                _userWithDrawState.value = false
+                _userWithDrawState.value = EnumUiState.FAILURE
             }
         }
     }
 
-    fun startWithDrawJwt() {
+    private fun startWithDrawJwt() {
         viewModelScope.launch {
             settingRepository.deleteWithDraw().onSuccess {
                 tokenRepository.clearTokens()
 
-                _userWithDrawState.value = true
+                _userWithDrawState.value = EnumUiState.SUCCESS
             }.onFailure {
-                _userWithDrawState.value = false
+                _userWithDrawState.value = EnumUiState.FAILURE
             }
         }
     }
