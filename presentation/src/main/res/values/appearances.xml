@@ -18,7 +18,7 @@
     <style name="TextAppearance.Doorip.Head2">
         <item name="fontFamily">@font/font_pretendard_bold</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:paddingVertical">6정sp</item>
+        <item name="android:paddingVertical">6sp</item>
     </style>
 
     <style name="TextAppearance.Doorip.Head3">
