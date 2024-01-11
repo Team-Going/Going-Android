@@ -7,6 +7,3 @@ data class TodoDetailModel(
     val memo: String,
     val secret: Boolean
 )
-
-fun TodoDetailModel.emptyDetail(): TodoDetailModel =
-    TodoDetailModel("", "", emptyList(), "", true)
