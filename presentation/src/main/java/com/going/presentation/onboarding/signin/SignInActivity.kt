@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
+import com.going.presentation.setting.SettingActivity
 import com.going.presentation.tendencytest.TendencyTestActivity
 import com.going.presentation.tendencytest.TendencyTestSplashActivity
 import com.going.ui.base.BaseActivity
@@ -69,7 +70,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
 
     private fun navigateToMainScreen() {
         // 추후 대시보드 연결시 연결 예정
-        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+        Intent(this, SettingActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

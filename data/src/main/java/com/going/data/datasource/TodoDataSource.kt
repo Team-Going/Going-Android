@@ -8,7 +8,6 @@ interface TodoDataSource {
     suspend fun getTodoListData(
         tripId: Long,
         category: String,
-        progress: String
+        progress: String,
     ): BaseResponse<List<TodoResponseDto>>
-
 }
