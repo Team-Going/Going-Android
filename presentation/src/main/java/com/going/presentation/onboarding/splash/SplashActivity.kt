@@ -32,7 +32,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.clearAccessToken()
             if (viewModel.getHasAccessToken()) {
                 navigateToMainScreen()
             } else {

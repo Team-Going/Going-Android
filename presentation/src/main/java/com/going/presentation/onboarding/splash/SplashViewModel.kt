@@ -10,5 +10,4 @@ class SplashViewModel @Inject constructor(
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
     fun getHasAccessToken(): Boolean = tokenRepository.getAccessToken().isNotBlank()
-    fun clearAccessToken() = tokenRepository.clearTokens()
 }
