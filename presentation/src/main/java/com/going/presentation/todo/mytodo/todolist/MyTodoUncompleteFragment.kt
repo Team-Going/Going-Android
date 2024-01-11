@@ -39,6 +39,7 @@ class MyTodoUncompleteFragment() :
 
     override fun onResume() {
         super.onResume()
+
         setTodoList()
     }
 

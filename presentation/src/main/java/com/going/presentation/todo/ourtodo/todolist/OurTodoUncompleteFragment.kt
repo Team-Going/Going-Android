@@ -38,6 +38,12 @@ class OurTodoUncompleteFragment() :
         observeTodoListState()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        setTodoList()
+    }
+
     private fun initAdapterWithClickListener() {
         _adapter = OurTodoListAdapter(
             false
