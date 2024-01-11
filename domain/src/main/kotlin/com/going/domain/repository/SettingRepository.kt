@@ -1,9 +1,7 @@
 package com.going.domain.repository
 
-import com.going.domain.entity.response.SignOutModel
-
 interface SettingRepository {
-    suspend fun patchSignOut(): Result<SignOutModel>
+    suspend fun patchSignOut(): Result<Unit>
 
     suspend fun deleteWithDraw(): Result<Unit>
 }
