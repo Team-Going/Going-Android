@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
-import com.going.domain.entity.request.RequestSignUpModel
+import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
@@ -84,7 +84,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.postSignUp(
                 kakaoAccessToken,
-                RequestSignUpModel(name.value, info.value, KAKAO),
+                SignUpRequestModel(name.value, info.value, KAKAO),
             ).onSuccess {
                 _isSignUpState.value = SignUpState.SUCCESS
             }.onFailure {

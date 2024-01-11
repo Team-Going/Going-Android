@@ -51,9 +51,10 @@ class SettingLogoutDialogFragment() :
     private fun observeUserSignOutState() {
         viewModel.userSignOutState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
+                EnumUiState.LOADING -> {}
                 EnumUiState.SUCCESS -> restartApp(requireContext())
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
-                EnumUiState.LOADING -> {}
+                EnumUiState.EMPTY -> {}
             }
         }.launchIn(lifecycleScope)
     }

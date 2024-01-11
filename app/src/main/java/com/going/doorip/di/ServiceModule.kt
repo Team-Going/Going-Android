@@ -3,6 +3,7 @@ package com.going.doorip.di
 import com.going.data.service.AuthService
 import com.going.data.service.MockService
 import com.going.data.service.SettingService
+import com.going.data.service.TendencyService
 import com.going.data.service.TodoService
 import dagger.Module
 import dagger.Provides
@@ -35,4 +36,8 @@ object ServiceModule {
     fun provideTodoService(retrofit: Retrofit): TodoService =
         retrofit.create(TodoService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideTendencyService(retrofit: Retrofit): TendencyService =
+        retrofit.create(TendencyService::class.java)
 }

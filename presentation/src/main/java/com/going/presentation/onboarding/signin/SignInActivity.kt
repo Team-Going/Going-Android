@@ -70,7 +70,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
 
     private fun navigateToMainScreen() {
         // 추후 대시보드 연결시 연결 예정
-        Intent(this, SettingActivity::class.java).apply {
+        Intent(this, TendencyTestSplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
