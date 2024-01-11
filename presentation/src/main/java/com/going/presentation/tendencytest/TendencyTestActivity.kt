@@ -11,17 +11,21 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class TendencyTestActivity :
     BaseActivity<ActivityTendencyTestBinding>(R.layout.activity_tendency_test) {
 
+    private val viewModel by viewModels<TendencyTestViewModel>()
+
     private lateinit var fadeInList: List<ObjectAnimator>
     private lateinit var fadeOutList: List<ObjectAnimator>
-
-    private val viewModel by viewModels<TendencyTestViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,7 @@ class TendencyTestActivity :
         initFadeListener()
         initNextBtnClickListener()
         observeButtonSelected()
+        observeIsSubmitTendencyState()
     }
 
     private fun initBindingViewModel() {
@@ -110,14 +115,10 @@ class TendencyTestActivity :
     private fun initNextBtnClickListener() {
         binding.btnTendencyNext.setOnSingleClickListener {
             when (viewModel.step.value) {
-                9 -> moveTendencyTestResultActivity()
+                9 -> viewModel.submitTendencyTest()
                 else -> fadeOutList[0].start()
             }
         }
-    }
-
-    private fun moveTendencyTestResultActivity() {
-        // 페이지 이동 기능 추가 예정
     }
 
     private fun observeButtonSelected() {
@@ -142,6 +143,21 @@ class TendencyTestActivity :
         R.style.TextAppearance_Doorip_Body3_Bold
     } else {
         R.style.TextAppearance_Doorip_Body3_Medi
+    }
+
+    private fun observeIsSubmitTendencyState() {
+        viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> {}
+                EnumUiState.SUCCESS -> moveTendencyTestResultActivity()
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+                EnumUiState.EMPTY -> {}
+            }
+        }
+    }
+
+    private fun moveTendencyTestResultActivity() {
+        // 페이지 이동 기능 추가 예정
     }
 
     companion object {

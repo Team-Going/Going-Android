@@ -2,10 +2,21 @@ package com.going.presentation.tendencytest
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.TendencyTestMock
+import com.going.domain.entity.request.TendencyRequestModel
+import com.going.domain.repository.TendencyRepository
+import com.going.ui.extension.EnumUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TendencyTestViewModel : ViewModel() {
+@HiltViewModel
+class TendencyTestViewModel @Inject constructor(
+    private val tendencyRepository: TendencyRepository,
+) : ViewModel() {
     val step = MutableStateFlow(1)
     val isChecked = MutableLiveData(false)
     val isFirstChecked = MutableStateFlow(false)
@@ -13,7 +24,10 @@ class TendencyTestViewModel : ViewModel() {
     val isThirdChecked = MutableStateFlow(false)
     val isFourthChecked = MutableStateFlow(false)
 
-    val tendencyResultList: MutableList<Int> = MutableList(9) { 0 }
+    private val tendencyResultList: MutableList<Int> = MutableList(9) { 0 }
+
+    private val _isSubmitTendencyState = MutableStateFlow(EnumUiState.EMPTY)
+    val isSubmitTendencyState: StateFlow<EnumUiState> = _isSubmitTendencyState
 
     val mockList: List<TendencyTestMock> = listOf(
         TendencyTestMock(
@@ -104,6 +118,18 @@ class TendencyTestViewModel : ViewModel() {
         isSecondChecked.value = false
         isThirdChecked.value = false
         isFourthChecked.value = false
+    }
+
+    fun submitTendencyTest() {
+        viewModelScope.launch {
+            _isSubmitTendencyState.value = EnumUiState.LOADING
+            tendencyRepository.patchTendencyTest(TendencyRequestModel(tendencyResultList))
+                .onSuccess {
+                    _isSubmitTendencyState.value = EnumUiState.SUCCESS
+                }.onFailure {
+                    _isSubmitTendencyState.value = EnumUiState.FAILURE
+                }
+        }
     }
 
     companion object {
