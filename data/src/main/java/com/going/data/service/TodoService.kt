@@ -3,6 +3,7 @@ package com.going.data.service
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NullableBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -26,9 +27,14 @@ interface TodoService {
         @Body request: TodoCreateRequestDto
     ): NullableBaseResponse<Unit>
 
-    @DELETE("/api/trips/todos/{todoId}")
+    @DELETE("api/trips/todos/{todoId}")
     suspend fun deleteTodo(
         @Path("todoId") todoId: Long
     ): NullableBaseResponse<Unit>
+
+    @GET("api/trips/todos/{todoId}")
+    suspend fun getTodoDetail(
+        @Path("todoId") todoId: Long
+    ): BaseResponse<TodoDetailResponseDto>
 
 }

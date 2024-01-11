@@ -1,6 +1,7 @@
 package com.going.domain.repository
 
 import com.going.domain.entity.request.TodoCreateRequestModel
+import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.entity.response.TodoModel
 
 interface TodoRepository {
@@ -19,5 +20,9 @@ interface TodoRepository {
     suspend fun deleteTodo(
         todoId: Long
     ): Result<Unit>
+
+    suspend fun getTodoDetail(
+        todoId: Long
+    ): Result<TodoDetailModel>
 
 }

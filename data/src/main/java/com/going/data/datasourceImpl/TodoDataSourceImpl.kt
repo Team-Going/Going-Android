@@ -4,6 +4,7 @@ import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NullableBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 import com.going.data.service.TodoService
 import javax.inject.Inject
@@ -29,5 +30,10 @@ class TodoDataSourceImpl @Inject constructor(
         todoId: Long
     ): NullableBaseResponse<Unit> =
         todoService.deleteTodo(todoId)
+
+    override suspend fun getTodoDetailData(
+        todoId: Long
+    ): BaseResponse<TodoDetailResponseDto> =
+        todoService.getTodoDetail(todoId)
 
 }

@@ -3,6 +3,7 @@ package com.going.data.repositoryImpl
 import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.request.toTodoCreateRequestDto
 import com.going.domain.entity.request.TodoCreateRequestModel
+import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
 import javax.inject.Inject
@@ -33,6 +34,13 @@ class TodoRepositoryImpl @Inject constructor(
     ): Result<Unit> =
         runCatching {
             todoDataSource.deleteTodoData(todoId)
+        }
+
+    override suspend fun getTodoDetail(
+        todoId: Long
+    ): Result<TodoDetailModel> =
+        runCatching {
+            todoDataSource.getTodoDetailData(todoId).data.toTodoDetailModel()
         }
 
 }

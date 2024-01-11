@@ -3,6 +3,7 @@ package com.going.data.datasource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NullableBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 
 interface TodoDataSource {
@@ -21,5 +22,9 @@ interface TodoDataSource {
     suspend fun deleteTodoData(
         todoId: Long
     ): NullableBaseResponse<Unit>
+
+    suspend fun getTodoDetailData(
+        todoId: Long
+    ): BaseResponse<TodoDetailResponseDto>
 
 }
