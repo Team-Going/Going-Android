@@ -2,12 +2,17 @@ package com.going.presentation.todo.detail
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
 import com.going.presentation.todo.ourtodo.create.TodoCreateNameAdapter
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class PublicDetailActivity :
     BaseActivity<ActivityPublicDetailBinding>(R.layout.activity_public_detail) {
@@ -27,6 +32,7 @@ class PublicDetailActivity :
         initDeleteBtnClickListener()
         initModBtnClickListener()
         setDetailData()
+        observeTodoDetailState()
     }
 
     private fun initViewModel() {
@@ -34,7 +40,6 @@ class PublicDetailActivity :
     }
 
     private fun initNameListAdapter() {
-        // 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
         _adapter = TodoCreateNameAdapter(true)
         binding.rvOurTodoDetailPerson.adapter = adapter
     }
@@ -59,12 +64,18 @@ class PublicDetailActivity :
     }
 
     private fun setDetailData() {
-        intent.getLongExtra(EXTRA_TODO_ID, 0)
-        // 추후 todoId를 보내서 받는 서버통신으로 변경
-        viewModel.todo.value = "맛있는 밥 먹기"
-        viewModel.endDate.value = "2024.1.10"
-        // adapter.submitList(listOf("김상호", "박동민", "조세연", "이유빈"))
-        viewModel.memo.value = "오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지"
+        viewModel.getTodoDetailFromServer(intent.getLongExtra(EXTRA_TODO_ID, 0))
+    }
+
+    private fun observeTodoDetailState() {
+        viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+                EnumUiState.SUCCESS -> adapter.submitList(viewModel.todoAllocatorModel)
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+                EnumUiState.EMPTY -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
     }
 
     override fun onDestroy() {
