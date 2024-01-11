@@ -7,12 +7,14 @@ import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.text.BreakIterator
 import javax.inject.Inject
 
+@HiltViewModel
 class OurTodoCreateViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {

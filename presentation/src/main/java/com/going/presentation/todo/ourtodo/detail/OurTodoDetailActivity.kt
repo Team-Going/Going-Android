@@ -63,7 +63,7 @@ class OurTodoDetailActivity :
         // 추후 todoId를 보내서 받는 서버통신으로 변경
         viewModel.todo.value = "맛있는 밥 먹기"
         viewModel.endDate.value = "2024.1.10"
-        adapter.submitList(listOf("김상호", "박동민", "조세연", "이유빈"))
+        // adapter.submitList(listOf("김상호", "박동민", "조세연", "이유빈"))
         viewModel.memo.value = "오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지"
     }
 

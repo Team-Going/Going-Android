@@ -13,9 +13,11 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class OurTodoCreateActivity :
     BaseActivity<ActivityOurTodoCreateBinding>(R.layout.activity_our_todo_create) {
 
@@ -89,7 +91,7 @@ class OurTodoCreateActivity :
         binding.btnOurTodoMemoFinish.setOnSingleClickListener {
             // tripId는 임시 설정
             val tripId: Long = 1
-            adapter.currentList
+            viewModel.participantList = adapter.currentList
             viewModel.postToCreateTodoFromServer(tripId)
         }
     }
