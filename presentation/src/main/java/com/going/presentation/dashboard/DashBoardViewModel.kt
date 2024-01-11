@@ -1,5 +1,6 @@
 package com.going.presentation.dashboard
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.DashBoardModel
@@ -21,16 +22,11 @@ class DashBoardViewModel @Inject constructor(
 
     private val _dashBoardCompletedListState =
         MutableStateFlow<UiState<DashBoardModel>>(UiState.Empty)
-//
-//    private val _dashBoardOngoingNameState = MutableStateFlow<UiState<List<DashBoardModel.DashBoardTripModel>>>(UiState.Empty)
-//    val dashBoardOngoingNameState : StateFlow<UiState<List<DashBoardModel.DashBoardTripModel>>> get() = _dashBoardOngoingNameState
-//
-//
-//
-//    private val _dashBoardCompletedNameState = MutableStateFlow<UiState<List<DashBoardModel.DashBoardTripModel>>>(UiState.Empty)
-//    val dashBoardCompletedNameState : StateFlow<UiState<List<DashBoardModel.DashBoardTripModel>>> get() = _dashBoardCompletedNameState
+
+    val name = MutableLiveData<String?>()
 
     val dashBoardCompletedListState: StateFlow<UiState<DashBoardModel>> get() = _dashBoardCompletedListState
+
     fun getTripListFromServer(
         progress: String
     ) {
@@ -51,16 +47,17 @@ class DashBoardViewModel @Inject constructor(
         }
     }
 
-//    fun getTravelerNameFromServer(
-//        progress: String
-//    ) {
-//        viewModelScope.launch {
-//            dashBoardRepository.getDashBoardList(progress)
-//                .onSuccess {
-//                    dashBoardOngoingNameState.value = UiState.Success(it.)
-//                }
-//        }
-//    }
+    fun getTravelerNameFromServer(progress: String) {
+        viewModelScope.launch {
+            dashBoardRepository.getDashBoardList(progress)
+                .onSuccess {
+                    name.value = it.name
+                }
+                .onFailure {
+                    name.value = null
+                }
+        }
+    }
 
 
     companion object {

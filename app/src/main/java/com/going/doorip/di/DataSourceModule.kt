@@ -44,7 +44,7 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideDashBoardDataSource(dashBoardDataSourceImpl: DashBoardDataSourceImpl) : DashBoardDataSource =
+    fun provideDashBoardDataSource(dashBoardDataSourceImpl: DashBoardDataSourceImpl): DashBoardDataSource =
         dashBoardDataSourceImpl
 
     @Provides

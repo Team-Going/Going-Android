@@ -2,7 +2,6 @@ package com.going.presentation.dashboard
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.ui.base.BaseActivity
@@ -16,12 +15,15 @@ class DashBoardActivity :
     private val tabTextList = listOf(TAB_ONGOING, TAB_COMPLETED)
 
     private val viewModel by viewModels<DashBoardViewModel>()
+
+    var name: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setTabLayout()
         setViewPager()
-//        setTravelerName()
+        setTravelerName()
 
     }
 
@@ -43,10 +45,14 @@ class DashBoardActivity :
         }.attach()
     }
 
-//    private fun setTravelerName(){
-//        val progress = "incomplete"
-//        viewModel.getTravelerNameFromServer(progress)
-//    }
+    private fun setTravelerName() {
+        val progress = "incomplete"
+        viewModel.getTravelerNameFromServer(progress)
+        viewModel.name.observe(this) { travelerName ->
+            binding.tvDashboardTitle.text = getString(R.string.dashboard_tv_title, travelerName)
+        }
+    }
+
     companion object {
         const val TAB_ONGOING = "진행중인 여행"
         const val TAB_COMPLETED = "지나간 여행"
