@@ -28,8 +28,8 @@ class MyTodoCreateViewModel @Inject constructor(
 
     val isFinishAvailable = MutableLiveData(false)
 
-    private val _todoCreateState = MutableStateFlow<UiState<String>>(UiState.Empty)
-    val todoCreateState: StateFlow<UiState<String>> = _todoCreateState
+    private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
     fun getMaxTodoLen() = MAX_TODO_LEN
 
@@ -56,7 +56,7 @@ class MyTodoCreateViewModel @Inject constructor(
                 )
             )
                 .onSuccess { response ->
-                    _todoCreateState.value = UiState.Success(response.toString())
+                    _todoCreateState.value = UiState.Success(response)
                 }
                 .onFailure {
                     _todoCreateState.value = UiState.Failure(it.message.toString())

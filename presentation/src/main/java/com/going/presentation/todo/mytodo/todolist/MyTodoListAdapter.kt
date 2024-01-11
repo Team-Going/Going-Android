@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemMyTodoBinding
+import timber.log.Timber
 
 class MyTodoListAdapter(
     private val isCompleted: Boolean,
@@ -35,6 +36,7 @@ class MyTodoListAdapter(
 
     fun setItemList(newItems: List<TodoModel>) {
         this.itemList.addAll(newItems)
+        Timber.tag("okhttp").d("@@@${this.itemList}")
         notifyItemRangeInserted(0, itemCount)
     }
 }

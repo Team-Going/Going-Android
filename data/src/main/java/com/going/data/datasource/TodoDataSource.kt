@@ -16,6 +16,6 @@ interface TodoDataSource {
     suspend fun postToCreateTodoData(
         tripId: Long,
         request: TodoCreateRequestDto
-    ): NullableBaseResponse<String>
+    ): NullableBaseResponse<Unit>
 
 }

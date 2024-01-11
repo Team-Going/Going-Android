@@ -22,6 +22,6 @@ class TodoDataSourceImpl @Inject constructor(
     override suspend fun postToCreateTodoData(
         tripId: Long,
         request: TodoCreateRequestDto
-    ): NullableBaseResponse<String> =
+    ): NullableBaseResponse<Unit> =
         todoService.postToCreateTodo(tripId,request)
 }

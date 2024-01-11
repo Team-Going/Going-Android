@@ -23,6 +23,6 @@ interface TodoService {
     suspend fun postToCreateTodo(
         @Path("tripId") tripId: Long,
         @Body request: TodoCreateRequestDto
-    ): NullableBaseResponse<String>
+    ): NullableBaseResponse<Unit>
 
 }
