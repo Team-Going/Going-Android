@@ -105,7 +105,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity"
+            android:name="com.going.presentation.todo.detail.PrivateDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -115,7 +115,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.ourtodo.detail.OurTodoDetailActivity"
+            android:name="com.going.presentation.todo.detail.PublicDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

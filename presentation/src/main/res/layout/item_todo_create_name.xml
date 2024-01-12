@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rect_2_gray300_line"
-        android:paddingHorizontal="6dp"
+        android:paddingHorizontal="8dp"
         android:paddingVertical="5dp"
         android:textColor="@color/gray_300"
         app:layout_constraintBottom_toBottomOf="parent"

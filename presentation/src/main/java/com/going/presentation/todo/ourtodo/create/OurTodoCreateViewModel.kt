@@ -2,9 +2,22 @@ package com.going.presentation.todo.ourtodo.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.request.TodoCreateRequestModel
+import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.repository.TodoRepository
+import com.going.ui.extension.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import java.text.BreakIterator
+import javax.inject.Inject
 
-class OurTodoCreateViewModel : ViewModel() {
+@HiltViewModel
+class OurTodoCreateViewModel @Inject constructor(
+    private val todoRepository: TodoRepository
+) : ViewModel() {
 
     val todo = MutableLiveData("")
     val nowTodoLength = MutableLiveData(0)
@@ -16,6 +29,15 @@ class OurTodoCreateViewModel : ViewModel() {
 
     val isFinishAvailable = MutableLiveData(false)
 
+    private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
+
+    // TODO: 추후 수정
+    var totalParticipantList: List<TripParticipantModel> = listOf(
+        TripParticipantModel(3, "삼삼삼", 1), TripParticipantModel(21, "이십일", 2)
+    )
+    var participantList: List<TripParticipantModel> = listOf()
+
     fun getMaxTodoLen() = MAX_TODO_LEN
 
     fun getMaxMemoLen() = MAX_MEMO_LEN
@@ -25,6 +47,28 @@ class OurTodoCreateViewModel : ViewModel() {
         nowMemoLength.value = getGraphemeLength(memo.value)
         isFinishAvailable.value =
             todo.value?.isNotEmpty() == true && memo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
+    }
+
+    fun postToCreateTodoFromServer(tripId: Long) {
+        _todoCreateState.value = UiState.Loading
+        viewModelScope.launch {
+            todoRepository.postToCreateTodo(
+                tripId = tripId,
+                request = TodoCreateRequestModel(
+                    title = todo.value ?: "",
+                    endDate = endDate.value ?: "",
+                    allocators = participantList.map { it.participantId },
+                    memo = memo.value,
+                    secret = false
+                )
+            )
+                .onSuccess { response ->
+                    _todoCreateState.value = UiState.Success(response)
+                }
+                .onFailure {
+                    _todoCreateState.value = UiState.Failure(it.message.toString())
+                }
+        }
     }
 
     // 이모지 포함 글자 수 세는 함수
