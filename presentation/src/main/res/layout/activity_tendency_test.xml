@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.tendencytest.TendencyTestViewModel" />
+            type="com.going.presentation.tendency.ttest.TendencyTestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

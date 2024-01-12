@@ -64,12 +64,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
+            android:name="com.going.presentation.tendency.splash.TendencySplashActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.tendencytest.TendencyTestActivity"
+            android:name="com.going.presentation.tendency.ttest.TendencyTestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -84,7 +84,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.tendencytest.result.TendencyTestResultActivity"
+            android:name="com.going.presentation.tendency.result.TendencyResultActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
