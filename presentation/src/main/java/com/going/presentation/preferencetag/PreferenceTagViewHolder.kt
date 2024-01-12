@@ -1,6 +1,5 @@
 package com.going.presentation.preferencetag
 
-import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
@@ -27,8 +26,9 @@ class PreferenceTagViewHolder(
                     R.id.rb_preference_5
                 )
 
-                if (checkedId in selectedButtonIdList) {
-                    listener.onPreferenceSelected(item)
+                val checkedIndex = selectedButtonIdList.indexOf(checkedId)
+                if (checkedIndex != -1) {
+                    listener.onPreferenceSelected(item, checkedIndex)
                 }
             }
         }

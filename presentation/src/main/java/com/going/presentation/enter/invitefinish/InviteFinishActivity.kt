@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
-import com.going.presentation.enter.FinishPreferenceActivity
 import com.going.presentation.enter.entertrip.EnterTripActivity
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.DAY
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.END
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.START
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.TITLE
-import com.going.presentation.preferencetag.PreferenceTagActivity
+import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
