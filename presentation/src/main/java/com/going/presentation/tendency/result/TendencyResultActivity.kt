@@ -104,13 +104,13 @@ class TendencyResultActivity :
     }
 
     private fun initSaveImgBtnClickListener() {
-        binding.btnTendencyTestResultSave.setOnSingleClickListener {
+        binding.btnTendencyResultDownload.setOnSingleClickListener {
             toast("추후 업데이트 예정")
         }
     }
 
     private fun initFinishBtnClickListener() {
-        binding.btnTendencyTestResultFinish.setOnSingleClickListener {
+        binding.btnTendencyResultFinish.setOnSingleClickListener {
             navigateToDashBoardScreen()
         }
     }
