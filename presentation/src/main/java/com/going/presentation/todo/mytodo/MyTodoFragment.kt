@@ -52,8 +52,8 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun setMyTripInfo() {
         // TODO: tripId
-        val tripId = 1
-        viewModel.getMyTripInfoFromServer(1)
+        val tripId : Long = 1
+        viewModel.getMyTripInfoFromServer(tripId)
     }
 
     private fun setTabLayout() {

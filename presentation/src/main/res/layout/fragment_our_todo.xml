@@ -70,20 +70,20 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="24dp"
-                            android:text="우쥬랑 스페인"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="우쥬랑 스페인" />
 
                         <TextView
                             android:id="@+id/tv_our_todo_title_down"
                             style="@style/TextAppearance.Doorip.Head1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="여행일까지 16일 남았어요!"
                             app:layout_constraintEnd_toEndOf="@id/tv_our_todo_title_up"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
-                            app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up"
+                            tools:text="여행일까지 16일 남았어요!" />
 
                         <ImageView
                             android:id="@+id/iv_our_todo_title_date"
@@ -102,11 +102,11 @@
                             android:layout_marginStart="7dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="24dp"
-                            android:text="12월 16일 - 12월 25일"
                             android:textColor="@color/gray_300"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/iv_our_todo_title_date"
-                            app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_down" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_down"
+                            tools:text="12월 16일 - 12월 25일" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/layout_our_trip_info"
@@ -137,11 +137,11 @@
                                 style="@style/TextAppearance.Doorip.Body2.Medi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="62%"
                                 android:textColor="@color/red_500"
                                 app:layout_constraintBottom_toBottomOf="@id/tv_our_trip_info_title"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/tv_our_trip_info_title" />
+                                app:layout_constraintTop_toTopOf="@id/tv_our_trip_info_title"
+                                tools:text="62%" />
 
                             <ProgressBar
                                 android:id="@+id/progress_bar_our_todo"

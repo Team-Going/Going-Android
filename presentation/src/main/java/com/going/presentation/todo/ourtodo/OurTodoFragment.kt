@@ -8,14 +8,18 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.flowWithLifecycle
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment_our_todo) {
@@ -34,16 +38,16 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAdapter()
         initAddTodoBtnListener()
         initItemDecoration()
+        setMyTripInfo()
         setDateTextColor()
-        setProgressBarStatus()
         setTabLayout()
         setViewPager()
+        observeOurTripInfoState()
     }
 
     private fun initAdapter() {
         _adapter = OurTodoFriendAdapter()
         binding.rvOurTripFriend.adapter = adapter
-        adapter.submitList(viewModel.mockParticipantsList)
     }
 
     private fun initAddTodoBtnListener() {
@@ -59,6 +63,11 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 
+    private fun setMyTripInfo() {
+        // TODO: tripId
+        val tripId : Long = 1
+        viewModel.getOurTripInfoFromServer(tripId)
+    }
 
     private fun setDateTextColor() {
         binding.tvOurTodoTitleDown.apply {
@@ -72,10 +81,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 )
             }
         }
-    }
-
-    private fun setProgressBarStatus() {
-        binding.progressBarOurTodo.progress = 62
     }
 
     private fun setTabLayout() {
@@ -94,6 +99,35 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         TabLayoutMediator(binding.tabOurTodo, binding.vpOurTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
+    }
+
+    private fun observeOurTripInfoState() {
+        viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Loading -> return@onEach
+
+                is UiState.Success -> {
+                    binding.run {
+                        tvOurTodoTitleUp.text = state.data.title
+                        // TODO: 날짜 분기처리
+                        tvOurTodoTitleDown.text = "여행일까지 %s일 남았어요!".format(state.data.day)
+                        tvOurTodoTitleDate.text = "%s - %s".format(convertDate(state.data.startDate), convertDate(state.data.endDate))
+                        progressBarOurTodo.progress = state.data.progress
+                        tvOurTripInfoPercent.text = "%s%".format(state.data.progress)
+                        adapter.submitList(state.data.participants)
+                    }
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Empty -> return@onEach
+            }
+        }
+    }
+
+    private fun convertDate(date: String): String {
+        val splitDate = date.split(".")
+        return "${splitDate[1]}월 ${splitDate[2]}일"
     }
 
     override fun onDestroyView() {

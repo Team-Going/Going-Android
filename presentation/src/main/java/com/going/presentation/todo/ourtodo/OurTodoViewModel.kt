@@ -2,6 +2,7 @@ package com.going.presentation.todo.ourtodo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.response.OurTripInfoModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.domain.repository.TodoRepository
@@ -17,11 +18,27 @@ class OurTodoViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
 
+    private val _ourTripInfoState = MutableStateFlow<UiState<OurTripInfoModel>>(UiState.Empty)
+    val ourTripInfoState: StateFlow<UiState<OurTripInfoModel>> = _ourTripInfoState
+
     private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoUncompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoUncompleteListState
 
     private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
+
+    fun getOurTripInfoFromServer(tripId: Long) {
+        _ourTripInfoState.value = UiState.Loading
+        viewModelScope.launch {
+            todoRepository.getOurTripInfo(tripId)
+                .onSuccess { response ->
+                    _ourTripInfoState.value = UiState.Success(response)
+                }
+                .onFailure {
+                    _ourTripInfoState.value = UiState.Failure(it.message.toString())
+                }
+        }
+    }
 
     fun getTodoListFromServer(
         tripId: Long, category: String, progress: String
@@ -48,13 +65,4 @@ class OurTodoViewModel @Inject constructor(
         const val UNCOMPLETE = "incomplete"
         const val COMPLETE = "complete"
     }
-
-    val mockParticipantsList: List<TripParticipantModel> = listOf(
-        TripParticipantModel(0, "일지민", 100),
-        TripParticipantModel(1, "이지민", 100),
-        TripParticipantModel(2, "삼지민", 100),
-        TripParticipantModel(3, "사지민", 100),
-        TripParticipantModel(4, "오지민", 100),
-        TripParticipantModel(5, "육지민", 100)
-    )
 }
