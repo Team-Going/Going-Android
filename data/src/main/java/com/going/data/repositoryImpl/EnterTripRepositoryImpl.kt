@@ -13,10 +13,10 @@ class EnterTripRepositoryImpl @Inject constructor(
 
     override suspend fun postEnterTrip(
         requestEnterTripModel: RequestEnterTripModel
-    ): Result<EnterTripModel?> =
+    ): Result<EnterTripModel> =
         runCatching {
             enterTripDataSource.postEnterTrip(
                 requestEnterTripModel.toEnterTripRequestDto(),
-            ).data?.toEnterTripModel()
+            ).data.toEnterTripModel()
         }
 }
