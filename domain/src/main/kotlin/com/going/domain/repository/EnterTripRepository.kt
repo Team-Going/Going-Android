@@ -7,5 +7,5 @@ interface EnterTripRepository {
 
     suspend fun postEnterTrip(
         requestEnterTripModel: RequestEnterTripModel
-    ): Result<EnterTripModel>
+    ): Result<EnterTripModel?>
 }
