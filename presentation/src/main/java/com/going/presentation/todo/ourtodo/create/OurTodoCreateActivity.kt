@@ -53,6 +53,7 @@ class OurTodoCreateActivity :
         // TODO: 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
         _adapter = TodoCreateNameAdapter(false) { position ->
             viewModel.participantList[position].isSelected = !viewModel.participantList[position].isSelected
+            viewModel.checkIsFinishAvailable()
         }
         binding.rvOurTodoCreatePerson.adapter = adapter
         viewModel.participantList = viewModel.totalParticipantList

@@ -46,7 +46,7 @@ class OurTodoCreateViewModel @Inject constructor(
         nowTodoLength.value = getGraphemeLength(todo.value)
         nowMemoLength.value = getGraphemeLength(memo.value)
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected }
     }
 
     fun postToCreateTodoFromServer(tripId: Long) {
