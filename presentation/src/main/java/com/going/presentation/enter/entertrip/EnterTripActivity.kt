@@ -2,19 +2,28 @@ package com.going.presentation.enter.entertrip
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.CodeState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
+import com.going.presentation.enter.invitefinish.InviteFinishActivity
 import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activity_enter_trip) {
     private val viewModel by viewModels<EnterTripViewModel>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +32,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         initBindingViewModel()
         observeIsCodeAvailable()
         initNextBtnClickListener()
+        observeEnterTripState()
 
 
     }
@@ -76,9 +86,36 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         counter.setTextColor(getColor(color))
     }
 
+
+    private fun observeEnterTripState() {
+        viewModel.tripState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+
+                    Intent(this, InviteFinishActivity::class.java).apply {
+                        putExtra("title", state.data.title)
+                        putExtra("start", state.data.startDate)
+                        putExtra("end", state.data.endDate)
+                        putExtra("day", state.data.day)
+                        Log.d("day1",state.data.day.toString())
+                        startActivity(this)
+                    }
+                }
+
+                is UiState.Failure -> {
+                    toast(getString(R.string.server_error))
+                }
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {
-            //다음 뷰로 이동
+            viewModel.checkInviteCodeFromServer()
         }
     }
 
