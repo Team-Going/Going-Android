@@ -51,8 +51,11 @@ class OurTodoCreateActivity :
 
     private fun initNameListAdapter() {
         // TODO: 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
-        _adapter = TodoCreateNameAdapter(false)
+        _adapter = TodoCreateNameAdapter(false) { position ->
+            viewModel.participantList[position].isSelected = !viewModel.participantList[position].isSelected
+        }
         binding.rvOurTodoCreatePerson.adapter = adapter
+        viewModel.participantList = viewModel.totalParticipantList
         adapter.submitList(viewModel.totalParticipantList)
     }
 
@@ -89,9 +92,9 @@ class OurTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnOurTodoMemoFinish.setOnSingleClickListener {
-            // tripId는 임시 설정
+            // TODO : tripId는 임시 설정
             val tripId: Long = 1
-            viewModel.participantList = adapter.currentList
+            viewModel.participantList = adapter.currentList.filter { it.isSelected }
             viewModel.postToCreateTodoFromServer(tripId)
         }
     }
