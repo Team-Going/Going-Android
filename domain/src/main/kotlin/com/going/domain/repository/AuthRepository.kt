@@ -15,4 +15,6 @@ interface AuthRepository {
         Authorization: String,
         data: SignUpRequestModel,
     ): Result<AuthTokenModel>
+
+    suspend fun getSplash(): Result<Unit>
 }
