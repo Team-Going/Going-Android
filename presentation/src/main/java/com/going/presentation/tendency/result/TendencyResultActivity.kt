@@ -9,9 +9,9 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
 import com.going.presentation.tendency.ttest.TendencyTestActivity
-import com.going.presentation.tripdashboard.TripDashBoardActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -124,7 +124,7 @@ class TendencyResultActivity :
     }
 
     private fun navigateToDashBoardScreen() {
-        Intent(this, TripDashBoardActivity::class.java).apply {
+        Intent(this, DashBoardActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
