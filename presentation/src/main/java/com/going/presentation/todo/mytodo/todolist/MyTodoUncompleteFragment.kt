@@ -95,10 +95,7 @@ class MyTodoUncompleteFragment() :
             when (state) {
                 EnumUiState.LOADING -> return@onEach
 
-                EnumUiState.SUCCESS -> {
-                    adapter.notifyDataSetChanged()
-                    viewModel.decreaseTodoCount()
-                }
+                EnumUiState.SUCCESS -> setTodoList()
 
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
 

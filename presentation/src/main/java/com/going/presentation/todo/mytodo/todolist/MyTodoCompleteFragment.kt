@@ -1,6 +1,5 @@
 package com.going.presentation.todo.mytodo.todolist
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -16,6 +15,7 @@ import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,14 +38,14 @@ class MyTodoCompleteFragment() :
         initAdapterWithClickListener()
         setTodoList()
         observeTodoListState()
+        observeTodoRedoState()
     }
 
     private fun initAdapterWithClickListener() {
         _adapter = MyTodoListAdapter(true,
             { },
-            { position ->
-                adapter.removeItem(position)
-                adapter.notifyDataSetChanged()
+            { todoId ->
+                viewModel.getToRedoTodoFromServer(todoId)
             },
             { todoModel ->
                 if (todoModel.allocators.size <= 1) {
@@ -80,6 +80,20 @@ class MyTodoCompleteFragment() :
                 is UiState.Loading -> return@onEach
 
                 is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeTodoRedoState() {
+        viewModel.todoRedoState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+
+                EnumUiState.SUCCESS -> setTodoList()
+
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+
+                EnumUiState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
