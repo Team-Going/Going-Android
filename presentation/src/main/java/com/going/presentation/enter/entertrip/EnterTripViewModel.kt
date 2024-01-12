@@ -50,8 +50,8 @@ class EnterTripViewModel @Inject constructor(
         _tripState.value = UiState.Loading
         viewModelScope.launch {
             enterTripRepository.postEnterTrip(
-                RequestEnterTripModel(inviteCode.value ?:"")
-            ).onSuccess {result ->
+                RequestEnterTripModel(inviteCode.value ?: "")
+            ).onSuccess { result ->
                 _tripState.value = result?.let { UiState.Success(it) } ?: UiState.Failure("no")
             }.onFailure {
                 _tripState.value = UiState.Failure(it.message.orEmpty())

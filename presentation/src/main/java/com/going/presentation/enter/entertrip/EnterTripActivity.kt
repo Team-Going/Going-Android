@@ -97,7 +97,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                         putExtra("start", state.data.startDate)
                         putExtra("end", state.data.endDate)
                         putExtra("day", state.data.day)
-                        Log.d("day1",state.data.day.toString())
+                        Log.d("day1", state.data.day.toString())
                         startActivity(this)
                     }
                 }

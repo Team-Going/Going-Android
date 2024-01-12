@@ -85,7 +85,7 @@ class AuthInterceptor @Inject constructor(
         return response
     }
 
-     private fun Request.newAuthBuilder() =
+    private fun Request.newAuthBuilder() =
         this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
 
     companion object {
