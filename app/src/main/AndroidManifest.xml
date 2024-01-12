@@ -75,12 +75,12 @@
 
         <activity
             android:name="com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.preferencetag.invitefinish.FinishPreferenceActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity

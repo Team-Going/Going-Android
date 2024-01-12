@@ -5,6 +5,12 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.going.presentation.preferencetag.PreferenceTagViewModel">
+
+        </variable>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,10 +82,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button_preference"
-            android:text="@string/preference_btn_enter"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="false"
             android:outlineProvider="none"
-            android:textColor="@drawable/sel_button_text_color_preference"
+            android:text="@string/preference_btn_enter"
+            android:textColor="@color/gray_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
