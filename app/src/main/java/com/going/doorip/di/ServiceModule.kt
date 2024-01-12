@@ -1,7 +1,9 @@
 package com.going.doorip.di
 
+import android.provider.ContactsContract.Profile
 import com.going.data.service.AuthService
 import com.going.data.service.MockService
+import com.going.data.service.ProfileService
 import com.going.data.service.SettingService
 import com.going.data.service.TendencyService
 import com.going.data.service.TodoService
@@ -40,4 +42,10 @@ object ServiceModule {
     @Singleton
     fun provideTendencyService(retrofit: Retrofit): TendencyService =
         retrofit.create(TendencyService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideProfileService(retrofit: Retrofit): ProfileService =
+        retrofit.create(ProfileService::class.java)
+
 }
