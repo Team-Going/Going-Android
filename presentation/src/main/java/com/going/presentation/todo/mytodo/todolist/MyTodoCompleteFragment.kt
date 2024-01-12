@@ -36,9 +36,14 @@ class MyTodoCompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
-        setTodoList()
         observeTodoListState()
         observeTodoRedoState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setTodoList()
     }
 
     private fun initAdapterWithClickListener() {
