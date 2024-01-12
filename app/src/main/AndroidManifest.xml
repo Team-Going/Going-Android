@@ -79,7 +79,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
+            android:name="com.going.presentation.dashboard.DashBoardActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

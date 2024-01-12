@@ -25,12 +25,12 @@ interface TodoService {
     suspend fun postToCreateTodo(
         @Path("tripId") tripId: Long,
         @Body request: TodoCreateRequestDto
-    ): NonDataBaseResponse
+    ): NonDataBaseResponse<Unit>
 
     @DELETE("api/trips/todos/{todoId}")
     suspend fun deleteTodo(
         @Path("todoId") todoId: Long
-    ): NonDataBaseResponse
+    ): NonDataBaseResponse<Unit>
 
     @GET("api/trips/todos/{todoId}")
     suspend fun getTodoDetail(

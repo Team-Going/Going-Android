@@ -22,6 +22,7 @@ class AuthInterceptor @Inject constructor(
 
         Timber.d("GET ACCESS TOKEN : ${dataStore.accessToken}")
 
+
         val authRequest = if (dataStore.accessToken.isNotBlank()) {
             originalRequest.newAuthBuilder().build()
         } else {
