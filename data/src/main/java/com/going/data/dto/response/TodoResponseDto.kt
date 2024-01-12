@@ -18,7 +18,6 @@ data class TodoResponseDto(
     @SerialName("secret")
     val secret: Boolean
 ) {
-
     @Serializable
     data class TodoAllocatorResponseDto(
         @SerialName("name")
@@ -29,7 +28,6 @@ data class TodoResponseDto(
         fun toTodoAllocatorModel() =
             TodoAllocatorModel(name, isOwner)
     }
-
     fun toTodoModel() =
         TodoModel(todoId, title, endDate, allocators.map { it.toTodoAllocatorModel() }, secret)
 }

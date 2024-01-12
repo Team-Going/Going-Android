@@ -2,9 +2,9 @@ package com.going.presentation.todo.ourtodo.create
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
-import com.going.ui.extension.setOnSingleClickListener
 
 class TodoCreateNameViewHolder(
     val binding: ItemTodoCreateNameBinding,
@@ -14,11 +14,11 @@ class TodoCreateNameViewHolder(
     private val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white_000)
     private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
 
-    fun onBind(item: String) {
+    fun onBind(item: TripParticipantModel, position: Int) {
         binding.run {
-            tvTodoName.text = item
+            tvTodoName.text = item.name
 
-            if (item == "김상호") {
+            if (position == 0) {
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
             } else {
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)

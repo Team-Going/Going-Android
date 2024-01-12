@@ -1,5 +1,6 @@
 package com.going.presentation.todo.mytodo.todolist
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,10 +9,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoCompleteBinding
+import com.going.presentation.todo.detail.PrivateDetailActivity
+import com.going.presentation.todo.detail.PublicDetailActivity
+import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -44,17 +47,25 @@ class MyTodoCompleteFragment() :
                 adapter.removeItem(position)
                 adapter.notifyDataSetChanged()
             },
-            { todoId ->
-                Intent(activity, MyTodoDetailActivity::class.java).apply {
-                    putExtra(MyTodoDetailActivity.EXTRA_TODO_ID, todoId)
-                    startActivity(this)
+            { todoModel ->
+                if (todoModel.allocators.size <= 1) {
+                    startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
+                } else {
+                    startDetailActivity(PublicDetailActivity::class.java, todoModel.todoId)
                 }
             })
         binding.rvMyTodoComplete.adapter = adapter
     }
 
+    private fun startDetailActivity(targetActivity: Class<*>, todoId: Long) {
+        Intent(activity, targetActivity).apply {
+            putExtra(EXTRA_TODO_ID, todoId)
+            activity?.startActivity(this)
+        }
+    }
+
     private fun setTodoList() {
-        // 추후 tripId 설정
+        // TODO: 추후 tripId 설정
         val tripId: Long = 1
         viewModel.getCompleteTodoListFromServer(tripId, MY_TODO, COMPLETE)
     }
@@ -62,7 +73,7 @@ class MyTodoCompleteFragment() :
     private fun observeTodoListState() {
         viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.setItemList(state.data)
+                is UiState.Success -> adapter.submitList(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 

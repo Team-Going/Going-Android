@@ -5,11 +5,19 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOurTodoCreateBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class OurTodoCreateActivity :
     BaseActivity<ActivityOurTodoCreateBinding>(R.layout.activity_our_todo_create) {
 
@@ -31,6 +39,7 @@ class OurTodoCreateActivity :
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
+        observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
         observeDateEmpty()
@@ -41,10 +50,10 @@ class OurTodoCreateActivity :
     }
 
     private fun initNameListAdapter() {
-        // 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
+        // TODO: 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
         _adapter = TodoCreateNameAdapter(false)
         binding.rvOurTodoCreatePerson.adapter = adapter
-        adapter.submitList(listOf("김상호", "박동민", "조세연", "이유빈"))
+        adapter.submitList(viewModel.totalParticipantList)
     }
 
     private fun initTodoFocusListener() {
@@ -80,8 +89,10 @@ class OurTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnOurTodoMemoFinish.setOnSingleClickListener {
-            // 서버통신 진행
-            finish()
+            // tripId는 임시 설정
+            val tripId: Long = 1
+            viewModel.participantList = adapter.currentList
+            viewModel.postToCreateTodoFromServer(tripId)
         }
     }
 
@@ -89,6 +100,23 @@ class OurTodoCreateActivity :
         binding.btnOurTodoCreateBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    private fun observeTodoCreateState() {
+        viewModel.todoCreateState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    toast(getString(R.string.todo_create_toast))
+                    finish()
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun observeTextLength() {
