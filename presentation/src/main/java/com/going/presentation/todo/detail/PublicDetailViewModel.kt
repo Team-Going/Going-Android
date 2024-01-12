@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.repository.TodoRepository
-import com.going.ui.extension.EnumUiState
+import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,26 +25,23 @@ class PublicDetailViewModel @Inject constructor(
     val memo = MutableLiveData("")
     val nowMemoLength = MutableLiveData(0)
 
-    private val _todoDetailState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
-    val todoDetailState: StateFlow<EnumUiState> = _todoDetailState
-
-    var todoAllocatorModel: List<TodoAllocatorModel> = listOf()
+    private val _todoDetailState = MutableStateFlow<UiState<List<TodoAllocatorModel>>>(UiState.Empty)
+    val todoDetailState: StateFlow<UiState<List<TodoAllocatorModel>>> = _todoDetailState
 
     fun getTodoDetailFromServer(todoId: Long) {
-        _todoDetailState.value = EnumUiState.LOADING
+        _todoDetailState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoDetail(todoId)
                 .onSuccess { response ->
-                    _todoDetailState.value = EnumUiState.SUCCESS
                     todo.value = response.title
                     endDate.value = response.endDate
                     memo.value = response.memo
                     nowTodoLength.value = response.title.length
                     nowMemoLength.value = response.memo.length
-                    todoAllocatorModel = response.allocators
+                    _todoDetailState.value = UiState.Success(response.allocators)
                 }
                 .onFailure {
-                    _todoDetailState.value = EnumUiState.FAILURE
+                    _todoDetailState.value = UiState.Failure(it.message.toString())
                 }
         }
     }

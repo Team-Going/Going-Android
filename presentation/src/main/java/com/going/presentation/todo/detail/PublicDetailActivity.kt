@@ -6,14 +6,15 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
-import com.going.presentation.todo.ourtodo.create.TodoCreateNameAdapter
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class PublicDetailActivity :
@@ -72,10 +73,16 @@ class PublicDetailActivity :
     private fun observeTodoDetailState() {
         viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.LOADING -> return@onEach
-                EnumUiState.SUCCESS -> adapter.submitList(viewModel.todoAllocatorModel)
-                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
-                EnumUiState.EMPTY -> return@onEach
+                is UiState.Loading -> return@onEach
+
+                is UiState.Success -> {
+                    Timber.tag("okhttp").d("@@${state.data}")
+                    adapter.submitList(state.data)
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
