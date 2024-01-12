@@ -9,6 +9,6 @@ import retrofit2.http.POST
 interface EnterTripService {
     @POST("/api/trips/verify")
     suspend fun postEnterTrip(
-        @Body body: EnterTripRequestDto,
+        @Body request: EnterTripRequestDto,
     ): BaseResponse<EnterTripResponseDto>
 }

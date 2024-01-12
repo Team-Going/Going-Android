@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.CodeState
-import com.going.domain.entity.request.RequestEnterTripModel
+import com.going.domain.entity.request.EnterTripRequestModel
 import com.going.domain.entity.response.EnterTripModel
 import com.going.domain.repository.EnterTripRepository
 import com.going.ui.extension.UiState
@@ -19,6 +19,7 @@ import javax.inject.Inject
 class EnterTripViewModel @Inject constructor(
     private val enterTripRepository: EnterTripRepository
 ) : ViewModel() {
+
     private val _tripState = MutableStateFlow<UiState<EnterTripModel>>(UiState.Empty)
     val tripState: StateFlow<UiState<EnterTripModel>> = _tripState
 
@@ -50,9 +51,9 @@ class EnterTripViewModel @Inject constructor(
         _tripState.value = UiState.Loading
         viewModelScope.launch {
             enterTripRepository.postEnterTrip(
-                RequestEnterTripModel(inviteCode.value ?: "")
+                EnterTripRequestModel(inviteCode.value ?: "")
             ).onSuccess { result ->
-                _tripState.value = result?.let { UiState.Success(it) } ?: UiState.Failure("no")
+                _tripState.value = UiState.Success(result)
             }.onFailure {
                 _tripState.value = UiState.Failure(it.message.orEmpty())
             }

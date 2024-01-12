@@ -1,6 +1,6 @@
 package com.going.data.dto.request
 
-import com.going.domain.entity.request.RequestEnterTripModel
+import com.going.domain.entity.request.EnterTripRequestModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,6 +10,6 @@ data class EnterTripRequestDto(
     val code: String,
 )
 
-fun RequestEnterTripModel.toEnterTripRequestDto(): EnterTripRequestDto =
+fun EnterTripRequestModel.toEnterTripRequestDto(): EnterTripRequestDto =
     EnterTripRequestDto(code)
 

@@ -2,7 +2,6 @@ package com.going.presentation.enter.entertrip
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
@@ -93,11 +92,10 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 is UiState.Success -> {
 
                     Intent(this, InviteFinishActivity::class.java).apply {
-                        putExtra("title", state.data.title)
-                        putExtra("start", state.data.startDate)
-                        putExtra("end", state.data.endDate)
-                        putExtra("day", state.data.day)
-                        Log.d("day1", state.data.day.toString())
+                        putExtra(TITLE, state.data.title)
+                        putExtra(START, state.data.startDate)
+                        putExtra(END, state.data.endDate)
+                        putExtra(DAY, state.data.day)
                         startActivity(this)
                     }
                 }
@@ -117,6 +115,13 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         binding.btnEnterTripNext.setOnSingleClickListener {
             viewModel.checkInviteCodeFromServer()
         }
+    }
+
+    companion object {
+        const val TITLE = "title"
+        const val START = "start"
+        const val END = "end"
+        const val DAY = "day"
     }
 
 }

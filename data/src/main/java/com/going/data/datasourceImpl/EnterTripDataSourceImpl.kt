@@ -14,6 +14,4 @@ class EnterTripDataSourceImpl @Inject constructor(
         code: EnterTripRequestDto
     ): BaseResponse<EnterTripResponseDto> =
         enterTripService.postEnterTrip(code)
-
-
 }

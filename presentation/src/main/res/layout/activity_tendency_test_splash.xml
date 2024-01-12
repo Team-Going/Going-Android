@@ -11,40 +11,57 @@
         android:layout_height="match_parent"
         android:background="@color/white_000">
 
+        <ImageView
+            android:id="@+id/iv_tendency_test_splash_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="91dp"
+            android:src="@drawable/img_tendency_splash"
+            app:layout_constraintBottom_toTopOf="@id/tv_tendency_splash_title"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintVertical_chainStyle="packed" />
+
         <TextView
             android:id="@+id/tv_tendency_splash_title"
+            style="@style/TextAppearance.Doorip.Head3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tendency_splash_title"
             android:gravity="center"
+            android:text="@string/tendency_splash_title"
             android:textColor="@color/gray_700"
-            android:layout_marginTop="236dp"
-            style="@style/TextAppearance.Doorip.Head3"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_tendency_splash_sub_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_tendency_test_splash_img" />
 
-        <!--더미 이미지의 크기가 너무 커서 임시로 크기를 지정했습니다. 추후 이미자가 나온다면 wrap_content 사용 예정-->
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="126dp"
-            app:layout_constraintStart_toStartOf="parent"
+        <TextView
+            android:id="@+id/tv_tendency_splash_sub_title"
+            style="@style/TextAppearance.Doorip.Body3.Medi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tendency_splash_sub_title"
+            android:textColor="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@id/btn_tendency_splash_start"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_tendency_splash_title"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/img_sign_in_main" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tendency_splash_title" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_splash_start"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button"
-            android:paddingVertical="10dp"
-            android:text="@string/tendency_splash_start_btn"
+            android:background="@drawable/sel_full_button"
             android:outlineProvider="none"
+            android:paddingVertical="23dp"
+            android:text="@string/tendency_splash_start_btn"
             android:textColor="@color/white_000"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

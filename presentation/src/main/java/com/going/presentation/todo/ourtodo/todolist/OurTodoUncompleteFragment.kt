@@ -11,8 +11,8 @@ import com.going.presentation.databinding.FragmentOurTodoUncompleteBinding
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.UNCOMPLETE
-import com.going.presentation.todo.ourtodo.detail.OurTodoDetailActivity
-import com.going.presentation.todo.ourtodo.detail.OurTodoDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.PublicDetailActivity
+import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -38,11 +38,17 @@ class OurTodoUncompleteFragment() :
         observeTodoListState()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        setTodoList()
+    }
+
     private fun initAdapterWithClickListener() {
         _adapter = OurTodoListAdapter(
             false
         ) { todoId ->
-            Intent(activity, OurTodoDetailActivity::class.java).apply {
+            Intent(activity, PublicDetailActivity::class.java).apply {
                 putExtra(EXTRA_TODO_ID, todoId)
                 startActivity(this)
             }

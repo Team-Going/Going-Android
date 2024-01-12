@@ -2,10 +2,13 @@ package com.going.presentation.enter.invitefinish
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
 import com.going.presentation.enter.entertrip.EnterTripActivity
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.DAY
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.END
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.START
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.TITLE
 import com.going.presentation.preferencetag.PreferenceTagActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -29,19 +32,19 @@ class InviteFinishActivity :
         val serverlist = getIntent()
 
         if (serverlist != null) {
-            val title = intent.getStringExtra("title")
-            val start = intent.getStringExtra("start")
-            val end = intent.getStringExtra("end")
-            val day = intent.getIntExtra("day", 0)
-            Log.d("day", day.toString())
+            val title = intent.getStringExtra(TITLE)
+            val start = intent.getStringExtra(START)
+            val end = intent.getStringExtra(END)
+            val day = intent.getIntExtra(DAY, 0)
 
             binding.tvInviteFinishName.text = title
-            binding.tvInviteFinishDay.text = "$start - $end"
-
+            binding.tvInviteFinishDay.text = String.format(DATE_FORMAT, start, end)
 
             if (day > 0) {
-                binding.tvInviteFinishDayLeft.text = "D - $day"
-            } else binding.tvInviteFinishDayLeft.text = "여행중"
+                binding.tvInviteFinishDayLeft.text = String.format(D_DAY_FORMAT, day)
+            } else {
+                binding.tvInviteFinishDayLeft.text = TRIP_FORMAT
+            }
         }
     }
 
@@ -59,6 +62,12 @@ class InviteFinishActivity :
                 startActivity(this)
             }
         }
+    }
+
+    companion object {
+        const val DATE_FORMAT = "%s - %s"
+        const val D_DAY_FORMAT = "D - %d"
+        const val TRIP_FORMAT = "여행중"
     }
 
 
