@@ -2,7 +2,7 @@ package com.going.presentation.todo.ourtodo.create
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 

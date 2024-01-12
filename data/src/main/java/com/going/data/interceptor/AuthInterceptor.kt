@@ -22,13 +22,11 @@ class AuthInterceptor @Inject constructor(
 
         Timber.d("GET ACCESS TOKEN : ${dataStore.accessToken}")
 
-
         val authRequest = if (dataStore.accessToken.isNotBlank()) {
             originalRequest.newAuthBuilder().build()
         } else {
             originalRequest
         }
-
 
         val response = chain.proceed(authRequest)
 
@@ -86,9 +84,8 @@ class AuthInterceptor @Inject constructor(
         return response
     }
 
-    private fun Request.newAuthBuilder() =
-        this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
-
+     private fun Request.newAuthBuilder() =
+         this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
 
     companion object {
         private const val CODE_TOKEN_EXPIRED = 401

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.TodoCreateRequestModel
-import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,7 +46,7 @@ class OurTodoCreateViewModel @Inject constructor(
         nowTodoLength.value = getGraphemeLength(todo.value)
         nowMemoLength.value = getGraphemeLength(memo.value)
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && memo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
     }
 
     fun postToCreateTodoFromServer(tripId: Long) {

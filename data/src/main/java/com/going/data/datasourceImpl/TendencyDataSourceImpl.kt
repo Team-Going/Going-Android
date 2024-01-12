@@ -9,6 +9,6 @@ import javax.inject.Inject
 class TendencyDataSourceImpl @Inject constructor(
     private val tendencyService: TendencyService,
 ) : TendencyDataSource {
-    override suspend fun patchTendencyTest(result: TendencyTestRequestDto): NonDataBaseResponse<Any?> =
+    override suspend fun patchTendencyTest(result: TendencyTestRequestDto): NonDataBaseResponse =
         tendencyService.patchTendencyTest(result)
 }

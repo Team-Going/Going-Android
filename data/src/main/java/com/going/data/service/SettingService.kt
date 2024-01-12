@@ -6,8 +6,8 @@ import retrofit2.http.PATCH
 
 interface SettingService {
     @PATCH("api/users/signout")
-    suspend fun patchSignOut(): NonDataBaseResponse<Any?>
+    suspend fun patchSignOut(): NonDataBaseResponse
 
     @DELETE("api/users/withdraw")
-    suspend fun deleteWithDraw(): NonDataBaseResponse<Any?>
+    suspend fun deleteWithDraw(): NonDataBaseResponse
 }

@@ -9,5 +9,5 @@ interface TendencyService {
     @PATCH("api/users/test")
     suspend fun patchTendencyTest(
         @Body result: TendencyTestRequestDto,
-    ): NonDataBaseResponse<Any?>
+    ): NonDataBaseResponse
 }
