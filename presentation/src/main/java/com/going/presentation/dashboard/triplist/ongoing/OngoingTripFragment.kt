@@ -1,4 +1,4 @@
-package com.going.presentation.dashboard.triplist
+package com.going.presentation.dashboard.triplist.ongoing
 
 import android.os.Bundle
 import android.view.View
@@ -9,7 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
-import com.going.presentation.databinding.FragmentCompletedTripBinding
+import com.going.presentation.dashboard.triplist.DashBoardDecoration
+import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -18,13 +19,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class CompletedTripFragment :
-    BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip),
-    CompletedAdapter.OnDashBoardSelectedListener {
+class OngoingTripFragment :
+    BaseFragment<FragmentOngoingTripBinding>(R.layout.fragment_ongoing_trip),
+    OngoingAdapter.OnDashBoardSelectedListener {
 
     private val viewModel by activityViewModels<DashBoardViewModel>()
 
-    private var _adapter: CompletedAdapter? = null
+    private var _adapter: OngoingAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,23 +38,24 @@ class CompletedTripFragment :
 
     }
 
+
     private fun initAdapter() {
-        _adapter = CompletedAdapter(this)
-        binding.rvDashboardCompletedTrip.adapter = adapter
+        _adapter = OngoingAdapter(this)
+        binding.rvDashboardOngoingTrip.adapter = adapter
     }
 
     private fun initItemDecoration() {
         val itemDeco = DashBoardDecoration(requireContext())
-        binding.rvDashboardCompletedTrip.addItemDecoration(itemDeco)
+        binding.rvDashboardOngoingTrip.addItemDecoration(itemDeco)
     }
 
     private fun setTripList() {
-        val progress = DashBoardViewModel.COMPLETED
+        val progress = DashBoardViewModel.ONGOING
         viewModel.getTripListFromServer(progress)
     }
 
     private fun observeDashBoardListState() {
-        viewModel.dashBoardCompletedListState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.dashBoardOngoingListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
                     setEmptyView(false)
@@ -70,10 +72,9 @@ class CompletedTripFragment :
     }
 
     private fun setEmptyView(isEmpty: Boolean) {
-        binding.rvDashboardCompletedTrip.isVisible = !isEmpty
+        binding.rvDashboardOngoingTrip.isVisible = !isEmpty
         binding.layoutDashboardEmpty.isVisible = isEmpty
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
