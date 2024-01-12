@@ -94,7 +94,10 @@ class MyTodoCompleteFragment() :
             when (state) {
                 EnumUiState.LOADING -> return@onEach
 
-                EnumUiState.SUCCESS -> setTodoList()
+                EnumUiState.SUCCESS -> {
+                    setTodoList()
+                    viewModel.increaseTodoCount()
+                }
 
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
 
