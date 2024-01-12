@@ -11,6 +11,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
 import com.going.presentation.tendencytest.TendencyTestSplashActivity
+import com.going.presentation.tripdashboard.TripDashBoardActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -59,7 +60,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToMainScreen()
+                AuthState.SUCCESS -> navigateToDashBoardScreen()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
                 AuthState.SIGNUP -> navigateToOnboardingScreen()
                 AuthState.SIGNIN -> return@onEach
@@ -69,9 +70,8 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToMainScreen() {
-        // 추후 대시보드 연결시 연결 예정
-        Intent(this, TendencyTestSplashActivity::class.java).apply {
+    private fun navigateToDashBoardScreen() {
+        Intent(this, TripDashBoardActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

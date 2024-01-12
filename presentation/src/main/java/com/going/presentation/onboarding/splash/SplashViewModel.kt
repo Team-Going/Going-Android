@@ -2,9 +2,11 @@ package com.going.presentation.onboarding.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.AuthState
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
-import com.going.domain.entity.AuthState
+import com.going.presentation.onboarding.signin.SignInViewModel
+import com.going.presentation.util.toErrorCode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,17 +18,27 @@ class SplashViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
-    private val _getUserState = MutableStateFlow(AuthState.LOADING)
-    val getUserState: StateFlow<AuthState> = _getUserState
+    private val _userState = MutableStateFlow(AuthState.LOADING)
+    val userState: StateFlow<AuthState> = _userState
     fun getHasAccessToken(): Boolean = tokenRepository.getAccessToken().isNotBlank()
     fun clear() = tokenRepository.clearTokens()
 
-    private fun getUserState() {
+    fun getUserState() {
         viewModelScope.launch {
             authRepository.getSplash().onSuccess {
+                _userState.value = AuthState.SUCCESS
             }.onFailure {
+                val errorCode = toErrorCode(it)
+
+                _userState.value = when (errorCode) {
+                    TENDENCY -> AuthState.TENDENCY
+                    else -> AuthState.FAILURE
+                }
             }
         }
     }
-    // e4045 -> tendeny
+
+    companion object {
+        const val TENDENCY = "e4045"
+    }
 }
