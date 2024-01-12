@@ -3,7 +3,7 @@ package com.going.presentation.todo.ourtodo
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 

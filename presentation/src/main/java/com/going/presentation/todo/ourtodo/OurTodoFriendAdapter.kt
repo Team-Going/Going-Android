@@ -3,7 +3,7 @@ package com.going.presentation.todo.ourtodo
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 import com.going.ui.extension.ItemDiffCallback
 

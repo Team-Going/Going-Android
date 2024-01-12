@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.TodoCreateRequestModel
-import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
