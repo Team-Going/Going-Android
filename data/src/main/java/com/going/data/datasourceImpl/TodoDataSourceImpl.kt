@@ -4,6 +4,7 @@ import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.MyTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 import com.going.data.service.TodoService
@@ -23,17 +24,22 @@ class TodoDataSourceImpl @Inject constructor(
     override suspend fun postToCreateTodoData(
         tripId: Long,
         request: TodoCreateRequestDto
-    ): NonDataBaseResponse<Unit> =
+    ): NonDataBaseResponse =
         todoService.postToCreateTodo(tripId, request)
 
     override suspend fun deleteTodoData(
         todoId: Long
-    ): NonDataBaseResponse<Unit> =
+    ): NonDataBaseResponse =
         todoService.deleteTodo(todoId)
 
     override suspend fun getTodoDetailData(
         todoId: Long
     ): BaseResponse<TodoDetailResponseDto> =
         todoService.getTodoDetail(todoId)
+
+    override suspend fun getMyTripInfo(
+        tripId: Long
+    ): BaseResponse<MyTripInfoResponseDto> =
+        todoService.getMyTripInfo(tripId)
 
 }
