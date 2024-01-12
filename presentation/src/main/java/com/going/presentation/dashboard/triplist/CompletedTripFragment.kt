@@ -48,7 +48,7 @@ class CompletedTripFragment :
     }
 
     private fun setTripList() {
-        val progress = "complete"
+        val progress = DashBoardViewModel.COMPLETED
         viewModel.getTripListFromServer(progress)
     }
 

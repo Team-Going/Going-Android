@@ -49,7 +49,7 @@ class OngoingTripFragment :
     }
 
     private fun setTripList() {
-        val progress = "incomplete"
+        val progress = DashBoardViewModel.ONGOING
         viewModel.getTripListFromServer(progress)
     }
 
