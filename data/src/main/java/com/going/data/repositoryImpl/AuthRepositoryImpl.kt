@@ -34,4 +34,8 @@ class AuthRepositoryImpl @Inject constructor(
                 signUpRequestModel.toSignUpRequestDto(),
             ).data.toAuthTokenModel()
         }
+
+    override suspend fun getSplash(): Result<Unit> = kotlin.runCatching {
+        authDataSource.getSplash()
+    }
 }

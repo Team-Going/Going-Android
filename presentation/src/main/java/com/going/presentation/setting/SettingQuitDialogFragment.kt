@@ -57,10 +57,10 @@ class SettingQuitDialogFragment :
     private fun observeUserWithDrawState() {
         viewModel.userWithDrawState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.LOADING -> {}
+                EnumUiState.LOADING -> return@onEach
                 EnumUiState.SUCCESS -> restartApp(requireContext())
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
-                EnumUiState.EMPTY -> {}
+                EnumUiState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

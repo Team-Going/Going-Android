@@ -3,6 +3,7 @@ package com.going.presentation.onboarding.signin
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.AuthState
 import com.going.domain.entity.request.SignInRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
@@ -22,8 +23,8 @@ class SignInViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
-    private val _postChangeTokenState = MutableStateFlow<SignInState>(SignInState.LOADING)
-    val postChangeTokenState: StateFlow<SignInState> = _postChangeTokenState
+    private val _postChangeTokenState = MutableStateFlow(AuthState.EMPTY)
+    val postChangeTokenState: StateFlow<AuthState> = _postChangeTokenState
 
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
@@ -68,23 +69,23 @@ class SignInViewModel @Inject constructor(
         accessToken: String,
         platform: String = KAKAO,
     ) {
-        _postChangeTokenState.value = SignInState.LOADING
+        _postChangeTokenState.value = AuthState.LOADING
 
         viewModelScope.launch {
             authRepository.postSignIn(accessToken, SignInRequestModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
 
                 if (it.isResult) {
-                    _postChangeTokenState.value = SignInState.SUCCESS
+                    _postChangeTokenState.value = AuthState.SUCCESS
                 } else {
-                    _postChangeTokenState.value = SignInState.TENDENCY
+                    _postChangeTokenState.value = AuthState.TENDENCY
                 }
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
                 _postChangeTokenState.value = when (errorCode) {
-                    SIGN_UP -> SignInState.SIGN_UP
-                    else -> SignInState.FAIL
+                    SIGN_UP -> AuthState.SIGNUP
+                    else -> AuthState.FAILURE
                 }
             }
         }

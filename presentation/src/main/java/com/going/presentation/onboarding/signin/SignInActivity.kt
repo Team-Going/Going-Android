@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.AuthState
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
-import com.going.presentation.setting.SettingActivity
-import com.going.presentation.tendencytest.TendencyTestActivity
-import com.going.presentation.tendencytest.TendencyTestSplashActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -59,18 +59,19 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                SignInState.SUCCESS -> navigateToMainScreen()
-                SignInState.SIGN_UP -> navigateToOnboardingScreen()
-                SignInState.TENDENCY -> navigateToTendencyScreen()
-                SignInState.FAIL -> toast(getString(R.string.server_error))
-                SignInState.LOADING -> {}
+                AuthState.LOADING -> return@onEach
+                AuthState.SUCCESS -> navigateToDashBoardScreen()
+                AuthState.FAILURE -> toast(getString(R.string.server_error))
+                AuthState.SIGNUP -> navigateToOnboardingScreen()
+                AuthState.SIGNIN -> return@onEach
+                AuthState.TENDENCY -> navigateToTendencyScreen()
+                AuthState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToMainScreen() {
-        // 추후 대시보드 연결시 연결 예정
-        Intent(this, TendencyTestSplashActivity::class.java).apply {
+    private fun navigateToDashBoardScreen() {
+        Intent(this, DashBoardActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
@@ -86,7 +87,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     }
 
     private fun navigateToTendencyScreen() {
-        Intent(this, TendencyTestSplashActivity::class.java).apply {
+        Intent(this, TendencySplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

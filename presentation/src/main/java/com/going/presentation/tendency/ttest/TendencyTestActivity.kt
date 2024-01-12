@@ -1,4 +1,4 @@
-package com.going.presentation.tendencytest
+package com.going.presentation.tendency.ttest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
@@ -11,7 +11,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
-import com.going.presentation.tendencytest.result.TendencyTestResultActivity
+import com.going.presentation.tendency.result.TendencyResultActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -28,6 +28,8 @@ class TendencyTestActivity :
 
     private lateinit var fadeInList: List<ObjectAnimator>
     private lateinit var fadeOutList: List<ObjectAnimator>
+
+    override fun onBackPressed() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,15 +153,15 @@ class TendencyTestActivity :
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 EnumUiState.LOADING -> {}
-                EnumUiState.SUCCESS -> navigateToTendencyTestResultScreen()
+                EnumUiState.SUCCESS -> navigateToTendencyResultScreen()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 EnumUiState.EMPTY -> {}
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToTendencyTestResultScreen() {
-        Intent(this, TendencyTestResultActivity::class.java).apply {
+    private fun navigateToTendencyResultScreen() {
+        Intent(this, TendencyResultActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

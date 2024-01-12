@@ -11,8 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
+import com.going.domain.entity.AuthState
 import com.going.presentation.onboarding.splash.SplashActivity
-import com.going.presentation.tendencytest.TendencyTestActivity
+import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -149,10 +150,13 @@ class OnboardingProfileSettingActivity :
     private fun observeIsSignUpState() {
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is SignUpState.SUCCESS -> navigateToTendencyTestScreen()
-                is SignUpState.FAIL -> toast(getString(R.string.server_error))
-                is SignUpState.LOG_IN -> navigateToSplashScreen()
-                is SignUpState.LOADING -> {}
+                AuthState.LOADING -> return@onEach
+                AuthState.SUCCESS -> navigateToTendencyTestScreen()
+                AuthState.FAILURE -> toast(getString(R.string.server_error))
+                AuthState.SIGNUP -> return@onEach
+                AuthState.SIGNIN -> navigateToSplashScreen()
+                AuthState.TENDENCY -> return@onEach
+                AuthState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

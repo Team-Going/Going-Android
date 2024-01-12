@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
+import com.going.domain.entity.AuthState
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.user.UserApiClient
@@ -28,8 +29,8 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     val isNameAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
-    private val _isSignUpState = MutableStateFlow<SignUpState>(SignUpState.LOADING)
-    val isSignUpState: StateFlow<SignUpState> = _isSignUpState
+    private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
+    val isSignUpState: StateFlow<AuthState> = _isSignUpState
 
     fun getMaxNameLen() = MAX_NAME_LEN
     fun getMaxInfoLen() = MAX_INFO_LEN
@@ -40,7 +41,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
 
         isNameAvailable.value = when {
             nowNameLength.value == 0 -> NameState.Empty
-            name.value.isNullOrBlank() -> NameState.Blank
+            name.value.isBlank() -> NameState.Blank
             else -> NameState.Success
         }
 
@@ -63,7 +64,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     }
 
     fun startSignUp() {
-        _isSignUpState.value = SignUpState.LOADING
+        _isSignUpState.value = AuthState.LOADING
 
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { _, error ->
@@ -72,11 +73,11 @@ class OnboardingProfileSettingViewModel @Inject constructor(
                         TokenManagerProvider.instance.manager.getToken()?.accessToken
                     signUpWithServer(kakaoAccessToken.toString())
                 } else {
-                    _isSignUpState.value = SignUpState.LOG_IN
+                    _isSignUpState.value = AuthState.SIGNIN
                 }
             }
         } else {
-            _isSignUpState.value = SignUpState.LOG_IN
+            _isSignUpState.value = AuthState.SIGNIN
         }
     }
 
@@ -86,9 +87,9 @@ class OnboardingProfileSettingViewModel @Inject constructor(
                 kakaoAccessToken,
                 SignUpRequestModel(name.value, info.value, KAKAO),
             ).onSuccess {
-                _isSignUpState.value = SignUpState.SUCCESS
+                _isSignUpState.value = AuthState.SUCCESS
             }.onFailure {
-                _isSignUpState.value = SignUpState.FAIL
+                _isSignUpState.value = AuthState.FAILURE
             }
         }
     }
@@ -99,7 +100,5 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         const val KAKAO = "kakao"
         const val MAX_NAME_LEN = 3
         const val MAX_INFO_LEN = 20
-        const val SIGN_UP = "e4041"
-        const val TENDENCY = "e4045"
     }
 }

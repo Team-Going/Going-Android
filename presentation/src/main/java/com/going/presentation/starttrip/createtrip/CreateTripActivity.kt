@@ -8,6 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
+import com.going.presentation.preferencetag.PreferenceTagActivity
 import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -174,8 +175,24 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            //다음으로 넘어감
+            Intent(this, PreferenceTagActivity::class.java).apply {
+                putExtra(NAME, viewModel.name.value)
+                putExtra(START, viewModel.startYear.value)
+
+                putExtra(START, viewModel.startMonth.value)
+                putExtra(START, viewModel.startDay.value)
+                putExtra(END, viewModel.endYear.value)
+                putExtra(END, viewModel.endMonth.value)
+                putExtra(END, viewModel.endDay.value)
+                startActivity(this)
+            }
         }
+    }
+
+    companion object {
+        const val NAME = "name"
+        const val START = "start"
+        const val END = "end"
     }
 }
 
