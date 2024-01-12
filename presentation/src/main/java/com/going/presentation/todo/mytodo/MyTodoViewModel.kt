@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.MyTripInfoModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
-import com.going.presentation.todo.ourtodo.OurTodoViewModel
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +29,9 @@ class MyTodoViewModel @Inject constructor(
 
     private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
+
+    private val _todoFinishState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
+    val todoFinishState: StateFlow<EnumUiState> = _todoFinishState
 
     fun decreaseTodoCount() {
         _totalUncompletedTodoCount.value = _totalUncompletedTodoCount.value - 1
@@ -70,6 +73,19 @@ class MyTodoViewModel @Inject constructor(
                 }
                 .onFailure {
                     _todoCompleteListState.value = UiState.Failure(it.message.orEmpty())
+                }
+        }
+    }
+
+    fun deleteTodoFromServer(todoId: Long) {
+        _todoFinishState.value = EnumUiState.LOADING
+        viewModelScope.launch {
+            todoRepository.getToFinishTodo(todoId)
+                .onSuccess {
+                    _todoFinishState.value = EnumUiState.SUCCESS
+                }
+                .onFailure {
+                    _todoFinishState.value = EnumUiState.FAILURE
                 }
         }
     }

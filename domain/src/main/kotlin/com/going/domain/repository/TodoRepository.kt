@@ -39,4 +39,8 @@ interface TodoRepository {
         todoId: Long
     ): Result<Unit>
 
+    suspend fun getToRedoTodo(
+        todoId: Long
+    ): Result<Unit>
+
 }

@@ -54,4 +54,9 @@ interface TodoService {
         @Path("todoId") todoId: Long
     ): NonDataBaseResponse
 
+    @GET("api/trips/todos/{todoId}/incomplete")
+    suspend fun getToRedoTodo(
+        @Path("todoId") todoId: Long
+    ): NonDataBaseResponse
+
 }

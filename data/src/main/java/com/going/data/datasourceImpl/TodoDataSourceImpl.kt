@@ -53,4 +53,9 @@ class TodoDataSourceImpl @Inject constructor(
     ): NonDataBaseResponse =
         todoService.getToFinishTodo(todoId)
 
+    override suspend fun getToRedoTodoData(
+        todoId: Long
+    ): NonDataBaseResponse =
+        todoService.getToRedoTodo(todoId)
+
 }

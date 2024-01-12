@@ -41,4 +41,8 @@ interface TodoDataSource {
         todoId: Long
     ): NonDataBaseResponse
 
+    suspend fun getToRedoTodoData(
+        todoId: Long
+    ): NonDataBaseResponse
+
 }

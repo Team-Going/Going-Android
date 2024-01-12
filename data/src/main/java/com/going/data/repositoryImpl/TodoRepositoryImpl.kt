@@ -66,4 +66,11 @@ class TodoRepositoryImpl @Inject constructor(
             todoDataSource.getToFinishTodoData(todoId)
         }
 
+    override suspend fun getToRedoTodo(
+        todoId: Long
+    ): Result<Unit> =
+        runCatching {
+            todoDataSource.getToRedoTodoData(todoId)
+        }
+
 }
