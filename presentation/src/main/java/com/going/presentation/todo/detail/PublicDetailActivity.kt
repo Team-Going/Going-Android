@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -24,6 +25,8 @@ class PublicDetailActivity :
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
+    private var todoId: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,8 +35,10 @@ class PublicDetailActivity :
         initBackBtnClickListener()
         initDeleteBtnClickListener()
         initModBtnClickListener()
+        getTodoId()
         setDetailData()
         observeTodoDetailState()
+        observeTodoDeleteState()
     }
 
     private fun initViewModel() {
@@ -53,8 +58,7 @@ class PublicDetailActivity :
 
     private fun initDeleteBtnClickListener() {
         binding.btnOurTodoDetailDelete.setOnSingleClickListener {
-            // 삭제 서버 통신
-            finish()
+            viewModel.deleteTodoFromServer(todoId)
         }
     }
 
@@ -64,8 +68,12 @@ class PublicDetailActivity :
         }
     }
 
+    private fun getTodoId() {
+        todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
+    }
+
     private fun setDetailData() {
-        viewModel.getTodoDetailFromServer(intent.getLongExtra(EXTRA_TODO_ID, 0))
+        viewModel.getTodoDetailFromServer(todoId)
     }
 
     private fun observeTodoDetailState() {
@@ -78,6 +86,23 @@ class PublicDetailActivity :
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
                 is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeTodoDeleteState() {
+        viewModel.todoDeleteState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+
+                EnumUiState.SUCCESS -> {
+                    toast(getString(R.string.todo_delete_toast))
+                    finish()
+                }
+
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+
+                EnumUiState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

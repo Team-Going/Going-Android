@@ -21,6 +21,8 @@ class PrivateDetailActivity :
 
     private val viewModel by viewModels<PrivateDetailViewModel>()
 
+    private var todoId: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,8 +30,10 @@ class PrivateDetailActivity :
         initBackBtnClickListener()
         initDeleteBtnClickListener()
         initModBtnClickListener()
+        getTodoId()
         setDetailData()
         observeTodoDetailState()
+        observeTodoDeleteState()
     }
 
     private fun initViewModel() {
@@ -44,8 +48,7 @@ class PrivateDetailActivity :
 
     private fun initDeleteBtnClickListener() {
         binding.btnMyTodoDetailDelete.setOnSingleClickListener {
-            // 삭제 서버 통신
-            finish()
+            viewModel.deleteTodoFromServer(todoId)
         }
     }
 
@@ -55,16 +58,40 @@ class PrivateDetailActivity :
         }
     }
 
+    private fun getTodoId() {
+        todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
+    }
+
     private fun setDetailData() {
-        viewModel.getTodoDetailFromServer(intent.getLongExtra(EXTRA_TODO_ID, 0))
+        viewModel.getTodoDetailFromServer(todoId)
     }
 
     private fun observeTodoDetailState() {
         viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 EnumUiState.LOADING -> return@onEach
+
                 EnumUiState.SUCCESS -> return@onEach
+
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+
+                EnumUiState.EMPTY -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeTodoDeleteState() {
+        viewModel.todoDeleteState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+
+                EnumUiState.SUCCESS -> {
+                    toast(getString(R.string.todo_delete_toast))
+                    finish()
+                }
+
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+
                 EnumUiState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)

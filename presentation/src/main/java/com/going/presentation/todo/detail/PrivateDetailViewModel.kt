@@ -27,6 +27,9 @@ class PrivateDetailViewModel @Inject constructor(
     private val _todoDetailState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoDetailState: StateFlow<EnumUiState> = _todoDetailState
 
+    private val _todoDeleteState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
+    val todoDeleteState: StateFlow<EnumUiState> = _todoDeleteState
+
     fun getTodoDetailFromServer(todoId: Long) {
         _todoDetailState.value = EnumUiState.LOADING
         viewModelScope.launch {
@@ -41,6 +44,19 @@ class PrivateDetailViewModel @Inject constructor(
                 }
                 .onFailure {
                     _todoDetailState.value = EnumUiState.FAILURE
+                }
+        }
+    }
+
+    fun deleteTodoFromServer(todoId: Long) {
+        _todoDeleteState.value = EnumUiState.LOADING
+        viewModelScope.launch {
+            todoRepository.deleteTodo(todoId)
+                .onSuccess {
+                    _todoDeleteState.value = EnumUiState.SUCCESS
+                }
+                .onFailure {
+                    _todoDeleteState.value = EnumUiState.FAILURE
                 }
         }
     }

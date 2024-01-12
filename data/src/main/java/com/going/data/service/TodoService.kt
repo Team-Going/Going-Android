@@ -1,7 +1,7 @@
 package com.going.data.service
 
 import com.going.data.dto.BaseResponse
-import com.going.data.dto.NullableBaseResponse
+import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
@@ -25,12 +25,12 @@ interface TodoService {
     suspend fun postToCreateTodo(
         @Path("tripId") tripId: Long,
         @Body request: TodoCreateRequestDto
-    ): NullableBaseResponse<Unit>
+    ): NonDataBaseResponse<Unit>
 
     @DELETE("api/trips/todos/{todoId}")
     suspend fun deleteTodo(
         @Path("todoId") todoId: Long
-    ): NullableBaseResponse<Unit>
+    ): NonDataBaseResponse<Unit>
 
     @GET("api/trips/todos/{todoId}")
     suspend fun getTodoDetail(

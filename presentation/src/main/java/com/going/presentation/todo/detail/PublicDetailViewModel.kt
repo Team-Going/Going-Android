@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.repository.TodoRepository
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,6 +29,9 @@ class PublicDetailViewModel @Inject constructor(
     private val _todoDetailState = MutableStateFlow<UiState<List<TodoAllocatorModel>>>(UiState.Empty)
     val todoDetailState: StateFlow<UiState<List<TodoAllocatorModel>>> = _todoDetailState
 
+    private val _todoDeleteState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
+    val todoDeleteState: StateFlow<EnumUiState> = _todoDeleteState
+
     fun getTodoDetailFromServer(todoId: Long) {
         _todoDetailState.value = UiState.Loading
         viewModelScope.launch {
@@ -42,6 +46,19 @@ class PublicDetailViewModel @Inject constructor(
                 }
                 .onFailure {
                     _todoDetailState.value = UiState.Failure(it.message.toString())
+                }
+        }
+    }
+
+    fun deleteTodoFromServer(todoId: Long) {
+        _todoDeleteState.value = EnumUiState.LOADING
+        viewModelScope.launch {
+            todoRepository.deleteTodo(todoId)
+                .onSuccess {
+                    _todoDeleteState.value = EnumUiState.SUCCESS
+                }
+                .onFailure {
+                    _todoDeleteState.value = EnumUiState.FAILURE
                 }
         }
     }
