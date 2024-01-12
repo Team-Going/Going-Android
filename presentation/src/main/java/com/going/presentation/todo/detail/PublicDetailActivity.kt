@@ -7,14 +7,12 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class PublicDetailActivity :
@@ -75,10 +73,7 @@ class PublicDetailActivity :
             when (state) {
                 is UiState.Loading -> return@onEach
 
-                is UiState.Success -> {
-                    Timber.tag("okhttp").d("@@${state.data}")
-                    adapter.submitList(state.data)
-                }
+                is UiState.Success -> adapter.submitList(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 

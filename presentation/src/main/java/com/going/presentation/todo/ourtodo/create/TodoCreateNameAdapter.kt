@@ -18,7 +18,7 @@ class TodoCreateNameAdapter(
     }
 
     override fun onBindViewHolder(holder: TodoCreateNameViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(getItem(position), position)
     }
 
     companion object {

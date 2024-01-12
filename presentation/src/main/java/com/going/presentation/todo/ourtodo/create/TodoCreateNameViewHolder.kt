@@ -14,12 +14,11 @@ class TodoCreateNameViewHolder(
     private val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white_000)
     private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
 
-    fun onBind(item: TripParticipantModel) {
+    fun onBind(item: TripParticipantModel, position: Int) {
         binding.run {
             tvTodoName.text = item.name
 
-            // TODO: 추후 수정
-            if (item.participantId.toInt() == 3) {
+            if (position == 0) {
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
             } else {
                 tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)

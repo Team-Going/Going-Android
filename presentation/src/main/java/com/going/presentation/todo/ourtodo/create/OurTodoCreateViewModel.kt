@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.TodoCreateRequestModel
-import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.entity.response.TripParticipantsListModel.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
@@ -35,7 +34,7 @@ class OurTodoCreateViewModel @Inject constructor(
 
     // TODO: 추후 수정
     var totalParticipantList: List<TripParticipantModel> = listOf(
-        TripParticipantModel(3,"삼삼삼",1), TripParticipantModel(21, "이십일",2)
+        TripParticipantModel(3, "삼삼삼", 1), TripParticipantModel(21, "이십일", 2)
     )
     var participantList: List<TripParticipantModel> = listOf()
 
