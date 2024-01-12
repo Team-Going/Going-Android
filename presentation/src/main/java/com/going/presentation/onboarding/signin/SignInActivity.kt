@@ -10,7 +10,7 @@ import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
-import com.going.presentation.tendencytest.TendencyTestSplashActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.tripdashboard.TripDashBoardActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -87,7 +87,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     }
 
     private fun navigateToTendencyScreen() {
-        Intent(this, TendencyTestSplashActivity::class.java).apply {
+        Intent(this, TendencySplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

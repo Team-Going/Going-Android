@@ -1,4 +1,4 @@
-package com.going.presentation.tendencytest
+package com.going.presentation.tendency.ttest
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

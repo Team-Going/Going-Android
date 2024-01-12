@@ -1,9 +1,9 @@
-package com.going.presentation.tendencytest.result
+package com.going.presentation.tendency.result
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.ProfileMock
 
-class TendencyTestResultViewModel : ViewModel() {
+class TendencyResultViewModel : ViewModel() {
     val mockTendencyResult: ProfileMock = ProfileMock(
         profileTitle = "배려심 많은 인간 플래너",
         profileSubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",

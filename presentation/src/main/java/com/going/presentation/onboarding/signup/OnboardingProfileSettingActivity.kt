@@ -13,7 +13,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
 import com.going.domain.entity.AuthState
 import com.going.presentation.onboarding.splash.SplashActivity
-import com.going.presentation.tendencytest.TendencyTestActivity
+import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast

@@ -12,7 +12,7 @@ import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.presentation.onboarding.signin.SignInActivity
-import com.going.presentation.tendencytest.TendencyTestSplashActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.tripdashboard.TripDashBoardActivity
 import com.going.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,7 +77,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun navigateToTendencyScreen() {
-        Intent(this, TendencyTestSplashActivity::class.java).apply {
+        Intent(this, TendencySplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

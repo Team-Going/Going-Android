@@ -1,6 +1,5 @@
-package com.going.presentation.tendencytest.result
+package com.going.presentation.tendency.result
 
-import android.media.SubtitleData
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -11,9 +10,9 @@ import com.going.presentation.databinding.ActivityTendencyTestResultBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
-class TendencyTestResultActivity :
-    BaseActivity<ActivityTendencyTestResultBinding>(R.layout.activity_tendency_test_result) {
-    private val viewModel by viewModels<TendencyTestResultViewModel>()
+class TendencyResultActivity :
+    BaseActivity<ActivityTendencyTestResultBinding>(R.layout.activity_tendency_result) {
+    private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

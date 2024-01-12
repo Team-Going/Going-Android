@@ -1,14 +1,15 @@
-package com.going.presentation.tendencytest
+package com.going.presentation.tendency.splash
 
 import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestSplashBinding
+import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
-class TendencyTestSplashActivity :
-    BaseActivity<ActivityTendencyTestSplashBinding>(R.layout.activity_tendency_test_splash) {
+class TendencySplashActivity :
+    BaseActivity<ActivityTendencyTestSplashBinding>(R.layout.activity_tendency_splash) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
