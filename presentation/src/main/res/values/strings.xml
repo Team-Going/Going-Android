@@ -63,7 +63,7 @@
 
     <!--our_todo-->
     <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
-    <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
+    <string name="our_todo_tv_trip_friend_title">함께 하는 친구들</string>
     <string name="our_todo_btn_invite_friend">초대</string>
     <string name="our_todo_btn_add_todo">같이 할일</string>
     <string name="our_todo_title_down_before">여행일까지 %s일 남았어요!</string>
@@ -112,8 +112,8 @@
     <string name="dashboard_tv_traveling">여행중</string>
 
     <!--menu-->
-    <string name="menu_our_todo">우리의 투두</string>
-    <string name="menu_my_todo">나의 투두</string>
+    <string name="menu_our_todo">우리여행</string>
+    <string name="menu_my_todo">나의할일</string>
 
     <!--start_trip_splash-->
     <string name="start_trip_splash_title">doorip으로\n 모두가 함께 하는 여행!</string>
