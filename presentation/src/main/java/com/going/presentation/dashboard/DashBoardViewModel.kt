@@ -23,7 +23,7 @@ class DashBoardViewModel @Inject constructor(
     private val _dashBoardCompletedListState =
         MutableStateFlow<UiState<DashBoardModel>>(UiState.Empty)
 
-    val name = MutableLiveData<String?>()
+    val name = MutableLiveData("")
 
     val dashBoardCompletedListState: StateFlow<UiState<DashBoardModel>> get() = _dashBoardCompletedListState
 

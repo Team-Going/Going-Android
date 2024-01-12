@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.response.DashBoardModel
+import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.databinding.FragmentCompletedTripBinding
@@ -30,14 +30,14 @@ class CompletedTripFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setRecyclerView()
+        initAdapter()
         initItemDecoration()
         setTripList()
         observeDashBoardListState()
 
     }
 
-    private fun setRecyclerView() {
+    private fun initAdapter() {
         _adapter = CompletedAdapter(this)
         binding.rvDashboardCompletedTrip.adapter = adapter
     }
@@ -80,7 +80,7 @@ class CompletedTripFragment :
         _adapter = null
     }
 
-    override fun onDashBoardSelectedListener(tripCreate: DashBoardModel.DashBoardTripModel) {
+    override fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel) {
 
     }
 

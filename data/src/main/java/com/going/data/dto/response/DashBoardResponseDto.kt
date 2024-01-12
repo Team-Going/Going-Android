@@ -29,7 +29,7 @@ data class DashBoardResponseDto(
             DashBoardModel.DashBoardTripModel(tripId, title, startDate, endDate, day)
     }
 
-    fun toDashBoardEntity() =
+    fun toDashBoardModel() =
         DashBoardModel(name, trips.map {
             it.toTripsModel()
         })

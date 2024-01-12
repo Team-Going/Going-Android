@@ -38,10 +38,9 @@
 
             <TextView
                 android:id="@+id/tv_dashboard_empty"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="28dp"
-                android:gravity="center"
                 android:text="@string/dashboard_tv_empty"
                 android:textColor="@color/gray_200"
                 app:layout_constraintBottom_toTopOf="@id/iv_dashboard_empty"
@@ -50,12 +49,14 @@
 
             <ImageView
                 android:id="@+id/iv_dashboard_empty"
-                android:layout_width="210dp"
-                android:layout_height="324dp"
-                android:layout_marginBottom="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_empty_dashboard_doorip"
+                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.67" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

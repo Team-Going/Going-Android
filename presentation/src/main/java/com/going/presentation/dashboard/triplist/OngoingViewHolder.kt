@@ -1,7 +1,7 @@
 package com.going.presentation.dashboard.triplist
 
 import androidx.recyclerview.widget.RecyclerView
-import com.going.domain.entity.response.DashBoardModel
+import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.setOnSingleClickListener
@@ -11,7 +11,7 @@ class OngoingViewHolder(
     private val listener: OngoingAdapter.OnDashBoardSelectedListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(item: DashBoardModel.DashBoardTripModel) {
+    fun onBind(item: DashBoardTripModel) {
         binding.run {
             tvDashboardTripTitle.text = item.title
             tvDashboardDateStart.text = item.startDate

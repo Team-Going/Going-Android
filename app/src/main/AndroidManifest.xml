@@ -81,7 +81,7 @@
 
         <activity
             android:name="com.going.presentation.dashboard.DashBoardActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity

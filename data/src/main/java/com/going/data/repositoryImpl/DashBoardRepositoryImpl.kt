@@ -8,10 +8,12 @@ import javax.inject.Inject
 class DashBoardRepositoryImpl @Inject constructor(
     private val dashBoardSource: DashBoardDataSource
 ) : DashBoardRepository {
+
     override suspend fun getDashBoardList(
         progress: String
     ): Result<DashBoardModel> =
         runCatching {
-            dashBoardSource.getTripList(progress).data.toDashBoardEntity()
+            dashBoardSource.getTripList(progress).data.toDashBoardModel()
         }
+
 }
