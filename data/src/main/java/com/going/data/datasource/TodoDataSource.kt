@@ -17,11 +17,11 @@ interface TodoDataSource {
     suspend fun postToCreateTodoData(
         tripId: Long,
         request: TodoCreateRequestDto
-    ): NonDataBaseResponse<Unit>
+    ): NonDataBaseResponse
 
     suspend fun deleteTodoData(
         todoId: Long
-    ): NonDataBaseResponse<Unit>
+    ): NonDataBaseResponse
 
     suspend fun getTodoDetailData(
         todoId: Long

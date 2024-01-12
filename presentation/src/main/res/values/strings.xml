@@ -155,6 +155,7 @@
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
     <string name="invite_finish_tv_enter">초대받은 여행이 맞아요!</string>
+    <string name="invite_finish_tv_trip">여행중</string>
 
     <!--check friends-->
     <string name="check_friends_tool_bar">여행 친구들</string>

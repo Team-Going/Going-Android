@@ -23,12 +23,12 @@ class TodoDataSourceImpl @Inject constructor(
     override suspend fun postToCreateTodoData(
         tripId: Long,
         request: TodoCreateRequestDto
-    ): NonDataBaseResponse<Unit> =
+    ): NonDataBaseResponse =
         todoService.postToCreateTodo(tripId, request)
 
     override suspend fun deleteTodoData(
         todoId: Long
-    ): NonDataBaseResponse<Unit> =
+    ): NonDataBaseResponse =
         todoService.deleteTodo(todoId)
 
     override suspend fun getTodoDetailData(
