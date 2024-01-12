@@ -2,6 +2,7 @@ package com.going.presentation.todo.mytodo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.response.MyTripInfoModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
@@ -17,6 +18,9 @@ class MyTodoViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
 
+    private val _myTripInfoState = MutableStateFlow<UiState<MyTripInfoModel>>(UiState.Empty)
+    val myTripInfoState: StateFlow<UiState<MyTripInfoModel>> = _myTripInfoState
+
     private val _totalUncompletedTodoCount = MutableStateFlow<Int>(0)
     val totalUncompletedTodoCount: StateFlow<Int> = _totalUncompletedTodoCount
 
@@ -28,6 +32,19 @@ class MyTodoViewModel @Inject constructor(
 
     fun decreaseTodoCount() {
         _totalUncompletedTodoCount.value = _totalUncompletedTodoCount.value - 1
+    }
+
+    fun getMyTripInfoFromServer(tripId: Long) {
+        _myTripInfoState.value = UiState.Loading
+        viewModelScope.launch {
+            todoRepository.getMyTripInfo(tripId)
+                .onSuccess { response ->
+                    _myTripInfoState.value = UiState.Success(response)
+                }
+                .onFailure {
+                    _myTripInfoState.value = UiState.Failure(it.message.toString())
+                }
+        }
     }
 
     fun getUncompleteTodoListFromServer(tripId: Long, category: String, progress: String) {
