@@ -4,38 +4,60 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyResultBinding
-
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class TendencyResultActivity :
     BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bindTendencyInfo()
-
+        getuserInfo()
+        observeUserInfoState()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
     }
 
-    private fun bindTendencyInfo() {
-        with(binding) {
+    private fun getuserInfo() {
+        viewModel.getUserInfoState()
+    }
 
+    private fun observeUserInfoState() {
+        viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Loading -> return@onEach
+                is UiState.Success -> bindTendencyInfo(state.data.result)
+                is UiState.Failure -> toast(state.msg)
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun bindTendencyInfo(number: Int) {
+        with(binding) {
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
-            viewModel.mockTendencyResult.apply {
+            viewModel.mockTendencyResult[number].apply {
                 imgTendencyTestResult.setImageResource(resultImage)
                 tvTendencyTestResultType.text = profileTitle
                 tvTendencyTestResultSubType.text = profileSubTitle
 
-                tvTendencyTestResultTag1.text = getString(R.string.tag,tags[0])
-                tvTendencyTestResultTag2.text = getString(R.string.tag,tags[1])
-                tvTendencyTestResultTag3.text = getString(R.string.tag,tags[2])
+                tvTendencyTestResultTag1.text = getString(R.string.tag, tags[0])
+                tvTendencyTestResultTag2.text = getString(R.string.tag, tags[1])
+                tvTendencyTestResultTag3.text = getString(R.string.tag, tags[2])
 
                 tvFirstDescriptionTitle.text = profileBoxInfo[0].title
                 tvFirstDescriptionFirstText.text =
