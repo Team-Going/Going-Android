@@ -12,12 +12,12 @@ import com.going.ui.extension.setOnSingleClickListener
 class MyTodoListViewHolder(
     val binding: ItemMyTodoBinding,
     private val isCompleted: Boolean,
-    private val itemSelect: (Int) -> Unit,
-    private val itemUnselect: (Int) -> Unit,
+    private val itemSelect: (Long) -> Unit,
+    private val itemUnselect: (Long) -> Unit,
     private val itemDetailClick: (TodoModel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(item: TodoModel,  position: Int) {
+    fun onBind(item: TodoModel) {
         binding.run {
             tvMyTodoItemTitle.text = item.title
             tvMyTodoItemDate.text =  item.endDate.replace("-", ".") + "까지"
@@ -47,11 +47,11 @@ class MyTodoListViewHolder(
             }
 
             cbMyTodoUnselected.setOnSingleClickListener {
-                itemSelect(position)
+                itemSelect(item.todoId)
             }
 
             cbMyTodoSelected.setOnSingleClickListener {
-                itemUnselect(position)
+                itemUnselect(item.todoId)
             }
 
             root.setOnSingleClickListener {

@@ -16,6 +16,7 @@ import com.going.presentation.todo.detail.PrivateDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,7 @@ class MyTodoUncompleteFragment() :
 
         initAdapterWithClickListener()
         observeTodoListState()
+        observeTodoFinishState()
     }
 
     override fun onResume() {
@@ -47,10 +49,8 @@ class MyTodoUncompleteFragment() :
 
     private fun initAdapterWithClickListener() {
         _adapter = MyTodoListAdapter(false,
-            { position ->
-                adapter.removeItem(position)
-                adapter.notifyDataSetChanged()
-                viewModel.decreaseTodoCount()
+            { todoId ->
+                viewModel.getToFinishTodoFromServer(todoId)
             },
             { },
             { todoModel ->
@@ -86,6 +86,23 @@ class MyTodoUncompleteFragment() :
                 is UiState.Loading -> return@onEach
 
                 is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeTodoFinishState() {
+        viewModel.todoFinishState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                EnumUiState.LOADING -> return@onEach
+
+                EnumUiState.SUCCESS -> {
+                    adapter.notifyDataSetChanged()
+                    viewModel.decreaseTodoCount()
+                }
+
+                EnumUiState.FAILURE -> toast(getString(R.string.server_error))
+
+                EnumUiState.EMPTY -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
