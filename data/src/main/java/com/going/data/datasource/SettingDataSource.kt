@@ -1,10 +1,9 @@
 package com.going.data.datasource
 
 import com.going.data.dto.NonDataBaseResponse
-import com.going.data.dto.response.SignOutResponseDto
 
 interface SettingDataSource {
-    suspend fun patchSignOut(): SignOutResponseDto
+    suspend fun patchSignOut(): NonDataBaseResponse
 
-    suspend fun deleteWithDraw(): NonDataBaseResponse<Unit>
+    suspend fun deleteWithDraw(): NonDataBaseResponse
 }

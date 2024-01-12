@@ -3,8 +3,8 @@ package com.going.data.repositoryImpl
 import com.going.data.datasource.AuthDataSource
 import com.going.data.dto.request.toSignInRequestDto
 import com.going.data.dto.request.toSignUpRequestDto
-import com.going.domain.entity.request.RequestSignInModel
-import com.going.domain.entity.request.RequestSignUpModel
+import com.going.domain.entity.request.SignInRequestModel
+import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.entity.response.SignInModel
 import com.going.domain.repository.AuthRepository
@@ -15,7 +15,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
     override suspend fun postSignIn(
         Authorization: String,
-        requestSignIpModel: RequestSignInModel,
+        requestSignIpModel: SignInRequestModel,
     ): Result<SignInModel> =
         runCatching {
             authDataSource.postSignIn(
@@ -26,12 +26,12 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun postSignUp(
         Authorization: String,
-        requestSignUpModel: RequestSignUpModel,
+        signUpRequestModel: SignUpRequestModel,
     ): Result<AuthTokenModel> =
         runCatching {
             authDataSource.postSignUp(
                 Authorization,
-                requestSignUpModel.toSignUpRequestDto(),
+                signUpRequestModel.toSignUpRequestDto(),
             ).data.toAuthTokenModel()
         }
 }
