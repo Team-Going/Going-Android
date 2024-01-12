@@ -8,6 +8,6 @@ import javax.inject.Inject
 class SettingDataSourceImpl @Inject constructor(
     private val settingService: SettingService,
 ) : SettingDataSource {
-    override suspend fun patchSignOut(): NonDataBaseResponse = settingService.patchSignOut()
-    override suspend fun deleteWithDraw(): NonDataBaseResponse = settingService.deleteWithDraw()
+    override suspend fun patchSignOut(): NonDataBaseResponse<Any?> = settingService.patchSignOut()
+    override suspend fun deleteWithDraw(): NonDataBaseResponse<Any?> = settingService.deleteWithDraw()
 }
