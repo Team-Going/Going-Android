@@ -65,6 +65,9 @@
     <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
     <string name="our_todo_btn_invite_friend">초대</string>
     <string name="our_todo_btn_add_todo">같이 할일</string>
+    <string name="our_todo_title_down">여행일까지 %s일 남았어요!</string>
+    <string name="our_todo_date_form">%s - %s</string>
+    <string name="our_todo_day_form">%s월 %s일</string>
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">나의 할일</string>

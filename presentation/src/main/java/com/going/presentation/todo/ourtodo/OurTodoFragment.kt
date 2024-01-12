@@ -111,9 +111,9 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                     binding.run {
                         tvOurTodoTitleUp.text = state.data.title
                         // TODO: 날짜 분기처리
-                        tvOurTodoTitleDown.text = "여행일까지 %s일 남았어요!".format(state.data.day)
+                        tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down).format(state.data.day)
                         setDateTextColor()
-                        tvOurTodoTitleDate.text = "%s - %s".format(convertDate(state.data.startDate), convertDate(state.data.endDate))
+                        tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(convertDate(state.data.startDate), convertDate(state.data.endDate))
                         progressBarOurTodo.progress = state.data.progress
                         tvOurTripInfoPercent.text = state.data.progress.toString() + "%"
                         adapter.submitList(state.data.participants)
@@ -129,7 +129,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun convertDate(date: String): String {
         val splitDate = date.split(".")
-        return "${splitDate[1]}월 ${splitDate[2]}일"
+        return getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
     }
 
     override fun onDestroyView() {
