@@ -63,7 +63,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-
         <activity
             android:name="com.going.presentation.tendencytest.TendencyTestSplashActivity"
             android:exported="false"
@@ -80,7 +79,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.tripdashboard.TripDashBoardActivity"
+            android:name="com.going.presentation.dashboard.DashBoardActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -130,7 +129,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.profile.ProfileActivity"
+            android:name="com.going.presentation.tripdashboard.profile.ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

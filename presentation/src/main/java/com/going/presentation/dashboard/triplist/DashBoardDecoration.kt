@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.triplist
+package com.going.presentation.dashboard.triplist
 
 import android.content.Context
 import android.graphics.Rect

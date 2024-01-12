@@ -47,7 +47,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_profile"
+            android:id="@+id/btn_setting_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -70,7 +70,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btn_setting_profile_enter"
+                android:id="@+id/iv_setting_profile_enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -82,7 +82,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_inquire"
+            android:id="@+id/btn_setting_inquire"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -90,7 +90,7 @@
             android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_setting_profile">
+            app:layout_constraintTop_toBottomOf="@id/btn_setting_profile">
 
             <TextView
                 android:id="@+id/tv_setting_inquire"
@@ -105,7 +105,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btn_setting_inquire_enter"
+                android:id="@+id/iv_setting_inquire_enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -118,7 +118,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_service_version"
+            android:id="@+id/btn_setting_service_version"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -126,7 +126,7 @@
             android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_setting_inquire">
+            app:layout_constraintTop_toBottomOf="@id/btn_setting_inquire">
 
             <TextView
                 android:id="@+id/tv_setting_service_version"
@@ -156,7 +156,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_policy"
+            android:id="@+id/btn_setting_policy"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -164,7 +164,7 @@
             android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_setting_service_version">
+            app:layout_constraintTop_toBottomOf="@id/btn_setting_service_version">
 
             <TextView
                 android:id="@+id/tv_setting_policy"
@@ -179,7 +179,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btn_setting_policy_enter"
+                android:id="@+id/iv_setting_policy_enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -192,7 +192,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_about_doorip"
+            android:id="@+id/btn_setting_about_doorip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -200,7 +200,7 @@
             android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_setting_policy">
+            app:layout_constraintTop_toBottomOf="@id/btn_setting_policy">
 
             <TextView
                 android:id="@+id/tv_setting_about_doorip"
@@ -215,7 +215,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btn_setting_about_doorip_enter"
+                android:id="@+id/iv_setting_about_doorip_enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -228,7 +228,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting_logout"
+            android:id="@+id/btn_setting_logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -236,7 +236,7 @@
             android:background="@drawable/shape_rect_6_white000_fill"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_setting_about_doorip">
+            app:layout_constraintTop_toBottomOf="@id/btn_setting_about_doorip">
 
             <TextView
                 android:id="@+id/tv_setting_logout"
@@ -252,7 +252,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/btn_setting_logout_enter"
+                android:id="@+id/iv_setting_logout_enter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
