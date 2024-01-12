@@ -9,6 +9,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
@@ -19,6 +20,7 @@ import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -39,7 +41,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAddTodoBtnListener()
         initItemDecoration()
         setMyTripInfo()
-        setDateTextColor()
         setTabLayout()
         setViewPager()
         observeOurTripInfoState()
@@ -111,9 +112,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                         tvOurTodoTitleUp.text = state.data.title
                         // TODO: 날짜 분기처리
                         tvOurTodoTitleDown.text = "여행일까지 %s일 남았어요!".format(state.data.day)
+                        setDateTextColor()
                         tvOurTodoTitleDate.text = "%s - %s".format(convertDate(state.data.startDate), convertDate(state.data.endDate))
                         progressBarOurTodo.progress = state.data.progress
-                        tvOurTripInfoPercent.text = "%s%".format(state.data.progress)
+                        tvOurTripInfoPercent.text = state.data.progress.toString() + "%"
                         adapter.submitList(state.data.participants)
                     }
                 }
@@ -122,7 +124,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
                 is UiState.Empty -> return@onEach
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun convertDate(date: String): String {
