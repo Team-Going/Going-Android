@@ -74,8 +74,13 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.preferencetag.PreferenceTagActivity"
-            android:exported="false"
+            android:name="com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.preferencetag.invitefinish.FinishPreferenceActivity"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity

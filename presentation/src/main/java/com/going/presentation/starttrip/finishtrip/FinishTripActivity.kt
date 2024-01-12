@@ -8,7 +8,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityFinishTripBinding
-import com.going.presentation.preferencetag.PreferenceTagActivity
+import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -42,7 +42,7 @@ class FinishTripActivity :
 
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
-            Intent(this, PreferenceTagActivity::class.java).apply {
+            Intent(this, EnterPreferenceActivity::class.java).apply {
                 startActivity(this)
                 //입장 코드 받아서 보내기
             }

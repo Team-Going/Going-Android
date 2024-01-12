@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
-import com.going.presentation.preferencetag.PreferenceTagActivity
+import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -175,7 +175,7 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            Intent(this, PreferenceTagActivity::class.java).apply {
+            Intent(this, EnterPreferenceActivity::class.java).apply {
                 putExtra(NAME, viewModel.name.value)
                 putExtra(START, viewModel.startYear.value)
 

@@ -1,15 +1,18 @@
-package com.going.presentation.preferencetag
+package com.going.presentation.preferencetag.invitefinish
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityPreferenceTagBinding
+import com.going.presentation.databinding.ActivityFinishPreferenceBinding
+import com.going.presentation.preferencetag.PreferenceTagAdapter
+import com.going.presentation.preferencetag.PreferenceTagDecoration
+import com.going.presentation.preferencetag.PreferenceTagViewModel
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
-class PreferenceTagActivity :
-    BaseActivity<ActivityPreferenceTagBinding>(R.layout.activity_preference_tag),
+class FinishPreferenceActivity :
+    BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference),
     PreferenceTagAdapter.OnPreferenceSelectedListener {
 
     private var _adapter: PreferenceTagAdapter? = null
@@ -37,14 +40,14 @@ class PreferenceTagActivity :
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
-    private fun initBackClickListener(){
+    private fun initBackClickListener() {
         binding.btnPreferenceBack.setOnSingleClickListener {
             finish()
         }
     }
 
-    override fun onPreferenceSelected(preference: PreferenceData) {
-        // 선택된 취향 태그 처리
+    override fun onPreferenceSelected(item: PreferenceData, checkList: Int) {
+
     }
 
     override fun onDestroy() {

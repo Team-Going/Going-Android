@@ -9,7 +9,7 @@ import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.DAY
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.END
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.START
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.TITLE
-import com.going.presentation.preferencetag.PreferenceTagActivity
+import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +58,7 @@ class InviteFinishActivity :
 
     private fun initEnterBtnClickListener() {
         binding.btnInviteFinishEnter.setOnSingleClickListener {
-            Intent(this, PreferenceTagActivity::class.java).apply {
+            Intent(this, EnterPreferenceActivity::class.java).apply {
                 startActivity(this)
             }
         }
