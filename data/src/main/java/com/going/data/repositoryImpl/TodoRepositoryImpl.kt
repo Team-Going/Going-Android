@@ -4,6 +4,7 @@ import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.request.toTodoCreateRequestDto
 import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.entity.response.MyTripInfoModel
+import com.going.domain.entity.response.OurTripInfoModel
 import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
@@ -49,6 +50,13 @@ class TodoRepositoryImpl @Inject constructor(
     ): Result<MyTripInfoModel> =
         runCatching {
             todoDataSource.getMyTripInfo(tripId).data.toMyTripInfoModel()
+        }
+
+    override suspend fun getOurTripInfo(
+        tripId: Long
+    ): Result<OurTripInfoModel> =
+        runCatching {
+            todoDataSource.getOurTripInfo(tripId).data.toOurTripInfoModel()
         }
 
 }

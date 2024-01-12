@@ -4,6 +4,7 @@ import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.MyTripInfoResponseDto
+import com.going.data.dto.response.OurTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 
@@ -31,5 +32,9 @@ interface TodoDataSource {
     suspend fun getMyTripInfo(
         tripId: Long
     ): BaseResponse<MyTripInfoResponseDto>
+
+    suspend fun getOurTripInfo(
+        tripId: Long
+    ): BaseResponse<OurTripInfoResponseDto>
 
 }

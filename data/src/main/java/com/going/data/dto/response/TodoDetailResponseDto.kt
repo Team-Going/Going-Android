@@ -11,7 +11,7 @@ data class TodoDetailResponseDto(
     @SerialName("endDate")
     val endDate: String,
     @SerialName("allocators")
-    val allocators: List<TodoResponseDto.TodoAllocatorResponseDto>,
+    val allocators: List<TodoAllocatorResponseDto>,
     @SerialName("memo")
     val memo: String,
     @SerialName("secret")

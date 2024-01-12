@@ -4,6 +4,7 @@ import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.MyTripInfoResponseDto
+import com.going.data.dto.response.OurTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
 import com.going.data.dto.response.TodoResponseDto
 import retrofit2.http.Body
@@ -42,5 +43,10 @@ interface TodoService {
     suspend fun getMyTripInfo(
         @Path("tripId") tripId: Long
     ): BaseResponse<MyTripInfoResponseDto>
+
+    @GET("/api/trips/{tripId}/our")
+    suspend fun getOurTripInfo(
+        @Path("tripId") tripId: Long
+    ): BaseResponse<OurTripInfoResponseDto>
 
 }
