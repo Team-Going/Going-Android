@@ -37,4 +37,8 @@ interface TodoDataSource {
         tripId: Long
     ): BaseResponse<OurTripInfoResponseDto>
 
+    suspend fun getToFinishTodoData(
+        todoId: Long
+    ): NonDataBaseResponse
+
 }

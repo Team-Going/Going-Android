@@ -59,4 +59,11 @@ class TodoRepositoryImpl @Inject constructor(
             todoDataSource.getOurTripInfo(tripId).data.toOurTripInfoModel()
         }
 
+    override suspend fun getToFinishTodo(
+        todoId: Long
+    ): Result<Unit> =
+        runCatching {
+            todoDataSource.getToFinishTodoData(todoId)
+        }
+
 }
