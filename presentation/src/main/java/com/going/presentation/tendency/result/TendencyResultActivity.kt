@@ -23,18 +23,19 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class TendencyResultActivity :
     BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
+
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getuserInfo()
+        getUserInfo()
         observeUserInfoState()
         initRestartBtnClickLitener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
     }
 
-    private fun getuserInfo() {
+    private fun getUserInfo() {
         viewModel.getUserInfoState()
     }
 
