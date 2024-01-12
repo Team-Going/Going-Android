@@ -135,7 +135,7 @@
 
         <activity
             android:name="com.going.presentation.enter.entertrip.EnterTripActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity

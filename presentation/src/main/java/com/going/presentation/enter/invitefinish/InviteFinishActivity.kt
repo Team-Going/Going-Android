@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
+import com.going.presentation.enter.FinishPreferenceActivity
 import com.going.presentation.enter.entertrip.EnterTripActivity
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.DAY
 import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.END
@@ -58,7 +59,7 @@ class InviteFinishActivity :
 
     private fun initEnterBtnClickListener() {
         binding.btnInviteFinishEnter.setOnSingleClickListener {
-            Intent(this, PreferenceTagActivity::class.java).apply {
+            Intent(this, FinishPreferenceActivity::class.java).apply {
                 startActivity(this)
             }
         }

@@ -6,6 +6,7 @@ import com.going.data.datasource.EnterTripDataSource
 import com.going.data.datasource.MockDataSource
 import com.going.data.datasource.ProfileDataSource
 import com.going.data.datasource.SettingDataSource
+import com.going.data.datasource.StartInviteTripDataSource
 import com.going.data.datasource.TendencyDataSource
 import com.going.data.datasource.TodoDataSource
 import com.going.data.datasourceImpl.AuthDataSourceImpl
@@ -14,6 +15,7 @@ import com.going.data.datasourceImpl.EnterTripDataSourceImpl
 import com.going.data.datasourceImpl.MockDataSourceImpl
 import com.going.data.datasourceImpl.ProfileDataSourceImpl
 import com.going.data.datasourceImpl.SettingDataSourceImpl
+import com.going.data.datasourceImpl.StartInviteTripDataSourceImpl
 import com.going.data.datasourceImpl.TendencyDataSourceImpl
 import com.going.data.datasourceImpl.TodoDataSourceImpl
 import dagger.Module
@@ -65,4 +67,9 @@ object DataSourceModule {
     @Singleton
     fun provideEnterTripDataSource(entertripDataSourceImpl: EnterTripDataSourceImpl): EnterTripDataSource =
         entertripDataSourceImpl
+
+    @Provides
+    @Singleton
+    fun provideStartInviteTripDataSource(startInviteTripDataSourceImpl: StartInviteTripDataSourceImpl): StartInviteTripDataSource =
+        startInviteTripDataSourceImpl
 }
