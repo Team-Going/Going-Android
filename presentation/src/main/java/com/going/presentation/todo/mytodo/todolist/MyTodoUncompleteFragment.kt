@@ -1,5 +1,6 @@
 package com.going.presentation.todo.mytodo.todolist
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,8 +12,9 @@ import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.UNCOMPLETE
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity
-import com.going.presentation.todo.mytodo.detail.MyTodoDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.PrivateDetailActivity
+import com.going.presentation.todo.detail.PublicDetailActivity
+import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -34,8 +36,13 @@ class MyTodoUncompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
-        setTodoList()
         observeTodoListState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setTodoList()
     }
 
     private fun initAdapterWithClickListener() {
@@ -46,13 +53,21 @@ class MyTodoUncompleteFragment() :
                 viewModel.decreaseTodoCount()
             },
             { },
-            { todoId ->
-                Intent(activity, MyTodoDetailActivity::class.java).apply {
-                    putExtra(EXTRA_TODO_ID, todoId)
-                    startActivity(this)
+            { todoModel ->
+                if (todoModel.allocators.size <= 1) {
+                    startDetailActivity(activity, PrivateDetailActivity::class.java, todoModel.todoId)
+                } else {
+                    startDetailActivity(activity, PublicDetailActivity::class.java, todoModel.todoId)
                 }
             })
         binding.rvMyTodoUncomplete.adapter = adapter
+    }
+
+    private fun startDetailActivity(activity: Activity?, targetActivity: Class<*>, todoId: Long) {
+        Intent(activity, targetActivity).apply {
+            putExtra(EXTRA_TODO_ID, todoId)
+            activity?.startActivity(this)
+        }
     }
 
     private fun setTodoList() {
@@ -64,7 +79,7 @@ class MyTodoUncompleteFragment() :
     private fun observeTodoListState() {
         viewModel.todoUncompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.setItemList(state.data)
+                is UiState.Success -> adapter.submitList(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 

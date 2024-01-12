@@ -15,7 +15,9 @@ import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -32,9 +34,11 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         super.onViewCreated(view, savedInstanceState)
 
         initAddTodoListener()
+        setMyTripInfo()
         setTabLayout()
         setViewPager()
         setTodoCountText()
+        observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
     }
 
@@ -44,6 +48,12 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                 startActivity(this)
             }
         }
+    }
+
+    private fun setMyTripInfo() {
+        // TODO: tripId
+        val tripId : Long = 1
+        viewModel.getMyTripInfoFromServer(tripId)
     }
 
     private fun setTabLayout() {
@@ -66,6 +76,20 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun setTodoCountText() {
         setTodoCount(viewModel.totalUncompletedTodoCount.value)
+    }
+
+    private fun observeMyTripInfoState() {
+        viewModel.myTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Loading -> return@onEach
+
+                is UiState.Success -> binding.tvMyTodoTitleUp.text = state.data.name
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun observeTotalUncompletedTodoCount() {

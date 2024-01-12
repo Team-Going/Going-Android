@@ -2,18 +2,17 @@ package com.going.presentation.todo.mytodo.todolist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemMyTodoBinding
+import com.going.ui.extension.ItemDiffCallback
 
 class MyTodoListAdapter(
     private val isCompleted: Boolean,
     private val itemSelect: (Int) -> Unit,
     private val itemUnselect: (Int) -> Unit,
-    private val itemDetailClick: (Long) -> Unit
-) : RecyclerView.Adapter<MyTodoListViewHolder>() {
-
-    private var itemList = mutableListOf<TodoModel>()
+    private val itemDetailClick: (TodoModel) -> Unit
+) : ListAdapter<TodoModel, MyTodoListViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTodoListViewHolder {
         val binding: ItemMyTodoBinding =
@@ -22,19 +21,18 @@ class MyTodoListAdapter(
     }
 
     override fun onBindViewHolder(holder: MyTodoListViewHolder, position: Int) {
-        holder.onBind(itemList[position], position)
+        holder.onBind(getItem(position), position)
     }
-
-    override fun getItemCount(): Int = itemList.size
 
     fun removeItem(position: Int) {
-        itemList.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, itemCount)
+        // itemList.removeAt(position)
+        notifyDataSetChanged()
     }
 
-    fun setItemList(newItems: List<TodoModel>) {
-        this.itemList.addAll(newItems)
-        notifyItemRangeInserted(0, itemCount)
+    companion object {
+        private val diffUtil = ItemDiffCallback<TodoModel>(
+            onItemsTheSame = { old, new -> old.todoId == new.todoId },
+            onContentsTheSame = { old, new -> old == new },
+        )
     }
 }

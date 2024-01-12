@@ -66,6 +66,11 @@
     <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
     <string name="our_todo_btn_invite_friend">초대</string>
     <string name="our_todo_btn_add_todo">같이 할일</string>
+    <string name="our_todo_title_down_before">여행일까지 %s일 남았어요!</string>
+    <string name="our_todo_title_down_during">여행 중이에요!</string>
+    <string name="our_todo_title_down_end">여행이 완료되었어요!</string>
+    <string name="our_todo_date_form">%s - %s</string>
+    <string name="our_todo_day_form">%s월 %s일</string>
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">나의 할일</string>
@@ -83,11 +88,13 @@
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
     <string name="my_todo_create_btn_finish">저장</string>
+    <string name="todo_create_toast">할일을 추가했어요</string>
 
-    <!--my_todo_detail-->
+    <!--todo_detail-->
     <string name="my_todo_detail_tv_title">할일 조회</string>
     <string name="my_todo_detail_btn_delete">삭제하기</string>
     <string name="my_todo_detail_btn_mod">수정하기</string>
+    <string name="todo_delete_toast">할일을 삭제했어요</string>
 
     <!--preference_tag-->
     <string name="preference_tv_title">이번 여행은!</string>
@@ -96,7 +103,7 @@
 
     <!--trip_dash_board-->
     <string name="dashboard_tv_title">%s님의 여행</string>
-    <string name="dashboard_tv_empty">생성된 여행이 없어요.</string>
+    <string name="dashboard_tv_empty">새로운 여행을 시작해 보세요</string>
     <string name="dashboard_btn_create_trip">여행 생성하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
     <string name="dashboard_tv_dash">-</string>
@@ -154,6 +161,7 @@
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
     <string name="invite_finish_tv_enter">초대받은 여행이 맞아요!</string>
+    <string name="invite_finish_tv_trip">여행중</string>
 
     <!--check friends-->
     <string name="check_friends_tool_bar">여행 친구들</string>

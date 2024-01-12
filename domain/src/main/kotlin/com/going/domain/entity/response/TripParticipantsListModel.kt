@@ -7,10 +7,4 @@ data class TripParticipantsListModel(
     val styleC: Int,
     val styleD: Int,
     val styleE: Int,
-) {
-    data class TripParticipantModel(
-        val participantId: Long,
-        val name: String,
-        val result: Int
-    )
-}
+)
