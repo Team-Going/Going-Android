@@ -33,6 +33,9 @@ class MyTodoViewModel @Inject constructor(
     private val _todoFinishState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoFinishState: StateFlow<EnumUiState> = _todoFinishState
 
+    private val _todoRedoState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
+    val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
+
     fun decreaseTodoCount() {
         _totalUncompletedTodoCount.value = _totalUncompletedTodoCount.value - 1
     }
@@ -77,7 +80,7 @@ class MyTodoViewModel @Inject constructor(
         }
     }
 
-    fun deleteTodoFromServer(todoId: Long) {
+    fun getToFinishTodoFromServer(todoId: Long) {
         _todoFinishState.value = EnumUiState.LOADING
         viewModelScope.launch {
             todoRepository.getToFinishTodo(todoId)
@@ -86,6 +89,19 @@ class MyTodoViewModel @Inject constructor(
                 }
                 .onFailure {
                     _todoFinishState.value = EnumUiState.FAILURE
+                }
+        }
+    }
+
+    fun getToRedoTodoFromServer(todoId: Long) {
+        _todoRedoState.value = EnumUiState.LOADING
+        viewModelScope.launch {
+            todoRepository.getToRedoTodo(todoId)
+                .onSuccess {
+                    _todoRedoState.value = EnumUiState.SUCCESS
+                }
+                .onFailure {
+                    _todoRedoState.value = EnumUiState.FAILURE
                 }
         }
     }
