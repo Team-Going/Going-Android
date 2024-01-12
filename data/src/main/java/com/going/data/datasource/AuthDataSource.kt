@@ -1,6 +1,7 @@
 package com.going.data.datasource
 
 import com.going.data.dto.BaseResponse
+import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.SignInRequestDto
 import com.going.data.dto.request.SignUpRequestDto
 import com.going.data.dto.response.AuthResponseDto
@@ -16,4 +17,6 @@ interface AuthDataSource {
         Authorization: String,
         data: SignUpRequestDto,
     ): BaseResponse<AuthResponseDto>
+
+    suspend fun getSplash(): NonDataBaseResponse
 }

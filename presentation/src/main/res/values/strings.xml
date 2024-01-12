@@ -14,6 +14,7 @@
     <string name="sign_in_tv_title">여행을 시작해보세요</string>
     <string name="sign_in_tv_terms">개인정보처리방침</string>
 
+    <string name="tag">#%s</string>
     <string name="counter">%1$d/%2$d</string>
 
     <string name="notice">안내</string>
@@ -40,8 +41,8 @@
 
     <!--tendency_test_result-->
     <string name="tendency_test_result_toolbar">유형 검사 결과</string>
-    <string name="tendency_test_result_title">%1$s님의 여행 유형은</string>
-    <string name="tendency_test_result_finish_button">다음</string>
+    <string name="tendency_test_result_title">%1$s님의 여행 캐릭터는</string>
+    <string name="tendency_test_result_finish_button">doorip 시작하기</string>
     <string name="tendency_test_result_restart_button"><u>다시 해볼래요</u></string>
     <string name="tendency_test_result_save">이미지로 저장</string>
 
