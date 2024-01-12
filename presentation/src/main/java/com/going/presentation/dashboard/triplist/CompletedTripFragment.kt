@@ -2,6 +2,7 @@ package com.going.presentation.dashboard.triplist
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -54,15 +55,23 @@ class CompletedTripFragment :
     private fun observeDashBoardListState() {
         viewModel.dashBoardCompletedListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.submitList(state.data.trips)
+                is UiState.Success -> {
+                    setEmptyView(false)
+                    adapter.submitList(state.data.trips)
+                }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
                 is UiState.Loading -> return@onEach
 
-                is UiState.Empty -> return@onEach
+                is UiState.Empty -> setEmptyView(true)
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun setEmptyView(isEmpty: Boolean) {
+        binding.rvDashboardCompletedTrip.isVisible = !isEmpty
+        binding.layoutDashboardEmpty.isVisible = isEmpty
     }
 
 
