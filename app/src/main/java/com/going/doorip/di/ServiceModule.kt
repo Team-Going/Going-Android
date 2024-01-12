@@ -2,6 +2,7 @@ package com.going.doorip.di
 
 import com.going.data.service.AuthService
 import com.going.data.service.DashBoardService
+import com.going.data.service.EnterTripService
 import com.going.data.service.MockService
 import com.going.data.service.SettingService
 import com.going.data.service.TendencyService
@@ -44,6 +45,12 @@ object ServiceModule {
 
     @Provides
     @Singleton
+    fun provideEnterTripService(retrofit: Retrofit): EnterTripService =
+        retrofit.create(EnterTripService::class.java)
+
+    @Provides
+    @Singleton
     fun provideTendencyService(retrofit: Retrofit): TendencyService =
         retrofit.create(TendencyService::class.java)
+
 }
