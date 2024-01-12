@@ -6,12 +6,13 @@ import android.text.Spanned
 import android.text.style.BulletSpan
 import androidx.activity.viewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityTendencyTestResultBinding
+import com.going.presentation.databinding.ActivityTendencyResultBinding
+
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
 class TendencyResultActivity :
-    BaseActivity<ActivityTendencyTestResultBinding>(R.layout.activity_tendency_result) {
+    BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +25,17 @@ class TendencyResultActivity :
 
     private fun bindTendencyInfo() {
         with(binding) {
+
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
 
             viewModel.mockTendencyResult.apply {
+                imgTendencyTestResult.setImageResource(resultImage)
                 tvTendencyTestResultType.text = profileTitle
                 tvTendencyTestResultSubType.text = profileSubTitle
 
-                tvTendencyTestResultTag1.text = tags[0]
-                tvTendencyTestResultTag2.text = tags[1]
-                tvTendencyTestResultTag3.text = tags[2]
+                tvTendencyTestResultTag1.text = getString(R.string.tag,tags[0])
+                tvTendencyTestResultTag2.text = getString(R.string.tag,tags[1])
+                tvTendencyTestResultTag3.text = getString(R.string.tag,tags[2])
 
                 tvFirstDescriptionTitle.text = profileBoxInfo[0].title
                 tvFirstDescriptionFirstText.text =

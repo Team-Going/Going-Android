@@ -40,7 +40,6 @@
                     android:id="@+id/img_tendency_test_result"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:background="@color/black_000"
                     android:src="@drawable/img_sign_in_main"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +48,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="-6dp"
-                    android:background="@drawable/shape_rect_top8_white000_fill"
                     android:paddingHorizontal="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

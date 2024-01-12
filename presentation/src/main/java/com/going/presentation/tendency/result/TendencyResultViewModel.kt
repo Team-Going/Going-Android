@@ -2,15 +2,17 @@ package com.going.presentation.tendency.result
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.ProfileMock
+import com.going.presentation.R
 
 class TendencyResultViewModel : ViewModel() {
     val mockTendencyResult: ProfileMock = ProfileMock(
+        resultImage = R.drawable.img_tendency_result_aep,
         profileTitle = "배려심 많은 인간 플래너",
         profileSubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",
         tags = listOf(
-            "#친구중심",
-            "#꼼꼼함",
-            "#세심함",
+            "친구중심",
+            "꼼꼼함",
+            "세심함",
         ),
         profileBoxInfo = listOf(
             ProfileMock.BoxInfo(
