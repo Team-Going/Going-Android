@@ -1,15 +1,17 @@
 package com.going.presentation.tendency.result
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyResultBinding
+import com.going.presentation.tendency.ttest.TendencyTestActivity
+import com.going.presentation.tripdashboard.TripDashBoardActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -27,6 +29,7 @@ class TendencyResultActivity :
 
         getuserInfo()
         observeUserInfoState()
+        initRestartBtnClickLitener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
     }
@@ -94,15 +97,36 @@ class TendencyResultActivity :
         return string
     }
 
+    private fun initRestartBtnClickLitener() {
+        binding.btnTendencyTestRestart.setOnSingleClickListener {
+            navigateToTendencyTestScreen()
+        }
+    }
+
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyTestResultSave.setOnSingleClickListener {
-            // 이미지 저장
+            toast("추후 업데이트 예정")
         }
     }
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyTestResultFinish.setOnSingleClickListener {
-            // 페이지 이동
+            navigateToDashBoardScreen()
+        }
+    }
+
+    private fun navigateToTendencyTestScreen() {
+        Intent(this, TendencyTestActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
+    }
+
+    private fun navigateToDashBoardScreen() {
+        Intent(this, TripDashBoardActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
         }
     }
 }

@@ -29,6 +29,8 @@ class TendencyTestActivity :
     private lateinit var fadeInList: List<ObjectAnimator>
     private lateinit var fadeOutList: List<ObjectAnimator>
 
+    override fun onBackPressed() {}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -151,14 +153,14 @@ class TendencyTestActivity :
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 EnumUiState.LOADING -> {}
-                EnumUiState.SUCCESS -> navigateToTendencyTestResultScreen()
+                EnumUiState.SUCCESS -> navigateToTendencyResultScreen()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 EnumUiState.EMPTY -> {}
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToTendencyTestResultScreen() {
+    private fun navigateToTendencyResultScreen() {
         Intent(this, TendencyResultActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
