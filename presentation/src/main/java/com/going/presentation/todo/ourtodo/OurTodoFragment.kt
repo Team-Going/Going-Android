@@ -66,22 +66,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setMyTripInfo() {
         // TODO: tripId
-        val tripId : Long = 1
+        val tripId: Long = 1
         viewModel.getOurTripInfoFromServer(tripId)
-    }
-
-    private fun setDateTextColor() {
-        binding.tvOurTodoTitleDown.apply {
-            text = SpannableStringBuilder(text).apply {
-                setSpan(
-                    ForegroundColorSpan(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.red_500
-                        )
-                    ), 6, length - 6, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-            }
-        }
     }
 
     private fun setTabLayout() {
@@ -109,11 +95,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
                 is UiState.Success -> {
                     binding.run {
+                        setTitleTextWithDay(state.data.day)
                         tvOurTodoTitleUp.text = state.data.title
-                        // TODO: 날짜 분기처리
-                        tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down).format(state.data.day)
-                        setDateTextColor()
-                        tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(convertDate(state.data.startDate), convertDate(state.data.endDate))
+                        tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(
+                            convertDate(state.data.startDate),
+                            convertDate(state.data.endDate)
+                        )
                         progressBarOurTodo.progress = state.data.progress
                         tvOurTripInfoPercent.text = state.data.progress.toString() + "%"
                         adapter.submitList(state.data.participants)
@@ -130,6 +117,39 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun convertDate(date: String): String {
         val splitDate = date.split(".")
         return getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
+    }
+
+    private fun setTitleTextWithDay(day: Int) {
+        when {
+            day > 0 -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                setDateTextColor(6, 6)
+            }
+
+            day == 0 -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
+                setDateTextColor(0, 4)
+            }
+
+            else -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
+                setDateTextColor(4, 5)
+            }
+        }
+    }
+
+    private fun setDateTextColor(start: Int, end: Int) {
+        binding.tvOurTodoTitleDown.apply {
+            text = SpannableStringBuilder(text).apply {
+                setSpan(
+                    ForegroundColorSpan(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.red_500
+                        )
+                    ), start, length - end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
     }
 
     override fun onDestroyView() {
