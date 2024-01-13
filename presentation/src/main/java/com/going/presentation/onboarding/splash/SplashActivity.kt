@@ -40,7 +40,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getUserState()
+            if (viewModel.getHasAccessToken()) {
+                viewModel.getUserState()
+            } else {
+                navigateToSignInScreen()
+            }
         }, 3000)
     }
 
