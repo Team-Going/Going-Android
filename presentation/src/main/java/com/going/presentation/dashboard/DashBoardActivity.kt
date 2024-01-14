@@ -57,9 +57,13 @@ class DashBoardActivity :
 
     private fun initCreateTripBtnClickListener() {
         binding.btnDashboardCreateTrip.setOnSingleClickListener {
-            Intent(this, CreateTripActivity::class.java).apply {
-                startActivity(this)
-            }
+            navigateToDashboard()
+        }
+    }
+
+    private fun navigateToDashboard() {
+        Intent(this, CreateTripActivity::class.java).apply {
+            startActivity(this)
         }
     }
 
