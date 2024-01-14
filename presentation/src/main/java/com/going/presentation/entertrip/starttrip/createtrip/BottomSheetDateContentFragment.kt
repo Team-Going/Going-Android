@@ -53,7 +53,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                 calendar.set(Calendar.DAY_OF_MONTH, viewModel.endDay.value ?: 0)
                 val endDate = calendar.time
 
-                if(startDate.before(endDate)) {
+                if (startDate.before(endDate)) {
                     dismiss()
                 } else {
                     toast(getString(R.string.create_trip_toast_error))

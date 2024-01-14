@@ -1,10 +1,13 @@
 package com.going.presentation.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +25,7 @@ class DashBoardActivity :
         setTabLayout()
         setViewPager()
         setTravelerName()
+        initCreateTripBtnClickListener()
 
     }
 
@@ -48,6 +52,18 @@ class DashBoardActivity :
         viewModel.getTravelerNameFromServer(progress)
         viewModel.name.observe(this) { travelerName ->
             binding.tvDashboardTitle.text = getString(R.string.dashboard_tv_title, travelerName)
+        }
+    }
+
+    private fun initCreateTripBtnClickListener() {
+        binding.btnDashboardCreateTrip.setOnSingleClickListener {
+            navigateToDashboard()
+        }
+    }
+
+    private fun navigateToDashboard() {
+        Intent(this, CreateTripActivity::class.java).apply {
+            startActivity(this)
         }
     }
 

@@ -5,7 +5,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class PreferenceTagDecoration (val context: Context) : RecyclerView.ItemDecoration() {
+class PreferenceTagDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

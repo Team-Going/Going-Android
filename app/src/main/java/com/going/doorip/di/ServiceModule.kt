@@ -1,8 +1,8 @@
 package com.going.doorip.di
 
-import android.provider.ContactsContract.Profile
 import com.going.data.service.AuthService
 import com.going.data.service.DashBoardService
+import com.going.data.service.EnterPreferenceService
 import com.going.data.service.EnterTripService
 import com.going.data.service.MockService
 import com.going.data.service.ProfileService
@@ -65,4 +65,9 @@ object ServiceModule {
     @Singleton
     fun provideStartInviteTripService(retrofit: Retrofit): StartInviteTripService =
         retrofit.create(StartInviteTripService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideEnterPreferenceService(retrofit: Retrofit): EnterPreferenceService =
+        retrofit.create(EnterPreferenceService::class.java)
 }

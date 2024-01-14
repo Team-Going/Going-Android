@@ -75,7 +75,8 @@ class CreateTripViewModel : ViewModel() {
     }
 
     private fun checkTripAvailable() {
-        isCheckTripAvailable.value = (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
+        isCheckTripAvailable.value =
+            (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
     }
 
 

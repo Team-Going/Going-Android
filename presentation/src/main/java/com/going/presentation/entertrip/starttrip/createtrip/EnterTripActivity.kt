@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.CodeState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
-import com.going.presentation.entertrip.starttrip.invitetrip.InviteFinishActivity
 import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
+import com.going.presentation.entertrip.starttrip.invitetrip.InviteFinishActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -123,6 +123,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         const val TITLE = "title"
         const val START = "start"
         const val END = "end"
+        const val CODE = "code"
         const val DAY = "day"
     }
 
