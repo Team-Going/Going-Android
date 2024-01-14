@@ -76,6 +76,7 @@ class DashBoardActivity :
 
     private fun navigateToDashboard() {
         Intent(this, CreateTripActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
     }

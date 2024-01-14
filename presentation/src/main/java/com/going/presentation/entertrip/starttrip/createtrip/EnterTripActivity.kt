@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.CodeState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
-import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
 import com.going.presentation.entertrip.starttrip.invitetrip.InviteFinishActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
@@ -32,15 +31,10 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         observeIsCodeAvailable()
         initNextBtnClickListener()
         observeEnterTripState()
-
-
     }
 
     private fun initBackBtnClickListener() {
         binding.btnEnterBack.setOnSingleClickListener {
-            Intent(this, StartTripSplashActivity::class.java).apply {
-                startActivity(this)
-            }
             finish()
         }
     }
@@ -85,12 +79,10 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         counter.setTextColor(getColor(color))
     }
 
-
     private fun observeEnterTripState() {
         viewModel.tripState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-
                     Intent(this, InviteFinishActivity::class.java).apply {
                         putExtra(TRIP_ID, state.data.tripId)
                         putExtra(TITLE, state.data.title)
@@ -126,5 +118,4 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         const val CODE = "code"
         const val DAY = "day"
     }
-
 }
