@@ -1,11 +1,21 @@
 package com.going.presentation.tendency.result
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
@@ -19,6 +29,8 @@ import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.io.File
+import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class TendencyResultActivity :
@@ -27,14 +39,14 @@ class TendencyResultActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getuserInfo()
+        getUserInfo()
         observeUserInfoState()
-        initRestartBtnClickLitener()
+        initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
     }
 
-    private fun getuserInfo() {
+    private fun getUserInfo() {
         viewModel.getUserInfoState()
     }
 
@@ -97,7 +109,7 @@ class TendencyResultActivity :
         return string
     }
 
-    private fun initRestartBtnClickLitener() {
+    private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
             navigateToTendencyTestScreen()
         }
@@ -105,7 +117,7 @@ class TendencyResultActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            toast("추후 업데이트 예정")
+            startImageDownload()
         }
     }
 
@@ -128,5 +140,76 @@ class TendencyResultActivity :
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+    }
+
+    private fun startImageDownload() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                PERMISSION_REQUEST_CODE,
+            )
+        } else {
+            saveImageToGallery(resources)
+        }
+    }
+
+    private fun saveImageToGallery(resources: Resources) {
+        val imageBitmap: Bitmap = BitmapFactory.decodeResource(
+            resources,
+            R.drawable.img_tendency_result_ari,
+        )
+        val imageFileName = DOWNLOAD_IMAGE_NAME.replace("%s", viewModel.tendencyId.value.toString())
+        val path = DOWNLOAD_PATH
+
+        val uploadFolder = Environment.getExternalStoragePublicDirectory(path)
+        if (!uploadFolder.exists()) {
+            uploadFolder.mkdirs()
+        }
+
+        val imageFile = File(uploadFolder, imageFileName)
+
+        val outputStream = FileOutputStream(imageFile)
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        scanFile(imageFile, "image/jpeg")
+
+        toast(getString(R.string.profile_image_download_success))
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startImageDownload()
+            } else {
+                toast(getString(R.string.profile_image_download_error))
+            }
+        }
+    }
+
+    private fun scanFile(file: File, mimeType: String) {
+        MediaScannerConnection.scanFile(
+            this,
+            arrayOf(file.absolutePath),
+            arrayOf(mimeType),
+            null,
+        )
+    }
+
+    companion object {
+        const val PERMISSION_REQUEST_CODE = 200
+        const val DOWNLOAD_PATH = "/Download/"
+        const val DOWNLOAD_IMAGE_NAME = "img_tendency_result%s.png"
     }
 }

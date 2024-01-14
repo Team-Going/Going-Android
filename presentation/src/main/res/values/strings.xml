@@ -152,6 +152,8 @@
     <string name="profile_tv_name">두릅이</string>
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
+    <string name="profile_image_download_success">이미지가 저장되었어요\n친구에게 내 캐릭터를 공유해 보세요</string>
+    <string name="profile_image_download_error">저장할 수 없습니다\ndoorip에 사진에대한 엑세스 권한이 없습니다</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
