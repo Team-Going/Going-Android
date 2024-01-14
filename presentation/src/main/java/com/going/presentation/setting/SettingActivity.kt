@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
-import com.going.presentation.tripdashboard.profile.ProfileActivity
-import com.going.presentation.tripdashboard.profile.ProfileViewModel
+import com.going.presentation.profile.ProfileActivity
+import com.going.presentation.profile.ProfileViewModel
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
