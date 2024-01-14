@@ -41,7 +41,7 @@ class TendencyTestViewModel @Inject constructor(
             "여행을 가게 되면 먼저 할 일은?",
             "예약 가능한 비행기 표와 숙소 알아보기",
             "다른 사람이 다녀온 여행 후기 찾아보기",
-            "가고 싶은 맛집, 명소 찾아보기",
+            "현지에서만 먹을 수 있는 음식 찾아보기",
             "여기에서만 할 수 있는 액티비티 찾아보기",
         ),
         TendencyTestMock(
@@ -60,9 +60,9 @@ class TendencyTestViewModel @Inject constructor(
         ),
         TendencyTestMock(
             "친구가 하루만 혼자 놀겠다 하면?",
-            "하고 싶은 걸 물어보고 일정을 바꾼다",
+            "하고 싶은 걸 물어보고 친구에게 맞춘다",
             "보내주지만 속으로는 불만이 있을까 걱정한다",
-            "하고 싶은 게 있나 보다' 생각하며 보내준다",
+            "'하고 싶은 게 있나 보다' 생각하며 보내준다",
             "그럼 오늘은 각자 시간을 보내자고 제안한다",
         ),
         TendencyTestMock(
