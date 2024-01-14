@@ -2,10 +2,10 @@ package com.going.presentation.preferencetag.entertrip
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
@@ -28,6 +28,7 @@ import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
@@ -92,13 +93,14 @@ class EnterPreferenceActivity :
         if (infoList != null) {
             title = intent.getStringExtra(NAME)
             val startYear = intent.getIntExtra(START_YEAR, 0)
-            val startMonth = intent.getIntExtra(START_MONTH, 0)
-            val startDay = intent.getIntExtra(START_DAY, 0)
+            val startMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
+            val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
             val endYear = intent.getIntExtra(END_YEAR, 0)
-            val endMonth = intent.getIntExtra(END_MONTH, 0)
-            val endDay = intent.getIntExtra(END_DAY, 0)
+            val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
+            val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
 
-            startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
+            startDate =
+                String.format(SERVER_DATE, startYear, startMonth, startDay)
             endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
         }
 
@@ -107,7 +109,6 @@ class EnterPreferenceActivity :
     private fun initStartBtnClickListener() {
         binding.btnPreferenceStart.setOnSingleClickListener {
             viewModel.getTripInfoFromServer()
-            toast("버튼 눌림")
         }
     }
 
@@ -115,7 +116,6 @@ class EnterPreferenceActivity :
         viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    Log.d("LYB", "성공힘")
                     Intent(this, InviteFinishActivity::class.java).apply {
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
@@ -132,7 +132,7 @@ class EnterPreferenceActivity :
                 is UiState.Empty -> return@onEach
 
             }
-        }
+        }.launchIn(lifecycleScope)
     }
 
     private fun sendTripInfo() {
@@ -159,5 +159,6 @@ class EnterPreferenceActivity :
 
     companion object {
         const val SERVER_DATE = "%s.%s.%s"
+        const val TWO_DIGIT_FORMAT = "%02d"
     }
 }

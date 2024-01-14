@@ -49,12 +49,9 @@ class EnterPreferenceViewModel @Inject constructor(
                 )
             )
                 .onSuccess {
-                    Log.d("LYB", "뷰모델에서 성공힘")
                     _enterPreferenceListState.value = UiState.Success(it)
                 }
                 .onFailure {
-                    Log.d("LYB", "뷰모델에서 실패함")
-                    Log.d("LYB", it.message.orEmpty())
                     _enterPreferenceListState.value = UiState.Failure(it.message.orEmpty())
                 }
         }

@@ -1,4 +1,4 @@
-package com.going.data.interceptor
+package com.going.data.dto.interceptor
 
 import com.going.data.BuildConfig.BASE_URL
 import com.going.data.dto.BaseResponse

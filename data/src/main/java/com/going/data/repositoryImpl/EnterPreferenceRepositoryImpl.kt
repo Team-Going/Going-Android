@@ -20,5 +20,4 @@ class EnterPreferenceRepositoryImpl @Inject constructor(
             ).data.toEnterPreferenceModel()
         }
 
-
 }

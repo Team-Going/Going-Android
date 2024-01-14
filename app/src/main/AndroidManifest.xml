@@ -67,7 +67,7 @@
 
         <activity
             android:name="com.going.presentation.tendency.splash.TendencySplashActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
@@ -77,7 +77,7 @@
 
         <activity
             android:name="com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
