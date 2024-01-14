@@ -18,6 +18,7 @@ import javax.inject.Inject
 class TendencyResultViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
 ) : ViewModel() {
+
     private val _userInfoState = MutableStateFlow<UiState<UserProfileRequestModel>>(UiState.Empty)
     val userInfoState: StateFlow<UiState<UserProfileRequestModel>> = _userInfoState
 
@@ -277,4 +278,5 @@ class TendencyResultViewModel @Inject constructor(
             ),
         ),
     )
+
 }

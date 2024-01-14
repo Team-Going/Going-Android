@@ -1,4 +1,4 @@
-package com.going.presentation.starttrip.createtrip
+package com.going.presentation.entertrip.starttrip.invitetrip
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,9 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
-import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
-import com.going.presentation.starttrip.StartTripSplashActivity
+import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
+import com.going.presentation.entertrip.starttrip.createtrip.BottomSheetDateContentFragment
+import com.going.presentation.entertrip.starttrip.createtrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -17,8 +18,8 @@ class CreateTripActivity :
     BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
     private val viewModel by viewModels<CreateTripViewModel>()
 
-    private lateinit var startBottomSheetDialog: DateBottomSheet
-    private lateinit var endBottomSheetDialog: DateBottomSheet
+    private lateinit var startBottomSheetDialog: BottomSheetDateContentFragment
+    private lateinit var endBottomSheetDialog: BottomSheetDateContentFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -161,14 +162,14 @@ class CreateTripActivity :
 
     private fun initStartDateClickListener() {
         binding.tvCreateTripStartDate.setOnSingleClickListener {
-            startBottomSheetDialog = DateBottomSheet(viewModel, true)
+            startBottomSheetDialog = BottomSheetDateContentFragment(viewModel, true)
             startBottomSheetDialog.show(supportFragmentManager, startBottomSheetDialog.tag)
         }
     }
 
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
-            endBottomSheetDialog = DateBottomSheet(viewModel, false)
+            endBottomSheetDialog = BottomSheetDateContentFragment(viewModel, false)
             endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
         }
     }

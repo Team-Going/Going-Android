@@ -1,4 +1,4 @@
-package com.going.presentation.starttrip.finishtrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -8,7 +8,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityFinishTripBinding
-import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 

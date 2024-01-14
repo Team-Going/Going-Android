@@ -6,6 +6,7 @@ import com.going.data.repositoryImpl.EnterTripRepositoryImpl
 import com.going.data.repositoryImpl.MockRepositoryImpl
 import com.going.data.repositoryImpl.ProfileRepositoryImpl
 import com.going.data.repositoryImpl.SettingRepositoryImpl
+import com.going.data.repositoryImpl.StartInviteTripRepositoryImpl
 import com.going.data.repositoryImpl.TendencyRepositoryImpl
 import com.going.data.repositoryImpl.TodoRepositoryImpl
 import com.going.data.repositoryImpl.TokenRepositoryImpl
@@ -15,6 +16,7 @@ import com.going.domain.repository.EnterTripRepository
 import com.going.domain.repository.MockRepository
 import com.going.domain.repository.ProfileRepository
 import com.going.domain.repository.SettingRepository
+import com.going.domain.repository.StartInviteTripRepository
 import com.going.domain.repository.TendencyRepository
 import com.going.domain.repository.TodoRepository
 import com.going.domain.repository.TokenRepository
@@ -72,4 +74,9 @@ object RepositoryModule {
     @Singleton
     fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository =
         profileRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun provideStartInviteTripRepository(startInviteTripRepositoryImpl: StartInviteTripRepositoryImpl): StartInviteTripRepository =
+        startInviteTripRepositoryImpl
 }

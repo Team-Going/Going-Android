@@ -8,10 +8,10 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.AuthState
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
-import com.going.domain.entity.AuthState
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class OnboardingProfileSettingActivity :
     BaseActivity<ActivityOnboardingProfileSettingBinding>(R.layout.activity_onboarding_profile_setting) {
+
     private val viewModel by viewModels<OnboardingProfileSettingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
