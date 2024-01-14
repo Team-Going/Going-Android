@@ -1,5 +1,7 @@
 package com.going.presentation.setting
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
@@ -18,11 +20,12 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
         initProfileClickListener()
         initInquireClickListener()
-        initPolicyClickListener()
+        setVersionCode()
+//        initPolicyClickListener()
+//        initTermsClickListener()
         initAboutDooripClickListener()
         initLogoutClickListener()
         initQuitClickListener()
-        setVersionCode()
     }
 
     private fun initProfileClickListener() {
@@ -32,16 +35,25 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initInquireClickListener() {
         binding.btnSettingInquire.setOnSingleClickListener {
+            binding.btnSettingAboutDoorip.setOnSingleClickListener {
+                Intent(Intent.ACTION_VIEW, Uri.parse(FAQ)).apply {
+                    startActivity(this)
+                }
+            }
         }
     }
 
-    private fun initPolicyClickListener() {
-        binding.btnSettingPolicy.setOnSingleClickListener {
-        }
+    private fun setVersionCode() {
+        binding.tvSettingShowServiceVersion.text = VERSION_CODE
     }
 
     private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDoorip.setOnSingleClickListener {
+            binding.btnSettingAboutDoorip.setOnSingleClickListener {
+                Intent(Intent.ACTION_VIEW, Uri.parse(ABOUT_DOORIP)).apply {
+                    startActivity(this)
+                }
+            }
         }
     }
 
@@ -67,10 +79,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         quitDialog?.show(supportFragmentManager, quitDialog?.tag)
     }
 
-    private fun setVersionCode() {
-        binding.tvSettingShowServiceVersion.text = VERSION_CODE
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         if (logoutDialog?.isAdded == true) logoutDialog?.dismiss()
@@ -79,5 +87,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     companion object {
         private const val VERSION_CODE = "v1.0"
+        private const val ABOUT_DOORIP =
+            "https://goinggoing.notion.site/758273e결2bebb477aac0adb0195359f21"
+        private const val FAQ =
+            "https://goinggoing.notion.site/FAQ-920f6ad93fea46a983061f412e15cad1?pvs=74"
     }
 }
