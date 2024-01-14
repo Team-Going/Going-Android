@@ -1,4 +1,4 @@
-package com.going.presentation.preferencetag.entertrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import android.content.Intent
 import android.os.Bundle

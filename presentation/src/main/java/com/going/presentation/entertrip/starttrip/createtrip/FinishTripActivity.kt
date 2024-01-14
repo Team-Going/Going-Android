@@ -7,8 +7,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishTripBinding
-import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -42,15 +42,14 @@ class FinishTripActivity :
 
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
-            Intent(this, EnterPreferenceActivity::class.java).apply {
+            Intent(this, DashBoardActivity::class.java).apply {
                 startActivity(this)
-                //입장 코드 받아서 보내기
             }
             finish()
         }
     }
 
-//    private fun checkDayLeft(){
+    //    private fun checkDayLeft(){
 //       그 전 뷰에서 서버 붙여서 보내주는 day 값 알게 되면 맞게 로직 구현하겠습니다
 //        if(dayLeft > 0) {
 //            binding.tvFinishTripDayLeft.text = dayLeft

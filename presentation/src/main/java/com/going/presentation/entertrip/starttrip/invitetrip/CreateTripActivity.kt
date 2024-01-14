@@ -10,7 +10,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
 import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
 import com.going.presentation.entertrip.starttrip.createtrip.BottomSheetDateContentFragment
-import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
+import com.going.presentation.entertrip.starttrip.createtrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
