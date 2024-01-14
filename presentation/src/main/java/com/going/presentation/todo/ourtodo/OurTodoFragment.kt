@@ -172,7 +172,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     companion object {
-        const val TAB_UNCOMPLETE = "해야해요"
+        const val TAB_UNCOMPLETE = "해야 해요"
         const val TAB_COMPLETE = "완료했어요"
     }
 
