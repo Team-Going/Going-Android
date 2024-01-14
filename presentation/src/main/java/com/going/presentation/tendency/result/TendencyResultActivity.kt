@@ -43,16 +43,16 @@ class TendencyResultActivity :
         viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Loading -> return@onEach
-                is UiState.Success -> bindTendencyInfo(state.data.result)
+                is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun bindTendencyInfo(number: Int) {
+    private fun bindTendencyInfo(name: String, number: Int) {
         with(binding) {
-            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
+            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, name)
 
             viewModel.mockTendencyResult[number].apply {
                 imgTendencyTestResult.setImageResource(resultImage)
