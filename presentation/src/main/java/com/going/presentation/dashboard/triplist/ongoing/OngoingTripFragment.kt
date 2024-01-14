@@ -72,8 +72,8 @@ class OngoingTripFragment :
     }
 
     private fun setEmptyView(isEmpty: Boolean) {
-        binding.rvDashboardOngoingTrip.isVisible = !isEmpty
-        binding.layoutDashboardEmpty.isVisible = isEmpty
+        binding.rvDashboardOngoingTrip.isVisible = isEmpty
+        binding.layoutDashboardEmpty.isVisible = !isEmpty
     }
 
     override fun onDestroyView() {

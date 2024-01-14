@@ -28,6 +28,7 @@ class DashBoardActivity :
         setTravelerName()
         initSettingBtnClickListener()
         initCreateTripBtnClickListener()
+
     }
 
     private fun setTabLayout() {

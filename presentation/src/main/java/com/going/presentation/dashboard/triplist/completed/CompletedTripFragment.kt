@@ -66,13 +66,14 @@ class CompletedTripFragment :
                 is UiState.Loading -> return@onEach
 
                 is UiState.Empty -> setEmptyView(true)
+
             }
         }.launchIn(lifecycleScope)
     }
 
     private fun setEmptyView(isEmpty: Boolean) {
-        binding.rvDashboardCompletedTrip.isVisible = !isEmpty
-        binding.layoutDashboardEmpty.isVisible = isEmpty
+        binding.rvDashboardCompletedTrip.isVisible = isEmpty
+        binding.layoutDashboardEmpty.isVisible = !isEmpty
     }
 
 
