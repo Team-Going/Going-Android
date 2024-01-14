@@ -7,6 +7,7 @@ import com.going.domain.entity.AuthState
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
+import com.going.domain.repository.TokenRepository
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.user.UserApiClient
@@ -20,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OnboardingProfileSettingViewModel @Inject constructor(
     private val authRepository: AuthRepository,
+    private val tokenRepository: TokenRepository,
 ) : ViewModel() {
 
     val name = MutableStateFlow("")
@@ -88,6 +90,8 @@ class OnboardingProfileSettingViewModel @Inject constructor(
                 kakaoAccessToken,
                 SignUpRequestModel(name.value, info.value, KAKAO),
             ).onSuccess {
+                tokenRepository.setTokens(it.accessToken, it.refreshToken)
+                tokenRepository.setUserId(it.userId)
                 _isSignUpState.value = AuthState.SUCCESS
             }.onFailure {
                 _isSignUpState.value = AuthState.FAILURE

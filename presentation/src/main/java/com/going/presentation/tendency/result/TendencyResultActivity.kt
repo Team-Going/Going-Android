@@ -3,7 +3,6 @@ package com.going.presentation.tendency.result
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
@@ -21,7 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
-import com.going.presentation.tendency.ttest.TendencyTestActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -112,7 +111,7 @@ class TendencyResultActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToTendencyTestScreen()
+            navigateToTendencySplashScreen()
         }
     }
 
@@ -128,8 +127,8 @@ class TendencyResultActivity :
         }
     }
 
-    private fun navigateToTendencyTestScreen() {
-        Intent(this, TendencyTestActivity::class.java).apply {
+    private fun navigateToTendencySplashScreen() {
+        Intent(this, TendencySplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
@@ -141,6 +140,7 @@ class TendencyResultActivity :
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+        finish()
     }
 
     private fun startImageDownload() {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
+import com.going.presentation.setting.SettingActivity
 import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -25,8 +26,8 @@ class DashBoardActivity :
         setTabLayout()
         setViewPager()
         setTravelerName()
+        initSettingBtnClickListener()
         initCreateTripBtnClickListener()
-
     }
 
     private fun setTabLayout() {
@@ -55,6 +56,18 @@ class DashBoardActivity :
         }
     }
 
+    private fun initSettingBtnClickListener() {
+        binding.btnDashboardSetting.setOnSingleClickListener {
+            navigateToSettingScreen()
+        }
+    }
+
+    private fun navigateToSettingScreen() {
+        Intent(this, SettingActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
+
     private fun initCreateTripBtnClickListener() {
         binding.btnDashboardCreateTrip.setOnSingleClickListener {
             navigateToDashboard()
@@ -63,6 +76,7 @@ class DashBoardActivity :
 
     private fun navigateToDashboard() {
         Intent(this, CreateTripActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
     }
@@ -71,5 +85,4 @@ class DashBoardActivity :
         const val TAB_ONGOING = "진행중인 여행"
         const val TAB_COMPLETED = "지나간 여행"
     }
-
 }

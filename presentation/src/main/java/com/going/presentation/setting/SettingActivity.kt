@@ -18,6 +18,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initBackBtnClickListener()
         initProfileClickListener()
         initInquireClickListener()
         setVersionCode()
@@ -26,6 +27,12 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initAboutDooripClickListener()
         initLogoutClickListener()
         initQuitClickListener()
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnPreferenceBack.setOnSingleClickListener {
+            finish()
+        }
     }
 
     private fun initProfileClickListener() {
