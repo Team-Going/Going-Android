@@ -33,8 +33,8 @@ class OngoingTripFragment :
 
         initAdapter()
         initItemDecoration()
-        observeDashBoardListState()
         setTripList()
+        observeDashBoardListState()
 
     }
 

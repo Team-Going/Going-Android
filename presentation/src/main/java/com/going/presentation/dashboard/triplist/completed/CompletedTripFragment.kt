@@ -33,9 +33,8 @@ class CompletedTripFragment :
 
         initAdapter()
         initItemDecoration()
-        observeDashBoardListState()
         setTripList()
-
+        observeDashBoardListState()
     }
 
     private fun initAdapter() {
