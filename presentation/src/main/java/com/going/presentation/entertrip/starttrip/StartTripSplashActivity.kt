@@ -1,10 +1,11 @@
-package com.going.presentation.starttrip
+package com.going.presentation.entertrip.starttrip
 
 import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityStartTripSplashBinding
-import com.going.presentation.starttrip.createtrip.CreateTripActivity
+import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -28,7 +29,10 @@ class StartTripSplashActivity :
 
     private fun initEnterTripBtnClickListener() {
         binding.btnStartTripSplashEnterTrip.setOnSingleClickListener {
-        //초대 코드 받아서 여행 입장하는 액티비티로 연결
+            Intent(this, EnterTripActivity::class.java).apply {
+                startActivity(this)
+            }
+            finish()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.going.presentation.enter.entertrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -52,8 +52,8 @@ class EnterTripViewModel @Inject constructor(
         viewModelScope.launch {
             enterTripRepository.postEnterTrip(
                 EnterTripRequestModel(inviteCode.value ?: "")
-            ).onSuccess { result ->
-                _tripState.value = UiState.Success(result)
+            ).onSuccess {
+                _tripState.value = UiState.Success(it)
             }.onFailure {
                 _tripState.value = UiState.Failure(it.message.orEmpty())
             }

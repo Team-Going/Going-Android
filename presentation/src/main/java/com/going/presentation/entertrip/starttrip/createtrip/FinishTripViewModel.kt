@@ -1,4 +1,4 @@
-package com.going.presentation.starttrip.finishtrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import androidx.lifecycle.ViewModel
 

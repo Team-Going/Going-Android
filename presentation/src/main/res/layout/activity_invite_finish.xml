@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray_50"
-        tools:context=".enter.invitefinish.InviteFinishActivity">
+        tools:context=".entertrip.starttrip.invitetrip.InviteFinishActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_invite_finish_trip"

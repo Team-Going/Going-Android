@@ -1,4 +1,4 @@
-package com.going.presentation.preferencetag.entertrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,13 +9,13 @@ import com.going.presentation.databinding.ActivityEnterPreferenceBinding
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration
 import com.going.presentation.preferencetag.PreferenceTagViewModel
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_DAY
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_MONTH
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_YEAR
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.NAME
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_DAY
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_MONTH
-import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_DAY
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_MONTH
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_YEAR
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.NAME
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_DAY
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_MONTH
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_YEAR
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
