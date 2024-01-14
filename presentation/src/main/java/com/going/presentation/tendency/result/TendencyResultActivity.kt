@@ -155,11 +155,11 @@ class TendencyResultActivity :
                 PERMISSION_REQUEST_CODE,
             )
         } else {
-            saveImageToGallery(resources)
+            saveImageToGallery()
         }
     }
 
-    private fun saveImageToGallery(resources: Resources) {
+    private fun saveImageToGallery() {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
             R.drawable.img_tendency_result_ari,
