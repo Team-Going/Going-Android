@@ -140,6 +140,7 @@ class TendencyResultActivity :
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+        finish()
     }
 
     private fun startImageDownload() {

@@ -31,7 +31,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initBackBtnClickListener() {
         binding.btnPreferenceBack.setOnSingleClickListener {
-            navigateUpTo(intent)
+            finish()
         }
     }
 
