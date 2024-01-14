@@ -1,15 +1,16 @@
-package com.going.presentation.entertrip.starttrip.invitetrip
+package com.going.presentation.entertrip.invitetrip.finish
 
 import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.DAY
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.END
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.START
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.DAY
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.END
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.START
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.entertrip.invitetrip.preference.FinishPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
