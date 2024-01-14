@@ -84,8 +84,9 @@ class TendencyTestActivity :
                 override fun onAnimationStart(animation: Animator) {
                     viewModel.clearAllChecked()
                     setProgressAnimate(binding.pbTendencyTest, viewModel.step.value)
-                    fadeOutList.map {
-                        it.start()
+
+                    for (i in 1 until fadeOutList.size) {
+                        fadeOutList[i].start()
                     }
                 }
 
