@@ -21,7 +21,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
         initProfileClickListener()
         initInquireClickListener()
         setVersionCode()
-//        initPolicyClickListener()
+        initPolicyClickListener()
 //        initTermsClickListener()
         initAboutDooripClickListener()
         initLogoutClickListener()
@@ -45,6 +45,14 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun setVersionCode() {
         binding.tvSettingShowServiceVersion.text = VERSION_CODE
+    }
+
+    private fun initPolicyClickListener() {
+        binding.btnSettingPolicy.setOnSingleClickListener {
+            Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL)).apply {
+                startActivity(this)
+            }
+        }
     }
 
     private fun initAboutDooripClickListener() {
@@ -91,5 +99,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
             "https://goinggoing.notion.site/758273e결2bebb477aac0adb0195359f21"
         private const val FAQ =
             "https://goinggoing.notion.site/FAQ-920f6ad93fea46a983061f412e15cad1?pvs=74"
+        private const val PRIVACY_POLICY_URL =
+            "https://goinggoing.notion.site/c4d5513bba2c4c20aaf9e21522289304?pvs=74"
     }
 }
