@@ -39,6 +39,7 @@ class TendencyResultViewModel @Inject constructor(
     val mockTendencyResult: List<ProfileMock> = listOf(
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_srp,
+            downloadImage = R.drawable.img_download_srp,
             profileTitle = "배려심 넘치는 든든잉",
             profileSubTitle = "꼼꼼하고 세심하게 여행을 준비해요",
             tags = listOf(
@@ -69,6 +70,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_sri,
+            downloadImage = R.drawable.img_download_sri,
             profileTitle = "뭐든지 다 좋아! 와따잉",
             profileSubTitle = "어떤 여행이든, 일정이든 즐겨요",
             tags = listOf(
@@ -99,6 +101,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_sep,
+            downloadImage = R.drawable.img_download_sep,
             profileTitle = "계획 절대 지켜 꼼꼼잉",
             profileSubTitle = "여행의 처음부터 끝까지 착실하게 계획해요",
             tags = listOf(
@@ -129,6 +132,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_sei,
+            downloadImage = R.drawable.img_download_sei,
             profileTitle = "하고싶은건 하는 고잉",
             profileSubTitle = "하고 싶은 것만 하게 해주면, 나머지는 다 괜찮아요",
             tags = listOf(
@@ -159,6 +163,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_arp,
+            downloadImage = R.drawable.img_download_arp,
             profileTitle = "다정한 여행 반장 모여잉",
             profileSubTitle = "즐거운 여행을 위해 모두를 챙겨요",
             tags = listOf(
@@ -189,6 +194,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_ari,
+            downloadImage = R.drawable.img_download_ari,
             profileTitle = "깨발랄 치어리더 아쟈잉",
             profileSubTitle = "친구들과 함께 하는 것 자체가 행복해요",
             tags = listOf(
@@ -219,6 +225,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_aep,
+            downloadImage = R.drawable.img_download_aep,
             profileTitle = "나만 믿어 따라와 척척잉",
             profileSubTitle = "모든 것을 계획하고 진행하는 프로총대러에요",
             tags = listOf(
@@ -249,6 +256,7 @@ class TendencyResultViewModel @Inject constructor(
         ),
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_aei,
+            downloadImage = R.drawable.img_download_aei,
             profileTitle = "모험을 즐기는 별별잉",
             profileSubTitle = "여행의 진정한 재미는 새로운 도전이에요",
             tags = listOf(

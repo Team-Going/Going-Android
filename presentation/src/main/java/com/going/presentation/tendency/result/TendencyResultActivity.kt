@@ -167,7 +167,7 @@ class TendencyResultActivity :
     private fun saveImageToGallery() {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
-            R.drawable.img_tendency_result_ari,
+            viewModel.mockTendencyResult[viewModel.tendencyId.value?:0].downloadImage,
         )
         val imageFileName = DOWNLOAD_IMAGE_NAME.replace("%s", viewModel.tendencyId.value.toString())
         val path = DOWNLOAD_PATH

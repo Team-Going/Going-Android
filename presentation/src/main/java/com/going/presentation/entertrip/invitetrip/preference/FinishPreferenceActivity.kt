@@ -12,10 +12,9 @@ import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
+import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
+import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.presentation.onboarding.signin.SignInActivity
-import com.going.presentation.preferencetag.PreferenceTagAdapter
-import com.going.presentation.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
