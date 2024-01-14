@@ -102,7 +102,7 @@
 
         <activity
             android:name="com.going.presentation.entertrip.StartTripSplashActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
