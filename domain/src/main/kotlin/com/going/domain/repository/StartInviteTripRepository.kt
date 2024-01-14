@@ -5,6 +5,7 @@ import com.going.domain.entity.response.StartInviteTripModel
 
 interface StartInviteTripRepository {
     suspend fun postStartInviteTrip(
+        tripId: Long,
         requestStartInviteTripModel: StartInviteTripRequestModel
     ): Result<StartInviteTripModel>
 }
