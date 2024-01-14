@@ -1,7 +1,6 @@
 package com.going.presentation.dashboard.triplist.ongoing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -35,6 +34,7 @@ class OngoingTripFragment :
         initAdapter()
         initItemDecoration()
         observeDashBoardListState()
+        setTripList()
 
     }
 
@@ -60,31 +60,22 @@ class OngoingTripFragment :
                 is UiState.Success -> {
                     setEmptyView(false)
                     adapter.submitList(state.data.trips)
-                    setTripView()
                 }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
                 is UiState.Loading -> return@onEach
 
-                is UiState.Empty -> setEmptyView(true)
+                is UiState.Empty -> {
+                    setEmptyView(true)
+                }
             }
         }.launchIn(lifecycleScope)
     }
 
     private fun setEmptyView(isEmpty: Boolean) {
-        binding.rvDashboardOngoingTrip.isVisible = isEmpty
-        binding.layoutDashboardEmpty.isVisible = !isEmpty
-    }
-
-    private fun setTripView() {
-        binding.rvDashboardOngoingTrip.isVisible = true
-        binding.layoutDashboardEmpty.isVisible = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setTripList()
+        binding.rvDashboardOngoingTrip.isVisible = !isEmpty
+        binding.layoutDashboardEmpty.isVisible = isEmpty
     }
 
     override fun onDestroyView() {

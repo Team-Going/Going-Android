@@ -39,7 +39,11 @@ class DashBoardViewModel @Inject constructor(
         viewModelScope.launch {
             dashBoardRepository.getDashBoardList(progress)
                 .onSuccess {
-                    dashBoardListState.value = UiState.Success(it)
+                    if (it.trips.isEmpty()) {
+                        dashBoardListState.value = UiState.Empty
+                    } else {
+                        dashBoardListState.value = UiState.Success(it)
+                    }
                 }
                 .onFailure {
                     dashBoardListState.value = UiState.Failure(it.message.orEmpty())
