@@ -23,7 +23,6 @@ class CreateTripActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initBackBtnClickListener()
         initBindingViewModel()
         observeTextLength()
         observeIsNameAvailable()
@@ -32,12 +31,6 @@ class CreateTripActivity :
         initStartDateClickListener()
         initEndDateClickListener()
         initNextBtnClickListener()
-    }
-
-    private fun initBackBtnClickListener() {
-        binding.tbCreateTrip.setOnSingleClickListener {
-            finish()
-        }
     }
 
     private fun initBindingViewModel() {

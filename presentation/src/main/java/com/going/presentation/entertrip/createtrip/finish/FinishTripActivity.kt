@@ -22,7 +22,7 @@ import com.kakao.sdk.auth.Constants.CODE
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
 
-    private var inviteCode: String? = ""
+    private var inviteCode: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +53,7 @@ class FinishTripActivity :
         // TODO : 아워투두 화면으로 보내기
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
             finish()

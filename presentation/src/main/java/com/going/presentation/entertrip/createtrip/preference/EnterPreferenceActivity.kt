@@ -57,7 +57,6 @@ class EnterPreferenceActivity :
 
         initAdapter()
         initItemDecoration()
-        initBackClickListener()
         getCreateTripInfo()
         initStartBtnClickListener()
         observeEnterPreferenceListState()
@@ -76,12 +75,6 @@ class EnterPreferenceActivity :
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
-    private fun initBackClickListener() {
-        binding.btnPreferenceStart.setOnSingleClickListener {
-            finish()
-        }
-    }
-
     private fun isButtonValid() {
         val isValid = preferenceAnswers.all { it != Int.MAX_VALUE }
 
@@ -94,9 +87,7 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        val infoList = getIntent()
-
-        if (infoList != null) {
+        if (intent != null) {
             title = intent.getStringExtra(NAME)
             val startYear = intent.getIntExtra(START_YEAR, 0)
             val startMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
@@ -105,8 +96,7 @@ class EnterPreferenceActivity :
             val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
             val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
 
-            startDate =
-                String.format(SERVER_DATE, startYear, startMonth, startDay)
+            startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
             endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
         }
 

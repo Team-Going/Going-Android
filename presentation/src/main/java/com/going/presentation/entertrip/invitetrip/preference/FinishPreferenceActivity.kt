@@ -44,7 +44,6 @@ class FinishPreferenceActivity :
         initAdapter()
         initItemDecoration()
         getTripId()
-        initBackClickListener()
         initNextBtnClickListener()
         sendStyleInfo()
         observeFinishPreferenceState()
@@ -64,15 +63,6 @@ class FinishPreferenceActivity :
 
     private fun getTripId() {
         viewModel.tripId.value = intent.getLongExtra(TRIP_ID, -1L)
-    }
-
-    private fun initBackClickListener() {
-        binding.btnPreferenceBack.setOnSingleClickListener {
-            Intent(this, InviteFinishActivity::class.java).apply {
-                startActivity(this)
-            }
-            finish()
-        }
     }
 
     private fun isButtonValid() {
