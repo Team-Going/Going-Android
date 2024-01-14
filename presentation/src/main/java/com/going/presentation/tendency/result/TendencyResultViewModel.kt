@@ -1,5 +1,12 @@
 package com.going.presentation.tendency.result
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.ProfileMock
@@ -28,6 +35,22 @@ class TendencyResultViewModel @Inject constructor(
             }.onFailure {
                 _userInfoState.value = UiState.Failure(it.message.toString())
             }
+        }
+    }
+
+    fun startImageDownload(context: Context, activity: Activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                TendencyResultActivity.PERMISSION_REQUEST_CODE,
+            )
+        } else {
+            // saveImageToGallery()
         }
     }
 
