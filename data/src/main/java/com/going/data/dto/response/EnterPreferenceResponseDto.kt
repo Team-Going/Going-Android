@@ -1,7 +1,10 @@
 package com.going.data.dto.response
 
+import com.going.domain.entity.response.EnterPreferenceModel
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class EnterPreferenceResponseDto(
     @SerialName("tripId")
     val tripId: Long,
@@ -17,5 +20,5 @@ data class EnterPreferenceResponseDto(
     val day: Int,
 ) {
     fun toEnterPreferenceModel() =
-        EnterPreferenceResponseDto(tripId, title, startDate, endDate, code, day)
+        EnterPreferenceModel(tripId, title, startDate, endDate, code, day)
 }

@@ -1,6 +1,7 @@
 package com.going.data.datasourceImpl
 
 import com.going.data.datasource.EnterPreferenceDataSource
+import com.going.data.dto.BaseResponse
 import com.going.data.dto.request.EnterPreferenceRequestDto
 import com.going.data.dto.response.EnterPreferenceResponseDto
 import com.going.data.service.EnterPreferenceService
@@ -12,7 +13,7 @@ class EnterPreferenceDataSourceImpl @Inject constructor(
 
     override suspend fun postTripInfo(
         request: EnterPreferenceRequestDto
-    ): EnterPreferenceResponseDto =
+    ): BaseResponse<EnterPreferenceResponseDto> =
         enterPreferenceService.postTripInfoFromServer(request)
 
 }

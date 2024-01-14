@@ -1,6 +1,6 @@
 package com.going.domain.entity.response
 
-data class EnterPreferenceResponseModel(
+data class EnterPreferenceModel(
     val tripId : Long,
     val title : String,
     val startDate : String,

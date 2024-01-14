@@ -1,11 +1,19 @@
 package com.going.presentation.preferencetag.entertrip
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.flowWithLifecycle
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.DAY
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.END
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.START
+import com.going.presentation.enter.entertrip.EnterTripActivity.Companion.TITLE
+import com.going.presentation.enter.invitefinish.InviteFinishActivity
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_DAY
@@ -16,8 +24,13 @@ import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_YEAR
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class EnterPreferenceActivity :
     BaseActivity<ActivityEnterPreferenceBinding>(R.layout.activity_enter_preference),
     PreferenceTagAdapter.OnPreferenceSelectedListener {
@@ -40,7 +53,8 @@ class EnterPreferenceActivity :
         initItemDecoration()
         initBackClickListener()
         getCreateTripInfo()
-        sendStyleInfo()
+        initStartBtnClickListener()
+        observeEnterPreferenceListState()
 
     }
 
@@ -57,7 +71,7 @@ class EnterPreferenceActivity :
 
     private fun initBackClickListener() {
         binding.btnPreferenceStart.setOnSingleClickListener {
-            sendStyleInfo()
+            finish()
         }
     }
 
@@ -90,13 +104,52 @@ class EnterPreferenceActivity :
 
     }
 
-    private fun sendStyleInfo() {
-        var styleA = preferenceAnswers[0]
+    private fun initStartBtnClickListener() {
+        binding.btnPreferenceStart.setOnSingleClickListener {
+            viewModel.getTripInfoFromServer()
+            toast("버튼 눌림")
+        }
+    }
+
+    private fun observeEnterPreferenceListState() {
+        viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    Log.d("LYB", "성공힘")
+                    Intent(this, InviteFinishActivity::class.java).apply {
+                        putExtra(TITLE, state.data.title)
+                        putExtra(START, state.data.startDate)
+                        putExtra(END, state.data.endDate)
+                        putExtra(DAY, state.data.day)
+                        startActivity(this)
+                    }
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+
+            }
+        }
+    }
+
+    private fun sendTripInfo() {
+        viewModel.title.value = title
+        viewModel.startDate.value = startDate
+        viewModel.endDate.value = endDate
+        viewModel.styleA.value = preferenceAnswers[0]
+        viewModel.styleB.value = preferenceAnswers[1]
+        viewModel.styleC.value = preferenceAnswers[2]
+        viewModel.styleD.value = preferenceAnswers[3]
+        viewModel.styleE.value = preferenceAnswers[4]
     }
 
     override fun onPreferenceSelected(item: PreferenceData, checkList: Int) {
         preferenceAnswers[item.number.toInt() - 1] = checkList
         isButtonValid()
+        sendTripInfo()
     }
 
     override fun onDestroy() {
