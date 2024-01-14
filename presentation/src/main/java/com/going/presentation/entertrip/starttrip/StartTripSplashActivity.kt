@@ -1,11 +1,11 @@
-package com.going.presentation.starttrip
+package com.going.presentation.entertrip.starttrip
 
 import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityStartTripSplashBinding
-import com.going.presentation.enter.entertrip.EnterTripActivity
-import com.going.presentation.starttrip.createtrip.CreateTripActivity
+import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 

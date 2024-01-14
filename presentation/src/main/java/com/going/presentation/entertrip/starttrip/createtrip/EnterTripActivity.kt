@@ -1,4 +1,4 @@
-package com.going.presentation.enter.entertrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.CodeState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
-import com.going.presentation.enter.invitefinish.InviteFinishActivity
-import com.going.presentation.starttrip.StartTripSplashActivity
+import com.going.presentation.entertrip.starttrip.invitetrip.InviteFinishActivity
+import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener

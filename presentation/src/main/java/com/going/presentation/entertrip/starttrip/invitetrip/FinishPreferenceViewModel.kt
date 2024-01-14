@@ -1,4 +1,4 @@
-package com.going.presentation.preferencetag.invitefinish
+package com.going.presentation.entertrip.starttrip.invitetrip
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
