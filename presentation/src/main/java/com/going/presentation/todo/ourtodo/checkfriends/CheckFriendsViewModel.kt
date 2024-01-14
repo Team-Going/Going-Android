@@ -1,4 +1,4 @@
-package com.going.presentation.checkfriends
+package com.going.presentation.todo.ourtodo.checkfriends
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.response.TripParticipantModel

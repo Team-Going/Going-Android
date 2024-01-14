@@ -2,7 +2,6 @@ package com.going.doorip.di
 
 import com.going.data.service.AuthService
 import com.going.data.service.DashBoardService
-import com.going.data.service.EnterPreferenceService
 import com.going.data.service.EnterTripService
 import com.going.data.service.MockService
 import com.going.data.service.ProfileService
@@ -60,8 +59,4 @@ object ServiceModule {
     fun provideProfileService(retrofit: Retrofit): ProfileService =
         retrofit.create(ProfileService::class.java)
 
-    @Provides
-    @Singleton
-    fun provideEnterPreferenceService(retrofit: Retrofit): EnterPreferenceService =
-        retrofit.create(EnterPreferenceService::class.java)
 }
