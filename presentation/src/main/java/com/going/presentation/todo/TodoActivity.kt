@@ -19,9 +19,15 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getTripId()
         initBnvItemIconTintList()
         initBnvItemSelectedListener()
-        getTripId()
+    }
+
+    private fun getTripId() {
+        if (intent != null) {
+            tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        }
     }
 
     private fun initBnvItemIconTintList() {
@@ -53,12 +59,6 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
         }
         supportFragmentManager.commit {
             replace<T>(R.id.fcv_todo, T::class.java.canonicalName, bundle)
-        }
-    }
-
-    private fun getTripId() {
-        if (intent != null) {
-            tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
         }
     }
 
