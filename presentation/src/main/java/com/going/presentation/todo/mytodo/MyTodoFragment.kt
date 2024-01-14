@@ -12,6 +12,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
+import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
@@ -34,6 +35,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         super.onViewCreated(view, savedInstanceState)
 
         initAddTodoListener()
+        getTripId()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -50,10 +52,15 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         }
     }
 
+    private fun getTripId() {
+        arguments?.let {
+            viewModel.tripId = it.getLong(TodoActivity.EXTRA_TRIP_ID)
+        }
+    }
+
+
     private fun setMyTripInfo() {
-        // TODO: tripId
-        val tripId: Long = 1
-        viewModel.getMyTripInfoFromServer(tripId)
+        viewModel.getMyTripInfoFromServer()
     }
 
     private fun setTabLayout() {

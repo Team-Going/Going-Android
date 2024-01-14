@@ -30,16 +30,16 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
     }
 
     private fun initBnvItemSelectedListener() {
-        supportFragmentManager.findFragmentById(R.id.fcv_todo) ?: navigateTo<OurTodoFragment>()
+        supportFragmentManager.findFragmentById(R.id.fcv_todo) ?: navigateTo<OurTodoFragment>(tripId)
 
         binding.bnvTodo.setOnItemSelectedListener { menu ->
             if (binding.bnvTodo.selectedItemId == menu.itemId) {
                 return@setOnItemSelectedListener false
             }
             when (menu.itemId) {
-                R.id.menu_our_todo -> navigateTo<OurTodoFragment>()
+                R.id.menu_our_todo -> navigateTo<OurTodoFragment>(tripId)
 
-                R.id.menu_my_todo -> navigateTo<MyTodoFragment>()
+                R.id.menu_my_todo -> navigateTo<MyTodoFragment>(tripId)
 
                 else -> return@setOnItemSelectedListener false
             }
@@ -47,9 +47,12 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
         }
     }
 
-    private inline fun <reified T : Fragment> navigateTo() {
+    private inline fun <reified T : Fragment> navigateTo(id: Long) {
+        val bundle = Bundle().apply {
+            putLong(EXTRA_TRIP_ID, id)
+        }
         supportFragmentManager.commit {
-            replace<T>(R.id.fcv_todo, T::class.java.canonicalName)
+            replace<T>(R.id.fcv_todo, T::class.java.canonicalName, bundle)
         }
     }
 

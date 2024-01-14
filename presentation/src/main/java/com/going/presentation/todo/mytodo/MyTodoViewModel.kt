@@ -36,11 +36,13 @@ class MyTodoViewModel @Inject constructor(
     private val _todoRedoState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
+    var tripId : Long = 0
+
     fun increaseTodoCount() {
         _totalUncompletedTodoCount.value += 1
     }
 
-    fun getMyTripInfoFromServer(tripId: Long) {
+    fun getMyTripInfoFromServer() {
         _myTripInfoState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getMyTripInfo(tripId)
