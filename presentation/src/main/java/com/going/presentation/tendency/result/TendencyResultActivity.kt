@@ -1,8 +1,6 @@
 package com.going.presentation.tendency.result
 
 import android.Manifest
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -41,14 +39,14 @@ class TendencyResultActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getuserInfo()
+        getUserInfo()
         observeUserInfoState()
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
     }
 
-    private fun getuserInfo() {
+    private fun getUserInfo() {
         viewModel.getUserInfoState()
     }
 
