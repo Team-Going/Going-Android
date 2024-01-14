@@ -6,7 +6,8 @@ import com.going.presentation.R
 
 class ProfileViewModel : ViewModel() {
     val mockProfileResult: ProfileMock = ProfileMock(
-        resultImage = R.drawable.img_tendency_result_aep ,
+        resultImage = R.drawable.img_tendency_result_aep,
+        downloadImage = R.drawable.img_download_aep,
         profileTitle = "배려심 많은 인간 플래너",
         profileSubTitle = "꼼꼼하고 세심하게 여행을 준비하는 친구",
         tags = listOf(
