@@ -24,7 +24,9 @@ class TendencySplashActivity :
 
     private fun navigateToTendencyTestScreen() {
         Intent(this, TendencyTestActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+        finish()
     }
 }

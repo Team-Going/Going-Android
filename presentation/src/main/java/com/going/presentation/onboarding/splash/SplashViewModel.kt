@@ -21,20 +21,23 @@ class SplashViewModel @Inject constructor(
     private val _userState = MutableStateFlow(AuthState.LOADING)
     val userState: StateFlow<AuthState> = _userState
     fun getHasAccessToken(): Boolean = tokenRepository.getAccessToken().isNotBlank()
-    fun clear() = tokenRepository.clearTokens()
 
     fun getUserState() {
-        viewModelScope.launch {
-            authRepository.getSplash().onSuccess {
-                _userState.value = AuthState.SUCCESS
-            }.onFailure {
-                val errorCode = toErrorCode(it)
+        if (tokenRepository.getAccessToken() != "") {
+            viewModelScope.launch {
+                authRepository.getSplash().onSuccess {
+                    _userState.value = AuthState.SUCCESS
+                }.onFailure {
+                    val errorCode = toErrorCode(it)
 
-                _userState.value = when (errorCode) {
-                    TENDENCY -> AuthState.TENDENCY
-                    else -> AuthState.FAILURE
+                    _userState.value = when (errorCode) {
+                        TENDENCY -> AuthState.TENDENCY
+                        else -> AuthState.FAILURE
+                    }
                 }
             }
+        } else {
+            _userState.value = AuthState.FAILURE
         }
     }
 

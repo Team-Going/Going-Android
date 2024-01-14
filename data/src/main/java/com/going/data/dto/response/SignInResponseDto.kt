@@ -12,7 +12,9 @@ data class SignInResponseDto(
     val refreshToken: String,
     @SerialName("isResult")
     val isResult: Boolean,
+    @SerialName("userId")
+    val userId: Long,
 ) {
     fun toSignInModel() =
-        SignInModel(accessToken, refreshToken, isResult)
+        SignInModel(accessToken, refreshToken, isResult, userId)
 }

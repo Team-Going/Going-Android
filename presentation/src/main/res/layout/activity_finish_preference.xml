@@ -80,7 +80,7 @@
             android:enabled="false"
             android:outlineProvider="none"
             android:text="@string/preference_btn_finish"
-            android:textColor="@drawable/sel_button_text_color_preference"
+            android:textColor="@color/gray_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

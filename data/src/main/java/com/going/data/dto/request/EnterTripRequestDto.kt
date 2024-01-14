@@ -12,4 +12,3 @@ data class EnterTripRequestDto(
 
 fun EnterTripRequestModel.toEnterTripRequestDto(): EnterTripRequestDto =
     EnterTripRequestDto(code)
-

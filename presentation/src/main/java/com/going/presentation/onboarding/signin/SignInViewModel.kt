@@ -75,6 +75,7 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             authRepository.postSignIn(accessToken, SignInRequestModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
+                tokenRepository.setUserId(it.userId)
 
                 if (it.isResult) {
                     _postChangeTokenState.value = AuthState.SUCCESS

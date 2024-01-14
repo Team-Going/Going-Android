@@ -8,7 +8,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
-import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
 import com.going.presentation.entertrip.starttrip.createtrip.BottomSheetDateContentFragment
 import com.going.presentation.entertrip.starttrip.createtrip.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
@@ -37,9 +36,7 @@ class CreateTripActivity :
 
     private fun initBackBtnClickListener() {
         binding.tbCreateTrip.setOnSingleClickListener {
-            Intent(this, StartTripSplashActivity::class.java).apply {
-                startActivity(this)
-            }
+            finish()
         }
     }
 
@@ -76,14 +73,12 @@ class CreateTripActivity :
         }
     }
 
-
     private fun observeCheckStartDateAvailable() {
         viewModel.isStartDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setStartDateColors(
-                    binding.tvCreateTripStartDate
-                )
-                { background ->
+                    binding.tvCreateTripStartDate,
+                ) { background ->
                     binding.tvCreateTripStartDate.background = ResourcesCompat.getDrawable(
                         this.resources,
                         background,
@@ -98,9 +93,8 @@ class CreateTripActivity :
         viewModel.isEndDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
                 setEndDateColors(
-                    binding.tvCreateTripEndDate
-                )
-                { background ->
+                    binding.tvCreateTripEndDate,
+                ) { background ->
                     binding.tvCreateTripEndDate.background = ResourcesCompat.getDrawable(
                         this.resources,
                         background,
@@ -159,7 +153,6 @@ class CreateTripActivity :
         counter.setTextColor(getColor(color))
     }
 
-
     private fun initStartDateClickListener() {
         binding.tvCreateTripStartDate.setOnSingleClickListener {
             startBottomSheetDialog = BottomSheetDateContentFragment(viewModel, true)
@@ -199,6 +192,3 @@ class CreateTripActivity :
         const val END_DAY = "endDay"
     }
 }
-
-
-

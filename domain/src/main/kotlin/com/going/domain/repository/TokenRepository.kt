@@ -7,5 +7,7 @@ interface TokenRepository {
 
     fun setTokens(accessToken: String, refreshToken: String)
 
-    fun clearTokens()
+    fun setUserId(userId: Long)
+
+    fun clearInfo()
 }

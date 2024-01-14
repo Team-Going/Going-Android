@@ -13,6 +13,7 @@ import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
 import com.going.presentation.onboarding.splash.SplashActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -152,7 +153,7 @@ class OnboardingProfileSettingActivity :
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToTendencyTestScreen()
+                AuthState.SUCCESS -> navigateToTendencySplashScreen()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
                 AuthState.SIGNUP -> return@onEach
                 AuthState.SIGNIN -> navigateToSplashScreen()
@@ -170,8 +171,8 @@ class OnboardingProfileSettingActivity :
         finish()
     }
 
-    private fun navigateToTendencyTestScreen() {
-        Intent(this, TendencyTestActivity::class.java).apply {
+    private fun navigateToTendencySplashScreen() {
+        Intent(this, TendencySplashActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
