@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -37,19 +38,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/profile_tv_title"
-                android:textColor="@color/gray_700"
                 app:layout_constraintBottom_toBottomOf="@id/btn_profile_back"
                 app:layout_constraintStart_toEndOf="@id/btn_profile_back"
                 app:layout_constraintTop_toTopOf="@id/btn_profile_back" />
+
+            <ImageView
+                android:id="@+id/btn_profile_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="-5dp"
+                android:padding="24dp"
+                android:src="@drawable/ic_download"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_profile_tag">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +72,7 @@
                     android:id="@+id/iv_profile"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="36dp"
                     android:src="@drawable/img_sign_in_main"
                     app:layout_constraintDimensionRatio="1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,13 +85,13 @@
                     style="@style/TextAppearance.Doorip.Head2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:gravity="center"
-                    android:text="@string/profile_tv_name"
-                    android:textColor="@color/gray_600"
+                    android:textColor="@color/red_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_profile"
+                    tools:text="@string/profile_tv_name" />
 
                 <TextView
                     android:id="@+id/tv_profile_one_line"
@@ -88,28 +100,41 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="@string/profile_tv_one_line"
-                    android:textColor="@color/gray_300"
+                    android:textColor="@color/gray_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_profile_name" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
+                    tools:text="@string/profile_tv_one_line" />
 
-                <TextView
-                    android:id="@+id/tv_profile_type"
-                    style="@style/TextAppearance.Doorip.Body1.Bold"
+                <View
+                    android:id="@+id/view_gray"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/gray_700"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/gray_100"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_profile_one_line" />
 
+
+                <TextView
+                    android:id="@+id/tv_profile_type"
+                    style="@style/TextAppearance.Doorip.Body1.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_gray" />
+
                 <TextView
                     android:id="@+id/tv_profile_sub_type"
                     style="@style/TextAppearance.Doorip.Detail1.Regular"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
                     android:textColor="@color/gray_300"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
