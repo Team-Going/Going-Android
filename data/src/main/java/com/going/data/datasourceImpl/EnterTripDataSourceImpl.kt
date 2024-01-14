@@ -21,5 +21,5 @@ class EnterTripDataSourceImpl @Inject constructor(
         tripId: Long,
         request: StartInviteTripRequestDto
     ): BaseResponse<StartInviteTripResponseDto> =
-        EnterTripService.postStartInviteTrip(tripId, request)
+        enterTripService.postStartInviteTrip(tripId, request)
 }

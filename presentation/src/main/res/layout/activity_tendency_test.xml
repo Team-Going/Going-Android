@@ -195,7 +195,7 @@
             android:outlineProvider="none"
             android:paddingVertical="23dp"
             android:text="@{viewModel.step == 9 ? @string/tendency_test_button_final : @string/tendency_test_button_next}"
-            android:textColor="@color/gray_200"
+            android:textColor="@{viewModel.isChecked() ? @color/white_000 : @color/gray_200}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
