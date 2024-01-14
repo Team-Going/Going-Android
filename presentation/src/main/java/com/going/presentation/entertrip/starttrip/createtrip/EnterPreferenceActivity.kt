@@ -9,11 +9,11 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
+import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.CODE
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.starttrip.createtrip.FinishTripActivity
 import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_DAY
 import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_MONTH
 import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_YEAR
@@ -120,6 +120,7 @@ class EnterPreferenceActivity :
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
                         putExtra(END, state.data.endDate)
+                        putExtra(CODE, state.data.code)
                         putExtra(DAY, state.data.day)
                         startActivity(this)
                     }

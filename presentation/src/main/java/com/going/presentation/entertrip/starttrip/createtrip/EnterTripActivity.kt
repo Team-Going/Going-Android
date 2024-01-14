@@ -123,6 +123,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         const val TITLE = "title"
         const val START = "start"
         const val END = "end"
+        const val CODE = "code"
         const val DAY = "day"
     }
 
