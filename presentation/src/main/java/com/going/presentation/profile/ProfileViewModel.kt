@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.profile
+package com.going.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.ProfileMock
