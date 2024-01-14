@@ -45,7 +45,7 @@ class MyTodoCreateViewModel @Inject constructor(
             todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
     }
 
-    fun postToCreateTodoFromServer(participantId: Long) {
+    fun postToCreateTodoFromServer() {
         _todoCreateState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.postToCreateTodo(

@@ -51,7 +51,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         binding.btnMyTodoAddTodo.setOnSingleClickListener {
             Intent(activity, MyTodoCreateActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
-                putExtra(EXTRA_PARTICIPANT_ID, 0)
+                putExtra(EXTRA_PARTICIPANT_ID, viewModel.participantId)
                 startActivity(this)
             }
         }
@@ -101,7 +101,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
             when (state) {
                 is UiState.Loading -> return@onEach
 
-                is UiState.Success -> binding.tvMyTodoTitleUp.text = state.data.name
+                is UiState.Success -> binding.tvMyTodoTitleUp.text = state.data.title
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 

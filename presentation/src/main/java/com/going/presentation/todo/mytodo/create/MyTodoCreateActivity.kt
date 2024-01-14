@@ -11,6 +11,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoCreateBinding
 import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -36,7 +37,7 @@ class MyTodoCreateActivity :
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
-        getTripId()
+        getId()
         observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
@@ -80,9 +81,7 @@ class MyTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnMyTodoMemoFinish.setOnSingleClickListener {
-            // TODO : tripId, allocatorId 는 임시 설정
-            val participantId: Long = 3
-            viewModel.postToCreateTodoFromServer(participantId)
+            viewModel.postToCreateTodoFromServer()
         }
     }
 
@@ -92,8 +91,9 @@ class MyTodoCreateActivity :
         }
     }
 
-    private fun getTripId() {
+    private fun getId() {
         viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID,0)
+        viewModel.participantId = intent.getLongExtra(EXTRA_PARTICIPANT_ID,0)
     }
 
     private fun observeTodoCreateState() {

@@ -48,6 +48,7 @@ class MyTodoViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getMyTripInfo(tripId)
                 .onSuccess { response ->
+                    participantId = response.participantId
                     _myTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {
