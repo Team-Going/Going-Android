@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="76dp"
+    android:height="76dp"
+    android:viewportWidth="76"
+    android:viewportHeight="76">
+  <path
+      android:pathData="M0,0h76.001v76h-76.001z"
+      android:fillColor="#F3F3F6"/>
+  <path
+      android:pathData="M21.092,16.944L53.418,16.944A4.174,4.174 0,0 1,57.591 21.118L57.591,53.443A4.174,4.174 0,0 1,53.418 57.617L21.092,57.617A4.174,4.174 0,0 1,16.919 53.443L16.919,21.118A4.174,4.174 0,0 1,21.092 16.944z"
+      android:fillColor="#FF4F17"/>
+  <path
+      android:pathData="M29.801,35.002C28.013,35.554 26.117,34.576 25.531,32.815L32.084,30.792C32.598,32.575 31.589,34.45 29.801,35.002Z"
+      android:strokeWidth="0.801115"
+      android:fillColor="#1D1F29"
+      android:strokeColor="#1D1F29"/>
+  <group>
+    <clip-path
+        android:pathData="M29.801,35.003C28.013,35.555 26.117,34.576 25.531,32.816L32.084,30.792C32.598,32.575 31.589,34.451 29.801,35.003Z"/>
+    <path
+        android:pathData="M29.418,32.363C31.715,31.741 33.902,32.825 34.433,34.634L26.244,36.852C25.785,35.023 27.12,32.986 29.418,32.363Z"
+        android:strokeWidth="0.801115"
+        android:fillColor="#FCAD95"
+        android:strokeColor="#1D1F29"/>
+  </group>
+  <path
+      android:pathData="M29.818,35.057C27.981,35.624 26.033,34.603 25.458,32.778L32.123,30.72C32.683,32.55 31.655,34.49 29.818,35.057Z"
+      android:strokeWidth="0.68667"
+      android:fillColor="#00000000"
+      android:strokeColor="#1D1F29"/>
+  <path
+      android:pathData="M29.071,27.056C29.579,27.284 29.736,28.033 29.421,28.729C29.107,29.426 28.441,29.805 27.933,29.578C27.425,29.35 27.268,28.601 27.582,27.904C27.896,27.208 28.563,26.829 29.071,27.056Z"
+      android:fillColor="#1D1F29"/>
+  <path
+      android:pathData="M24.877,26.835C25.385,27.063 25.542,27.812 25.228,28.508C24.914,29.205 24.247,29.584 23.74,29.356C23.232,29.128 23.074,28.379 23.389,27.683C23.703,26.987 24.369,26.607 24.877,26.835Z"
+      android:fillColor="#1D1F29"/>
+</vector>
