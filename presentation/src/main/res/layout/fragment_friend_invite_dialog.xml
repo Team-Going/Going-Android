@@ -19,6 +19,7 @@
             android:layout_marginHorizontal="50dp"
             android:background="@drawable/shape_rect_2_white000_fill"
             android:paddingTop="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -54,11 +55,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/layout_todo_invite_code"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="17dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/gray_50"
-                android:paddingHorizontal="17dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,14 +124,16 @@
 
             <TextView
                 android:id="@+id/btn_todo_invite_finish"
-                style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:background="@color/gray_500"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:paddingTop="14dp"
                 android:paddingBottom="17dp"
                 android:text="완료"
+                android:textAppearance="@style/TextAppearance.Doorip.Body1.Bold"
                 android:textColor="@color/white_000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
