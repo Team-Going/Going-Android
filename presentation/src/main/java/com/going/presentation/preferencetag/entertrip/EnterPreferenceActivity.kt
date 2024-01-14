@@ -23,6 +23,7 @@ import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_DAY
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.starttrip.finishtrip.FinishTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -116,7 +117,7 @@ class EnterPreferenceActivity :
         viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    Intent(this, InviteFinishActivity::class.java).apply {
+                    Intent(this, FinishTripActivity::class.java).apply {
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
                         putExtra(END, state.data.endDate)
