@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -29,8 +30,6 @@ class TendencyTestActivity :
     private lateinit var fadeInList: List<ObjectAnimator>
     private lateinit var fadeOutList: List<ObjectAnimator>
 
-    override fun onBackPressed() {}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,6 +39,7 @@ class TendencyTestActivity :
         initNextBtnClickListener()
         observeButtonSelected()
         observeIsSubmitTendencyState()
+        initOnBackPressedListener()
     }
 
     private fun initBindingViewModel() {
@@ -167,6 +167,13 @@ class TendencyTestActivity :
             startActivity(this)
         }
         finish()
+    }
+
+    private fun initOnBackPressedListener() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {}
+        }
+        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     companion object {
