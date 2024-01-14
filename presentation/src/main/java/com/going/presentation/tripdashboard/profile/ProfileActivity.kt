@@ -8,7 +8,7 @@ import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Environment
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
@@ -62,7 +62,6 @@ class ProfileActivity :
                     state.data.intro,
                     state.data.result
                 )
-
                 is UiState.Failure -> toast(state.msg)
                 is UiState.Empty -> return@onEach
             }
@@ -152,10 +151,9 @@ class ProfileActivity :
     }
 
     private fun startImageDownload() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
-            ContextCompat.checkSelfPermission(
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             ActivityCompat.requestPermissions(
@@ -171,19 +169,14 @@ class ProfileActivity :
     private fun saveImageToGallery() {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
-            R.drawable.img_tendency_result_ari,
+            profileViewModel.mockProfileResult[profileViewModel.profileId.value ?: 0].downloadImage,
         )
-        val imageFileName = DOWNLOAD_IMAGE_NAME.replace(
-            "%s",
-            profileViewModel.profileId.value.toString()
-        )
+        val imageFileName = DOWNLOAD_IMAGE_NAME.replace("%s", profileViewModel.profileId.value.toString())
         val path = DOWNLOAD_PATH
 
-        val uploadFolder = getExternalFilesDir(path)
-        if (uploadFolder != null) {
-            if (!uploadFolder.exists()) {
-                uploadFolder?.mkdirs()
-            }
+        val uploadFolder = Environment.getExternalStoragePublicDirectory(path)
+        if (!uploadFolder.exists()) {
+            uploadFolder.mkdirs()
         }
 
         val imageFile = File(uploadFolder, imageFileName)
@@ -193,12 +186,7 @@ class ProfileActivity :
         outputStream.flush()
         outputStream.close()
 
-        MediaStore.Images.Media.insertImage(
-            contentResolver,
-            imageFile.absolutePath,
-            imageFileName,
-            null
-        )
+        scanFile(imageFile, "image/jpeg")
 
         toast(getString(R.string.profile_image_download_success))
     }
