@@ -125,8 +125,8 @@ class CreateTripActivity :
         date: TextView,
         setDatecolor: (Int) -> Unit,
     ) {
-        val (color, background) = when {
-            viewModel.isStartDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+        val (color, background) = when (viewModel.isStartDateAvailable.value) {
+            true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
         setDateColor(date, color)
@@ -137,8 +137,8 @@ class CreateTripActivity :
         date: TextView,
         setDatecolor: (Int) -> Unit,
     ) {
-        val (color, background) = when {
-            viewModel.isEndDateAvailable.value == true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+        val (color, background) = when (viewModel.isEndDateAvailable.value) {
+            true -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
             else -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
         }
         setDateColor(date, color)
@@ -177,8 +177,10 @@ class CreateTripActivity :
                 putExtra(END_YEAR, viewModel.endYear.value)
                 putExtra(END_MONTH, viewModel.endMonth.value)
                 putExtra(END_DAY, viewModel.endDay.value)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
+            finish()
         }
     }
 

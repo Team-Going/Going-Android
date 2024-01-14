@@ -45,11 +45,12 @@ class FinishTripActivity :
 
     private fun initSendCodeBtnClickListener() {
         binding.btnFinishTripSendCode.setOnSingleClickListener {
-            //카카오톡으로 초대코드 보내기
+            // TODO : 카카오톡으로 초대코드 보내기
         }
     }
 
     private fun initEnterTripBtnClickListener() {
+        // TODO : 아워투두 화면으로 보내기
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
                 startActivity(this)
@@ -59,8 +60,6 @@ class FinishTripActivity :
     }
 
     private fun getTripInfo() {
-        val intent = getIntent()
-
         if (intent != null) {
             val title = intent.getStringExtra(TITLE)
             val start = intent.getStringExtra(START)

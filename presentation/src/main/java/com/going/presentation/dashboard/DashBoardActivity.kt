@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
+import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
 import com.going.presentation.setting.SettingActivity
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -75,8 +75,7 @@ class DashBoardActivity :
     }
 
     private fun navigateToDashboard() {
-        Intent(this, CreateTripActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        Intent(this, StartTripSplashActivity::class.java).apply {
             startActivity(this)
         }
     }
