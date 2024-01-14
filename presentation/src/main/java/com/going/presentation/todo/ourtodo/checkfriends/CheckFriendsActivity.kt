@@ -40,18 +40,17 @@ class CheckFriendsActivity :
     }
 
     private fun setProgressBarStatus() {
-        // styleA의 평균 값이 1이라고 가정
-        binding.progressBarCheckFriends1.progress = 1
-        if (binding.progressBarCheckFriends1.progress <= 2) {
-            // 평균 값이 0 ~2면 1 더하기
-            binding.progressBarCheckFriends1.progress = 1 + 1
-            binding.progressBarCheckFriends2.progress = 2 + 1
-            binding.progressBarCheckFriends3.progress = 0 + 1
+        // styleA의 평균 값이 20이라고 가정
+        binding.progressBarCheckFriends1.progress = 20
+        if (binding.progressBarCheckFriends1.progress <= 50) {
+            binding.progressBarCheckFriends1.progress = 20
+            binding.progressBarCheckFriends2.progress = 40
+            binding.progressBarCheckFriends3.progress = 50
         }
 
-        // styleD의 평균 값이 3이라고 가정
-        binding.progressBarCheckFriends4.progress = 3
-        if (binding.progressBarCheckFriends4.progress > 2) {
+        // styleD의 평균 값이 60이라고 가정
+        binding.progressBarCheckFriends4.progress = 60
+        if (binding.progressBarCheckFriends4.progress > 50) {
             // 프로그레스바 반대 방향으로 적용
             binding.progressBarCheckFriends4.visibility = View.INVISIBLE
             binding.progressBarCheckFriends4Revert.visibility = View.VISIBLE
@@ -59,9 +58,8 @@ class CheckFriendsActivity :
             binding.progressBarCheckFriends5.visibility = View.INVISIBLE
             binding.progressBarCheckFriends5Revert.visibility = View.VISIBLE
 
-            // 평균 값이 4 ~5 라면 2 빼기
-            binding.progressBarCheckFriends4Revert.progress = 3 - 2
-            binding.progressBarCheckFriends5Revert.progress = 4 - 2
+            binding.progressBarCheckFriends4Revert.progress = 60
+            binding.progressBarCheckFriends5Revert.progress = 70
         }
     }
 
