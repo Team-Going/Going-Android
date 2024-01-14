@@ -14,11 +14,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo) {
 
+    var tripId: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initBnvItemIconTintList()
         initBnvItemSelectedListener()
+        getTripId()
     }
 
     private fun initBnvItemIconTintList() {
@@ -48,6 +51,16 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
         supportFragmentManager.commit {
             replace<T>(R.id.fcv_todo, T::class.java.canonicalName)
         }
+    }
+
+    private fun getTripId() {
+        if (intent != null) {
+            tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        }
+    }
+
+    companion object {
+        const val EXTRA_TRIP_ID = "TRIP_ID"
     }
 
 }

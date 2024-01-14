@@ -50,7 +50,6 @@ class FinishTripActivity :
     }
 
     private fun initEnterTripBtnClickListener() {
-        // TODO : 아워투두 화면으로 보내기
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

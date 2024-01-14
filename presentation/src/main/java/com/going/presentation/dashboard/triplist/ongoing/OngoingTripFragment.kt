@@ -1,5 +1,6 @@
 package com.going.presentation.dashboard.triplist.ongoing
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -11,6 +12,10 @@ import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentOngoingTripBinding
+import com.going.presentation.entertrip.StartTripSplashActivity
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity
+import com.going.presentation.todo.TodoActivity
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -82,7 +87,10 @@ class OngoingTripFragment :
     }
 
     override fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel) {
-
+        Intent(activity, TodoActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripCreate.tripId)
+            startActivity(this)
+        }
     }
 
 }
