@@ -8,7 +8,6 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration
-import com.going.presentation.preferencetag.PreferenceTagViewModel
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_DAY
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_MONTH
 import com.going.presentation.starttrip.createtrip.CreateTripActivity.Companion.END_YEAR
@@ -26,13 +25,14 @@ class EnterPreferenceActivity :
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private val viewModel by viewModels<PreferenceTagViewModel>()
+    private val viewModel by viewModels<EnterPreferenceViewModel>()
 
     private val preferenceAnswers = MutableList(5) { Int.MAX_VALUE }
 
     private var title: String? = ""
     private var startDate: String? = ""
     private var endDate: String? = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,9 +73,9 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        val serverList = getIntent()
+        val infoList = getIntent()
 
-        if (serverList != null) {
+        if (infoList != null) {
             title = intent.getStringExtra(NAME)
             val startYear = intent.getIntExtra(START_YEAR, 0)
             val startMonth = intent.getIntExtra(START_MONTH, 0)

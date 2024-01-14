@@ -1,11 +1,10 @@
-package com.going.presentation.preferencetag
+package com.going.presentation.preferencetag.entertrip
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.PreferenceData
 
-class PreferenceTagViewModel : ViewModel() {
+class EnterPreferenceViewModel : ViewModel() {
 
-    // 추후 삭제할 예정
     val preferenceTagList = listOf<PreferenceData>(
         PreferenceData(
             number = "01",
