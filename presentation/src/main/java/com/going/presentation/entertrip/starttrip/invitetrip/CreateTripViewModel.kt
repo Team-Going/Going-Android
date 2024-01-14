@@ -1,4 +1,4 @@
-package com.going.presentation.starttrip.createtrip
+package com.going.presentation.entertrip.starttrip.invitetrip
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -75,7 +75,8 @@ class CreateTripViewModel : ViewModel() {
     }
 
     private fun checkTripAvailable() {
-        isCheckTripAvailable.value = (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
+        isCheckTripAvailable.value =
+            (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
     }
 
 

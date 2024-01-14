@@ -7,6 +7,7 @@ import com.going.data.service.EnterTripService
 import com.going.data.service.MockService
 import com.going.data.service.ProfileService
 import com.going.data.service.SettingService
+import com.going.data.service.StartInviteTripService
 import com.going.data.service.TendencyService
 import com.going.data.service.TodoService
 import dagger.Module
@@ -62,6 +63,11 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun enterPreferenceService(retrofit: Retrofit): EnterPreferenceService =
+    fun provideStartInviteTripService(retrofit: Retrofit): StartInviteTripService =
+        retrofit.create(StartInviteTripService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideEnterPreferenceService(retrofit: Retrofit): EnterPreferenceService =
         retrofit.create(EnterPreferenceService::class.java)
 }
