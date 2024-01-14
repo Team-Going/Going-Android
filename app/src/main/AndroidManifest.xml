@@ -76,12 +76,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.createtrip.EnterPreferenceActivity"
+            android:name="com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.invitetrip.FinishPreferenceActivity"
+            android:name="com.going.presentation.entertrip.invitetrip.preference.FinishPreferenceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -96,12 +96,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity"
+            android:name="com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.StartTripSplashActivity"
+            android:name="com.going.presentation.entertrip.StartTripSplashActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -126,7 +126,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.createtrip.FinishTripActivity"
+            android:name="com.going.presentation.entertrip.createtrip.finish.FinishTripActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -141,12 +141,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity"
+            android:name="com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.entertrip.starttrip.invitetrip.InviteFinishActivity"
+            android:name="com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

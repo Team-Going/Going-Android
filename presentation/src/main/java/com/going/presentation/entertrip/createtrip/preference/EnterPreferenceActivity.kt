@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.starttrip.createtrip
+package com.going.presentation.entertrip.createtrip.preference
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,18 +10,19 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.CODE
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.DAY
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.END
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.START
-import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_DAY
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_MONTH
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.END_YEAR
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.NAME
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_DAY
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_MONTH
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.CODE
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.DAY
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.END
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.START
+import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.END_DAY
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.END_MONTH
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.END_YEAR
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.NAME
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_DAY
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_MONTH
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_YEAR
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration

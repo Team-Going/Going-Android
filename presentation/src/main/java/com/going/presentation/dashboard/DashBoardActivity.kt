@@ -6,7 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
-import com.going.presentation.entertrip.starttrip.StartTripSplashActivity
+import com.going.presentation.entertrip.StartTripSplashActivity
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.setting.SettingActivity
 import com.going.ui.base.BaseActivity

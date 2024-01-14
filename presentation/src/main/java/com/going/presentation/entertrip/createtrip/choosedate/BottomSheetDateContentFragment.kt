@@ -1,10 +1,10 @@
-package com.going.presentation.entertrip.starttrip.createtrip
+package com.going.presentation.entertrip.createtrip.choosedate
 
 import android.os.Bundle
 import android.view.View
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
-import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripViewModel
+import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripViewModel
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
