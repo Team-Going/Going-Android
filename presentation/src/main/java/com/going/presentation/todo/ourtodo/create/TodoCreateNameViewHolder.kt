@@ -8,7 +8,8 @@ import com.going.presentation.databinding.ItemTodoCreateNameBinding
 
 class TodoCreateNameViewHolder(
     val binding: ItemTodoCreateNameBinding,
-    private val isFixed: Boolean
+    private val isFixed: Boolean,
+    private val itemClick: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white_000)
@@ -29,6 +30,7 @@ class TodoCreateNameViewHolder(
                 tvTodoName.setTextColor(whiteColor)
             } else {
                 layoutTodoName.setOnClickListener {
+                    itemClick(position)
                     tvTodoName.isSelected = !tvTodoName.isSelected
                     if (tvTodoName.isSelected) {
                         tvTodoName.setTextColor(whiteColor)

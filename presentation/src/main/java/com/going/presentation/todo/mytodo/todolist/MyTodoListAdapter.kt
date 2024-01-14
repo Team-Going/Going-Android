@@ -9,8 +9,8 @@ import com.going.ui.extension.ItemDiffCallback
 
 class MyTodoListAdapter(
     private val isCompleted: Boolean,
-    private val itemSelect: (Int) -> Unit,
-    private val itemUnselect: (Int) -> Unit,
+    private val itemSelect: (Long) -> Unit,
+    private val itemUnselect: (Long) -> Unit,
     private val itemDetailClick: (TodoModel) -> Unit
 ) : ListAdapter<TodoModel, MyTodoListViewHolder>(diffUtil) {
 
@@ -21,12 +21,7 @@ class MyTodoListAdapter(
     }
 
     override fun onBindViewHolder(holder: MyTodoListViewHolder, position: Int) {
-        holder.onBind(getItem(position), position)
-    }
-
-    fun removeItem(position: Int) {
-        // itemList.removeAt(position)
-        notifyDataSetChanged()
+        holder.onBind(getItem(position))
     }
 
     companion object {

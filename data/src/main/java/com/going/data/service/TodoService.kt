@@ -49,4 +49,14 @@ interface TodoService {
         @Path("tripId") tripId: Long
     ): BaseResponse<OurTripInfoResponseDto>
 
+    @GET("api/trips/todos/{todoId}/complete")
+    suspend fun getToFinishTodo(
+        @Path("todoId") todoId: Long
+    ): NonDataBaseResponse
+
+    @GET("api/trips/todos/{todoId}/incomplete")
+    suspend fun getToRedoTodo(
+        @Path("todoId") todoId: Long
+    ): NonDataBaseResponse
+
 }

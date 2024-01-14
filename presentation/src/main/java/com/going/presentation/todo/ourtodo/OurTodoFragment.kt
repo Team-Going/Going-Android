@@ -10,9 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_RESULT
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
@@ -34,6 +38,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private val viewModel by activityViewModels<OurTodoViewModel>()
 
+    private var participantList = listOf<TripParticipantModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,7 +59,13 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initAddTodoBtnListener() {
         binding.btnOurTodoAddTodo.setOnSingleClickListener {
+            val idList: ArrayList<Int> = ArrayList(participantList.map { it.participantId.toInt() })
+            val nameList: ArrayList<String> = ArrayList(participantList.map { it.name })
+            val resultList: ArrayList<Int> = ArrayList(participantList.map { it.result })
             Intent(activity, OurTodoCreateActivity::class.java).apply {
+                putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
+                putStringArrayListExtra(EXTRA_NAME, nameList)
+                putIntegerArrayListExtra(EXTRA_RESULT, resultList)
                 startActivity(this)
             }
         }
@@ -103,6 +115,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                         )
                         progressBarOurTodo.progress = state.data.progress
                         tvOurTripInfoPercent.text = state.data.progress.toString() + "%"
+                        participantList = state.data.participants
                         adapter.submitList(state.data.participants)
                     }
                 }
@@ -122,7 +135,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun setTitleTextWithDay(day: Int) {
         when {
             day > 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                binding.tvOurTodoTitleDown.text =
+                    getString(R.string.our_todo_title_down_before).format(day)
                 setDateTextColor(6, 6)
             }
 
