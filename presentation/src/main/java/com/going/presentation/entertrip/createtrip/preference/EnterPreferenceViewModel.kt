@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.starttrip.createtrip
+package com.going.presentation.entertrip.createtrip.preference
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -88,4 +88,5 @@ class EnterPreferenceViewModel @Inject constructor(
             rightPrefer = "여유롭게",
         ),
     )
+
 }
