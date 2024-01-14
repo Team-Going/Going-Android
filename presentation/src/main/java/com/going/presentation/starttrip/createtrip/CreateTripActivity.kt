@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
-import com.going.presentation.preferencetag.PreferenceTagActivity
+import com.going.presentation.preferencetag.entertrip.EnterPreferenceActivity
 import com.going.presentation.starttrip.StartTripSplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -175,15 +175,14 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            Intent(this, PreferenceTagActivity::class.java).apply {
+            Intent(this, EnterPreferenceActivity::class.java).apply {
                 putExtra(NAME, viewModel.name.value)
-                putExtra(START, viewModel.startYear.value)
-
-                putExtra(START, viewModel.startMonth.value)
-                putExtra(START, viewModel.startDay.value)
-                putExtra(END, viewModel.endYear.value)
-                putExtra(END, viewModel.endMonth.value)
-                putExtra(END, viewModel.endDay.value)
+                putExtra(START_YEAR, viewModel.startYear.value)
+                putExtra(START_MONTH, viewModel.startMonth.value)
+                putExtra(START_DAY, viewModel.startDay.value)
+                putExtra(END_YEAR, viewModel.endYear.value)
+                putExtra(END_MONTH, viewModel.endMonth.value)
+                putExtra(END_DAY, viewModel.endDay.value)
                 startActivity(this)
             }
         }
@@ -191,8 +190,12 @@ class CreateTripActivity :
 
     companion object {
         const val NAME = "name"
-        const val START = "start"
-        const val END = "end"
+        const val START_YEAR = "startYear"
+        const val START_MONTH = "startMonth"
+        const val START_DAY = "startDay"
+        const val END_YEAR = "endYear"
+        const val END_MONTH = "endMonth"
+        const val END_DAY = "endDay"
     }
 }
 

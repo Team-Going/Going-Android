@@ -1,31 +1,31 @@
-package com.going.presentation.dashboard.triplist
+package com.going.presentation.dashboard.triplist.ongoing
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
-import com.going.presentation.databinding.ItemDashBoardCompletedBinding
+import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class CompletedAdapter(
+class OngoingAdapter(
     private val listener: OnDashBoardSelectedListener
-) : ListAdapter<DashBoardTripModel, CompletedViewHolder>(diffUtil) {
+) : ListAdapter<DashBoardTripModel, OngoingViewHolder>(diffUtil) {
 
     interface OnDashBoardSelectedListener {
         fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompletedViewHolder {
-        val binding: ItemDashBoardCompletedBinding =
-            ItemDashBoardCompletedBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
+        val binding: ItemDashBoardOngoingBinding =
+            ItemDashBoardOngoingBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
-        return CompletedViewHolder(binding, listener)
+        return OngoingViewHolder(binding, listener)
     }
 
-    override fun onBindViewHolder(holder: CompletedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OngoingViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 

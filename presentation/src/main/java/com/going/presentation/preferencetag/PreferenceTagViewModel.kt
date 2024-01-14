@@ -8,7 +8,7 @@ class PreferenceTagViewModel : ViewModel() {
     val preferenceTagList = listOf<PreferenceData>(
         PreferenceData(
             number = "01",
-            question = "계획은 얼만큼 짤까요?",
+            question = "계획은 어느정도로 세울까요?",
             leftPrefer = "철저하게",
             rightPrefer = "즉흥으로"
         ),
@@ -20,19 +20,19 @@ class PreferenceTagViewModel : ViewModel() {
         ),
         PreferenceData(
             number = "03",
-            question = "음식을 고를 때 무엇을 더 중요시 하나요?",
-            leftPrefer = "철저한 계획",
-            rightPrefer = "무계획"
+            question = "어느 식당을 갈까요?",
+            leftPrefer = "유명 맛집",
+            rightPrefer = "가까운 곳"
         ),
         PreferenceData(
             number = "04",
-            question = "멋진 풍경이 보이면?",
+            question = "기억하고 싶은 순간에!",
             leftPrefer = "사진 필수",
             rightPrefer = "눈에 담기"
         ),
         PreferenceData(
             number = "05",
-            question = "스케줄 구성은 어떻게 할까요?",
+            question = "하루 일정을 어떻게 채우나요?",
             leftPrefer = "알차게",
             rightPrefer = "여유롭게"
         ),
