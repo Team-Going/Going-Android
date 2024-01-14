@@ -6,11 +6,11 @@ import com.going.data.dto.response.EnterPreferenceResponseDto
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface EnterPreferenceService {
-
-    @POST("api/trips")
-    suspend fun postTripInfoFromServer(
-        @Body request: EnterPreferenceRequestDto,
-    ): BaseResponse<EnterPreferenceResponseDto>
-
-}
+//interface EnterPreferenceService {
+//
+//    @POST("api/trips")
+//    suspend fun postTripInfoFromServer(
+//        @Body request: EnterPreferenceRequestDto,
+//    ): BaseResponse<EnterPreferenceResponseDto>
+//
+//}
