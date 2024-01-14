@@ -5,16 +5,13 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.going.presentation.starttrip.finishtrip.FinishTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray_50"
-        tools:context=".starttrip.finishtrip.FinishTripActivity">
+        tools:context=".entertrip.starttrip.createtrip.FinishTripActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tb_finish_trip"

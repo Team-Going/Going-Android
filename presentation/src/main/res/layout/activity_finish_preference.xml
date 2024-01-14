@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".preferencetag.invitefinish.FinishPreferenceActivity">
+        tools:context=".entertrip.starttrip.invitetrip.FinishPreferenceActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbar_preference_tag"
@@ -76,10 +76,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button_preference"
-            android:text="@string/preference_btn_finish"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="false"
             android:outlineProvider="none"
-            android:textColor="@drawable/sel_button_text_color_preference"
+            android:text="@string/preference_btn_finish"
+            android:textColor="@color/gray_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

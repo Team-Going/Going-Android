@@ -106,7 +106,7 @@
     <!--trip_dash_board-->
     <string name="dashboard_tv_title">%s님의 여행</string>
     <string name="dashboard_tv_empty">새로운 여행을 시작해 보세요</string>
-    <string name="dashboard_btn_create_trip">여행 생성하기</string>
+    <string name="dashboard_btn_create_trip">여행 추가하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
     <string name="dashboard_tv_dash">-</string>
     <string name="dashboard_tv_deadline">D - %d</string>

@@ -1,12 +1,10 @@
 package com.going.presentation.preferencetag
 
 import android.content.Context
-import android.provider.MediaStore.Audio.Radio
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.RadioButton
-import com.going.domain.entity.PreferenceData
 import androidx.recyclerview.widget.ListAdapter
+import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.extension.ItemDiffCallback
 
@@ -19,7 +17,7 @@ class PreferenceTagAdapter(
     private val inflater by lazy { LayoutInflater.from(context) }
 
     interface OnPreferenceSelectedListener {
-        fun  onPreferenceSelected(item: PreferenceData,  checkedIndex: Int)
+        fun onPreferenceSelected(item: PreferenceData, checkedIndex: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferenceTagViewHolder {

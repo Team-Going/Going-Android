@@ -1,15 +1,16 @@
-package com.going.presentation.starttrip.createtrip
+package com.going.presentation.entertrip.starttrip.createtrip
 
 import android.os.Bundle
 import android.view.View
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripViewModel
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import java.util.Calendar
 
-class DateBottomSheet(val viewModel: CreateTripViewModel, val isStart: Boolean) :
+class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isStart: Boolean) :
     BaseBottomSheet<FragmentBottomSheetDateContentBinding>(R.layout.fragment_bottom_sheet_date_content) {
 
     override fun onStart() {
@@ -52,7 +53,7 @@ class DateBottomSheet(val viewModel: CreateTripViewModel, val isStart: Boolean) 
                 calendar.set(Calendar.DAY_OF_MONTH, viewModel.endDay.value ?: 0)
                 val endDate = calendar.time
 
-                if(startDate.before(endDate)) {
+                if (startDate.before(endDate)) {
                     dismiss()
                 } else {
                     toast(getString(R.string.create_trip_toast_error))

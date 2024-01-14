@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.presentation.setting.SettingActivity
+import com.going.presentation.entertrip.starttrip.invitetrip.CreateTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -26,6 +27,7 @@ class DashBoardActivity :
         setViewPager()
         setTravelerName()
         initSettingBtnClickListener()
+        initCreateTripBtnClickListener()
     }
 
     private fun setTabLayout() {
@@ -62,6 +64,18 @@ class DashBoardActivity :
 
     private fun navigateToSettingScreen() {
         Intent(this, SettingActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
+
+    private fun initCreateTripBtnClickListener() {
+        binding.btnDashboardCreateTrip.setOnSingleClickListener {
+            navigateToDashboard()
+        }
+    }
+
+    private fun navigateToDashboard() {
+        Intent(this, CreateTripActivity::class.java).apply {
             startActivity(this)
         }
     }
