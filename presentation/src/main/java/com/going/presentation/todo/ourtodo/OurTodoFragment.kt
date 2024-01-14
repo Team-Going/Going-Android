@@ -51,6 +51,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
+        initBackBtnClickListener()
         getTripId()
         setMyTripInfo()
         setTabLayout()
@@ -87,6 +88,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         binding.btnOurTodoAddFriend.setOnSingleClickListener {
             friendInviteDialog = FriendInviteDialog.newInstance(viewModel.inviteCode)
             friendInviteDialog?.show(parentFragmentManager, INVITE_DIALOG)
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnOurTodoBack.setOnSingleClickListener {
+            activity?.finish()
         }
     }
 

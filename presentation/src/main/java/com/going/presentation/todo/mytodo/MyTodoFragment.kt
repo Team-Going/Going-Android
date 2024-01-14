@@ -37,6 +37,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         super.onViewCreated(view, savedInstanceState)
 
         initAddTodoListener()
+        initBackBtnClickListener()
         getTripId()
         setMyTripInfo()
         setTabLayout()
@@ -53,6 +54,12 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                 putExtra(EXTRA_PARTICIPANT_ID, 0)
                 startActivity(this)
             }
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnMyTodoBack.setOnSingleClickListener {
+           activity?.finish()
         }
     }
 
