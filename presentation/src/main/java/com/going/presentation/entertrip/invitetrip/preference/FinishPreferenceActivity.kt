@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.starttrip.invitetrip
+package com.going.presentation.entertrip.invitetrip.preference
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
+import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
