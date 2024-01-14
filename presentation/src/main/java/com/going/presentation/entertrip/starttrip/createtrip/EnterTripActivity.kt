@@ -92,7 +92,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 is UiState.Success -> {
 
                     Intent(this, InviteFinishActivity::class.java).apply {
-                        putExtra("tripId", state.data.tripId)
+                        putExtra(TRIP_ID, state.data.tripId)
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
                         putExtra(END, state.data.endDate)
@@ -119,6 +119,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
     }
 
     companion object {
+        const val TRIP_ID = "tripId"
         const val TITLE = "title"
         const val START = "start"
         const val END = "end"

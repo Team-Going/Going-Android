@@ -9,6 +9,7 @@ import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.C
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,7 @@ class InviteFinishActivity :
         val serverlist = getIntent()
 
         if (serverlist != null) {
-            tripId = intent.getLongExtra(TRIP_ID_KEY, -1L)
+            tripId = intent.getLongExtra(TRIP_ID, -1L)
             val title = intent.getStringExtra(TITLE)
             val start = intent.getStringExtra(START)
             val end = intent.getStringExtra(END)
@@ -62,7 +63,7 @@ class InviteFinishActivity :
     private fun initEnterBtnClickListener() {
         binding.btnInviteFinishEnter.setOnSingleClickListener {
             Intent(this, FinishPreferenceActivity::class.java).apply {
-                putExtra("tripId", tripId)
+                putExtra(TRIP_ID, tripId)
                 startActivity(this)
             }
         }
@@ -72,7 +73,6 @@ class InviteFinishActivity :
         const val DATE_FORMAT = "%s - %s"
         const val D_DAY_FORMAT = "D - %d"
         const val TRIP_FORMAT = "여행중"
-        const val TRIP_ID_KEY = "tripId"
     }
 }
 
