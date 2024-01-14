@@ -19,6 +19,10 @@ class GoingDataStoreImpl @Inject constructor(
         get() = dataStore.getLong(USER_ID, 0L)
         set(value) = dataStore.edit { putLong(USER_ID, value) }
 
+    override fun clearInfo() {
+        dataStore.edit().clear().commit()
+    }
+
     companion object {
         private const val ACCESS_TOKEN = "ACCESS_TOKEN"
         private const val REFRESH_TOKEN = "REFRESH_TOKEN"

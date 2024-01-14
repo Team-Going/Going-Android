@@ -19,8 +19,7 @@ class TokenRepositoryImpl @Inject constructor(
         goingDataStore.userId = userId
     }
 
-    override fun clearTokens() {
-        goingDataStore.accessToken = ""
-        goingDataStore.refreshToken = ""
+    override fun clearInfo() {
+        goingDataStore.clearInfo()
     }
 }

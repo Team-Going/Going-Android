@@ -38,7 +38,7 @@ class SettingViewModel @Inject constructor(
     private fun signOutJwt() {
         viewModelScope.launch {
             settingRepository.patchSignOut().onSuccess {
-                tokenRepository.clearTokens()
+                tokenRepository.clearInfo()
 
                 _userSignOutState.value = EnumUiState.SUCCESS
             }.onFailure {
@@ -62,7 +62,7 @@ class SettingViewModel @Inject constructor(
     private fun startWithDrawJwt() {
         viewModelScope.launch {
             settingRepository.deleteWithDraw().onSuccess {
-                tokenRepository.clearTokens()
+                tokenRepository.clearInfo()
 
                 _userWithDrawState.value = EnumUiState.SUCCESS
             }.onFailure {
