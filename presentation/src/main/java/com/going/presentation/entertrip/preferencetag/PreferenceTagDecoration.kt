@@ -1,4 +1,4 @@
-package com.going.presentation.preferencetag
+package com.going.presentation.entertrip.preferencetag
 
 import android.content.Context
 import android.graphics.Rect

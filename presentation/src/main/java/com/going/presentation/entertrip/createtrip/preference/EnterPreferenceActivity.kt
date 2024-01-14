@@ -22,8 +22,8 @@ import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity.Companion.START_YEAR
-import com.going.presentation.preferencetag.PreferenceTagAdapter
-import com.going.presentation.preferencetag.PreferenceTagDecoration
+import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
+import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -54,8 +54,8 @@ class EnterPreferenceActivity :
         initAdapter()
         initItemDecoration()
         initBackClickListener()
-        getCreateTripInfo()
         initStartBtnClickListener()
+        getCreateTripInfo()
         observeEnterPreferenceListState()
 
     }
@@ -77,14 +77,9 @@ class EnterPreferenceActivity :
         }
     }
 
-    private fun isButtonValid() {
-        val isValid = preferenceAnswers.all { it != Int.MAX_VALUE }
-
-        if (isValid) {
-            binding.btnPreferenceStart.isEnabled = isValid
-            binding.btnPreferenceStart.setTextColor(
-                ContextCompat.getColorStateList(this, R.color.white_000)
-            )
+    private fun initStartBtnClickListener() {
+        binding.btnPreferenceStart.setOnSingleClickListener {
+            viewModel.getTripInfoFromServer()
         }
     }
 
@@ -103,13 +98,6 @@ class EnterPreferenceActivity :
             startDate =
                 String.format(SERVER_DATE, startYear, startMonth, startDay)
             endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
-        }
-
-    }
-
-    private fun initStartBtnClickListener() {
-        binding.btnPreferenceStart.setOnSingleClickListener {
-            viewModel.getTripInfoFromServer()
         }
     }
 
@@ -135,6 +123,17 @@ class EnterPreferenceActivity :
 
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun isButtonValid() {
+        val isValid = preferenceAnswers.all { it != Int.MAX_VALUE }
+
+        if (isValid) {
+            binding.btnPreferenceStart.isEnabled = isValid
+            binding.btnPreferenceStart.setTextColor(
+                ContextCompat.getColorStateList(this, R.color.white_000)
+            )
+        }
     }
 
     private fun sendTripInfo() {

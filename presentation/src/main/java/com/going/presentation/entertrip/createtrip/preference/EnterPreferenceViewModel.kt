@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.PreferenceData
 import com.going.domain.entity.request.EnterPreferenceRequestModel
 import com.going.domain.entity.response.EnterPreferenceModel
-import com.going.domain.repository.EnterPreferenceRepository
+import com.going.domain.repository.EnterTripRepository
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EnterPreferenceViewModel @Inject constructor(
-    private val enterPreferenceRepository: EnterPreferenceRepository,
+    private val enterTripRepository: EnterTripRepository
 ) : ViewModel() {
 
     private val _enterPreferenceListState =
@@ -35,7 +35,7 @@ class EnterPreferenceViewModel @Inject constructor(
     fun getTripInfoFromServer() {
         _enterPreferenceListState.value = UiState.Loading
         viewModelScope.launch {
-            enterPreferenceRepository.postTripInfo(
+            enterTripRepository.postEnterPreferenceTrip(
                 EnterPreferenceRequestModel(
                     title.value ?: "",
                     startDate.value ?: "",
@@ -44,8 +44,8 @@ class EnterPreferenceViewModel @Inject constructor(
                     styleB.value ?: 0,
                     styleC.value ?: 0,
                     styleD.value ?: 0,
-                    styleE.value ?: 0,
-                ),
+                    styleE.value ?: 0
+                )
             )
                 .onSuccess {
                     _enterPreferenceListState.value = UiState.Success(it)
