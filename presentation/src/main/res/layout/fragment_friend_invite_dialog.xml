@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_todo_invite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:background="@drawable/shape_rect_2_white000_fill"
+            android:paddingTop="28dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_todo_invite_title"
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/font_pretendard_medium"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/todo_invite_tv_title"
+                android:textColor="@color/gray_600"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_todo_invite_subtitle"
+                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/font_pretendard_bold"
+                android:paddingVertical="3dp"
+                android:text="@string/todo_invite_tv_subtitle"
+                android:textColor="@color/gray_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_invite_title" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/layout_todo_invite_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/gray_50"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_invite_subtitle">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_todo_invite_code"
+                        style="@style/TextAppearance.Doorip.Head4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="082539" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_todo_invite_copy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/ic_finish_trip_copy"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_todo_invite_terms_text"
+                        app:layout_constraintEnd_toStartOf="@id/tv_todo_invite_terms_text"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_todo_invite_terms_text" />
+
+                    <TextView
+                        android:id="@+id/tv_todo_invite_terms_text"
+                        style="@style/TextAppearance.Doorip.Detail2.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/finish_trip_tv_copy_code"
+                        android:textColor="@color/gray_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@id/iv_todo_invite_copy"
+                        app:layout_constraintTop_toBottomOf="@id/tv_todo_invite_code"
+                        tools:ignore="MissingConstraints" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/gray_300"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/tv_todo_invite_terms_text"
+                        app:layout_constraintStart_toStartOf="@id/iv_todo_invite_copy"
+                        app:layout_constraintTop_toBottomOf="@id/tv_todo_invite_terms_text" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/btn_todo_invite_finish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray_500"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingTop="14dp"
+                android:paddingBottom="17dp"
+                android:text="@string/todo_invite_btn_finish"
+                android:textAppearance="@style/TextAppearance.Doorip.Body1.Bold"
+                android:textColor="@color/white_000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_todo_invite_code" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

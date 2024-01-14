@@ -26,11 +26,14 @@ class OurTodoViewModel @Inject constructor(
     private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
 
+    var inviteCode = ""
+
     fun getOurTripInfoFromServer(tripId: Long) {
         _ourTripInfoState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getOurTripInfo(tripId)
                 .onSuccess { response ->
+                    inviteCode = response.code
                     _ourTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {

@@ -17,6 +17,7 @@ import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_RESULT
+import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
@@ -36,6 +37,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
+    private var friendInviteDialog: FriendInviteDialog? = null
+
     private val viewModel by activityViewModels<OurTodoViewModel>()
 
     private var participantList = listOf<TripParticipantModel>()
@@ -46,6 +49,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAdapter()
         initAddTodoBtnListener()
         initItemDecoration()
+        initInviteBtnListener()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -74,6 +78,13 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun initItemDecoration() {
         val itemDeco = OurTodoDecoration(requireContext())
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
+    }
+
+    private fun initInviteBtnListener() {
+        binding.btnOurTodoAddFriend.setOnSingleClickListener {
+            friendInviteDialog = FriendInviteDialog.newInstance(viewModel.inviteCode)
+            friendInviteDialog?.show(parentFragmentManager, INVITE_DIALOG)
+        }
     }
 
     private fun setMyTripInfo() {
@@ -169,11 +180,13 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
+        if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
     }
 
     companion object {
         const val TAB_UNCOMPLETE = "해야 해요"
         const val TAB_COMPLETE = "완료했어요"
+        const val INVITE_DIALOG = "inviteDialog"
     }
 
 }
