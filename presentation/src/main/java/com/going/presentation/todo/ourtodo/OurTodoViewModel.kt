@@ -43,9 +43,7 @@ class OurTodoViewModel @Inject constructor(
         }
     }
 
-    fun getTodoListFromServer(
-        tripId: Long, category: String, progress: String
-    ) {
+    fun getTodoListFromServer(category: String, progress: String) {
         val todoListState = if (progress == COMPLETE) {
             _todoCompleteListState
         } else {

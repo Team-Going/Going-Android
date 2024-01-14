@@ -71,9 +71,7 @@ class MyTodoUncompleteFragment() :
     }
 
     private fun setTodoList() {
-        // 추후 tripId 설정
-        val tripId: Long = 1
-        viewModel.getUncompleteTodoListFromServer(tripId, MY_TODO, UNCOMPLETE)
+        viewModel.getUncompleteTodoListFromServer(MY_TODO, UNCOMPLETE)
     }
 
     private fun observeTodoListState() {

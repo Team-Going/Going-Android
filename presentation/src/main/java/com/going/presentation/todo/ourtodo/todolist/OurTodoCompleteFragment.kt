@@ -51,9 +51,7 @@ class OurTodoCompleteFragment() :
     }
 
     private fun setTodoList() {
-        // 추후 tripId 설정
-        val tripId: Long = 1
-        viewModel.getTodoListFromServer(tripId, OUR_TODO, COMPLETE)
+        viewModel.getTodoListFromServer(OUR_TODO, COMPLETE)
     }
 
     private fun observeTodoListState() {

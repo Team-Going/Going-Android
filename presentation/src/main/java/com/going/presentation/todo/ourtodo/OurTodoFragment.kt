@@ -52,7 +52,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initItemDecoration()
         initInviteBtnListener()
         initBackBtnClickListener()
-        getTripId()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -97,13 +96,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
-    private fun getTripId() {
+    private fun setMyTripInfo() {
         arguments?.let {
             viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
         }
-    }
-
-    private fun setMyTripInfo() {
         viewModel.getOurTripInfoFromServer()
     }
 

@@ -57,7 +57,7 @@ class MyTodoViewModel @Inject constructor(
         }
     }
 
-    fun getUncompleteTodoListFromServer(tripId: Long, category: String, progress: String) {
+    fun getUncompleteTodoListFromServer(category: String, progress: String) {
         _todoUncompleteListState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
@@ -71,7 +71,7 @@ class MyTodoViewModel @Inject constructor(
         }
     }
 
-    fun getCompleteTodoListFromServer(tripId: Long, category: String, progress: String) {
+    fun getCompleteTodoListFromServer(category: String, progress: String) {
         _todoCompleteListState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
