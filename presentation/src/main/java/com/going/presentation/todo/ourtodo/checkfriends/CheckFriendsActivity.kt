@@ -1,6 +1,7 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.going.presentation.R

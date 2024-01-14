@@ -33,7 +33,6 @@ class CompletedTripFragment :
 
         initAdapter()
         initItemDecoration()
-        setTripList()
         observeDashBoardListState()
 
     }
@@ -59,6 +58,7 @@ class CompletedTripFragment :
                 is UiState.Success -> {
                     setEmptyView(false)
                     adapter.submitList(state.data.trips)
+                    setTripView()
                 }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
@@ -76,6 +76,15 @@ class CompletedTripFragment :
         binding.layoutDashboardEmpty.isVisible = !isEmpty
     }
 
+    private fun setTripView() {
+        binding.rvDashboardCompletedTrip.isVisible = false
+        binding.layoutDashboardEmpty.isVisible = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setTripList()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

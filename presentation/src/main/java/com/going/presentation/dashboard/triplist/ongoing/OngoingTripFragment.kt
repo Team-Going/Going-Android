@@ -1,6 +1,7 @@
 package com.going.presentation.dashboard.triplist.ongoing
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -33,7 +34,6 @@ class OngoingTripFragment :
 
         initAdapter()
         initItemDecoration()
-        setTripList()
         observeDashBoardListState()
 
     }
@@ -42,6 +42,7 @@ class OngoingTripFragment :
     private fun initAdapter() {
         _adapter = OngoingAdapter(this)
         binding.rvDashboardOngoingTrip.adapter = adapter
+        Log.d("LYB", "initAdapter")
     }
 
     private fun initItemDecoration() {
@@ -52,6 +53,7 @@ class OngoingTripFragment :
     private fun setTripList() {
         val progress = DashBoardViewModel.ONGOING
         viewModel.getTripListFromServer(progress)
+        Log.d("LYB", "setTripList")
     }
 
     private fun observeDashBoardListState() {
@@ -60,6 +62,7 @@ class OngoingTripFragment :
                 is UiState.Success -> {
                     setEmptyView(false)
                     adapter.submitList(state.data.trips)
+                    setTripView()
                 }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
@@ -74,6 +77,16 @@ class OngoingTripFragment :
     private fun setEmptyView(isEmpty: Boolean) {
         binding.rvDashboardOngoingTrip.isVisible = isEmpty
         binding.layoutDashboardEmpty.isVisible = !isEmpty
+    }
+
+    private fun setTripView() {
+        binding.rvDashboardOngoingTrip.isVisible = true
+        binding.layoutDashboardEmpty.isVisible = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setTripList()
     }
 
     override fun onDestroyView() {
