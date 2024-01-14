@@ -4,7 +4,11 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.Environment
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
@@ -14,10 +18,13 @@ import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.repository.ProfileRepository
 import com.going.presentation.R
 import com.going.ui.extension.UiState
+import com.going.ui.extension.toast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,7 +45,7 @@ class TendencyResultViewModel @Inject constructor(
         }
     }
 
-    fun startImageDownload(context: Context, activity: Activity) {
+    fun startImageDownload(context: Context, activity: Activity, resources: Resources) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
                 context,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -50,8 +57,33 @@ class TendencyResultViewModel @Inject constructor(
                 TendencyResultActivity.PERMISSION_REQUEST_CODE,
             )
         } else {
-            // saveImageToGallery()
+            saveImageToGallery(resources)
         }
+    }
+
+    private fun saveImageToGallery(resources: Resources) {
+        val imageBitmap: Bitmap = BitmapFactory.decodeResource(
+            resources,
+            R.drawable.img_tendency_result_ari,
+        )
+        val imageFileName = "img_tendency_result_ari.png"
+        val path = "/Download/"
+
+        val uploadFolder = Environment.getExternalStoragePublicDirectory(path)
+        if (!uploadFolder.exists()) {
+            uploadFolder.mkdirs()
+        }
+
+        val imageFile = File(uploadFolder, imageFileName)
+
+        val outputStream = FileOutputStream(imageFile)
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        // scanFile(imageFile, "image/jpeg")
+
+        // toast(getString(R.string.profile_image_download_success))
     }
 
     val mockTendencyResult: List<ProfileMock> = listOf(
