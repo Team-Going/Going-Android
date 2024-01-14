@@ -127,16 +127,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_info_top">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_finish_trip_copy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:src="@drawable/ic_finish_trip_copy"
-                app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_terms_text"
-                app:layout_constraintEnd_toStartOf="@id/tv_finish_trip_terms_text"
-                app:layout_constraintTop_toTopOf="@id/tv_finish_trip_terms_text" />
-
             <TextView
                 android:id="@+id/tv_invite_code"
                 style="@style/TextAppearance.Doorip.Head4"
@@ -149,18 +139,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_finish_trip_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/ic_finish_trip_copy"
+                app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_terms_text"
+                app:layout_constraintEnd_toStartOf="@id/tv_finish_trip_terms_text"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_finish_trip_terms_text" />
+
             <TextView
                 android:id="@+id/tv_finish_trip_terms_text"
                 style="@style/TextAppearance.Doorip.Detail2.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="49dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/finish_trip_tv_copy_code"
                 android:textColor="@color/gray_300"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/iv_finish_trip_copy"
+                app:layout_constraintTop_toBottomOf="@id/tv_invite_code"
                 tools:ignore="MissingConstraints" />
 
             <View
@@ -171,7 +174,6 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
                 app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
                 app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
