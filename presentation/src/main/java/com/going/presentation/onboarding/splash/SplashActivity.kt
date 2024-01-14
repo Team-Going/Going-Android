@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
+
     private val viewModel by viewModels<SplashViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun initSplash() {
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getUserState()
+            if (viewModel.getHasAccessToken()) {
+                viewModel.getUserState()
+            } else {
+                navigateToSignInScreen()
+            }
         }, 3000)
     }
 

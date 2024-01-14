@@ -35,6 +35,7 @@ import java.io.FileOutputStream
 @AndroidEntryPoint
 class TendencyResultActivity :
     BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
+
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,16 +55,16 @@ class TendencyResultActivity :
         viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Loading -> return@onEach
-                is UiState.Success -> bindTendencyInfo(state.data.result)
+                is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun bindTendencyInfo(number: Int) {
+    private fun bindTendencyInfo(name: String, number: Int) {
         with(binding) {
-            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, "찐두릅")
+            tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, name)
 
             viewModel.mockTendencyResult[number].apply {
                 imgTendencyTestResult.setImageResource(resultImage)
@@ -154,11 +155,11 @@ class TendencyResultActivity :
                 PERMISSION_REQUEST_CODE,
             )
         } else {
-            saveImageToGallery(resources)
+            saveImageToGallery()
         }
     }
 
-    private fun saveImageToGallery(resources: Resources) {
+    private fun saveImageToGallery() {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
             R.drawable.img_tendency_result_ari,

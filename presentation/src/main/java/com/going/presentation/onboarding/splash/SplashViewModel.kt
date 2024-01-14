@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.AuthState
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
-import com.going.presentation.onboarding.signin.SignInViewModel
 import com.going.presentation.util.toErrorCode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +17,7 @@ class SplashViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
+
     private val _userState = MutableStateFlow(AuthState.LOADING)
     val userState: StateFlow<AuthState> = _userState
     fun getHasAccessToken(): Boolean = tokenRepository.getAccessToken().isNotBlank()
