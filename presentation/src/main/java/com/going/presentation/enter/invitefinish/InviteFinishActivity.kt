@@ -34,7 +34,7 @@ class InviteFinishActivity :
         val serverlist = getIntent()
 
         if (serverlist != null) {
-            tripId = intent.getLongExtra("tripId", -1L)
+            tripId = intent.getLongExtra(TRIP_ID_KEY, -1L)
             val title = intent.getStringExtra(TITLE)
             val start = intent.getStringExtra(START)
             val end = intent.getStringExtra(END)
@@ -73,8 +73,7 @@ class InviteFinishActivity :
         const val DATE_FORMAT = "%s - %s"
         const val D_DAY_FORMAT = "D - %d"
         const val TRIP_FORMAT = "여행중"
+        const val TRIP_ID_KEY = "tripId"
     }
-
-
 }
 

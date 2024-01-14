@@ -1,6 +1,5 @@
 package com.going.presentation.preferencetag.invitefinish
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -48,7 +47,6 @@ class FinishPreferenceViewModel @Inject constructor(
             )
                 .onSuccess {
                     _finishInviteState.value = UiState.Success(it)
-                    Log.d("cho", styleA.value.toString())
                 }.onFailure {
                     _finishInviteState.value = UiState.Failure(it.message.orEmpty())
                 }

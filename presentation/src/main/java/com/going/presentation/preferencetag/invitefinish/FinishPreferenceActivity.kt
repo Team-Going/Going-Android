@@ -84,21 +84,21 @@ class FinishPreferenceActivity :
     private fun observeFinishPreferenceState() {
         viewModel.finishInviteState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    Intent(this, DashBoardActivity::class.java).apply {
-                        startActivity(this)
-                    }
-                }
-
+                is UiState.Success -> navigatetoDashBoard()
                 is UiState.Failure -> {
                     toast(getString(R.string.server_error))
                 }
 
                 is UiState.Loading -> return@onEach
-
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun navigatetoDashBoard() {
+        Intent(this, DashBoardActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun initNextBtnClickListener() {
