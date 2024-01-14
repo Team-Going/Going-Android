@@ -96,7 +96,7 @@
                             app:layout_constraintEnd_toStartOf="@id/iv_my_todo"
                             app:layout_constraintStart_toStartOf="@id/tv_my_todo_title_up"
                             app:layout_constraintTop_toBottomOf="@id/tv_my_todo_title_up"
-                            tools:text="할일이 1개 남았어요" />
+                            tools:text="나에게 남은 할일 1개" />
 
                         <ImageView
                             android:id="@+id/iv_my_todo"

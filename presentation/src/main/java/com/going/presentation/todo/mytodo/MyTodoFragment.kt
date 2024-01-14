@@ -52,7 +52,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun setMyTripInfo() {
         // TODO: tripId
-        val tripId : Long = 1
+        val tripId: Long = 1
         viewModel.getMyTripInfoFromServer(tripId)
     }
 
@@ -108,7 +108,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                         ContextCompat.getColor(
                             requireContext(), R.color.red_500
                         )
-                    ), 3, length - 4, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    ), length - 3, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
         }

@@ -74,17 +74,18 @@
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">나의 할일</string>
-    <string name="my_todo_tv_lock">나만보기</string>
-    <string name="my_todo_tv_title_down">할일이 %s개 남았어요</string>
+    <string name="my_todo_tv_lock">혼자할일</string>
+    <string name="my_todo_tv_title_down">나에게 남은 할일 %s개</string>
 
     <!--todo_create-->
     <string name="my_todo_create_tv_title">할일 추가</string>
     <string name="my_todo_create_tv_todo">어떤 할일인가요?</string>
     <string name="my_todo_create_tv_todo_hint">할일을 입력해주세요.</string>
-    <string name="my_todo_create_tv_date">언제까지 해하기 하나요?</string>
+    <string name="my_todo_create_tv_date">언제까지 해야 하나요?</string>
     <string name="my_todo_create_tv_date_hint">날짜를 입력해주세요.</string>
     <string name="my_todo_create_tv_person">누가 하나요?</string>
     <string name="my_todo_create_tv_person_lock">나만보기</string>
+    <string name="my_todo_create_tv_person_lock_description">나만 볼 수 있는 할일이에요</string>
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
     <string name="my_todo_create_btn_finish">저장하기</string>
