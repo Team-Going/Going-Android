@@ -142,8 +142,10 @@ class TendencyResultActivity :
 
     private fun navigateToDashBoardScreen() {
         Intent(this, DashBoardActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+        finish()
     }
 
     private fun startImageDownload() {

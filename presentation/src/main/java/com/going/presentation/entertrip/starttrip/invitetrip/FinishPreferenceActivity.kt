@@ -2,6 +2,7 @@ package com.going.presentation.entertrip.starttrip.invitetrip
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -10,6 +11,8 @@ import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
+import com.going.presentation.entertrip.starttrip.createtrip.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.preferencetag.PreferenceTagAdapter
 import com.going.presentation.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
@@ -24,6 +27,8 @@ import kotlinx.coroutines.flow.onEach
 class FinishPreferenceActivity :
     BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference),
     PreferenceTagAdapter.OnPreferenceSelectedListener {
+
+    private var backPressedTime: Long = 0
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -42,6 +47,7 @@ class FinishPreferenceActivity :
         initNextBtnClickListener()
         sendStyleInfo()
         observeFinishPreferenceState()
+        initOnBackPressedListener()
     }
 
     private fun initAdapter() {
@@ -56,8 +62,7 @@ class FinishPreferenceActivity :
     }
 
     private fun getTripId() {
-        val intent = getIntent()
-        viewModel.tripId.value = intent.getLongExtra("tripId", -1L)
+        viewModel.tripId.value = intent.getLongExtra(TRIP_ID, -1L)
     }
 
     private fun initBackClickListener() {
@@ -83,21 +88,25 @@ class FinishPreferenceActivity :
     private fun observeFinishPreferenceState() {
         viewModel.finishInviteState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> navigatetoDashBoard()
+                is UiState.Success -> navigateToDashBoard()
+
                 is UiState.Failure -> {
                     toast(getString(R.string.server_error))
                 }
 
                 is UiState.Loading -> return@onEach
+
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigatetoDashBoard() {
+    private fun navigateToDashBoard() {
         Intent(this, DashBoardActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
+        finish()
     }
 
     private fun initNextBtnClickListener() {
@@ -118,6 +127,20 @@ class FinishPreferenceActivity :
         preferenceAnswers[item.number.toInt() - 1] = checkList
         isButtonValid()
         sendStyleInfo()
+    }
+
+    private fun initOnBackPressedListener() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
+                    backPressedTime = System.currentTimeMillis()
+                    toast(getString(R.string.toast_back_pressed))
+                } else {
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onDestroy() {

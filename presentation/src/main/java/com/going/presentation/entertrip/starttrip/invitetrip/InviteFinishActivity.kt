@@ -31,9 +31,7 @@ class InviteFinishActivity :
     }
 
     private fun getServerList() {
-        val serverlist = getIntent()
-
-        if (serverlist != null) {
+        if (intent != null) {
             tripId = intent.getLongExtra(TRIP_ID, -1L)
             val title = intent.getStringExtra(TITLE)
             val start = intent.getStringExtra(START)
@@ -54,9 +52,7 @@ class InviteFinishActivity :
 
     private fun initBackBtnClickListener() {
         binding.btnInviteFinishBack.setOnSingleClickListener {
-            Intent(this, EnterTripActivity::class.java).apply {
-                startActivity(this)
-            }
+            finish()
         }
     }
 
@@ -64,8 +60,10 @@ class InviteFinishActivity :
         binding.btnInviteFinishEnter.setOnSingleClickListener {
             Intent(this, FinishPreferenceActivity::class.java).apply {
                 putExtra(TRIP_ID, tripId)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
+            finish()
         }
     }
 
