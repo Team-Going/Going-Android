@@ -3,14 +3,18 @@ package com.going.presentation.setting
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
+import com.going.presentation.tripdashboard.profile.ProfileActivity
+import com.going.presentation.tripdashboard.profile.ProfileViewModel
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_setting) {
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
     private var quitDialog: SettingQuitDialogFragment? = null
     private var logoutDialog: SettingLogoutDialogFragment? = null
@@ -37,6 +41,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initProfileClickListener() {
         binding.btnSettingProfile.setOnSingleClickListener {
+            Intent(this, ProfileActivity::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 

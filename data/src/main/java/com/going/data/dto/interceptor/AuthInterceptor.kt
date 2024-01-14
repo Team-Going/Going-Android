@@ -28,6 +28,8 @@ class AuthInterceptor @Inject constructor(
             originalRequest
         }
 
+        //val authRequest = originalRequest.newAuthBuilder().build()
+
         val response = chain.proceed(authRequest)
 
         when (response.code) {
@@ -80,6 +82,7 @@ class AuthInterceptor @Inject constructor(
 
     private fun Request.newAuthBuilder() =
         this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
+        //this.newBuilder().addHeader(AUTHORIZATION, "$BEARER eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MCIsImlhdCI6MTcwNTI1NjkwNCwiZXhwIjoxNzA1ODYxNzA0fQ.m8yWjfOb3e_tL1o_GuuwPU7ZUpNjFhKKKBWLRQHv0qc")
 
     companion object {
         private const val CODE_TOKEN_EXPIRED = 401

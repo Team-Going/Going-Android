@@ -1,11 +1,42 @@
 package com.going.presentation.tripdashboard.profile
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.ProfileMock
+import com.going.domain.entity.request.UserProfileRequestModel
+import com.going.domain.repository.ProfileRepository
 import com.going.presentation.R
+import com.going.ui.extension.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
-    val mockTendencyResult: List<ProfileMock> = listOf(
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val profileRepository: ProfileRepository,
+) : ViewModel() {
+
+    private val _userInfoState = MutableStateFlow<UiState<UserProfileRequestModel>>(UiState.Empty)
+    val userInfoState: StateFlow<UiState<UserProfileRequestModel>> = _userInfoState
+
+    val profileId = MutableLiveData(0)
+
+    fun getUserInfoState() {
+        viewModelScope.launch {
+            _userInfoState.value = UiState.Loading
+            profileRepository.getUserProfile().onSuccess {
+                profileId.value = it.result
+                _userInfoState.value = UiState.Success(it)
+            }.onFailure {
+                _userInfoState.value = UiState.Failure(it.message.toString())
+            }
+        }
+    }
+
+    val mockProfileResult: List<ProfileMock> = listOf(
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_srp,
             profileTitle = "배려심 넘치는 든든잉",

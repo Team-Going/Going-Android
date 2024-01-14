@@ -97,7 +97,7 @@
 
         <activity
             android:name="com.going.presentation.entertrip.invitetrip.invitecode.CreateTripActivity"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
