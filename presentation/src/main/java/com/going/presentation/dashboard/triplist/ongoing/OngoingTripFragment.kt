@@ -42,7 +42,6 @@ class OngoingTripFragment :
     private fun initAdapter() {
         _adapter = OngoingAdapter(this)
         binding.rvDashboardOngoingTrip.adapter = adapter
-        Log.d("LYB", "initAdapter")
     }
 
     private fun initItemDecoration() {
@@ -53,7 +52,6 @@ class OngoingTripFragment :
     private fun setTripList() {
         val progress = DashBoardViewModel.ONGOING
         viewModel.getTripListFromServer(progress)
-        Log.d("LYB", "setTripList")
     }
 
     private fun observeDashBoardListState() {
