@@ -165,8 +165,8 @@ class TendencyResultActivity :
             resources,
             R.drawable.img_tendency_result_ari,
         )
-        val imageFileName = "img_tendency_result.png"
-        val path = "/Download/"
+        val imageFileName = DOWNLOAD_IMAGE_NAME
+        val path = DOWNLOAD_PATH
 
         val uploadFolder = Environment.getExternalStoragePublicDirectory(path)
         if (!uploadFolder.exists()) {
@@ -211,5 +211,7 @@ class TendencyResultActivity :
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 200
+        const val DOWNLOAD_PATH = "/Download/"
+        const val DOWNLOAD_IMAGE_NAME = "img_tendency_result.png"
     }
 }
