@@ -1,4 +1,4 @@
-package com.going.presentation.preferencetag
+package com.going.presentation.entertrip.preferencetag
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.PreferenceData

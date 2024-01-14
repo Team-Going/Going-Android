@@ -1,4 +1,4 @@
-package com.going.presentation.checkfriends
+package com.going.presentation.todo.ourtodo.checkfriends
 
 import android.os.Bundle
 import android.view.View
