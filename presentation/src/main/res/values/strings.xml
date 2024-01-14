@@ -63,7 +63,7 @@
 
     <!--our_todo-->
     <string name="our_todo_tv_tirp_percent_title">우리 여행 진행률</string>
-    <string name="our_todo_tv_trip_friend_title">여행 친구들</string>
+    <string name="our_todo_tv_trip_friend_title">함께 하는 친구들</string>
     <string name="our_todo_btn_invite_friend">초대</string>
     <string name="our_todo_btn_add_todo">같이 할일</string>
     <string name="our_todo_title_down_before">여행일까지 %s일 남았어요!</string>
@@ -74,20 +74,21 @@
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">나의 할일</string>
-    <string name="my_todo_tv_lock">나만보기</string>
-    <string name="my_todo_tv_title_down">할일이 %s개 남았어요</string>
+    <string name="my_todo_tv_lock">혼자할일</string>
+    <string name="my_todo_tv_title_down">나에게 남은 할일 %s개</string>
 
     <!--todo_create-->
     <string name="my_todo_create_tv_title">할일 추가</string>
-    <string name="my_todo_create_tv_todo">할일</string>
+    <string name="my_todo_create_tv_todo">어떤 할일인가요?</string>
     <string name="my_todo_create_tv_todo_hint">할일을 입력해주세요.</string>
-    <string name="my_todo_create_tv_date">언제까지</string>
+    <string name="my_todo_create_tv_date">언제까지 해야 하나요?</string>
     <string name="my_todo_create_tv_date_hint">날짜를 입력해주세요.</string>
-    <string name="my_todo_create_tv_person">누가하나요?</string>
+    <string name="my_todo_create_tv_person">누가 하나요?</string>
     <string name="my_todo_create_tv_person_lock">나만보기</string>
+    <string name="my_todo_create_tv_person_lock_description">나만 볼 수 있는 할일이에요</string>
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해주세요.</string>
-    <string name="my_todo_create_btn_finish">저장</string>
+    <string name="my_todo_create_btn_finish">저장하기</string>
     <string name="todo_create_toast">할일을 추가했어요</string>
 
     <!--todo_detail-->
@@ -112,8 +113,8 @@
     <string name="dashboard_tv_traveling">여행중</string>
 
     <!--menu-->
-    <string name="menu_our_todo">우리의 투두</string>
-    <string name="menu_my_todo">나의 투두</string>
+    <string name="menu_our_todo">우리여행</string>
+    <string name="menu_my_todo">나의할일</string>
 
     <!--start_trip_splash-->
     <string name="start_trip_splash_title">doorip으로\n 모두가 함께 하는 여행!</string>
@@ -134,7 +135,8 @@
     <string name="setting_tv_profile">프로필</string>
     <string name="setting_tv_inquire">문의하기</string>
     <string name="setting_tv_service_version">서비스 버전</string>
-    <string name="setting_tv_policy">약관 및 정책</string>
+    <string name="setting_tv_policy">서비스 이용 약관</string>
+    <string name="setting_tv_terms">개인정보 처리 방침</string>
     <string name="setting_tv_about_doorip">About doorip</string>
     <string name="setting_tv_logout">로그아웃</string>
     <string name="setting_quit_dialog_title">정말 탈퇴하시겠어요?</string>
@@ -151,6 +153,8 @@
     <string name="profile_tv_name">두릅이</string>
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
+    <string name="profile_image_download_success">이미지가 저장되었어요\n친구에게 내 캐릭터를 공유해 보세요</string>
+    <string name="profile_image_download_error">저장할 수 없습니다\ndoorip에 사진에대한 엑세스 권한이 없습니다</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>

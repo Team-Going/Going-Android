@@ -64,13 +64,22 @@
                         android:adjustViewBounds="false"
                         android:paddingBottom="28dp">
 
+                        <ImageView
+                            android:id="@+id/iv_our_todo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_ourtodo_main"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                         <TextView
                             android:id="@+id/tv_our_todo_title_up"
                             style="@style/TextAppearance.Doorip.Head1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="-24dp"
+                            app:layout_constraintEnd_toStartOf="@id/iv_our_todo"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             tools:text="우쥬랑 스페인" />
@@ -80,7 +89,8 @@
                             style="@style/TextAppearance.Doorip.Head1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toEndOf="@id/tv_our_todo_title_up"
+                            app:layout_constraintEnd_toStartOf="@id/iv_our_todo"
+                            android:layout_marginEnd="4dp"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
                             app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up"
                             tools:text="여행일까지 16일 남았어요!" />
@@ -207,19 +217,20 @@
                                 android:layout_height="0dp"
                                 android:layout_marginEnd="4dp"
                                 android:src="@drawable/ic_todo_add_background"
-                                app:layout_constraintBottom_toBottomOf="@id/rv_our_trip_friend"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/rv_our_trip_friend" />
+                                app:layout_constraintTop_toBottomOf="@id/tv_our_trip_friend_title" />
 
                             <ImageView
                                 android:id="@+id/btn_our_todo_add_friend"
                                 android:layout_width="45dp"
                                 android:layout_height="0dp"
+                                android:layout_marginTop="12dp"
                                 android:layout_marginEnd="18dp"
                                 android:src="@drawable/ic_todo_add_friend"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/rv_our_trip_friend" />
+                                app:layout_constraintTop_toBottomOf="@id/tv_our_trip_friend_title" />
 
                             <TextView
                                 android:id="@+id/tv_our_todo_add"

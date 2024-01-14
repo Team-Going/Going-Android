@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
+
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,6 +96,6 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     }
 
     companion object {
-        const val TERMS_URL = "http://www.naver.com"
+        const val TERMS_URL = "https://goinggoing.notion.site/75f5d981a5b842a6be74a9dc17ca67de?pvs=74"
     }
 }

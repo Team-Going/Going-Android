@@ -3,10 +3,10 @@ package com.going.presentation.onboarding.signup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.AuthState
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
-import com.going.domain.entity.AuthState
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.user.UserApiClient
@@ -21,6 +21,7 @@ import javax.inject.Inject
 class OnboardingProfileSettingViewModel @Inject constructor(
     private val authRepository: AuthRepository,
 ) : ViewModel() {
+
     val name = MutableStateFlow("")
     val nowNameLength = MutableLiveData(0)
     val info = MutableStateFlow("")

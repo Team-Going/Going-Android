@@ -48,4 +48,14 @@ class TodoDataSourceImpl @Inject constructor(
     ): BaseResponse<OurTripInfoResponseDto> =
         todoService.getOurTripInfo(tripId)
 
+    override suspend fun getToFinishTodoData(
+        todoId: Long
+    ): NonDataBaseResponse =
+        todoService.getToFinishTodo(todoId)
+
+    override suspend fun getToRedoTodoData(
+        todoId: Long
+    ): NonDataBaseResponse =
+        todoService.getToRedoTodo(todoId)
+
 }

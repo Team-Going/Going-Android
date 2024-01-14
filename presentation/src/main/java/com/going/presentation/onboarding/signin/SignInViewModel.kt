@@ -23,6 +23,7 @@ class SignInViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
+
     private val _postChangeTokenState = MutableStateFlow(AuthState.EMPTY)
     val postChangeTokenState: StateFlow<AuthState> = _postChangeTokenState
 

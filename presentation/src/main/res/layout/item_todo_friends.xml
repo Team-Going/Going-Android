@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white_000"
     android:paddingStart="1dp"
     android:paddingEnd="10dp">
@@ -11,7 +12,7 @@
         android:id="@+id/iv_todo_friend"
         android:layout_width="45dp"
         android:layout_height="0dp"
-        android:src="@drawable/ic_todo_friend"
+        tools:src="@drawable/img_profile_1"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
