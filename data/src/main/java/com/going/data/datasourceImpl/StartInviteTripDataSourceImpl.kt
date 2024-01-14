@@ -12,8 +12,8 @@ class StartInviteTripDataSourceImpl @Inject constructor(
 ) : StartInviteTripDataSource {
 
     override suspend fun postStartInviteTrip(
+        tripId: Long,
         request: StartInviteTripRequestDto
     ): BaseResponse<StartInviteTripResponseDto> =
-        startInviteTripService.postStartInviteTrip(request)
-
+        startInviteTripService.postStartInviteTrip(tripId, request)
 }

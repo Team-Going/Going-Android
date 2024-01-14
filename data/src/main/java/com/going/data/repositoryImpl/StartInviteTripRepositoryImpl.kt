@@ -12,11 +12,12 @@ class StartInviteTripRepositoryImpl @Inject constructor(
 ) : StartInviteTripRepository {
 
     override suspend fun postStartInviteTrip(
+        tripId: Long,
         requestStartInviteTripModel: StartInviteTripRequestModel
     ): Result<StartInviteTripModel> =
         runCatching {
             startInviteTripDataSource.postStartInviteTrip(
-                requestStartInviteTripModel.toStartInviteTripRequestDto(),
+                tripId, requestStartInviteTripModel.toStartInviteTripRequestDto(),
             ).data.toStartInviteTripModel()
         }
 }
