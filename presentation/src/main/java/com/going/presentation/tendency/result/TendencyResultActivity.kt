@@ -1,6 +1,8 @@
 package com.going.presentation.tendency.result
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -181,6 +183,21 @@ class TendencyResultActivity :
         scanFile(imageFile, "image/jpeg")
 
         toast(getString(R.string.profile_image_download_success))
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startImageDownload()
+            } else {
+                toast(getString(R.string.profile_image_download_error))
+            }
+        }
     }
 
     private fun scanFile(file: File, mimeType: String) {
