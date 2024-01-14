@@ -10,7 +10,9 @@ data class AuthResponseDto(
     val accessToken: String,
     @SerialName("refreshToken")
     val refreshToken: String,
+    @SerialName("userId")
+    val userId: Long,
 ) {
     fun toAuthTokenModel() =
-        AuthTokenModel(accessToken = accessToken, refreshToken = refreshToken)
+        AuthTokenModel(accessToken = accessToken, refreshToken = refreshToken, userId = userId)
 }
