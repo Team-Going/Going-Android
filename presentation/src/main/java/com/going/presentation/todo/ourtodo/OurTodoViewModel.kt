@@ -26,9 +26,10 @@ class OurTodoViewModel @Inject constructor(
     private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
 
-    var inviteCode = ""
+    var inviteCode : String = ""
+    var tripId : Long = 0
 
-    fun getOurTripInfoFromServer(tripId: Long) {
+    fun getOurTripInfoFromServer() {
         _ourTripInfoState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getOurTripInfo(tripId)
@@ -42,9 +43,7 @@ class OurTodoViewModel @Inject constructor(
         }
     }
 
-    fun getTodoListFromServer(
-        tripId: Long, category: String, progress: String
-    ) {
+    fun getTodoListFromServer(category: String, progress: String) {
         val todoListState = if (progress == COMPLETE) {
             _todoCompleteListState
         } else {

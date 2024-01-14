@@ -36,15 +36,19 @@ class MyTodoViewModel @Inject constructor(
     private val _todoRedoState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
+    var tripId : Long = 0
+    var participantId: Long = 9
+
     fun increaseTodoCount() {
         _totalUncompletedTodoCount.value += 1
     }
 
-    fun getMyTripInfoFromServer(tripId: Long) {
+    fun getMyTripInfoFromServer() {
         _myTripInfoState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getMyTripInfo(tripId)
                 .onSuccess { response ->
+                    participantId = response.participantId
                     _myTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {
@@ -53,7 +57,7 @@ class MyTodoViewModel @Inject constructor(
         }
     }
 
-    fun getUncompleteTodoListFromServer(tripId: Long, category: String, progress: String) {
+    fun getUncompleteTodoListFromServer(category: String, progress: String) {
         _todoUncompleteListState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
@@ -67,7 +71,7 @@ class MyTodoViewModel @Inject constructor(
         }
     }
 
-    fun getCompleteTodoListFromServer(tripId: Long, category: String, progress: String) {
+    fun getCompleteTodoListFromServer(category: String, progress: String) {
         _todoCompleteListState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)

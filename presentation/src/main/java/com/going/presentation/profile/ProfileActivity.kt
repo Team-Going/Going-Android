@@ -1,4 +1,4 @@
-package com.going.presentation.tripdashboard.profile
+package com.going.presentation.profile
 
 import android.os.Bundle
 import android.text.SpannableString

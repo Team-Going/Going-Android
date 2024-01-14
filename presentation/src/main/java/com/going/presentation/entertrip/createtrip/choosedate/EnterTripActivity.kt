@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activity_enter_trip) {
+
     private val viewModel by viewModels<EnterTripViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

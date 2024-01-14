@@ -12,8 +12,11 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
+import com.going.presentation.todo.TodoActivity
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -34,6 +37,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         super.onViewCreated(view, savedInstanceState)
 
         initAddTodoListener()
+        initBackBtnClickListener()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -45,15 +49,25 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
     private fun initAddTodoListener() {
         binding.btnMyTodoAddTodo.setOnSingleClickListener {
             Intent(activity, MyTodoCreateActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+                putExtra(EXTRA_PARTICIPANT_ID, viewModel.participantId)
                 startActivity(this)
             }
         }
     }
 
+    private fun initBackBtnClickListener() {
+        binding.btnMyTodoBack.setOnSingleClickListener {
+           activity?.finish()
+        }
+    }
+
+
     private fun setMyTripInfo() {
-        // TODO: tripId
-        val tripId: Long = 1
-        viewModel.getMyTripInfoFromServer(tripId)
+        arguments?.let {
+            viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
+        }
+        viewModel.getMyTripInfoFromServer()
     }
 
     private fun setTabLayout() {
@@ -83,7 +97,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
             when (state) {
                 is UiState.Loading -> return@onEach
 
-                is UiState.Success -> binding.tvMyTodoTitleUp.text = state.data.name
+                is UiState.Success -> binding.tvMyTodoTitleUp.text = state.data.title
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 

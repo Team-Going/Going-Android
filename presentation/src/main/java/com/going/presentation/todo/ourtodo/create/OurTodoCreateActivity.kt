@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOurTodoCreateBinding
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -40,6 +41,7 @@ class OurTodoCreateActivity :
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
+        getTripId()
         setParticipantList()
         observeTodoCreateState()
         observeTextLength()
@@ -93,10 +95,8 @@ class OurTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnOurTodoMemoFinish.setOnSingleClickListener {
-            // TODO : tripId는 임시 설정
-            val tripId: Long = 1
             viewModel.participantList = adapter.currentList.filter { it.isSelected }
-            viewModel.postToCreateTodoFromServer(tripId)
+            viewModel.postToCreateTodoFromServer()
         }
     }
 
@@ -104,6 +104,10 @@ class OurTodoCreateActivity :
         binding.btnOurTodoCreateBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    private fun getTripId() {
+        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID,0)
     }
 
     private fun setParticipantList() {

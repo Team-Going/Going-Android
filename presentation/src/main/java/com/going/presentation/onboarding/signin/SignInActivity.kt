@@ -3,6 +3,7 @@ package com.going.presentation.onboarding.signin
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,8 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
 
+    private var backPressedTime: Long = 0
+
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +33,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         initKakaoLoginBtnClickListener()
         initTermsBtnClickListener()
         observeInfo()
+        initOnBackPressedListener()
     }
 
     private fun initKakaoLoginBtnClickListener() {
@@ -95,7 +99,22 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         finish()
     }
 
+    private fun initOnBackPressedListener() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (System.currentTimeMillis() - backPressedTime >= BACK_INTERVAL) {
+                    backPressedTime = System.currentTimeMillis()
+                    toast(getString(R.string.toast_back_pressed))
+                } else {
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+    }
+
     companion object {
         const val TERMS_URL = "https://goinggoing.notion.site/75f5d981a5b842a6be74a9dc17ca67de?pvs=74"
+        const val BACK_INTERVAL = 2000
     }
 }

@@ -14,11 +14,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo) {
 
+    var tripId: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getTripId()
         initBnvItemIconTintList()
         initBnvItemSelectedListener()
+    }
+
+    private fun getTripId() {
+        if (intent != null) {
+            tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        }
     }
 
     private fun initBnvItemIconTintList() {
@@ -27,16 +36,16 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
     }
 
     private fun initBnvItemSelectedListener() {
-        supportFragmentManager.findFragmentById(R.id.fcv_todo) ?: navigateTo<OurTodoFragment>()
+        supportFragmentManager.findFragmentById(R.id.fcv_todo) ?: navigateTo<OurTodoFragment>(tripId)
 
         binding.bnvTodo.setOnItemSelectedListener { menu ->
             if (binding.bnvTodo.selectedItemId == menu.itemId) {
                 return@setOnItemSelectedListener false
             }
             when (menu.itemId) {
-                R.id.menu_our_todo -> navigateTo<OurTodoFragment>()
+                R.id.menu_our_todo -> navigateTo<OurTodoFragment>(tripId)
 
-                R.id.menu_my_todo -> navigateTo<MyTodoFragment>()
+                R.id.menu_my_todo -> navigateTo<MyTodoFragment>(tripId)
 
                 else -> return@setOnItemSelectedListener false
             }
@@ -44,10 +53,17 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
         }
     }
 
-    private inline fun <reified T : Fragment> navigateTo() {
-        supportFragmentManager.commit {
-            replace<T>(R.id.fcv_todo, T::class.java.canonicalName)
+    private inline fun <reified T : Fragment> navigateTo(id: Long) {
+        val bundle = Bundle().apply {
+            putLong(EXTRA_TRIP_ID, id)
         }
+        supportFragmentManager.commit {
+            replace<T>(R.id.fcv_todo, T::class.java.canonicalName, bundle)
+        }
+    }
+
+    companion object {
+        const val EXTRA_TRIP_ID = "TRIP_ID"
     }
 
 }

@@ -22,7 +22,7 @@ import com.kakao.sdk.auth.Constants.CODE
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
 
-    private var inviteCode: String? = ""
+    private var inviteCode: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +45,14 @@ class FinishTripActivity :
 
     private fun initSendCodeBtnClickListener() {
         binding.btnFinishTripSendCode.setOnSingleClickListener {
-            //카카오톡으로 초대코드 보내기
+            // TODO : 카카오톡으로 초대코드 보내기
         }
     }
 
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
             finish()
@@ -59,8 +60,6 @@ class FinishTripActivity :
     }
 
     private fun getTripInfo() {
-        val intent = getIntent()
-
         if (intent != null) {
             val title = intent.getStringExtra(TITLE)
             val start = intent.getStringExtra(START)

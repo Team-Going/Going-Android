@@ -35,6 +35,8 @@ class OurTodoCreateViewModel @Inject constructor(
     var totalParticipantList: List<TripParticipantModel> = listOf()
     var participantList: List<TripParticipantModel> = listOf()
 
+    var tripId: Long = 0
+
     fun getMaxTodoLen() = MAX_TODO_LEN
 
     fun getMaxMemoLen() = MAX_MEMO_LEN
@@ -46,7 +48,7 @@ class OurTodoCreateViewModel @Inject constructor(
             todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected }
     }
 
-    fun postToCreateTodoFromServer(tripId: Long) {
+    fun postToCreateTodoFromServer() {
         _todoCreateState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.postToCreateTodo(

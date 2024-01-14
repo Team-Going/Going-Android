@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
@@ -50,6 +51,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
+        initBackBtnClickListener()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -70,6 +72,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
                 putStringArrayListExtra(EXTRA_NAME, nameList)
                 putIntegerArrayListExtra(EXTRA_RESULT, resultList)
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }
@@ -87,10 +90,17 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
+    private fun initBackBtnClickListener() {
+        binding.btnOurTodoBack.setOnSingleClickListener {
+            activity?.finish()
+        }
+    }
+
     private fun setMyTripInfo() {
-        // TODO: tripId
-        val tripId: Long = 1
-        viewModel.getOurTripInfoFromServer(tripId)
+        arguments?.let {
+            viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
+        }
+        viewModel.getOurTripInfoFromServer()
     }
 
     private fun setTabLayout() {

@@ -31,6 +31,9 @@ class MyTodoCreateViewModel @Inject constructor(
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
+    var tripId: Long = 0
+    var participantId: Long = 0
+
     fun getMaxTodoLen() = MAX_TODO_LEN
 
     fun getMaxMemoLen() = MAX_MEMO_LEN
@@ -42,7 +45,7 @@ class MyTodoCreateViewModel @Inject constructor(
             todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
     }
 
-    fun postToCreateTodoFromServer(tripId: Long, participantId: Long) {
+    fun postToCreateTodoFromServer() {
         _todoCreateState.value = UiState.Loading
         viewModelScope.launch {
             todoRepository.postToCreateTodo(
