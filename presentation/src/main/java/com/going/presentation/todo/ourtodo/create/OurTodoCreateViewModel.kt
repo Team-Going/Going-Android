@@ -32,10 +32,7 @@ class OurTodoCreateViewModel @Inject constructor(
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
-    // TODO: 추후 수정
-    var totalParticipantList: List<TripParticipantModel> = listOf(
-        TripParticipantModel(3, "삼삼삼", 1), TripParticipantModel(21, "이십일", 2)
-    )
+    var totalParticipantList: List<TripParticipantModel> = listOf()
     var participantList: List<TripParticipantModel> = listOf()
 
     fun getMaxTodoLen() = MAX_TODO_LEN
@@ -46,7 +43,7 @@ class OurTodoCreateViewModel @Inject constructor(
         nowTodoLength.value = getGraphemeLength(todo.value)
         nowMemoLength.value = getGraphemeLength(memo.value)
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected }
     }
 
     fun postToCreateTodoFromServer(tripId: Long) {

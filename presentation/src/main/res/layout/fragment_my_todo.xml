@@ -82,10 +82,10 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="24dp"
-                            android:text="우쥬랑 스페인"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="우쥬랑 스페인" />
 
                         <TextView
                             android:id="@+id/tv_my_todo_title_down"

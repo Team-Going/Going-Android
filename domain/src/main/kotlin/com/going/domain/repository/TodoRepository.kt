@@ -35,4 +35,12 @@ interface TodoRepository {
         tripId: Long
     ): Result<OurTripInfoModel>
 
+    suspend fun getToFinishTodo(
+        todoId: Long
+    ): Result<Unit>
+
+    suspend fun getToRedoTodo(
+        todoId: Long
+    ): Result<Unit>
+
 }

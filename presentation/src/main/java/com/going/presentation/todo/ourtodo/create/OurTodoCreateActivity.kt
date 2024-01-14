@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOurTodoCreateBinding
 import com.going.ui.base.BaseActivity
@@ -39,6 +40,7 @@ class OurTodoCreateActivity :
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
+        setParticipantList()
         observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
@@ -50,10 +52,12 @@ class OurTodoCreateActivity :
     }
 
     private fun initNameListAdapter() {
-        // TODO: 아워투두 뷰에서 intent로 친구목록 받아와서 적용할 예정
-        _adapter = TodoCreateNameAdapter(false)
+        _adapter = TodoCreateNameAdapter(false) { position ->
+            viewModel.participantList[position].isSelected =
+                !viewModel.participantList[position].isSelected
+            viewModel.checkIsFinishAvailable()
+        }
         binding.rvOurTodoCreatePerson.adapter = adapter
-        adapter.submitList(viewModel.totalParticipantList)
     }
 
     private fun initTodoFocusListener() {
@@ -89,9 +93,9 @@ class OurTodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnOurTodoMemoFinish.setOnSingleClickListener {
-            // tripId는 임시 설정
+            // TODO : tripId는 임시 설정
             val tripId: Long = 1
-            viewModel.participantList = adapter.currentList
+            viewModel.participantList = adapter.currentList.filter { it.isSelected }
             viewModel.postToCreateTodoFromServer(tripId)
         }
     }
@@ -100,6 +104,18 @@ class OurTodoCreateActivity :
         binding.btnOurTodoCreateBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    private fun setParticipantList() {
+        val idList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.toList() ?: listOf()
+        val nameList = intent.getStringArrayListExtra(EXTRA_NAME)?.toList() ?: listOf()
+        val resultList = intent.getIntegerArrayListExtra(EXTRA_RESULT)?.toList() ?: listOf()
+        viewModel.totalParticipantList =
+            idList.zip(nameList).zip(resultList) { (id, name), result ->
+                TripParticipantModel(id.toLong(), name, result)
+            }
+        viewModel.participantList = viewModel.totalParticipantList
+        adapter.submitList(viewModel.totalParticipantList)
     }
 
     private fun observeTodoCreateState() {
@@ -203,6 +219,10 @@ class OurTodoCreateActivity :
 
     companion object {
         private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
+
+        const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
+        const val EXTRA_NAME = "EXTRA_NAME"
+        const val EXTRA_RESULT = "EXTRA_RESULT"
     }
 
 }
