@@ -37,6 +37,7 @@ class MyTodoViewModel @Inject constructor(
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
     var tripId : Long = 0
+    var participantId: Long = 9
 
     fun increaseTodoCount() {
         _totalUncompletedTodoCount.value += 1

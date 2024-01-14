@@ -13,8 +13,10 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.todo.TodoActivity
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -47,6 +49,8 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
     private fun initAddTodoListener() {
         binding.btnMyTodoAddTodo.setOnSingleClickListener {
             Intent(activity, MyTodoCreateActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+                putExtra(EXTRA_PARTICIPANT_ID, 0)
                 startActivity(this)
             }
         }
@@ -54,7 +58,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun getTripId() {
         arguments?.let {
-            viewModel.tripId = it.getLong(TodoActivity.EXTRA_TRIP_ID)
+            viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
         }
     }
 

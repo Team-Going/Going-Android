@@ -72,6 +72,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
                 putStringArrayListExtra(EXTRA_NAME, nameList)
                 putIntegerArrayListExtra(EXTRA_RESULT, resultList)
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }
