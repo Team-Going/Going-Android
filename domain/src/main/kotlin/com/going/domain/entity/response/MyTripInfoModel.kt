@@ -1,6 +1,7 @@
 package com.going.domain.entity.response
 
 data class MyTripInfoModel(
-    val name: String,
+    val participantId: Long,
+    val title: String,
     val count: Int
 )

@@ -16,6 +16,7 @@ class StartTripSplashActivity :
 
         initNewTripBtnClickListener()
         initEnterTripBtnClickListener()
+        initBackBtnClickListener()
     }
 
     private fun initNewTripBtnClickListener() {
@@ -23,7 +24,6 @@ class StartTripSplashActivity :
             Intent(this, CreateTripActivity::class.java).apply {
                 startActivity(this)
             }
-            finish()
         }
     }
 
@@ -32,6 +32,11 @@ class StartTripSplashActivity :
             Intent(this, EnterTripActivity::class.java).apply {
                 startActivity(this)
             }
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnEnterBack.setOnSingleClickListener {
             finish()
         }
     }

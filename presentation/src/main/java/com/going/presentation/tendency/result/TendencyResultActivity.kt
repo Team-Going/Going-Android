@@ -12,14 +12,16 @@ import android.os.Environment
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
+import com.going.presentation.entertrip.StartTripSplashActivity
+import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
@@ -35,6 +37,8 @@ import java.io.FileOutputStream
 class TendencyResultActivity :
     BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
 
+    private var backPressedTime: Long = 0
+
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,7 @@ class TendencyResultActivity :
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
+        initOnBackPressedListener()
     }
 
     private fun getUserInfo() {
@@ -123,7 +128,7 @@ class TendencyResultActivity :
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyResultFinish.setOnSingleClickListener {
-            navigateToDashBoardScreen()
+            navigateToStartTripSplashScreen()
         }
     }
 
@@ -135,12 +140,10 @@ class TendencyResultActivity :
         finish()
     }
 
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    private fun navigateToStartTripSplashScreen() {
+        Intent(this, StartTripSplashActivity::class.java).apply {
             startActivity(this)
         }
-        finish()
     }
 
     private fun startImageDownload() {
@@ -162,7 +165,7 @@ class TendencyResultActivity :
     private fun saveImageToGallery() {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
-            viewModel.mockTendencyResult[viewModel.tendencyId.value?:0].downloadImage,
+            viewModel.mockTendencyResult[viewModel.tendencyId.value ?: 0].downloadImage,
         )
         val imageFileName = DOWNLOAD_IMAGE_NAME.replace("%s", viewModel.tendencyId.value.toString())
         val path = DOWNLOAD_PATH
@@ -206,6 +209,20 @@ class TendencyResultActivity :
             arrayOf(mimeType),
             null,
         )
+    }
+
+    private fun initOnBackPressedListener() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
+                    backPressedTime = System.currentTimeMillis()
+                    toast(getString(R.string.toast_back_pressed))
+                } else {
+                    finish()
+                }
+            }
+        }
+        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     companion object {
