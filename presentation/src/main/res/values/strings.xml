@@ -134,7 +134,8 @@
     <string name="setting_tv_profile">프로필</string>
     <string name="setting_tv_inquire">문의하기</string>
     <string name="setting_tv_service_version">서비스 버전</string>
-    <string name="setting_tv_policy">약관 및 정책</string>
+    <string name="setting_tv_policy">서비스 이용 약관</string>
+    <string name="setting_tv_terms">개인정보 처리 방침</string>
     <string name="setting_tv_about_doorip">About doorip</string>
     <string name="setting_tv_logout">로그아웃</string>
     <string name="setting_quit_dialog_title">정말 탈퇴하시겠어요?</string>
