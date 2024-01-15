@@ -70,14 +70,14 @@
 
                 <ImageView
                     android:id="@+id/iv_profile"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
-                    android:src="@drawable/img_tendency_result_aei"
+                    android:src="@drawable/img_profile_1"
                     app:layout_constraintDimensionRatio="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_profile_name"

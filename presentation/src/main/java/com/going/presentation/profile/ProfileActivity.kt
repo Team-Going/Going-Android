@@ -17,6 +17,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileBinding
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.DOWNLOAD_IMAGE_NAME
@@ -69,42 +71,57 @@ class ProfileActivity :
     }
 
     private fun bindProfileInfo(name: String, intro: String, number: Int) {
-        with(binding) {
+        binding.run {
             tvProfileName.text = name
             tvProfileOneLine.text = intro
-            profileViewModel.mockProfileResult[number].apply {
-                ivProfile.setImageResource(resultImage)
-                tvProfileType.text = profileTitle
-                tvProfileSubType.text = profileSubTitle
 
-                tvProfileTag1.text = getString(R.string.tag, tags[0])
-                tvProfileTag2.text = getString(R.string.tag, tags[1])
-                tvProfileTag3.text = getString(R.string.tag, tags[2])
+            val profileImage = when (number) {
+                0 -> R.drawable.img_profile_6
+                1 -> R.drawable.img_profile_1
+                2 -> R.drawable.img_profile_2
+                3 -> R.drawable.img_profile_4
+                4 -> R.drawable.img_profile_8
+                5 -> R.drawable.img_profile_5
+                6 -> R.drawable.img_profile_7
+                7 -> R.drawable.img_profile_3
+                else -> R.drawable.img_profile_1
+            }
 
-                tvFirstDescriptionTitle.text = profileBoxInfo[0].title
-                tvFirstDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[0].first)
-                tvFirstDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[0].second)
-                tvFirstDescriptionThirdText.text =
-                    setBulletPoint(profileBoxInfo[0].third)
+            ivProfile.load(profileImage) {
+                transformations(CircleCropTransformation())
 
-                tvSecondDescriptionTitle.text =
-                    profileBoxInfo[1].title
-                tvSecondDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[1].first)
-                tvSecondDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[1].second)
-                tvSecondDescriptionThirdText.text =
-                    setBulletPoint(profileBoxInfo[1].third)
+                profileViewModel.mockProfileResult[number].apply {
+                    tvProfileType.text = profileTitle
+                    tvProfileSubType.text = profileSubTitle
 
-                tvThirdDescriptionTitle.text = profileBoxInfo[2].title
-                tvThirdDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[2].first)
-                tvThirdDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[2].second)
-                tvThirdDescriptionThirdText.text =
-                    setBulletPoint(profileBoxInfo[2].third)
+                    tvProfileTag1.text = getString(R.string.tag, tags[0])
+                    tvProfileTag2.text = getString(R.string.tag, tags[1])
+                    tvProfileTag3.text = getString(R.string.tag, tags[2])
+
+                    tvFirstDescriptionTitle.text = profileBoxInfo[0].title
+                    tvFirstDescriptionFirstText.text =
+                        setBulletPoint(profileBoxInfo[0].first)
+                    tvFirstDescriptionSecondText.text =
+                        setBulletPoint(profileBoxInfo[0].second)
+                    tvFirstDescriptionThirdText.text = setBulletPoint(profileBoxInfo[0].third)
+
+                    tvSecondDescriptionTitle.text =
+                        profileBoxInfo[1].title
+                    tvSecondDescriptionFirstText.text =
+                        setBulletPoint(profileBoxInfo[1].first)
+                    tvSecondDescriptionSecondText.text =
+                        setBulletPoint(profileBoxInfo[1].second)
+                    tvSecondDescriptionThirdText.text =
+                        setBulletPoint(profileBoxInfo[1].third)
+
+                    tvThirdDescriptionTitle.text = profileBoxInfo[2].title
+                    tvThirdDescriptionFirstText.text =
+                        setBulletPoint(profileBoxInfo[2].first)
+                    tvThirdDescriptionSecondText.text =
+                        setBulletPoint(profileBoxInfo[2].second)
+                    tvThirdDescriptionThirdText.text =
+                        setBulletPoint(profileBoxInfo[2].third)
+                }
             }
         }
     }
