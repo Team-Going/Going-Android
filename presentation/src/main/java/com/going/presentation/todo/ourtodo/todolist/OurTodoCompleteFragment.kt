@@ -3,6 +3,7 @@ package com.going.presentation.todo.ourtodo.todolist
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -57,15 +58,26 @@ class OurTodoCompleteFragment() :
     private fun observeTodoListState() {
         viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.submitList(state.data)
+                is UiState.Success -> {
+                    setLayoutEmpty(false)
+                    adapter.submitList(state.data)
+                }
 
-                is UiState.Failure -> toast(getString(R.string.server_error))
+                is UiState.Failure -> {
+                    setLayoutEmpty(true)
+                    toast(getString(R.string.server_error))
+                }
 
                 is UiState.Loading -> return@onEach
 
-                is UiState.Empty -> return@onEach
+                is UiState.Empty -> setLayoutEmpty(true)
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun setLayoutEmpty(isEmpty: Boolean) {
+        binding.rvOurTodoComplete.isVisible = !isEmpty
+        binding.layoutOurTodoCompleteEmpty.isVisible = isEmpty
     }
 
     override fun onDestroyView() {

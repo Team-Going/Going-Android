@@ -27,6 +27,42 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_our_todo" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_our_todo_uncomplete_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="140dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_our_todo_uncomplete_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_mytodo_empty"
+                app:layout_constraintBottom_toTopOf="@id/tv_our_todo_uncomplete_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_our_todo_uncomplete_empty"
+                style="@style/TextAppearance.Doorip.Detail1.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/todo_empty"
+                android:textColor="@color/gray_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_our_todo_uncomplete_empty"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

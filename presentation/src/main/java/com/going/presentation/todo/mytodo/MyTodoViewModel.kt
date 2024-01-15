@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,10 +24,10 @@ class MyTodoViewModel @Inject constructor(
     private val _totalUncompletedTodoCount = MutableStateFlow<Int>(0)
     val totalUncompletedTodoCount: StateFlow<Int> = _totalUncompletedTodoCount
 
-    private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Loading)
+    private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoUncompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoUncompleteListState
 
-    private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Loading)
+    private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
 
     private val _todoFinishState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
@@ -37,7 +36,7 @@ class MyTodoViewModel @Inject constructor(
     private val _todoRedoState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
-    var tripId : Long = 0
+    var tripId: Long = 0
     var participantId: Long = 9
 
     fun increaseTodoCount() {
