@@ -3,6 +3,7 @@ package com.going.data.service
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.CheckFriendsResponseDto
 import com.going.data.dto.response.MyTripInfoResponseDto
 import com.going.data.dto.response.OurTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
@@ -58,5 +59,10 @@ interface TodoService {
     suspend fun getToRedoTodo(
         @Path("todoId") todoId: Long
     ): NonDataBaseResponse
+
+    @GET("api/trips/{tripId}/participants")
+    suspend fun getFriendsList(
+        @Path("tripId") tripId: Long
+    ): BaseResponse<CheckFriendsResponseDto>
 
 }

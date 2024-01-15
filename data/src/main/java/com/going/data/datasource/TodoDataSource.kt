@@ -3,6 +3,7 @@ package com.going.data.datasource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.CheckFriendsResponseDto
 import com.going.data.dto.response.MyTripInfoResponseDto
 import com.going.data.dto.response.OurTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
@@ -44,5 +45,9 @@ interface TodoDataSource {
     suspend fun getToRedoTodoData(
         todoId: Long
     ): NonDataBaseResponse
+
+    suspend fun  getFriendsList(
+        tripId : Long
+    ): BaseResponse<CheckFriendsResponseDto>
 
 }

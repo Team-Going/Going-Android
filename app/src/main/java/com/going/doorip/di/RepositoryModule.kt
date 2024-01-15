@@ -8,6 +8,7 @@ import com.going.data.repositoryImpl.ProfileRepositoryImpl
 import com.going.data.repositoryImpl.SettingRepositoryImpl
 import com.going.data.repositoryImpl.TendencyRepositoryImpl
 import com.going.data.repositoryImpl.TodoRepositoryImpl
+import com.going.data.repositoryImpl.TokenReissueRepositoryImpl
 import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.DashBoardRepository
@@ -17,6 +18,7 @@ import com.going.domain.repository.ProfileRepository
 import com.going.domain.repository.SettingRepository
 import com.going.domain.repository.TendencyRepository
 import com.going.domain.repository.TodoRepository
+import com.going.domain.repository.TokenReissueRepository
 import com.going.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -73,4 +75,8 @@ object RepositoryModule {
     fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository =
         profileRepositoryImpl
 
+    @Provides
+    @Singleton
+    fun provideTokenReissueRepository(tokenReissueRepositoryImpl: TokenReissueRepositoryImpl): TokenReissueRepository =
+        tokenReissueRepositoryImpl
 }
