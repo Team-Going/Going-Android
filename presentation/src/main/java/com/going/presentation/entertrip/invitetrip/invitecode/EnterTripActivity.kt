@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.createtrip.choosedate
+package com.going.presentation.entertrip.invitetrip.invitecode
 
 import android.content.Intent
 import android.os.Bundle
@@ -95,7 +95,11 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 }
 
                 is UiState.Failure -> {
-                    toast(getString(R.string.server_error))
+                    if (state.msg == getString(R.string.profile_tv_no_trip)) {
+                        toast(getString(R.string.enter_trip_invite_code_error))
+                    } else {
+                        toast(getString(R.string.server_error))
+                    }
                 }
 
                 is UiState.Loading -> return@onEach

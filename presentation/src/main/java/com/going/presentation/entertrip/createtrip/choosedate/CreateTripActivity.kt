@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.invitetrip.invitecode
+package com.going.presentation.entertrip.createtrip.choosedate
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
-import com.going.presentation.entertrip.createtrip.choosedate.BottomSheetDateContentFragment
 import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener

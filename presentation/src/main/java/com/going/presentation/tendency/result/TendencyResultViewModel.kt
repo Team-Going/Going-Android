@@ -36,7 +36,7 @@ class TendencyResultViewModel @Inject constructor(
         }
     }
 
-    val mockTendencyResult: List<ProfileMock> = listOf(
+    val mockTendencyResult = listOf(
         ProfileMock(
             resultImage = R.drawable.img_tendency_result_srp,
             downloadImage = R.drawable.img_download_srp,
@@ -286,5 +286,4 @@ class TendencyResultViewModel @Inject constructor(
             ),
         ),
     )
-
 }
