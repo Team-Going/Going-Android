@@ -3,11 +3,11 @@ package com.going.presentation.todo.ourtodo.checkfriends
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.going.domain.entity.response.CheckFriendsModel.ParticipantsModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class CheckFriendsAdapter : ListAdapter<ParticipantsModel, CheckFriendsViewHolder>(diffUtil) {
+class CheckFriendsAdapter : ListAdapter<TripParticipantModel, CheckFriendsViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckFriendsViewHolder {
         val binding: ItemTodoFriendsBinding =
@@ -20,7 +20,7 @@ class CheckFriendsAdapter : ListAdapter<ParticipantsModel, CheckFriendsViewHolde
     }
 
     companion object {
-        private val diffUtil = ItemDiffCallback<ParticipantsModel>(
+        private val diffUtil = ItemDiffCallback<TripParticipantModel>(
             onItemsTheSame = { old, new -> old.name == new.name },
             onContentsTheSame = { old, new -> old == new },
         )

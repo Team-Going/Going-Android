@@ -3,14 +3,14 @@ package com.going.presentation.todo.ourtodo.checkfriends
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.going.domain.entity.response.CheckFriendsModel.ParticipantsModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 
 class CheckFriendsViewHolder(val binding: ItemTodoFriendsBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(item: ParticipantsModel) {
+    fun onBind(item: TripParticipantModel) {
         binding.run {
             tvTodoFriend.text = item.name
 

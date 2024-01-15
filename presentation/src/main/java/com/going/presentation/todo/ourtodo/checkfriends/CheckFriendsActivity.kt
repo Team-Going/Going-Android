@@ -3,10 +3,12 @@ package com.going.presentation.todo.ourtodo.checkfriends
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -47,7 +49,7 @@ class CheckFriendsActivity :
     }
 
     private fun getTripId() {
-        val tripId = intent.getLongExtra("tripId", -1L)
+        val tripId = intent.getLongExtra(EXTRA_TRIP_ID, -1L)
         viewModel.getFriendsListFromServer(tripId)
     }
 
@@ -99,6 +101,7 @@ class CheckFriendsActivity :
             }
         }
     }
+
 
 
     override fun onDestroy() {

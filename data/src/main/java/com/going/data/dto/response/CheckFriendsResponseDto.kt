@@ -7,22 +7,10 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CheckFriendsResponseDto(
     @SerialName("participants")
-    val participants: List<ParticipantsResponseDto>,
+    val participants: List<TripParticipantResponseDto>,
     @SerialName("styles")
     val styles: List<StylesResponseDto>
 ) {
-    @Serializable
-    data class ParticipantsResponseDto(
-        @SerialName("participantId")
-        val participantId: Long,
-        @SerialName("name")
-        val name: String,
-        @SerialName("result")
-        val result: Int
-    ) {
-        fun toParticipantModel() =
-            CheckFriendsModel.ParticipantsModel(participantId, name, result)
-    }
 
     @Serializable
     data class StylesResponseDto(
@@ -36,12 +24,10 @@ data class CheckFriendsResponseDto(
     }
 
     fun toCheckFriendsModel() =
-        CheckFriendsModel(
-            participants.map {
-                it.toParticipantModel()
-            },
-            styles.map {
-                it.toStyleModel()
-            })
+        CheckFriendsModel(participants.map {
+            it.toTripParticipantModel()
+        }, styles.map {
+            it.toStyleModel()
+        })
 
 }
