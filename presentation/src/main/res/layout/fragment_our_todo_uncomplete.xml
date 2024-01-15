@@ -31,7 +31,7 @@
             android:id="@+id/layout_our_todo_uncomplete_empty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="140dp"
+            android:paddingVertical="40dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
