@@ -12,6 +12,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -54,8 +56,19 @@ class EnterTripViewModel @Inject constructor(
                 EnterTripRequestModel(inviteCode.value ?: "")
             ).onSuccess {
                 _tripState.value = UiState.Success(it)
-            }.onFailure {
-                _tripState.value = UiState.Failure(it.message.orEmpty())
+            }.onFailure { throwable ->
+                if (throwable is HttpException) {
+                    val errorResponse = throwable.response()?.errorBody()?.string()
+                    val jsonObject = JSONObject(errorResponse)
+                    val errorCode = jsonObject.getString("code")
+                    val errorMessage = jsonObject.getString("message")
+
+                    if (errorCode == "e4043") {
+                        _tripState.value = UiState.Failure(errorMessage)
+                    } else {
+                        _tripState.value = UiState.Failure(throwable.message.orEmpty())
+                    }
+                }
             }
         }
     }

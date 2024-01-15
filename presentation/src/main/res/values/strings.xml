@@ -169,6 +169,7 @@
     <string name="enter_trip_tv_hint">친구에게 받은 초대 코드 6자리를 입력해 주세요</string>
     <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
     <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
+    <string name="enter_trip_invite_code_error">존재하지 않는 여행입니다.</string>
 
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>

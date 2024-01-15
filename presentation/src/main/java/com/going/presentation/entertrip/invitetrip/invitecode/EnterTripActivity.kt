@@ -95,7 +95,11 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 }
 
                 is UiState.Failure -> {
-                    toast(getString(R.string.server_error))
+                    if (state.msg == "존재하지 않는 여행입니다.") {
+                        toast(getString(R.string.enter_trip_invite_code_error))
+                    } else {
+                        toast(getString(R.string.server_error))
+                    }
                 }
 
                 is UiState.Loading -> return@onEach
