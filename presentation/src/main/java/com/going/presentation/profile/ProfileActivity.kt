@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityProfileBinding
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.DOWNLOAD_IMAGE_NAME
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.DOWNLOAD_PATH
@@ -62,6 +61,7 @@ class ProfileActivity :
                     state.data.intro,
                     state.data.result
                 )
+
                 is UiState.Failure -> toast(state.msg)
                 is UiState.Empty -> return@onEach
             }
@@ -130,20 +130,12 @@ class ProfileActivity :
 
     private fun initBackBtnClickListener() {
         binding.btnProfileBack.setOnSingleClickListener {
-            navigateToDashBoardScreen()
+            finish()
         }
     }
 
     private fun navigateToTendencySplashScreen() {
         Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
@@ -171,7 +163,8 @@ class ProfileActivity :
             resources,
             profileViewModel.mockProfileResult[profileViewModel.profileId.value ?: 0].downloadImage,
         )
-        val imageFileName = DOWNLOAD_IMAGE_NAME.replace("%s", profileViewModel.profileId.value.toString())
+        val imageFileName =
+            DOWNLOAD_IMAGE_NAME.replace("%s", profileViewModel.profileId.value.toString())
         val path = DOWNLOAD_PATH
 
         val uploadFolder = Environment.getExternalStoragePublicDirectory(path)

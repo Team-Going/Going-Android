@@ -73,12 +73,11 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="36dp"
-                    android:src="@drawable/img_sign_in_main"
+                    android:src="@drawable/img_tendency_result_aei"
                     app:layout_constraintDimensionRatio="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.33" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/tv_profile_name"
