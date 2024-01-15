@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.utils.widget.ImageFilterView
+            <ImageView
                 android:id="@+id/btn_my_todo_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,70 +47,64 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/layout_my_todo"
+        <com.amar.library.ui.StickyScrollView
+            android:id="@+id/sv_my_todo"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_my_todo"
+            app:stickyHeader="@+id/tab_my_todo">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar_my_todo"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/gray_50">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/layout_my_todo_collapsing"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:contentScrim="@android:color/transparent"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                    app:statusBarScrim="@android:color/transparent">
+                    android:background="@color/gray_50">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_my_todo_title_up"
+                        style="@style/TextAppearance.Doorip.Head1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="false">
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="-24dp"
+                        app:layout_constraintEnd_toStartOf="@id/iv_my_todo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="우쥬랑 스페인" />
 
-                        <TextView
-                            android:id="@+id/tv_my_todo_title_up"
-                            style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginEnd="-24dp"
-                            app:layout_constraintEnd_toStartOf="@id/iv_my_todo"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="우쥬랑 스페인" />
+                    <TextView
+                        android:id="@+id/tv_my_todo_title_down"
+                        style="@style/TextAppearance.Doorip.Head1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="28dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/iv_my_todo"
+                        app:layout_constraintStart_toStartOf="@id/tv_my_todo_title_up"
+                        app:layout_constraintTop_toBottomOf="@id/tv_my_todo_title_up"
+                        tools:text="나에게 남은 할일 1개" />
 
-                        <TextView
-                            android:id="@+id/tv_my_todo_title_down"
-                            style="@style/TextAppearance.Doorip.Head1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="28dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/iv_my_todo"
-                            app:layout_constraintStart_toStartOf="@id/tv_my_todo_title_up"
-                            app:layout_constraintTop_toBottomOf="@id/tv_my_todo_title_up"
-                            tools:text="나에게 남은 할일 1개" />
+                    <ImageView
+                        android:id="@+id/iv_my_todo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/img_mytodo_main"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/iv_my_todo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/img_mytodo_main"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_my_todo"
@@ -125,15 +119,15 @@
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
                     app:tabTextColor="@color/gray_200" />
 
-            </com.google.android.material.appbar.AppBarLayout>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_my_todo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_my_todo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            </LinearLayout>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </com.amar.library.ui.StickyScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_my_todo_add_todo"
