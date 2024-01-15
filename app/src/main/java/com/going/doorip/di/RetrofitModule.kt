@@ -3,6 +3,7 @@ package com.going.doorip.di
 import com.going.data.interceptor.AuthInterceptor
 import com.going.doorip.BuildConfig.BASE_URL
 import com.going.doorip.di.qualifier.JWT
+import com.going.doorip.di.qualifier.REISSUE
 import com.going.ui.extension.isJsonArray
 import com.going.ui.extension.isJsonObject
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -63,6 +64,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
+    @JWT
     fun provideJWTOkHttpClient(
         loggingInterceptor: Interceptor,
         @JWT authInterceptor: Interceptor,
@@ -73,8 +75,30 @@ object RetrofitModule {
 
     @Provides
     @Singleton
+    @REISSUE
+    fun provideReissueOkHttpClient(
+        loggingInterceptor: Interceptor,
+    ): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+
+    @Provides
+    @Singleton
+    @JWT
     fun provideJWTRetrofit(
-        client: OkHttpClient,
+        @JWT client: OkHttpClient,
+        factory: Converter.Factory,
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(client)
+        .addConverterFactory(factory)
+        .build()
+
+    @Provides
+    @Singleton
+    @REISSUE
+    fun provideReissueRetrofit(
+        @REISSUE client: OkHttpClient,
         factory: Converter.Factory,
     ): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

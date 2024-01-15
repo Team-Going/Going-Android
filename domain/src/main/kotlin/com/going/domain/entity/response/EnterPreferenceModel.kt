@@ -6,5 +6,5 @@ data class EnterPreferenceModel(
     val startDate: String,
     val endDate: String,
     val code: String,
-    val day: Int
+    val day: Int,
 )
