@@ -1,19 +1,25 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
-import com.going.presentation.todo.ourtodo.OurTodoFriendAdapter
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class CheckFriendsActivity :
     BaseActivity<ActivityCheckFriendsBinding>(R.layout.activity_check_friends) {
 
-    private var _adapter: OurTodoFriendAdapter? = null
+    private var _adapter: CheckFriendsAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -24,6 +30,8 @@ class CheckFriendsActivity :
 
         initBackClickListener()
         initAdapter()
+        getTripId()
+        observeCheckFriendsListState()
         setProgressBarStatus()
 
     }
@@ -35,9 +43,27 @@ class CheckFriendsActivity :
     }
 
     private fun initAdapter() {
-        _adapter = OurTodoFriendAdapter()
+        _adapter = CheckFriendsAdapter()
         binding.rvCheckFriendsMember.adapter = adapter
-        adapter.submitList(viewModel.mockParticipantsList)
+    }
+
+    private fun getTripId() {
+        val tripId = intent.getLongExtra("tripId", -1L)
+        viewModel.getFriendsListFromServer(tripId)
+    }
+
+    private fun observeCheckFriendsListState() {
+        viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> adapter.submitList(state.data.participants)
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Loading -> return@onEach
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun setProgressBarStatus() {

@@ -14,6 +14,7 @@ import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
@@ -52,6 +53,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initItemDecoration()
         initInviteBtnListener()
         initBackBtnClickListener()
+        initTripFriendBtnClickListener()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -95,6 +97,16 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             activity?.finish()
         }
     }
+
+    private fun initTripFriendBtnClickListener() {
+        binding.tvOurTripFriendTitle.setOnSingleClickListener {
+            Intent(activity, CheckFriendsActivity::class.java).apply {
+                putExtra("tripId", viewModel.tripId)
+                startActivity(this)
+            }
+        }
+    }
+
 
     private fun setMyTripInfo() {
         arguments?.let {
