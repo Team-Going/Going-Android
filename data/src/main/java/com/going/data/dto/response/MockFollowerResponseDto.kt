@@ -32,7 +32,6 @@ data class MockFollowerResponseDto(
         @SerialName("avatar")
         val avatar: String
     )
-
     @Serializable
     data class Support(
         @SerialName("url")

@@ -10,7 +10,6 @@ data class DashBoardResponseDto(
     val name: String,
     @SerialName("trips")
     val trips: List<TripsResponseDto>
-
 ) {
     @Serializable
     data class TripsResponseDto(
@@ -25,6 +24,7 @@ data class DashBoardResponseDto(
         @SerialName("day")
         val day: Int
     ) {
+
         fun toTripsModel() =
             DashBoardModel.DashBoardTripModel(tripId, title, startDate, endDate, day)
     }

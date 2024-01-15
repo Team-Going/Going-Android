@@ -9,7 +9,10 @@ import javax.inject.Inject
 class TendencyRepositoryImpl @Inject constructor(
     private val tendencyDataSource: TendencyDataSource,
 ) : TendencyRepository {
-    override suspend fun patchTendencyTest(result: TendencyRequestModel): Result<Unit> =
+
+    override suspend fun patchTendencyTest(
+        result: TendencyRequestModel
+    ): Result<Unit> =
         runCatching {
             tendencyDataSource.patchTendencyTest(result.toTendencyTestRequestDto())
         }
