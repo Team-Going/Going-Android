@@ -83,8 +83,7 @@ class ProfileActivity :
                 4 -> R.drawable.img_profile_8
                 5 -> R.drawable.img_profile_5
                 6 -> R.drawable.img_profile_7
-                7 -> R.drawable.img_profile_3
-                else -> R.drawable.img_profile_1
+                else -> R.drawable.img_profile_3
             }
 
             ivProfile.load(profileImage) {
