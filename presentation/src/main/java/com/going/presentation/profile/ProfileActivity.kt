@@ -61,7 +61,7 @@ class ProfileActivity :
                 is UiState.Success -> bindProfileInfo(
                     state.data.name,
                     state.data.intro,
-                    state.data.result
+                    state.data.result,
                 )
 
                 is UiState.Failure -> toast(state.msg)
@@ -154,7 +154,7 @@ class ProfileActivity :
 
     private fun navigateToTendencySplashScreen() {
         Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            finishAffinity()
             startActivity(this)
         }
         finish()
