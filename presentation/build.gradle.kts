@@ -81,8 +81,7 @@ dependencies {
         implementation(progressView)
         implementation(balloon)
         implementation(lottie)
-        implementation(circularProgressBar)
-        implementation(circleIndicator)
+        implementation(stickyHeader)
     }
 
     KakaoDependencies.run {

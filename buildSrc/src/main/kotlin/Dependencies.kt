@@ -67,8 +67,6 @@ object ThirdPartyDependencies {
     const val progressView = "com.github.skydoves:progressview:${Versions.progressViewVersion}"
     const val balloon = "com.github.skydoves:balloon:${Versions.balloonVersion}"
     const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
-    const val circularProgressBar = "com.mikhaellopez:circularprogressbar:${Versions.circularProgressBar}"
-    const val circleIndicator = "me.relex:circleindicator:${Versions.circleIndicatorVersion}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmerVersion}"
 
     const val kakaoLogin = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
@@ -77,6 +75,8 @@ object ThirdPartyDependencies {
     const val kakaoShare = "com.kakao.sdk:v2-share:${Versions.kakaoVersion}"
 
     const val amplitude = "com.amplitude:android-sdk:${Versions.amplitudeVersion}"
+
+    const val stickyHeader = "com.github.amarjain07:StickyScrollView:${Versions.stickyHeaderVersion}"
 }
 
 object ClassPathPlugins {
