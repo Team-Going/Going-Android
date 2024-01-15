@@ -34,3 +34,10 @@ val Fragment.viewLifeCycle
 
 val Fragment.viewLifeCycleScope
     get() = viewLifecycleOwner.lifecycleScope
+
+fun Fragment.setStatusBarColor(colorResId: Int) {
+    activity?.let {
+        val statusBarColor = ContextCompat.getColor(it, colorResId)
+        it.window.statusBarColor = statusBarColor
+    }
+}
