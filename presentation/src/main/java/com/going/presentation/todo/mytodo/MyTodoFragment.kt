@@ -45,6 +45,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setTodoCountText()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
+
     }
 
     private fun initAddTodoListener() {
