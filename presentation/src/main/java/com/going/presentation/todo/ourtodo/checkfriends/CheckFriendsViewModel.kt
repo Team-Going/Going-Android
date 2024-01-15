@@ -3,7 +3,6 @@ package com.going.presentation.todo.ourtodo.checkfriends
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.CheckFriendsModel
-import com.going.domain.entity.response.TripParticipantModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,14 +33,5 @@ class CheckFriendsViewModel @Inject constructor(
                 }
         }
     }
-
-    val mockParticipantsList: List<TripParticipantModel> = listOf(
-        TripParticipantModel(0, "일지민", 100),
-        TripParticipantModel(1, "이지민", 100),
-        TripParticipantModel(2, "삼지민", 100),
-        TripParticipantModel(3, "사지민", 100),
-        TripParticipantModel(4, "오지민", 100),
-        TripParticipantModel(5, "육지민", 100),
-    )
 
 }

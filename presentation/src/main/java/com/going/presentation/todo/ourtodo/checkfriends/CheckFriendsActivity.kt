@@ -32,7 +32,6 @@ class CheckFriendsActivity :
         initAdapter()
         getTripId()
         observeCheckFriendsListState()
-        setProgressBarStatus()
 
     }
 
@@ -55,7 +54,12 @@ class CheckFriendsActivity :
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.submitList(state.data.participants)
+                is UiState.Success -> {
+                    adapter.submitList(state.data.participants)
+                    val rate = state.data.styles.map { it.rate }
+                    val isLeft = state.data.styles.map { it.isLeft }
+                    setProgressBarStatus(rate, isLeft)
+                }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -66,29 +70,36 @@ class CheckFriendsActivity :
         }.launchIn(lifecycleScope)
     }
 
-    private fun setProgressBarStatus() {
-        // styleA의 평균 값이 20이라고 가정
-        binding.progressBarCheckFriends1.progress = 20
-        if (binding.progressBarCheckFriends1.progress <= 50) {
-            binding.progressBarCheckFriends1.progress = 20
-            binding.progressBarCheckFriends2.progress = 40
-            binding.progressBarCheckFriends3.progress = 50
-        }
+    private fun setProgressBarStatus(rate: List<Int>, isLeft: List<Boolean>) {
+        val progressBars = listOf(
+            binding.progressBarCheckFriends1,
+            binding.progressBarCheckFriends2,
+            binding.progressBarCheckFriends3,
+            binding.progressBarCheckFriends4,
+            binding.progressBarCheckFriends5
+        )
 
-        // styleD의 평균 값이 60이라고 가정
-        binding.progressBarCheckFriends4.progress = 60
-        if (binding.progressBarCheckFriends4.progress > 50) {
-            // 프로그레스바 반대 방향으로 적용
-            binding.progressBarCheckFriends4.visibility = View.INVISIBLE
-            binding.progressBarCheckFriends4Revert.visibility = View.VISIBLE
+        val progressBarsRevert = listOf(
+            binding.progressBarCheckFriends1Revert,
+            binding.progressBarCheckFriends2Revert,
+            binding.progressBarCheckFriends3Revert,
+            binding.progressBarCheckFriends4Revert,
+            binding.progressBarCheckFriends5Revert
+        )
 
-            binding.progressBarCheckFriends5.visibility = View.INVISIBLE
-            binding.progressBarCheckFriends5Revert.visibility = View.VISIBLE
-
-            binding.progressBarCheckFriends4Revert.progress = 60
-            binding.progressBarCheckFriends5Revert.progress = 70
+        for (i in rate.indices) {
+            if (isLeft[i]) {
+                progressBars[i].visibility = View.VISIBLE
+                progressBarsRevert[i].visibility = View.INVISIBLE
+                progressBars[i].progress = rate[i]
+            } else {
+                progressBars[i].visibility = View.INVISIBLE
+                progressBarsRevert[i].visibility = View.VISIBLE
+                progressBarsRevert[i].progress = rate[i]
+            }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
