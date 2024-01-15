@@ -11,14 +11,14 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.entertrip.createtrip.choosedate.EnterTripViewModel" />
+            type="com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".entertrip.invitetrip.invitecode.CreateTripActivity">
+        tools:context=".entertrip.createtrip.choosedate.CreateTripActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_enter_trip"

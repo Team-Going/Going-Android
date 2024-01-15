@@ -8,10 +8,10 @@ import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishTripBinding
-import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.DAY
-import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.END
-import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.START
-import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.TRIP_FORMAT

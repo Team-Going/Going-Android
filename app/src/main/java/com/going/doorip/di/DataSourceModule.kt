@@ -8,6 +8,7 @@ import com.going.data.datasource.ProfileDataSource
 import com.going.data.datasource.SettingDataSource
 import com.going.data.datasource.TendencyDataSource
 import com.going.data.datasource.TodoDataSource
+import com.going.data.datasource.TokenReissueDataSource
 import com.going.data.datasourceImpl.AuthDataSourceImpl
 import com.going.data.datasourceImpl.DashBoardDataSourceImpl
 import com.going.data.datasourceImpl.EnterTripDataSourceImpl
@@ -16,6 +17,7 @@ import com.going.data.datasourceImpl.ProfileDataSourceImpl
 import com.going.data.datasourceImpl.SettingDataSourceImpl
 import com.going.data.datasourceImpl.TendencyDataSourceImpl
 import com.going.data.datasourceImpl.TodoDataSourceImpl
+import com.going.data.datasourceImpl.TokenReissueDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -66,4 +68,8 @@ object DataSourceModule {
     fun provideEnterTripDataSource(enterTripDataSourceImpl: EnterTripDataSourceImpl): EnterTripDataSource =
         enterTripDataSourceImpl
 
+    @Provides
+    @Singleton
+    fun provideTokenReissueDataSource(tokenReissueDataSourceImpl: TokenReissueDataSourceImpl): TokenReissueDataSource =
+        tokenReissueDataSourceImpl
 }

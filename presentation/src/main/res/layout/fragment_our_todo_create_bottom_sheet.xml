@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_rect_top40_white000_fill"
+        android:background="@drawable/shape_rect_top4_white000_fill"
         android:paddingBottom="22dp">
 
         <DatePicker

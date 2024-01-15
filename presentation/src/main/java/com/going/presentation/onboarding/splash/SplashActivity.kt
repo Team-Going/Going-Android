@@ -28,6 +28,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
         checkConnectedNetwork()
         observeUserState()
+
     }
 
     private fun checkConnectedNetwork() {
