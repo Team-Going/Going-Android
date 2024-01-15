@@ -3,15 +3,22 @@ package com.going.data.repositoryImpl
 import com.going.data.datasource.TokenReissueDataSource
 import com.going.data.dto.request.toTokenReissueModel
 import com.going.domain.entity.request.TokenReissueRequestModel
-import com.going.domain.entity.response.TokenReissueModel
+import com.going.domain.entity.response.AuthTokenModel
 import com.going.domain.repository.TokenReissueRepository
 import javax.inject.Inject
 
 class TokenReissueRepositoryImpl @Inject constructor(
     private val tokenReissueDataSource: TokenReissueDataSource,
 ) : TokenReissueRepository {
-    override suspend fun postReissueTokens(request: TokenReissueRequestModel): Result<TokenReissueModel> =
+
+    override suspend fun postReissueTokens(
+        authorization: String,
+        request: TokenReissueRequestModel,
+    ): Result<AuthTokenModel> =
         runCatching {
-            tokenReissueDataSource.postReissueTokens(request.toTokenReissueModel()).data.toTokenReissueModel()
+            tokenReissueDataSource.postReissueTokens(
+                authorization,
+                request.toTokenReissueModel(),
+            ).data.toAuthTokenModel()
         }
 }

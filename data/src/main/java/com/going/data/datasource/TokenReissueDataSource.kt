@@ -7,6 +7,7 @@ import com.going.data.dto.response.AuthResponseDto
 interface TokenReissueDataSource {
 
     suspend fun postReissueTokens(
+        authorization: String,
         userId: TokenReissueRequestDto,
     ): BaseResponse<AuthResponseDto>
 }

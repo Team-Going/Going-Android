@@ -10,6 +10,10 @@ import javax.inject.Inject
 data class TokenReissueDataSourceImpl @Inject constructor(
     private val tokenReissueService: TokenReissueService,
 ) : TokenReissueDataSource {
-    override suspend fun postReissueTokens(userId: TokenReissueRequestDto): BaseResponse<AuthResponseDto> =
-        tokenReissueService.postReissueTokens(userId)
+
+    override suspend fun postReissueTokens(
+        authorization: String,
+        userId: TokenReissueRequestDto,
+    ): BaseResponse<AuthResponseDto> =
+        tokenReissueService.postReissueTokens(authorization, userId)
 }
