@@ -12,8 +12,6 @@ import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentOngoingTripBinding
-import com.going.presentation.entertrip.StartTripSplashActivity
-import com.going.presentation.entertrip.createtrip.choosedate.EnterTripActivity
 import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment

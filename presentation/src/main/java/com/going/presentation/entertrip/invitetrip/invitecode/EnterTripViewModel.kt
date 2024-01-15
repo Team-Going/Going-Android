@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.createtrip.choosedate
+package com.going.presentation.entertrip.invitetrip.invitecode
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

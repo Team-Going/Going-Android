@@ -1,4 +1,4 @@
-package com.going.presentation.entertrip.createtrip.choosedate
+package com.going.presentation.entertrip.invitetrip.invitecode
 
 import android.content.Intent
 import android.os.Bundle
