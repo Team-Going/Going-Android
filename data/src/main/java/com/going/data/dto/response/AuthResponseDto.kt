@@ -1,7 +1,6 @@
 package com.going.data.dto.response
 
 import com.going.domain.entity.response.AuthTokenModel
-import com.going.domain.entity.response.TokenReissueModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -16,7 +15,4 @@ data class AuthResponseDto(
 ) {
     fun toAuthTokenModel() =
         AuthTokenModel(accessToken = accessToken, refreshToken = refreshToken, userId = userId)
-
-    fun toTokenReissueModel() =
-        TokenReissueModel(accessToken, refreshToken)
 }
