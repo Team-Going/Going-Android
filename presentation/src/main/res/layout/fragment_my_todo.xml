@@ -63,11 +63,11 @@
                 android:background="@color/gray_50">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/layout_my_todo_collapsing"
+                    android:id="@+id/layout_my_todo_collapsing_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:contentScrim="@android:color/transparent"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:statusBarScrim="@android:color/transparent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,18 +112,28 @@
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_my_todo"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/layout_my_todo_collapsing_tab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/layer_list_todo_unselected_indicator"
-                    app:tabIndicatorColor="@color/gray_500"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabRippleColor="@android:color/transparent"
-                    app:tabSelectedTextColor="@color/gray_500"
-                    app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
-                    app:tabTextColor="@color/gray_200" />
+                    app:contentScrim="@android:color/transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:statusBarScrim="@android:color/transparent">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_my_todo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/layer_list_todo_unselected_indicator"
+                        app:tabIndicatorColor="@color/gray_500"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabIndicatorHeight="2dp"
+                        app:tabRippleColor="@android:color/transparent"
+                        app:tabSelectedTextColor="@color/gray_500"
+                        app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
+                        app:tabTextColor="@color/gray_200" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
 
