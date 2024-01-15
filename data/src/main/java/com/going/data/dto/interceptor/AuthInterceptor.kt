@@ -28,7 +28,6 @@ class AuthInterceptor @Inject constructor(
             originalRequest
         }
 
-
         val response = chain.proceed(authRequest)
 
         when (response.code) {
