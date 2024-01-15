@@ -70,23 +70,25 @@ class ProfileActivity :
         }.launchIn(lifecycleScope)
     }
 
+    fun selectProfileImage(number: Int): Int {
+        return when (number) {
+            0 -> R.drawable.img_profile_6
+            1 -> R.drawable.img_profile_1
+            2 -> R.drawable.img_profile_2
+            3 -> R.drawable.img_profile_4
+            4 -> R.drawable.img_profile_8
+            5 -> R.drawable.img_profile_5
+            6 -> R.drawable.img_profile_7
+            else -> R.drawable.img_profile_3
+        }
+    }
+
     private fun bindProfileInfo(name: String, intro: String, number: Int) {
         binding.run {
             tvProfileName.text = name
             tvProfileOneLine.text = intro
 
-            val profileImage = when (number) {
-                0 -> R.drawable.img_profile_6
-                1 -> R.drawable.img_profile_1
-                2 -> R.drawable.img_profile_2
-                3 -> R.drawable.img_profile_4
-                4 -> R.drawable.img_profile_8
-                5 -> R.drawable.img_profile_5
-                6 -> R.drawable.img_profile_7
-                else -> R.drawable.img_profile_3
-            }
-
-            ivProfile.load(profileImage) {
+            ivProfile.load(selectProfileImage(number)) {
                 transformations(CircleCropTransformation())
 
                 profileViewModel.mockProfileResult[number].apply {
