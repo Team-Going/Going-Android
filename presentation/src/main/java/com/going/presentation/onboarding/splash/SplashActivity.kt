@@ -15,6 +15,7 @@ import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,9 +27,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setStatusBarColor()
         checkConnectedNetwork()
         observeUserState()
 
+    }
+
+    private fun setStatusBarColor() {
+        setStatusBarColorFromResource(R.color.red_500)
     }
 
     private fun checkConnectedNetwork() {
