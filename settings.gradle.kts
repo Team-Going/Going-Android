@@ -14,6 +14,9 @@ dependencyResolutionManagement {
 
         // KakaoSDK repository
         maven(url = "https://devrepo.kakao.com/nexus/content/groups/public/")
+
+        // 오픈 소스 라이브러리 배포 플랫폼 jitpack 추가
+        maven(url = "https://jitpack.io")
     }
 }
 
