@@ -46,7 +46,7 @@ class AuthInterceptor @Inject constructor(
                         response.close()
 
                         val newRequest =
-                            authRequest.newBuilder().removeHeader("Authorization").newAuthBuilder()
+                            authRequest.newBuilder().removeHeader(AUTHORIZATION).newAuthBuilder()
                                 .build()
 
                         return chain.proceed(newRequest)
