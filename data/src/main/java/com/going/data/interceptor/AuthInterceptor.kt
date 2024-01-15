@@ -72,7 +72,7 @@ class AuthInterceptor @Inject constructor(
         this.addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
 
     companion object {
-        private const val CODE_TOKEN_EXPIRED = 201
+        private const val CODE_TOKEN_EXPIRED = 401
         private const val BEARER = "Bearer"
         private const val AUTHORIZATION = "Authorization"
     }
