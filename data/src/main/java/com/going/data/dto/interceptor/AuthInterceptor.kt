@@ -22,14 +22,11 @@ class AuthInterceptor @Inject constructor(
 
         Timber.d("GET ACCESS TOKEN : ${dataStore.accessToken}")
 
-
-        //        val authRequest = if (dataStore.accessToken.isNotBlank()) {
-//            originalRequest.newAuthBuilder().build()
-//        } else {
-//            originalRequest
-//        }
-
-        val authRequest = originalRequest.newAuthBuilder().build()
+        val authRequest = if (dataStore.accessToken.isNotBlank()) {
+            originalRequest.newAuthBuilder().build()
+        } else {
+            originalRequest
+        }
 
         val response = chain.proceed(authRequest)
 
@@ -67,18 +64,12 @@ class AuthInterceptor @Inject constructor(
                         return chain.proceed(newRequest)
                     }
 
-                    dataStore.apply {
-                        accessToken = ""
-                        refreshToken = ""
-                    }
+                    dataStore.clearInfo()
 
                     // refreshToken 만료 처리를 위한 리프레시 토큰 만료 코드 포함 리스폰스 리턴
                     return refreshTokenResponse
                 } catch (t: Throwable) {
-                    dataStore.apply {
-                        accessToken = ""
-                        refreshToken = ""
-                    }
+                    dataStore.clearInfo()
 
                     Timber.e(t)
                 }
@@ -87,14 +78,8 @@ class AuthInterceptor @Inject constructor(
         return response
     }
 
-//     private fun Request.newAuthBuilder() =
-//         this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
-    //
-//     private fun Request.newAuthBuilder() =
-//         this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
-
-    private fun Request.newAuthBuilder()  =
-        this.newBuilder().addHeader(AUTHORIZATION, "$BEARER eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MCIsImlhdCI6MTcwNTI1NjkwNCwiZXhwIjoxNzA1ODYxNzA0fQ.m8yWjfOb3e_tL1o_GuuwPU7ZUpNjFhKKKBWLRQHv0qc")
+    private fun Request.newAuthBuilder() =
+        this.newBuilder().addHeader(AUTHORIZATION, "$BEARER ${dataStore.accessToken}")
 
     companion object {
         private const val CODE_TOKEN_EXPIRED = 401

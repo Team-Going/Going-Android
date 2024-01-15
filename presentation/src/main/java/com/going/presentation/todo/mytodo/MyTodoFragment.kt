@@ -12,7 +12,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
-import com.going.presentation.todo.TodoActivity
+import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
@@ -38,6 +38,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
         initAddTodoListener()
         initBackBtnClickListener()
+        initProfileBtnClickListener()
         setMyTripInfo()
         setTabLayout()
         setViewPager()
@@ -58,7 +59,15 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun initBackBtnClickListener() {
         binding.btnMyTodoBack.setOnSingleClickListener {
-           activity?.finish()
+            activity?.finish()
+        }
+    }
+
+    private fun initProfileBtnClickListener() {
+        binding.btnMyTodoProfile.setOnSingleClickListener {
+            Intent(activity, ProfileActivity::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 

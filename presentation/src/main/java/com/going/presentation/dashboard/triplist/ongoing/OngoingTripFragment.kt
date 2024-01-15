@@ -41,7 +41,6 @@ class OngoingTripFragment :
 
     }
 
-
     private fun initAdapter() {
         _adapter = OngoingAdapter(this)
         binding.rvDashboardOngoingTrip.adapter = adapter
