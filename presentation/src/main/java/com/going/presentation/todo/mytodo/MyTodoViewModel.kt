@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,10 +25,10 @@ class MyTodoViewModel @Inject constructor(
     private val _totalUncompletedTodoCount = MutableStateFlow<Int>(0)
     val totalUncompletedTodoCount: StateFlow<Int> = _totalUncompletedTodoCount
 
-    private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
+    private val _todoUncompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Loading)
     val todoUncompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoUncompleteListState
 
-    private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
+    private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Loading)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
 
     private val _todoFinishState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)

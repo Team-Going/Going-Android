@@ -10,17 +10,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_my_todo_uncomplete"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white_000">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_my_todo_uncomplete"
-            android:nestedScrollingEnabled="true"
-            android:overScrollMode="never"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="23dp"
+            android:nestedScrollingEnabled="true"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,9 +30,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_my_todo_uncomplete_empty"
             android:layout_width="0dp"
-            android:visibility="visible"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="140dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -42,24 +42,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/img_mytodo_empty"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/tv_my_todo_uncomplete_empty"
-                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/tv_my_todo_uncomplete_empty"
+                style="@style/TextAppearance.Doorip.Detail1.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_my_todo_uncomplete_empty"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/todo_empty"
                 android:textColor="@color/gray_200"
-                style="@style/TextAppearance.Doorip.Detail1.Regular"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_my_todo_uncomplete_empty"
+                app:layout_constraintVertical_chainStyle="packed" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
