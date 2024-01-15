@@ -9,6 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoCompleteBinding
+import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.detail.PrivateDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
@@ -38,6 +39,7 @@ class MyTodoCompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
+        initItemDecoration()
         observeTodoListState()
         observeTodoRedoState()
     }
@@ -62,6 +64,11 @@ class MyTodoCompleteFragment() :
                 }
             })
         binding.rvMyTodoComplete.adapter = adapter
+    }
+
+    private fun initItemDecoration() {
+        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        binding.rvMyTodoComplete.addItemDecoration(itemDeco)
     }
 
     private fun startDetailActivity(targetActivity: Class<*>, todoId: Long) {

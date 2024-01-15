@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
@@ -83,7 +84,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = OurTodoDecoration(requireContext())
+        val itemDeco = TodoDecoration(requireContext(),0,0,150,0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 
