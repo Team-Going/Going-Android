@@ -4,6 +4,7 @@ import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
 import com.going.data.dto.request.TodoCreateRequestDto
+import com.going.data.dto.response.CheckFriendsResponseDto
 import com.going.data.dto.response.MyTripInfoResponseDto
 import com.going.data.dto.response.OurTripInfoResponseDto
 import com.going.data.dto.response.TodoDetailResponseDto
@@ -57,5 +58,10 @@ class TodoDataSourceImpl @Inject constructor(
         todoId: Long
     ): NonDataBaseResponse =
         todoService.getToRedoTodo(todoId)
+
+    override suspend fun getFriendsList(
+        tripId: Long
+    ): BaseResponse<CheckFriendsResponseDto> =
+        todoService.getFriendsList(tripId)
 
 }

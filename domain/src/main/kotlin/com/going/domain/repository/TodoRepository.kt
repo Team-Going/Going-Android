@@ -1,6 +1,7 @@
 package com.going.domain.repository
 
 import com.going.domain.entity.request.TodoCreateRequestModel
+import com.going.domain.entity.response.CheckFriendsModel
 import com.going.domain.entity.response.MyTripInfoModel
 import com.going.domain.entity.response.OurTripInfoModel
 import com.going.domain.entity.response.TodoDetailModel
@@ -43,4 +44,7 @@ interface TodoRepository {
         todoId: Long
     ): Result<Unit>
 
+    suspend fun getFriendsList(
+        tripId: Long
+    ): Result<CheckFriendsModel>
 }
