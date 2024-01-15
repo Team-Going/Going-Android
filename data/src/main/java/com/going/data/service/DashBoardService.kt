@@ -9,7 +9,7 @@ interface DashBoardService {
 
     @GET("api/trips")
     suspend fun getTripList(
-        @Query("progress") progress: String
-    ) : BaseResponse<DashBoardResponseDto>
+        @Query("progress") progress: String,
+    ): BaseResponse<DashBoardResponseDto>
 
 }

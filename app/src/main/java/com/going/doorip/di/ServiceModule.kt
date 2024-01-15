@@ -8,6 +8,9 @@ import com.going.data.service.ProfileService
 import com.going.data.service.SettingService
 import com.going.data.service.TendencyService
 import com.going.data.service.TodoService
+import com.going.data.service.TokenReissueService
+import com.going.doorip.di.qualifier.JWT
+import com.going.doorip.di.qualifier.REISSUE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,42 +24,46 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideMockService(retrofit: Retrofit): MockService =
+    fun provideMockService(@JWT retrofit: Retrofit): MockService =
         retrofit.create(MockService::class.java)
 
     @Provides
     @Singleton
-    fun provideAuthService(retrofit: Retrofit): AuthService =
+    fun provideAuthService(@JWT retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
 
     @Provides
     @Singleton
-    fun provideSettingService(retrofit: Retrofit): SettingService =
+    fun provideSettingService(@JWT retrofit: Retrofit): SettingService =
         retrofit.create(SettingService::class.java)
 
     @Provides
     @Singleton
-    fun provideTodoService(retrofit: Retrofit): TodoService =
+    fun provideTodoService(@JWT retrofit: Retrofit): TodoService =
         retrofit.create(TodoService::class.java)
 
     @Provides
     @Singleton
-    fun provideDashBoardService(retrofit: Retrofit): DashBoardService =
+    fun provideDashBoardService(@JWT retrofit: Retrofit): DashBoardService =
         retrofit.create(DashBoardService::class.java)
 
     @Provides
     @Singleton
-    fun provideEnterTripService(retrofit: Retrofit): EnterTripService =
+    fun provideEnterTripService(@JWT retrofit: Retrofit): EnterTripService =
         retrofit.create(EnterTripService::class.java)
 
     @Provides
     @Singleton
-    fun provideTendencyService(retrofit: Retrofit): TendencyService =
+    fun provideTendencyService(@JWT retrofit: Retrofit): TendencyService =
         retrofit.create(TendencyService::class.java)
 
     @Provides
     @Singleton
-    fun provideProfileService(retrofit: Retrofit): ProfileService =
+    fun provideProfileService(@JWT retrofit: Retrofit): ProfileService =
         retrofit.create(ProfileService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideTokenReissueService(@REISSUE retrofit: Retrofit): TokenReissueService =
+        retrofit.create(TokenReissueService::class.java)
 }

@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DashBoardViewModel @Inject constructor(
-    private val dashBoardRepository: DashBoardRepository
+    private val dashBoardRepository: DashBoardRepository,
 ) : ViewModel() {
     private val _dashBoardOngoingListState =
         MutableStateFlow<UiState<DashBoardModel>>(UiState.Empty)
@@ -28,7 +28,7 @@ class DashBoardViewModel @Inject constructor(
     val dashBoardCompletedListState: StateFlow<UiState<DashBoardModel>> get() = _dashBoardCompletedListState
 
     fun getTripListFromServer(
-        progress: String
+        progress: String,
     ) {
         val dashBoardListState = if (progress == ONGOING) {
             _dashBoardOngoingListState
@@ -63,10 +63,8 @@ class DashBoardViewModel @Inject constructor(
         }
     }
 
-
     companion object {
         const val ONGOING = "incomplete"
         const val COMPLETED = "complete"
     }
-
 }
