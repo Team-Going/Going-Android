@@ -98,7 +98,7 @@
 
         <activity
             android:name="com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
