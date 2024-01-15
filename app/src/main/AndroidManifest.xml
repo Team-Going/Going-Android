@@ -57,11 +57,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.TodoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -77,22 +72,17 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.going.presentation.tendency.result.TendencyResultActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.entertrip.invitetrip.preference.FinishPreferenceActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.dashboard.DashBoardActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.tendency.result.TendencyResultActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -107,37 +97,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.mytodo.create.MyTodoCreateActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.todo.detail.PrivateDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.todo.detail.PublicDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.going.presentation.entertrip.createtrip.finish.FinishTripActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.setting.SettingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name="com.going.presentation.profile.ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -148,6 +108,46 @@
 
         <activity
             android:name="com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.dashboard.DashBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.TodoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.mytodo.create.MyTodoCreateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.detail.PrivateDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.todo.detail.PublicDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.setting.SettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.profile.ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
