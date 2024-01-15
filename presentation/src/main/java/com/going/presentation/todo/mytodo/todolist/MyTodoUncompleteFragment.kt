@@ -13,6 +13,7 @@ import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
 import com.going.presentation.todo.detail.PrivateDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.UNCOMPLETE
@@ -106,6 +107,7 @@ class MyTodoUncompleteFragment() :
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvMyTodoUncomplete.isVisible = !isEmpty
         binding.layoutMyTodoUncompleteEmpty.isVisible = isEmpty
+        (parentFragment as MyTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     private fun observeTodoFinishState() {

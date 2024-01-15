@@ -14,6 +14,7 @@ import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.UNCOMPLETE
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -84,6 +85,7 @@ class OurTodoUncompleteFragment() :
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvOurTodoUncomplete.isVisible = !isEmpty
         binding.layoutOurTodoUncompleteEmpty.isVisible = isEmpty
+        (parentFragment as OurTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     override fun onDestroyView() {
