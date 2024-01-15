@@ -3,7 +3,6 @@ package com.going.presentation.todo.ourtodo.checkfriends
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
@@ -101,8 +100,6 @@ class CheckFriendsActivity :
             }
         }
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()
