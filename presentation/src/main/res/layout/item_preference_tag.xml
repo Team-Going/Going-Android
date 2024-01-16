@@ -34,12 +34,13 @@
         <TextView
             android:id="@+id/tv_preference_question"
             style="@style/TextAppearance.Doorip.Body3.Medi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:gravity="center"
             android:textColor="@color/gray_700"
-            app:layout_constraintEnd_toEndOf="@id/tv_preference_number"
-            app:layout_constraintStart_toStartOf="@id/tv_preference_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_preference_number"
             tools:text="계획은 얼만큼 짤까요?" />
 

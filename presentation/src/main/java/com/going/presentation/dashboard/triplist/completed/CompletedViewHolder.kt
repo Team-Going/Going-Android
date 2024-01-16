@@ -15,8 +15,11 @@ class CompletedViewHolder(
 
         binding.run {
             tvDashboardTripTitle.text = item.title
-            tvDashboardDateStart.text = item.startDate
-            tvDashboardDateEnd.text = item.endDate
+            tvDashboardDate.text = String.format(
+                itemView.context.getString(R.string.dashboard_tv_start_end_date),
+                item.startDate,
+                item.endDate
+            )
             tvDashboardDeadlineCompleted.text =
                 itemView.context.getString(R.string.dashboard_tv_completed_trip)
 

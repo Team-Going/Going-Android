@@ -28,55 +28,29 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="굉굉이들이랑 합숙" />
 
-
         <ImageView
             android:id="@+id/iv_dashboard_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/ic_calendar"
-            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
-            app:layout_constraintEnd_toStartOf="@id/tv_dashboard_date_start"
-            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start" />
-
-        <TextView
-            android:id="@+id/tv_dashboard_date_start"
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/gray_300"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_dashboard_trip_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_trip_title"
-            tools:text="2024 .03 .24" />
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date" />
 
         <TextView
-            android:id="@+id/tv_dashboard_date_dash"
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:text="@string/dashboard_tv_dash"
-            android:textColor="@color/gray_300"
-            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_start"
-            app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_start"
-            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_start" />
-
-        <TextView
-            android:id="@+id/tv_dashboard_date_end"
+            android:id="@+id/tv_dashboard_date"
             style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/dashboard_tv_start_end_date"
             android:textColor="@color/gray_300"
-            app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_dash"
             app:layout_constraintEnd_toStartOf="@id/tv_dashboard_deadline"
-            app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_dash"
-            app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash"
-            tools:text="2024 .03 .31" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_dashboard_calendar"
+            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_trip_title" />
 
         <TextView
             android:id="@+id/tv_dashboard_deadline"
