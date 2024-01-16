@@ -2,6 +2,7 @@ package com.going.domain.entity
 
 data class ProfileMock(
     val resultImage: Int,
+    val profileImage: Int,
     val downloadImage: Int,
     val profileTitle: String,
     val profileSubTitle: String,

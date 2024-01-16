@@ -61,7 +61,7 @@ class TendencyResultActivity :
         with(binding) {
             tvTendencyTestResultTitle.text = getString(R.string.tendency_test_result_title, name)
 
-            viewModel.mockTendencyResult[number].apply {
+            UserTendencyResultList[number].apply {
                 imgTendencyTestResult.setImageResource(resultImage)
                 tvTendencyTestResultType.text = profileTitle
                 tvTendencyTestResultSubType.text = profileSubTitle
