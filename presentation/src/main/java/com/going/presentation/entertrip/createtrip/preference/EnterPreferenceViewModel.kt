@@ -59,7 +59,7 @@ class EnterPreferenceViewModel @Inject constructor(
     val preferenceTagList = listOf<PreferenceData>(
         PreferenceData(
             number = "01",
-            question = "계획은 어느정도로 세울까요?",
+            question = "계획은 어느 정도로 세울까요?",
             leftPrefer = "철저하게",
             rightPrefer = "즉흥으로",
         ),
