@@ -2,30 +2,33 @@ package com.going.presentation.todo.ourtodo.todolist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemOurTodoBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class OurTodoListAdapter(
-    private val isCompleted: Boolean,
-    private val itemDetailClick: (Long) -> Unit
-) : ListAdapter<TodoModel, OurTodoListViewHolder>(diffUtil) {
+    private val isCompleted: Boolean, private val itemDetailClick: (Long) -> Unit
+) : RecyclerView.Adapter<OurTodoListViewHolder>() {
+
+    private var itemList = mutableListOf<TodoModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoListViewHolder {
-        val binding: ItemOurTodoBinding =
-            ItemOurTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val inflater by lazy { LayoutInflater.from(parent.context) }
+        val binding: ItemOurTodoBinding = ItemOurTodoBinding.inflate(inflater, parent, false)
         return OurTodoListViewHolder(binding, isCompleted, itemDetailClick)
     }
 
     override fun onBindViewHolder(holder: OurTodoListViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(itemList[position])
     }
 
-    companion object {
-        private val diffUtil = ItemDiffCallback<TodoModel>(
-            onItemsTheSame = { old, new -> old.todoId == new.todoId },
-            onContentsTheSame = { old, new -> old == new },
-        )
+    override fun getItemCount(): Int = itemList.size
+
+    fun submitList(newItems: List<TodoModel>) {
+        this.itemList.clear()
+        this.itemList.addAll(newItems)
+        notifyDataSetChanged()
     }
+
 }

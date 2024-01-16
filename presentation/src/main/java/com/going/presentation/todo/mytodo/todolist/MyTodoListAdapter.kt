@@ -2,11 +2,9 @@ package com.going.presentation.todo.mytodo.todolist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemMyTodoBinding
-import com.going.ui.extension.ItemDiffCallback
 
 class MyTodoListAdapter(
     private val isCompleted: Boolean,
@@ -19,8 +17,7 @@ class MyTodoListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyTodoListViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
-        val binding: ItemMyTodoBinding =
-            ItemMyTodoBinding.inflate(inflater, parent, false)
+        val binding: ItemMyTodoBinding = ItemMyTodoBinding.inflate(inflater, parent, false)
         return MyTodoListViewHolder(binding, isCompleted, itemSelect, itemUnselect, itemDetailClick)
     }
 
@@ -29,11 +26,6 @@ class MyTodoListAdapter(
     }
 
     override fun getItemCount(): Int = itemList.size
-
-    fun removeList() {
-        this.itemList.clear()
-        notifyDataSetChanged()
-    }
 
     fun submitList(newItems: List<TodoModel>) {
         this.itemList.clear()
