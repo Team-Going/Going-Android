@@ -2,7 +2,6 @@ package com.going.presentation.entertrip.invitetrip.preference
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -14,7 +13,7 @@ import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
-import com.going.presentation.onboarding.signin.SignInActivity
+import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -27,8 +26,6 @@ import kotlinx.coroutines.flow.onEach
 class FinishPreferenceActivity :
     BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference),
     PreferenceTagAdapter.OnPreferenceSelectedListener {
-
-    private var backPressedTime: Long = 0
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -44,9 +41,9 @@ class FinishPreferenceActivity :
         initItemDecoration()
         getTripId()
         initNextBtnClickListener()
+        initBackBtnClickListener()
         sendStyleInfo()
         observeFinishPreferenceState()
-        initOnBackPressedListener()
     }
 
     private fun initAdapter() {
@@ -70,7 +67,7 @@ class FinishPreferenceActivity :
         if (isValid) {
             binding.btnPreferenceStart.isEnabled = isValid
             binding.btnPreferenceStart.setTextColor(
-                ContextCompat.getColorStateList(this, R.color.white_000)
+                ContextCompat.getColorStateList(this, R.color.white_000),
             )
         }
     }
@@ -105,6 +102,12 @@ class FinishPreferenceActivity :
         }
     }
 
+    private fun initBackBtnClickListener() {
+        binding.btnPreferenceBack.setOnSingleClickListener {
+            finish()
+        }
+    }
+
     private fun sendStyleInfo() {
         viewModel.styleA.value = preferenceAnswers[0]
         viewModel.styleB.value = preferenceAnswers[1]
@@ -117,20 +120,6 @@ class FinishPreferenceActivity :
         preferenceAnswers[item.number.toInt() - 1] = checkList
         isButtonValid()
         sendStyleInfo()
-    }
-
-    private fun initOnBackPressedListener() {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
-                    backPressedTime = System.currentTimeMillis()
-                    toast(getString(R.string.toast_back_pressed))
-                } else {
-                    finish()
-                }
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onDestroy() {

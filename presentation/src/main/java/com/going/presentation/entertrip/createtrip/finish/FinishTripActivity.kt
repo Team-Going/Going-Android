@@ -8,13 +8,14 @@ import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishTripBinding
+import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
+import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
+import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.TRIP_FORMAT
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
-import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
-import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.TRIP_FORMAT
+import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.kakao.sdk.auth.Constants.CODE
@@ -31,7 +32,7 @@ class FinishTripActivity :
         initCopyCodetvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
-
+        initOnBackPressedListener()
     }
 
     private fun initCopyCodetvClickListener() {
@@ -78,6 +79,4 @@ class FinishTripActivity :
             }
         }
     }
-
 }
-

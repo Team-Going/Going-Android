@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityStartTripSplashBinding
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
