@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.createtrip.finish
 
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -13,17 +14,23 @@ import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.C
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.TRIP_FORMAT
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
-import com.kakao.sdk.auth.Constants.CODE
+import com.kakao.sdk.common.util.KakaoCustomTabsClient
+import com.kakao.sdk.share.ShareClient
+import com.kakao.sdk.share.WebSharerClient
+import timber.log.Timber
+
 
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
 
     private var inviteCode: String = ""
+    private var title: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +53,51 @@ class FinishTripActivity :
 
     private fun initSendCodeBtnClickListener() {
         binding.btnFinishTripSendCode.setOnSingleClickListener {
-            // TODO : 카카오톡으로 초대코드 보내기
+            startKakaoInvite(this)
+        }
+    }
+
+    private fun startKakaoInvite(context: Context) {
+        val test = HashMap<String, String>()
+        test.put("KEY", inviteCode)
+        test.put("NAME", title)
+
+        if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
+            ShareClient.instance.shareCustom(
+                context,
+                TEMPLATE_ID.toLong(),
+                hashMapOf(
+                    "KEY" to inviteCode,
+                    "NAME" to title
+                )
+            ) { sharingResult, error ->
+                if (error != null) {
+                    Timber.tag(TAG_SHARE).e(error, getString(R.string.invite_error_kakao))
+                } else if (sharingResult != null) {
+                    startActivity(sharingResult.intent)
+                }
+            }
+        } else {
+            val sharerUrl =
+                WebSharerClient.instance.makeCustomUrl(
+                    TEMPLATE_ID.toLong(),
+                    hashMapOf(
+                        "KEY" to inviteCode,
+                        "NAME" to title
+                    )
+                )
+            try {
+                KakaoCustomTabsClient.openWithDefault(context, sharerUrl)
+                return
+            } catch (error: UnsupportedOperationException) {
+                Timber.tag(TAG_SHARE).e(error, getString(R.string.invite_error_browser))
+            }
+            try {
+                KakaoCustomTabsClient.open(context, sharerUrl)
+                return
+            } catch (error: ActivityNotFoundException) {
+                Timber.tag(TAG_SHARE).e(error, getString(R.string.invite_error_browser))
+            }
         }
     }
 
@@ -62,15 +113,15 @@ class FinishTripActivity :
 
     private fun getTripInfo() {
         if (intent != null) {
-            val title = intent.getStringExtra(TITLE)
+            title = intent.getStringExtra(TITLE) ?: ""
             val start = intent.getStringExtra(START)
             val end = intent.getStringExtra(END)
-            val code = intent.getStringExtra(CODE)
+            inviteCode = intent.getStringExtra(INVITE_CODE) ?: ""
             val day = intent.getIntExtra(DAY, 0)
 
             binding.tvFinishTripName.text = title
             binding.tvFinishTripDay.text = String.format(DATE_FORMAT, start, end)
-            binding.tvInviteCode.text = code
+            binding.tvInviteCode.text = inviteCode
 
             if (day > 0) {
                 binding.tvFinishTripDayLeft.text = String.format(D_DAY_FORMAT, day)
@@ -79,4 +130,11 @@ class FinishTripActivity :
             }
         }
     }
+
+    companion object {
+        const val TAG_SHARE = "recommendInvite"
+        const val TEMPLATE_ID = 102829
+    }
+
 }
+

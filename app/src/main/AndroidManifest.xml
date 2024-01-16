@@ -98,8 +98,17 @@
 
         <activity
             android:name="com.going.presentation.entertrip.createtrip.finish.FinishTripActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="kakaolink"
+                    android:scheme="kakao${NATIVE_APP_KEY}" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity"

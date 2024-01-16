@@ -199,4 +199,9 @@
     <string name="check_friends_preference_5_left">알차게</string>
     <string name="check_friends_preference_5_right">여유롭게</string>
 
+    <!--kakao-link-share-->
+    <string name = "invite_error_kakao"> 카카오톡 초대코드 오류 </string>
+    <string name = "invite_error_browser"> 브라우저 오류 </string>
+
+
 </resources>

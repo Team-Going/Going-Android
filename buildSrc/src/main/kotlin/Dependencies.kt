@@ -96,4 +96,5 @@ object FirebaseDependencies {
 
 object KakaoDependencies {
     const val user = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
+    const val share = "com.kakao.sdk:v2-share:${Versions.kakaoVersion}"
 }
