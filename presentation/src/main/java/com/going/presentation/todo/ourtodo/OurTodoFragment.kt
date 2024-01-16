@@ -2,6 +2,8 @@ package com.going.presentation.todo.ourtodo
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -15,8 +17,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
-import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
@@ -29,6 +31,7 @@ import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -49,6 +52,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private var participantList = listOf<TripParticipantModel>()
 
+    private var lastClickTime = 0L
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -62,6 +67,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
+        setViewPagerDebounce()
         observeOurTripInfoState()
     }
 
@@ -86,7 +92,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,150,0)
+        val itemDeco = TodoDecoration(requireContext(), 0, 0, 150, 0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 
@@ -148,6 +154,29 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         })
     }
 
+    private fun setViewPagerDebounce() {
+        binding.tabOurTodo.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.vpOurTodo.currentItem = tab.position
+                disableTabClick()
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun disableTabClick() {
+        for (i in tabTextList.indices) {
+            binding.tabOurTodo.getTabAt(i)?.view?.isClickable = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            for (i in tabTextList.indices) {
+                binding.tabOurTodo.getTabAt(i)?.view?.isClickable = true
+            }
+        }, debounceTime)
+    }
 
     private fun observeOurTripInfoState() {
         viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
@@ -235,6 +264,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         const val TAB_UNCOMPLETE = "해야 해요"
         const val TAB_COMPLETE = "완료했어요"
         const val INVITE_DIALOG = "inviteDialog"
+
+        const val debounceTime = 300L
     }
 
 }
