@@ -20,7 +20,16 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        destroyToast()
         initFinishBtnClickListener()
+    }
+
+
+    private fun destroyToast() {
+        dialog?.setOnDismissListener {
+            binding.tvErrorToast.visibility = View.GONE
+        }
     }
 
     private fun sendDateInfo() {
@@ -41,6 +50,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         binding.btnCreateTripFinish.setOnSingleClickListener {
             sendDateInfo()
             if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
+
                 val calendar = Calendar.getInstance()
 
                 calendar.set(Calendar.YEAR, viewModel.startYear.value ?: 0)
@@ -54,17 +64,19 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                 val endDate = calendar.time
 
                 if (startDate.before(endDate) || startDate.equals(endDate)) {
+                    viewModel.checkStartDateAvailable()
+                    viewModel.checkEndDateAvailable()
                     dismiss()
                 } else {
                     viewModel.startYear.value = null
                     viewModel.endYear.value = null
                     viewModel.checkStartDateAvailable()
                     viewModel.checkEndDateAvailable()
+
                     binding.viewBlank.visibility = View.VISIBLE
                     binding.tvErrorToast.visibility = View.VISIBLE
-
                     Handler(Looper.getMainLooper()).postDelayed({
-                        binding.tvErrorToast.visibility = View.INVISIBLE
+                        binding.tvErrorToast.visibility = View.GONE
                     }, 2000)
                 }
             } else {
@@ -72,5 +84,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
             }
         }
     }
-
 }
+
+
+

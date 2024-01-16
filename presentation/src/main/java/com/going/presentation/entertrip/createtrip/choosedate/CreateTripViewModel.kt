@@ -62,6 +62,7 @@ class CreateTripViewModel : ViewModel() {
             checkTripAvailable()
         } else {
             isStartDateAvailable.value = false
+            checkTripAvailable()
         }
     }
 
@@ -71,6 +72,7 @@ class CreateTripViewModel : ViewModel() {
             checkTripAvailable()
         } else {
             isEndDateAvailable.value = false
+            checkTripAvailable()
 
         }
     }
