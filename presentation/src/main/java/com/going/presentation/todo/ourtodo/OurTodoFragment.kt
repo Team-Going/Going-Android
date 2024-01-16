@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
@@ -60,6 +61,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setMyTripInfo()
         setTabLayout()
         setViewPager()
+        setViewPagerChangeListener()
         observeOurTripInfoState()
     }
 
@@ -135,6 +137,17 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             tab.text = tabTextList[pos]
         }.attach()
     }
+
+    private fun setViewPagerChangeListener() {
+        binding.vpOurTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                viewModel.resetListState()
+            }
+        })
+    }
+
 
     private fun observeOurTripInfoState() {
         viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
