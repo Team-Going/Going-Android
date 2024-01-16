@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
 import com.going.presentation.entertrip.StartTripSplashActivity
 import com.going.presentation.onboarding.signin.SignInActivity
@@ -128,7 +129,7 @@ class TendencyResultActivity :
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyResultFinish.setOnSingleClickListener {
-            navigateToStartTripSplashScreen()
+            navigateToDashBoardScreen()
         }
     }
 
@@ -140,8 +141,8 @@ class TendencyResultActivity :
         finish()
     }
 
-    private fun navigateToStartTripSplashScreen() {
-        Intent(this, StartTripSplashActivity::class.java).apply {
+    private fun navigateToDashBoardScreen() {
+        Intent(this, DashBoardActivity::class.java).apply {
             startActivity(this)
         }
     }
