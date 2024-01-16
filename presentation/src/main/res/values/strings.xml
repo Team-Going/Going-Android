@@ -139,7 +139,7 @@
 
     <!--setting-->
     <string name="setting_tv_toolbar">설정</string>
-    <string name="setting_tv_profile">프로필</string>
+    <string name="setting_tv_profile">여행 프로필</string>
     <string name="setting_tv_inquire">문의하기</string>
     <string name="setting_tv_service_version">서비스 버전</string>
     <string name="setting_tv_policy">서비스 이용 약관</string>
