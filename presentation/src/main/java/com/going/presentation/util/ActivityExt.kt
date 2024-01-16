@@ -20,6 +20,9 @@ import java.io.File
 import java.io.FileOutputStream
 
 fun Activity.downloadImage(number: Int) {
+    val downloadPath = "/Download/"
+    val downloadImageName = "img_tendency_result%s.png"
+
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
             this,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -36,10 +39,9 @@ fun Activity.downloadImage(number: Int) {
             UserTendencyResultList[number].downloadImage,
         )
         val imageFileName =
-            TendencyResultActivity.DOWNLOAD_IMAGE_NAME.replace("%s", number.toString())
-        val path = TendencyResultActivity.DOWNLOAD_PATH
+            downloadImageName.replace("%s", number.toString())
 
-        val uploadFolder = Environment.getExternalStoragePublicDirectory(path)
+        val uploadFolder = Environment.getExternalStoragePublicDirectory(downloadPath)
         if (!uploadFolder.exists()) {
             uploadFolder.mkdirs()
         }
@@ -63,7 +65,7 @@ fun Activity.downloadImage(number: Int) {
 }
 
 fun ComponentActivity.initOnBackPressedListener(
-    delay: Long = 2000L, // 이걸 어떻게 변화주고 저장하지?
+    delay: Long = 2000L,
 ) {
     var backPressedTime = 0L
     val onBackPressedCallback = object : OnBackPressedCallback(true) {

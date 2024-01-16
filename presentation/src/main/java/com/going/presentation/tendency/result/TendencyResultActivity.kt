@@ -6,14 +6,12 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BulletSpan
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
-import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
@@ -154,7 +152,5 @@ class TendencyResultActivity :
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 200
-        const val DOWNLOAD_PATH = "/Download/"
-        const val DOWNLOAD_IMAGE_NAME = "img_tendency_result%s.png"
     }
 }

@@ -41,9 +41,9 @@ class FinishPreferenceActivity :
         initItemDecoration()
         getTripId()
         initNextBtnClickListener()
+        initBackBtnClickListener()
         sendStyleInfo()
         observeFinishPreferenceState()
-        initOnBackPressedListener()
     }
 
     private fun initAdapter() {
@@ -99,6 +99,12 @@ class FinishPreferenceActivity :
     private fun initNextBtnClickListener() {
         binding.btnPreferenceStart.setOnSingleClickListener {
             viewModel.checkStyleFromServer(viewModel.tripId.value ?: 0)
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnPreferenceBack.setOnSingleClickListener {
+            finish()
         }
     }
 

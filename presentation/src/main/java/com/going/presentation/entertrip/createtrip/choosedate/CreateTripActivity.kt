@@ -170,10 +170,8 @@ class CreateTripActivity :
                 putExtra(END_MONTH, viewModel.endMonth.value)
                 putExtra(END_DAY, viewModel.endDay.value)
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                finishAffinity()
                 startActivity(this)
             }
-            finish()
         }
     }
 

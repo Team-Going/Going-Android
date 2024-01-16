@@ -24,7 +24,6 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
-import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -59,7 +58,6 @@ class EnterPreferenceActivity :
         initStartBtnClickListener()
         getCreateTripInfo()
         observeEnterPreferenceListState()
-        initOnBackPressedListener()
     }
 
     private fun initAdapter() {
@@ -74,7 +72,7 @@ class EnterPreferenceActivity :
     }
 
     private fun initBackClickListener() {
-        binding.btnPreferenceStart.setOnSingleClickListener {
+        binding.btnPreferenceBack.setOnSingleClickListener {
             finish()
         }
     }
