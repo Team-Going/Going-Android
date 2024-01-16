@@ -41,7 +41,7 @@
                 android:id="@+id/iv_our_todo_complete_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_mytodo_empty"
+                android:src="@drawable/img_ourtodo_empty"
                 app:layout_constraintBottom_toTopOf="@id/tv_our_todo_complete_empty"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

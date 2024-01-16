@@ -29,6 +29,7 @@ import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -36,6 +37,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.math.abs
 
 @AndroidEntryPoint
 class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment_our_todo) {
@@ -52,8 +54,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private var participantList = listOf<TripParticipantModel>()
 
-    private var lastClickTime = 0L
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,6 +68,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setViewPager()
         setViewPagerChangeListener()
         setViewPagerDebounce()
+        setToolbarColor()
         observeOurTripInfoState()
     }
 
@@ -178,6 +179,26 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }, debounceTime)
     }
 
+    private fun setToolbarColor() {
+        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                setStatusBarColor(R.color.white_000)
+                binding.toolbarOurTodo.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white_000
+                    )
+                )
+            } else {
+                setStatusBarColor(R.color.gray_50)
+                binding.toolbarOurTodo.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.gray_50
+                    )
+                )
+            }
+        }
+    }
+
     private fun observeOurTripInfoState() {
         viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
@@ -188,8 +209,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                         setTitleTextWithDay(state.data.day)
                         tvOurTodoTitleUp.text = state.data.title
                         tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(
-                            convertDate(state.data.startDate),
-                            convertDate(state.data.endDate)
+                            convertDate(state.data.startDate), convertDate(state.data.endDate)
                         )
                         progressBarOurTodo.progress = state.data.progress
                         tvOurTripInfoPercent.text = state.data.progress.toString() + "%"
