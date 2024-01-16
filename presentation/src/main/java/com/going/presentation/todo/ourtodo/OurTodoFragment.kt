@@ -63,13 +63,18 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
-        setMyTripInfo()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
         setViewPagerDebounce()
         setToolbarColor()
         observeOurTripInfoState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setOurTripInfo()
     }
 
     private fun initAdapter() {
@@ -120,7 +125,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
 
-    private fun setMyTripInfo() {
+    private fun setOurTripInfo() {
         arguments?.let {
             viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
         }
