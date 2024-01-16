@@ -53,7 +53,11 @@ class OurTodoViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getTodoList(tripId, category, progress)
                 .onSuccess { response ->
-                    todoListState.value = UiState.Success(response)
+                    if (response.isEmpty()) {
+                        todoListState.value = UiState.Empty
+                    } else {
+                        todoListState.value = UiState.Success(response)
+                    }
                 }
                 .onFailure {
                     todoListState.value = UiState.Failure(it.message.orEmpty())

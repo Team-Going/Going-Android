@@ -9,12 +9,12 @@ import com.going.domain.entity.response.StartInviteTripModel
 
 interface EnterTripRepository {
     suspend fun postEnterTrip(
-        requestEnterTripModel: EnterTripRequestModel
+        request: EnterTripRequestModel
     ): Result<EnterTripModel>
 
     suspend fun postStartInviteTrip(
         tripId: Long,
-        requestStartInviteTripModel: StartInviteTripRequestModel
+        request: StartInviteTripRequestModel
     ): Result<StartInviteTripModel>
 
     suspend fun postEnterPreferenceTrip(

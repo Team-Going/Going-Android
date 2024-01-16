@@ -11,8 +11,7 @@ class MockDataSourceImpl @Inject constructor(
 
     override suspend fun getFollowerListData(
         page: Int
-    ): MockFollowerResponseDto {
-        return mockService.getFollowerList(page)
-    }
+    ): MockFollowerResponseDto =
+        mockService.getFollowerList(page)
 
 }

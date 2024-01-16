@@ -11,10 +11,9 @@ class MockRepositoryImpl @Inject constructor(
 
     override suspend fun getFollowerList(
         page: Int
-    ): Result<List<MockFollowerModel>> {
-        return runCatching {
+    ): Result<List<MockFollowerModel>> =
+        runCatching {
             mockDataSource.getFollowerListData(page).toMockFollowerModel()
         }
-    }
 
 }

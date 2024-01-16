@@ -19,19 +19,21 @@ class EnterTripRepositoryImpl @Inject constructor(
 
     override suspend fun postEnterTrip(
         requestEnterTripModel: EnterTripRequestModel
-    ): Result<EnterTripModel> = runCatching {
-        enterTripDataSource.postEnterTrip(
-            requestEnterTripModel.toEnterTripRequestDto(),
-        ).data.toEnterTripModel()
-    }
+    ): Result<EnterTripModel> =
+        runCatching {
+            enterTripDataSource.postEnterTrip(
+                requestEnterTripModel.toEnterTripRequestDto(),
+            ).data.toEnterTripModel()
+        }
 
     override suspend fun postStartInviteTrip(
         tripId: Long, requestStartInviteTripModel: StartInviteTripRequestModel
-    ): Result<StartInviteTripModel> = runCatching {
-        enterTripDataSource.postStartInviteTrip(
-            tripId, requestStartInviteTripModel.toStartInviteTripRequestDto(),
-        ).data.toStartInviteTripModel()
-    }
+    ): Result<StartInviteTripModel> =
+        runCatching {
+            enterTripDataSource.postStartInviteTrip(
+                tripId, requestStartInviteTripModel.toStartInviteTripRequestDto(),
+            ).data.toStartInviteTripModel()
+        }
 
     override suspend fun postEnterPreferenceTrip(
         request: EnterPreferenceRequestModel

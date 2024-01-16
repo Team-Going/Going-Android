@@ -1,11 +1,17 @@
-package com.going.presentation.todo.ourtodo
+package com.going.presentation.todo
 
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class OurTodoDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+class TodoDecoration(
+    val context: Context,
+    private val top: Int,
+    private val left: Int,
+    private val right: Int,
+    private val bottom: Int
+    ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -17,7 +23,10 @@ class OurTodoDecoration(val context: Context) : RecyclerView.ItemDecoration() {
         val position = parent.getChildAdapterPosition(view)
 
         if (position == parent.adapter?.itemCount?.minus(1)) {
-            outRect.right = 150
+            outRect.top = top
+            outRect.left = left
+            outRect.right = right
+            outRect.bottom = bottom
         }
     }
 }

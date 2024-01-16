@@ -6,6 +6,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
@@ -25,6 +27,7 @@ import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -81,7 +84,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = OurTodoDecoration(requireContext())
+        val itemDeco = TodoDecoration(requireContext(),0,0,150,0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 
@@ -197,6 +200,16 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 )
             }
         }
+    }
+
+    fun setAppbarDragAvailable(isAvailable: Boolean) {
+        binding.appbarOurTodo
+        val params = binding.appbarOurTodo.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = params.behavior as AppBarLayout.Behavior
+
+        behavior.setDragCallback(object : AppBarLayout.Behavior.DragCallback() {
+            override fun canDrag(appBarLayout: AppBarLayout): Boolean = isAvailable
+        })
     }
 
     override fun onDestroyView() {

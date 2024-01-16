@@ -3,16 +3,19 @@ package com.going.presentation.todo.ourtodo.todolist
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoCompleteBinding
+import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -34,6 +37,7 @@ class OurTodoCompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
+        initItemDecoration()
         setTodoList()
         observeTodoListState()
     }
@@ -50,6 +54,11 @@ class OurTodoCompleteFragment() :
         binding.rvOurTodoComplete.adapter = adapter
     }
 
+    private fun initItemDecoration() {
+        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        binding.rvOurTodoComplete.addItemDecoration(itemDeco)
+    }
+
     private fun setTodoList() {
         viewModel.getTodoListFromServer(OUR_TODO, COMPLETE)
     }
@@ -57,15 +66,27 @@ class OurTodoCompleteFragment() :
     private fun observeTodoListState() {
         viewModel.todoCompleteListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> adapter.submitList(state.data)
+                is UiState.Success -> {
+                    setLayoutEmpty(false)
+                    adapter.submitList(state.data)
+                }
 
-                is UiState.Failure -> toast(getString(R.string.server_error))
+                is UiState.Failure -> {
+                    setLayoutEmpty(true)
+                    toast(getString(R.string.server_error))
+                }
 
                 is UiState.Loading -> return@onEach
 
-                is UiState.Empty -> return@onEach
+                is UiState.Empty -> setLayoutEmpty(true)
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun setLayoutEmpty(isEmpty: Boolean) {
+        binding.rvOurTodoComplete.isVisible = !isEmpty
+        binding.layoutOurTodoCompleteEmpty.isVisible = isEmpty
+        (parentFragment as OurTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     override fun onDestroyView() {

@@ -35,7 +35,8 @@ class AuthRepositoryImpl @Inject constructor(
             ).data.toAuthTokenModel()
         }
 
-    override suspend fun getSplash(): Result<Unit> = runCatching {
-        authDataSource.getSplash()
-    }
+    override suspend fun getSplash(): Result<Unit> =
+        runCatching {
+            authDataSource.getSplash()
+        }
 }
