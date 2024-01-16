@@ -17,9 +17,9 @@ import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
@@ -58,6 +58,7 @@ class EnterPreferenceActivity :
         initStartBtnClickListener()
         getCreateTripInfo()
         observeEnterPreferenceListState()
+
     }
 
     private fun initAdapter() {
@@ -107,7 +108,7 @@ class EnterPreferenceActivity :
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
                         putExtra(END, state.data.endDate)
-                        putExtra(CODE, state.data.code)
+                        putExtra(INVITE_CODE, state.data.code)
                         putExtra(DAY, state.data.day)
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(this)

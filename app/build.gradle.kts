@@ -105,5 +105,6 @@ dependencies {
 
     KakaoDependencies.run {
         implementation(user)
+        implementation(share)
     }
 }
