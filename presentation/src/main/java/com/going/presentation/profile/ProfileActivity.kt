@@ -3,9 +3,6 @@ package com.going.presentation.profile
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.BulletSpan
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +16,7 @@ import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
+import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,36 +76,30 @@ class ProfileActivity :
 
                 tvFirstDescriptionTitle.text = profileBoxInfo[0].title
                 tvFirstDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[0].first)
+                    profileBoxInfo[0].first.setBulletPoint()
                 tvFirstDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[0].second)
-                tvFirstDescriptionThirdText.text = setBulletPoint(profileBoxInfo[0].third)
+                    profileBoxInfo[0].second.setBulletPoint()
+                tvFirstDescriptionThirdText.text =
+                    profileBoxInfo[0].third.setBulletPoint()
 
                 tvSecondDescriptionTitle.text =
                     profileBoxInfo[1].title
                 tvSecondDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[1].first)
+                    profileBoxInfo[1].first.setBulletPoint()
                 tvSecondDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[1].second)
+                    profileBoxInfo[1].second.setBulletPoint()
                 tvSecondDescriptionThirdText.text =
-                    setBulletPoint(profileBoxInfo[1].third)
+                    profileBoxInfo[1].third.setBulletPoint()
 
                 tvThirdDescriptionTitle.text = profileBoxInfo[2].title
                 tvThirdDescriptionFirstText.text =
-                    setBulletPoint(profileBoxInfo[2].first)
+                    profileBoxInfo[2].first.setBulletPoint()
                 tvThirdDescriptionSecondText.text =
-                    setBulletPoint(profileBoxInfo[2].second)
+                    profileBoxInfo[2].second.setBulletPoint()
                 tvThirdDescriptionThirdText.text =
-                    setBulletPoint(profileBoxInfo[2].third)
+                    profileBoxInfo[2].third.setBulletPoint()
             }
         }
-    }
-
-    private fun setBulletPoint(text: String): SpannableString {
-        val string = SpannableString(text)
-        string.setSpan(BulletSpan(10), 0, text.length - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        return string
     }
 
     private fun initRestartBtnClickListener() {
