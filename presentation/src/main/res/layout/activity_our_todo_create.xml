@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.going.domain.entity.NameState" />
+
         <variable
             name="vm"
             type="com.going.presentation.todo.ourtodo.create.OurTodoCreateViewModel" />
@@ -105,6 +107,19 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_our_todo_create_todo_title" />
+
+                <TextView
+                    style="@style/TextAppearance.Doorip.Detail3.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/todo_over_error"
+                    android:textColor="@color/red_500"
+                    android:visibility="@{(vm.isTodoAvailable() == NameState.Blank) || (vm.isTodoAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@id/et_our_todo_create_todo"
+                    app:layout_constraintTop_toBottomOf="@id/et_our_todo_create_todo" />
+
 
                 <TextView
                     android:id="@+id/tv_our_todo_todo_counter"
@@ -229,6 +244,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_our_todo_create_memo_title" />
+
+                <TextView
+                    style="@style/TextAppearance.Doorip.Detail3.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/memo_over_error"
+                    android:textColor="@color/red_500"
+                    android:visibility="@{(vm.isMemoAvailable() == NameState.Blank) || (vm.isMemoAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@id/et_our_todo_create_memo"
+                    app:layout_constraintTop_toBottomOf="@id/et_our_todo_create_memo" />
 
                 <TextView
                     android:id="@+id/tv_our_todo_memo_counter"
