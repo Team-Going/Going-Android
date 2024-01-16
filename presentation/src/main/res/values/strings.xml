@@ -12,6 +12,7 @@
     <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
 
     <string name="sign_in_tv_title">여행을 시작해보세요</string>
+    <string name ="sign_in_tv_btn">카카오 로그인</string>
     <string name="sign_in_tv_terms">개인정보처리방침</string>
 
     <string name="toast_back_pressed">버튼을 한번 더 누르면 종료됩니다.</string>
