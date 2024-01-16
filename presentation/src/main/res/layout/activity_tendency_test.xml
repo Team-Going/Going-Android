@@ -77,7 +77,7 @@
                 android:id="@+id/tv_first_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@{viewModel.isFirstChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
@@ -105,7 +105,7 @@
                 android:id="@+id/tv_second_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@{viewModel.isSecondChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
@@ -133,7 +133,7 @@
                 android:id="@+id/tv_third_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@{viewModel.isThirdChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
@@ -161,7 +161,7 @@
                 android:id="@+id/tv_fourth_answer_bg"
                 style="@style/radio_button_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@{viewModel.isFourthChecked ? @drawable/shape_rect_8_red500_line : @drawable/shape_rect_8_gray50_fill}" />
 
             <TextView
