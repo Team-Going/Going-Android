@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -13,10 +12,9 @@ import com.going.domain.entity.AuthState
 import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
-import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
-import com.going.presentation.tendency.ttest.TendencyTestActivity
+import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -27,8 +25,6 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 class OnboardingProfileSettingActivity :
     BaseActivity<ActivityOnboardingProfileSettingBinding>(R.layout.activity_onboarding_profile_setting) {
-
-    private var backPressedTime: Long = 0
 
     private val viewModel by viewModels<OnboardingProfileSettingViewModel>()
 
@@ -182,19 +178,5 @@ class OnboardingProfileSettingActivity :
             startActivity(this)
         }
         finish()
-    }
-
-    private fun initOnBackPressedListener() {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
-                    backPressedTime = System.currentTimeMillis()
-                    toast(getString(R.string.toast_back_pressed))
-                } else {
-                    finish()
-                }
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 }
