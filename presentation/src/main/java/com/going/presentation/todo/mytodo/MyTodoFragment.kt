@@ -20,12 +20,12 @@ import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
-import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTime
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
@@ -33,6 +33,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.math.abs
 
 @AndroidEntryPoint
 class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_my_todo) {
@@ -53,6 +54,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setViewPagerChangeListener()
         setViewPagerDebounce()
         setTodoCountText()
+        setToolbarColor()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
 
@@ -144,6 +146,26 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun setTodoCountText() {
         setTodoCount(viewModel.totalUncompletedTodoCount.value)
+    }
+
+    private fun setToolbarColor() {
+        binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                setStatusBarColor(R.color.white_000)
+                binding.toolbarMyTodo.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white_000
+                    )
+                )
+            } else {
+                setStatusBarColor(R.color.gray_50)
+                binding.toolbarMyTodo.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.gray_50
+                    )
+                )
+            }
+        }
     }
 
     private fun observeMyTripInfoState() {
