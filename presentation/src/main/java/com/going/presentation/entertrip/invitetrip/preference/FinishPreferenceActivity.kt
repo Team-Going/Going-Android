@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
+import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
@@ -75,7 +76,7 @@ class FinishPreferenceActivity :
     private fun observeFinishPreferenceState() {
         viewModel.finishInviteState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> navigateToDashBoard()
+                is UiState.Success -> navigateToDashBoard(state.data.tripId)
 
                 is UiState.Failure -> {
                     toast(getString(R.string.server_error))
@@ -88,8 +89,10 @@ class FinishPreferenceActivity :
         }.launchIn(lifecycleScope)
     }
 
-    private fun navigateToDashBoard() {
+    private fun navigateToDashBoard(tripId: Long) {
         Intent(this, DashBoardActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+            putExtra(IS_FIRST_ENTERED, true)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }
