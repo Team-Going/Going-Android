@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
@@ -23,6 +22,7 @@ import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_DAY
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.presentation.onboarding.signin.SignInActivity
@@ -113,7 +113,7 @@ class EnterPreferenceActivity :
                         putExtra(TITLE, state.data.title)
                         putExtra(START, state.data.startDate)
                         putExtra(END, state.data.endDate)
-                        putExtra(CODE, state.data.code)
+                        putExtra(INVITE_CODE, state.data.code)
                         putExtra(DAY, state.data.day)
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(this)
