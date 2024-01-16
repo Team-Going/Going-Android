@@ -29,8 +29,6 @@ import kotlinx.coroutines.flow.onEach
 class TendencyResultActivity :
     BaseActivity<ActivityTendencyResultBinding>(R.layout.activity_tendency_result) {
 
-    private var backPressedTime: Long = 0
-
     private val viewModel by viewModels<TendencyResultViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +38,7 @@ class TendencyResultActivity :
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
-        this.initOnBackPressedListener()
-        //initOnBackPressedListener()
+        initOnBackPressedListener()
     }
 
     private fun getUserInfo() {
@@ -154,20 +151,6 @@ class TendencyResultActivity :
             }
         }
     }
-
-//    private fun initOnBackPressedListener() {
-//        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-//            override fun handleOnBackPressed() {
-//                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
-//                    backPressedTime = System.currentTimeMillis()
-//                    toast(getString(R.string.toast_back_pressed))
-//                } else {
-//                    finish()
-//                }
-//            }
-//        }
-//        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
-//    }
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 200
