@@ -84,6 +84,8 @@ class EnterTripViewModel @Inject constructor(
         private const val ENG_NUM_PATTERN = "^[a-z0-9]*$"
         val ENG_NUM_REGEX: Pattern = Pattern.compile(ENG_NUM_PATTERN)
         const val MAX_INVITE_LEN = 6
+        const val ERROR_NO_EXIST = "e4043"
+        const val ERROR_OVER_SIX = "e4006"
         const val NO_TRIP_CODE_ERROR = "e4043"
         const val MY_INVITE_CODE_ERROR = "e4092"
     }

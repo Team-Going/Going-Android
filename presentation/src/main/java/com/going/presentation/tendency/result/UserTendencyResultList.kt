@@ -8,7 +8,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_srp,
         profileImage = R.drawable.img_profile_6,
         downloadImage = R.drawable.img_download_srp,
-        profileTitle = "배려심 넘치는 든든잉",
+        profileTitle = "배려심 넘치는, 든든잉",
         profileSubTitle = "꼼꼼하고 세심하게 여행을 준비해요",
         tags = listOf(
             "친구와함께",
@@ -17,19 +17,19 @@ val UserTendencyResultList = listOf(
         ),
         profileBoxInfo = listOf(
             ProfileMock.BoxInfo(
-                "이런점이\n좋아요",
+                "이런 점이\n좋아요",
                 "같이 여행하는 친구들을 잘 챙기고 배려해요",
                 "친구들이 하고 싶어 하는 것들을 일정에 잘 반영해 줘요",
                 "꼼꼼하고 부지런해서 여행 준비에 진심이에요",
             ),
             ProfileMock.BoxInfo(
-                "이런점은\n주의해줘요",
+                "이런 점은\n주의해 줘요",
                 "완벽주의 스타일이라 계획이 틀어지면 예민해져요",
                 "생각하지 못한 상황을 직면하면 당황하기도 해요",
                 "너무 시끄러운 곳보다는 우리끼리 시간을 보낼 수 있는 곳을 더 좋아해요",
             ),
             ProfileMock.BoxInfo(
-                "이런걸\n잘해요",
+                "이런 걸\n잘해요",
                 "숙소 및 입장권 미리 예약하기",
                 "여행지 조사하고 일정 정리하기",
                 "친구들 일정 조율하기",
@@ -40,7 +40,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_sri,
         profileImage = R.drawable.img_profile_1,
         downloadImage = R.drawable.img_download_sri,
-        profileTitle = "뭐든지 다 좋아! 와따잉",
+        profileTitle = "뭐든지 다 좋아, 와따잉",
         profileSubTitle = "어떤 여행이든, 일정이든 즐겨요",
         tags = listOf(
             "실용적",
@@ -72,7 +72,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_sep,
         profileImage = R.drawable.img_profile_2,
         downloadImage = R.drawable.img_download_sep,
-        profileTitle = "계획 절대 지켜 꼼꼼잉",
+        profileTitle = "계획 절대 지켜, 꼼꼼잉",
         profileSubTitle = "여행의 처음부터 끝까지 착실하게 계획해요",
         tags = listOf(
             "계획필수",
@@ -104,7 +104,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_sei,
         profileImage = R.drawable.img_profile_4,
         downloadImage = R.drawable.img_download_sei,
-        profileTitle = "하고싶은건 하는 고잉",
+        profileTitle = "하고싶은건 하는, 고잉",
         profileSubTitle = "하고 싶은 것만 하게 해주면, 나머지는 다 괜찮아요",
         tags = listOf(
             "취향존중",
@@ -136,7 +136,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_arp,
         profileImage = R.drawable.img_profile_8,
         downloadImage = R.drawable.img_download_arp,
-        profileTitle = "다정한 여행 반장 모여잉",
+        profileTitle = "다정한 여행 반장, 모여잉",
         profileSubTitle = "즐거운 여행을 위해 모두를 챙겨요",
         tags = listOf(
             "리더십",
@@ -168,7 +168,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_ari,
         profileImage = R.drawable.img_profile_5,
         downloadImage = R.drawable.img_download_ari,
-        profileTitle = "깨발랄 치어리더 아쟈잉",
+        profileTitle = "깨발랄 치어리더, 아쟈잉",
         profileSubTitle = "친구들과 함께 하는 것 자체가 행복해요",
         tags = listOf(
             "낙천적",
@@ -200,8 +200,8 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_aep,
         profileImage = R.drawable.img_profile_7,
         downloadImage = R.drawable.img_download_aep,
-        profileTitle = "나만 믿어 따라와 척척잉",
-        profileSubTitle = "모든 것을 계획하고 진행하는 프로총대러예요",
+        profileTitle = "나만 믿어 따라와, 척척잉",
+        profileSubTitle = "모든 것을 계획하고 진행하는 프로총대러에요",
         tags = listOf(
             "내가할게",
             "야무지게",
@@ -232,7 +232,7 @@ val UserTendencyResultList = listOf(
         resultImage = R.drawable.img_tendency_result_aei,
         profileImage = R.drawable.img_profile_3,
         downloadImage = R.drawable.img_download_aei,
-        profileTitle = "모험을 즐기는 별별잉",
+        profileTitle = "모험을 즐기는, 별별잉",
         profileSubTitle = "여행의 진정한 재미는 새로운 도전이에요",
         tags = listOf(
             "도전추구",

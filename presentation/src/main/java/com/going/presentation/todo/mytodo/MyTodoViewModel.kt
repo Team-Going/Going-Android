@@ -95,6 +95,8 @@ class MyTodoViewModel @Inject constructor(
     fun resetListState() {
         _todoCompleteListState.value = UiState.Empty
         _todoUncompleteListState.value = UiState.Empty
+        _todoFinishState.value = EnumUiState.EMPTY
+        _todoRedoState.value = EnumUiState.EMPTY
     }
 
     fun getToFinishTodoFromServer(todoId: Long) {
