@@ -450,7 +450,6 @@
                         app:layout_constraintEnd_toEndOf="@id/cl_box_description_third"
                         app:layout_constraintTop_toBottomOf="@id/cl_box_description_third" />
 
-
                     <androidx.legacy.widget.Space
                         android:layout_width="0dp"
                         android:layout_height="20dp"

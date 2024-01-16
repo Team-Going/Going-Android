@@ -46,8 +46,10 @@
                 android:id="@+id/iv_start_trip_splash"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="66dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_start_trip_splash_doorips"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_start_trip_splash"
                 app:layout_constraintBottom_toTopOf="@id/tv_start_trip_splash_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

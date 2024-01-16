@@ -17,6 +17,7 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
+import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
@@ -30,6 +31,7 @@ class FinishTripActivity :
 
     private var inviteCode: String = ""
     private var title: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +39,7 @@ class FinishTripActivity :
         initCopyCodetvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
-
+        initOnBackPressedListener()
     }
 
     private fun initCopyCodetvClickListener() {
@@ -56,6 +58,10 @@ class FinishTripActivity :
     }
 
     private fun startKakaoInvite(context: Context) {
+        val test = HashMap<String, String>()
+        test.put("KEY", inviteCode)
+        test.put("NAME", title)
+
         if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
             ShareClient.instance.shareCustom(
                 context,

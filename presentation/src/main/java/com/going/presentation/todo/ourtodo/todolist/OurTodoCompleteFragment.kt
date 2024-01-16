@@ -38,8 +38,13 @@ class OurTodoCompleteFragment() :
 
         initAdapterWithClickListener()
         initItemDecoration()
-        setTodoList()
         observeTodoListState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setTodoList()
     }
 
     private fun initAdapterWithClickListener() {

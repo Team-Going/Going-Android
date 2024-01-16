@@ -2,7 +2,6 @@ package com.going.presentation.entertrip.createtrip.preference
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -10,11 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_DAY
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_MONTH
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_YEAR
@@ -22,10 +16,14 @@ import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_DAY
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
-import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -38,8 +36,6 @@ import kotlinx.coroutines.flow.onEach
 class EnterPreferenceActivity :
     BaseActivity<ActivityEnterPreferenceBinding>(R.layout.activity_enter_preference),
     PreferenceTagAdapter.OnPreferenceSelectedListener {
-
-    private var backPressedTime: Long = 0
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -62,7 +58,6 @@ class EnterPreferenceActivity :
         initStartBtnClickListener()
         getCreateTripInfo()
         observeEnterPreferenceListState()
-        initOnBackPressedListener()
 
     }
 
@@ -78,7 +73,7 @@ class EnterPreferenceActivity :
     }
 
     private fun initBackClickListener() {
-        binding.btnPreferenceStart.setOnSingleClickListener {
+        binding.btnPreferenceBack.setOnSingleClickListener {
             finish()
         }
     }
@@ -126,7 +121,6 @@ class EnterPreferenceActivity :
                 is UiState.Loading -> return@onEach
 
                 is UiState.Empty -> return@onEach
-
             }
         }.launchIn(lifecycleScope)
     }
@@ -137,7 +131,7 @@ class EnterPreferenceActivity :
         if (isValid) {
             binding.btnPreferenceStart.isEnabled = isValid
             binding.btnPreferenceStart.setTextColor(
-                ContextCompat.getColorStateList(this, R.color.white_000)
+                ContextCompat.getColorStateList(this, R.color.white_000),
             )
         }
     }
@@ -157,20 +151,6 @@ class EnterPreferenceActivity :
         preferenceAnswers[item.number.toInt() - 1] = checkList
         isButtonValid()
         sendTripInfo()
-    }
-
-    private fun initOnBackPressedListener() {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
-                    backPressedTime = System.currentTimeMillis()
-                    toast(getString(R.string.toast_back_pressed))
-                } else {
-                    finish()
-                }
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     override fun onDestroy() {
