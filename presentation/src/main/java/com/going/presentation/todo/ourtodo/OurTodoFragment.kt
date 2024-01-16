@@ -206,7 +206,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
                 is UiState.Success -> {
                     binding.run {
-                        setTitleTextWithDay(state.data.day)
+                        setTitleTextWithDay(state.data.day, state.data.isComplete)
                         tvOurTodoTitleUp.text = state.data.title
                         tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(
                             convertDate(state.data.startDate), convertDate(state.data.endDate)
@@ -230,23 +230,16 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         return getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
     }
 
-    private fun setTitleTextWithDay(day: Int) {
-        when {
-            day > 0 -> {
-                binding.tvOurTodoTitleDown.text =
-                    getString(R.string.our_todo_title_down_before).format(day)
-                setDateTextColor(6, 6)
-            }
-
-            day == 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
-                setDateTextColor(0, 4)
-            }
-
-            else -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
-                setDateTextColor(4, 5)
-            }
+    private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
+        if (day > 0) {
+            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+            setDateTextColor(6, 6)
+        } else if (!isComplete) {
+            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
+            setDateTextColor(0, 4)
+        } else {
+            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
+            setDateTextColor(4, 5)
         }
     }
 
