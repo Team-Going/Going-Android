@@ -68,11 +68,12 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                     viewModel.checkEndDateAvailable()
                     dismiss()
                 } else {
-                    viewModel.startYear.value = null
-                    viewModel.endYear.value = null
-                    viewModel.checkStartDateAvailable()
-                    viewModel.checkEndDateAvailable()
-
+                    viewModel.apply {
+                        startYear.value = null
+                        endYear.value = null
+                        checkStartDateAvailable()
+                        checkEndDateAvailable()
+                    }
                     binding.viewBlank.visibility = View.VISIBLE
                     binding.tvErrorToast.visibility = View.VISIBLE
                     Handler(Looper.getMainLooper()).postDelayed({

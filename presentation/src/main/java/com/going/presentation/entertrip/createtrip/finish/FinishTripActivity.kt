@@ -59,16 +59,16 @@ class FinishTripActivity :
 
     private fun startKakaoInvite(context: Context) {
         val test = HashMap<String, String>()
-        test.put("KEY", inviteCode)
-        test.put("NAME", title)
+        test.put(KEY, inviteCode)
+        test.put(NAME, title)
 
         if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
             ShareClient.instance.shareCustom(
                 context,
                 TEMPLATE_ID.toLong(),
                 hashMapOf(
-                    "KEY" to inviteCode,
-                    "NAME" to title
+                    KEY to inviteCode,
+                    NAME to title
                 )
             ) { sharingResult, error ->
                 if (error != null) {
@@ -82,8 +82,8 @@ class FinishTripActivity :
                 WebSharerClient.instance.makeCustomUrl(
                     TEMPLATE_ID.toLong(),
                     hashMapOf(
-                        "KEY" to inviteCode,
-                        "NAME" to title
+                        KEY to inviteCode,
+                        NAME to title
                     )
                 )
             try {
@@ -134,6 +134,9 @@ class FinishTripActivity :
     companion object {
         const val TAG_SHARE = "recommendInvite"
         const val TEMPLATE_ID = 102829
+        const val KEY = "KEY"
+        const val NAME = "NAME"
+
     }
 
 }

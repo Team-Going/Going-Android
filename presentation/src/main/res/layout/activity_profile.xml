@@ -61,8 +61,10 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_profile_tag">
+            app:layout_constraintTop_toBottomOf="@id/layout_profile_tag"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -82,7 +84,7 @@
                 <TextView
                     android:id="@+id/tv_profile_name"
                     style="@style/TextAppearance.Doorip.Head2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
@@ -95,7 +97,7 @@
                 <TextView
                     android:id="@+id/tv_profile_one_line"
                     style="@style/TextAppearance.Doorip.Detail1.Regular"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
@@ -138,6 +140,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_profile_type" />
+
 
                 <LinearLayout
                     android:id="@+id/ll_tags"
@@ -481,8 +484,8 @@
                 <androidx.legacy.widget.Space
                     android:layout_width="0dp"
                     android:layout_height="17dp"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_profile_restart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
