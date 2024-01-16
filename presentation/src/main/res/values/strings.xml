@@ -75,7 +75,7 @@
     <string name="our_todo_day_form">%s월 %s일</string>
 
     <!--my_todo-->
-    <string name="my_todo_btn_add_todo">나의 할일</string>
+    <string name="my_todo_btn_add_todo">혼자 할일</string>
     <string name="my_todo_tv_lock">혼자할일</string>
     <string name="my_todo_tv_title_down">나에게 남은 할일 %s개</string>
     <string name="todo_empty">할일을 추가해보세요</string>
