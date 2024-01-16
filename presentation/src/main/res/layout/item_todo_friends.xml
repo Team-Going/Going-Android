@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white_000"
     android:paddingStart="1dp"
     android:paddingEnd="10dp">
@@ -12,11 +12,11 @@
         android:id="@+id/iv_todo_friend"
         android:layout_width="45dp"
         android:layout_height="0dp"
-        tools:src="@drawable/img_profile_1"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/img_profile_1" />
 
     <TextView
         android:id="@+id/tv_todo_friend"
@@ -24,11 +24,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="이지민"
         android:textColor="@color/gray_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/iv_todo_friend"
         app:layout_constraintStart_toStartOf="@id/iv_todo_friend"
-        app:layout_constraintTop_toBottomOf="@id/iv_todo_friend" />
+        app:layout_constraintTop_toBottomOf="@id/iv_todo_friend"
+        tools:text="이지민" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
