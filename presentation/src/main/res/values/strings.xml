@@ -161,7 +161,6 @@
     <string name="profile_tv_name">두릅이</string>
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
-    <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
     <string name="profile_image_download_success">이미지가 저장되었어요\n친구에게 내 캐릭터를 공유해 보세요</string>
     <string name="profile_image_download_error">저장할 수 없습니다\ndoorip에 사진에 대한 엑세스 권한이 없습니다</string>
 
@@ -172,6 +171,7 @@
     <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
     <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
     <string name="enter_trip_invite_code_error">존재하지 않는 여행입니다.</string>
+    <string name="enter_trip_my_code_error">이미 존재하는 참가자입니다.</string>
 
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>

@@ -60,7 +60,7 @@
                         android:background="@drawable/shape_rect_2_red100_fill"
                         android:paddingHorizontal="8dp"
                         android:paddingVertical="2dp"
-                        android:text="D - 16"
+                        android:text="D-16"
                         android:textAppearance="@style/TextAppearance.Doorip.Detail2.Bold"
                         android:textColor="@color/red_500"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -110,59 +110,69 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:background="@drawable/shape_rect_8_white000_fill_gray100_line"
-                    android:paddingVertical="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_finish_trip_info_top">
 
-                    <TextView
-                        android:id="@+id/tv_invite_code"
-                        style="@style/TextAppearance.Doorip.Head4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:text="a1b2c3"
-                        app:layout_constraintBottom_toTopOf="@id/iv_finish_trip_copy"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_finish_trip_copy"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_copy_code"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_finish_trip_copy"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_terms_text"
-                        app:layout_constraintEnd_toStartOf="@id/tv_finish_trip_terms_text"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_finish_trip_terms_text" />
-
-                    <TextView
-                        android:id="@+id/tv_finish_trip_terms_text"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
-                        android:text="@string/finish_trip_tv_copy_code"
-                        android:textColor="@color/gray_300"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_chainStyle="packed"
-                        app:layout_constraintStart_toEndOf="@id/iv_finish_trip_copy"
-                        app:layout_constraintTop_toBottomOf="@id/tv_invite_code"
-                        tools:ignore="MissingConstraints" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/layout_finish_trip_info_bottom">
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:background="@color/gray_300"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
-                        app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
-                        app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text" />
+                        <TextView
+                            android:id="@+id/tv_invite_code"
+                            style="@style/TextAppearance.Doorip.Head4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="a1b2c3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_finish_trip_copy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:src="@drawable/ic_finish_trip_copy"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_finish_trip_terms_text"
+                            app:layout_constraintEnd_toStartOf="@id/tv_finish_trip_terms_text"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tv_finish_trip_terms_text" />
+
+                        <TextView
+                            android:id="@+id/tv_finish_trip_terms_text"
+                            style="@style/TextAppearance.Doorip.Detail2.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:="10dp"
+                            android:text="@string/finish_trip_tv_copy_code"
+                            android:textColor="@color/gray_300"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toEndOf="@id/iv_finish_trip_copy"
+                            app:layout_constraintTop_toBottomOf="@id/tv_invite_code"
+                            tools:ignore="MissingConstraints" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@color/gray_300"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/tv_finish_trip_terms_text"
+                            app:layout_constraintStart_toStartOf="@id/iv_finish_trip_copy"
+                            app:layout_constraintTop_toBottomOf="@id/tv_finish_trip_terms_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

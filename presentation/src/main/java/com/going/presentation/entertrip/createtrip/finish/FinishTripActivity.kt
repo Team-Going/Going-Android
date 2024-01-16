@@ -43,7 +43,7 @@ class FinishTripActivity :
     }
 
     private fun initCopyCodetvClickListener() {
-        binding.tvFinishTripTermsText.setOnSingleClickListener {
+        binding.tvInviteCode.setOnSingleClickListener {
             val clipboardManager =
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("INVITE_CODE_LABEL", inviteCode)

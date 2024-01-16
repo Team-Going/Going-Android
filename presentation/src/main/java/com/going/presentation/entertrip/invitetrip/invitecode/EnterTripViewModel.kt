@@ -63,7 +63,9 @@ class EnterTripViewModel @Inject constructor(
                     val errorCode = jsonObject.getString("code")
                     val errorMessage = jsonObject.getString("message")
 
-                    if (errorCode == ERROR_CODE) {
+                    if (errorCode == NO_TRIP_CODE_ERROR) {
+                        _tripState.value = UiState.Failure(errorMessage)
+                    } else if (errorCode == MY_INVITE_CODE_ERROR) {
                         _tripState.value = UiState.Failure(errorMessage)
                     } else {
                         _tripState.value = UiState.Failure(throwable.message.orEmpty())
@@ -77,6 +79,7 @@ class EnterTripViewModel @Inject constructor(
         private const val ENG_NUM_PATTERN = "^[a-z0-9]*$"
         val ENG_NUM_REGEX: Pattern = Pattern.compile(ENG_NUM_PATTERN)
         const val MAX_INVITE_LEN = 6
-        const val ERROR_CODE = "e4043"
+        const val NO_TRIP_CODE_ERROR = "e4043"
+        const val MY_INVITE_CODE_ERROR = "e4092"
     }
 }
