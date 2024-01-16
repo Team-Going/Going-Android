@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_rect_10_red300_line"
                     android:paddingHorizontal="8dp"
-                    android:paddingVertical="1dp"
+                    android:paddingVertical="2dp"
                     android:textColor="@color/red_300"
                     app:layout_constraintHorizontal_weight="1" />
 
@@ -177,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_rect_10_red300_line"
                     android:paddingHorizontal="8dp"
-                    android:paddingVertical="1dp"
+                    android:paddingVertical="2dp"
                     android:textColor="@color/red_300"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintHorizontal_weight="1" />
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_rect_10_red300_line"
                     android:paddingHorizontal="8dp"
-                    android:paddingVertical="1dp"
+                    android:paddingVertical="2dp"
                     android:textColor="@color/red_300"
                     app:layout_constraintHorizontal_chainStyle="packed" />
 

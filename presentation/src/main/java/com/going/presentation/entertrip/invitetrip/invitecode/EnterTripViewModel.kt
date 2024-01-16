@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.invitetrip.invitecode
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -62,10 +63,14 @@ class EnterTripViewModel @Inject constructor(
                     val jsonObject = JSONObject(errorResponse)
                     val errorCode = jsonObject.getString("code")
                     val errorMessage = jsonObject.getString("message")
+                    Log.d("cho",errorMessage)
+                    Log.d("cho",errorCode)
+
 
                     if (errorCode == NO_TRIP_CODE_ERROR) {
                         _tripState.value = UiState.Failure(errorMessage)
                     } else if (errorCode == MY_INVITE_CODE_ERROR) {
+                        Log.d("cho","내 코드로 들어올라함" )
                         _tripState.value = UiState.Failure(errorMessage)
                     } else {
                         _tripState.value = UiState.Failure(throwable.message.orEmpty())

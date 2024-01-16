@@ -51,7 +51,7 @@ class CreateTripActivity :
     }
 
     private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
+        viewModel.isNameAvailable.observe(this) {
             setColors(
                 false,
                 viewModel.nameLength.value ?: 0,
