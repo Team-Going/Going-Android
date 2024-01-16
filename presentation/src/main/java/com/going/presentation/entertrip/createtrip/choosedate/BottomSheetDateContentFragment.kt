@@ -1,12 +1,13 @@
 package com.going.presentation.entertrip.createtrip.choosedate
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import java.util.Calendar
 
 class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isStart: Boolean) :
@@ -55,7 +56,11 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                 if (startDate.before(endDate)) {
                     dismiss()
                 } else {
-                    toast(getString(R.string.create_trip_toast_error))
+                    binding.viewBlank.visibility = View.VISIBLE
+                    binding.tvErrorToast.visibility = View.VISIBLE
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.tvErrorToast.visibility = View.INVISIBLE
+                    }, 2000)
                 }
             } else {
                 dismiss()

@@ -22,7 +22,9 @@ class AuthDataSourceImpl @Inject constructor(
     override suspend fun postSignUp(
         Authorization: String,
         data: SignUpRequestDto,
-    ): BaseResponse<AuthResponseDto> = authService.postSignUp(Authorization, data)
+    ): BaseResponse<AuthResponseDto> =
+        authService.postSignUp(Authorization, data)
 
-    override suspend fun getSplash(): NonDataBaseResponse = authService.getSplash()
+    override suspend fun getSplash(): NonDataBaseResponse =
+        authService.getSplash()
 }

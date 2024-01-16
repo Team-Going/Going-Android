@@ -29,6 +29,13 @@ fun Fragment.colorOf(@ColorRes resId: Int) = ContextCompat.getColor(requireConte
 fun Fragment.drawableOf(@DrawableRes resId: Int) =
     ContextCompat.getDrawable(requireContext(), resId)
 
+fun Fragment.setStatusBarColor(colorResId: Int) {
+    activity?.let {
+        val statusBarColor = ContextCompat.getColor(it, colorResId)
+        it.window.statusBarColor = statusBarColor
+    }
+}
+
 val Fragment.viewLifeCycle
     get() = viewLifecycleOwner.lifecycle
 

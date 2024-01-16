@@ -9,6 +9,7 @@ import com.going.presentation.databinding.ActivityTodoBinding
 import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,9 +20,14 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setStatusBarColor()
         getTripId()
         initBnvItemIconTintList()
         initBnvItemSelectedListener()
+    }
+
+    private fun setStatusBarColor() {
+        setStatusBarColorFromResource(R.color.gray_50)
     }
 
     private fun getTripId() {

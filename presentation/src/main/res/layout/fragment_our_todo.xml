@@ -51,11 +51,11 @@
                 android:background="@color/gray_50">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/layout_our_todo_collapsing"
+                    android:id="@+id/layout_our_todo_collapsing_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:contentScrim="@android:color/transparent"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:statusBarScrim="@android:color/transparent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,8 +89,8 @@
                             style="@style/TextAppearance.Doorip.Head1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toStartOf="@id/iv_our_todo"
                             android:layout_marginEnd="4dp"
+                            app:layout_constraintEnd_toStartOf="@id/iv_our_todo"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
                             app:layout_constraintTop_toBottomOf="@id/tv_our_todo_title_up"
                             tools:text="여행일까지 16일 남았어요!" />
@@ -292,18 +292,28 @@
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_our_todo"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/layout_our_todo_collapsing_tab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/layer_list_todo_unselected_indicator"
-                    app:tabIndicatorColor="@color/gray_500"
-                    app:tabIndicatorFullWidth="true"
-                    app:tabIndicatorHeight="2dp"
-                    app:tabRippleColor="@android:color/transparent"
-                    app:tabSelectedTextColor="@color/gray_500"
-                    app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
-                    app:tabTextColor="@color/gray_200" />
+                    app:contentScrim="@android:color/transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:statusBarScrim="@android:color/transparent">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_our_todo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/layer_list_todo_unselected_indicator"
+                        app:tabIndicatorColor="@color/gray_500"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabIndicatorHeight="2dp"
+                        app:tabRippleColor="@android:color/transparent"
+                        app:tabSelectedTextColor="@color/gray_500"
+                        app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
+                        app:tabTextColor="@color/gray_200" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
 
