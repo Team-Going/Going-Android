@@ -26,9 +26,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setStatusBarColor()
         checkConnectedNetwork()
         observeUserState()
 
+    }
+
+    private fun setStatusBarColor() {
+        window.statusBarColor = getColor(R.color.red_500)
     }
 
     private fun checkConnectedNetwork() {
@@ -99,4 +104,5 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
         finish()
     }
+
 }
