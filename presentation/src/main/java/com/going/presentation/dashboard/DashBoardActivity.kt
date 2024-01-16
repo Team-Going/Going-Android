@@ -83,7 +83,7 @@ class DashBoardActivity :
     }
 
     companion object {
-        const val TAB_ONGOING = "진행중인 여행"
+        const val TAB_ONGOING = "진행 중인 여행"
         const val TAB_COMPLETED = "지나간 여행"
     }
 }

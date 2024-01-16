@@ -49,7 +49,7 @@ class TendencyTestViewModel @Inject constructor(
             "도전하기보다는 원래 정했던 메뉴를 주문한다",
             "구글맵에 후기를 검색한다",
             "한국에는 없잖아! 바로 주문한다",
-            "오히려 좋아. 더 추천해달라고 한다",
+            "오히려 좋아, 더 추천해달라고 한다",
         ),
         TendencyTestMock(
             "친구의 지인이 동행하자고 한다면?",
