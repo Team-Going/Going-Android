@@ -27,17 +27,17 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/tendency_test_title"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_tendency_result"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/toolbar_tendency_result"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/btn_tendency_result_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:padding="24dp"
                 android:layout_marginBottom="-5dp"
+                android:padding="24dp"
                 android:src="@drawable/ic_download"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:gravity="center"
                         android:textColor="@color/red_500"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -109,70 +110,62 @@
                     <TextView
                         android:id="@+id/tv_tendency_test_result_sub_type"
                         style="@style/TextAppearance.Doorip.Detail1.Regular"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:textColor="@color/gray_300"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_type" />
 
-                    <LinearLayout
+                    <androidx.constraintlayout.helper.widget.Flow
                         android:id="@+id/ll_tags"
                         android:layout_width="0dp"
+                        android:layout_marginTop="12dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:flow_horizontalGap="8dp"
+                        app:flow_wrapMode="chain"
+                        app:constraint_referenced_ids="tv_tendency_test_result_tag1,tv_tendency_test_result_tag2,tv_tendency_test_result_tag3"
+                        app:flow_horizontalStyle="packed"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type">
+                        app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
 
-                        <TextView
-                            android:id="@+id/tv_tendency_test_result_tag1"
-                            style="@style/TextAppearance.Doorip.Detail1.Regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_rect_10_red300_line"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="1dp"
-                            android:textColor="@color/red_300"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+                    <TextView
+                        android:id="@+id/tv_tendency_test_result_tag1"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintHorizontal_weight="1" />
 
-                        <androidx.legacy.widget.Space
-                            android:layout_width="8dp"
-                            android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_tendency_test_result_tag2"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintHorizontal_weight="1" />
 
-                        <TextView
-                            android:id="@+id/tv_tendency_test_result_tag2"
-                            style="@style/TextAppearance.Doorip.Detail1.Regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_rect_10_red300_line"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="1dp"
-                            android:textColor="@color/red_300"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
+                    <TextView
+                        android:id="@+id/tv_tendency_test_result_tag3"
+                        style="@style/TextAppearance.Doorip.Detail1.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_rect_10_red300_line"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="1dp"
+                        android:textColor="@color/red_300"
+                        app:layout_constraintHorizontal_chainStyle="packed" />
 
-                        <androidx.legacy.widget.Space
-                            android:layout_width="8dp"
-                            android:layout_height="0dp" />
-
-                        <TextView
-                            android:id="@+id/tv_tendency_test_result_tag3"
-                            style="@style/TextAppearance.Doorip.Detail1.Regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_rect_10_red300_line"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="1dp"
-                            android:textColor="@color/red_300"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
-                    </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_box_description_first"

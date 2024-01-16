@@ -14,8 +14,11 @@ class OngoingViewHolder(
     fun onBind(item: DashBoardTripModel) {
         binding.run {
             tvDashboardTripTitle.text = item.title
-            tvDashboardDateStart.text = item.startDate
-            tvDashboardDateEnd.text = item.endDate
+            tvDashboardDate.text = String.format(
+                itemView.context.getString(R.string.dashboard_tv_start_end_date),
+                item.startDate,
+                item.endDate
+            )
 
             if (item.day <= 0) {
                 tvDashboardDeadline.text =
