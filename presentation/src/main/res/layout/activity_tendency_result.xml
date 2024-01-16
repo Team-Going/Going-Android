@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_weight="1" />
 
@@ -150,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintHorizontal_weight="1" />
@@ -162,16 +162,15 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_chainStyle="packed" />
-
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_box_description_first"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="23dp"
                         android:background="@drawable/shape_rect_6_gray200_line"
                         android:minHeight="142dp"
                         android:paddingHorizontal="14dp"
