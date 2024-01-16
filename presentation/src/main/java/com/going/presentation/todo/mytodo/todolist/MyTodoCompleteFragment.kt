@@ -57,7 +57,7 @@ class MyTodoCompleteFragment() :
                 viewModel.getToRedoTodoFromServer(todoId)
             },
             { todoModel ->
-                if (todoModel.allocators.size <= 1) {
+                if (todoModel.secret) {
                     startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
                 } else {
                     startDetailActivity(PublicDetailActivity::class.java, todoModel.todoId)
