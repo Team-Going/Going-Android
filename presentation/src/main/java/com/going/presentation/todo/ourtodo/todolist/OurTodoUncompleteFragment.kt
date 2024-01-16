@@ -38,7 +38,6 @@ class OurTodoUncompleteFragment() :
 
         initAdapterWithClickListener()
         initItemDecoration()
-        setTodoList()
         observeTodoListState()
     }
 

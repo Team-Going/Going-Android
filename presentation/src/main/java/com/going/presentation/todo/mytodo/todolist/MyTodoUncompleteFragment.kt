@@ -40,7 +40,6 @@ class MyTodoUncompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
-        initItemDecoration()
         observeTodoListState()
         observeTodoFinishState()
     }
@@ -75,11 +74,6 @@ class MyTodoUncompleteFragment() :
         binding.rvMyTodoUncomplete.adapter = adapter
     }
 
-    private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
-        binding.rvMyTodoUncomplete.addItemDecoration(itemDeco)
-    }
-
     private fun startDetailActivity(activity: Activity?, targetActivity: Class<*>, todoId: Long) {
         Intent(activity, targetActivity).apply {
             putExtra(EXTRA_TODO_ID, todoId)
@@ -97,6 +91,7 @@ class MyTodoUncompleteFragment() :
                 is UiState.Success -> {
                     setLayoutEmpty(false)
                     adapter.submitList(state.data)
+                    setItemDecoration()
                 }
 
                 is UiState.Failure -> {
@@ -115,6 +110,12 @@ class MyTodoUncompleteFragment() :
         binding.rvMyTodoUncomplete.isVisible = !isEmpty
         binding.layoutMyTodoUncompleteEmpty.isVisible = isEmpty
         (parentFragment as MyTodoFragment).setAppbarDragAvailable(!isEmpty)
+    }
+
+    private fun setItemDecoration() {
+        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        if (binding.rvMyTodoUncomplete.itemDecorationCount > 0) binding.rvMyTodoUncomplete.removeItemDecoration(itemDeco)
+        binding.rvMyTodoUncomplete.addItemDecoration(itemDeco)
     }
 
     private fun observeTodoFinishState() {

@@ -15,12 +15,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_our_todo_complete"
-            android:nestedScrollingEnabled="true"
-            android:overScrollMode="never"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="23dp"
+            android:nestedScrollingEnabled="true"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
