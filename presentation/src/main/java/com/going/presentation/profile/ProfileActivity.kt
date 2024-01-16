@@ -118,9 +118,7 @@ class ProfileActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnProfileDownload.setOnSingleClickListener {
-            this.downloadImage(profileViewModel.profileId.value ?: 0) { text ->
-                toast(text)
-            }
+            this.downloadImage(profileViewModel.profileId.value ?: 0)
         }
     }
 
@@ -146,9 +144,7 @@ class ProfileActivity :
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                this.downloadImage(profileViewModel.profileId.value ?: 0) { text ->
-                    toast(text)
-                }
+                this.downloadImage(profileViewModel.profileId.value ?: 0)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }

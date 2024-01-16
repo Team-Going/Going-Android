@@ -16,6 +16,7 @@ import com.going.presentation.databinding.ActivityTendencyResultBinding
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
+import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -39,7 +40,8 @@ class TendencyResultActivity :
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
-        initOnBackPressedListener()
+        this.initOnBackPressedListener()
+        //initOnBackPressedListener()
     }
 
     private fun getUserInfo() {
@@ -113,9 +115,7 @@ class TendencyResultActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            this.downloadImage(viewModel.tendencyId.value ?: 0) { text ->
-                toast(text)
-            }
+            this.downloadImage(viewModel.tendencyId.value ?: 0)
         }
     }
 
@@ -148,28 +148,26 @@ class TendencyResultActivity :
 
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                this.downloadImage(viewModel.tendencyId.value ?: 0) { text ->
-                    toast(text)
-                }
+                this.downloadImage(viewModel.tendencyId.value ?: 0)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }
         }
     }
 
-    private fun initOnBackPressedListener() {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
-                    backPressedTime = System.currentTimeMillis()
-                    toast(getString(R.string.toast_back_pressed))
-                } else {
-                    finish()
-                }
-            }
-        }
-        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
-    }
+//    private fun initOnBackPressedListener() {
+//        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+//            override fun handleOnBackPressed() {
+//                if (System.currentTimeMillis() - backPressedTime >= SignInActivity.BACK_INTERVAL) {
+//                    backPressedTime = System.currentTimeMillis()
+//                    toast(getString(R.string.toast_back_pressed))
+//                } else {
+//                    finish()
+//                }
+//            }
+//        }
+//        this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+//    }
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 200
