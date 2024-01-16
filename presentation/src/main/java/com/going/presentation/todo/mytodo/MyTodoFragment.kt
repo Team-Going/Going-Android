@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.profile.ProfileActivity
@@ -44,6 +45,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setMyTripInfo()
         setTabLayout()
         setViewPager()
+        setViewPagerChangeListener()
         setTodoCountText()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
@@ -98,6 +100,16 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         TabLayoutMediator(binding.tabMyTodo, binding.vpMyTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
+    }
+
+    private fun setViewPagerChangeListener() {
+        binding.vpMyTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                viewModel.resetListState()
+            }
+        })
     }
 
     private fun setTodoCountText() {
