@@ -117,7 +117,7 @@
     <string name="dashboard_btn_create_trip">여행 추가하기</string>
     <string name="dashboard_tv_completed_trip">여행종료</string>
     <string name="dashboard_tv_start_end_date">%s - %s</string>
-    <string name="dashboard_tv_deadline">D - %d</string>
+    <string name="dashboard_tv_deadline">D-%d</string>
     <string name="dashboard_tv_traveling">여행중</string>
 
     <!--menu-->
@@ -142,13 +142,13 @@
     <string name="setting_tv_toolbar">설정</string>
     <string name="setting_tv_profile">여행 프로필</string>
     <string name="setting_tv_inquire">문의하기</string>
-    <string name="setting_tv_service_version">서비스 버전</string>
-    <string name="setting_tv_policy">서비스 이용 약관</string>
-    <string name="setting_tv_terms">개인정보 처리 방침</string>
+    <string name="setting_tv_service_version">서비스버전</string>
+    <string name="setting_tv_policy">약관및정책</string>
+    <string name="setting_tv_terms">개인정보처리방침</string>
     <string name="setting_tv_about_doorip">About doorip</string>
     <string name="setting_tv_logout">로그아웃</string>
     <string name="setting_quit_dialog_title">정말 탈퇴하시겠어요?</string>
-    <string name="setting_quit_dialog_message">탈퇴시, 정보가 모두 없어져요.</string>
+    <string name="setting_quit_dialog_message">탈퇴 시, 정보가 모두 없어져요.</string>
     <string name="setting_quit_dialog_negative">탈퇴하기</string>
     <string name="setting_quit_dialog_positive">남아있기</string>
     <string name="setting_quit_dialog_quit">회원탈퇴</string>
