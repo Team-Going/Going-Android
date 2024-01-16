@@ -71,6 +71,7 @@ class CreateTripViewModel : ViewModel() {
             checkTripAvailable()
         } else {
             isEndDateAvailable.value = false
+
         }
     }
 

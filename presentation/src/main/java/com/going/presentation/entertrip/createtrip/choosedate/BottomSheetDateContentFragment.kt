@@ -53,11 +53,16 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                 calendar.set(Calendar.DAY_OF_MONTH, viewModel.endDay.value ?: 0)
                 val endDate = calendar.time
 
-                if (startDate.before(endDate)) {
+                if (startDate.before(endDate) || startDate.equals(endDate)) {
                     dismiss()
                 } else {
+                    viewModel.startYear.value = null
+                    viewModel.endYear.value = null
+                    viewModel.checkStartDateAvailable()
+                    viewModel.checkEndDateAvailable()
                     binding.viewBlank.visibility = View.VISIBLE
                     binding.tvErrorToast.visibility = View.VISIBLE
+
                     Handler(Looper.getMainLooper()).postDelayed({
                         binding.tvErrorToast.visibility = View.INVISIBLE
                     }, 2000)
@@ -67,4 +72,5 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
             }
         }
     }
+
 }
