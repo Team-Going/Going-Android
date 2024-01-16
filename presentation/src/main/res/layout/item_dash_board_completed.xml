@@ -19,11 +19,12 @@
         <TextView
             android:id="@+id/tv_dashboard_trip_title"
             style="@style/TextAppearance.Doorip.Body3.Medi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/gray_300"
+            app:layout_constraintEnd_toStartOf="@id/layout_dashboard_day_completed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="굉굉이들이랑 합숙" />
@@ -68,11 +69,12 @@
         <TextView
             android:id="@+id/tv_dashboard_date_end"
             style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:textColor="@color/gray_300"
             app:layout_constraintBottom_toBottomOf="@id/tv_dashboard_date_dash"
+            app:layout_constraintEnd_toStartOf="@id/layout_dashboard_day_completed"
             app:layout_constraintStart_toEndOf="@id/tv_dashboard_date_dash"
             app:layout_constraintTop_toTopOf="@id/tv_dashboard_date_dash"
             tools:text="2024 .03 .31" />
