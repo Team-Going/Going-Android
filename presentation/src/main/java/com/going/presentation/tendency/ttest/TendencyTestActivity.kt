@@ -83,7 +83,7 @@ class TendencyTestActivity :
             object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                     viewModel.clearAllChecked()
-                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value)
+                    setProgressAnimate(binding.pbTendencyTest, viewModel.step.value + 1)
 
                     for (i in 1 until fadeOutList.size) {
                         fadeOutList[i].start()
