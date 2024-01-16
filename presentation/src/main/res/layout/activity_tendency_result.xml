@@ -121,13 +121,13 @@
                     <androidx.constraintlayout.helper.widget.Flow
                         android:id="@+id/ll_tags"
                         android:layout_width="0dp"
-                        android:layout_marginTop="12dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
                         android:orientation="horizontal"
-                        app:flow_horizontalGap="8dp"
-                        app:flow_wrapMode="chain"
                         app:constraint_referenced_ids="tv_tendency_test_result_tag1,tv_tendency_test_result_tag2,tv_tendency_test_result_tag3"
+                        app:flow_horizontalGap="8dp"
                         app:flow_horizontalStyle="packed"
+                        app:flow_wrapMode="chain"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_tendency_test_result_sub_type" />
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_weight="1" />
 
@@ -150,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintHorizontal_weight="1" />
@@ -162,16 +162,15 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="2dp"
                         android:textColor="@color/red_300"
                         app:layout_constraintHorizontal_chainStyle="packed" />
-
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_box_description_first"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="23dp"
                         android:background="@drawable/shape_rect_6_gray200_line"
                         android:minHeight="142dp"
                         android:paddingHorizontal="14dp"
