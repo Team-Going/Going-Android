@@ -65,6 +65,11 @@ class OurTodoViewModel @Inject constructor(
         }
     }
 
+    fun resetListState() {
+        _todoCompleteListState.value = UiState.Empty
+        _todoUncompleteListState.value = UiState.Empty
+    }
+
     companion object {
         const val OUR_TODO = "our"
         const val UNCOMPLETE = "incomplete"

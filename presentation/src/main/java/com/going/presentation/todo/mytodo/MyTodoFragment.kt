@@ -2,6 +2,8 @@ package com.going.presentation.todo.mytodo
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
@@ -11,18 +13,22 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
+import com.going.presentation.todo.ourtodo.OurTodoFragment
+import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTime
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -44,6 +50,8 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setMyTripInfo()
         setTabLayout()
         setViewPager()
+        setViewPagerChangeListener()
+        setViewPagerDebounce()
         setTodoCountText()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
@@ -98,6 +106,40 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         TabLayoutMediator(binding.tabMyTodo, binding.vpMyTodo) { tab, pos ->
             tab.text = tabTextList[pos]
         }.attach()
+    }
+
+    private fun setViewPagerChangeListener() {
+        binding.vpMyTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                viewModel.resetListState()
+            }
+        })
+    }
+
+    private fun setViewPagerDebounce() {
+        binding.tabMyTodo.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.vpMyTodo.currentItem = tab.position
+                disableTabClick()
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun disableTabClick() {
+        for (i in tabTextList.indices) {
+            binding.tabMyTodo.getTabAt(i)?.view?.isClickable = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            for (i in tabTextList.indices) {
+                binding.tabMyTodo.getTabAt(i)?.view?.isClickable = true
+            }
+        }, debounceTime)
     }
 
     private fun setTodoCountText() {

@@ -40,6 +40,7 @@ class MyTodoUncompleteFragment() :
         super.onViewCreated(view, savedInstanceState)
 
         initAdapterWithClickListener()
+        initItemDecoration()
         observeTodoListState()
         observeTodoFinishState()
     }
@@ -81,6 +82,11 @@ class MyTodoUncompleteFragment() :
         }
     }
 
+    private fun initItemDecoration() {
+        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        binding.rvMyTodoUncomplete.addItemDecoration(itemDeco)
+    }
+
     private fun setTodoList() {
         viewModel.getUncompleteTodoListFromServer(MY_TODO, UNCOMPLETE)
     }
@@ -91,7 +97,6 @@ class MyTodoUncompleteFragment() :
                 is UiState.Success -> {
                     setLayoutEmpty(false)
                     adapter.submitList(state.data)
-                    setItemDecoration()
                 }
 
                 is UiState.Failure -> {
@@ -110,12 +115,6 @@ class MyTodoUncompleteFragment() :
         binding.rvMyTodoUncomplete.isVisible = !isEmpty
         binding.layoutMyTodoUncompleteEmpty.isVisible = isEmpty
         (parentFragment as MyTodoFragment).setAppbarDragAvailable(!isEmpty)
-    }
-
-    private fun setItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
-        if (binding.rvMyTodoUncomplete.itemDecorationCount > 0) binding.rvMyTodoUncomplete.removeItemDecoration(itemDeco)
-        binding.rvMyTodoUncomplete.addItemDecoration(itemDeco)
     }
 
     private fun observeTodoFinishState() {
