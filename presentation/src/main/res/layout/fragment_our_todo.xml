@@ -97,8 +97,10 @@
 
                         <ImageView
                             android:id="@+id/iv_our_todo_title_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintDimensionRatio="1"
+                            android:paddingVertical="8dp"
                             android:src="@drawable/ic_calendar"
                             app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_title_date"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
@@ -109,7 +111,6 @@
                             style="@style/TextAppearance.Doorip.Body1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="7dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="24dp"
                             android:textColor="@color/gray_300"

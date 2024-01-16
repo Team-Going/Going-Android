@@ -45,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:gravity="center"
                 android:fontFamily="@font/font_pretendard_bold"
                 android:paddingVertical="3dp"
                 android:text="@string/todo_invite_tv_subtitle"
