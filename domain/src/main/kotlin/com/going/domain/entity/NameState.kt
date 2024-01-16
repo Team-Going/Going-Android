@@ -1,5 +1,5 @@
 package com.going.domain.entity
 
 enum class NameState {
-    Empty, Success, Blank
+    Empty, Success, Blank, OVER
 }
