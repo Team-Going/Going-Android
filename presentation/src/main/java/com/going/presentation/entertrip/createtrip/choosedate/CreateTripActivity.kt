@@ -30,6 +30,7 @@ class CreateTripActivity :
         initStartDateClickListener()
         initEndDateClickListener()
         initNextBtnClickListener()
+        initBackBtnClickListener()
     }
 
     private fun initBindingViewModel() {
@@ -172,6 +173,12 @@ class CreateTripActivity :
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.btnCreateBack.setOnSingleClickListener {
+            finish()
         }
     }
 
