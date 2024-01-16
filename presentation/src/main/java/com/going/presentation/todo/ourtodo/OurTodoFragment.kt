@@ -111,7 +111,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initTripFriendBtnClickListener() {
-        binding.tvOurTripFriendTitle.setOnSingleClickListener {
+        binding.btnOurTripFriend.setOnSingleClickListener {
             Intent(activity, CheckFriendsActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
