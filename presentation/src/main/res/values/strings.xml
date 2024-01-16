@@ -10,6 +10,7 @@
     <string name="name_blank_error">이름에는 공백만 입력할 수 없어요</string>
     <string name="name_over_error">이름은 3자 이하여야 합니다</string>
     <string name="info_over_error">자기소개는 20자 이하여야 합니다</string>
+    <string name="trip_over_error">여행이름은 15자 이하여야 합니다</string>
 
     <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
 
