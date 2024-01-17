@@ -1,6 +1,5 @@
 package com.going.presentation.todo.mytodo.todolist
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -58,24 +57,16 @@ class MyTodoUncompleteFragment() :
             },
             { },
             { todoModel ->
-                if (todoModel.allocators.size <= 1) {
-                    startDetailActivity(
-                        activity,
-                        PrivateDetailActivity::class.java,
-                        todoModel.todoId
-                    )
+                if (todoModel.secret) {
+                    startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
                 } else {
-                    startDetailActivity(
-                        activity,
-                        PublicDetailActivity::class.java,
-                        todoModel.todoId
-                    )
+                    startDetailActivity(PublicDetailActivity::class.java, todoModel.todoId)
                 }
             })
         binding.rvMyTodoUncomplete.adapter = adapter
     }
 
-    private fun startDetailActivity(activity: Activity?, targetActivity: Class<*>, todoId: Long) {
+    private fun startDetailActivity(targetActivity: Class<*>, todoId: Long) {
         Intent(activity, targetActivity).apply {
             putExtra(EXTRA_TODO_ID, todoId)
             activity?.startActivity(this)
@@ -83,7 +74,7 @@ class MyTodoUncompleteFragment() :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        val itemDeco = TodoDecoration(requireContext(), 0, 0, 0, 30)
         binding.rvMyTodoUncomplete.addItemDecoration(itemDeco)
     }
 
@@ -114,7 +105,6 @@ class MyTodoUncompleteFragment() :
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvMyTodoUncomplete.isVisible = !isEmpty
         binding.layoutMyTodoUncompleteEmpty.isVisible = isEmpty
-        (parentFragment as MyTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     private fun observeTodoFinishState() {

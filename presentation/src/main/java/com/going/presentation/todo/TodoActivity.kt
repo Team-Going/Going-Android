@@ -42,7 +42,8 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
     }
 
     private fun initBnvItemSelectedListener() {
-        supportFragmentManager.findFragmentById(R.id.fcv_todo) ?: navigateTo<OurTodoFragment>(tripId)
+        supportFragmentManager.findFragmentById(R.id.fcv_todo)
+            ?: navigateTo<OurTodoFragment>(tripId)
 
         binding.bnvTodo.setOnItemSelectedListener { menu ->
             if (binding.bnvTodo.selectedItemId == menu.itemId) {
