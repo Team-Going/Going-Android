@@ -2,12 +2,13 @@ package com.going.presentation.todo.ourtodo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoFriendsBinding
-import com.going.ui.extension.ItemDiffCallback
 
-class OurTodoFriendAdapter : ListAdapter<TripParticipantModel, OurTodoFriendViewHolder>(diffUtil) {
+class OurTodoFriendAdapter : RecyclerView.Adapter<OurTodoFriendViewHolder>() {
+
+    private var itemList = mutableListOf<TripParticipantModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoFriendViewHolder {
         val binding: ItemTodoFriendsBinding =
@@ -16,13 +17,14 @@ class OurTodoFriendAdapter : ListAdapter<TripParticipantModel, OurTodoFriendView
     }
 
     override fun onBindViewHolder(holder: OurTodoFriendViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(itemList[position])
     }
 
-    companion object {
-        private val diffUtil = ItemDiffCallback<TripParticipantModel>(
-            onItemsTheSame = { old, new -> old.participantId == new.participantId },
-            onContentsTheSame = { old, new -> old == new },
-        )
+    override fun getItemCount(): Int = itemList.size
+
+    fun submitList(newItems: List<TripParticipantModel>) {
+        this.itemList.clear()
+        this.itemList.addAll(newItems)
+        notifyDataSetChanged()
     }
 }
