@@ -16,6 +16,8 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
+        customDate()
+        customEndDate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,18 +34,52 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         }
     }
 
+
+    private fun customDate() {
+        val datePicker = binding.dpCreateTripDate
+        val calendar = Calendar.getInstance()
+
+        val currentYear = calendar.get(Calendar.YEAR)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+        calendar.set(2000, 0, 1)
+        datePicker.minDate = calendar.timeInMillis
+
+        calendar.set(2100, 0, 1)
+        datePicker.maxDate = calendar.timeInMillis
+
+        datePicker.updateDate(currentYear, currentMonth, currentDay)
+    }
+
+
+    private fun customEndDate() {
+        val datePicker = binding.dpCreateTripDate
+        val calendar = Calendar.getInstance()
+
+        val currentYear = viewModel.startYear.value ?: 0
+        val currentMonth = viewModel.startMonth.value ?: 0
+        val currentDay = viewModel.startDay.value ?: 0
+
+        calendar.set(currentYear, currentMonth - 1, currentDay)
+        datePicker.minDate = calendar.timeInMillis
+
+        calendar.set(2100, 0, 1)
+        datePicker.maxDate = calendar.timeInMillis
+    }
+
     private fun sendDateInfo() {
         if (isStart) {
             viewModel.startYear.value = binding.dpCreateTripDate.year
             viewModel.startMonth.value = binding.dpCreateTripDate.month + 1
             viewModel.startDay.value = binding.dpCreateTripDate.dayOfMonth
-
             viewModel.checkStartDateAvailable()
         } else {
-            //initDatePicker()
+            customEndDate()
             viewModel.endYear.value = binding.dpCreateTripDate.year
             viewModel.endMonth.value = binding.dpCreateTripDate.month + 1
             viewModel.endDay.value = binding.dpCreateTripDate.dayOfMonth
+
             viewModel.checkEndDateAvailable()
         }
     }
@@ -52,7 +88,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         binding.btnCreateTripFinish.setOnSingleClickListener {
             destroyToast()
             sendDateInfo()
-            destroyToast()
             if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
 
                 val calendar = Calendar.getInstance()
@@ -86,7 +121,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                         }
                     }, 2000)
                 }
-            }else
+            } else
                 dismiss()
         }
     }
