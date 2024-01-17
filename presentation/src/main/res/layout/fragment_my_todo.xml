@@ -143,6 +143,39 @@
                 android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_my_todo_empty"
+                android:background="@color/red_500"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_my_todo_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/img_mytodo_empty"
+                    app:layout_constraintBottom_toTopOf="@id/tv_my_todo_empty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_my_todo_empty"
+                    style="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/todo_empty"
+                    android:textColor="@color/gray_200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_my_todo_empty"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

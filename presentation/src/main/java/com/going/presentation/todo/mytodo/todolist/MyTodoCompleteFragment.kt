@@ -104,7 +104,7 @@ class MyTodoCompleteFragment() :
 
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvMyTodoComplete.isVisible = !isEmpty
-        binding.layoutMyTodoCompleteEmpty.isVisible = isEmpty
+        (requireParentFragment() as MyTodoFragment).showEmptyView(isEmpty)
     }
 
     private fun observeTodoRedoState() {
