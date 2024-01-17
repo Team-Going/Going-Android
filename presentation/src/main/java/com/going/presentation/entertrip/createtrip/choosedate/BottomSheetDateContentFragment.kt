@@ -20,7 +20,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.lifecycleOwner = viewLifecycleOwner
         destroyToast()
         initFinishBtnClickListener()
     }
@@ -37,8 +37,10 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
             viewModel.startYear.value = binding.dpCreateTripDate.year
             viewModel.startMonth.value = binding.dpCreateTripDate.month + 1
             viewModel.startDay.value = binding.dpCreateTripDate.dayOfMonth
+
             viewModel.checkStartDateAvailable()
         } else {
+            //initDatePicker()
             viewModel.endYear.value = binding.dpCreateTripDate.year
             viewModel.endMonth.value = binding.dpCreateTripDate.month + 1
             viewModel.endDay.value = binding.dpCreateTripDate.dayOfMonth
@@ -48,7 +50,9 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
     private fun initFinishBtnClickListener() {
         binding.btnCreateTripFinish.setOnSingleClickListener {
+            destroyToast()
             sendDateInfo()
+            destroyToast()
             if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
 
                 val calendar = Calendar.getInstance()
@@ -77,12 +81,13 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                     binding.viewBlank.visibility = View.VISIBLE
                     binding.tvErrorToast.visibility = View.VISIBLE
                     Handler(Looper.getMainLooper()).postDelayed({
-                        binding.tvErrorToast.visibility = View.GONE
+                        if (view != null) {
+                            binding.tvErrorToast.visibility = View.GONE
+                        }
                     }, 2000)
                 }
-            } else {
+            }else
                 dismiss()
-            }
         }
     }
 }
