@@ -52,7 +52,7 @@
             android:id="@+id/tab_dashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white_000"
+            android:background="@drawable/layer_list_todo_unselected_indicator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_dashboard_toolbar"
             app:tabIndicatorColor="@color/gray_500"

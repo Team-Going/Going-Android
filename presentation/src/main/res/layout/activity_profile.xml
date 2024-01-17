@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="3dp"
                         android:text="#tag1"
                         android:textColor="@color/red_300"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="3dp"
                         android:text="#tag2"
                         android:textColor="@color/red_300"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rect_10_red300_line"
                         android:paddingHorizontal="8dp"
-                        android:paddingVertical="1dp"
+                        android:paddingVertical="3dp"
                         android:text="#tag3"
                         android:textColor="@color/red_300"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -481,8 +481,8 @@
                 <androidx.legacy.widget.Space
                     android:layout_width="0dp"
                     android:layout_height="17dp"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_profile_restart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

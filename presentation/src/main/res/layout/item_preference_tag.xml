@@ -29,14 +29,14 @@
             <ImageView
                 android:id="@+id/iv_preference_number"
                 android:layout_width="wrap_content"
-                android:adjustViewBounds="true"
                 android:layout_height="0dp"
+                android:adjustViewBounds="true"
                 android:paddingVertical="2dp"
                 android:src="@drawable/ic_preference_union"
-                app:layout_constraintTop_toTopOf="@id/tv_preference_number"
                 app:layout_constraintBottom_toBottomOf="@id/tv_preference_number"
+                app:layout_constraintEnd_toEndOf="@id/tv_preference_number"
                 app:layout_constraintStart_toStartOf="@id/tv_preference_number"
-                app:layout_constraintEnd_toEndOf="@id/tv_preference_number"/>
+                app:layout_constraintTop_toTopOf="@id/tv_preference_number" />
 
             <TextView
                 android:id="@+id/tv_preference_number"
@@ -65,6 +65,64 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_preference_number"
             tools:text="계획은 얼만큼 짤까요?" />
+
+        <LinearLayout
+            android:id="@+id/layout_preference_radio"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/rg_preference_tag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_preference_question">
+
+            <View
+                android:id="@+id/view_preference_radio_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/white_000"
+                app:layout_constraintBottom_toTopOf="@id/rg_preference_tag" />
+
+            <View
+                android:id="@+id/view_preference_radio_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/white_000"
+                app:layout_constraintBottom_toTopOf="@id/rg_preference_tag" />
+
+            <View
+                android:id="@+id/view_preference_radio_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/white_000"
+                app:layout_constraintBottom_toTopOf="@id/rg_preference_tag" />
+
+            <View
+                android:id="@+id/view_preference_radio_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/white_000"
+                app:layout_constraintBottom_toTopOf="@id/rg_preference_tag" />
+
+            <View
+                android:id="@+id/view_preference_radio_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/white_000"
+                app:layout_constraintBottom_toTopOf="@id/rg_preference_tag" />
+
+        </LinearLayout>
 
         <RadioGroup
             android:id="@+id/rg_preference_tag"
