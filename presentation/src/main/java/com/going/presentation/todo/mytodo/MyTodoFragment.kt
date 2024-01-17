@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -57,6 +58,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setViewPagerDebounce()
         setTodoCountText()
         setToolbarColor()
+        initEmptyViewHeight()
         setEmptyViewHeight()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
@@ -169,6 +171,21 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                 )
             }
         }
+    }
+
+    private fun initEmptyViewHeight() {
+        binding.appbarMyTodo.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.appbarMyTodo.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val displayHeight = activity?.getWindowHeight() ?: return
+                val toolbarHeight = binding.toolbarMyTodo.height
+                val appBarHeight = binding.appbarMyTodo.totalScrollRange
+                binding.vpMyTodo.layoutParams = (binding.vpMyTodo.layoutParams).also {
+                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                }
+            }
+        })
     }
 
     private fun setEmptyViewHeight() {
