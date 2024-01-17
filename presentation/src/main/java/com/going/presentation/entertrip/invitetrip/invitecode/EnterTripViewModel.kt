@@ -43,11 +43,12 @@ class EnterTripViewModel @Inject constructor(
 
     private fun getCodeLength(value: String?) = value?.length ?: 0
 
-    private fun isCodeValid(code: String?) = code?.matches(ENG_NUM_REGEX.toRegex()) ?: false
+    private fun isCodeValid(code: String?) = code?.matches(ENG_NUM_REGEX.toRegex()) == true && code.length == 6 ?: false
 
     fun checkEnterAvailable() {
         isCheckEnterAvailable.value = isCodeAvailable.value == CodeState.Success
     }
+
 
     fun checkInviteCodeFromServer() {
         _tripState.value = UiState.Loading
