@@ -8,7 +8,6 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -28,10 +27,10 @@ import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
+import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +53,9 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private var participantList = listOf<TripParticipantModel>()
 
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var enableClickRunnable: Runnable
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,13 +65,20 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
-        setMyTripInfo()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
         setViewPagerDebounce()
         setToolbarColor()
+        setEmptyViewHeight()
         observeOurTripInfoState()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setOurTripInfo()
     }
 
     private fun initAdapter() {
@@ -111,7 +120,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initTripFriendBtnClickListener() {
-        binding.tvOurTripFriendTitle.setOnSingleClickListener {
+        binding.btnOurTripFriend.setOnSingleClickListener {
             Intent(activity, CheckFriendsActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
@@ -119,8 +128,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
-
-    private fun setMyTripInfo() {
+    private fun setOurTripInfo() {
         arguments?.let {
             viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
         }
@@ -172,11 +180,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         for (i in tabTextList.indices) {
             binding.tabOurTodo.getTabAt(i)?.view?.isClickable = false
         }
-        Handler(Looper.getMainLooper()).postDelayed({
+        enableClickRunnable = Runnable {
             for (i in tabTextList.indices) {
                 binding.tabOurTodo.getTabAt(i)?.view?.isClickable = true
             }
-        }, debounceTime)
+        }
+        handler.postDelayed(enableClickRunnable, debounceTime)
     }
 
     private fun setToolbarColor() {
@@ -199,6 +208,17 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
+    private fun setEmptyViewHeight() {
+        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
+            val toolbarHeight = binding.toolbarOurTodo.height
+            val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
+            binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams).also {
+                it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
+        }
+    }
+
     private fun observeOurTripInfoState() {
         viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
@@ -206,7 +226,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
                 is UiState.Success -> {
                     binding.run {
-                        setTitleTextWithDay(state.data.day)
+                        setTitleTextWithDay(state.data.day, state.data.isComplete)
                         tvOurTodoTitleUp.text = state.data.title
                         tvOurTodoTitleDate.text = getString(R.string.our_todo_date_form).format(
                             convertDate(state.data.startDate), convertDate(state.data.endDate)
@@ -230,23 +250,17 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         return getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
     }
 
-    private fun setTitleTextWithDay(day: Int) {
-        when {
-            day > 0 -> {
-                binding.tvOurTodoTitleDown.text =
-                    getString(R.string.our_todo_title_down_before).format(day)
-                setDateTextColor(6, 6)
-            }
-
-            day == 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
-                setDateTextColor(0, 4)
-            }
-
-            else -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
-                setDateTextColor(4, 5)
-            }
+    private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
+        if (day > 0) {
+            binding.tvOurTodoTitleDown.text =
+                getString(R.string.our_todo_title_down_before).format(day)
+            setDateTextColor(6, 6)
+        } else if (!isComplete) {
+            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
+            setDateTextColor(0, 4)
+        } else {
+            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
+            setDateTextColor(4, 5)
         }
     }
 
@@ -264,20 +278,11 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
-    fun setAppbarDragAvailable(isAvailable: Boolean) {
-        binding.appbarOurTodo
-        val params = binding.appbarOurTodo.layoutParams as CoordinatorLayout.LayoutParams
-        val behavior = params.behavior as AppBarLayout.Behavior
-
-        behavior.setDragCallback(object : AppBarLayout.Behavior.DragCallback() {
-            override fun canDrag(appBarLayout: AppBarLayout): Boolean = isAvailable
-        })
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
         if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
+        if (::enableClickRunnable.isInitialized) handler.removeCallbacks(enableClickRunnable)
     }
 
     companion object {

@@ -6,7 +6,10 @@ import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripDashBoardBinding
 import com.going.presentation.entertrip.StartTripSplashActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.setting.SettingActivity
+import com.going.presentation.todo.TodoActivity
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -24,12 +27,23 @@ class DashBoardActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        checkIsFirstEntered()
         setTabLayout()
         setViewPager()
         setTravelerName()
         initSettingBtnClickListener()
         initCreateTripBtnClickListener()
         initOnBackPressedListener()
+    }
+
+    private fun checkIsFirstEntered() {
+        if (intent.getBooleanExtra(IS_FIRST_ENTERED, false)) {
+            val tripId = intent.getLongExtra(TRIP_ID, 0)
+            Intent(this, TodoActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, tripId)
+                startActivity(this)
+            }
+        }
     }
 
     private fun setTabLayout() {
@@ -85,5 +99,7 @@ class DashBoardActivity :
     companion object {
         const val TAB_ONGOING = "진행 중인 여행"
         const val TAB_COMPLETED = "지나간 여행"
+
+        const val IS_FIRST_ENTERED = "isFirstEntered"
     }
 }

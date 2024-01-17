@@ -91,7 +91,6 @@ class OurTodoCompleteFragment() :
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvOurTodoComplete.isVisible = !isEmpty
         binding.layoutOurTodoCompleteEmpty.isVisible = isEmpty
-        (parentFragment as OurTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     override fun onDestroyView() {
