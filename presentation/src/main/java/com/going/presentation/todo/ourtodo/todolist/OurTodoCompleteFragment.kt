@@ -15,6 +15,7 @@ import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
@@ -90,7 +91,7 @@ class OurTodoCompleteFragment() :
 
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvOurTodoComplete.isVisible = !isEmpty
-        binding.layoutOurTodoCompleteEmpty.isVisible = isEmpty
+        (requireParentFragment() as OurTodoFragment).showEmptyView(isEmpty)
     }
 
     override fun onDestroyView() {

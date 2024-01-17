@@ -9,6 +9,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -213,10 +214,14 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams).also {
+            binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
                 it.height = displayHeight - toolbarHeight - appBarHeight - 300
             }
         }
+    }
+
+    fun showEmptyView(show: Boolean) {
+        binding.layoutOurTodoEmpty.isVisible = show
     }
 
     private fun observeOurTripInfoState() {

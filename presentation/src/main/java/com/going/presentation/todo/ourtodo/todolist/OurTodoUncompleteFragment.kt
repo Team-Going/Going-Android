@@ -90,7 +90,7 @@ class OurTodoUncompleteFragment() :
 
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvOurTodoUncomplete.isVisible = !isEmpty
-        binding.layoutOurTodoUncompleteEmpty.isVisible = isEmpty
+        (requireParentFragment() as OurTodoFragment).showEmptyView(isEmpty)
     }
 
     override fun onDestroyView() {
