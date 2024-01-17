@@ -23,7 +23,6 @@ class CreateTripActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        observeTextLength()
         observeIsNameAvailable()
         observeCheckStartDateAvailable()
         observeCheckEndDateAvailable()
@@ -37,24 +36,10 @@ class CreateTripActivity :
         binding.viewModel = viewModel
     }
 
-    private fun observeTextLength() {
-        viewModel.nameLength.observe(this) { length ->
-            val maxNameLength = viewModel.getMaxNameLen()
-
-            if (length > maxNameLength) {
-                binding.etCreateTripName.apply {
-                    setText(text?.subSequence(0, maxNameLength))
-                    setSelection(maxNameLength)
-                }
-            }
-        }
-    }
-
     private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) {
+        viewModel.isNameAvailable.observe(this) { state ->
             setColors(
-                false,
-                viewModel.nameLength.value ?: 0,
+                state,
                 binding.tvNameCounter,
             ) { background ->
                 binding.etCreateTripName.background = ResourcesCompat.getDrawable(
@@ -99,17 +84,17 @@ class CreateTripActivity :
     }
 
     private fun setColors(
-        hasFocus: Boolean,
-        length: Int,
+        state: NameState,
         counter: TextView,
         setBackground: (Int) -> Unit,
     ) {
-        val (color, background) = when {
-            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            length == 0 -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+        val (color, background) = when (state) {
+            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
         }
+
         setCounterColor(counter, color)
         setBackground(background)
     }

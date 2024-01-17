@@ -24,13 +24,12 @@ class CreateTripViewModel : ViewModel() {
     val isTripAvailable = MutableLiveData(false)
     var isCheckTripAvailable = MutableLiveData(false)
 
-    fun getMaxNameLen() = MAX_TRIP_LEN
-
     fun checkNameAvailable() {
         nameLength.value = name.value?.getGraphemeLength()
 
         isNameAvailable.value = when {
             nameLength.value == 0 -> NameState.Empty
+            (nameLength.value ?: 0) > MAX_TRIP_LEN -> NameState.OVER
             name.value.isNullOrBlank() -> NameState.Blank
             else -> NameState.Success
         }
@@ -60,7 +59,6 @@ class CreateTripViewModel : ViewModel() {
         } else {
             isEndDateAvailable.value = false
             checkTripAvailable()
-
         }
     }
 
