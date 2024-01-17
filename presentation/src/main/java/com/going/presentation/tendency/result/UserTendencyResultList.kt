@@ -11,7 +11,7 @@ val UserTendencyResultList = listOf(
         profileTitle = "배려심 넘치는, 든든잉",
         profileSubTitle = "꼼꼼하고 세심하게 여행을 준비해요",
         tags = listOf(
-            "친구와 함께",
+            "친구와함께",
             "꼼꼼함",
             "세심함",
         ),
@@ -173,7 +173,7 @@ val UserTendencyResultList = listOf(
         tags = listOf(
             "낙천적",
             "낭만추구",
-            "남는건 사",
+            "남는건사진",
         ),
         profileBoxInfo = listOf(
             ProfileMock.BoxInfo(

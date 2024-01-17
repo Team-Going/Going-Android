@@ -12,6 +12,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +36,8 @@ class FinishPreferenceViewModel @Inject constructor(
         _finishInviteState.value = UiState.Loading
         viewModelScope.launch {
             enterTripRepository.postStartInviteTrip(
-                tripId, StartInviteTripRequestModel(
+                tripId,
+                StartInviteTripRequestModel(
                     styleA.value ?: 0,
                     styleB.value ?: 0,
                     styleC.value ?: 0,
@@ -42,10 +45,15 @@ class FinishPreferenceViewModel @Inject constructor(
                     styleE.value ?: 0,
                 ),
             ).onSuccess {
-                    _finishInviteState.value = UiState.Success(it)
-                }.onFailure {
-                    _finishInviteState.value = UiState.Failure(it.message.orEmpty())
+                _finishInviteState.value = UiState.Success(it)
+            }.onFailure { throwable ->
+                if (throwable is HttpException) {
+                    val errorResponse = throwable.response()?.errorBody()?.string()
+                    val jsonObject = JSONObject(errorResponse)
+                    val errorCode = jsonObject.getString("code")
+                    _finishInviteState.value = UiState.Failure(errorCode)
                 }
+            }
         }
     }
 
@@ -81,5 +89,4 @@ class FinishPreferenceViewModel @Inject constructor(
             rightPrefer = "여유롭게",
         ),
     )
-
 }
