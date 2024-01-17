@@ -54,6 +54,9 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private var participantList = listOf<TripParticipantModel>()
 
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var enableClickRunnable: Runnable
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -177,11 +180,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         for (i in tabTextList.indices) {
             binding.tabOurTodo.getTabAt(i)?.view?.isClickable = false
         }
-        Handler(Looper.getMainLooper()).postDelayed({
+        enableClickRunnable = Runnable {
             for (i in tabTextList.indices) {
                 binding.tabOurTodo.getTabAt(i)?.view?.isClickable = true
             }
-        }, debounceTime)
+        }
+        handler.postDelayed(enableClickRunnable, debounceTime)
     }
 
     private fun setToolbarColor() {
@@ -276,6 +280,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onDestroyView()
         _adapter = null
         if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
+        handler.removeCallbacks(enableClickRunnable)
     }
 
     companion object {

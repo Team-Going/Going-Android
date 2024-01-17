@@ -42,6 +42,9 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private val viewModel by activityViewModels<MyTodoViewModel>()
 
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var enableClickRunnable: Runnable
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -137,11 +140,12 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         for (i in tabTextList.indices) {
             binding.tabMyTodo.getTabAt(i)?.view?.isClickable = false
         }
-        Handler(Looper.getMainLooper()).postDelayed({
+        enableClickRunnable = Runnable {
             for (i in tabTextList.indices) {
                 binding.tabMyTodo.getTabAt(i)?.view?.isClickable = true
             }
-        }, debounceTime)
+        }
+        handler.postDelayed(enableClickRunnable, debounceTime)
     }
 
     private fun setTodoCountText() {
@@ -204,7 +208,6 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         }
     }
 
-
     fun setAppbarDragAvailable(isAvailable: Boolean) {
         binding.appbarMyTodo
         val params = binding.appbarMyTodo.layoutParams as CoordinatorLayout.LayoutParams
@@ -213,6 +216,11 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         behavior.setDragCallback(object : AppBarLayout.Behavior.DragCallback() {
             override fun canDrag(appBarLayout: AppBarLayout): Boolean = isAvailable
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        handler.removeCallbacks(enableClickRunnable)
     }
 
     companion object {
