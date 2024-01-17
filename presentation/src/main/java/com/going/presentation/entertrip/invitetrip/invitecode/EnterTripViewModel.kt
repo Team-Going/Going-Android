@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.invitetrip.invitecode
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -63,18 +62,12 @@ class EnterTripViewModel @Inject constructor(
                     val jsonObject = JSONObject(errorResponse)
                     val errorCode = jsonObject.getString("code")
                     val errorMessage = jsonObject.getString("message")
-                    Log.d("cho",errorMessage)
-                    Log.d("cho",errorCode)
-
 
                     if (errorCode == NO_TRIP_CODE_ERROR) {
                         _tripState.value = UiState.Failure(errorMessage)
-                    } else if (errorCode == MY_INVITE_CODE_ERROR) {
-                        Log.d("cho","내 코드로 들어올라함" )
-                        _tripState.value = UiState.Failure(errorMessage)
-                    } else {
-                        _tripState.value = UiState.Failure(throwable.message.orEmpty())
                     }
+                } else {
+                    _tripState.value = UiState.Failure(throwable.message.orEmpty())
                 }
             }
         }
@@ -84,9 +77,6 @@ class EnterTripViewModel @Inject constructor(
         private const val ENG_NUM_PATTERN = "^[a-z0-9]*$"
         val ENG_NUM_REGEX: Pattern = Pattern.compile(ENG_NUM_PATTERN)
         const val MAX_INVITE_LEN = 6
-        const val ERROR_NO_EXIST = "e4043"
-        const val ERROR_OVER_SIX = "e4006"
         const val NO_TRIP_CODE_ERROR = "e4043"
-        const val MY_INVITE_CODE_ERROR = "e4092"
     }
 }

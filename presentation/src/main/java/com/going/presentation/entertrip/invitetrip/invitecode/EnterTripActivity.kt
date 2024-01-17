@@ -97,8 +97,6 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 is UiState.Failure -> {
                     if (state.msg == getString(R.string.enter_trip_invite_code_error)) {
                         toast(getString(R.string.enter_trip_invite_code_error))
-                    } else if (state.msg == getString(R.string.enter_trip_my_code_error)) {
-                        toast(getString(R.string.enter_trip_my_code_error))
                     } else {
                         toast(getString(R.string.server_error))
                     }

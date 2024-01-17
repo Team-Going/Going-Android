@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.invitetrip.preference
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +13,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import retrofit2.HttpException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +37,8 @@ class FinishPreferenceViewModel @Inject constructor(
         _finishInviteState.value = UiState.Loading
         viewModelScope.launch {
             enterTripRepository.postStartInviteTrip(
-                tripId, StartInviteTripRequestModel(
+                tripId,
+                StartInviteTripRequestModel(
                     styleA.value ?: 0,
                     styleB.value ?: 0,
                     styleC.value ?: 0,
@@ -42,10 +46,22 @@ class FinishPreferenceViewModel @Inject constructor(
                     styleE.value ?: 0,
                 ),
             ).onSuccess {
-                    _finishInviteState.value = UiState.Success(it)
-                }.onFailure {
-                    _finishInviteState.value = UiState.Failure(it.message.orEmpty())
+                _finishInviteState.value = UiState.Success(it)
+            }.onFailure { throwable ->
+                if (throwable is HttpException) {
+                    val errorResponse = throwable.response()?.errorBody()?.string()
+                    val jsonObject = JSONObject(errorResponse)
+                    val errorCode = jsonObject.getString("code")
+                    val errorMessage = jsonObject.getString("message")
+
+                    if (errorCode == MY_INVITE_CODE_ERROR) {
+                        Log.d("cho", "내 코드로 들어올라함")
+                        _finishInviteState.value = UiState.Failure(errorMessage)
+                    } else {
+                        _finishInviteState.value = UiState.Failure(throwable.message.orEmpty())
+                    }
                 }
+            }
         }
     }
 
@@ -81,5 +97,7 @@ class FinishPreferenceViewModel @Inject constructor(
             rightPrefer = "여유롭게",
         ),
     )
-
+    companion object {
+        const val MY_INVITE_CODE_ERROR = "e4092"
+    }
 }
