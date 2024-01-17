@@ -25,11 +25,11 @@ class PreferenceTagViewHolder(
             )
 
             val selectedViewList = listOf(
-                viewRadio1,
-                viewRadio2,
-                viewRadio3,
-                viewRadio4,
-                viewRadio5
+                viewPreferenceRadio1,
+                viewPreferenceRadio2,
+                viewPreferenceRadio3,
+                viewPreferenceRadio4,
+                viewPreferenceRadio5
             )
 
             selectedButtonList.forEachIndexed { index, radioButton ->
