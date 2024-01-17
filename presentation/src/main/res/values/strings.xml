@@ -65,7 +65,7 @@
     <string name="create_trip_end_date">종료일</string>
     <string name="create_trip_finish_btn">다음</string>
     <string name="create_trip_date">%1$d.%2$d.%3$d</string>
-    <string name="create_trip_toast_error">여행 종료일보다 여행 시작일이 빨라요!</string>
+    <string name="create_trip_toast_error">시작일을 먼저 입력해 주세요</string>
 
     <!--date_content-->
     <string name="date_content_btn">선택하기</string>

@@ -11,6 +11,7 @@ import com.going.presentation.databinding.ActivityCreateTripBinding
 import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 
 class CreateTripActivity :
     BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
@@ -140,8 +141,13 @@ class CreateTripActivity :
 
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
-            endBottomSheetDialog = BottomSheetDateContentFragment(viewModel, false)
-            endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
+
+            if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
+                endBottomSheetDialog = BottomSheetDateContentFragment(viewModel, false)
+                endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
+            } else {
+                toast(getString(R.string.create_trip_toast_error))
+            }
         }
     }
 
