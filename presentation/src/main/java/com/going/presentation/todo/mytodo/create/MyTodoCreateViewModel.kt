@@ -3,8 +3,10 @@ package com.going.presentation.todo.mytodo.create
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.NameState
 import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.repository.TodoRepository
+import com.going.presentation.todo.ourtodo.create.OurTodoCreateViewModel
 import com.going.ui.extension.UiState
 import com.going.ui.extension.getGraphemeLength
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +21,13 @@ class MyTodoCreateViewModel @Inject constructor(
 ) : ViewModel() {
 
     val todo = MutableLiveData("")
+    val isTodoAvailable = MutableLiveData(NameState.Empty)
     val nowTodoLength = MutableLiveData(0)
 
     val endDate = MutableLiveData("")
 
     val memo = MutableLiveData("")
+    val isMemoAvailable = MutableLiveData(NameState.Empty)
     val nowMemoLength = MutableLiveData(0)
 
     val isFinishAvailable = MutableLiveData(false)
@@ -34,15 +38,25 @@ class MyTodoCreateViewModel @Inject constructor(
     var tripId: Long = 0
     var participantId: Long = 0
 
-    fun getMaxTodoLen() = MAX_TODO_LEN
-
-    fun getMaxMemoLen() = MAX_MEMO_LEN
-
     fun checkIsFinishAvailable() {
         nowTodoLength.value = todo.value?.getGraphemeLength()
+        isTodoAvailable.value = when {
+            nowTodoLength.value == 0 -> NameState.Empty
+            (nowTodoLength.value ?: 0) > MAX_TODO_LEN -> NameState.OVER
+            todo.value.isNullOrBlank() -> NameState.Blank
+            else -> NameState.Success
+        }
+
         nowMemoLength.value = memo.value?.getGraphemeLength()
+        isMemoAvailable.value = when {
+            nowMemoLength.value == 0 -> NameState.Empty
+            (nowMemoLength.value ?: 0) > MAX_MEMO_LEN -> NameState.OVER
+            memo.value.isNullOrBlank() -> NameState.Blank
+            else -> NameState.Success
+        }
+
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
     }
 
     fun postToCreateTodoFromServer() {
@@ -71,5 +85,4 @@ class MyTodoCreateViewModel @Inject constructor(
         const val MAX_TODO_LEN = 15
         const val MAX_MEMO_LEN = 1000
     }
-
 }

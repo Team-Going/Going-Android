@@ -33,10 +33,9 @@ class OnboardingProfileSettingActivity :
 
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
-        initSetOnFocusChangeListener()
         initSignUpBtnClickListener()
         observeIsNameAvailable()
-        observeTextLength()
+        observeIsInfoAvailable()
         observeIsSignUpState()
         initOnBackPressedListener()
     }
@@ -52,12 +51,17 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun initSetOnFocusChangeListener() {
-        binding.etOnboardingProfileSettingName.setOnFocusChangeListener { _, hasFocus ->
+    private fun initSignUpBtnClickListener() {
+        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
+            viewModel.startSignUp()
+        }
+    }
+
+    private fun observeIsNameAvailable() {
+        viewModel.isNameAvailable.observe(this) { state ->
             setColors(
-                hasFocus,
-                viewModel.nowNameLength.value ?: 0,
                 binding.tvNameCounter,
+                state,
             ) { background ->
                 binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
                     this.resources,
@@ -66,12 +70,13 @@ class OnboardingProfileSettingActivity :
                 )
             }
         }
+    }
 
-        binding.etOnboardingProfileSettingInfo.setOnFocusChangeListener { _, hasFocus ->
+    private fun observeIsInfoAvailable() {
+        viewModel.isInfoAvailable.observe(this) { state ->
             setColors(
-                hasFocus,
-                viewModel.nowInfoLength.value ?: 0,
                 binding.tvInfoCounter,
+                state,
             ) { background ->
                 binding.etOnboardingProfileSettingInfo.background = ResourcesCompat.getDrawable(
                     this.resources,
@@ -82,39 +87,16 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun initSignUpBtnClickListener() {
-        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
-            viewModel.startSignUp()
-        }
-    }
-
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            setColors(
-                false,
-                viewModel.nowNameLength.value ?: 0,
-                binding.tvNameCounter,
-            ) { background ->
-                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
-                    this.resources,
-                    background,
-                    theme,
-                )
-            }
-        }
-    }
-
     private fun setColors(
-        hasFocus: Boolean,
-        length: Int,
         counter: TextView,
+        state: NameState,
         setBackground: (Int) -> Unit,
     ) {
-        val (color, background) = when {
-            viewModel.isNameAvailable.value != NameState.Blank && hasFocus -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            length == 0 -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            viewModel.isNameAvailable.value == NameState.Blank && counter == binding.tvNameCounter -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+        val (color, background) = when (state) {
+            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
         }
 
         setCounterColor(counter, color)
@@ -123,31 +105,6 @@ class OnboardingProfileSettingActivity :
 
     private fun setCounterColor(counter: TextView, color: Int) {
         counter.setTextColor(getColor(color))
-    }
-
-    // 커스텀 글자수 제한 함수
-    private fun observeTextLength() {
-        viewModel.nowNameLength.observe(this) { length ->
-            val maxNameLength = viewModel.getMaxNameLen()
-
-            if (length > maxNameLength) {
-                binding.etOnboardingProfileSettingName.apply {
-                    setText(text?.subSequence(0, maxNameLength))
-                    setSelection(maxNameLength)
-                }
-            }
-        }
-
-        viewModel.nowInfoLength.observe(this) { length ->
-            val maxInfoLength = viewModel.getMaxInfoLen()
-
-            if (length > maxInfoLength) {
-                binding.etOnboardingProfileSettingInfo.apply {
-                    setText(text?.subSequence(0, maxInfoLength))
-                    setSelection(maxInfoLength)
-                }
-            }
-        }
     }
 
     private fun observeIsSignUpState() {

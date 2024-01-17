@@ -30,13 +30,11 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     val nowInfoLength = MutableLiveData(0)
 
     val isNameAvailable = MutableLiveData(NameState.Empty)
+    val isInfoAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
     private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
     val isSignUpState: StateFlow<AuthState> = _isSignUpState
-
-    fun getMaxNameLen() = MAX_NAME_LEN
-    fun getMaxInfoLen() = MAX_INFO_LEN
 
     fun checkProfileAvailable() {
         nowNameLength.value = name.value.getGraphemeLength()
@@ -45,13 +43,18 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         isNameAvailable.value = when {
             nowNameLength.value == 0 -> NameState.Empty
             name.value.isBlank() -> NameState.Blank
+            (nowNameLength.value ?: 0) > 3 -> NameState.OVER
             else -> NameState.Success
         }
 
-        val isInfoAvailable = nowInfoLength.value in 1..MAX_INFO_LEN
+        isInfoAvailable.value = when {
+            nowInfoLength.value == 0 -> NameState.Empty
+            (nowInfoLength.value ?: 0) > MAX_INFO_LEN -> NameState.OVER
+            else -> NameState.Success
+        }
 
         isProfileAvailable.value =
-            (isNameAvailable.value == NameState.Success) && isInfoAvailable
+            (isNameAvailable.value == NameState.Success) && (isInfoAvailable.value == NameState.Success)
     }
 
     fun startSignUp() {

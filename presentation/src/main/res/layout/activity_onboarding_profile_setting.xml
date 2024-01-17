@@ -68,9 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:text="@string/name_blank_error"
-            android:textColor="@{viewModel.isNameAvailable() == NameState.Blank ? @color/red_500 : @color/gray_700}"
-            android:visibility="@{viewModel.isNameAvailable() == NameState.Blank ? View.VISIBLE : View.GONE}"
+            android:text="@{viewModel.isNameAvailable() == NameState.Blank ? @string/name_blank_error : @string/name_over_error}"
+            android:textColor="@color/red_500"
+            android:visibility="@{(viewModel.isNameAvailable() == NameState.Blank) || (viewModel.isNameAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
             app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
 
@@ -114,6 +114,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
+
+        <TextView
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/info_over_error"
+            android:textColor="@color/red_500"
+            android:visibility="@{(viewModel.isInfoAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_info"
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
 
         <TextView
             android:id="@+id/tv_info_counter"
