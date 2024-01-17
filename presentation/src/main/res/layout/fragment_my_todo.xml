@@ -145,10 +145,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_my_todo_empty"
-                android:background="@color/red_500"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <ImageView
                     android:id="@+id/iv_my_todo_empty"
