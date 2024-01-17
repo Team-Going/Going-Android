@@ -7,7 +7,6 @@ import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.DisplayMetrics
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -28,6 +27,7 @@ import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
+import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
@@ -270,13 +270,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setEmptyViewHeight() {
         binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val displayMetrics = DisplayMetrics()
-            activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+            val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            val availableHeight = displayMetrics.heightPixels - toolbarHeight - appBarHeight - 300
-            binding.vpOurTodo.layoutParams =
-                (binding.vpOurTodo.layoutParams).also { it.height = availableHeight }
+            binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams).also {
+                it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
         }
     }
 
