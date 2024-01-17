@@ -12,7 +12,9 @@ import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
@@ -81,6 +83,8 @@ class FinishPreferenceActivity :
                 is UiState.Failure -> {
                     when (state.msg) {
                         ERROR_ALREADY_EXIST -> toast(getString(R.string.enter_trip_my_code_toast))
+
+                        ERROR_OVER_SIX -> toast(getString(R.string.enter_trip_invite_code_over_toast))
 
                         else -> toast(getString(R.string.server_error))
                     }
