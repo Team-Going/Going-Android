@@ -9,8 +9,6 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.DisplayMetrics
 import android.view.View
-import android.view.ViewTreeObserver
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -19,7 +17,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
-import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
@@ -34,7 +31,6 @@ import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -246,7 +242,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
         if (day > 0) {
-            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+            binding.tvOurTodoTitleDown.text =
+                getString(R.string.our_todo_title_down_before).format(day)
             setDateTextColor(6, 6)
         } else if (!isComplete) {
             binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
@@ -272,20 +269,15 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun setEmptyViewHeight() {
-        binding.layoutOurTodo.viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                binding.layoutOurTodo.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                val displayMetrics = DisplayMetrics()
-                activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
-                val toolbarHeight = binding.toolbarOurTodo.height
-                val appBarHeight = binding.appbarOurTodo.height
-                val bottomNavHeight = (activity as? TodoActivity)?.binding?.bnvTodo?.height ?: 0
-                val availableHeight = displayMetrics.heightPixels - toolbarHeight - appBarHeight - bottomNavHeight
-                binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams)
-                    .also { it.height = availableHeight }
-            }
-        })
+        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val displayMetrics = DisplayMetrics()
+            activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+            val toolbarHeight = binding.toolbarOurTodo.height
+            val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
+            val availableHeight = displayMetrics.heightPixels - toolbarHeight - appBarHeight - 300
+            binding.vpOurTodo.layoutParams =
+                (binding.vpOurTodo.layoutParams).also { it.height = availableHeight }
+        }
     }
 
     override fun onDestroyView() {
