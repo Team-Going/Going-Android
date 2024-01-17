@@ -2,7 +2,6 @@ package com.going.presentation.entertrip.preferencetag
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.PreferenceData
-import com.going.presentation.R
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 
 class PreferenceTagViewHolder(
@@ -17,18 +16,34 @@ class PreferenceTagViewHolder(
             tvPreferenceTag1.text = item.leftPrefer
             tvPreferenceTag3.text = item.rightPrefer
 
-            rgPreferenceTag.setOnCheckedChangeListener { _, checkedId ->
-                val selectedButtonIdList = listOf(
-                    R.id.rb_preference_1,
-                    R.id.rb_preference_2,
-                    R.id.rb_preference_3,
-                    R.id.rb_preference_4,
-                    R.id.rb_preference_5
-                )
+            val selectedButtonList = listOf(
+                rbPreference1,
+                rbPreference2,
+                rbPreference3,
+                rbPreference4,
+                rbPreference5
+            )
 
-                val checkedIndex = selectedButtonIdList.indexOf(checkedId)
-                if (checkedIndex != -1) {
-                    listener.onPreferenceSelected(item, checkedIndex)
+            val selectedViewList = listOf(
+                viewRadio1,
+                viewRadio2,
+                viewRadio3,
+                viewRadio4,
+                viewRadio5
+            )
+
+            selectedButtonList.forEachIndexed { index, radioButton ->
+                radioButton.setOnClickListener {
+                    if (radioButton.isChecked) {
+                        listener.onPreferenceSelected(item, index)
+                    }
+                }
+            }
+
+            selectedViewList.forEachIndexed { index, view ->
+                view.setOnClickListener {
+                    selectedButtonList[index].isChecked = true
+                    listener.onPreferenceSelected(item, index)
                 }
             }
         }
