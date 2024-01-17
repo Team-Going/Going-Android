@@ -22,6 +22,7 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
@@ -110,6 +111,7 @@ class EnterPreferenceActivity :
                         putExtra(END, state.data.endDate)
                         putExtra(INVITE_CODE, state.data.code)
                         putExtra(DAY, state.data.day)
+                        putExtra(TRIP_ID, state.data.tripId)
                         addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(this)
                     }

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
+import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishTripBinding
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
@@ -17,6 +18,7 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -31,6 +33,7 @@ class FinishTripActivity :
 
     private var inviteCode: String = ""
     private var title: String = ""
+    private var tripId: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +107,8 @@ class FinishTripActivity :
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
+                putExtra(TRIP_ID, tripId)
+                putExtra(IS_FIRST_ENTERED, true)
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
@@ -118,6 +123,7 @@ class FinishTripActivity :
             val end = intent.getStringExtra(END)
             inviteCode = intent.getStringExtra(INVITE_CODE) ?: ""
             val day = intent.getIntExtra(DAY, 0)
+            tripId = intent.getLongExtra(TRIP_ID, 0)
 
             binding.tvFinishTripName.text = title
             binding.tvFinishTripDay.text = String.format(DATE_FORMAT, start, end)

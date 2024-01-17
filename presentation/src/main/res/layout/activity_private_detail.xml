@@ -199,6 +199,18 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/layout_my_todo_detail_person_lock"
+                    android:text="@string/my_todo_create_tv_person_lock_description"
+                    android:layout_marginStart="8dp"
+                    style="@style/TextAppearance.Doorip.Detail2.Regular"
+                    android:textColor="@color/gray_200"
+                    app:layout_constraintTop_toTopOf="@id/layout_my_todo_detail_person_lock"
+                    app:layout_constraintBottom_toBottomOf="@id/layout_my_todo_detail_person_lock"/>
+
+
+                <TextView
                     android:id="@+id/tv_my_todo_create_memo_title"
                     style="@style/TextAppearance.Doorip.Body3.Bold"
                     android:layout_width="0dp"

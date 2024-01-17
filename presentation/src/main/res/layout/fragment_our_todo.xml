@@ -99,10 +99,10 @@
                             android:id="@+id/iv_our_todo_title_date"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            app:layout_constraintDimensionRatio="1"
                             android:paddingVertical="8dp"
                             android:src="@drawable/ic_calendar"
                             app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_title_date"
+                            app:layout_constraintDimensionRatio="1"
                             app:layout_constraintStart_toStartOf="@id/tv_our_todo_title_up"
                             app:layout_constraintTop_toTopOf="@id/tv_our_todo_title_date" />
 
@@ -173,35 +173,43 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="24dp"
                             android:background="@drawable/shape_rect_8_white000_fill_gray100_line"
-                            android:paddingVertical="22dp"
+                            android:paddingBottom="22dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/layout_our_trip_info">
 
-                            <TextView
-                                android:id="@+id/tv_our_trip_friend_title"
-                                style="@style/TextAppearance.Doorip.Body2.Medi"
+                            <LinearLayout
+                                android:id="@+id/btn_our_trip_friend"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="18dp"
-                                android:text="@string/our_todo_tv_trip_friend_title"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="18dp"
+                                android:orientation="horizontal"
+                                android:padding="6dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <ImageView
-                                android:id="@+id/btn_our_todo_friend"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_enter"
-                                app:layout_constraintBottom_toBottomOf="@id/tv_our_trip_friend_title"
-                                app:layout_constraintStart_toEndOf="@id/tv_our_trip_friend_title"
-                                app:layout_constraintTop_toTopOf="@id/tv_our_trip_friend_title" />
+                                <TextView
+                                    android:id="@+id/tv_our_trip_friend_title"
+                                    style="@style/TextAppearance.Doorip.Body2.Medi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/our_todo_tv_trip_friend_title" />
+
+                                <ImageView
+                                    android:id="@+id/btn_our_todo_friend"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_enter" />
+
+                            </LinearLayout>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_our_trip_friend"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp"
+                                android:layout_marginTop="6dp"
                                 android:orientation="horizontal"
                                 android:overScrollMode="never"
                                 android:paddingHorizontal="18dp"
@@ -209,7 +217,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv_our_trip_friend_title"
+                                app:layout_constraintTop_toBottomOf="@id/btn_our_trip_friend"
                                 tools:listitem="@layout/item_todo_friends" />
 
                             <ImageView
@@ -220,18 +228,18 @@
                                 android:src="@drawable/ic_todo_add_background"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv_our_trip_friend_title" />
+                                app:layout_constraintTop_toBottomOf="@id/btn_our_trip_friend" />
 
                             <ImageView
                                 android:id="@+id/btn_our_todo_add_friend"
                                 android:layout_width="45dp"
                                 android:layout_height="0dp"
-                                android:layout_marginTop="12dp"
+                                android:layout_marginTop="6dp"
                                 android:layout_marginEnd="18dp"
                                 android:src="@drawable/ic_todo_add_friend"
                                 app:layout_constraintDimensionRatio="1"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv_our_trip_friend_title" />
+                                app:layout_constraintTop_toBottomOf="@id/btn_our_trip_friend" />
 
                             <TextView
                                 android:id="@+id/tv_our_todo_add"
