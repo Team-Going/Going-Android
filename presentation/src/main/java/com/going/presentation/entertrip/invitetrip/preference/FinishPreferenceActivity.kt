@@ -11,6 +11,7 @@ import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
@@ -77,10 +78,10 @@ class FinishPreferenceActivity :
                 is UiState.Success -> navigateToDashBoard()
 
                 is UiState.Failure -> {
-                    if (state.msg == getString(R.string.enter_trip_my_code_error)) {
-                        toast(getString(R.string.enter_trip_my_code_error))
-                    } else {
-                        toast(getString(R.string.server_error))
+                    when (state.msg) {
+                        ERROR_ALREADY_EXIST -> toast(getString(R.string.enter_trip_my_code_toast))
+
+                        else -> toast(getString(R.string.server_error))
                     }
                 }
 

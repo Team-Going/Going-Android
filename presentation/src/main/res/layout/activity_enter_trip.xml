@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".entertrip.createtrip.choosedate.CreateTripActivity">
+        tools:context=".entertrip.invitetrip.invitecode.EnterTripActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_enter_trip"
@@ -115,11 +115,11 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{viewModel.isCheckEnterAvailable}"
+            android:enabled="@{viewModel.isInviteCodeAvailable}"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/enter_trip_tv_next_button"
-            android:textColor="@{viewModel.isCheckEnterAvailable() == true ? @color/white_000 : @color/gray_200}"
+            android:textColor="@{viewModel.isInviteCodeAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

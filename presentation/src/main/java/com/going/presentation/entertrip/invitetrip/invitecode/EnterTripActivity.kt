@@ -11,6 +11,8 @@ import com.going.domain.entity.CodeState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterTripBinding
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_NO_EXIST
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -95,10 +97,12 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
                 }
 
                 is UiState.Failure -> {
-                    if (state.msg == getString(R.string.enter_trip_invite_code_error)) {
-                        toast(getString(R.string.enter_trip_invite_code_error))
-                    } else {
-                        toast(getString(R.string.server_error))
+                    when (state.msg) {
+                        ERROR_NO_EXIST -> toast(getString(R.string.enter_trip_invite_code_exist_toast))
+
+                        ERROR_OVER_SIX -> toast(getString(R.string.enter_trip_invite_code_over_toast))
+
+                        else -> toast(getString(R.string.server_error))
                     }
                 }
 
@@ -108,6 +112,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
             }
         }.launchIn(lifecycleScope)
     }
+
 
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {

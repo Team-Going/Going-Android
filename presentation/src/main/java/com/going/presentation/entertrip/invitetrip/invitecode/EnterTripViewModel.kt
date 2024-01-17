@@ -29,7 +29,7 @@ class EnterTripViewModel @Inject constructor(
     var codeLength = MutableLiveData(0)
 
     val isCodeAvailable = MutableLiveData(CodeState.Empty)
-    var isCheckEnterAvailable = MutableLiveData(false)
+    val isInviteCodeAvailable = MutableLiveData(false)
 
     fun checkCodeAvailable() {
         codeLength.value = getCodeLength(inviteCode.value)
@@ -37,18 +37,25 @@ class EnterTripViewModel @Inject constructor(
             codeLength.value == 0 -> CodeState.Empty
             inviteCode.value.isNullOrBlank() -> CodeState.Blank
             !isCodeValid(inviteCode.value) -> CodeState.Invalid
-            else -> CodeState.Success.also { checkEnterAvailable() }
+            else -> CodeState.Success
         }
+
+        val isLengthAvailable = codeLength.value in 1..MAX_INVITE_LEN
+
+        isInviteCodeAvailable.value =
+            (isCodeAvailable.value == CodeState.Success) && isLengthAvailable
+
+        checkEnterAvailable()
     }
 
     private fun getCodeLength(value: String?) = value?.length ?: 0
 
-    private fun isCodeValid(code: String?) = code?.matches(ENG_NUM_REGEX.toRegex()) == true && code.length == 6 ?: false
+    private fun isCodeValid(code: String?) =
+        code?.matches(ENG_NUM_REGEX.toRegex()) == true && code.length == 6
 
     fun checkEnterAvailable() {
-        isCheckEnterAvailable.value = isCodeAvailable.value == CodeState.Success
+        isInviteCodeAvailable.value = isCodeAvailable.value == CodeState.Success
     }
-
 
     fun checkInviteCodeFromServer() {
         _tripState.value = UiState.Loading
@@ -60,15 +67,9 @@ class EnterTripViewModel @Inject constructor(
             }.onFailure { throwable ->
                 if (throwable is HttpException) {
                     val errorResponse = throwable.response()?.errorBody()?.string()
-                    val jsonObject = JSONObject(errorResponse)
+                    val jsonObject = JSONObject(errorResponse.orEmpty())
                     val errorCode = jsonObject.getString("code")
-                    val errorMessage = jsonObject.getString("message")
-
-                    if (errorCode == NO_TRIP_CODE_ERROR) {
-                        _tripState.value = UiState.Failure(errorMessage)
-                    }
-                } else {
-                    _tripState.value = UiState.Failure(throwable.message.orEmpty())
+                    _tripState.value = UiState.Failure(errorCode)
                 }
             }
         }
@@ -78,6 +79,8 @@ class EnterTripViewModel @Inject constructor(
         private const val ENG_NUM_PATTERN = "^[a-z0-9]*$"
         val ENG_NUM_REGEX: Pattern = Pattern.compile(ENG_NUM_PATTERN)
         const val MAX_INVITE_LEN = 6
-        const val NO_TRIP_CODE_ERROR = "e4043"
+        const val ERROR_NO_EXIST = "e4043"
+        const val ERROR_OVER_SIX = "e4006"
+        const val ERROR_ALREADY_EXIST = "e4092"
     }
 }
