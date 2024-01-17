@@ -14,7 +14,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        customDate()
+        customStartDate()
         customEndDate()
     }
 
@@ -24,13 +24,13 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         initFinishBtnClickListener()
     }
 
-    private fun customDate() {
+    private fun customStartDate() {
         val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
 
-        val currentYear = calendar.get(Calendar.YEAR)
-        val currentMonth = calendar.get(Calendar.MONTH)
-        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val currentStartYear = calendar.get(Calendar.YEAR)
+        val currentStartMonth = calendar.get(Calendar.MONTH)
+        val currentStartDay = calendar.get(Calendar.DAY_OF_MONTH)
 
         calendar.set(2000, 0, 1)
         datePicker.minDate = calendar.timeInMillis
@@ -38,7 +38,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         calendar.set(2100, 0, 1)
         datePicker.maxDate = calendar.timeInMillis
 
-        datePicker.updateDate(currentYear, currentMonth, currentDay)
+        datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
 
 
@@ -46,11 +46,11 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
 
-        val currentYear = viewModel.startYear.value ?: 0
-        val currentMonth = viewModel.startMonth.value ?: 0
-        val currentDay = viewModel.startDay.value ?: 0
+        val currentEndYear = viewModel.startYear.value ?: 0
+        val currentEndMonth = viewModel.startMonth.value ?: 0
+        val currentEndDay = viewModel.startDay.value ?: 0
 
-        calendar.set(currentYear, currentMonth - 1, currentDay)
+        calendar.set(currentEndYear, currentEndMonth - 1, currentEndDay)
         datePicker.minDate = calendar.timeInMillis
 
         calendar.set(2100, 0, 1)
@@ -68,7 +68,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
             viewModel.endYear.value = binding.dpCreateTripDate.year
             viewModel.endMonth.value = binding.dpCreateTripDate.month + 1
             viewModel.endDay.value = binding.dpCreateTripDate.dayOfMonth
-
             viewModel.checkEndDateAvailable()
         }
     }
