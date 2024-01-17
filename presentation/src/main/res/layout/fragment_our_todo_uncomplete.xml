@@ -29,10 +29,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_our_todo_uncomplete_empty"
+            android:background="@color/red_500"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingVertical="40dp"
-            android:visibility="gone"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

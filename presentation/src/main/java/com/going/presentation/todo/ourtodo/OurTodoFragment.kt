@@ -7,7 +7,9 @@ import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -17,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
@@ -72,6 +75,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setViewPagerDebounce()
         setToolbarColor()
         observeOurTripInfoState()
+
+        setEmptyViewHeight()
     }
 
     override fun onResume() {
@@ -266,13 +271,20 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
-    fun setAppbarDragAvailable(isAvailable: Boolean) {
-        binding.appbarOurTodo
-        val params = binding.appbarOurTodo.layoutParams as CoordinatorLayout.LayoutParams
-        val behavior = params.behavior as AppBarLayout.Behavior
-
-        behavior.setDragCallback(object : AppBarLayout.Behavior.DragCallback() {
-            override fun canDrag(appBarLayout: AppBarLayout): Boolean = isAvailable
+    private fun setEmptyViewHeight() {
+        binding.layoutOurTodo.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.layoutOurTodo.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val displayMetrics = DisplayMetrics()
+                activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+                val toolbarHeight = binding.toolbarOurTodo.height
+                val appBarHeight = binding.appbarOurTodo.height
+                val bottomNavHeight = (activity as? TodoActivity)?.binding?.bnvTodo?.height ?: 0
+                val availableHeight = displayMetrics.heightPixels - toolbarHeight - appBarHeight - bottomNavHeight
+                binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams)
+                    .also { it.height = availableHeight }
+            }
         })
     }
 
