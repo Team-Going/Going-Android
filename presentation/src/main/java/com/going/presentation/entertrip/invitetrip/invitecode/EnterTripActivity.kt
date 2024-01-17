@@ -98,9 +98,9 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
 
                 is UiState.Failure -> {
                     when (state.msg) {
-                        ERROR_NO_EXIST -> toast(getString(R.string.enter_trip_invite_code_exist_error))
+                        ERROR_NO_EXIST -> toast(getString(R.string.enter_trip_invite_code_exist_toast))
 
-                        ERROR_OVER_SIX -> toast(getString(R.string.enter_trip_invite_code_over_error))
+                        ERROR_OVER_SIX -> toast(getString(R.string.enter_trip_invite_code_over_toast))
 
                         else -> toast(getString(R.string.server_error))
                     }
@@ -112,6 +112,7 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
             }
         }.launchIn(lifecycleScope)
     }
+
 
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {

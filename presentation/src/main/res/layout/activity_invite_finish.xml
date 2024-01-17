@@ -94,24 +94,26 @@
             <TextView
                 android:id="@+id/tv_invite_finish_name"
                 style="@style/TextAppearance.Doorip.Body1.Bold"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="@id/iv_invite_finish_letter"
+                app:layout_constraintStart_toStartOf="@+id/iv_invite_finish_letter"
                 app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_day_left"
                 tools:text="굉굉이랑 스페인" />
 
             <TextView
                 android:id="@+id/tv_invite_finish_day"
                 style="@style/TextAppearance.Doorip.Detail3.Regular"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:gravity="center"
                 android:maxLines="2"
                 android:textColor="@color/gray_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_invite_finish_letter"
+                app:layout_constraintStart_toStartOf="@id/iv_invite_finish_letter"
                 app:layout_constraintTop_toBottomOf="@id/tv_invite_finish_name"
                 tools:text="2023.03.24 - 2023.03.31" />
 

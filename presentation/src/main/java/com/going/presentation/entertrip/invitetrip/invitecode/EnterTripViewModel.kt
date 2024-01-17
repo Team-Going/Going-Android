@@ -29,7 +29,7 @@ class EnterTripViewModel @Inject constructor(
     var codeLength = MutableLiveData(0)
 
     val isCodeAvailable = MutableLiveData(CodeState.Empty)
-    var isCheckEnterAvailable = MutableLiveData(false)
+    val isInviteCodeAvailable = MutableLiveData(false)
 
     fun checkCodeAvailable() {
         codeLength.value = getCodeLength(inviteCode.value)
@@ -37,16 +37,24 @@ class EnterTripViewModel @Inject constructor(
             codeLength.value == 0 -> CodeState.Empty
             inviteCode.value.isNullOrBlank() -> CodeState.Blank
             !isCodeValid(inviteCode.value) -> CodeState.Invalid
-            else -> CodeState.Success.also { checkEnterAvailable() }
+            else -> CodeState.Success
         }
+
+        val isLengthAvailable = codeLength.value in 1..MAX_INVITE_LEN
+
+        isInviteCodeAvailable.value =
+            (isCodeAvailable.value == CodeState.Success) && isLengthAvailable
+
+        checkEnterAvailable()
     }
 
     private fun getCodeLength(value: String?) = value?.length ?: 0
 
-    private fun isCodeValid(code: String?) = code?.matches(ENG_NUM_REGEX.toRegex()) ?: false
+    private fun isCodeValid(code: String?) =
+        code?.matches(ENG_NUM_REGEX.toRegex()) == true && code.length == 6
 
     fun checkEnterAvailable() {
-        isCheckEnterAvailable.value = isCodeAvailable.value == CodeState.Success
+        isInviteCodeAvailable.value = isCodeAvailable.value == CodeState.Success
     }
 
     fun checkInviteCodeFromServer() {
@@ -73,5 +81,6 @@ class EnterTripViewModel @Inject constructor(
         const val MAX_INVITE_LEN = 6
         const val ERROR_NO_EXIST = "e4043"
         const val ERROR_OVER_SIX = "e4006"
+        const val ERROR_ALREADY_EXIST = "e4092"
     }
 }
