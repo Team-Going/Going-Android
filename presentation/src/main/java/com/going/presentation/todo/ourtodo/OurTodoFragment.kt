@@ -70,9 +70,9 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setViewPagerChangeListener()
         setViewPagerDebounce()
         setToolbarColor()
+        setEmptyViewHeight()
         observeOurTripInfoState()
 
-        setEmptyViewHeight()
     }
 
     override fun onResume() {
@@ -127,7 +127,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             }
         }
     }
-
 
     private fun setOurTripInfo() {
         arguments?.let {
@@ -209,6 +208,17 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
+    private fun setEmptyViewHeight() {
+        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
+            val toolbarHeight = binding.toolbarOurTodo.height
+            val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
+            binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams).also {
+                it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
+        }
+    }
+
     private fun observeOurTripInfoState() {
         viewModel.ourTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
@@ -264,17 +274,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                         )
                     ), start, length - end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
-            }
-        }
-    }
-
-    private fun setEmptyViewHeight() {
-        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
-            val toolbarHeight = binding.toolbarOurTodo.height
-            val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.vpOurTodo.layoutParams = (binding.vpOurTodo.layoutParams).also {
-                it.height = displayHeight - toolbarHeight - appBarHeight - 300
             }
         }
     }

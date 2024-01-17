@@ -105,7 +105,6 @@ class MyTodoCompleteFragment() :
     private fun setLayoutEmpty(isEmpty: Boolean) {
         binding.rvMyTodoComplete.isVisible = !isEmpty
         binding.layoutMyTodoCompleteEmpty.isVisible = isEmpty
-        (parentFragment as MyTodoFragment).setAppbarDragAvailable(!isEmpty)
     }
 
     private fun observeTodoRedoState() {

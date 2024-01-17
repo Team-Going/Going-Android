@@ -8,7 +8,6 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -24,10 +23,10 @@ import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTim
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
+import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,6 +57,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setViewPagerDebounce()
         setTodoCountText()
         setToolbarColor()
+        setEmptyViewHeight()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
 
@@ -86,7 +86,6 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
             }
         }
     }
-
 
     private fun setMyTripInfo() {
         arguments?.let {
@@ -172,6 +171,17 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         }
     }
 
+    private fun setEmptyViewHeight() {
+        binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
+            val toolbarHeight = binding.toolbarMyTodo.height
+            val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
+            binding.vpMyTodo.layoutParams = (binding.vpMyTodo.layoutParams).also {
+                it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
+        }
+    }
+
     private fun observeMyTripInfoState() {
         viewModel.myTripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
@@ -206,16 +216,6 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                 )
             }
         }
-    }
-
-    fun setAppbarDragAvailable(isAvailable: Boolean) {
-        binding.appbarMyTodo
-        val params = binding.appbarMyTodo.layoutParams as CoordinatorLayout.LayoutParams
-        val behavior = params.behavior as AppBarLayout.Behavior
-
-        behavior.setDragCallback(object : AppBarLayout.Behavior.DragCallback() {
-            override fun canDrag(appBarLayout: AppBarLayout): Boolean = isAvailable
-        })
     }
 
     override fun onDestroyView() {
