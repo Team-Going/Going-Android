@@ -220,7 +220,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     override fun onDestroyView() {
         super.onDestroyView()
-        handler.removeCallbacks(enableClickRunnable)
+        if (::enableClickRunnable.isInitialized) handler.removeCallbacks(enableClickRunnable)
     }
 
     companion object {

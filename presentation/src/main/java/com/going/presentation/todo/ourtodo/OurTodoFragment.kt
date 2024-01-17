@@ -280,7 +280,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onDestroyView()
         _adapter = null
         if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
-        handler.removeCallbacks(enableClickRunnable)
+        if (::enableClickRunnable.isInitialized) handler.removeCallbacks(enableClickRunnable)
     }
 
     companion object {
