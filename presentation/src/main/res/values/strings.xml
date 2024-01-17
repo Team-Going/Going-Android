@@ -8,10 +8,17 @@
 
     <string name="server_error">서버 통신에 실패했습니다</string>
     <string name="name_blank_error">이름에는 공백만 입력할 수 없어요</string>
+    <string name="name_over_error">이름은 3자 이하여야 합니다</string>
+    <string name="info_over_error">자기소개는 20자 이하여야 합니다</string>
+    <string name="trip_over_error">여행이름은 15자 이하여야 합니다</string>
+    <string name="todo_over_error">할일은 15자 이하여야 합니다</string>
+    <string name="memo_over_error">메모는 1000자 이하여야 합니다</string>
 
     <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
 
+    <string name ="sign_in_tv_btn">카카오 로그인</string>
     <string name="sign_in_tv_title">우리만의 여행을 하다</string>
+
     <string name="sign_in_tv_terms">개인정보처리방침</string>
 
     <string name="toast_back_pressed">버튼을 한번 더 누르면 종료됩니다</string>
@@ -162,8 +169,9 @@
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
     <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
-    <string name="profile_image_download_success">이미지가 저장되었어요\n친구에게 내 캐릭터를 공유해 보세요</string>
+    <string name="profile_image_download_success">이미지가 저장되었어요.\n친구들에게 공유해보세요!</string>
     <string name="profile_image_download_error">저장할 수 없습니다\ndoorip에 사진에 대한 엑세스 권한이 없습니다</string>
+    <string name="profile_image_permission_error">"사진 접근 권한이 없습니다.\n설정으로 이동하여 권한 설정을 해주세요"</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
@@ -172,6 +180,8 @@
     <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
     <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
     <string name="enter_trip_invite_code_error">존재하지 않는 여행입니다</string>
+    <string name="enter_trip_invite_code_exist_error">존재하지 않는 여행입니다.</string>
+    <string name="enter_trip_invite_code_over_error">입장할 수 있는 최대 인원은 6명입니다.</string>
 
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>

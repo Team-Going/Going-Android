@@ -30,7 +30,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         setStatusBarColor()
         checkConnectedNetwork()
         observeUserState()
-
     }
 
     private fun setStatusBarColor() {
@@ -105,5 +104,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
         finish()
     }
-
 }
