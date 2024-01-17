@@ -34,21 +34,22 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_sign_in"
-            android:layout_width="0dp"
             style="@style/TextAppearance.Doorip.Body2.Bold"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="37dp"
             android:layout_marginBottom="12dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
             android:background="@drawable/shape_kakao_yellow_fill_8_rect"
+            app:layout_constraintBottom_toTopOf="@id/btn_terms"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_terms">
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
                 android:id="@+id/iv_sign_in_kakao"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="18dp"
+                android:padding="8dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/ic_kakao"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1"
@@ -60,6 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
+                android:textSize="15dp"
+                style="@style/TextAppearance.Doorip.Body2.Bold"
                 android:text="@string/sign_in_tv_btn"
                 android:textColor="#D9000000"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -73,9 +76,9 @@
             android:id="@+id/btn_terms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tv_sign_in_terms_icon"
@@ -102,10 +105,10 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                app:layout_constraintStart_toStartOf="@id/tv_sign_in_terms_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_sign_in_terms_text"
+                android:background="@color/gray_300"
                 app:layout_constraintEnd_toEndOf="@id/tv_sign_in_terms_text"
-                android:background="@color/gray_300" />
+                app:layout_constraintStart_toStartOf="@id/tv_sign_in_terms_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_sign_in_terms_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
