@@ -7,9 +7,9 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoCreateBinding
-import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseActivity
@@ -32,8 +32,6 @@ class MyTodoCreateActivity :
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        initTodoFocusListener()
-        initMemoFocusListener()
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
@@ -46,30 +44,6 @@ class MyTodoCreateActivity :
 
     private fun initViewModel() {
         binding.vm = viewModel
-    }
-
-    private fun initTodoFocusListener() {
-        binding.etMyTodoCreateTodo.setOnFocusChangeListener { _, hasFocus ->
-            setColors(
-                hasFocus,
-                viewModel.nowTodoLength.value ?: 0,
-                binding.tvMyTodoTodoCounter,
-            ) { background ->
-                binding.etMyTodoCreateTodo.background = setBackgroundColor(background)
-            }
-        }
-    }
-
-    private fun initMemoFocusListener() {
-        binding.etMyTodoCreateMemo.setOnFocusChangeListener { _, hasFocus ->
-            setColors(
-                hasFocus,
-                viewModel.nowMemoLength.value ?: 0,
-                binding.tvMyTodoMemoCounter,
-            ) { background ->
-                binding.etMyTodoCreateMemo.background = setBackgroundColor(background)
-            }
-        }
     }
 
     private fun initDateClickListener() {
@@ -92,8 +66,8 @@ class MyTodoCreateActivity :
     }
 
     private fun getId() {
-        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID,0)
-        viewModel.participantId = intent.getLongExtra(EXTRA_PARTICIPANT_ID,0)
+        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        viewModel.participantId = intent.getLongExtra(EXTRA_PARTICIPANT_ID, 0)
     }
 
     private fun observeTodoCreateState() {
@@ -114,18 +88,9 @@ class MyTodoCreateActivity :
     }
 
     private fun observeTextLength() {
-        viewModel.nowTodoLength.observe(this) { length ->
-            val maxTodoLen = viewModel.getMaxTodoLen()
-
-            if (length > maxTodoLen) {
-                binding.etMyTodoCreateTodo.apply {
-                    setText(text?.subSequence(0, maxTodoLen))
-                    setSelection(maxTodoLen)
-                }
-            }
+        viewModel.isTodoAvailable.observe(this) { state ->
             setColors(
-                false,
-                viewModel.nowTodoLength.value ?: 0,
+                state,
                 binding.tvMyTodoTodoCounter,
             ) { background ->
                 binding.etMyTodoCreateTodo.background = setBackgroundColor(background)
@@ -134,17 +99,9 @@ class MyTodoCreateActivity :
     }
 
     private fun observeMemoLength() {
-        viewModel.nowMemoLength.observe(this) { length ->
-            val maxMemoLen = viewModel.getMaxMemoLen()
-            if (length > maxMemoLen) {
-                binding.etMyTodoCreateTodo.apply {
-                    setText(text?.subSequence(0, maxMemoLen))
-                    setSelection(maxMemoLen)
-                }
-            }
+        viewModel.isMemoAvailable.observe(this) { state ->
             setColors(
-                false,
-                viewModel.nowMemoLength.value ?: 0,
+                state,
                 binding.tvMyTodoMemoCounter,
             ) { background ->
                 binding.etMyTodoCreateMemo.background = setBackgroundColor(background)
@@ -163,16 +120,17 @@ class MyTodoCreateActivity :
     }
 
     private fun setColors(
-        hasFocus: Boolean,
-        length: Int,
+        state: NameState,
         counter: TextView,
         setBackground: (Int) -> Unit,
     ) {
-        val (color, background) = when {
-            hasFocus || viewModel.nowTodoLength.value != 0 -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            length == 0 -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            else -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+        val (color, background) = when (state) {
+            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
+            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
+            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
         }
+
         setCounterColor(counter, color)
         setBackground(background)
     }

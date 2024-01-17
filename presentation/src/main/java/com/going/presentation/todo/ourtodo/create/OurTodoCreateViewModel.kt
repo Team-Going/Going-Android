@@ -54,12 +54,11 @@ class OurTodoCreateViewModel @Inject constructor(
         isMemoAvailable.value = when {
             nowMemoLength.value == 0 -> NameState.Empty
             (nowMemoLength.value ?: 0) > MAX_MEMO_LEN -> NameState.OVER
-            memo.value.isNullOrBlank() -> NameState.Blank
             else -> NameState.Success
         }
 
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected }
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected } &&  isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
     }
 
     fun postToCreateTodoFromServer() {

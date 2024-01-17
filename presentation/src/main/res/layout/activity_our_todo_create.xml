@@ -253,7 +253,7 @@
                     android:layout_marginTop="4dp"
                     android:text="@string/memo_over_error"
                     android:textColor="@color/red_500"
-                    android:visibility="@{(vm.isMemoAvailable() == NameState.Blank) || (vm.isMemoAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{vm.isMemoAvailable() == NameState.OVER ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="@id/et_our_todo_create_memo"
                     app:layout_constraintTop_toBottomOf="@id/et_our_todo_create_memo" />
 
