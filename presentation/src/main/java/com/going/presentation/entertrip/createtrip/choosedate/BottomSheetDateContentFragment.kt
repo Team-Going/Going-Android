@@ -1,8 +1,6 @@
 package com.going.presentation.entertrip.createtrip.choosedate
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
@@ -23,17 +21,8 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-        destroyToast()
         initFinishBtnClickListener()
     }
-
-
-    private fun destroyToast() {
-        dialog?.setOnDismissListener {
-            binding.tvErrorToast.visibility = View.GONE
-        }
-    }
-
 
     private fun customDate() {
         val datePicker = binding.dpCreateTripDate
@@ -86,7 +75,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
     private fun initFinishBtnClickListener() {
         binding.btnCreateTripFinish.setOnSingleClickListener {
-            destroyToast()
             sendDateInfo()
             if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
 
@@ -106,20 +94,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                     viewModel.checkStartDateAvailable()
                     viewModel.checkEndDateAvailable()
                     dismiss()
-                } else {
-                    viewModel.apply {
-                        startYear.value = null
-                        endYear.value = null
-                        checkStartDateAvailable()
-                        checkEndDateAvailable()
-                    }
-                    binding.viewBlank.visibility = View.VISIBLE
-                    binding.tvErrorToast.visibility = View.VISIBLE
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        if (view != null) {
-                            binding.tvErrorToast.visibility = View.GONE
-                        }
-                    }, 2000)
                 }
             } else
                 dismiss()
