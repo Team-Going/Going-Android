@@ -8,7 +8,9 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -57,6 +59,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setViewPagerDebounce()
         setTodoCountText()
         setToolbarColor()
+        initEmptyViewHeight()
         setEmptyViewHeight()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
@@ -171,15 +174,34 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         }
     }
 
+    private fun initEmptyViewHeight() {
+        binding.appbarMyTodo.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.appbarMyTodo.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                val displayHeight = activity?.getWindowHeight() ?: return
+                val toolbarHeight = binding.toolbarMyTodo.height
+                val appBarHeight = binding.appbarMyTodo.totalScrollRange
+                binding.layoutMyTodoEmpty.layoutParams = (binding.layoutMyTodoEmpty.layoutParams).also {
+                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                }
+            }
+        })
+    }
+
     private fun setEmptyViewHeight() {
         binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarMyTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.vpMyTodo.layoutParams = (binding.vpMyTodo.layoutParams).also {
+            binding.layoutMyTodoEmpty.layoutParams = (binding.layoutMyTodoEmpty.layoutParams).also {
                 it.height = displayHeight - toolbarHeight - appBarHeight - 300
             }
         }
+    }
+
+    fun showEmptyView(show: Boolean) {
+        binding.layoutMyTodoEmpty.isVisible = show
     }
 
     private fun observeMyTripInfoState() {
