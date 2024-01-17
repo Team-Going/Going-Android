@@ -51,7 +51,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             } else {
                 navigateToSignInScreen()
             }
-        }, 3000)
+        }, 2200)
     }
 
     private fun observeUserState() {
