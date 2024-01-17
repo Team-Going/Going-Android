@@ -69,7 +69,7 @@ class InviteFinishActivity :
 
     companion object {
         const val DATE_FORMAT = "%s - %s"
-        const val D_DAY_FORMAT = "D - %d"
+        const val D_DAY_FORMAT = "D-%d"
         const val TRIP_FORMAT = "여행중"
     }
 }
