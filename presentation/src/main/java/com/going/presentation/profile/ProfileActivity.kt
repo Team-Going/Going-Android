@@ -112,7 +112,7 @@ class ProfileActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnProfileDownload.setOnSingleClickListener {
-            this.downloadImage(profileViewModel.profileId.value ?: 0)
+            downloadImage(profileViewModel.profileId.value ?: 0)
         }
     }
 

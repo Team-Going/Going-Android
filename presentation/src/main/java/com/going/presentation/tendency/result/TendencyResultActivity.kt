@@ -103,7 +103,7 @@ class TendencyResultActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            this.downloadImage(viewModel.tendencyId.value ?: 0)
+            downloadImage(viewModel.tendencyId.value ?: 0)
         }
     }
 
