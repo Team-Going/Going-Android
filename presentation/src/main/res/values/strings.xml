@@ -24,7 +24,7 @@
     <string name="toast_back_pressed">버튼을 한번 더 누르면 종료됩니다</string>
 
     <string name="tag">#%s</string>
-    <string name="counter">%1$d / %2$d</string>
+    <string name="counter">%1$d/%2$d</string>
 
     <string name="notice">안내</string>
     <string name="okay">확인</string>

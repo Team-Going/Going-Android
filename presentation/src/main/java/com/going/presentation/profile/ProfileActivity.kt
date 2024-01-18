@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -112,7 +113,7 @@ class ProfileActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnProfileDownload.setOnSingleClickListener {
-            this.downloadImage(profileViewModel.profileId.value ?: 0)
+            downloadImage(profileViewModel.profileId.value ?: 0)
         }
     }
 
