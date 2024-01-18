@@ -36,7 +36,7 @@
     <string name="onboarding_et_name_hint">3글자 이내로 작성해 주세요</string>
     <string name="onboarding_one_line_info_tv_title">한 줄 소개</string>
     <string name="onboarding_one_line_et_info">여행을 떠나기 전 설레는 마음을 적어볼까요?</string>
-    <string name="onboarding_finish_btn">유형 검사하러 가기</string>
+    <string name="onboarding_finish_btn">다음</string>
 
     <!--tendency_test_splash-->
     <string name="tendency_splash_title">여행을 할 때 우리는 어떤 모습일까?</string>
