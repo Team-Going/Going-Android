@@ -1,9 +1,11 @@
 package com.going.presentation.profile
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
@@ -122,8 +124,8 @@ class ProfileActivity :
 
     private fun navigateToTendencySplashScreen() {
         Intent(this, TendencySplashActivity::class.java).apply {
-            finishAffinity()
             startActivity(this)
+            finishAffinity()
         }
         finish()
     }
@@ -134,9 +136,14 @@ class ProfileActivity :
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                this.downloadImage(profileViewModel.profileId.value ?: 0)
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                downloadImage(profileViewModel.profileId.value ?: 0)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }
