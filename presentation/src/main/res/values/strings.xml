@@ -49,7 +49,7 @@
     <string name="tendency_test_button_final">결과보기</string>
 
     <!--tendency_test_result-->
-    <string name="tendency_test_result_toolbar">유형 검사 결과</string>
+    <string name="tendency_test_result_toolbar">나의 여행 캐릭터</string>
     <string name="tendency_test_result_title">%1$s님의 여행 캐릭터는</string>
     <string name="tendency_test_result_finish_button">doorip 시작하기</string>
     <string name="tendency_test_result_restart_button"><u>다시 해볼래요</u></string>
