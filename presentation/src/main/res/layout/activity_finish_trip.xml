@@ -10,14 +10,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray_50"
         tools:context=".entertrip.createtrip.finish.FinishTripActivity">
 
         <ScrollView
             android:id="@+id/sv_finish_trip"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@color/gray_50"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_finish_trip_send_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -28,7 +30,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
                     app:layout_constraintBottom_toTopOf="@id/sv_finish_trip"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
                         style="@style/TextAppearance.Doorip.Head3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="54dp"
+                        android:layout_marginTop="66dp"
                         android:layout_marginBottom="12dp"
                         android:gravity="center"
                         android:text="@string/finish_trip_tv_title"
