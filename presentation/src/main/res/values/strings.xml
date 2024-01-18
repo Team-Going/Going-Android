@@ -44,7 +44,7 @@
     <string name="tendency_splash_start_btn">테스트 시작하기</string>
 
     <!--tendency_test-->
-    <string name="tendency_test_title">나의 여행 성향은?</string>
+    <string name="tendency_test_title">나의 여행 캐릭터는?</string>
     <string name="tendency_test_button_next">다음</string>
     <string name="tendency_test_button_final">결과보기</string>
 
