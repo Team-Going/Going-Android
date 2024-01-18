@@ -1,17 +1,17 @@
 package com.going.presentation.util
 
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Environment
-import android.os.Environment.DIRECTORY_DOWNLOADS
-import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import com.going.presentation.R
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.ui.extension.toast
@@ -21,22 +21,13 @@ import java.io.FileOutputStream
 fun Activity.downloadImage(number: Int) {
     val downloadImageName = "img_tendency_result%s.png"
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.notice)
-            .setMessage(R.string.profile_image_permission_error)
-            .setCancelable(false)
-            .setPositiveButton(
-                R.string.okay,
-            ) { _, _ ->
-                val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-                this.startActivity(intent)
-            }
-            .setNegativeButton(
-                R.string.setting_logout_negative,
-            ) { _, _ -> }
-            .create()
-            .show()
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 &&
+        ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        ) == PackageManager.PERMISSION_GRANTED
+    ) {
+        requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 200)
     } else {
         val imageBitmap: Bitmap = BitmapFactory.decodeResource(
             resources,
@@ -46,9 +37,9 @@ fun Activity.downloadImage(number: Int) {
             downloadImageName.replace("%s", number.toString())
 
         val uploadFolder =
-            Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS)
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
 
-        if (!uploadFolder.exists()) {
+        if (uploadFolder?.exists() == false) {
             uploadFolder.mkdirs()
         }
 
