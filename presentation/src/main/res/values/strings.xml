@@ -177,7 +177,7 @@
     <string name="enter_trip_tv_layout">여행 입장하기</string>
     <string name="enter_trip_tv_invite_code">초대코드</string>
     <string name="enter_trip_tv_hint">친구에게 받은 초대코드 6자리를 입력해 주세요</string>
-    <string name="enter_trip_tv_error">잘못된 초대코드예요.</string>
+    <string name="enter_trip_tv_error">잘못된 초대코드예요</string>
     <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
     <string name="enter_trip_invite_code_exist_toast">존재하지 않는 여행입니다</string>
     <string name="enter_trip_invite_code_over_toast">입장할 수 있는 최대 인원은 6명입니다</string>
@@ -186,7 +186,7 @@
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
     <string name="invite_finish_tv_enter">초대받은 여행이 맞아요!</string>
-    <string name="invite_finish_tv_trip">여행중</string>
+    <string name="invite_finish_tv_trip">여행 중</string>
 
     <!--check friends-->
     <string name="check_friends_tool_bar">함께 하는 친구들</string>
