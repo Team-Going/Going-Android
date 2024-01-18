@@ -170,8 +170,7 @@
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
     <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
     <string name="profile_image_download_success">이미지가 저장되었어요\n친구들에게 공유해보세요!</string>
-    <string name="profile_image_download_error">저장할 수 없습니다\n사진에 대한 엑세스 권한이 없습니다</string>
-    <string name="profile_image_permission_error">사진 접근 권한이 없습니다.\n설정으로 이동하여 권한 설정을 해주세요</string>
+    <string name="profile_image_download_error">이미지를 저장할 수 없습니다\n안드로이드 버전을 확인해주세요</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
