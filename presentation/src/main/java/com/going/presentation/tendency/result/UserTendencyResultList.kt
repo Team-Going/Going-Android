@@ -77,7 +77,7 @@ val UserTendencyResultList = listOf(
         tags = listOf(
             "계획필수",
             "효율추구",
-            "꼼꼼한 조사",
+            "꼼꼼한조사",
         ),
         profileBoxInfo = listOf(
             ProfileMock.BoxInfo(
