@@ -31,7 +31,7 @@
     <string name="internet_connect_error">인터넷 연결을 확인해주세요</string>
 
     <!--onboarding-->
-    <string name="onboarding_tb_title">기본 정보 입력</string>
+    <string name="onboarding_tb_title">프로필 생성</string>
     <string name="onboarding_name_tv_title">닉네임</string>
     <string name="onboarding_et_name_hint">3글자 이내로 작성해 주세요</string>
     <string name="onboarding_one_line_info_tv_title">한 줄 소개</string>
