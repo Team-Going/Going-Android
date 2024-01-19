@@ -176,7 +176,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_our_todo_detail_person_title"
-                    tools:listitem="@layout/item_todo_create_name"/>
+                    tools:listitem="@layout/item_todo_create_name" />
 
                 <TextView
                     android:id="@+id/tv_our_todo_create_memo_title"
@@ -197,6 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="6dp"
+                    android:autoLink="web"
                     android:background="@drawable/shape_rect_4_gray700_line"
                     android:gravity="top"
                     android:minLines="6"
