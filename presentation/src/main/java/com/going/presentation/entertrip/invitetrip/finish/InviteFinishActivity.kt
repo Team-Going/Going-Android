@@ -60,10 +60,8 @@ class InviteFinishActivity :
         binding.btnInviteFinishEnter.setOnSingleClickListener {
             Intent(this, FinishPreferenceActivity::class.java).apply {
                 putExtra(TRIP_ID, tripId)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
-            finish()
         }
     }
 
