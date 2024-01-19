@@ -15,8 +15,7 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        if (isStart) customStartDate()
-        if (!isStart) customEndDate()
+        if (isStart) customStartDate() else customEndDate()
         observeIsAvailableDateRange()
     }
 
