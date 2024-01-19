@@ -36,8 +36,8 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         initNextBtnClickListener()
         observeEnterTripState()
         binding.etEnterTripName.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_DONE){
-                if (binding.btnEnterTripNext.isEnabled){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (binding.btnEnterTripNext.isEnabled) {
                     viewModel.checkInviteCodeFromServer()
                 }
             }
@@ -121,7 +121,6 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
             }
         }.launchIn(lifecycleScope)
     }
-
 
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {
