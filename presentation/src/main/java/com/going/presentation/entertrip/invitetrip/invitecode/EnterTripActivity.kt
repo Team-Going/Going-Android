@@ -2,6 +2,7 @@ package com.going.presentation.entertrip.invitetrip.invitecode
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
@@ -34,6 +35,14 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         observeIsCodeAvailable()
         initNextBtnClickListener()
         observeEnterTripState()
+        binding.etEnterTripName.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE){
+                if (binding.btnEnterTripNext.isEnabled){
+                    viewModel.checkInviteCodeFromServer()
+                }
+            }
+            true
+        }
     }
 
     private fun initBackBtnClickListener() {
