@@ -15,8 +15,8 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        customStartDate()
-        customEndDate()
+        if (isStart) customStartDate()
+        if (!isStart) customEndDate()
         observeIsAvailableDateRange()
     }
 
@@ -30,20 +30,26 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
 
+        val currentStartYear = calendar.get(Calendar.YEAR)
+        val currentStartMonth = calendar.get(Calendar.MONTH)
+        val currentStartDay = calendar.get(Calendar.DAY_OF_MONTH)
+
         calendar.set(2000, 0, 1)
         datePicker.minDate = calendar.timeInMillis
 
         calendar.set(2100, 0, 1)
         datePicker.maxDate = calendar.timeInMillis
+
+        datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
 
     private fun customEndDate() {
         val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
 
-        val currentEndYear = calendar.get(Calendar.YEAR)
-        val currentEndMonth = calendar.get(Calendar.MONTH)
-        val currentEndDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val currentEndYear = viewModel.startYear.value ?: 0
+        val currentEndMonth = viewModel.startMonth.value ?: 0
+        val currentEndDay = viewModel.startDay.value ?: 0
 
         calendar.set(currentEndYear, currentEndMonth - 1, currentEndDay)
         datePicker.minDate = calendar.timeInMillis
