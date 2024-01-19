@@ -19,9 +19,10 @@ class CreateTripViewModel : ViewModel() {
 
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
+    val isAvailableDateRange = MutableLiveData<Boolean?>(null)
 
     val isNameAvailable = MutableLiveData(NameState.Empty)
-    val isTripAvailable = MutableLiveData(false)
+    private val isTripAvailable = MutableLiveData(false)
     var isCheckTripAvailable = MutableLiveData(false)
 
     fun checkNameAvailable() {
@@ -52,6 +53,18 @@ class CreateTripViewModel : ViewModel() {
         }
     }
 
+    fun checkIsAvailableDateRange() {
+        if (isStartDateAvailable.value == true && isEndDateAvailable.value == true) {
+            isAvailableDateRange.value = null
+            isAvailableDateRange.value = when {
+                (startYear.value ?: 0) > (endYear.value ?: 0) -> false
+                (startMonth.value ?: 0) > (endMonth.value ?: 0) -> false
+                (startDay.value ?: 0) > (endDay.value ?: 0) -> false
+                else -> true
+            }
+        }
+    }
+
     fun checkEndDateAvailable() {
         if (endYear.value != null && endMonth.value != null && endDay.value != null) {
             isEndDateAvailable.value = true
@@ -62,9 +75,9 @@ class CreateTripViewModel : ViewModel() {
         }
     }
 
-    private fun checkTripAvailable() {
+    fun checkTripAvailable() {
         isCheckTripAvailable.value =
-            (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
+            (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true && isAvailableDateRange.value == true)
     }
 
     companion object {
