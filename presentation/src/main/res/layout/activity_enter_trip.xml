@@ -74,7 +74,7 @@
             android:layout_marginTop="8dp"
             android:afterTextChanged="@{(text) -> viewModel.checkCodeAvailable()}"
             android:hint="@string/enter_trip_tv_hint"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLength="6"
             android:maxLines="3"

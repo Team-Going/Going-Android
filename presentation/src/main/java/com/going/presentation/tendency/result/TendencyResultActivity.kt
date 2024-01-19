@@ -124,7 +124,9 @@ class TendencyResultActivity :
     private fun navigateToDashBoardScreen() {
         Intent(this, DashBoardActivity::class.java).apply {
             startActivity(this)
+            finishAffinity()
         }
+        finish()
     }
 
     override fun onRequestPermissionsResult(

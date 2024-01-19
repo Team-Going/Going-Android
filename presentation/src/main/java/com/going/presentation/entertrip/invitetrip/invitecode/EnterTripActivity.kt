@@ -2,6 +2,7 @@ package com.going.presentation.entertrip.invitetrip.invitecode
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
@@ -15,6 +16,7 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
+import com.going.ui.extension.hideKeyboard
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +36,15 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         observeIsCodeAvailable()
         initNextBtnClickListener()
         observeEnterTripState()
+        binding.etEnterTripName.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (binding.btnEnterTripNext.isEnabled) {
+                    viewModel.checkInviteCodeFromServer()
+                }
+                hideKeyboard(v)
+            }
+            true
+        }
     }
 
     private fun initBackBtnClickListener() {
@@ -112,7 +123,6 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
             }
         }.launchIn(lifecycleScope)
     }
-
 
     private fun initNextBtnClickListener() {
         binding.btnEnterTripNext.setOnSingleClickListener {

@@ -6,6 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import java.util.Calendar
 
 class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isStart: Boolean) :
@@ -14,8 +15,8 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        customStartDate()
-        customEndDate()
+        if (isStart) customStartDate() else customEndDate()
+        observeIsAvailableDateRange()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +42,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
 
-
     private fun customEndDate() {
         val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
@@ -55,6 +55,16 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
         calendar.set(2100, 0, 1)
         datePicker.maxDate = calendar.timeInMillis
+    }
+
+    private fun observeIsAvailableDateRange() {
+        viewModel.isAvailableDateRange.observe(this) {
+            when (it) {
+                null -> return@observe
+                true -> return@observe
+                false -> toast(getString(R.string.date_set_error))
+            }
+        }
     }
 
     private fun sendDateInfo() {
@@ -76,7 +86,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         binding.btnCreateTripFinish.setOnSingleClickListener {
             sendDateInfo()
             if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
-
                 val calendar = Calendar.getInstance()
 
                 calendar.set(Calendar.YEAR, viewModel.startYear.value ?: 0)
@@ -92,13 +101,11 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                 if (startDate.before(endDate) || startDate.equals(endDate)) {
                     viewModel.checkStartDateAvailable()
                     viewModel.checkEndDateAvailable()
-                    dismiss()
                 }
-            } else
-                dismiss()
+                viewModel.checkIsAvailableDateRange()
+            }
+            viewModel.checkTripAvailable()
+            dismiss()
         }
     }
 }
-
-
-

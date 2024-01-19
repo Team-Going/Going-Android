@@ -95,7 +95,7 @@
                     android:afterTextChanged="@{(text) -> vm.checkIsFinishAvailable()}"
                     android:background="@drawable/shape_rect_4_gray200_line"
                     android:hint="@string/my_todo_create_tv_todo_hint"
-                    android:imeOptions="actionNext"
+                    android:imeOptions="actionDone"
                     android:includeFontPadding="false"
                     android:inputType="text"
                     android:maxLines="1"
