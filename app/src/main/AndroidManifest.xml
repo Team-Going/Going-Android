@@ -37,11 +37,6 @@
         </activity>
 
         <activity
-            android:name="com.going.presentation.mock.MockActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name="com.going.presentation.onboarding.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
