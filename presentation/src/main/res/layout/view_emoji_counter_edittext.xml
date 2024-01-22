@@ -33,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_emoji_counter_et_title" />
 
     <TextView
+        android:id="@+id/tv_emoji_counter_et_warning_message"
         style="@style/TextAppearance.Doorip.Detail3.Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_emoji_counter_et_content" />
 
     <TextView
-        android:id="@+id/tv_name_counter"
+        android:id="@+id/tv_emoji_counter_et_name_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
