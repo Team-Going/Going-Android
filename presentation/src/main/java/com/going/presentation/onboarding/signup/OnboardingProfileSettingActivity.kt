@@ -34,7 +34,7 @@ class OnboardingProfileSettingActivity :
         initBindingViewModel()
         initOnLineInfoEditorActionListener()
         initSignUpBtnClickListener()
-        observeIsNameAvailable()
+        // observeIsNameAvailable()
         observeIsInfoAvailable()
         observeIsSignUpState()
         initOnBackPressedListener()
@@ -57,20 +57,20 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            setColors(
-                binding.tvNameCounter,
-                state,
-            ) { background ->
-                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
-                    this.resources,
-                    background,
-                    theme,
-                )
-            }
-        }
-    }
+//    private fun observeIsNameAvailable() {
+//        viewModel.isNameAvailable.observe(this) { state ->
+//            setColors(
+//                binding.tvNameCounter,
+//                state,
+//            ) { background ->
+//                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
+//                    this.resources,
+//                    background,
+//                    theme,
+//                )
+//            }
+//        }
+//    }
 
     private fun observeIsInfoAvailable() {
         viewModel.isInfoAvailable.observe(this) { state ->

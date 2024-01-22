@@ -20,7 +20,6 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
         binding.tvEmojiCounterEtTitle.text =
             typedArray.getString(R.styleable.EmojiCounterEditText_title)
-        binding.etEmojiCounterEtContent.setText(typedArray.getString(R.styleable.EmojiCounterEditText_text))
         binding.etEmojiCounterEtContent.hint =
             typedArray.getString(R.styleable.EmojiCounterEditText_hint)
         binding.tvEmojiCounterEtWarningMessage.text =

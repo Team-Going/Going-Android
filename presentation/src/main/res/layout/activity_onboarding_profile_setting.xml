@@ -32,58 +32,17 @@
             app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
             app:titleTextColor="@color/black_000" />
 
-        <TextView
-            android:id="@+id/tv_onboarding_profile_setting_name_title"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/onboarding_name_tv_title"
-            android:textColor="@color/black_000"
-            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
-            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
-
-        <androidx.appcompat.widget.AppCompatEditText
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
             android:id="@+id/et_onboarding_profile_setting_name"
-            style="@style/edit_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="6dp"
-            android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:background="@drawable/shape_rect_4_gray200_line"
-            android:hint="@string/onboarding_et_name_hint"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text="@={viewModel.name}"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_name_title" />
-
-        <TextView
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@{viewModel.isNameAvailable() == NameState.Blank ? @string/name_blank_error : @string/name_over_error}"
-            android:textColor="@color/red_500"
-            android:visibility="@{(viewModel.isNameAvailable() == NameState.Blank) || (viewModel.isNameAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
-            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
-
-        <TextView
-            android:id="@+id/tv_name_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:text="@{@string/counter(viewModel.nowNameLength, viewModel.MAX_NAME_LEN)}"
-            android:textColor="@color/gray_200"
-            app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_name"
-            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
+            app:title="@string/onboarding_name_tv_title"
+            app:hint="@string/onboarding_et_name_hint"
+            app:warning="워닝 메시ㅣㅣㅣㅣ"
+            app:count="1 / 3"
+            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
 
         <TextView
             android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
