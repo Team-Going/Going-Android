@@ -18,10 +18,16 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
 
-        binding.tvEmojiCounterEtTitle.text = typedArray.getString(R.styleable.EmojiCounterEditText_title)
+        binding.tvEmojiCounterEtTitle.text =
+            typedArray.getString(R.styleable.EmojiCounterEditText_title)
         binding.etEmojiCounterEtContent.setText(typedArray.getString(R.styleable.EmojiCounterEditText_text))
-        binding.etEmojiCounterEtContent.hint = typedArray.getString(R.styleable.EmojiCounterEditText_hint)
-        binding.tvEmojiCounterEtWarningMessage.text = typedArray.getString(R.styleable.EmojiCounterEditText_warning)
-        binding.tvEmojiCounterEtNameCounter.text = typedArray.getString(R.styleable.EmojiCounterEditText_count)
+        binding.etEmojiCounterEtContent.hint =
+            typedArray.getString(R.styleable.EmojiCounterEditText_hint)
+        binding.tvEmojiCounterEtWarningMessage.text =
+            typedArray.getString(R.styleable.EmojiCounterEditText_warning)
+        binding.tvEmojiCounterEtNameCounter.text =
+            typedArray.getString(R.styleable.EmojiCounterEditText_count)
+
+        typedArray.recycle()
     }
 }
