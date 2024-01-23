@@ -1,15 +1,12 @@
 package com.going.presentation.onboarding.signup
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.AuthState
-import com.going.domain.entity.NameState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
 import com.going.presentation.designsystem.edittext.EditTextState
-import com.going.ui.extension.getGraphemeLength
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
 import com.kakao.sdk.user.UserApiClient
@@ -20,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class OnboardingProfileSettingViewModel @Inject constructor(
+class SignUpViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
@@ -30,7 +27,6 @@ class OnboardingProfileSettingViewModel @Inject constructor(
 
     val isNameAvailable = MutableStateFlow(false)
     val isInfoAvailable = MutableStateFlow(false)
-
 
     private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
     val isSignUpState: StateFlow<AuthState> = _isSignUpState

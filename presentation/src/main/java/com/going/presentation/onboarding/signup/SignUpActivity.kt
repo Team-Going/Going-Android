@@ -8,7 +8,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
+import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
@@ -20,10 +20,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class OnboardingProfileSettingActivity :
-    BaseActivity<ActivityOnboardingProfileSettingBinding>(R.layout.activity_onboarding_profile_setting) {
+class SignUpActivity :
+    BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
 
-    private val viewModel by viewModels<OnboardingProfileSettingViewModel>()
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

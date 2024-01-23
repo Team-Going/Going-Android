@@ -53,7 +53,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity"
+            android:name="com.going.presentation.onboarding.signup.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 

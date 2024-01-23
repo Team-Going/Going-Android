@@ -25,7 +25,6 @@
         android:background="@drawable/shape_rect_4_gray200_line"
         android:imeOptions="actionNext"
         android:inputType="text"
-        android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_emoji_counter_et_title"
