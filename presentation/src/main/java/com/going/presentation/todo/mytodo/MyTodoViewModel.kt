@@ -52,7 +52,7 @@ class MyTodoViewModel @Inject constructor(
                     _myTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {
-                    _myTripInfoState.value = UiState.Failure(it.message.toString())
+                    _myTripInfoState.value = UiState.Failure(it.message.orEmpty())
                 }
         }
     }

@@ -91,9 +91,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 ArrayList(participantList.map { it.participantId.toInt() }),
                 ArrayList(participantList.map { it.name }),
                 ArrayList(participantList.map { it.result })
-            ).apply {
-                startActivity(this)
-            }
+            ).apply { startActivity(this) }
         }
     }
 

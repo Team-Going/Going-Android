@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.NameState
 import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.repository.TodoRepository
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateViewModel
 import com.going.ui.extension.UiState
 import com.going.ui.extension.getGraphemeLength
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -65,8 +64,8 @@ class MyTodoCreateViewModel @Inject constructor(
             todoRepository.postToCreateTodo(
                 tripId = tripId,
                 request = TodoCreateRequestModel(
-                    title = todo.value ?: "",
-                    endDate = endDate.value ?: "",
+                    title = todo.value.orEmpty(),
+                    endDate = endDate.value.orEmpty(),
                     allocators = listOf(participantId),
                     memo = memo.value,
                     secret = true,
@@ -76,7 +75,7 @@ class MyTodoCreateViewModel @Inject constructor(
                     _todoCreateState.value = UiState.Success(response)
                 }
                 .onFailure {
-                    _todoCreateState.value = UiState.Failure(it.message.toString())
+                    _todoCreateState.value = UiState.Failure(it.message.orEmpty())
                 }
         }
     }

@@ -1,10 +1,10 @@
 package com.going.presentation.todo.mytodo.create
 
-import android.graphics.drawable.Drawable
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
@@ -14,6 +14,7 @@ import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
+import com.going.ui.extension.drawableOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -93,7 +94,7 @@ class MyTodoCreateActivity :
                 state,
                 binding.tvMyTodoTodoCounter,
             ) { background ->
-                binding.etMyTodoCreateTodo.background = setBackgroundColor(background)
+                binding.etMyTodoCreateTodo.background = drawableOf(background)
             }
         }
     }
@@ -104,7 +105,7 @@ class MyTodoCreateActivity :
                 state,
                 binding.tvMyTodoMemoCounter,
             ) { background ->
-                binding.etMyTodoCreateMemo.background = setBackgroundColor(background)
+                binding.etMyTodoCreateMemo.background = drawableOf(background)
             }
         }
     }
@@ -139,14 +140,6 @@ class MyTodoCreateActivity :
         counter.setTextColor(getColor(color))
     }
 
-    private fun setBackgroundColor(background: Int): Drawable? {
-        return ResourcesCompat.getDrawable(
-            this.resources,
-            background,
-            theme,
-        )
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         if (myTodoCreateBottomSheet?.isAdded == true) myTodoCreateBottomSheet?.dismiss()
@@ -154,5 +147,15 @@ class MyTodoCreateActivity :
 
     companion object {
         private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long,
+            participantId: Long
+        ): Intent = Intent(context, MyTodoCreateActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripId)
+            putExtra(EXTRA_PARTICIPANT_ID, participantId)
+        }
     }
 }

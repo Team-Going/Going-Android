@@ -9,7 +9,6 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewTreeObserver
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -68,11 +67,11 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun initAddTodoListener() {
         binding.btnMyTodoAddTodo.setOnSingleClickListener {
-            Intent(activity, MyTodoCreateActivity::class.java).apply {
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
-                putExtra(EXTRA_PARTICIPANT_ID, viewModel.participantId)
-                startActivity(this)
-            }
+            MyTodoCreateActivity.createIntent(
+                requireContext(),
+                viewModel.tripId,
+                viewModel.participantId
+            ).apply { startActivity(this) }
         }
     }
 
@@ -219,9 +218,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
             ).apply {
                 setSpan(
                     ForegroundColorSpan(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.red_500
-                        )
+                        colorOf(R.color.red_500)
                     ), length - 3, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
