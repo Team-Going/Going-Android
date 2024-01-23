@@ -8,6 +8,7 @@ import com.going.domain.entity.NameState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
+import com.going.presentation.designsystem.edittext.EditTextState
 import com.going.ui.extension.getGraphemeLength
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.auth.TokenManagerProvider
@@ -25,11 +26,10 @@ class OnboardingProfileSettingViewModel @Inject constructor(
 ) : ViewModel() {
 
     val name = MutableStateFlow("")
-    val nowNameLength = MutableLiveData(0)
     val info = MutableStateFlow("")
     val nowInfoLength = MutableLiveData(0)
 
-    val isNameAvailable = MutableLiveData(NameState.Empty)
+    private val isNameAvailable = MutableStateFlow(false)
     val isInfoAvailable = MutableLiveData(NameState.Empty)
     val isProfileAvailable = MutableLiveData(false)
 
@@ -37,15 +37,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     val isSignUpState: StateFlow<AuthState> = _isSignUpState
 
     fun checkProfileAvailable() {
-        nowNameLength.value = name.value.getGraphemeLength()
         nowInfoLength.value = info.value.getGraphemeLength()
-
-        isNameAvailable.value = when {
-            nowNameLength.value == 0 -> NameState.Empty
-            name.value.isBlank() -> NameState.Blank
-            (nowNameLength.value ?: 0) > 3 -> NameState.OVER
-            else -> NameState.Success
-        }
 
         isInfoAvailable.value = when {
             nowInfoLength.value == 0 -> NameState.Empty
@@ -54,7 +46,7 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         }
 
         isProfileAvailable.value =
-            (isNameAvailable.value == NameState.Success) && (isInfoAvailable.value == NameState.Success)
+            (isNameAvailable.value) && (isInfoAvailable.value == NameState.Success)
     }
 
     fun startSignUp() {
@@ -89,6 +81,13 @@ class OnboardingProfileSettingViewModel @Inject constructor(
             }
         }
     }
+
+    fun setNameState(newName: String, state: EditTextState) {
+        name.value = newName
+        isNameAvailable.value = state == EditTextState.Success
+    }
+
+    fun getMaxNameLen() = MAX_NAME_LEN
 
     companion object {
         const val KAKAO = "kakao"

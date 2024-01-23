@@ -2,8 +2,6 @@ package com.going.presentation.onboarding.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
@@ -34,32 +32,23 @@ class OnboardingProfileSettingActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        initOnLineInfoEditorActionListener()
+        setEtNameArguments()
         initSignUpBtnClickListener()
-        // observeIsNameAvailable()
+        observeNameTextChanged()
         observeIsInfoAvailable()
         observeIsSignUpState()
         initOnBackPressedListener()
-
-        binding.etOnboardingProfileSettingName.editText.doAfterTextChanged {
-            viewModel.name.value = it.toString()
-        }
-
-        with(binding.etOnboardingProfileSettingName) {
-            setMaxLen(3)
-            overWarning = getString(R.string.name_over_error)
-            blankWarning = getString(R.string.name_blank_error)
-        }
     }
 
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }
 
-    private fun initOnLineInfoEditorActionListener() {
-        binding.etOnboardingProfileSettingInfo.setOnEditorActionListener { view, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) view.clearFocus()
-            false
+    private fun setEtNameArguments() {
+        with(binding.etOnboardingProfileSettingName) {
+            setMaxLen(viewModel.getMaxNameLen())
+            overWarning = getString(R.string.name_over_error)
+            blankWarning = getString(R.string.name_blank_error)
         }
     }
 
@@ -69,20 +58,11 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-//    private fun observeIsNameAvailable() {
-//        viewModel.isNameAvailable.observe(this) { state ->
-//            setColors(
-//                binding.tvNameCounter,
-//                state,
-//            ) { background ->
-//                binding.etOnboardingProfileSettingName.background = ResourcesCompat.getDrawable(
-//                    this.resources,
-//                    background,
-//                    theme,
-//                )
-//            }
-//        }
-//    }
+    private fun observeNameTextChanged() {
+        binding.etOnboardingProfileSettingName.editText.doAfterTextChanged {
+            viewModel.setNameState(it.toString(), binding.etOnboardingProfileSettingName.state)
+        }
+    }
 
     private fun observeIsInfoAvailable() {
         viewModel.isInfoAvailable.observe(this) { state ->
