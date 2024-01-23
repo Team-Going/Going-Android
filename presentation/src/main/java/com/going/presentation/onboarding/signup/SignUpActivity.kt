@@ -43,7 +43,7 @@ class SignUpActivity :
     }
 
     private fun setEtNameArguments() {
-        with(binding.etOnboardingProfileSettingName) {
+        with(binding.etSignUpName) {
             setMaxLen(viewModel.getMaxNameLen())
             overWarning = getString(R.string.name_over_error)
             blankWarning = getString(R.string.name_blank_error)
@@ -51,27 +51,27 @@ class SignUpActivity :
     }
 
     private fun setEtInfoArguments() {
-        with(binding.etOnboardingProfileSettingInfo) {
+        with(binding.etSignUpInfo) {
             setMaxLen(viewModel.getMaxInfoLen())
             overWarning = getString(R.string.info_over_error)
         }
     }
 
     private fun initSignUpBtnClickListener() {
-        binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
+        binding.btnSignUpFinish.setOnSingleClickListener {
             viewModel.startSignUp()
         }
     }
 
     private fun observeNameTextChanged() {
-        binding.etOnboardingProfileSettingName.editText.doAfterTextChanged {
-            viewModel.setNameState(it.toString(), binding.etOnboardingProfileSettingName.state)
+        binding.etSignUpName.editText.doAfterTextChanged {
+            viewModel.setNameState(it.toString(), binding.etSignUpName.state)
         }
     }
 
     private fun observeInfoTextChanged() {
-        binding.etOnboardingProfileSettingInfo.editText.doAfterTextChanged {
-            viewModel.setInfoState(it.toString(), binding.etOnboardingProfileSettingInfo.state)
+        binding.etSignUpInfo.editText.doAfterTextChanged {
+            viewModel.setInfoState(it.toString(), binding.etSignUpInfo.state)
         }
     }
 
