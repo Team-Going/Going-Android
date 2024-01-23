@@ -1,6 +1,5 @@
 package com.going.presentation.todo.ourtodo.create
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -58,7 +57,7 @@ class OurTodoCreateViewModel @Inject constructor(
         }
 
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected } &&  isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected } && isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
     }
 
     fun postToCreateTodoFromServer() {
@@ -67,8 +66,8 @@ class OurTodoCreateViewModel @Inject constructor(
             todoRepository.postToCreateTodo(
                 tripId = tripId,
                 request = TodoCreateRequestModel(
-                    title = todo.value ?: "",
-                    endDate = endDate.value ?: "",
+                    title = todo.value.orEmpty(),
+                    endDate = endDate.value.orEmpty(),
                     allocators = participantList.map { it.participantId },
                     memo = memo.value,
                     secret = false,

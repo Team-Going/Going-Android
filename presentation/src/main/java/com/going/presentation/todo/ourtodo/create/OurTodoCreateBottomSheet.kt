@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoCreateBottomSheetBinding
-import com.going.presentation.todo.mytodo.create.MyTodoCreateBottomSheet
+import com.going.presentation.todo.mytodo.create.MyTodoCreateBottomSheet.Companion.TWO_DIGIT_FORMAT
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -27,8 +27,8 @@ class OurTodoCreateBottomSheet() :
 
     private fun initFinishBtnClickListener() {
         binding.btnCreateTripFinish.setOnSingleClickListener {
-            val createdMonth = String.format(MyTodoCreateBottomSheet.TWO_DIGIT_FORMAT, binding.dpCreateTripDate.month + 1)
-            val createdDay = String.format(MyTodoCreateBottomSheet.TWO_DIGIT_FORMAT, binding.dpCreateTripDate.dayOfMonth)
+            val createdMonth = String.format(TWO_DIGIT_FORMAT, binding.dpCreateTripDate.month + 1)
+            val createdDay = String.format(TWO_DIGIT_FORMAT, binding.dpCreateTripDate.dayOfMonth)
             viewModel.endDate.value =
                 binding.dpCreateTripDate.year.toString() + "." + createdMonth + "." + createdDay
             viewModel.checkIsFinishAvailable()

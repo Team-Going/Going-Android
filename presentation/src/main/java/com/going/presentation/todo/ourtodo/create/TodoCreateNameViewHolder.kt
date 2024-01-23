@@ -1,10 +1,10 @@
 package com.going.presentation.todo.ourtodo.create
 
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
+import com.going.ui.extension.colorOf
 
 class TodoCreateNameViewHolder(
     val binding: ItemTodoCreateNameBinding,
@@ -12,8 +12,8 @@ class TodoCreateNameViewHolder(
     private val itemClick: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white_000)
-    private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
+    private val whiteColor = binding.root.context.colorOf(R.color.white_000)
+    private val grayColor = binding.root.context.colorOf(R.color.gray_300)
 
     fun onBind(item: TripParticipantModel, position: Int) {
         binding.run {
