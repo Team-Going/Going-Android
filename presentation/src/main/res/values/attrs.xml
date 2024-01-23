@@ -2,8 +2,7 @@
 <resources>
     <declare-styleable name="EmojiCounterEditText">
         <attr name="title" format="string"/>
+        <attr name="text" format="string"/>
         <attr name="hint" format="string"/>
-        <attr name="warning" format="string"/>
-        <attr name="count" format="string"/>
     </declare-styleable>
 </resources>

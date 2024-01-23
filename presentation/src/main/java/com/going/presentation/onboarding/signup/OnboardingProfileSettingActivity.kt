@@ -2,10 +2,12 @@ package com.going.presentation.onboarding.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
@@ -38,6 +40,16 @@ class OnboardingProfileSettingActivity :
         observeIsInfoAvailable()
         observeIsSignUpState()
         initOnBackPressedListener()
+
+        binding.etOnboardingProfileSettingName.editText.doAfterTextChanged {
+            viewModel.name.value = it.toString()
+        }
+
+        with(binding.etOnboardingProfileSettingName) {
+            setMaxLen(3)
+            overWarning = getString(R.string.name_over_error)
+            blankWarning = getString(R.string.name_blank_error)
+        }
     }
 
     private fun initBindingViewModel() {
