@@ -20,9 +20,6 @@ import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.TodoDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_NAME
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_RESULT
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
@@ -88,14 +85,13 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initAddTodoBtnListener() {
         binding.btnOurTodoAddTodo.setOnSingleClickListener {
-            val idList: ArrayList<Int> = ArrayList(participantList.map { it.participantId.toInt() })
-            val nameList: ArrayList<String> = ArrayList(participantList.map { it.name })
-            val resultList: ArrayList<Int> = ArrayList(participantList.map { it.result })
-            Intent(activity, OurTodoCreateActivity::class.java).apply {
-                putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
-                putStringArrayListExtra(EXTRA_NAME, nameList)
-                putIntegerArrayListExtra(EXTRA_RESULT, resultList)
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+            OurTodoCreateActivity.createIntent(
+                requireContext(),
+                viewModel.tripId,
+                ArrayList(participantList.map { it.participantId.toInt() }),
+                ArrayList(participantList.map { it.name }),
+                ArrayList(participantList.map { it.result })
+            ).apply {
                 startActivity(this)
             }
         }

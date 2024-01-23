@@ -169,7 +169,7 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         })
     }
 
-    private fun  initOffsetChangedListener() {
+    private fun initOffsetChangedListener() {
         binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarMyTodo.height
