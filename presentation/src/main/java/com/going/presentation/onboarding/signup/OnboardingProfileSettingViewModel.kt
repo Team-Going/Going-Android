@@ -25,29 +25,15 @@ class OnboardingProfileSettingViewModel @Inject constructor(
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
 
-    val name = MutableStateFlow("")
-    val info = MutableStateFlow("")
-    val nowInfoLength = MutableLiveData(0)
+    private val name = MutableStateFlow("")
+    private val info = MutableStateFlow("")
 
-    private val isNameAvailable = MutableStateFlow(false)
-    val isInfoAvailable = MutableLiveData(NameState.Empty)
-    val isProfileAvailable = MutableLiveData(false)
+    val isNameAvailable = MutableStateFlow(false)
+    val isInfoAvailable = MutableStateFlow(false)
+
 
     private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
     val isSignUpState: StateFlow<AuthState> = _isSignUpState
-
-    fun checkProfileAvailable() {
-        nowInfoLength.value = info.value.getGraphemeLength()
-
-        isInfoAvailable.value = when {
-            nowInfoLength.value == 0 -> NameState.Empty
-            (nowInfoLength.value ?: 0) > MAX_INFO_LEN -> NameState.OVER
-            else -> NameState.Success
-        }
-
-        isProfileAvailable.value =
-            (isNameAvailable.value) && (isInfoAvailable.value == NameState.Success)
-    }
 
     fun startSignUp() {
         _isSignUpState.value = AuthState.LOADING
@@ -87,7 +73,14 @@ class OnboardingProfileSettingViewModel @Inject constructor(
         isNameAvailable.value = state == EditTextState.Success
     }
 
+    fun setInfoState(newInfo: String, state: EditTextState) {
+        info.value = newInfo
+        isInfoAvailable.value = state == EditTextState.Success
+    }
+
     fun getMaxNameLen() = MAX_NAME_LEN
+
+    fun getMaxInfoLen() = MAX_INFO_LEN
 
     companion object {
         const val KAKAO = "kakao"

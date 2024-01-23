@@ -36,64 +36,23 @@
             android:id="@+id/et_onboarding_profile_setting_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:canBlankError="true"
+            app:hint="@string/onboarding_et_name_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:title="@string/onboarding_name_tv_title"
-            app:hint="@string/onboarding_et_name_hint"
-            app:canBlankError="true"
-            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
+            app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting"
+            app:title="@string/onboarding_name_tv_title" />
 
-        <TextView
-            android:id="@+id/tv_onboarding_profile_setting_on_line_info_title"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
-            android:text="@string/onboarding_one_line_info_tv_title"
-            android:textColor="@color/black_000"
-            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_name"
-            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name" />
-
-        <androidx.appcompat.widget.AppCompatEditText
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
             android:id="@+id/et_onboarding_profile_setting_info"
-            style="@style/edit_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="6dp"
-            android:afterTextChanged="@{(text) -> viewModel.checkProfileAvailable()}"
-            android:background="@drawable/shape_rect_4_gray200_line"
-            android:hint="@string/onboarding_one_line_et_info"
-            android:imeOptions="actionDone"
-            android:inputType="text|textMultiLine"
-            android:maxLines="3"
-            android:text="@={viewModel.info}"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+            app:canBlankError="false"
+            app:hint="@string/onboarding_one_line_et_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_onboarding_profile_setting_on_line_info_title" />
-
-        <TextView
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/info_over_error"
-            android:textColor="@color/red_500"
-            android:visibility="@{(viewModel.isInfoAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="@id/et_onboarding_profile_setting_info"
-            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
-
-        <TextView
-            android:id="@+id/tv_info_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="@{@string/counter(viewModel.nowInfoLength, viewModel.MAX_INFO_LEN)}"
-            android:textColor="@color/gray_200"
-            app:layout_constraintEnd_toEndOf="@id/et_onboarding_profile_setting_info"
-            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_info" />
+            app:layout_constraintTop_toBottomOf="@id/et_onboarding_profile_setting_name"
+            app:title="@string/onboarding_one_line_info_tv_title" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_onboarding_profile_setting_finish"
@@ -103,11 +62,11 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{viewModel.isProfileAvailable()}"
+            android:enabled="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true}"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/onboarding_finish_btn"
-            android:textColor="@{viewModel.isProfileAvailable() == true ? @color/white_000 : @color/gray_200}"
+            android:textColor="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true ? @color/white_000 : @color/gray_200}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

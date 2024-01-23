@@ -2,14 +2,11 @@ package com.going.presentation.onboarding.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
-import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityOnboardingProfileSettingBinding
 import com.going.presentation.onboarding.splash.SplashActivity
@@ -33,9 +30,10 @@ class OnboardingProfileSettingActivity :
 
         initBindingViewModel()
         setEtNameArguments()
+        setEtInfoArguments()
         initSignUpBtnClickListener()
         observeNameTextChanged()
-        observeIsInfoAvailable()
+        observeInfoTextChanged()
         observeIsSignUpState()
         initOnBackPressedListener()
     }
@@ -52,6 +50,13 @@ class OnboardingProfileSettingActivity :
         }
     }
 
+    private fun setEtInfoArguments() {
+        with(binding.etOnboardingProfileSettingInfo) {
+            setMaxLen(viewModel.getMaxInfoLen())
+            overWarning = getString(R.string.info_over_error)
+        }
+    }
+
     private fun initSignUpBtnClickListener() {
         binding.btnOnboardingProfileSettingFinish.setOnSingleClickListener {
             viewModel.startSignUp()
@@ -64,39 +69,10 @@ class OnboardingProfileSettingActivity :
         }
     }
 
-    private fun observeIsInfoAvailable() {
-        viewModel.isInfoAvailable.observe(this) { state ->
-            setColors(
-                binding.tvInfoCounter,
-                state,
-            ) { background ->
-                binding.etOnboardingProfileSettingInfo.background = ResourcesCompat.getDrawable(
-                    this.resources,
-                    background,
-                    theme,
-                )
-            }
+    private fun observeInfoTextChanged() {
+        binding.etOnboardingProfileSettingInfo.editText.doAfterTextChanged {
+            viewModel.setInfoState(it.toString(), binding.etOnboardingProfileSettingInfo.state)
         }
-    }
-
-    private fun setColors(
-        counter: TextView,
-        state: NameState,
-        setBackground: (Int) -> Unit,
-    ) {
-        val (color, background) = when (state) {
-            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-        }
-
-        setCounterColor(counter, color)
-        setBackground(background)
-    }
-
-    private fun setCounterColor(counter: TextView, color: Int) {
-        counter.setTextColor(getColor(color))
     }
 
     private fun observeIsSignUpState() {

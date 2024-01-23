@@ -20,7 +20,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     private var maxLen: Int = 0
     private var canBlankError: Boolean = false
     lateinit var overWarning: String
-    lateinit var blankWarning: String
+    var blankWarning: String = ""
 
     val editText
         get() = binding.etEmojiCounterEtContent
