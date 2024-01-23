@@ -18,6 +18,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
     private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
     private var maxLen: Int = 0
+    private var canBlankError: Boolean = false
     lateinit var overWarning: String
     lateinit var blankWarning: String
 
@@ -44,13 +45,14 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
         binding.tvEmojiCounterEtTitle.text =
             typedArray.getString(R.styleable.EmojiCounterEditText_title)
-        binding.etEmojiCounterEtContent.setText(typedArray.getString(R.styleable.EmojiCounterEditText_text))
         binding.etEmojiCounterEtContent.hint =
             typedArray.getString(R.styleable.EmojiCounterEditText_hint)
+        canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
 
         typedArray.recycle()
 
         binding.tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
+
         checkTextAvailable()
     }
 
@@ -59,7 +61,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
             val len = text.toString().getGraphemeLength()
 
             state =
-                if (text.toString().isBlank() && len != 0) {
+                if (text.toString().isBlank() && len != 0 && canBlankError) {
                     EditTextState.Blank
                 } else if (len > maxLen) {
                     EditTextState.OVER
@@ -69,7 +71,8 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
                     EditTextState.Empty
                 }
 
-            binding.tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, len, maxLen)
+            binding.tvEmojiCounterEtNameCounter.text =
+                context.getString(R.string.counter, len, maxLen)
         }
     }
 

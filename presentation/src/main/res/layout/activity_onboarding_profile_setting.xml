@@ -40,6 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:title="@string/onboarding_name_tv_title"
             app:hint="@string/onboarding_et_name_hint"
+            app:canBlankError="true"
             app:layout_constraintTop_toBottomOf="@id/tb_onboarding_profile_setting" />
 
         <TextView
