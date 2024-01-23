@@ -1,31 +1,32 @@
 package com.going.presentation.todo.name
 
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
+import com.going.ui.extension.colorOf
 
 class TodoNameViewHolder(
-    val binding: ItemTodoNameBinding, private val isCompleted: Boolean
+    val binding: ItemTodoNameBinding,
+    private val isCompleted: Boolean
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val redColor = ContextCompat.getColor(binding.root.context, R.color.red_500)
-    private val grayColor = ContextCompat.getColor(binding.root.context, R.color.gray_400)
-    private val completedColor = ContextCompat.getColor(binding.root.context, R.color.gray_300)
-
     fun onBind(item: TodoAllocatorModel) {
-        binding.run {
-            tvTodoName.text = item.name
-            if (isCompleted) {
-                tvTodoName.setTextColor(completedColor)
-                tvTodoName.setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
-            } else {
-                if (item.isOwner) {
-                    tvTodoName.setTextColor(redColor)
-                    tvTodoName.isSelected = true
-                } else {
-                    tvTodoName.setTextColor(grayColor)
+        with(binding.tvTodoName) {
+            text = item.name
+            when {
+                isCompleted -> {
+                    setTextColor(binding.root.context.colorOf(R.color.gray_300))
+                    setBackgroundResource(R.drawable.shape_rect_2_gray300_line)
+                }
+
+                item.isOwner -> {
+                    setTextColor(binding.root.context.colorOf(R.color.red_500))
+                    isSelected = true
+                }
+
+                else -> {
+                    setTextColor(binding.root.context.colorOf(R.color.gray_400))
                 }
             }
         }

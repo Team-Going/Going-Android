@@ -12,8 +12,9 @@ class TodoNameAdapter(
 ) : ListAdapter<TodoAllocatorModel, TodoNameViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoNameViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoNameBinding =
-            ItemTodoNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTodoNameBinding.inflate(inflater, parent, false)
         return TodoNameViewHolder(binding, isCompleted)
     }
 
