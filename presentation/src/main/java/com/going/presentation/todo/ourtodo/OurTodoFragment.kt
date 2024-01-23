@@ -70,8 +70,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setViewPager()
         setViewPagerChangeListener()
         setViewPagerDebounce()
-        setToolbarColor()
-        setEmptyViewHeight()
+        initOffsetChangedListener()
         observeOurTripInfoState()
 
     }
@@ -189,25 +188,21 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         handler.postDelayed(enableClickRunnable, debounceTime)
     }
 
-    private fun setToolbarColor() {
-        binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
-                setStatusBarColor(R.color.white_000)
-                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.white_000))
-            } else {
-                setStatusBarColor(R.color.gray_50)
-                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.gray_50))
-            }
-        }
-    }
-
-    private fun setEmptyViewHeight() {
+    private fun initOffsetChangedListener() {
         binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
             binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
                 it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
+
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                setStatusBarColor(R.color.white_000)
+                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.white_000))
+            } else {
+                setStatusBarColor(R.color.gray_50)
+                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.gray_50))
             }
         }
     }

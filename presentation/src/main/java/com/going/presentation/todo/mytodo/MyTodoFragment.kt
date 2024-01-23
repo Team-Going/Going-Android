@@ -25,6 +25,7 @@ import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTim
 import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
@@ -58,9 +59,8 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setViewPagerChangeListener()
         setViewPagerDebounce()
         setTodoCountText()
-        setToolbarColor()
         initEmptyViewHeight()
-        setEmptyViewHeight()
+        initOffsetChangedListener()
         observeMyTripInfoState()
         observeTotalUncompletedTodoCount()
 
@@ -154,26 +154,6 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         setTodoCount(viewModel.totalUncompletedTodoCount.value)
     }
 
-    private fun setToolbarColor() {
-        binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
-                setStatusBarColor(R.color.white_000)
-                binding.toolbarMyTodo.setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.white_000
-                    )
-                )
-            } else {
-                setStatusBarColor(R.color.gray_50)
-                binding.toolbarMyTodo.setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.gray_50
-                    )
-                )
-            }
-        }
-    }
-
     private fun initEmptyViewHeight() {
         binding.appbarMyTodo.viewTreeObserver.addOnGlobalLayoutListener(object :
             ViewTreeObserver.OnGlobalLayoutListener {
@@ -189,13 +169,21 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
         })
     }
 
-    private fun setEmptyViewHeight() {
+    private fun  initOffsetChangedListener() {
         binding.appbarMyTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarMyTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
             binding.layoutMyTodoEmpty.layoutParams = (binding.layoutMyTodoEmpty.layoutParams).also {
                 it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
+
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                setStatusBarColor(R.color.white_000)
+                binding.toolbarMyTodo.setBackgroundColor(colorOf(R.color.white_000))
+            } else {
+                setStatusBarColor(R.color.gray_50)
+                binding.toolbarMyTodo.setBackgroundColor(colorOf(R.color.gray_50))
             }
         }
     }
