@@ -8,7 +8,6 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -28,6 +27,7 @@ import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
@@ -193,18 +193,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         binding.appbarOurTodo.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 setStatusBarColor(R.color.white_000)
-                binding.toolbarOurTodo.setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.white_000
-                    )
-                )
+                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.white_000))
             } else {
                 setStatusBarColor(R.color.gray_50)
-                binding.toolbarOurTodo.setBackgroundColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.gray_50
-                    )
-                )
+                binding.toolbarOurTodo.setBackgroundColor(colorOf(R.color.gray_50))
             }
         }
     }
@@ -250,22 +242,27 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }.launchIn(lifecycleScope)
     }
 
-    private fun convertDate(date: String): String {
-        val splitDate = date.split(".")
-        return getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
-    }
+    private fun convertDate(date: String) =
+        date.split(".").let { splitDate ->
+            getString(R.string.our_todo_day_form).format(splitDate[1], splitDate[2])
+        }
 
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
-        if (day > 0) {
-            binding.tvOurTodoTitleDown.text =
-                getString(R.string.our_todo_title_down_before).format(day)
-            setDateTextColor(6, 6)
-        } else if (!isComplete) {
-            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
-            setDateTextColor(0, 4)
-        } else {
-            binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
-            setDateTextColor(4, 5)
+        when {
+            day > 0 -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                setDateTextColor(6, 6)
+            }
+
+            !isComplete -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_during)
+                setDateTextColor(0, 4)
+            }
+
+            else -> {
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_end)
+                setDateTextColor(4, 5)
+            }
         }
     }
 
@@ -274,9 +271,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             text = SpannableStringBuilder(text).apply {
                 setSpan(
                     ForegroundColorSpan(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.red_500
-                        )
+                        colorOf(R.color.red_500)
                     ), start, length - end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
