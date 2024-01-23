@@ -11,8 +11,9 @@ class OurTodoFriendAdapter : RecyclerView.Adapter<OurTodoFriendViewHolder>() {
     private var itemList = mutableListOf<TripParticipantModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OurTodoFriendViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoFriendsBinding =
-            ItemTodoFriendsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTodoFriendsBinding.inflate(inflater, parent, false)
         return OurTodoFriendViewHolder(binding)
     }
 

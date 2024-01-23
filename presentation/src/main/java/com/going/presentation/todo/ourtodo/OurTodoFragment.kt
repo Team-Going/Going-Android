@@ -109,7 +109,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initInviteBtnListener() {
         binding.btnOurTodoAddFriend.setOnSingleClickListener {
-            friendInviteDialog = FriendInviteDialog.newInstance(viewModel.inviteCode)
+            friendInviteDialog = FriendInviteDialog()
             friendInviteDialog?.show(parentFragmentManager, INVITE_DIALOG)
         }
     }
