@@ -66,12 +66,12 @@ class SignUpViewModel @Inject constructor(
 
     fun setNameState(newName: String, state: EditTextState) {
         name.value = newName
-        isNameAvailable.value = state == EditTextState.Success
+        isNameAvailable.value = state == EditTextState.SUCCESS
     }
 
     fun setInfoState(newInfo: String, state: EditTextState) {
         info.value = newInfo
-        isInfoAvailable.value = state == EditTextState.Success
+        isInfoAvailable.value = state == EditTextState.SUCCESS
     }
 
     fun getMaxNameLen() = MAX_NAME_LEN

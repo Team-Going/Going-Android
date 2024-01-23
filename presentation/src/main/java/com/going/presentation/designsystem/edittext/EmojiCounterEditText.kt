@@ -25,21 +25,21 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     val editText
         get() = binding.etEmojiCounterEtContent
 
-    var state: EditTextState = EditTextState.Empty
+    var state: EditTextState = EditTextState.EMPTY
         set(value) {
             field = value
             when (field) {
-                EditTextState.Success -> setEditTextState(
+                EditTextState.SUCCESS -> setEditTextState(
                     R.color.gray_700,
                     R.drawable.shape_rect_4_gray700_line,
                 )
 
-                EditTextState.Empty -> setEditTextState(
+                EditTextState.EMPTY -> setEditTextState(
                     R.color.gray_200,
                     R.drawable.shape_rect_4_gray200_line,
                 )
 
-                EditTextState.Blank -> setEditTextState(
+                EditTextState.BLANK -> setEditTextState(
                     R.color.red_500,
                     R.drawable.shape_rect_4_red500_line,
                     blankWarning,
@@ -81,13 +81,13 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
             state =
                 if (text.toString().isBlank() && len != 0 && canBlankError) {
-                    EditTextState.Blank
+                    EditTextState.BLANK
                 } else if (len > maxLen) {
                     EditTextState.OVER
                 } else if (len > 0) {
-                    EditTextState.Success
+                    EditTextState.SUCCESS
                 } else {
-                    EditTextState.Empty
+                    EditTextState.EMPTY
                 }
 
             binding.tvEmojiCounterEtNameCounter.text =
