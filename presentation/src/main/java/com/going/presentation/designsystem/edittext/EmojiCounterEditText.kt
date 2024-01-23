@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.going.presentation.R
 import com.going.presentation.databinding.ViewEmojiCounterEdittextBinding
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.getGraphemeLength
 
 class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
@@ -16,7 +17,6 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
     private val binding: ViewEmojiCounterEdittextBinding
 
-    private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
     private var maxLen: Int = 0
     private var canBlankError: Boolean = false
     lateinit var overWarning: String
@@ -29,14 +29,33 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         set(value) {
             field = value
             when (field) {
-                EditTextState.Success -> setSuccessState()
-                EditTextState.Empty -> setEmptyState()
-                EditTextState.Blank -> setWarningMessage(blankWarning)
-                EditTextState.OVER -> setWarningMessage(overWarning)
+                EditTextState.Success -> setEditTextState(
+                    R.color.gray_700,
+                    R.drawable.shape_rect_4_gray700_line,
+                )
+
+                EditTextState.Empty -> setEditTextState(
+                    R.color.gray_200,
+                    R.drawable.shape_rect_4_gray200_line,
+                )
+
+                EditTextState.Blank -> setEditTextState(
+                    R.color.red_500,
+                    R.drawable.shape_rect_4_red500_line,
+                    blankWarning,
+                )
+
+                EditTextState.OVER -> setEditTextState(
+                    R.color.red_500,
+                    R.drawable.shape_rect_4_red500_line,
+                    overWarning,
+                )
             }
         }
 
     init {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
+
         binding = ViewEmojiCounterEdittextBinding.inflate(
             LayoutInflater.from(context),
             this,
@@ -81,33 +100,13 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         binding.tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
     }
 
-    private fun setSuccessState() {
-        binding.tvEmojiCounterEtWarningMessage.isVisible = false
-        binding.tvEmojiCounterEtNameCounter.setTextColor(context.getColor(R.color.gray_700))
-        binding.etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
-            this.resources,
-            R.drawable.shape_rect_4_gray700_line,
-            context.theme,
-        )
-    }
-
-    private fun setEmptyState() {
-        binding.tvEmojiCounterEtWarningMessage.isVisible = false
-        binding.tvEmojiCounterEtNameCounter.setTextColor(context.getColor(R.color.gray_200))
-        binding.etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
-            this.resources,
-            R.drawable.shape_rect_4_gray200_line,
-            context.theme,
-        )
-    }
-
-    private fun setWarningMessage(text: String?) {
-        binding.tvEmojiCounterEtWarningMessage.isVisible = true
+    private fun setEditTextState(color: Int, background: Int, text: String = "") {
+        binding.tvEmojiCounterEtWarningMessage.isVisible = color == R.color.red_500
         binding.tvEmojiCounterEtWarningMessage.text = text
-        binding.tvEmojiCounterEtNameCounter.setTextColor(context.getColor(R.color.red_500))
+        binding.tvEmojiCounterEtNameCounter.setTextColor(context.colorOf(color))
         binding.etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
             this.resources,
-            R.drawable.shape_rect_4_red500_line,
+            background,
             context.theme,
         )
     }
