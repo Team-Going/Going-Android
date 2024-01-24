@@ -29,10 +29,15 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        clearToken()
         initKakaoLoginBtnClickListener()
         initTermsBtnClickListener()
         observeInfo()
         initOnBackPressedListener()
+    }
+
+    private fun clearToken() {
+        viewModel.clearToken()
     }
 
     private fun initKakaoLoginBtnClickListener() {

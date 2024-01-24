@@ -93,6 +93,10 @@ class SignInViewModel @Inject constructor(
         }
     }
 
+    fun clearToken() {
+        tokenRepository.clearInfo()
+    }
+
     companion object {
         const val KAKAO = "kakao"
         const val SIGN_UP = "e4041"
