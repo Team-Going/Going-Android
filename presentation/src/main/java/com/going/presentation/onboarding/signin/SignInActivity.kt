@@ -10,7 +10,7 @@ import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySigninBinding
-import com.going.presentation.onboarding.signup.OnboardingProfileSettingActivity
+import com.going.presentation.onboarding.signup.SignUpActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
@@ -82,7 +82,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     }
 
     private fun navigateToOnboardingScreen() {
-        Intent(this, OnboardingProfileSettingActivity::class.java).apply {
+        Intent(this, SignUpActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
         }

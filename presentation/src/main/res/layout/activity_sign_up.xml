@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.going.presentation.onboarding.signup.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_sign_up_profile_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white_000"
+            android:elevation="2dp"
+            android:paddingVertical="12dp"
+            android:paddingStart="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/sign_up_tb_title"
+            app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
+            app:titleTextColor="@color/black_000" />
+
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+            android:id="@+id/et_sign_up_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:canBlankError="true"
+            app:hint="@string/sign_up_et_name_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_sign_up_profile_setting"
+            app:title="@string/sign_up_name_tv_title" />
+
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+            android:id="@+id/et_sign_up_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:canBlankError="false"
+            app:hint="@string/sign_up_one_line_et_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_sign_up_name"
+            app:title="@string/sign_up_one_line_info_tv_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_up_finish"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true}"
+            android:outlineProvider="none"
+            android:paddingVertical="10dp"
+            android:text="@string/sign_up_finish_btn"
+            android:textColor="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true ? @color/white_000 : @color/gray_200}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
