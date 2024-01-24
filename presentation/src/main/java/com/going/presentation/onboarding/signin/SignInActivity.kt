@@ -11,6 +11,7 @@ import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySigninBinding
 import com.going.presentation.onboarding.signup.SignUpActivity
+import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.ui.base.BaseActivity
@@ -95,10 +96,5 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
             startActivity(this)
         }
         finish()
-    }
-
-    companion object {
-        const val TERMS_URL =
-            "https://goinggoing.notion.site/75f5d981a5b842a6be74a9dc17ca67de?pvs=74"
     }
 }

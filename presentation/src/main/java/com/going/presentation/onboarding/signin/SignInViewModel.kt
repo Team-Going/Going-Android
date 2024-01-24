@@ -65,7 +65,7 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기 - 서버와 협의 후 수정예정
+    // 서버통신 - 카카오 토큰 보내서 서비스 토큰 받아오기
     private fun changeTokenFromServer(
         accessToken: String,
         platform: String = KAKAO,
