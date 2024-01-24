@@ -78,13 +78,10 @@ class SignUpActivity :
     private fun observeIsSignUpState() {
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.LOADING -> return@onEach
                 AuthState.SUCCESS -> navigateToTendencySplashScreen()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> return@onEach
                 AuthState.SIGNIN -> navigateToSplashScreen()
-                AuthState.TENDENCY -> return@onEach
-                AuthState.EMPTY -> return@onEach
+                else -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

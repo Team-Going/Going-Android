@@ -4,8 +4,10 @@ import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -18,6 +20,7 @@ import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -47,35 +50,31 @@ class TendencyTestActivity :
     }
 
     private fun initFadeAnimation() {
-        fadeOutList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 1f, 0f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 1f, 0f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 1f, 0f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 1f, 0f).apply {
-                duration = DURATION
-            },
+        fadeOutList = listOf(
+            createFadeOutAnimator(binding.tvFirstAnswer),
+            createFadeOutAnimator(binding.tvSecondAnswer),
+            createFadeOutAnimator(binding.tvThirdAnswer),
+            createFadeOutAnimator(binding.tvFourthAnswer),
         )
 
-        fadeInList = listOf<ObjectAnimator>(
-            ObjectAnimator.ofFloat(binding.tvFirstAnswer, ALPHA, 0f, 1f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvSecondAnswer, ALPHA, 0f, 1f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvThirdAnswer, ALPHA, 0f, 1f).apply {
-                duration = DURATION
-            },
-            ObjectAnimator.ofFloat(binding.tvFourthAnswer, ALPHA, 0f, 1f).apply {
-                duration = DURATION
-            },
+        fadeInList = listOf(
+            createFadeInAnimator(binding.tvFirstAnswer),
+            createFadeInAnimator(binding.tvSecondAnswer),
+            createFadeInAnimator(binding.tvThirdAnswer),
+            createFadeInAnimator(binding.tvFourthAnswer),
         )
+    }
+
+    private fun createFadeOutAnimator(view: View): ObjectAnimator {
+        return ObjectAnimator.ofFloat(view, ALPHA, 1f, 0f).apply {
+            duration = DURATION
+        }
+    }
+
+    private fun createFadeInAnimator(view: View): ObjectAnimator {
+        return ObjectAnimator.ofFloat(view, ALPHA, 0f, 1f).apply {
+            duration = DURATION
+        }
     }
 
     private fun initFadeListener() {
@@ -125,20 +124,15 @@ class TendencyTestActivity :
     }
 
     private fun observeButtonSelected() {
-        viewModel.isFirstChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvFirstAnswer.setTextAppearance(setFont(it))
-        }.launchIn(lifecycleScope)
+        observeCheckedState(viewModel.isFirstChecked, binding.tvFirstAnswer)
+        observeCheckedState(viewModel.isSecondChecked, binding.tvSecondAnswer)
+        observeCheckedState(viewModel.isThirdChecked, binding.tvThirdAnswer)
+        observeCheckedState(viewModel.isFourthChecked, binding.tvFourthAnswer)
+    }
 
-        viewModel.isSecondChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvSecondAnswer.setTextAppearance(setFont(it))
-        }.launchIn(lifecycleScope)
-
-        viewModel.isThirdChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvThirdAnswer.setTextAppearance(setFont(it))
-        }.launchIn(lifecycleScope)
-
-        viewModel.isFourthChecked.flowWithLifecycle(lifecycle).onEach {
-            binding.tvFourthAnswer.setTextAppearance(setFont(it))
+    private fun observeCheckedState(checkedStateFlow: Flow<Boolean>, textView: TextView) {
+        checkedStateFlow.flowWithLifecycle(lifecycle).onEach {
+            textView.setTextAppearance(setFont(it))
         }.launchIn(lifecycleScope)
     }
 
@@ -151,10 +145,9 @@ class TendencyTestActivity :
     private fun observeIsSubmitTendencyState() {
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.LOADING -> {}
                 EnumUiState.SUCCESS -> navigateToTendencyResultScreen()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
-                EnumUiState.EMPTY -> {}
+                else -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

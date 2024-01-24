@@ -46,10 +46,9 @@ class TendencyResultActivity :
     private fun observeUserInfoState() {
         viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Loading -> return@onEach
                 is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
-                is UiState.Empty -> return@onEach
+                else -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

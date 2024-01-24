@@ -57,13 +57,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun observeUserState() {
         viewModel.userState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.LOADING -> return@onEach
                 AuthState.SUCCESS -> navigateToDashBoardScreen()
                 AuthState.FAILURE -> navigateToSignInScreen()
-                AuthState.SIGNUP -> return@onEach
-                AuthState.SIGNIN -> return@onEach
                 AuthState.TENDENCY -> navigateToTendencyScreen()
-                AuthState.EMPTY -> return@onEach
+                else -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
