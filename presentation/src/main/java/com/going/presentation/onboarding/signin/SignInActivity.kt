@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
-import com.going.presentation.databinding.ActivitySigninBinding
+import com.going.presentation.databinding.ActivitySignInBinding
 import com.going.presentation.onboarding.signup.SignUpActivity
 import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
+class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
     private val viewModel by viewModels<SignInViewModel>()
 
@@ -66,7 +66,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
                 AuthState.LOADING -> return@onEach
                 AuthState.SUCCESS -> navigateToDashBoardScreen()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToOnboardingScreen()
+                AuthState.SIGNUP -> navigateToSignUpScreen()
                 AuthState.SIGNIN -> return@onEach
                 AuthState.TENDENCY -> navigateToTendencyScreen()
                 AuthState.EMPTY -> return@onEach
@@ -82,7 +82,7 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
         finish()
     }
 
-    private fun navigateToOnboardingScreen() {
+    private fun navigateToSignUpScreen() {
         Intent(this, SignUpActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(this)
