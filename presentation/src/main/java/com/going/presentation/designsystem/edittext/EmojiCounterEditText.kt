@@ -67,6 +67,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         binding.etEmojiCounterEtContent.hint =
             typedArray.getString(R.styleable.EmojiCounterEditText_hint)
         canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
+        binding.etEmojiCounterEtContent.minLines = typedArray.getInt(R.styleable.EmojiCounterEditText_minLines, 1)
 
         typedArray.recycle()
 

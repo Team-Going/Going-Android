@@ -24,6 +24,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/shape_rect_4_gray200_line"
         android:imeOptions="actionNext"
+        android:gravity="top"
         android:inputType="text"
         android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
         app:layout_constraintEnd_toEndOf="parent"
