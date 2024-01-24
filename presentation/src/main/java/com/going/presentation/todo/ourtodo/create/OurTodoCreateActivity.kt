@@ -1,5 +1,7 @@
 package com.going.presentation.todo.ourtodo.create
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.TextView
@@ -54,8 +56,7 @@ class OurTodoCreateActivity :
 
     private fun initNameListAdapter() {
         _adapter = TodoCreateNameAdapter(false) { position ->
-            viewModel.participantList[position].isSelected =
-                !viewModel.participantList[position].isSelected
+            viewModel.participantList[position].also { it.isSelected = !it.isSelected }
             viewModel.checkIsFinishAvailable()
         }
         binding.rvOurTodoCreatePerson.adapter = adapter
@@ -186,5 +187,19 @@ class OurTodoCreateActivity :
         const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
         const val EXTRA_NAME = "EXTRA_NAME"
         const val EXTRA_RESULT = "EXTRA_RESULT"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long,
+            idList: ArrayList<Int>,
+            nameList:  ArrayList<String>,
+            resultList: ArrayList<Int>
+        ): Intent = Intent(context, OurTodoCreateActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripId)
+            putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
+            putStringArrayListExtra(EXTRA_NAME, nameList)
+            putIntegerArrayListExtra(EXTRA_RESULT, resultList)
+        }
     }
 }

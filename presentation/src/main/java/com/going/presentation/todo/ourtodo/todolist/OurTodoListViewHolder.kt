@@ -1,11 +1,11 @@
 package com.going.presentation.todo.ourtodo.todolist
 
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemOurTodoBinding
 import com.going.presentation.todo.name.TodoNameAdapter
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 
 class OurTodoListViewHolder(
@@ -23,11 +23,11 @@ class OurTodoListViewHolder(
             }
 
             if (isCompleted) {
-                tvOurTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_300))
-                tvOurTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_200))
+                tvOurTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.gray_300))
+                tvOurTodoItemDate.setTextColor(binding.root.context.colorOf(R.color.gray_200))
             } else {
-                tvOurTodoItemTitle.setTextColor(ContextCompat.getColor(binding.root.context,R.color.black_000))
-                tvOurTodoItemDate.setTextColor(ContextCompat.getColor(binding.root.context,R.color.gray_300))
+                tvOurTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.black_000))
+                tvOurTodoItemDate.setTextColor(binding.root.context.colorOf(R.color.gray_300))
             }
 
             root.setOnSingleClickListener {

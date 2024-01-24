@@ -10,8 +10,9 @@ import com.going.ui.extension.ItemDiffCallback
 class TodoDetailNameAdapter : ListAdapter<TodoAllocatorModel, TodoDetailNameViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoDetailNameViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoCreateNameBinding =
-            ItemTodoCreateNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTodoCreateNameBinding.inflate(inflater, parent, false)
         return TodoDetailNameViewHolder(binding)
     }
 
