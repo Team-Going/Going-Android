@@ -65,17 +65,15 @@ class TendencyTestActivity :
         )
     }
 
-    private fun createFadeOutAnimator(view: View): ObjectAnimator {
-        return ObjectAnimator.ofFloat(view, ALPHA, 1f, 0f).apply {
+    private fun createFadeOutAnimator(view: View): ObjectAnimator =
+        ObjectAnimator.ofFloat(view, ALPHA, 1f, 0f).apply {
             duration = DURATION
         }
-    }
 
-    private fun createFadeInAnimator(view: View): ObjectAnimator {
-        return ObjectAnimator.ofFloat(view, ALPHA, 0f, 1f).apply {
+    private fun createFadeInAnimator(view: View): ObjectAnimator =
+        ObjectAnimator.ofFloat(view, ALPHA, 0f, 1f).apply {
             duration = DURATION
         }
-    }
 
     private fun initFadeListener() {
         fadeOutList[0].addListener(
@@ -95,13 +93,9 @@ class TendencyTestActivity :
                     }
                 }
 
-                override fun onAnimationCancel(animation: Animator) {
-                    //
-                }
+                override fun onAnimationCancel(animation: Animator) {}
 
-                override fun onAnimationRepeat(animation: Animator) {
-                    //
-                }
+                override fun onAnimationRepeat(animation: Animator) {}
             },
         )
     }
