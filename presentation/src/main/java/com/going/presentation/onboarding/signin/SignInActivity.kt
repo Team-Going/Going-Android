@@ -14,6 +14,7 @@ import com.going.presentation.onboarding.signup.SignUpActivity
 import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -68,36 +69,12 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToDashBoardScreen()
+                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToSignUpScreen()
-                AuthState.TENDENCY -> navigateToTendencyScreen()
+                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>()
+                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>()
                 else -> return@onEach
             }
         }.launchIn(lifecycleScope)
-    }
-
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToSignUpScreen() {
-        Intent(this, SignUpActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToTendencyScreen() {
-        Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
     }
 }
