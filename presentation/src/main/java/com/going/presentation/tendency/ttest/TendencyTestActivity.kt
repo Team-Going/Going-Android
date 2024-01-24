@@ -2,7 +2,6 @@ package com.going.presentation.tendency.ttest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -15,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.presentation.tendency.result.TendencyResultActivity
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
@@ -139,19 +139,11 @@ class TendencyTestActivity :
     private fun observeIsSubmitTendencyState() {
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.SUCCESS -> navigateToTendencyResultScreen()
+                EnumUiState.SUCCESS -> navigateToScreen<TendencyResultActivity>()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 else -> return@onEach
             }
         }.launchIn(lifecycleScope)
-    }
-
-    private fun navigateToTendencyResultScreen() {
-        Intent(this, TendencyResultActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
     }
 
     private fun initOnBackPressedListener() {

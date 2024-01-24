@@ -14,6 +14,7 @@ import com.going.presentation.databinding.ActivityTendencyResultBinding
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.setBulletPoint
@@ -96,7 +97,7 @@ class TendencyResultActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToTendencySplashScreen()
+            navigateToScreen<TendencySplashActivity>()
         }
     }
 
@@ -108,24 +109,13 @@ class TendencyResultActivity :
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyResultFinish.setOnSingleClickListener {
-            navigateToDashBoardScreen()
+            navigateToScreen<DashBoardActivity>(
+                listOf(
+                    Intent.FLAG_ACTIVITY_NEW_TASK,
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK,
+                ),
+            )
         }
-    }
-
-    private fun navigateToTendencySplashScreen() {
-        Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
-            startActivity(this)
-            finishAffinity()
-        }
-        finish()
     }
 
     override fun onRequestPermissionsResult(
