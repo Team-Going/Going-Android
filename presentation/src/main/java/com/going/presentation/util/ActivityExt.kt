@@ -2,6 +2,7 @@ package com.going.presentation.util
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -79,4 +80,12 @@ fun ComponentActivity.initOnBackPressedListener(
     }
 
     this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+}
+
+inline fun <reified T : Activity> Activity.navigateToScreen() {
+    Intent(this, T::class.java).apply {
+        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(this)
+    }
+    finish()
 }
