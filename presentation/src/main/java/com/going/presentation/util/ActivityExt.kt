@@ -84,12 +84,15 @@ fun ComponentActivity.initOnBackPressedListener(
 
 inline fun <reified T : Activity> Activity.navigateToScreen(
     flags: List<Int>? = null,
+    addFlags: Boolean = true,
     isFinish: Boolean = true,
 ) {
     Intent(this, T::class.java).apply {
-        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        flags?.map {
-            addFlags(it)
+        if (addFlags) {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            flags?.map {
+                addFlags(it)
+            }
         }
         startActivity(this)
     }
