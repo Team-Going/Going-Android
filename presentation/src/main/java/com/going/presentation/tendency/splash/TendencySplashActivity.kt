@@ -6,6 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencySplashBinding
 import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -21,15 +22,7 @@ class TendencySplashActivity :
 
     private fun initStartBtnClickListener() {
         binding.btnTendencySplashStart.setOnSingleClickListener {
-            navigateToTendencyTestScreen()
+            navigateToScreen<TendencyTestActivity>()
         }
-    }
-
-    private fun navigateToTendencyTestScreen() {
-        Intent(this, TendencyTestActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
     }
 }

@@ -9,10 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
-import com.going.presentation.databinding.ActivitySigninBinding
+import com.going.presentation.databinding.ActivitySignInBinding
 import com.going.presentation.onboarding.signup.SignUpActivity
+import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -21,17 +23,22 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_signin) {
+class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
     private val viewModel by viewModels<SignInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        clearToken()
         initKakaoLoginBtnClickListener()
         initTermsBtnClickListener()
         observeInfo()
         initOnBackPressedListener()
+    }
+
+    private fun clearToken() {
+        viewModel.clearToken()
     }
 
     private fun initKakaoLoginBtnClickListener() {
@@ -62,43 +69,12 @@ class SignInActivity : BaseActivity<ActivitySigninBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToDashBoardScreen()
+                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToOnboardingScreen()
-                AuthState.SIGNIN -> return@onEach
-                AuthState.TENDENCY -> navigateToTendencyScreen()
-                AuthState.EMPTY -> return@onEach
+                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>()
+                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>()
+                else -> return@onEach
             }
         }.launchIn(lifecycleScope)
-    }
-
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToOnboardingScreen() {
-        Intent(this, SignUpActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToTendencyScreen() {
-        Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    companion object {
-        const val TERMS_URL =
-            "https://goinggoing.notion.site/75f5d981a5b842a6be74a9dc17ca67de?pvs=74"
     }
 }
