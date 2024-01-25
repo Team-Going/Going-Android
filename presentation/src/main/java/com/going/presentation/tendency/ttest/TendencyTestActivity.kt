@@ -124,9 +124,9 @@ class TendencyTestActivity :
         observeCheckedState(viewModel.isFourthChecked, binding.tvFourthAnswer)
     }
 
-    private fun observeCheckedState(checkedStateFlow: Flow<Boolean>, textView: TextView) {
-        checkedStateFlow.flowWithLifecycle(lifecycle).onEach {
-            textView.setTextAppearance(setFont(it))
+    private fun observeCheckedState(isCheckedState: Flow<Boolean>, textView: TextView) {
+        isCheckedState.flowWithLifecycle(lifecycle).onEach { isChecked ->
+            textView.setTextAppearance(setFont(isChecked))
         }.launchIn(lifecycleScope)
     }
 
