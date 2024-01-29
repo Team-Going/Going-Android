@@ -6,4 +6,11 @@
         <attr name="minLines" format="integer"/>
         <attr name="canBlankError" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="ChartTextView">
+        <attr name="title" format="string"/>
+        <attr name="first" format="string"/>
+        <attr name="second" format="string"/>
+        <attr name="third" format="string"/>
+    </declare-styleable>
 </resources>
