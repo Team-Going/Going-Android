@@ -18,7 +18,6 @@ import com.going.presentation.util.initOnBackPressedListener
 import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
-import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,21 +67,27 @@ class TendencyResultActivity :
                 tvTendencyTestResultTag2.text = getString(R.string.tag, tags[1])
                 tvTendencyTestResultTag3.text = getString(R.string.tag, tags[2])
 
-                with(profileBoxInfo[0]){
+                with(profileBoxInfo[0]) {
                     setChartInfo(tvChartFirst, title, first, second, third)
                 }
-                with(profileBoxInfo[1]){
+                with(profileBoxInfo[1]) {
                     setChartInfo(tvChartSecond, title, first, second, third)
                 }
-                with(profileBoxInfo[2]){
+                with(profileBoxInfo[2]) {
                     setChartInfo(tvChartThird, title, first, second, third)
                 }
             }
         }
     }
 
-    private fun setChartInfo(chart: ChartTextView, title: String, first: String, second: String, third: String) {
-        with(chart){
+    private fun setChartInfo(
+        chart: ChartTextView,
+        title: String,
+        first: String,
+        second: String,
+        third: String,
+    ) {
+        with(chart) {
             setTitle(title)
             setFirstDescription(first)
             setSecondDescription(second)
