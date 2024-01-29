@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
+import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
@@ -67,31 +68,25 @@ class TendencyResultActivity :
                 tvTendencyTestResultTag2.text = getString(R.string.tag, tags[1])
                 tvTendencyTestResultTag3.text = getString(R.string.tag, tags[2])
 
-                tvFirstDescriptionTitle.text = profileBoxInfo[0].title
-                tvFirstDescriptionFirstText.text =
-                    profileBoxInfo[0].first.setBulletPoint()
-                tvFirstDescriptionSecondText.text =
-                    profileBoxInfo[0].second.setBulletPoint()
-                tvFirstDescriptionThirdText.text =
-                    profileBoxInfo[0].third.setBulletPoint()
-
-                tvSecondDescriptionTitle.text =
-                    profileBoxInfo[1].title
-                tvSecondDescriptionFirstText.text =
-                    profileBoxInfo[1].first.setBulletPoint()
-                tvSecondDescriptionSecondText.text =
-                    profileBoxInfo[1].second.setBulletPoint()
-                tvSecondDescriptionThirdText.text =
-                    profileBoxInfo[1].third.setBulletPoint()
-
-                tvThirdDescriptionTitle.text = profileBoxInfo[2].title
-                tvThirdDescriptionFirstText.text =
-                    profileBoxInfo[2].first.setBulletPoint()
-                tvThirdDescriptionSecondText.text =
-                    profileBoxInfo[2].second.setBulletPoint()
-                tvThirdDescriptionThirdText.text =
-                    profileBoxInfo[2].third.setBulletPoint()
+                with(profileBoxInfo[0]){
+                    setChartInfo(tvChartFirst, title, first, second, third)
+                }
+                with(profileBoxInfo[1]){
+                    setChartInfo(tvChartSecond, title, first, second, third)
+                }
+                with(profileBoxInfo[2]){
+                    setChartInfo(tvChartThird, title, first, second, third)
+                }
             }
+        }
+    }
+
+    private fun setChartInfo(chart: ChartTextView, title: String, first: String, second: String, third: String) {
+        with(chart){
+            setTitle(title)
+            setFirstDescription(first)
+            setSecondDescription(second)
+            setThirdDescription(third)
         }
     }
 

@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.going.presentation.R
 import com.going.presentation.databinding.ViewChartTextviewBinding
+import com.going.ui.extension.setBulletPoint
 
 class ChartTextView(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {
     private val binding: ViewChartTextviewBinding
@@ -16,14 +16,21 @@ class ChartTextView(context: Context, attrs: AttributeSet) : ConstraintLayout(co
             this,
             true,
         )
+    }
 
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ChartTextView)
+    fun setTitle(text: String) {
+        binding.tvChartTitle.text = text
+    }
 
-        binding.tvChartTitle.text = typedArray.getString(R.styleable.ChartTextView_title)
-        binding.tvChartFirstDescription.text = typedArray.getString(R.styleable.ChartTextView_first)
-        binding.tvChartSecondDescription.text = typedArray.getString(R.styleable.ChartTextView_second)
-        binding.tvChartThirdDescription.text = typedArray.getString(R.styleable.ChartTextView_third)
+    fun setFirstDescription(text: String) {
+        binding.tvChartFirstDescription.text = text.setBulletPoint()
+    }
 
-        typedArray.recycle()
+    fun setSecondDescription(text: String) {
+        binding.tvChartSecondDescription.text = text.setBulletPoint()
+    }
+
+    fun setThirdDescription(text: String) {
+        binding.tvChartThirdDescription.text = text.setBulletPoint()
     }
 }
