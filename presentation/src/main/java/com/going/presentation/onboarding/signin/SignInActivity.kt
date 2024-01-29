@@ -69,10 +69,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>()
+                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>()
-                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>()
+                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 else -> return@onEach
             }
         }.launchIn(lifecycleScope)

@@ -8,7 +8,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
@@ -80,9 +79,9 @@ class SignUpActivity :
     private fun observeIsSignUpState() {
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToScreen<TendencySplashActivity>()
+                AuthState.SUCCESS -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNIN -> navigateToScreen<SplashActivity>()
+                AuthState.SIGNIN -> navigateToScreen<SplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 else -> return@onEach
             }
         }.launchIn(lifecycleScope)

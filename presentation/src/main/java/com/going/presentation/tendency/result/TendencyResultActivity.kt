@@ -97,7 +97,7 @@ class TendencyResultActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToScreen<TendencySplashActivity>()
+            navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
     }
 
@@ -111,6 +111,7 @@ class TendencyResultActivity :
         binding.btnTendencyResultFinish.setOnSingleClickListener {
             navigateToScreen<DashBoardActivity>(
                 listOf(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP,
                     Intent.FLAG_ACTIVITY_NEW_TASK,
                     Intent.FLAG_ACTIVITY_CLEAR_TASK,
                 ),
