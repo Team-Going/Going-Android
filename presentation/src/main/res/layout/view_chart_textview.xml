@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_rect_6_gray200_line"
+    android:minHeight="142dp"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="16dp">
+
+    <TextView
+        android:id="@+id/tv_chart_title"
+        style="@style/TextAppearance.Doorip.Detail2.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/linear_layout_chart_description"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_chart_dash_vertical"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_line_gray100_fill_dash_4_vertical"
+        android:layerType="software"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/linear_layout_chart_description"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/tv_chart_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_chart_description"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="26dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="7"
+        app:layout_constraintStart_toEndOf="@id/tv_chart_title"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_chart_first_description"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/tv_chart_second_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_chart_second_description"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_chart_third_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_chart_first_description"
+            app:layout_constraintTop_toBottomOf="@id/tv_chart_first_description"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_chart_third_description"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_chart_first_description"
+            app:layout_constraintTop_toBottomOf="@id/tv_chart_second_description"
+            app:layout_constraintVertical_chainStyle="packed" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

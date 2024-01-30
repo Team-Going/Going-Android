@@ -1,6 +1,7 @@
 package com.going.presentation.onboarding.splash
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -49,7 +50,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             if (viewModel.getHasAccessToken()) {
                 viewModel.getUserState()
             } else {
-                navigateToScreen<SignInActivity>()
+                navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }, 2200)
     }
@@ -57,9 +58,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     private fun observeUserState() {
         viewModel.userState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>()
-                AuthState.FAILURE -> navigateToScreen<SignInActivity>()
-                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>()
+                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                AuthState.FAILURE -> navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 else -> return@onEach
             }
         }.launchIn(lifecycleScope)

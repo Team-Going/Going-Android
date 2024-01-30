@@ -22,7 +22,7 @@ class TendencySplashActivity :
 
     private fun initStartBtnClickListener() {
         binding.btnTendencySplashStart.setOnSingleClickListener {
-            navigateToScreen<TendencyTestActivity>()
+            navigateToScreen<TendencyTestActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
     }
 }

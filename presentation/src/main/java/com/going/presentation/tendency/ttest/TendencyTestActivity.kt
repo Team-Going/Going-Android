@@ -2,6 +2,7 @@ package com.going.presentation.tendency.ttest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -139,7 +140,7 @@ class TendencyTestActivity :
     private fun observeIsSubmitTendencyState() {
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.SUCCESS -> navigateToScreen<TendencyResultActivity>()
+                EnumUiState.SUCCESS -> navigateToScreen<TendencyResultActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 else -> return@onEach
             }
