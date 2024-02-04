@@ -1,8 +1,15 @@
-package com.going.data.interceptor
+package com.going.doorip.di
 
+import android.content.Context
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import com.going.data.local.GoingDataStore
 import com.going.domain.entity.request.TokenReissueRequestModel
 import com.going.domain.repository.TokenReissueRepository
+import com.going.presentation.onboarding.signin.SignInActivity
+import com.going.ui.extension.toast
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -13,6 +20,7 @@ import javax.inject.Inject
 class AuthInterceptor @Inject constructor(
     private val tokenReissueRepository: TokenReissueRepository,
     private val dataStore: GoingDataStore,
+    @ApplicationContext private val context: Context,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -50,18 +58,17 @@ class AuthInterceptor @Inject constructor(
                                 .build()
 
                         return chain.proceed(newRequest)
-                    }.onFailure {
-                        dataStore.clearInfo()
                     }
+                } catch (t: Throwable) { }
+                dataStore.clearInfo()
 
-                    dataStore.clearInfo()
-
-                    // refreshToken 만료 처리를 위한 리프레시 토큰 만료 코드 포함 리스폰스 리턴
-                    return response
-                } catch (t: Throwable) {
-                    dataStore.clearInfo()
-
-                    Timber.e(t)
+                Handler(Looper.getMainLooper()).post {
+                    context.toast(TOKEN_EXPIRED_ERROR)
+                    context.startActivity(
+                        Intent(context, SignInActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        },
+                    )
                 }
             }
         }
@@ -73,6 +80,7 @@ class AuthInterceptor @Inject constructor(
 
     companion object {
         private const val CODE_TOKEN_EXPIRED = 401
+        private const val TOKEN_EXPIRED_ERROR = "토큰이 만료되었어요\n다시 로그인 해주세요"
         private const val BEARER = "Bearer"
         private const val AUTHORIZATION = "Authorization"
     }
