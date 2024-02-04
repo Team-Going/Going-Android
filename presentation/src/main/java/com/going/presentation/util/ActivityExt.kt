@@ -19,8 +19,6 @@ import java.io.File
 import java.io.FileOutputStream
 
 fun Activity.downloadImage(number: Int) {
-    val downloadImageName = "img_tendency_result%s.png"
-
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 &&
         ContextCompat.checkSelfPermission(
             this,
@@ -33,17 +31,16 @@ fun Activity.downloadImage(number: Int) {
             resources,
             UserTendencyResultList[number].downloadImage,
         )
-        val imageFileName =
-            downloadImageName.replace("%s", number.toString())
+        val imageFileName = "img_doorip" + System.currentTimeMillis() + ".jpeg"
 
         val uploadFolder =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
 
         if (uploadFolder?.exists() == false) {
             uploadFolder.mkdirs()
         }
 
-        val imageFile = File(uploadFolder.toString(), imageFileName)
+        val imageFile = File(uploadFolder, imageFileName)
 
         try {
             val outputStream = FileOutputStream(imageFile)
