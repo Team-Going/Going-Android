@@ -1,6 +1,5 @@
 package com.going.presentation.tendency.ttest
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.TendencyTestMock
@@ -18,7 +17,7 @@ class TendencyTestViewModel @Inject constructor(
     private val tendencyRepository: TendencyRepository,
 ) : ViewModel() {
     val step = MutableStateFlow(1)
-    val isChecked = MutableLiveData(false)
+    val isChecked = MutableStateFlow(false)
     val isFirstChecked = MutableStateFlow(false)
     val isSecondChecked = MutableStateFlow(false)
     val isThirdChecked = MutableStateFlow(false)
