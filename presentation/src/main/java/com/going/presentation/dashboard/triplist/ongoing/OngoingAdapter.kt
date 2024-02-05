@@ -16,9 +16,10 @@ class OngoingAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemDashBoardOngoingBinding =
             ItemDashBoardOngoingBinding.inflate(
-                LayoutInflater.from(parent.context),
+                inflater,
                 parent,
                 false
             )

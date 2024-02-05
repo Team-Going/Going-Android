@@ -40,6 +40,7 @@ class DashBoardActivity :
     private fun checkIsFirstEntered() {
         if (intent.getBooleanExtra(IS_FIRST_ENTERED, false)) {
             val tripId = intent.getLongExtra(TRIP_ID, 0)
+            // 적용 필요
             Intent(this, TodoActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, tripId)
                 startActivity(this)

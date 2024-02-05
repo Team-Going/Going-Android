@@ -16,9 +16,10 @@ class CompletedAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompletedViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemDashBoardCompletedBinding =
             ItemDashBoardCompletedBinding.inflate(
-                LayoutInflater.from(parent.context),
+                inflater,
                 parent,
                 false
             )
