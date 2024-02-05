@@ -8,7 +8,7 @@ import com.going.ui.extension.setOnSingleClickListener
 
 class OngoingViewHolder(
     val binding: ItemDashBoardOngoingBinding,
-    private val listener: OngoingAdapter.OnDashBoardSelectedListener
+    private val itemDetailClick: (DashBoardTripModel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: DashBoardTripModel) {
@@ -28,8 +28,8 @@ class OngoingViewHolder(
                     itemView.context.getString(R.string.dashboard_tv_deadline, item.day)
             }
 
-            layoutDashboard.setOnSingleClickListener {
-                listener.onDashBoardSelectedListener(item)
+            root.setOnSingleClickListener {
+                itemDetailClick(item)
             }
         }
     }

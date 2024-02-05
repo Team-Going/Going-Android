@@ -8,12 +8,8 @@ import com.going.presentation.databinding.ItemDashBoardOngoingBinding
 import com.going.ui.extension.ItemDiffCallback
 
 class OngoingAdapter(
-    private val listener: OnDashBoardSelectedListener
+    private val itemDetailClick: (DashBoardTripModel) -> Unit
 ) : ListAdapter<DashBoardTripModel, OngoingViewHolder>(diffUtil) {
-
-    interface OnDashBoardSelectedListener {
-        fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
@@ -23,7 +19,7 @@ class OngoingAdapter(
                 parent,
                 false
             )
-        return OngoingViewHolder(binding, listener)
+        return OngoingViewHolder(binding, itemDetailClick)
     }
 
     override fun onBindViewHolder(holder: OngoingViewHolder, position: Int) {

@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
@@ -23,8 +22,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class OngoingTripFragment :
-    BaseFragment<FragmentOngoingTripBinding>(R.layout.fragment_ongoing_trip),
-    OngoingAdapter.OnDashBoardSelectedListener {
+    BaseFragment<FragmentOngoingTripBinding>(R.layout.fragment_ongoing_trip) {
 
     private val viewModel by activityViewModels<DashBoardViewModel>()
 
@@ -34,15 +32,20 @@ class OngoingTripFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initItemDecoration()
         setTripList()
         observeDashBoardListState()
 
     }
 
-    private fun initAdapter() {
-        _adapter = OngoingAdapter(this)
+    private fun initAdapterWithClickListener() {
+        _adapter = OngoingAdapter { dashBoardTripModel ->
+            Intent(activity, TodoActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, dashBoardTripModel.tripId)
+                startActivity(this)
+            }
+        }
         binding.rvDashboardOngoingTrip.adapter = adapter
     }
 
@@ -83,13 +86,6 @@ class OngoingTripFragment :
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
-    }
-
-    override fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel) {
-        Intent(activity, TodoActivity::class.java).apply {
-            putExtra(EXTRA_TRIP_ID, tripCreate.tripId)
-            startActivity(this)
-        }
     }
 
 }
