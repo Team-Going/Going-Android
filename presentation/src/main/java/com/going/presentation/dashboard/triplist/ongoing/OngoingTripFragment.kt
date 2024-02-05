@@ -1,6 +1,5 @@
 package com.going.presentation.dashboard.triplist.ongoing
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -12,7 +11,6 @@ import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.presentation.todo.TodoActivity
-import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.toast
@@ -41,10 +39,9 @@ class OngoingTripFragment :
 
     private fun initAdapterWithClickListener() {
         _adapter = OngoingAdapter { dashBoardTripModel ->
-            Intent(activity, TodoActivity::class.java).apply {
-                putExtra(EXTRA_TRIP_ID, dashBoardTripModel.tripId)
-                startActivity(this)
-            }
+            TodoActivity.createIntent(
+                requireContext(), dashBoardTripModel.tripId
+            ).apply { startActivity(this) }
         }
         binding.rvDashboardOngoingTrip.adapter = adapter
     }
