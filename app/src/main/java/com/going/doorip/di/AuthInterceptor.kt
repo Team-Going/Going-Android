@@ -59,16 +59,18 @@ class AuthInterceptor @Inject constructor(
 
                         return chain.proceed(newRequest)
                     }
-                } catch (t: Throwable) { }
+                } catch (t: Throwable) {
+                    Timber.d(t.message)
+                }
+
                 dataStore.clearInfo()
 
                 Handler(Looper.getMainLooper()).post {
                     context.toast(TOKEN_EXPIRED_ERROR)
-                    context.startActivity(
-                        Intent(context, SignInActivity::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        },
-                    )
+                    Intent(context, SignInActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        context.startActivity(this)
+                    }
                 }
             }
         }
