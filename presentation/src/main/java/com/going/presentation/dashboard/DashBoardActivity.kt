@@ -39,7 +39,8 @@ class DashBoardActivity :
         if (intent.getBooleanExtra(IS_FIRST_ENTERED, false)) {
             val tripId = intent.getLongExtra(TRIP_ID, 0)
             TodoActivity.createIntent(
-                this, tripId
+                this,
+                tripId
             ).apply { startActivity(this) }
         }
     }

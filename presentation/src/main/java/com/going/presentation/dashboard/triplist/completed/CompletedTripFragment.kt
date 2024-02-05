@@ -39,7 +39,8 @@ class CompletedTripFragment :
     private fun initAdapterWithClickListener() {
         _adapter = CompletedAdapter { dashBoardTripModel ->
             TodoActivity.createIntent(
-                requireContext(), dashBoardTripModel.tripId
+                requireContext(),
+                dashBoardTripModel.tripId
             ).apply { startActivity(this) }
         }
         binding.rvDashboardCompletedTrip.adapter = adapter

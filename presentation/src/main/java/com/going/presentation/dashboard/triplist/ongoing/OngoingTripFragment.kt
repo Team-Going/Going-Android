@@ -40,7 +40,8 @@ class OngoingTripFragment :
     private fun initAdapterWithClickListener() {
         _adapter = OngoingAdapter { dashBoardTripModel ->
             TodoActivity.createIntent(
-                requireContext(), dashBoardTripModel.tripId
+                requireContext(),
+                dashBoardTripModel.tripId
             ).apply { startActivity(this) }
         }
         binding.rvDashboardOngoingTrip.adapter = adapter
