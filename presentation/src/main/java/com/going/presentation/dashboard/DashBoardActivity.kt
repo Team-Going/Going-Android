@@ -11,6 +11,7 @@ import com.going.presentation.setting.SettingActivity
 import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -74,25 +75,13 @@ class DashBoardActivity :
 
     private fun initSettingBtnClickListener() {
         binding.btnDashboardSetting.setOnSingleClickListener {
-            navigateToSettingScreen()
-        }
-    }
-
-    private fun navigateToSettingScreen() {
-        Intent(this, SettingActivity::class.java).apply {
-            startActivity(this)
+            navigateToScreen<SettingActivity>(null, false)
         }
     }
 
     private fun initCreateTripBtnClickListener() {
         binding.btnDashboardCreateTrip.setOnSingleClickListener {
-            navigateToDashboard()
-        }
-    }
-
-    private fun navigateToDashboard() {
-        Intent(this, StartTripSplashActivity::class.java).apply {
-            startActivity(this)
+            navigateToScreen<StartTripSplashActivity>(null, false)
         }
     }
 
