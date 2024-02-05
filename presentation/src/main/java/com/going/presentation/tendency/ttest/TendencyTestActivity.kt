@@ -112,7 +112,7 @@ class TendencyTestActivity :
     private fun initNextBtnClickListener() {
         binding.btnTendencyNext.setOnSingleClickListener {
             when (viewModel.step.value) {
-                9 -> viewModel.submitTendencyTest()
+                LAST_QUESTION -> viewModel.submitTendencyTest()
                 else -> fadeOutList[0].start()
             }
         }
@@ -155,9 +155,11 @@ class TendencyTestActivity :
     }
 
     companion object {
-        const val DURATION = 500L
+        private const val DURATION = 500L
 
-        const val PROGRESS = "progress"
-        const val ALPHA = "alpha"
+        private const val LAST_QUESTION = 9
+
+        private const val PROGRESS = "progress"
+        private const val ALPHA = "alpha"
     }
 }

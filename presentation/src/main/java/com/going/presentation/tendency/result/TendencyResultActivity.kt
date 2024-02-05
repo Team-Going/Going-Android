@@ -103,7 +103,7 @@ class TendencyResultActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            downloadImage(viewModel.tendencyId.value ?: 0)
+            downloadImage(viewModel.tendencyId.value)
         }
     }
 
@@ -132,7 +132,7 @@ class TendencyResultActivity :
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                downloadImage(viewModel.tendencyId.value ?: 0)
+                downloadImage(viewModel.tendencyId.value)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }
