@@ -20,16 +20,9 @@ class OngoingViewHolder(
                 item.endDate
             )
 
-            when {
-                item.day <= 0 -> {
-                    tvDashboardDeadline.text =
-                        itemView.context.getString(R.string.dashboard_tv_traveling)
-                }
-
-                else -> {
-                    tvDashboardDeadline.text =
-                        itemView.context.getString(R.string.dashboard_tv_deadline, item.day)
-                }
+            tvDashboardDeadline.text = when {
+                item.day <= 0 -> itemView.context.getString(R.string.dashboard_tv_traveling)
+                else -> itemView.context.getString(R.string.dashboard_tv_deadline, item.day)
             }
 
             root.setOnSingleClickListener {
