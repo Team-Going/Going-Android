@@ -73,13 +73,13 @@ class DashBoardActivity :
 
     private fun initSettingBtnClickListener() {
         binding.btnDashboardSetting.setOnSingleClickListener {
-            navigateToScreen<SettingActivity>(null, false)
+            navigateToScreen<SettingActivity>(isFinish = false)
         }
     }
 
     private fun initCreateTripBtnClickListener() {
         binding.btnDashboardCreateTrip.setOnSingleClickListener {
-            navigateToScreen<StartTripSplashActivity>(null, false)
+            navigateToScreen<StartTripSplashActivity>(isFinish = false)
         }
     }
 
