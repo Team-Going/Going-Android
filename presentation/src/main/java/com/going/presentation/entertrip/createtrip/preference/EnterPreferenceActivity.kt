@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.createtrip.preference
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -163,5 +164,26 @@ class EnterPreferenceActivity :
     companion object {
         const val SERVER_DATE = "%s.%s.%s"
         const val TWO_DIGIT_FORMAT = "%02d"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            name: String,
+            startYear: Int,
+            startMonth: Int,
+            startDay: Int,
+            endYear: Int,
+            endMonth: Int,
+            endDay: Int,
+        ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
+            putExtra(NAME, name)
+            putExtra(START_YEAR, startYear)
+            putExtra(START_MONTH, startMonth)
+            putExtra(START_DAY, startDay)
+            putExtra(END_YEAR, endYear)
+            putExtra(END_MONTH, endMonth)
+            putExtra(END_DAY, endDay)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
     }
 }

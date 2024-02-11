@@ -39,13 +39,13 @@ class FinishTripActivity :
         super.onCreate(savedInstanceState)
 
         getTripInfo()
-        initCopyCodetvClickListener()
+        initCopyCodeTvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
         initOnBackPressedListener()
     }
 
-    private fun initCopyCodetvClickListener() {
+    private fun initCopyCodeTvClickListener() {
         binding.clCopyCode.setOnSingleClickListener {
             val clipboardManager =
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -61,10 +61,6 @@ class FinishTripActivity :
     }
 
     private fun startKakaoInvite(context: Context) {
-        val test = HashMap<String, String>()
-        test.put(KEY, inviteCode)
-        test.put(NAME, title)
-
         if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
             ShareClient.instance.shareCustom(
                 context,

@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.createtrip.choosedate
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -13,8 +12,7 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 
-class CreateTripActivity :
-    BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
+class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
     private val viewModel by viewModels<CreateTripViewModel>()
 
     private lateinit var startBottomSheetDialog: BottomSheetDateContentFragment
@@ -153,17 +151,16 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            Intent(this, EnterPreferenceActivity::class.java).apply {
-                putExtra(NAME, viewModel.name.value)
-                putExtra(START_YEAR, viewModel.startYear.value)
-                putExtra(START_MONTH, viewModel.startMonth.value)
-                putExtra(START_DAY, viewModel.startDay.value)
-                putExtra(END_YEAR, viewModel.endYear.value)
-                putExtra(END_MONTH, viewModel.endMonth.value)
-                putExtra(END_DAY, viewModel.endDay.value)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
-            }
+            EnterPreferenceActivity.createIntent(
+                this,
+                viewModel.name.value ?: "",
+                viewModel.startYear.value ?: 0,
+                viewModel.startMonth.value ?: 0,
+                viewModel.startDay.value ?: 0,
+                viewModel.endYear.value ?: 0,
+                viewModel.endMonth.value ?: 0,
+                viewModel.endDay.value ?: 0,
+            ).apply { startActivity(this) }
         }
     }
 
