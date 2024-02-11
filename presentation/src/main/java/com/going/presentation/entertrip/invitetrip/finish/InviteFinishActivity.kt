@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.invitetrip.finish
 
-import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
@@ -58,10 +57,10 @@ class InviteFinishActivity :
 
     private fun initEnterBtnClickListener() {
         binding.btnInviteFinishEnter.setOnSingleClickListener {
-            Intent(this, FinishPreferenceActivity::class.java).apply {
-                putExtra(TRIP_ID, tripId)
-                startActivity(this)
-            }
+            FinishPreferenceActivity.createIntent(
+                this,
+                tripId
+            ).apply { startActivity(this) }
         }
     }
 
