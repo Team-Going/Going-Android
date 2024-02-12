@@ -8,6 +8,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.profile.ProfileViewModel
+import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,9 +42,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initProfileClickListener() {
         binding.btnSettingProfile.setOnSingleClickListener {
-            Intent(this, ProfileActivity::class.java).apply {
-                startActivity(this)
-            }
+            navigateToScreen<ProfileActivity>(isFinish = false)
         }
     }
 
