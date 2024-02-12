@@ -3,7 +3,6 @@ package com.going.presentation.entertrip.createtrip.preference
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
@@ -27,6 +26,7 @@ import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -131,9 +131,9 @@ class EnterPreferenceActivity :
         val isValid = preferenceAnswers.all { it != Int.MAX_VALUE }
 
         if (isValid) {
-            binding.btnPreferenceStart.isEnabled = isValid
+            binding.btnPreferenceStart.isEnabled = true
             binding.btnPreferenceStart.setTextColor(
-                ContextCompat.getColorStateList(this, R.color.white_000),
+                colorOf(R.color.white_000)
             )
         }
     }
