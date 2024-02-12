@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
+import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_DAY
@@ -104,19 +105,7 @@ class EnterPreferenceActivity :
     private fun observeEnterPreferenceListState() {
         viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    Intent(this, FinishTripActivity::class.java).apply {
-                        putExtra(TITLE, state.data.title)
-                        putExtra(START, state.data.startDate)
-                        putExtra(END, state.data.endDate)
-                        putExtra(INVITE_CODE, state.data.code)
-                        putExtra(DAY, state.data.day)
-                        putExtra(TRIP_ID, state.data.tripId)
-                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(this)
-                    }
-                    finish()
-                }
+                is UiState.Success -> navigateToFinishTrip(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -125,6 +114,20 @@ class EnterPreferenceActivity :
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun navigateToFinishTrip(data: EnterPreferenceModel) {
+        Intent(this, FinishTripActivity::class.java).apply {
+            putExtra(TITLE, data.title)
+            putExtra(START, data.startDate)
+            putExtra(END, data.endDate)
+            putExtra(INVITE_CODE, data.code)
+            putExtra(DAY, data.day)
+            putExtra(TRIP_ID, data.tripId)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(this)
+        }
+        finish()
     }
 
     private fun isButtonValid() {
