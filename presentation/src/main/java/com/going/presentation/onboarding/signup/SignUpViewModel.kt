@@ -36,13 +36,14 @@ class SignUpViewModel @Inject constructor(
 
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { _, error ->
-                if (error == null) {
-                    val kakaoAccessToken =
-                        TokenManagerProvider.instance.manager.getToken()?.accessToken
-                    signUpWithServer(kakaoAccessToken.toString())
-                } else {
+                if (error != null) {
                     _isSignUpState.value = AuthState.SIGNIN
+                    return@accessTokenInfo
                 }
+
+                val kakaoAccessToken =
+                    TokenManagerProvider.instance.manager.getToken()?.accessToken
+                signUpWithServer(kakaoAccessToken.toString())
             }
         } else {
             _isSignUpState.value = AuthState.SIGNIN
