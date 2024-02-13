@@ -1,12 +1,9 @@
 package com.going.presentation.profile
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.ProfileMock
 import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.repository.ProfileRepository
-import com.going.presentation.R
 import com.going.ui.extension.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +19,7 @@ class ProfileViewModel @Inject constructor(
     private val _userInfoState = MutableStateFlow<UiState<UserProfileRequestModel>>(UiState.Empty)
     val userInfoState: StateFlow<UiState<UserProfileRequestModel>> = _userInfoState
 
-    val profileId = MutableLiveData(0)
+    val profileId = MutableStateFlow(0)
 
     fun getUserInfoState() {
         viewModelScope.launch {
