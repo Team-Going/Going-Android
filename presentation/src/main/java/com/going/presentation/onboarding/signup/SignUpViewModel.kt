@@ -42,8 +42,8 @@ class SignUpViewModel @Inject constructor(
                 }
 
                 val kakaoAccessToken =
-                    TokenManagerProvider.instance.manager.getToken()?.accessToken
-                signUpWithServer(kakaoAccessToken.toString())
+                    TokenManagerProvider.instance.manager.getToken()?.accessToken.toString()
+                signUpWithServer(kakaoAccessToken)
             }
         } else {
             _isSignUpState.value = AuthState.SIGNIN

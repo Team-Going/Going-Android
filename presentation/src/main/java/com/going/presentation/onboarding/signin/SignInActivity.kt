@@ -15,6 +15,7 @@ import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.openWebView
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -56,9 +57,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     private fun initTermsBtnClickListener() {
         binding.btnTerms.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
-                startActivity(this)
-            }
+            openWebView(TERMS_URL)
         }
     }
 
