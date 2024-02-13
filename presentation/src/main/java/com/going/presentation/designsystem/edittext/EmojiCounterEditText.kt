@@ -25,32 +25,17 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     val editText
         get() = binding.etEmojiCounterEtContent
 
+    private val editTextStateMap = mapOf(
+        EditTextState.SUCCESS to Triple(R.color.gray_700, R.drawable.shape_rect_4_gray700_line, ""),
+        EditTextState.EMPTY to Triple(R.color.gray_200, R.drawable.shape_rect_4_gray200_line, ""),
+        EditTextState.BLANK to Triple(R.color.red_500, R.drawable.shape_rect_4_red500_line, blankWarning),
+        EditTextState.BLANK to Triple(R.color.red_500, R.drawable.shape_rect_4_red500_line, overWarning),
+    )
+
     var state: EditTextState = EditTextState.EMPTY
         set(value) {
             field = value
-            when (field) {
-                EditTextState.SUCCESS -> setEditTextState(
-                    R.color.gray_700,
-                    R.drawable.shape_rect_4_gray700_line,
-                )
-
-                EditTextState.EMPTY -> setEditTextState(
-                    R.color.gray_200,
-                    R.drawable.shape_rect_4_gray200_line,
-                )
-
-                EditTextState.BLANK -> setEditTextState(
-                    R.color.red_500,
-                    R.drawable.shape_rect_4_red500_line,
-                    blankWarning,
-                )
-
-                EditTextState.OVER -> setEditTextState(
-                    R.color.red_500,
-                    R.drawable.shape_rect_4_red500_line,
-                    overWarning,
-                )
-            }
+            editTextStateMap[field]?.let { setEditTextState(it) }
         }
 
     init {
@@ -101,14 +86,18 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         binding.tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
     }
 
-    private fun setEditTextState(color: Int, background: Int, text: String = "") {
+    private fun setEditTextState(info: Triple<Int, Int, String>) {
+        val color = info.first
+        val background = info.second
+        val text = info.third
+
         binding.tvEmojiCounterEtWarningMessage.isVisible = color == R.color.red_500
-        binding.tvEmojiCounterEtWarningMessage.text = text
         binding.tvEmojiCounterEtNameCounter.setTextColor(context.colorOf(color))
         binding.etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
             this.resources,
             background,
             context.theme,
         )
+        binding.tvEmojiCounterEtWarningMessage.text = text
     }
 }
