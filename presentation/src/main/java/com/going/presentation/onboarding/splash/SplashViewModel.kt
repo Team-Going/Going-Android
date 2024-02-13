@@ -42,6 +42,6 @@ class SplashViewModel @Inject constructor(
     }
 
     companion object {
-        const val TENDENCY = "e4045"
+        private const val TENDENCY = "e4045"
     }
 }

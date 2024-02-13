@@ -8,7 +8,6 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity

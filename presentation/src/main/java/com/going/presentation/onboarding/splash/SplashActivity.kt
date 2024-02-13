@@ -23,8 +23,14 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
-
     private val viewModel by viewModels<SplashViewModel>()
+
+    private val authStateMap = mapOf(
+        AuthState.SUCCESS to { navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+        AuthState.FAILURE to { navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+        AuthState.TENDENCY to { navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,17 +58,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             } else {
                 navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
-        }, 2200)
+        }, delayTime)
     }
 
     private fun observeUserState() {
         viewModel.userState.flowWithLifecycle(lifecycle).onEach { state ->
-            when (state) {
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.FAILURE -> navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                else -> return@onEach
-            }
+            authStateMap[state]
         }.launchIn(lifecycleScope)
     }
 
@@ -78,4 +79,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
             .create()
             .show()
+
+    companion object {
+        private const val delayTime = 2200L
+    }
 }
