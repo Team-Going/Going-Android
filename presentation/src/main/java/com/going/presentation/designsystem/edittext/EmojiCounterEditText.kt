@@ -87,13 +87,15 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         val background = info.second
         val text = info.third
 
-        binding.tvEmojiCounterEtWarningMessage.isVisible = color == R.color.red_500
-        binding.tvEmojiCounterEtNameCounter.setTextColor(context.colorOf(color))
-        binding.etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
-            this.resources,
-            background,
-            context.theme,
-        )
-        binding.tvEmojiCounterEtWarningMessage.text = text
+        with(binding) {
+            tvEmojiCounterEtWarningMessage.isVisible = color == R.color.red_500
+            tvEmojiCounterEtNameCounter.setTextColor(context.colorOf(color))
+            etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
+                this@EmojiCounterEditText.resources,
+                background,
+                context.theme,
+            )
+            tvEmojiCounterEtWarningMessage.text = text
+        }
     }
 }
