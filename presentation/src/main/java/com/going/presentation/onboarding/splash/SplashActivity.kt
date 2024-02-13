@@ -58,7 +58,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             } else {
                 navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
-        }, delayTime)
+        }, DELAY_TIME)
     }
 
     private fun observeUserState() {
@@ -81,6 +81,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             .show()
 
     companion object {
-        private const val delayTime = 2200L
+        private const val DELAY_TIME = 2200L
     }
 }
