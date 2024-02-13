@@ -1,8 +1,11 @@
 package com.going.presentation.entertrip.invitetrip.finish
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
+import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
@@ -68,6 +71,22 @@ class InviteFinishActivity :
         const val DATE_FORMAT = "%s - %s"
         const val D_DAY_FORMAT = "D-%d"
         const val TRIP_FORMAT = "여행중"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long,
+            title: String,
+            startDate: String,
+            endDate: String,
+            day: Int,
+        ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+            putExtra(TITLE, title)
+            putExtra(START, startDate)
+            putExtra(END, endDate)
+            putExtra(DAY, day)
+        }
     }
 }
 
