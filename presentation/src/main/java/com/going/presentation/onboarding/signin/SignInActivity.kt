@@ -27,6 +27,13 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     private val viewModel by viewModels<SignInViewModel>()
 
+    private val authStateMap = mapOf(
+        AuthState.SUCCESS to { navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+        AuthState.FAILURE to { toast(getString(R.string.server_error)) },
+        AuthState.SIGNUP to { navigateToScreen<SignUpActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+        AuthState.TENDENCY to { navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,13 +75,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
-            when (state) {
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                else -> return@onEach
-            }
+            authStateMap[state]
         }.launchIn(lifecycleScope)
     }
 }

@@ -77,11 +77,7 @@ class SignInViewModel @Inject constructor(
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
                 tokenRepository.setUserId(it.userId)
 
-                if (it.isResult) {
-                    _postChangeTokenState.value = AuthState.SUCCESS
-                } else {
-                    _postChangeTokenState.value = AuthState.TENDENCY
-                }
+                _postChangeTokenState.value = if (it.isResult) AuthState.SUCCESS else AuthState.TENDENCY
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
