@@ -20,7 +20,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     private var maxLen: Int = 0
     private var canBlankError: Boolean = false
     lateinit var overWarning: String
-    var blankWarning: String = ""
+    lateinit var blankWarning: String
 
     val editText
         get() = binding.etEmojiCounterEtContent
@@ -65,16 +65,12 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         binding.etEmojiCounterEtContent.doAfterTextChanged { text ->
             val len = text.toString().getGraphemeLength()
 
-            state =
-                if (text.toString().isBlank() && len != 0 && canBlankError) {
-                    EditTextState.BLANK
-                } else if (len > maxLen) {
-                    EditTextState.OVER
-                } else if (len > 0) {
-                    EditTextState.SUCCESS
-                } else {
-                    EditTextState.EMPTY
-                }
+            state = when {
+                text.toString().isBlank() && len != 0 && canBlankError -> EditTextState.BLANK
+                len > maxLen -> EditTextState.OVER
+                len > 0 -> EditTextState.SUCCESS
+                else -> EditTextState.EMPTY
+            }
 
             binding.tvEmojiCounterEtNameCounter.text =
                 context.getString(R.string.counter, len, maxLen)
