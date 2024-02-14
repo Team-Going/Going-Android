@@ -1,18 +1,17 @@
 package com.going.presentation.onboarding.signup
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.AuthState
+import com.going.domain.entity.SignUpState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
-import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -25,12 +24,6 @@ class SignUpActivity :
     BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
 
     private val viewModel by viewModels<SignUpViewModel>()
-
-    private val authStateMap = mapOf(
-        AuthState.SUCCESS to { navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
-        AuthState.FAILURE to { toast(getString(R.string.server_error)) },
-        AuthState.SIGNIN to { navigateToScreen<SplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,7 +77,12 @@ class SignUpActivity :
 
     private fun observeIsSignUpState() {
         viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
-            authStateMap[state]
+            when (state) {
+                SignUpState.LOADING -> return@onEach
+                SignUpState.SUCCESS -> navigateToScreenClear<TendencySplashActivity>()
+                SignUpState.FAILURE -> toast(getString(R.string.server_error))
+                SignUpState.SPLASH -> navigateToScreenClear<SplashActivity>()
+            }
         }.launchIn(lifecycleScope)
     }
 }

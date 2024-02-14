@@ -2,7 +2,7 @@ package com.going.presentation.onboarding.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.AuthState
+import com.going.domain.entity.SignUpState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
@@ -28,26 +28,24 @@ class SignUpViewModel @Inject constructor(
     val isNameAvailable = MutableStateFlow(false)
     val isInfoAvailable = MutableStateFlow(false)
 
-    private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
-    val isSignUpState: StateFlow<AuthState> = _isSignUpState
+    private val _isSignUpState = MutableStateFlow(SignUpState.LOADING)
+    val isSignUpState: StateFlow<SignUpState> = _isSignUpState
 
     fun startSignUp() {
-        _isSignUpState.value = AuthState.LOADING
+        _isSignUpState.value = SignUpState.LOADING
 
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { _, error ->
-                if (error != null) {
-                    _isSignUpState.value = AuthState.SIGNIN
+                if (error == null) {
+                    val kakaoAccessToken =
+                        TokenManagerProvider.instance.manager.getToken()?.accessToken.toString()
+                    signUpWithServer(kakaoAccessToken)
                     return@accessTokenInfo
                 }
-
-                val kakaoAccessToken =
-                    TokenManagerProvider.instance.manager.getToken()?.accessToken.toString()
-                signUpWithServer(kakaoAccessToken)
             }
-        } else {
-            _isSignUpState.value = AuthState.SIGNIN
         }
+
+        _isSignUpState.value = SignUpState.SPLASH
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
@@ -58,9 +56,9 @@ class SignUpViewModel @Inject constructor(
             ).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
                 tokenRepository.setUserId(it.userId)
-                _isSignUpState.value = AuthState.SUCCESS
+                _isSignUpState.value = SignUpState.SUCCESS
             }.onFailure {
-                _isSignUpState.value = AuthState.FAILURE
+                _isSignUpState.value = SignUpState.FAILURE
             }
         }
     }
