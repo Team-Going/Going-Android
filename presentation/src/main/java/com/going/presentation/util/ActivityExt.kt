@@ -99,3 +99,11 @@ inline fun <reified T : Activity> Activity.navigateToScreen(
         finish()
     }
 }
+
+inline fun <reified T : Activity> Activity.navigateToScreenClear() {
+    Intent(this, T::class.java).apply {
+        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(this)
+    }
+    finish()
+}

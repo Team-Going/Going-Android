@@ -1,12 +1,10 @@
 package com.going.presentation.onboarding.signin
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.AuthState
+import com.going.domain.entity.SignInState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignInBinding
@@ -14,7 +12,7 @@ import com.going.presentation.onboarding.signup.SignUpActivity
 import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
-import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.presentation.util.openWebView
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -27,13 +25,6 @@ import kotlinx.coroutines.flow.onEach
 class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
     private val viewModel by viewModels<SignInViewModel>()
-
-    private val authStateMap = mapOf(
-        AuthState.SUCCESS to { navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
-        AuthState.FAILURE to { toast(getString(R.string.server_error)) },
-        AuthState.SIGNUP to { navigateToScreen<SignUpActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
-        AuthState.TENDENCY to { navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP)) },
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +65,13 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
-            authStateMap[state]
+            when (state) {
+                SignInState.LOADING -> return@onEach
+                SignInState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
+                SignInState.FAILURE -> toast(getString(R.string.server_error))
+                SignInState.SIGNUP -> navigateToScreenClear<SignUpActivity>()
+                SignInState.TENDENCY -> navigateToScreenClear<TendencySplashActivity>()
+            }
         }.launchIn(lifecycleScope)
     }
 }
