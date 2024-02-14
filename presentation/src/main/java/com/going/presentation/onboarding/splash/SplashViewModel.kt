@@ -31,7 +31,7 @@ class SplashViewModel @Inject constructor(
                     val errorCode = toErrorCode(it)
 
                     _userState.value = when (errorCode) {
-                        TENDENCY -> AuthState.TENDENCY
+                        TENDENCY -> AuthState.OTHER_PAGE
                         else -> AuthState.FAILURE
                     }
                 }

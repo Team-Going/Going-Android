@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.SignUpState
+import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.onboarding.splash.SplashActivity
@@ -76,12 +76,12 @@ class SignUpActivity :
     }
 
     private fun observeIsSignUpState() {
-        viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.isAuthState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                SignUpState.LOADING -> return@onEach
-                SignUpState.SUCCESS -> navigateToScreenClear<TendencySplashActivity>()
-                SignUpState.FAILURE -> toast(getString(R.string.server_error))
-                SignUpState.SPLASH -> navigateToScreenClear<SplashActivity>()
+                AuthState.LOADING -> return@onEach
+                AuthState.SUCCESS -> navigateToScreenClear<TendencySplashActivity>()
+                AuthState.FAILURE -> toast(getString(R.string.server_error))
+                AuthState.OTHER_PAGE -> navigateToScreenClear<SplashActivity>()
             }
         }.launchIn(lifecycleScope)
     }

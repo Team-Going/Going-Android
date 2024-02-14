@@ -2,7 +2,7 @@ package com.going.presentation.onboarding.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.SignUpState
+import com.going.domain.entity.AuthState
 import com.going.domain.entity.request.SignUpRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
@@ -28,11 +28,11 @@ class SignUpViewModel @Inject constructor(
     val isNameAvailable = MutableStateFlow(false)
     val isInfoAvailable = MutableStateFlow(false)
 
-    private val _isSignUpState = MutableStateFlow(SignUpState.LOADING)
-    val isSignUpState: StateFlow<SignUpState> = _isSignUpState
+    private val _isAuthState = MutableStateFlow(AuthState.LOADING)
+    val isAuthState: StateFlow<AuthState> = _isAuthState
 
     fun startSignUp() {
-        _isSignUpState.value = SignUpState.LOADING
+        _isAuthState.value = AuthState.LOADING
 
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { _, error ->
@@ -45,7 +45,7 @@ class SignUpViewModel @Inject constructor(
             }
         }
 
-        _isSignUpState.value = SignUpState.SPLASH
+        _isAuthState.value = AuthState.OTHER_PAGE
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
@@ -56,9 +56,9 @@ class SignUpViewModel @Inject constructor(
             ).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
                 tokenRepository.setUserId(it.userId)
-                _isSignUpState.value = SignUpState.SUCCESS
+                _isAuthState.value = AuthState.SUCCESS
             }.onFailure {
-                _isSignUpState.value = SignUpState.FAILURE
+                _isAuthState.value = AuthState.FAILURE
             }
         }
     }
