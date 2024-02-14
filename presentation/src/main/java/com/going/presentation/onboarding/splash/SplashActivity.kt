@@ -15,6 +15,7 @@ import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +51,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             if (viewModel.getHasAccessToken()) {
                 viewModel.getUserState()
             } else {
-                navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                navigateToScreenClear<SignInActivity>()
             }
         }, DELAY_TIME)
     }
@@ -59,9 +60,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         viewModel.userState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.FAILURE -> navigateToScreen<SignInActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.OTHER_PAGE -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                AuthState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
+                AuthState.FAILURE -> navigateToScreenClear<SignInActivity>()
+                AuthState.OTHER_PAGE -> navigateToScreenClear<TendencySplashActivity>()
             }
         }.launchIn(lifecycleScope)
     }
