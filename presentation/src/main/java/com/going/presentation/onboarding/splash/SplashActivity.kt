@@ -1,10 +1,7 @@
 package com.going.presentation.onboarding.splash
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,13 +11,14 @@ import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
-import com.going.presentation.util.navigateToScreen
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
@@ -34,9 +32,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         observeUserState()
     }
 
-    private fun setStatusBarColor() {
-        setStatusBarColorFromResource(R.color.red_500)
-    }
+    private fun setStatusBarColor() = setStatusBarColorFromResource(R.color.red_500)
 
     private fun checkConnectedNetwork() {
         if (NetworkManager.checkNetworkState(this)) {
@@ -46,14 +42,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
-    private fun initSplash() {
-        Handler(Looper.getMainLooper()).postDelayed({
+    private fun initSplash() { // 이걸 뷰모델이 해줘야하나??? state로 관리???
+        lifecycleScope.launch {
+            delay(DELAY_TIME)
             if (viewModel.getHasAccessToken()) {
                 viewModel.getUserState()
             } else {
                 navigateToScreenClear<SignInActivity>()
             }
-        }, DELAY_TIME)
+        }
     }
 
     private fun observeUserState() {
@@ -67,18 +64,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }.launchIn(lifecycleScope)
     }
 
-    private fun showNetworkErrorAlertDialog() =
-        AlertDialog.Builder(this)
-            .setTitle(R.string.notice)
-            .setMessage(R.string.internet_connect_error)
-            .setCancelable(false)
-            .setPositiveButton(
-                R.string.okay,
-            ) { _, _ ->
-                finishAffinity()
-            }
-            .create()
-            .show()
+    private fun showNetworkErrorAlertDialog() = AlertDialog.Builder(this).setTitle(R.string.notice)
+        .setMessage(R.string.internet_connect_error).setCancelable(false).setPositiveButton(
+            R.string.okay,
+        ) { _, _ ->
+            finishAffinity()
+        }.create().show()
 
     companion object {
         private const val DELAY_TIME = 2200L
