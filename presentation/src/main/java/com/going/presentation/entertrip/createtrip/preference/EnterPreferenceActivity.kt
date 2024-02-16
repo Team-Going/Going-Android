@@ -3,6 +3,7 @@ package com.going.presentation.entertrip.createtrip.preference
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -31,6 +32,7 @@ import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -90,8 +92,7 @@ class EnterPreferenceActivity :
         if (intent != null) {
             title = intent.getStringExtra(NAME)
             val startYear = intent.getIntExtra(START_YEAR, 0)
-            val startMonth =
-                String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
+            val startMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
             val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
             val endYear = intent.getIntExtra(END_YEAR, 0)
             val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
@@ -161,28 +162,33 @@ class EnterPreferenceActivity :
         _adapter = null
     }
 
+    @Parcelize
+    data class IntentData(
+        val name: String,
+        val startYear: Int,
+        val startMonth: Int,
+        val startDay: Int,
+        val endYear: Int,
+        val endMonth: Int,
+        val endDay: Int
+    ) : Parcelable
+
+
     companion object {
         const val SERVER_DATE = "%s.%s.%s"
         const val TWO_DIGIT_FORMAT = "%02d"
 
         @JvmStatic
         fun createIntent(
-            context: Context,
-            name: String,
-            startYear: Int,
-            startMonth: Int,
-            startDay: Int,
-            endYear: Int,
-            endMonth: Int,
-            endDay: Int,
+            context: Context, data: IntentData
         ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
-            putExtra(NAME, name)
-            putExtra(START_YEAR, startYear)
-            putExtra(START_MONTH, startMonth)
-            putExtra(START_DAY, startDay)
-            putExtra(END_YEAR, endYear)
-            putExtra(END_MONTH, endMonth)
-            putExtra(END_DAY, endDay)
+            putExtra(NAME, data.name)
+            putExtra(START_YEAR, data.startYear)
+            putExtra(START_MONTH, data.startMonth)
+            putExtra(START_DAY, data.startDay)
+            putExtra(END_YEAR, data.endYear)
+            putExtra(END_MONTH, data.endMonth)
+            putExtra(END_DAY, data.endDay)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
     }

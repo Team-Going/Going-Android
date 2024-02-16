@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityInviteFinishBinding
-import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
@@ -80,7 +80,7 @@ class InviteFinishActivity :
             startDate: String,
             endDate: String,
             day: Int,
-        ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
+        ): Intent = Intent(context, EnterTripActivity::class.java).apply {
             putExtra(TRIP_ID, tripId)
             putExtra(TITLE, title)
             putExtra(START, startDate)
