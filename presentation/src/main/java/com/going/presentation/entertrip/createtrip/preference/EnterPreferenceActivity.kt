@@ -84,19 +84,17 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        if (intent != null) {
-            title = intent.getStringExtra(NAME)
-            val startYear = intent.getIntExtra(START_YEAR, 0)
-            val startMonth =
-                String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
-            val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
-            val endYear = intent.getIntExtra(END_YEAR, 0)
-            val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
-            val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
+        title = intent.getStringExtra(NAME)
+        val startYear = intent.getIntExtra(START_YEAR, 0)
+        val startMonth =
+            String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
+        val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
+        val endYear = intent.getIntExtra(END_YEAR, 0)
+        val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
+        val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
 
-            startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
-            endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
-        }
+        startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
+        endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
     }
 
     private fun observeEnterPreferenceListState() {

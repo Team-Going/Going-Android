@@ -92,18 +92,14 @@ class CheckFriendsActivity :
         )
 
         for (i in rate.indices) {
-            when (isLeft[i]) {
-                true -> {
-                    progressBars[i].visibility = View.VISIBLE
-                    progressBarsRevert[i].visibility = View.INVISIBLE
-                    progressBars[i].progress = rate[i]
-                }
-
-                false -> {
-                    progressBars[i].visibility = View.INVISIBLE
-                    progressBarsRevert[i].visibility = View.VISIBLE
-                    progressBarsRevert[i].progress = rate[i]
-                }
+            if (isLeft[i]) {
+                progressBars[i].visibility = View.VISIBLE
+                progressBarsRevert[i].visibility = View.INVISIBLE
+                progressBars[i].progress = rate[i]
+            } else {
+                progressBars[i].visibility = View.INVISIBLE
+                progressBarsRevert[i].visibility = View.VISIBLE
+                progressBarsRevert[i].progress = rate[i]
             }
         }
     }
