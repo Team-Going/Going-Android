@@ -56,7 +56,7 @@ class CheckFriendsActivity :
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> setFriendsList(state.data)
+                is UiState.Success -> setFriendsData(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -67,7 +67,7 @@ class CheckFriendsActivity :
         }.launchIn(lifecycleScope)
     }
 
-    private fun setFriendsList(data: CheckFriendsModel) {
+    private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
         val rate = data.styles.map { it.rate }
         val isLeft = data.styles.map { it.isLeft }
