@@ -10,8 +10,9 @@ import com.going.ui.extension.ItemDiffCallback
 class CheckFriendsAdapter : ListAdapter<TripParticipantModel, CheckFriendsViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckFriendsViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoFriendsBinding =
-            ItemTodoFriendsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemTodoFriendsBinding.inflate(inflater, parent, false)
         return CheckFriendsViewHolder(binding)
     }
 
