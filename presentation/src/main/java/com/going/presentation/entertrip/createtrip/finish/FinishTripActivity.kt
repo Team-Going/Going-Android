@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
@@ -142,6 +143,20 @@ class FinishTripActivity :
         const val TEMPLATE_ID = 102829
         const val KEY = "KEY"
         const val NAME = "NAME"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            data: EnterPreferenceModel
+        ): Intent = Intent(context, FinishTripActivity::class.java).apply {
+            putExtra(TITLE, data.title)
+            putExtra(START, data.startDate)
+            putExtra(END, data.endDate)
+            putExtra(INVITE_CODE, data.code)
+            putExtra(DAY, data.day)
+            putExtra(TRIP_ID, data.tripId)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
 
     }
 

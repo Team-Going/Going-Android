@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.createtrip.preference
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -17,12 +16,6 @@ import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.INVITE_CODE
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.START
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TITLE
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
@@ -117,16 +110,10 @@ class EnterPreferenceActivity :
     }
 
     private fun navigateToFinishTrip(data: EnterPreferenceModel) {
-        Intent(this, FinishTripActivity::class.java).apply {
-            putExtra(TITLE, data.title)
-            putExtra(START, data.startDate)
-            putExtra(END, data.endDate)
-            putExtra(INVITE_CODE, data.code)
-            putExtra(DAY, data.day)
-            putExtra(TRIP_ID, data.tripId)
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
+        FinishTripActivity.createIntent(
+            this,
+            data
+        ).apply { startActivity(this) }
         finish()
     }
 
