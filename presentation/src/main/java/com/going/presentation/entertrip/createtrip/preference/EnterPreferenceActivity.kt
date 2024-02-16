@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.PreferenceData
 import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
@@ -29,8 +28,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class EnterPreferenceActivity :
-    BaseActivity<ActivityEnterPreferenceBinding>(R.layout.activity_enter_preference),
-    PreferenceTagAdapter.OnPreferenceSelectedListener {
+    BaseActivity<ActivityEnterPreferenceBinding>(R.layout.activity_enter_preference) {
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -46,7 +44,7 @@ class EnterPreferenceActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initItemDecoration()
         getCreateTripInfo()
         initBackClickListener()
@@ -56,8 +54,14 @@ class EnterPreferenceActivity :
 
     }
 
-    private fun initAdapter() {
-        _adapter = PreferenceTagAdapter(this, this)
+    private fun initAdapterWithClickListener() {
+        _adapter = PreferenceTagAdapter(
+            this
+        ) { item, checkedIndex ->
+            preferenceAnswers[item.number.toInt() - 1] = checkedIndex
+            isButtonValid()
+            sendTripInfo()
+        }
         binding.rvPreferenceTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
     }
@@ -137,12 +141,6 @@ class EnterPreferenceActivity :
         viewModel.styleC.value = preferenceAnswers[2]
         viewModel.styleD.value = preferenceAnswers[3]
         viewModel.styleE.value = preferenceAnswers[4]
-    }
-
-    override fun onPreferenceSelected(item: PreferenceData, checkList: Int) {
-        preferenceAnswers[item.number.toInt() - 1] = checkList
-        isButtonValid()
-        sendTripInfo()
     }
 
     override fun onDestroy() {

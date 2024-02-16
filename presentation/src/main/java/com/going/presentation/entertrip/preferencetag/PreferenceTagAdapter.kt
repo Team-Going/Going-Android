@@ -10,20 +10,16 @@ import com.going.ui.extension.ItemDiffCallback
 
 class PreferenceTagAdapter(
     context: Context,
-    private val listener: OnPreferenceSelectedListener
+    private val itemSelect: (PreferenceData, Int) -> Unit
 ) :
     ListAdapter<PreferenceData, PreferenceTagViewHolder>(diffUtil) {
 
     private val inflater by lazy { LayoutInflater.from(context) }
 
-    interface OnPreferenceSelectedListener {
-        fun onPreferenceSelected(item: PreferenceData, checkedIndex: Int)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferenceTagViewHolder {
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)
-        return PreferenceTagViewHolder(binding, listener)
+        return PreferenceTagViewHolder(binding, itemSelect)
     }
 
     override fun onBindViewHolder(holder: PreferenceTagViewHolder, position: Int) {

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
@@ -24,8 +23,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class FinishPreferenceActivity :
-    BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference),
-    PreferenceTagAdapter.OnPreferenceSelectedListener {
+    BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference) {
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -37,7 +35,7 @@ class FinishPreferenceActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initItemDecoration()
         getTripId()
         initNextBtnClickListener()
@@ -46,8 +44,14 @@ class FinishPreferenceActivity :
         observeFinishPreferenceState()
     }
 
-    private fun initAdapter() {
-        _adapter = PreferenceTagAdapter(this, this)
+    private fun initAdapterWithClickListener() {
+        _adapter = PreferenceTagAdapter(
+            this
+        ) { item, checkedIndex ->
+            preferenceAnswers[item.number.toInt() - 1] = checkedIndex
+            isButtonValid()
+            sendStyleInfo()
+        }
         binding.rvPreferenceTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
     }
@@ -120,12 +124,6 @@ class FinishPreferenceActivity :
         viewModel.styleC.value = preferenceAnswers[2]
         viewModel.styleD.value = preferenceAnswers[3]
         viewModel.styleE.value = preferenceAnswers[4]
-    }
-
-    override fun onPreferenceSelected(item: PreferenceData, checkList: Int) {
-        preferenceAnswers[item.number.toInt() - 1] = checkList
-        isButtonValid()
-        sendStyleInfo()
     }
 
     override fun onDestroy() {
