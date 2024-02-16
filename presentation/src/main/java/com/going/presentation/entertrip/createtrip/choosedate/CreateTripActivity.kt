@@ -153,13 +153,15 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
         binding.btnCreateTripNext.setOnSingleClickListener {
             EnterPreferenceActivity.createIntent(
                 this,
-                viewModel.name.value ?: "",
-                viewModel.startYear.value ?: 0,
-                viewModel.startMonth.value ?: 0,
-                viewModel.startDay.value ?: 0,
-                viewModel.endYear.value ?: 0,
-                viewModel.endMonth.value ?: 0,
-                viewModel.endDay.value ?: 0,
+                EnterPreferenceActivity.IntentData(
+                    name = viewModel.name.value.orEmpty(),
+                    startYear = viewModel.startYear.value ?: 0,
+                    startMonth = viewModel.startMonth.value ?: 0,
+                    startDay = viewModel.startDay.value ?: 0,
+                    endYear = viewModel.endYear.value ?: 0,
+                    endMonth = viewModel.endMonth.value ?: 0,
+                    endDay = viewModel.endDay.value ?: 0
+                )
             ).apply { startActivity(this) }
         }
     }
