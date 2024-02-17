@@ -50,7 +50,8 @@ class TendencyResultActivity :
             when (state) {
                 is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
-                else -> return@onEach
+                UiState.Empty -> return@onEach
+                UiState.Loading -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
