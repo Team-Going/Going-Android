@@ -17,7 +17,6 @@ import com.going.presentation.tendency.result.TendencyResultActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.EnumUiState
-import com.going.ui.extension.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
