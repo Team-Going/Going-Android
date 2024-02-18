@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -48,7 +47,6 @@ class EnterPreferenceActivity :
     private var startDate: String? = ""
     private var endDate: String? = ""
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
