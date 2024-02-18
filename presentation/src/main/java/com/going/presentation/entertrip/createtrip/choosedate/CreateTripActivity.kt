@@ -173,12 +173,6 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
     }
 
     companion object {
-        const val NAME = "name"
-        const val START_YEAR = "startYear"
-        const val START_MONTH = "startMonth"
-        const val START_DAY = "startDay"
-        const val END_YEAR = "endYear"
-        const val END_MONTH = "endMonth"
-        const val END_DAY = "endDay"
+        const val INTENT_DATA = "intentData"
     }
 }

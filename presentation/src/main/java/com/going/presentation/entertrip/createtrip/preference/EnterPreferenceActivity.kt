@@ -2,22 +2,18 @@ package com.going.presentation.entertrip.createtrip.preference
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_DAY
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_MONTH
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_YEAR
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.NAME
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_DAY
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.INTENT_DATA
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
@@ -52,12 +48,12 @@ class EnterPreferenceActivity :
     private var startDate: String? = ""
     private var endDate: String? = ""
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initAdapter()
         initItemDecoration()
-        getCreateTripInfo()
         initBackClickListener()
         initStartBtnClickListener()
         getCreateTripInfo()
@@ -89,19 +85,27 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        if (intent != null) {
-            title = intent.getStringExtra(NAME)
-            val startYear = intent.getIntExtra(START_YEAR, 0)
-            val startMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
-            val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
-            val endYear = intent.getIntExtra(END_YEAR, 0)
-            val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
-            val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
+        intent?.let {
+            val data: IntentData? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelableExtra(INTENT_DATA, IntentData::class.java)
+            } else {
+                toast(getString(R.string.sdk_error))
+                null
+            }
+
+            title = data?.name
+            val startYear = data?.startYear ?: 0
+            val startMonth = String.format(TWO_DIGIT_FORMAT, data?.startMonth ?: 0)
+            val startDay = String.format(TWO_DIGIT_FORMAT, data?.startDay ?: 0)
+            val endYear = data?.endYear ?: 0
+            val endMonth = String.format(TWO_DIGIT_FORMAT, data?.endMonth ?: 0)
+            val endDay = String.format(TWO_DIGIT_FORMAT, data?.endDay ?: 0)
 
             startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
             endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
         }
     }
+
 
     private fun observeEnterPreferenceListState() {
         viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->
@@ -182,13 +186,7 @@ class EnterPreferenceActivity :
         fun createIntent(
             context: Context, data: IntentData
         ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
-            putExtra(NAME, data.name)
-            putExtra(START_YEAR, data.startYear)
-            putExtra(START_MONTH, data.startMonth)
-            putExtra(START_DAY, data.startDay)
-            putExtra(END_YEAR, data.endYear)
-            putExtra(END_MONTH, data.endMonth)
-            putExtra(END_DAY, data.endDay)
+            putExtra(INTENT_DATA, data)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
     }

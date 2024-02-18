@@ -14,6 +14,7 @@
     <string name="todo_over_error">할일은 15자 이하여야 합니다</string>
     <string name="memo_over_error">메모는 1000자 이하여야 합니다</string>
     <string name="date_set_error">종료일이 시작일보다 빨라야합니다</string>
+    <string name="sdk_error">앱이 최신 기능을 지원하지 않습니다</string>
 
     <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
 
