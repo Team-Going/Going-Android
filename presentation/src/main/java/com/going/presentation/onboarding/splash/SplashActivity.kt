@@ -15,10 +15,8 @@ import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
@@ -36,20 +34,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun checkConnectedNetwork() {
         if (NetworkManager.checkNetworkState(this)) {
-            initSplash()
+            viewModel.initSplash(this)
         } else {
             showNetworkErrorAlertDialog()
-        }
-    }
-
-    private fun initSplash() { // 이걸 뷰모델이 해줘야하나??? state로 관리???
-        lifecycleScope.launch {
-            delay(DELAY_TIME)
-            if (viewModel.getHasAccessToken()) {
-                viewModel.getUserState()
-            } else {
-                navigateToScreenClear<SignInActivity>()
-            }
         }
     }
 
@@ -70,8 +57,4 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         ) { _, _ ->
             finishAffinity()
         }.create().show()
-
-    companion object {
-        private const val DELAY_TIME = 2200L
-    }
 }
