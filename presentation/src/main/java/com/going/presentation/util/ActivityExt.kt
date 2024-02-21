@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import androidx.activity.ComponentActivity
@@ -79,6 +80,11 @@ fun ComponentActivity.initOnBackPressedListener(
     this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 }
 
+fun Activity.openWebView(uri: String) =
+    Intent(Intent.ACTION_VIEW, Uri.parse(uri)).apply {
+        startActivity(this)
+    }
+
 inline fun <reified T : Activity> Activity.navigateToScreen(
     flags: List<Int>? = null,
     isFinish: Boolean = true,
@@ -92,4 +98,12 @@ inline fun <reified T : Activity> Activity.navigateToScreen(
     if (isFinish) {
         finish()
     }
+}
+
+inline fun <reified T : Activity> Activity.navigateToScreenClear() {
+    Intent(this, T::class.java).apply {
+        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(this)
+    }
+    finish()
 }
