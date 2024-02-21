@@ -1,6 +1,7 @@
 package com.going.presentation.designsystem.edittext
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -40,25 +41,30 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
-
         binding = ViewEmojiCounterEdittextBinding.inflate(
             LayoutInflater.from(context),
             this,
             true,
         )
 
-        binding.tvEmojiCounterEtTitle.text =
-            typedArray.getString(R.styleable.EmojiCounterEditText_title)
-        binding.etEmojiCounterEtContent.hint =
-            typedArray.getString(R.styleable.EmojiCounterEditText_hint)
-        canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
-        binding.etEmojiCounterEtContent.minLines = typedArray.getInt(R.styleable.EmojiCounterEditText_minLines, 1)
+        setBindingContent(typedArray)
 
         typedArray.recycle()
 
-        binding.tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
-
         checkTextAvailable()
+    }
+
+    private fun setBindingContent(typedArray: TypedArray) {
+        with(binding) {
+            tvEmojiCounterEtTitle.text =
+                typedArray.getString(R.styleable.EmojiCounterEditText_title)
+            etEmojiCounterEtContent.hint =
+                typedArray.getString(R.styleable.EmojiCounterEditText_hint)
+            etEmojiCounterEtContent.minLines =
+                typedArray.getInt(R.styleable.EmojiCounterEditText_minLines, 1)
+            tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
+        }
+        canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
     }
 
     private fun checkTextAvailable() {
