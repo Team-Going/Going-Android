@@ -35,7 +35,7 @@ class SignUpActivity :
         observeNameTextChanged()
         observeInfoTextChanged()
         observeIsSignUpState()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun initBindingViewModel() {

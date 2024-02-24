@@ -38,7 +38,7 @@ class TendencyResultActivity :
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun getUserInfo() {
