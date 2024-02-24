@@ -1,5 +1,6 @@
 package com.going.presentation.designsystem.snackbar
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -46,4 +47,8 @@ class CustomSnackBar(view: View, private val message: String) {
         @JvmStatic
         fun make(view: View, message: String) = CustomSnackBar(view, message)
     }
+}
+
+fun Context.makeSnackBar(anchorView: View, message: () -> String) {
+    CustomSnackBar.make(anchorView, message()).show()
 }
