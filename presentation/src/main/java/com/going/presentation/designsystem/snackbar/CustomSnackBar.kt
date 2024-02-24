@@ -41,7 +41,7 @@ class CustomSnackBar(view: View, private val message: String) {
     }
 
     companion object {
-        private const val DURATION = 1500
+        private const val DURATION = 2000
 
         @JvmStatic
         fun make(view: View, message: String) = CustomSnackBar(view, message)

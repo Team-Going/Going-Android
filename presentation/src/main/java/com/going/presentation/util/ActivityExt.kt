@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.going.presentation.R
+import com.going.presentation.designsystem.snackbar.CustomSnackBar
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.ui.extension.toast
 import kotlinx.coroutines.Dispatchers
@@ -82,6 +84,7 @@ fun Activity.downloadImage(number: Int) {
 }
 
 fun ComponentActivity.initOnBackPressedListener(
+    view: View,
     delay: Long = 2000L,
 ) {
     var backPressedTime = 0L
@@ -89,7 +92,7 @@ fun ComponentActivity.initOnBackPressedListener(
         override fun handleOnBackPressed() {
             if (System.currentTimeMillis() - backPressedTime >= delay) {
                 backPressedTime = System.currentTimeMillis()
-                toast(getString(R.string.toast_back_pressed))
+                CustomSnackBar.make(view, getString(R.string.toast_back_pressed)).show()
             } else {
                 finish()
             }
