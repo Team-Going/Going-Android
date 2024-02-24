@@ -21,7 +21,7 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.going.presentation.R
-import com.going.presentation.designsystem.snackbar.CustomSnackBar
+import com.going.presentation.designsystem.snackbar.customSnackBar
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.ui.extension.toast
 import kotlinx.coroutines.Dispatchers
@@ -92,7 +92,7 @@ fun ComponentActivity.initOnBackPressedListener(
         override fun handleOnBackPressed() {
             if (System.currentTimeMillis() - backPressedTime >= delay) {
                 backPressedTime = System.currentTimeMillis()
-                CustomSnackBar.make(view, getString(R.string.toast_back_pressed)).show()
+                customSnackBar(view, getString(R.string.toast_back_pressed))
             } else {
                 finish()
             }

@@ -49,6 +49,6 @@ class CustomSnackBar(view: View, private val message: String) {
     }
 }
 
-fun Context.makeSnackBar(anchorView: View, message: () -> String) {
-    CustomSnackBar.make(anchorView, message()).show()
+fun Context.customSnackBar(anchorView: View, message: String) {
+    CustomSnackBar.make(anchorView, message).show()
 }
