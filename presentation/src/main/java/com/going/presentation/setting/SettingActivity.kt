@@ -8,6 +8,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.profile.ProfileViewModel
+import com.going.presentation.util.openWebView
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,9 +50,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initInquireClickListener() {
         binding.btnSettingInquire.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(FAQ)).apply {
-                startActivity(this)
-            }
+            openWebView(FAQ)
         }
     }
 
@@ -61,6 +60,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initPolicyClickListener() {
         binding.btnSettingPolicy.setOnSingleClickListener {
+            openWebView(PRIVACY_POLICY_URL)
             Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL)).apply {
                 startActivity(this)
             }
@@ -69,6 +69,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initTermsClickListener() {
         binding.btnSettingTerms.setOnSingleClickListener {
+            openWebView(TERMS_URL)
             Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
                 startActivity(this)
             }
@@ -77,9 +78,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDoorip.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(ABOUT_DOORIP_URL)).apply {
-                startActivity(this)
-            }
+            openWebView(ABOUT_DOORIP_URL)
         }
     }
 
@@ -117,7 +116,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
             "https://goinggoing.notion.site/FAQ-920f6ad93fea46a983061f412e15cad1?pvs=74"
         private const val PRIVACY_POLICY_URL =
             "https://goinggoing.notion.site/c4d5513bba2c4c20aaf9e21522289304?pvs=74"
-        private const val TERMS_URL =
+        const val TERMS_URL =
             "https://goinggoing.notion.site/75f5d981a5b842a6be74a9dc17ca67de?pvs=74"
         private const val ABOUT_DOORIP_URL =
             "https://goinggoing.notion.site/758273e2bebb477aac0adb0195359f21"

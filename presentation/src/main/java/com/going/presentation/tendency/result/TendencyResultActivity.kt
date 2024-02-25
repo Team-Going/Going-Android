@@ -11,12 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
+import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
+import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.UiState
-import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,10 +48,10 @@ class TendencyResultActivity :
     private fun observeUserInfoState() {
         viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Loading -> return@onEach
                 is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
-                is UiState.Empty -> return@onEach
+                UiState.Empty -> return@onEach
+                UiState.Loading -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
@@ -67,66 +69,56 @@ class TendencyResultActivity :
                 tvTendencyTestResultTag2.text = getString(R.string.tag, tags[1])
                 tvTendencyTestResultTag3.text = getString(R.string.tag, tags[2])
 
-                tvFirstDescriptionTitle.text = profileBoxInfo[0].title
-                tvFirstDescriptionFirstText.text =
-                    profileBoxInfo[0].first.setBulletPoint()
-                tvFirstDescriptionSecondText.text =
-                    profileBoxInfo[0].second.setBulletPoint()
-                tvFirstDescriptionThirdText.text =
-                    profileBoxInfo[0].third.setBulletPoint()
-
-                tvSecondDescriptionTitle.text =
-                    profileBoxInfo[1].title
-                tvSecondDescriptionFirstText.text =
-                    profileBoxInfo[1].first.setBulletPoint()
-                tvSecondDescriptionSecondText.text =
-                    profileBoxInfo[1].second.setBulletPoint()
-                tvSecondDescriptionThirdText.text =
-                    profileBoxInfo[1].third.setBulletPoint()
-
-                tvThirdDescriptionTitle.text = profileBoxInfo[2].title
-                tvThirdDescriptionFirstText.text =
-                    profileBoxInfo[2].first.setBulletPoint()
-                tvThirdDescriptionSecondText.text =
-                    profileBoxInfo[2].second.setBulletPoint()
-                tvThirdDescriptionThirdText.text =
-                    profileBoxInfo[2].third.setBulletPoint()
+                with(profileBoxInfo[0]) {
+                    setChartInfo(tvChartFirst, title, first, second, third)
+                }
+                with(profileBoxInfo[1]) {
+                    setChartInfo(tvChartSecond, title, first, second, third)
+                }
+                with(profileBoxInfo[2]) {
+                    setChartInfo(tvChartThird, title, first, second, third)
+                }
             }
+        }
+    }
+
+    private fun setChartInfo(
+        chart: ChartTextView,
+        title: String,
+        first: String,
+        second: String,
+        third: String,
+    ) {
+        with(chart) {
+            setTitle(title)
+            setFirstDescription(first)
+            setSecondDescription(second)
+            setThirdDescription(third)
         }
     }
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToTendencySplashScreen()
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            downloadImage(viewModel.tendencyId.value ?: 0)
+            downloadImage(viewModel.tendencyId.value)
         }
     }
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyResultFinish.setOnSingleClickListener {
-            navigateToDashBoardScreen()
+            navigateToScreen<DashBoardActivity>(
+                listOf(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP,
+                    Intent.FLAG_ACTIVITY_NEW_TASK,
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK,
+                ),
+            )
         }
-    }
-
-    private fun navigateToTendencySplashScreen() {
-        Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
-        finish()
-    }
-
-    private fun navigateToDashBoardScreen() {
-        Intent(this, DashBoardActivity::class.java).apply {
-            startActivity(this)
-            finishAffinity()
-        }
-        finish()
     }
 
     override fun onRequestPermissionsResult(
@@ -142,7 +134,7 @@ class TendencyResultActivity :
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                downloadImage(viewModel.tendencyId.value ?: 0)
+                downloadImage(viewModel.tendencyId.value)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }

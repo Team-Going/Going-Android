@@ -1,5 +1,7 @@
 package com.going.presentation.todo
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -71,6 +73,14 @@ class TodoActivity() : BaseActivity<ActivityTodoBinding>(R.layout.activity_todo)
 
     companion object {
         const val EXTRA_TRIP_ID = "TRIP_ID"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long
+        ): Intent = Intent(context, TodoActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripId)
+        }
     }
 
 }

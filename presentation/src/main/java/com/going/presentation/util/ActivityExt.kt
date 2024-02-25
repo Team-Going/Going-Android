@@ -2,10 +2,12 @@ package com.going.presentation.util
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import androidx.activity.ComponentActivity
@@ -18,8 +20,6 @@ import java.io.File
 import java.io.FileOutputStream
 
 fun Activity.downloadImage(number: Int) {
-    val downloadImageName = "img_tendency_result%s.png"
-
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2 &&
         ContextCompat.checkSelfPermission(
             this,
@@ -32,17 +32,16 @@ fun Activity.downloadImage(number: Int) {
             resources,
             UserTendencyResultList[number].downloadImage,
         )
-        val imageFileName =
-            downloadImageName.replace("%s", number.toString())
+        val imageFileName = "img_doorip" + System.currentTimeMillis() + ".jpeg"
 
         val uploadFolder =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
 
         if (uploadFolder?.exists() == false) {
             uploadFolder.mkdirs()
         }
 
-        val imageFile = File(uploadFolder.toString(), imageFileName)
+        val imageFile = File(uploadFolder, imageFileName)
 
         try {
             val outputStream = FileOutputStream(imageFile)
@@ -79,4 +78,32 @@ fun ComponentActivity.initOnBackPressedListener(
     }
 
     this.onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+}
+
+fun Activity.openWebView(uri: String) =
+    Intent(Intent.ACTION_VIEW, Uri.parse(uri)).apply {
+        startActivity(this)
+    }
+
+inline fun <reified T : Activity> Activity.navigateToScreen(
+    flags: List<Int>? = null,
+    isFinish: Boolean = true,
+) {
+    Intent(this, T::class.java).apply {
+        flags?.map {
+            addFlags(it)
+        }
+        startActivity(this)
+    }
+    if (isFinish) {
+        finish()
+    }
+}
+
+inline fun <reified T : Activity> Activity.navigateToScreenClear() {
+    Intent(this, T::class.java).apply {
+        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(this)
+    }
+    finish()
 }

@@ -1,19 +1,16 @@
 package com.going.presentation.dashboard.triplist.completed
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentCompletedTripBinding
 import com.going.presentation.todo.TodoActivity
-import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.state.UiState
 import com.going.ui.extension.toast
@@ -23,8 +20,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class CompletedTripFragment :
-    BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip),
-    CompletedAdapter.OnDashBoardSelectedListener {
+    BaseFragment<FragmentCompletedTripBinding>(R.layout.fragment_completed_trip) {
 
     private val viewModel by activityViewModels<DashBoardViewModel>()
 
@@ -34,14 +30,19 @@ class CompletedTripFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initItemDecoration()
         setTripList()
         observeDashBoardListState()
     }
 
-    private fun initAdapter() {
-        _adapter = CompletedAdapter(this)
+    private fun initAdapterWithClickListener() {
+        _adapter = CompletedAdapter { dashBoardTripModel ->
+            TodoActivity.createIntent(
+                requireContext(),
+                dashBoardTripModel.tripId
+            ).apply { startActivity(this) }
+        }
         binding.rvDashboardCompletedTrip.adapter = adapter
     }
 
@@ -82,13 +83,6 @@ class CompletedTripFragment :
     override fun onDestroyView() {
         super.onDestroyView()
         _adapter = null
-    }
-
-    override fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel) {
-        Intent(activity, TodoActivity::class.java).apply {
-            putExtra(EXTRA_TRIP_ID, tripCreate.tripId)
-            startActivity(this)
-        }
     }
 
 }
