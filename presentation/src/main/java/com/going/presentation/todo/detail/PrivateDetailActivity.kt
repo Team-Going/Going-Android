@@ -6,7 +6,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPrivateDetailBinding
-import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.TodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener

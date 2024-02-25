@@ -14,17 +14,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PublicDetailViewModel @Inject constructor(
+class TodoDetailViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
 
     val todo = MutableLiveData("")
-    val nowTodoLength = MutableLiveData(0)
-
     val endDate = MutableLiveData("")
-
     val memo = MutableLiveData("")
-    val nowMemoLength = MutableLiveData(0)
 
     private val _todoDetailState = MutableStateFlow<UiState<List<TodoAllocatorModel>>>(UiState.Empty)
     val todoDetailState: StateFlow<UiState<List<TodoAllocatorModel>>> = _todoDetailState
@@ -40,8 +36,6 @@ class PublicDetailViewModel @Inject constructor(
                     todo.value = response.title
                     endDate.value = response.endDate
                     memo.value = response.memo
-                    nowTodoLength.value = response.title.length
-                    nowMemoLength.value = response.memo.length
                     _todoDetailState.value = UiState.Success(response.allocators)
                 }
                 .onFailure {

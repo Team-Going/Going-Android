@@ -11,8 +11,8 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoCompleteBinding
 import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.detail.PrivateDetailActivity
-import com.going.presentation.todo.detail.PublicDetailActivity
-import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.TodoDetailActivity
+import com.going.presentation.todo.detail.TodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.COMPLETE
@@ -60,7 +60,7 @@ class MyTodoCompleteFragment() :
                 if (todoModel.secret) {
                     startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
                 } else {
-                    startDetailActivity(PublicDetailActivity::class.java, todoModel.todoId)
+                    startDetailActivity(TodoDetailActivity::class.java, todoModel.todoId)
                 }
             })
         binding.rvMyTodoComplete.adapter = adapter

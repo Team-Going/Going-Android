@@ -13,8 +13,8 @@ import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.UNCOMPLETE
-import com.going.presentation.todo.detail.PublicDetailActivity
-import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
+import com.going.presentation.todo.detail.TodoDetailActivity
+import com.going.presentation.todo.detail.TodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseFragment
 import com.going.ui.state.UiState
@@ -51,7 +51,7 @@ class OurTodoUncompleteFragment() :
         _adapter = OurTodoListAdapter(
             false
         ) { todoId ->
-            Intent(activity, PublicDetailActivity::class.java).apply {
+            Intent(activity, TodoDetailActivity::class.java).apply {
                 putExtra(EXTRA_TODO_ID, todoId)
                 startActivity(this)
             }

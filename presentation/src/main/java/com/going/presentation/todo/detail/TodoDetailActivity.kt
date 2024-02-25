@@ -16,10 +16,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class PublicDetailActivity :
+class TodoDetailActivity :
     BaseActivity<ActivityPublicDetailBinding>(R.layout.activity_public_detail) {
 
-    private val viewModel by viewModels<PublicDetailViewModel>()
+    private val viewModel by viewModels<TodoDetailViewModel>()
 
     private var _adapter: TripAllocatorAdapter? = null
     private val adapter
