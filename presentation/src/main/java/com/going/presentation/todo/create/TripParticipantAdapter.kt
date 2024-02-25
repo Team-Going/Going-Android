@@ -7,18 +7,18 @@ import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.ItemDiffCallback
 
-class TodoCreateNameAdapter(
+class TripParticipantAdapter(
     private val isFixed: Boolean,
     private val itemClick: (Int) -> Unit
-) : ListAdapter<TripParticipantModel, TodoCreateNameViewHolder>(diffUtil) {
+) : ListAdapter<TripParticipantModel, TripParticipantViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoCreateNameViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripParticipantViewHolder {
         val binding: ItemTodoCreateNameBinding =
             ItemTodoCreateNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TodoCreateNameViewHolder(binding, isFixed, itemClick)
+        return TripParticipantViewHolder(binding, isFixed, itemClick)
     }
 
-    override fun onBindViewHolder(holder: TodoCreateNameViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TripParticipantViewHolder, position: Int) {
         holder.onBind(getItem(position), position)
     }
 

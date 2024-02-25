@@ -21,7 +21,7 @@ class PublicDetailActivity :
 
     private val viewModel by viewModels<PublicDetailViewModel>()
 
-    private var _adapter: TodoDetailNameAdapter? = null
+    private var _adapter: TripAllocatorAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -46,7 +46,7 @@ class PublicDetailActivity :
     }
 
     private fun initNameListAdapter() {
-        _adapter = TodoDetailNameAdapter()
+        _adapter = TripAllocatorAdapter()
         binding.rvOurTodoDetailPerson.adapter = adapter
     }
 

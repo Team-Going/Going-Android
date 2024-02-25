@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemOurTodoBinding
-import com.going.presentation.todo.name.TodoNameAdapter
+import com.going.presentation.todo.allocator.TodoAllocatorAdapter
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -18,7 +18,7 @@ class OurTodoListViewHolder(
         binding.run {
             tvOurTodoItemTitle.text = item.title
             tvOurTodoItemDate.text = item.endDate.replace("-", ".") + "까지"
-            rvOurTodoName.adapter = TodoNameAdapter(isCompleted).apply {
+            rvOurTodoName.adapter = TodoAllocatorAdapter(isCompleted).apply {
                 submitList(item.allocators)
             }
 

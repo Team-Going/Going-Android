@@ -28,7 +28,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private val viewModel by viewModels<TodoCreateViewModel>()
 
-    private var _adapter: TodoCreateNameAdapter? = null
+    private var _adapter: TripParticipantAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -103,7 +103,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     }
 
     private fun initOurTodoNameListAdapter() {
-        _adapter = TodoCreateNameAdapter(false) { position ->
+        _adapter = TripParticipantAdapter(false) { position ->
             viewModel.participantModelList[position].also { it.isSelected = !it.isSelected }
             viewModel.checkIsFinishAvailable()
         }
