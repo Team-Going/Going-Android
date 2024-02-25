@@ -7,21 +7,20 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityPublicDetailBinding
-import com.going.presentation.todo.TodoActivity
+import com.going.presentation.databinding.ActivityTodoDetailBinding
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.EnumUiState
-import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.EnumUiState
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class TodoDetailActivity :
-    BaseActivity<ActivityPublicDetailBinding>(R.layout.activity_public_detail) {
+    BaseActivity<ActivityTodoDetailBinding>(R.layout.activity_todo_detail) {
 
     private val viewModel by viewModels<TodoDetailViewModel>()
 
