@@ -55,19 +55,19 @@ class TodoDetailActivity :
     }
 
     private fun initBackBtnClickListener() {
-        binding.btnOurTodoDetailBack.setOnSingleClickListener {
+        binding.btnTodoDetailBack.setOnSingleClickListener {
             finish()
         }
     }
 
     private fun initDeleteBtnClickListener() {
-        binding.btnOurTodoDetailDelete.setOnSingleClickListener {
+        binding.btnTodoDetailDelete.setOnSingleClickListener {
             viewModel.deleteTodoFromServer(todoId)
         }
     }
 
     private fun initModBtnClickListener() {
-        binding.btnOurTodoDetailMod.setOnSingleClickListener {
+        binding.btnTodoDetailMod.setOnSingleClickListener {
             toast(getString(R.string.will_be_update))
         }
     }
