@@ -65,7 +65,8 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            if (isOurTodo) viewModel.participantIdList = adapter.currentList.filter { it.isSelected }.map { it.participantId }
+            if (isOurTodo) viewModel.participantIdList =
+                adapter.currentList.filter { it.isSelected }.map { it.participantId }
             viewModel.postToCreateTodoFromServer()
         }
     }
@@ -77,10 +78,10 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     }
 
     private fun getTripInfoId() {
-        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
-        viewModel.participantIdList =
-            intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.toList()?.map { it.toLong() }
-                ?: listOf()
+        with(viewModel) {
+            tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+            participantIdList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() } ?: listOf()
+        }
     }
 
     private fun setTodoCreateType() {
@@ -103,21 +104,22 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initOurTodoNameListAdapter() {
         _adapter = TodoCreateNameAdapter(false) { position ->
-            viewModel.participantList[position].also { it.isSelected = !it.isSelected }
+            viewModel.participantModelList[position].also { it.isSelected = !it.isSelected }
             viewModel.checkIsFinishAvailable()
         }
         binding.rvOurTodoCreatePerson.adapter = adapter
     }
 
     private fun setOurTodoParticipantList() {
-        val nameList = intent.getStringArrayListExtra(EXTRA_NAME)?.toList() ?: listOf()
-        val resultList = intent.getIntegerArrayListExtra(EXTRA_RESULT)?.toList() ?: listOf()
-        viewModel.totalParticipantList =
-            viewModel.participantIdList.zip(nameList).zip(resultList) { (id, name), result ->
+        viewModel.participantModelList =
+            viewModel.participantIdList.zip(
+                intent.getStringArrayListExtra(EXTRA_NAME) ?: listOf()
+            ).zip(
+                intent.getIntegerArrayListExtra(EXTRA_RESULT) ?: listOf()
+            ) { (id, name), result ->
                 TripParticipantModel(id, name, result)
             }
-        viewModel.participantList = viewModel.totalParticipantList
-        adapter.submitList(viewModel.totalParticipantList)
+        adapter.submitList(viewModel.participantModelList)
     }
 
     private fun observeTodoCreateState() {

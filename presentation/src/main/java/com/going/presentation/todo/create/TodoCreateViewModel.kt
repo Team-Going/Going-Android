@@ -35,8 +35,7 @@ class TodoCreateViewModel @Inject constructor(
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
 
-    var totalParticipantList: List<TripParticipantModel> = listOf()
-    var participantList: List<TripParticipantModel> = listOf()
+    var participantModelList: List<TripParticipantModel> = listOf()
     var participantIdList: List<Long> = listOf()
 
     var tripId: Long = 0
@@ -58,7 +57,7 @@ class TodoCreateViewModel @Inject constructor(
         }
 
         isFinishAvailable.value =
-            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantList.any { it.isSelected } && isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
+            todo.value?.isNotEmpty() == true && endDate.value?.isNotEmpty() == true && participantModelList.any { it.isSelected } && isTodoAvailable.value == NameState.Success && isMemoAvailable.value != NameState.OVER
     }
 
     fun postToCreateTodoFromServer() {
