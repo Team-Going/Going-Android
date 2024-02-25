@@ -24,7 +24,7 @@ import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener

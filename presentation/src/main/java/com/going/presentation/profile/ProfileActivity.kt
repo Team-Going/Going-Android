@@ -17,7 +17,7 @@ import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast

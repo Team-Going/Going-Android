@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.repository.SettingRepository
 import com.going.domain.repository.TokenRepository
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -7,7 +7,7 @@ import com.going.domain.entity.NameState
 import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.domain.repository.TodoRepository
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.getGraphemeLength
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

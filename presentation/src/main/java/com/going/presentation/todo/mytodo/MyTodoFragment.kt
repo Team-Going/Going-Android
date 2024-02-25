@@ -22,7 +22,7 @@ import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTime
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener

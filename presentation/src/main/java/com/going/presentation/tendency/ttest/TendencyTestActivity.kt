@@ -14,7 +14,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.presentation.tendency.result.TendencyResultActivity
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

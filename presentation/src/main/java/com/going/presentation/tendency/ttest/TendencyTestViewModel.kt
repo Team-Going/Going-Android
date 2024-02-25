@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.TendencyTestMock
 import com.going.domain.entity.request.TendencyRequestModel
 import com.going.domain.repository.TendencyRepository
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

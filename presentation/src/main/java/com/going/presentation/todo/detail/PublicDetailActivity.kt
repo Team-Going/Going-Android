@@ -7,8 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.EnumUiState
-import com.going.ui.extension.UiState
+import com.going.ui.state.EnumUiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

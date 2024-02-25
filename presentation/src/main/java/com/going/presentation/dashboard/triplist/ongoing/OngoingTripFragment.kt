@@ -15,7 +15,7 @@ import com.going.presentation.databinding.FragmentOngoingTripBinding
 import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

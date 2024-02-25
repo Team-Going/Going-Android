@@ -11,13 +11,11 @@ import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
 import com.going.presentation.dashboard.triplist.DashBoardDecoration
-import com.going.presentation.dashboard.triplist.ongoing.OngoingTripFragment
 import com.going.presentation.databinding.FragmentCompletedTripBinding
-import com.going.presentation.entertrip.StartTripSplashActivity
 import com.going.presentation.todo.TodoActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

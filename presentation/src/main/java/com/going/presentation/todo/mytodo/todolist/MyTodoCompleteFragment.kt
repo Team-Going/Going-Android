@@ -18,8 +18,8 @@ import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.EnumUiState
-import com.going.ui.extension.UiState
+import com.going.ui.state.EnumUiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

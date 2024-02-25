@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
 class TripAllocatorAdapter : ListAdapter<TodoAllocatorModel, TripAllocatorViewHolder>(diffUtil) {
 
