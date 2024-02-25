@@ -9,13 +9,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoCompleteBinding
-import com.going.presentation.todo.TodoDecoration
+import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.COMPLETE
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.detail.PublicDetailActivity
 import com.going.presentation.todo.detail.PublicDetailActivity.Companion.EXTRA_TODO_ID
-import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.ourtodo.OurTodoFragment
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
@@ -61,7 +60,7 @@ class OurTodoCompleteFragment() :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        val itemDeco = RvItemDecoration(requireContext(),0,0,0,30)
         binding.rvOurTodoComplete.addItemDecoration(itemDeco)
     }
 

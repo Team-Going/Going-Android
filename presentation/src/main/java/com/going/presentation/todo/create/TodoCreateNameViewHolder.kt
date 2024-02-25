@@ -1,4 +1,4 @@
-package com.going.presentation.todo.ourtodo.create
+package com.going.presentation.todo.create
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TripParticipantModel

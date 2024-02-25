@@ -1,4 +1,4 @@
-package com.going.presentation.todo.ourtodo.create
+package com.going.presentation.todo.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

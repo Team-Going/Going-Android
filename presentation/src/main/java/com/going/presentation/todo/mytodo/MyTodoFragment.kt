@@ -21,7 +21,6 @@ import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTime
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.UiState
 import com.going.ui.extension.colorOf

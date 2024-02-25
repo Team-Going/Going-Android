@@ -11,7 +11,7 @@
 
         <variable
             name="vm"
-            type="com.going.presentation.todo.ourtodo.create.OurTodoCreateViewModel" />
+            type="com.going.presentation.todo.create.OurTodoCreateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -9,7 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoUncompleteBinding
-import com.going.presentation.todo.TodoDecoration
+import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.OurTodoViewModel
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.OUR_TODO
 import com.going.presentation.todo.ourtodo.OurTodoViewModel.Companion.UNCOMPLETE
@@ -60,7 +60,7 @@ class OurTodoUncompleteFragment() :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(),0,0,0,30)
+        val itemDeco = RvItemDecoration(requireContext(),0,0,0,30)
         binding.rvOurTodoUncomplete.addItemDecoration(itemDeco)
     }
 
