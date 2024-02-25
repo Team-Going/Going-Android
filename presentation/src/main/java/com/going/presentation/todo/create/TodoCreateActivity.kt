@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.NameState
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityOurTodoCreateBinding
+import com.going.presentation.databinding.ActivityTodoCreateBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
@@ -23,16 +23,16 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class OurTodoCreateActivity :
-    BaseActivity<ActivityOurTodoCreateBinding>(R.layout.activity_our_todo_create) {
+class TodoCreateActivity :
+    BaseActivity<ActivityTodoCreateBinding>(R.layout.activity_todo_create) {
 
-    private val viewModel by viewModels<OurTodoCreateViewModel>()
+    private val viewModel by viewModels<TodoCreateViewModel>()
 
     private var _adapter: TodoCreateNameAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private var ourTodoCreateBottomSheet: OurTodoCreateBottomSheet? = null
+    private var todoCreateBottomSheet: TodoCreateBottomSheet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +64,8 @@ class OurTodoCreateActivity :
 
     private fun initDateClickListener() {
         binding.etOurTodoCreateDate.setOnSingleClickListener {
-            ourTodoCreateBottomSheet = OurTodoCreateBottomSheet()
-            ourTodoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
+            todoCreateBottomSheet = TodoCreateBottomSheet()
+            todoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
@@ -178,7 +178,7 @@ class OurTodoCreateActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
-        if (ourTodoCreateBottomSheet?.isAdded == true) ourTodoCreateBottomSheet?.dismiss()
+        if (todoCreateBottomSheet?.isAdded == true) todoCreateBottomSheet?.dismiss()
     }
 
     companion object {
@@ -193,9 +193,9 @@ class OurTodoCreateActivity :
             context: Context,
             tripId: Long,
             idList: ArrayList<Int>,
-            nameList:  ArrayList<String>,
+            nameList: ArrayList<String>,
             resultList: ArrayList<Int>
-        ): Intent = Intent(context, OurTodoCreateActivity::class.java).apply {
+        ): Intent = Intent(context, TodoCreateActivity::class.java).apply {
             putExtra(EXTRA_TRIP_ID, tripId)
             putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
             putStringArrayListExtra(EXTRA_NAME, nameList)

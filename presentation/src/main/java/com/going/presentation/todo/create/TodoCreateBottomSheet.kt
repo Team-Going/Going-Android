@@ -9,10 +9,10 @@ import com.going.presentation.todo.mytodo.create.MyTodoCreateBottomSheet.Compani
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
-class OurTodoCreateBottomSheet() :
+class TodoCreateBottomSheet() :
     BaseBottomSheet<FragmentOurTodoCreateBottomSheetBinding>(R.layout.fragment_our_todo_create_bottom_sheet) {
 
-    private val viewModel by activityViewModels<OurTodoCreateViewModel>()
+    private val viewModel by activityViewModels<TodoCreateViewModel>()
 
     override fun onStart() {
         super.onStart()

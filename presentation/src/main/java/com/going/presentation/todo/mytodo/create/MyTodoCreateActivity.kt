@@ -11,7 +11,7 @@ import com.going.domain.entity.NameState
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityMyTodoCreateBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
-import com.going.presentation.todo.create.OurTodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
+import com.going.presentation.todo.create.TodoCreateActivity.Companion.EXTRA_PARTICIPANT_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
 import com.going.ui.extension.drawableOf

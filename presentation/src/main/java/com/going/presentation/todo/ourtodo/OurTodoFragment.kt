@@ -19,7 +19,7 @@ import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
-import com.going.presentation.todo.create.OurTodoCreateActivity
+import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
@@ -85,7 +85,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initAddTodoBtnListener() {
         binding.btnOurTodoAddTodo.setOnSingleClickListener {
-            OurTodoCreateActivity.createIntent(
+            TodoCreateActivity.createIntent(
                 requireContext(),
                 viewModel.tripId,
                 ArrayList(participantList.map { it.participantId.toInt() }),
