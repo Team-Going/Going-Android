@@ -8,9 +8,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPrivateDetailBinding
 import com.going.presentation.todo.detail.TodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.EnumUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

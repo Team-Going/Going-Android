@@ -1,6 +1,5 @@
 package com.going.presentation.todo.mytodo.todolist
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -9,18 +8,16 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoUncompleteBinding
-import com.going.ui.util.RvItemDecoration
-import com.going.presentation.todo.detail.PrivateDetailActivity
 import com.going.presentation.todo.detail.TodoDetailActivity
-import com.going.presentation.todo.detail.TodoDetailActivity.Companion.EXTRA_TODO_ID
 import com.going.presentation.todo.mytodo.MyTodoFragment
 import com.going.presentation.todo.mytodo.MyTodoViewModel
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.MY_TODO
 import com.going.presentation.todo.mytodo.MyTodoViewModel.Companion.UNCOMPLETE
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.toast
 import com.going.ui.state.EnumUiState
 import com.going.ui.state.UiState
-import com.going.ui.extension.toast
+import com.going.ui.util.RvItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -57,20 +54,13 @@ class MyTodoUncompleteFragment() :
             },
             { },
             { todoModel ->
-                if (todoModel.secret) {
-                    startDetailActivity(PrivateDetailActivity::class.java, todoModel.todoId)
-                } else {
-                    startDetailActivity(TodoDetailActivity::class.java, todoModel.todoId)
-                }
+                TodoDetailActivity.createIntent(
+                    requireContext(),
+                    todoModel.todoId,
+                    !todoModel.secret
+                )
             })
         binding.rvMyTodoUncomplete.adapter = adapter
-    }
-
-    private fun startDetailActivity(targetActivity: Class<*>, todoId: Long) {
-        Intent(activity, targetActivity).apply {
-            putExtra(EXTRA_TODO_ID, todoId)
-            activity?.startActivity(this)
-        }
     }
 
     private fun initItemDecoration() {

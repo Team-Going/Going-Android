@@ -1,11 +1,15 @@
 package com.going.presentation.todo.detail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityPublicDetailBinding
+import com.going.presentation.todo.TodoActivity
+import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.EnumUiState
 import com.going.ui.state.UiState
@@ -113,6 +117,17 @@ class TodoDetailActivity :
     }
 
     companion object {
-        const val EXTRA_TODO_ID = "EXTRA_TODO_ID"
+        private const val EXTRA_TODO_ID = "EXTRA_TODO_ID"
+        private const val EXTRA_IS_PUBLIC = "EXTRA_IS_PUBLIC"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            todoId: Long,
+            isPublic: Boolean,
+        ): Intent = Intent(context, TodoCreateActivity::class.java).apply {
+            putExtra(EXTRA_TODO_ID, todoId)
+            putExtra(EXTRA_IS_PUBLIC, isPublic)
+        }
     }
 }

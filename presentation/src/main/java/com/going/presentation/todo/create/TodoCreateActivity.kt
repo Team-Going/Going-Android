@@ -16,9 +16,9 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoCreateBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -80,7 +80,9 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private fun getTripInfoId() {
         with(viewModel) {
             tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
-            participantIdList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() } ?: listOf()
+            participantIdList =
+                intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() }
+                    ?: listOf()
         }
     }
 
@@ -208,10 +210,10 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     companion object {
         private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
 
-        const val EXTRA_IS_OUR_TODO = "EXTRA_IS_OUR_TODO"
-        const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
-        const val EXTRA_NAME = "EXTRA_NAME"
-        const val EXTRA_RESULT = "EXTRA_RESULT"
+        private const val EXTRA_IS_OUR_TODO = "EXTRA_IS_OUR_TODO"
+        private const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
+        private const val EXTRA_NAME = "EXTRA_NAME"
+        private const val EXTRA_RESULT = "EXTRA_RESULT"
 
         @JvmStatic
         fun createIntent(
