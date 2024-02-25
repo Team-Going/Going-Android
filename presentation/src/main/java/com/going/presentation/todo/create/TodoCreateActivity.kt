@@ -63,21 +63,21 @@ class TodoCreateActivity :
     }
 
     private fun initDateClickListener() {
-        binding.etOurTodoCreateDate.setOnSingleClickListener {
+        binding.etTodoCreateDate.setOnSingleClickListener {
             todoCreateBottomSheet = TodoCreateBottomSheet()
             todoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
     private fun initFinishBtnListener() {
-        binding.btnOurTodoMemoFinish.setOnSingleClickListener {
+        binding.btnTodoMemoFinish.setOnSingleClickListener {
             viewModel.participantList = adapter.currentList.filter { it.isSelected }
             viewModel.postToCreateTodoFromServer()
         }
     }
 
     private fun initBackBtnListener() {
-        binding.btnOurTodoCreateBack.setOnSingleClickListener {
+        binding.btnTodoCreateBack.setOnSingleClickListener {
             finish()
         }
     }
@@ -119,9 +119,9 @@ class TodoCreateActivity :
         viewModel.isTodoAvailable.observe(this) { state ->
             setColors(
                 state,
-                binding.tvOurTodoTodoCounter,
+                binding.tvTodoTodoCounter,
             ) { background ->
-                binding.etOurTodoCreateTodo.background = setBackgroundColor(background)
+                binding.etTodoCreateTodo.background = setBackgroundColor(background)
             }
         }
     }
@@ -132,7 +132,7 @@ class TodoCreateActivity :
                 state,
                 binding.tvOurTodoMemoCounter,
             ) { background ->
-                binding.etOurTodoCreateMemo.background = setBackgroundColor(background)
+                binding.etTodoCreateMemo.background = setBackgroundColor(background)
             }
         }
     }
@@ -140,9 +140,9 @@ class TodoCreateActivity :
     private fun observeDateEmpty() {
         viewModel.endDate.observe(this) { text ->
             if (text.isEmpty()) {
-                binding.etOurTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray200_line)
+                binding.etTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray200_line)
             } else {
-                binding.etOurTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray700_line)
+                binding.etTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray700_line)
             }
         }
     }
