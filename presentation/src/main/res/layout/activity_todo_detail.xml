@@ -292,7 +292,7 @@
             android:paddingVertical="10dp"
             android:text="@string/my_todo_detail_btn_delete"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_our_todo_detail_mod"
+            app:layout_constraintEnd_toStartOf="@id/btn_todo_detail_mod"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent" />
 

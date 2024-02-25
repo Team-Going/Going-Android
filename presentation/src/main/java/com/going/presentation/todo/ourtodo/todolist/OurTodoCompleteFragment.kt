@@ -51,7 +51,7 @@ class OurTodoCompleteFragment() :
         ) { todoId ->
             TodoDetailActivity.createIntent(
                 requireContext(), todoId, true
-            )
+            ).apply { startActivity(this) }
         }
         binding.rvOurTodoComplete.adapter = adapter
     }

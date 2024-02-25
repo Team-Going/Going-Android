@@ -3,6 +3,7 @@ package com.going.presentation.todo.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -29,28 +30,24 @@ class TodoDetailActivity :
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
     private var todoId: Long = 0
+    private var isPublic = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        initNameListAdapter()
         initBackBtnClickListener()
         initDeleteBtnClickListener()
         initModBtnClickListener()
         getTodoId()
         setDetailData()
+        setTodoDetailType()
         observeTodoDetailState()
         observeTodoDeleteState()
     }
 
     private fun initViewModel() {
         binding.vm = viewModel
-    }
-
-    private fun initNameListAdapter() {
-        _adapter = TripAllocatorAdapter()
-        binding.rvOurTodoDetailPerson.adapter = adapter
     }
 
     private fun initBackBtnClickListener() {
@@ -79,12 +76,32 @@ class TodoDetailActivity :
         viewModel.getTodoDetailFromServer(todoId)
     }
 
+    private fun setTodoDetailType() {
+        isPublic = intent.getBooleanExtra(EXTRA_IS_PUBLIC, true)
+        if (isPublic) initAllocatorListAdapter()
+    }
+
+    private fun initAllocatorListAdapter() {
+        _adapter = TripAllocatorAdapter()
+        binding.rvOurTodoDetailPerson.adapter = adapter
+    }
+
+
     private fun observeTodoDetailState() {
         viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Loading -> return@onEach
 
-                is UiState.Success -> adapter.submitList(state.data)
+                is UiState.Success -> {
+                    if (isPublic) {
+                        adapter.submitList(state.data)
+                    } else {
+                        with(binding) {
+                            rvOurTodoDetailPerson.visibility = View.INVISIBLE
+                            layoutMyTodoCreatePerson.visibility = View.VISIBLE
+                        }
+                    }
+                }
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -124,7 +141,7 @@ class TodoDetailActivity :
             context: Context,
             todoId: Long,
             isPublic: Boolean,
-        ): Intent = Intent(context, TodoCreateActivity::class.java).apply {
+        ): Intent = Intent(context, TodoDetailActivity::class.java).apply {
             putExtra(EXTRA_TODO_ID, todoId)
             putExtra(EXTRA_IS_PUBLIC, isPublic)
         }

@@ -88,19 +88,18 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun setTodoCreateType() {
         isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
-        setParticipantByType()
         if (isOurTodo) {
             initOurTodoNameListAdapter()
             setOurTodoParticipantList()
+        } else {
+            setMyTodoParticipant()
         }
     }
 
-    private fun setParticipantByType() {
-        if (!isOurTodo) {
-            with(binding) {
-                rvOurTodoCreatePerson.visibility = View.INVISIBLE
-                layoutMyTodoCreatePerson.visibility = View.VISIBLE
-            }
+    private fun setMyTodoParticipant() {
+        with(binding) {
+            rvOurTodoCreatePerson.visibility = View.INVISIBLE
+            layoutMyTodoCreatePerson.visibility = View.VISIBLE
         }
     }
 

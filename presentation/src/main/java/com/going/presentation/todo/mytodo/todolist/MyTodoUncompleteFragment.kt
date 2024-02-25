@@ -55,10 +55,8 @@ class MyTodoUncompleteFragment() :
             { },
             { todoModel ->
                 TodoDetailActivity.createIntent(
-                    requireContext(),
-                    todoModel.todoId,
-                    !todoModel.secret
-                )
+                    requireContext(), todoModel.todoId, !todoModel.secret
+                ).apply { startActivity(this) }
             })
         binding.rvMyTodoUncomplete.adapter = adapter
     }

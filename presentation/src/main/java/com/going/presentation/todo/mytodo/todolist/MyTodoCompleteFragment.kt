@@ -55,10 +55,8 @@ class MyTodoCompleteFragment() :
             },
             { todoModel ->
                 TodoDetailActivity.createIntent(
-                    requireContext(),
-                    todoModel.todoId,
-                    !todoModel.secret
-                )
+                    requireContext(), todoModel.todoId, !todoModel.secret
+                ).apply { startActivity(this) }
             })
         binding.rvMyTodoComplete.adapter = adapter
     }
