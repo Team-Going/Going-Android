@@ -40,11 +40,12 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        initTodoCreateType()
-        initDateClickListener()
+        setTodoCreateType()
+        initDateClickBtnListener()
         initFinishBtnListener()
         initBackBtnListener()
         getTripInfoId()
+        setTodoCreateType()
         observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
@@ -55,16 +56,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         binding.vm = viewModel
     }
 
-    private fun initTodoCreateType() {
-        isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
-        setParticipantByType()
-        if (isOurTodo) {
-            initOurTodoNameListAdapter()
-            setOurTodoParticipantList()
-        }
-    }
-
-    private fun initDateClickListener() {
+    private fun initDateClickBtnListener() {
         binding.etTodoCreateDate.setOnSingleClickListener {
             todoCreateBottomSheet = TodoCreateBottomSheet()
             todoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
@@ -91,6 +83,24 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
                 ?: listOf()
     }
 
+    private fun setTodoCreateType() {
+        isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
+        setParticipantByType()
+        if (isOurTodo) {
+            initOurTodoNameListAdapter()
+            setOurTodoParticipantList()
+        }
+    }
+
+    private fun setParticipantByType() {
+        if (!isOurTodo) {
+            with(binding) {
+                rvOurTodoCreatePerson.visibility = View.INVISIBLE
+                layoutMyTodoCreatePerson.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun initOurTodoNameListAdapter() {
         _adapter = TodoCreateNameAdapter(false) { position ->
             viewModel.participantList[position].also { it.isSelected = !it.isSelected }
@@ -108,15 +118,6 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
             }
         viewModel.participantList = viewModel.totalParticipantList
         adapter.submitList(viewModel.totalParticipantList)
-    }
-
-    private fun setParticipantByType() {
-        if (!isOurTodo) {
-            with(binding) {
-                rvOurTodoCreatePerson.visibility = View.INVISIBLE
-                layoutMyTodoCreatePerson.visibility = View.VISIBLE
-            }
-        }
     }
 
     private fun observeTodoCreateState() {
