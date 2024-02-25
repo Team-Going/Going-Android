@@ -2,15 +2,12 @@ package com.going.presentation.todo.create
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.NameState
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoCreateBinding
@@ -47,9 +44,10 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         getTripInfoId()
         setTodoCreateType()
         observeTodoCreateState()
-        observeTextLength()
-        observeMemoLength()
-        observeDateEmpty()
+        setEtTodoNameArguments()
+        setEtTodoMemoArguments()
+        observeNameTextChanged()
+        observeMemoTextChanged()
     }
 
     private fun initViewModel() {
@@ -80,9 +78,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private fun getTripInfoId() {
         with(viewModel) {
             tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
-            participantIdList =
-                intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() }
-                    ?: listOf()
+            participantIdList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() } ?: listOf()
         }
     }
 
@@ -140,64 +136,31 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         }.launchIn(lifecycleScope)
     }
 
-    private fun observeTextLength() {
-        viewModel.isTodoAvailable.observe(this) { state ->
-            setColors(
-                state,
-                binding.tvTodoTodoCounter,
-            ) { background ->
-                binding.etTodoCreateTodo.background = setBackgroundColor(background)
-            }
+    private fun setEtTodoNameArguments() {
+        with(binding.etTodoCreateTodo) {
+            setMaxLen(MAX_TODO_LEN)
+            overWarning = getString(R.string.todo_over_error)
+            blankWarning = getString(R.string.name_blank_error)
         }
     }
 
-    private fun observeMemoLength() {
-        viewModel.isMemoAvailable.observe(this) { state ->
-            setColors(
-                state,
-                binding.tvOurTodoMemoCounter,
-            ) { background ->
-                binding.etTodoCreateMemo.background = setBackgroundColor(background)
-            }
+    private fun setEtTodoMemoArguments() {
+        with(binding.etTodoCreateMemo) {
+            setMaxLen(MAX_MEMO_LEN)
+            overWarning = getString(R.string.memo_over_error)
         }
     }
 
-    private fun observeDateEmpty() {
-        viewModel.endDate.observe(this) { text ->
-            if (text.isEmpty()) {
-                binding.etTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray200_line)
-            } else {
-                binding.etTodoCreateDate.setBackgroundResource(R.drawable.shape_rect_4_gray700_line)
-            }
+    private fun observeNameTextChanged() {
+        binding.etTodoCreateTodo.editText.doAfterTextChanged { text ->
+            viewModel.setNameState(text.toString(), binding.etTodoCreateTodo.state)
         }
     }
 
-    private fun setColors(
-        state: NameState,
-        counter: TextView,
-        setBackground: (Int) -> Unit,
-    ) {
-        val (color, background) = when (state) {
-            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+    private fun observeMemoTextChanged() {
+        binding.etTodoCreateMemo.editText.doAfterTextChanged { text ->
+            viewModel.setMemoState(text.toString(), binding.etTodoCreateMemo.state)
         }
-
-        setCounterColor(counter, color)
-        setBackground(background)
-    }
-
-    private fun setCounterColor(counter: TextView, color: Int) {
-        counter.setTextColor(getColor(color))
-    }
-
-    private fun setBackgroundColor(background: Int): Drawable? {
-        return ResourcesCompat.getDrawable(
-            this.resources,
-            background,
-            theme,
-        )
     }
 
     override fun onDestroy() {
@@ -213,6 +176,9 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         private const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
         private const val EXTRA_NAME = "EXTRA_NAME"
         private const val EXTRA_RESULT = "EXTRA_RESULT"
+
+        private const val MAX_TODO_LEN = 15
+        private const val MAX_MEMO_LEN = 1000
 
         @JvmStatic
         fun createIntent(
