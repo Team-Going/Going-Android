@@ -37,7 +37,7 @@ class MyTodoViewModel @Inject constructor(
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
     var tripId: Long = 0
-    var participantId: Long = 9
+    var participantId: Int = 9
 
     fun increaseTodoCount() {
         _totalUncompletedTodoCount.value += 1
@@ -48,7 +48,7 @@ class MyTodoViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getMyTripInfo(tripId)
                 .onSuccess { response ->
-                    participantId = response.participantId
+                    participantId = response.participantId.toInt()
                     _myTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {

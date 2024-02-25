@@ -37,6 +37,7 @@ class TodoCreateViewModel @Inject constructor(
 
     var totalParticipantList: List<TripParticipantModel> = listOf()
     var participantList: List<TripParticipantModel> = listOf()
+    var participantIdList: List<Long> = listOf()
 
     var tripId: Long = 0
 
@@ -68,7 +69,7 @@ class TodoCreateViewModel @Inject constructor(
                 request = TodoCreateRequestModel(
                     title = todo.value.orEmpty(),
                     endDate = endDate.value.orEmpty(),
-                    allocators = participantList.map { it.participantId },
+                    allocators = participantIdList,
                     memo = memo.value,
                     secret = false,
                 ),

@@ -18,7 +18,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
 import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
-import com.going.presentation.todo.mytodo.create.MyTodoCreateActivity
+import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter
 import com.going.presentation.todo.ourtodo.OurTodoFragment.Companion.debounceTime
 import com.going.ui.base.BaseFragment
@@ -66,10 +66,11 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
 
     private fun initAddTodoListener() {
         binding.btnMyTodoAddTodo.setOnSingleClickListener {
-            MyTodoCreateActivity.createIntent(
+            TodoCreateActivity.createIntent(
                 requireContext(),
                 viewModel.tripId,
-                viewModel.participantId
+                false,
+                arrayListOf(viewModel.participantId)
             ).apply { startActivity(this) }
         }
     }
@@ -160,9 +161,10 @@ class MyTodoFragment() : BaseFragment<FragmentMyTodoBinding>(R.layout.fragment_m
                 val displayHeight = activity?.getWindowHeight() ?: return
                 val toolbarHeight = binding.toolbarMyTodo.height
                 val appBarHeight = binding.appbarMyTodo.totalScrollRange
-                binding.layoutMyTodoEmpty.layoutParams = (binding.layoutMyTodoEmpty.layoutParams).also {
-                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
-                }
+                binding.layoutMyTodoEmpty.layoutParams =
+                    (binding.layoutMyTodoEmpty.layoutParams).also {
+                        it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                    }
             }
         })
     }

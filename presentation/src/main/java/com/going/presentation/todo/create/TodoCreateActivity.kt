@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
@@ -23,8 +24,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class TodoCreateActivity :
-    BaseActivity<ActivityTodoCreateBinding>(R.layout.activity_todo_create) {
+class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.activity_todo_create) {
 
     private val viewModel by viewModels<TodoCreateViewModel>()
 
@@ -34,16 +34,17 @@ class TodoCreateActivity :
 
     private var todoCreateBottomSheet: TodoCreateBottomSheet? = null
 
+    private var isOurTodo = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        initNameListAdapter()
+        initTodoCreateType()
         initDateClickListener()
         initFinishBtnListener()
         initBackBtnListener()
-        getTripId()
-        setParticipantList()
+        getTripInfoId()
         observeTodoCreateState()
         observeTextLength()
         observeMemoLength()
@@ -54,12 +55,13 @@ class TodoCreateActivity :
         binding.vm = viewModel
     }
 
-    private fun initNameListAdapter() {
-        _adapter = TodoCreateNameAdapter(false) { position ->
-            viewModel.participantList[position].also { it.isSelected = !it.isSelected }
-            viewModel.checkIsFinishAvailable()
+    private fun initTodoCreateType() {
+        isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
+        setParticipantByType()
+        if (isOurTodo) {
+            initOurTodoNameListAdapter()
+            setOurTodoParticipantList()
         }
-        binding.rvOurTodoCreatePerson.adapter = adapter
     }
 
     private fun initDateClickListener() {
@@ -71,7 +73,7 @@ class TodoCreateActivity :
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            viewModel.participantList = adapter.currentList.filter { it.isSelected }
+            if (isOurTodo) viewModel.participantIdList = adapter.currentList.filter { it.isSelected }.map { it.participantId }
             viewModel.postToCreateTodoFromServer()
         }
     }
@@ -82,20 +84,39 @@ class TodoCreateActivity :
         }
     }
 
-    private fun getTripId() {
+    private fun getTripInfoId() {
         viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        viewModel.participantIdList =
+            intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.toList()?.map { it.toLong() }
+                ?: listOf()
     }
 
-    private fun setParticipantList() {
-        val idList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.toList() ?: listOf()
+    private fun initOurTodoNameListAdapter() {
+        _adapter = TodoCreateNameAdapter(false) { position ->
+            viewModel.participantList[position].also { it.isSelected = !it.isSelected }
+            viewModel.checkIsFinishAvailable()
+        }
+        binding.rvOurTodoCreatePerson.adapter = adapter
+    }
+
+    private fun setOurTodoParticipantList() {
         val nameList = intent.getStringArrayListExtra(EXTRA_NAME)?.toList() ?: listOf()
         val resultList = intent.getIntegerArrayListExtra(EXTRA_RESULT)?.toList() ?: listOf()
         viewModel.totalParticipantList =
-            idList.zip(nameList).zip(resultList) { (id, name), result ->
-                TripParticipantModel(id.toLong(), name, result)
+            viewModel.participantIdList.zip(nameList).zip(resultList) { (id, name), result ->
+                TripParticipantModel(id, name, result)
             }
         viewModel.participantList = viewModel.totalParticipantList
         adapter.submitList(viewModel.totalParticipantList)
+    }
+
+    private fun setParticipantByType() {
+        if (!isOurTodo) {
+            with(binding) {
+                rvOurTodoCreatePerson.visibility = View.INVISIBLE
+                layoutMyTodoCreatePerson.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun observeTodoCreateState() {
@@ -184,6 +205,7 @@ class TodoCreateActivity :
     companion object {
         private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
 
+        const val EXTRA_IS_OUR_TODO = "EXTRA_IS_OUR_TODO"
         const val EXTRA_PARTICIPANT_ID = "EXTRA_PARTICIPANT_ID"
         const val EXTRA_NAME = "EXTRA_NAME"
         const val EXTRA_RESULT = "EXTRA_RESULT"
@@ -192,12 +214,14 @@ class TodoCreateActivity :
         fun createIntent(
             context: Context,
             tripId: Long,
-            idList: ArrayList<Int>,
-            nameList: ArrayList<String>,
-            resultList: ArrayList<Int>
+            isOurTodo: Boolean,
+            participantIdList: ArrayList<Int>,
+            nameList: ArrayList<String> = arrayListOf(),
+            resultList: ArrayList<Int> = arrayListOf(),
         ): Intent = Intent(context, TodoCreateActivity::class.java).apply {
             putExtra(EXTRA_TRIP_ID, tripId)
-            putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, idList)
+            putExtra(EXTRA_IS_OUR_TODO, isOurTodo)
+            putIntegerArrayListExtra(EXTRA_PARTICIPANT_ID, participantIdList)
             putStringArrayListExtra(EXTRA_NAME, nameList)
             putIntegerArrayListExtra(EXTRA_RESULT, resultList)
         }

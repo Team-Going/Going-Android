@@ -204,13 +204,11 @@
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
-                    android:visibility="invisible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_todo_create_person_title"
-                    tools:listitem="@layout/item_todo_create_name"
-                    tools:visibility="visible" />
+                    tools:listitem="@layout/item_todo_create_name" />
 
                 <LinearLayout
                     android:id="@+id/layout_my_todo_create_person"

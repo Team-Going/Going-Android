@@ -88,6 +88,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             TodoCreateActivity.createIntent(
                 requireContext(),
                 viewModel.tripId,
+                true,
                 ArrayList(participantList.map { it.participantId.toInt() }),
                 ArrayList(participantList.map { it.name }),
                 ArrayList(participantList.map { it.result })

@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoCreateBottomSheetBinding
-import com.going.presentation.todo.mytodo.create.MyTodoCreateBottomSheet.Companion.TWO_DIGIT_FORMAT
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -34,6 +33,10 @@ class TodoCreateBottomSheet() :
             viewModel.checkIsFinishAvailable()
             dismiss()
         }
+    }
+
+    companion object {
+        const val TWO_DIGIT_FORMAT = "%02d"
     }
 
 }
