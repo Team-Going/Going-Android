@@ -32,7 +32,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private var todoCreateBottomSheet: TodoCreateBottomSheet? = null
+    private var todoDateBottomSheet: TodoDateBottomSheet? = null
 
     private var isOurTodo = true
 
@@ -58,8 +58,8 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initDateClickBtnListener() {
         binding.etTodoCreateDate.setOnSingleClickListener {
-            todoCreateBottomSheet = TodoCreateBottomSheet()
-            todoCreateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
+            todoDateBottomSheet = TodoDateBottomSheet()
+            todoDateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
@@ -203,7 +203,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
-        if (todoCreateBottomSheet?.isAdded == true) todoCreateBottomSheet?.dismiss()
+        if (todoDateBottomSheet?.isAdded == true) todoDateBottomSheet?.dismiss()
     }
 
     companion object {

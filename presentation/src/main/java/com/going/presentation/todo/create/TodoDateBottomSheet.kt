@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentOurTodoCreateBottomSheetBinding
+import com.going.presentation.databinding.FragmentTodoDateBottomSheetBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
-class TodoCreateBottomSheet() :
-    BaseBottomSheet<FragmentOurTodoCreateBottomSheetBinding>(R.layout.fragment_our_todo_create_bottom_sheet) {
+class TodoDateBottomSheet() :
+    BaseBottomSheet<FragmentTodoDateBottomSheetBinding>(R.layout.fragment_todo_date_bottom_sheet) {
 
     private val viewModel by activityViewModels<TodoCreateViewModel>()
 
