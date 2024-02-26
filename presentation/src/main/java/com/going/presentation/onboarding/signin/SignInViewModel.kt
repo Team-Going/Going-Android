@@ -3,7 +3,7 @@ package com.going.presentation.onboarding.signin
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.AuthState
+import com.going.domain.entity.SignInState
 import com.going.domain.entity.request.SignInRequestModel
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.TokenRepository
@@ -24,8 +24,8 @@ class SignInViewModel @Inject constructor(
     private val tokenRepository: TokenRepository,
 ) : ViewModel() {
 
-    private val _postChangeTokenState = MutableStateFlow(AuthState.EMPTY)
-    val postChangeTokenState: StateFlow<AuthState> = _postChangeTokenState
+    private val _postChangeTokenState = MutableStateFlow(SignInState.LOADING)
+    val postChangeTokenState: StateFlow<SignInState> = _postChangeTokenState
 
     private val _isAppLoginAvailable = MutableStateFlow(true)
     val isAppLoginAvailable: StateFlow<Boolean> = _isAppLoginAvailable
@@ -70,24 +70,21 @@ class SignInViewModel @Inject constructor(
         accessToken: String,
         platform: String = KAKAO,
     ) {
-        _postChangeTokenState.value = AuthState.LOADING
+        _postChangeTokenState.value = SignInState.LOADING
 
         viewModelScope.launch {
             authRepository.postSignIn(accessToken, SignInRequestModel(platform)).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
                 tokenRepository.setUserId(it.userId)
 
-                if (it.isResult) {
-                    _postChangeTokenState.value = AuthState.SUCCESS
-                } else {
-                    _postChangeTokenState.value = AuthState.TENDENCY
-                }
+                _postChangeTokenState.value =
+                    if (it.isResult) SignInState.SUCCESS else SignInState.TENDENCY
             }.onFailure {
                 val errorCode = toErrorCode(it)
 
                 _postChangeTokenState.value = when (errorCode) {
-                    SIGN_UP -> AuthState.SIGNUP
-                    else -> AuthState.FAILURE
+                    SIGN_UP -> SignInState.SIGNUP
+                    else -> SignInState.FAILURE
                 }
             }
         }

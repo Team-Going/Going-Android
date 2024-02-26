@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentSettingQuitDialogBinding
 import com.going.ui.base.BaseDialog
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

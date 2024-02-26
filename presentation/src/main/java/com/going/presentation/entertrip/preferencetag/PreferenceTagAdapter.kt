@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
 class PreferenceTagAdapter(
     context: Context,

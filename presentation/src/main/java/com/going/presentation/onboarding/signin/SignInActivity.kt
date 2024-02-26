@@ -1,12 +1,10 @@
 package com.going.presentation.onboarding.signin
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.AuthState
+import com.going.domain.entity.SignInState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignInBinding
@@ -14,7 +12,8 @@ import com.going.presentation.onboarding.signup.SignUpActivity
 import com.going.presentation.setting.SettingActivity.Companion.TERMS_URL
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
-import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
+import com.going.presentation.util.openWebView
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -34,7 +33,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         initKakaoLoginBtnClickListener()
         initTermsBtnClickListener()
         observeInfo()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun clearToken() {
@@ -49,9 +48,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
 
     private fun initTermsBtnClickListener() {
         binding.btnTerms.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
-                startActivity(this)
-            }
+            openWebView(TERMS_URL)
         }
     }
 
@@ -69,11 +66,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
     private fun observePostChangeTokenState() {
         viewModel.postChangeTokenState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToScreen<DashBoardActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNUP -> navigateToScreen<SignUpActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                AuthState.TENDENCY -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                else -> return@onEach
+                SignInState.LOADING -> return@onEach
+                SignInState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
+                SignInState.FAILURE -> toast(getString(R.string.server_error))
+                SignInState.SIGNUP -> navigateToScreenClear<SignUpActivity>()
+                SignInState.TENDENCY -> navigateToScreenClear<TendencySplashActivity>()
             }
         }.launchIn(lifecycleScope)
     }

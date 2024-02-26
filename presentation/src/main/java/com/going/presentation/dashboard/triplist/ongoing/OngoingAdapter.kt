@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.databinding.ItemDashBoardOngoingBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
 class OngoingAdapter(
     private val itemDetailClick: (DashBoardTripModel) -> Unit

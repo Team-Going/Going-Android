@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.MyTripInfoModel
 import com.going.domain.entity.response.TodoModel
 import com.going.domain.repository.TodoRepository
-import com.going.ui.extension.EnumUiState
-import com.going.ui.extension.UiState
+import com.going.ui.state.EnumUiState
+import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,7 +37,7 @@ class MyTodoViewModel @Inject constructor(
     val todoRedoState: StateFlow<EnumUiState> = _todoRedoState
 
     var tripId: Long = 0
-    var participantId: Long = 9
+    var participantId: Int = 9
 
     fun increaseTodoCount() {
         _totalUncompletedTodoCount.value += 1
@@ -48,7 +48,7 @@ class MyTodoViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getMyTripInfo(tripId)
                 .onSuccess { response ->
-                    participantId = response.participantId
+                    participantId = response.participantId.toInt()
                     _myTripInfoState.value = UiState.Success(response)
                 }
                 .onFailure {

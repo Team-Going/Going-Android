@@ -34,7 +34,7 @@ class DashBoardActivity :
         setTravelerName()
         initSettingBtnClickListener()
         initCreateTripBtnClickListener()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun checkIsFirstEntered() {

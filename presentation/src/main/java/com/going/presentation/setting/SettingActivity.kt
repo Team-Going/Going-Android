@@ -8,6 +8,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
 import com.going.presentation.profile.ProfileActivity
 import com.going.presentation.profile.ProfileViewModel
+import com.going.presentation.util.openWebView
 import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -48,9 +49,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initInquireClickListener() {
         binding.btnSettingInquire.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(FAQ)).apply {
-                startActivity(this)
-            }
+            openWebView(FAQ)
         }
     }
 
@@ -60,6 +59,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initPolicyClickListener() {
         binding.btnSettingPolicy.setOnSingleClickListener {
+            openWebView(PRIVACY_POLICY_URL)
             Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL)).apply {
                 startActivity(this)
             }
@@ -68,6 +68,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initTermsClickListener() {
         binding.btnSettingTerms.setOnSingleClickListener {
+            openWebView(TERMS_URL)
             Intent(Intent.ACTION_VIEW, Uri.parse(TERMS_URL)).apply {
                 startActivity(this)
             }
@@ -76,9 +77,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
 
     private fun initAboutDooripClickListener() {
         binding.btnSettingAboutDoorip.setOnSingleClickListener {
-            Intent(Intent.ACTION_VIEW, Uri.parse(ABOUT_DOORIP_URL)).apply {
-                startActivity(this)
-            }
+            openWebView(ABOUT_DOORIP_URL)
         }
     }
 
