@@ -18,7 +18,7 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

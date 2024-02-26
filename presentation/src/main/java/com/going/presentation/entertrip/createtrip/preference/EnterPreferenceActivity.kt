@@ -22,10 +22,10 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
 import com.going.ui.extension.getParcelable
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.launchIn
@@ -95,7 +95,6 @@ class EnterPreferenceActivity :
         startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
         endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
     }
-
 
     private fun observeEnterPreferenceListState() {
         viewModel.enterPreferenceListState.flowWithLifecycle(lifecycle).onEach { state ->

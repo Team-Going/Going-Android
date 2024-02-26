@@ -1,6 +1,5 @@
 package com.going.presentation.onboarding.signup
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
@@ -8,11 +7,11 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignUpBinding
-import com.going.presentation.onboarding.splash.SplashActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
-import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -65,24 +64,24 @@ class SignUpActivity :
     }
 
     private fun observeNameTextChanged() {
-        binding.etSignUpName.editText.doAfterTextChanged {
-            viewModel.setNameState(it.toString(), binding.etSignUpName.state)
+        binding.etSignUpName.editText.doAfterTextChanged { text ->
+            viewModel.setNameState(text.toString(), binding.etSignUpName.state)
         }
     }
 
     private fun observeInfoTextChanged() {
-        binding.etSignUpInfo.editText.doAfterTextChanged {
-            viewModel.setInfoState(it.toString(), binding.etSignUpInfo.state)
+        binding.etSignUpInfo.editText.doAfterTextChanged { text ->
+            viewModel.setInfoState(text.toString(), binding.etSignUpInfo.state)
         }
     }
 
     private fun observeIsSignUpState() {
-        viewModel.isSignUpState.flowWithLifecycle(lifecycle).onEach { state ->
+        viewModel.isAuthState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                AuthState.SUCCESS -> navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                AuthState.LOADING -> return@onEach
+                AuthState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.SIGNIN -> navigateToScreen<SplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                else -> return@onEach
+                AuthState.OTHER_PAGE -> navigateToScreenClear<TendencySplashActivity>()
             }
         }.launchIn(lifecycleScope)
     }

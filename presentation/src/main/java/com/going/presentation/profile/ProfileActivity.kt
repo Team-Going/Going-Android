@@ -19,7 +19,8 @@ import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
+import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

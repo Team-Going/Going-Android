@@ -12,7 +12,7 @@ import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentCompletedTripBinding
 import com.going.presentation.todo.TodoActivity
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginHorizontal="24dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="24dp">
 
     <TextView
         android:id="@+id/tv_emoji_counter_et_title"
         style="@style/TextAppearance.Doorip.Body3.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:textColor="@color/gray_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,10 +21,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:background="@drawable/shape_rect_4_gray200_line"
-        android:imeOptions="actionNext"
         android:gravity="top"
-        android:inputType="text"
-        android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+        android:includeFontPadding="false"
+        android:inputType="textMultiLine"
+        android:paddingVertical="20dp"
+        android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
+        android:textColorHint="@color/gray_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_emoji_counter_et_title"
         app:layout_constraintTop_toBottomOf="@id/tv_emoji_counter_et_title" />
@@ -43,6 +44,7 @@
 
     <TextView
         android:id="@+id/tv_emoji_counter_et_name_counter"
+        style="@style/TextAppearance.Doorip.Detail3.Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

@@ -6,7 +6,7 @@ import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 
-class TodoDetailNameViewHolder(
+class TripAllocatorViewHolder(
     val binding: ItemTodoCreateNameBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 

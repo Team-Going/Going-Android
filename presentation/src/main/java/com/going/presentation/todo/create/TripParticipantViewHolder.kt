@@ -1,4 +1,4 @@
-package com.going.presentation.todo.ourtodo.create
+package com.going.presentation.todo.create
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TripParticipantModel
@@ -6,7 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.colorOf
 
-class TodoCreateNameViewHolder(
+class TripParticipantViewHolder(
     val binding: ItemTodoCreateNameBinding,
     private val isFixed: Boolean,
     private val itemClick: (Int) -> Unit
