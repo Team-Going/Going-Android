@@ -21,17 +21,35 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     private var maxLen: Int = 0
     private var canBlankError: Boolean = false
     lateinit var overWarning: String
-    lateinit var blankWarning: String
+    var blankWarning: String = ""
+
+    private val editTextStateMap by lazy {
+        mapOf(
+            EditTextState.SUCCESS to Triple(
+                R.color.gray_700,
+                R.drawable.shape_rect_4_gray700_line,
+                ""
+            ),
+            EditTextState.EMPTY to Triple(
+                R.color.gray_200,
+                R.drawable.shape_rect_4_gray200_line,
+                ""
+            ),
+            EditTextState.BLANK to Triple(
+                R.color.red_500,
+                R.drawable.shape_rect_4_red500_line,
+                blankWarning
+            ),
+            EditTextState.OVER to Triple(
+                R.color.red_500,
+                R.drawable.shape_rect_4_red500_line,
+                overWarning
+            ),
+        )
+    }
 
     val editText
         get() = binding.etEmojiCounterEtContent
-
-    private val editTextStateMap = mapOf(
-        EditTextState.SUCCESS to Triple(R.color.gray_700, R.drawable.shape_rect_4_gray700_line, ""),
-        EditTextState.EMPTY to Triple(R.color.gray_200, R.drawable.shape_rect_4_gray200_line, ""),
-        EditTextState.BLANK to Triple(R.color.red_500, R.drawable.shape_rect_4_red500_line, blankWarning),
-        EditTextState.BLANK to Triple(R.color.red_500, R.drawable.shape_rect_4_red500_line, overWarning),
-    )
 
     var state: EditTextState = EditTextState.EMPTY
         set(value) {
