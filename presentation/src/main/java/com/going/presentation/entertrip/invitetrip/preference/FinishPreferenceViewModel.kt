@@ -7,7 +7,7 @@ import com.going.domain.entity.PreferenceData
 import com.going.domain.entity.request.StartInviteTripRequestModel
 import com.going.domain.entity.response.StartInviteTripModel
 import com.going.domain.repository.EnterTripRepository
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

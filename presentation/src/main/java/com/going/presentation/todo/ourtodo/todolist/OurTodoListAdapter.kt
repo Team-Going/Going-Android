@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.databinding.ItemOurTodoBinding
-import com.going.ui.extension.ItemDiffCallback
 
 class OurTodoListAdapter(
     private val isCompleted: Boolean, private val itemDetailClick: (Long) -> Unit

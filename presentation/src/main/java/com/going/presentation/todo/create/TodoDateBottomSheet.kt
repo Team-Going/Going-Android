@@ -1,17 +1,17 @@
-package com.going.presentation.todo.mytodo.create
+package com.going.presentation.todo.create
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentMyTodoCreateBottomSheetBinding
+import com.going.presentation.databinding.FragmentTodoDateBottomSheetBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
 
-class MyTodoCreateBottomSheet() :
-    BaseBottomSheet<FragmentMyTodoCreateBottomSheetBinding>(R.layout.fragment_my_todo_create_bottom_sheet) {
+class TodoDateBottomSheet() :
+    BaseBottomSheet<FragmentTodoDateBottomSheetBinding>(R.layout.fragment_todo_date_bottom_sheet) {
 
-    private val viewModel by activityViewModels<MyTodoCreateViewModel>()
+    private val viewModel by activityViewModels<TodoCreateViewModel>()
 
     override fun onStart() {
         super.onStart()

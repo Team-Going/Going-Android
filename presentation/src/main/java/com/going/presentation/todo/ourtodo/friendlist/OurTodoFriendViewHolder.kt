@@ -1,4 +1,4 @@
-package com.going.presentation.todo.ourtodo
+package com.going.presentation.todo.ourtodo.friendlist
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load

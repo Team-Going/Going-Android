@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoFriendsBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
 class CheckFriendsAdapter : ListAdapter<TripParticipantModel, CheckFriendsViewHolder>(diffUtil) {
 
