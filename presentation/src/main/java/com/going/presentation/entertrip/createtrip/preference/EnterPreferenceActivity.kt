@@ -2,7 +2,6 @@ package com.going.presentation.entertrip.createtrip.preference
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.viewModels
@@ -24,6 +23,7 @@ import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.UiState
+import com.going.ui.extension.getParcelable
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,25 +83,17 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        intent?.let {
-            val data: IntentData? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getParcelableExtra(INTENT_DATA, IntentData::class.java)
-            } else {
-                toast(getString(R.string.sdk_error))
-                null
-            }
+        val data = intent?.getParcelable(INTENT_DATA, IntentData::class.java)
 
-            title = data?.name
-            val startYear = data?.startYear ?: 0
-            val startMonth = String.format(TWO_DIGIT_FORMAT, data?.startMonth ?: 0)
-            val startDay = String.format(TWO_DIGIT_FORMAT, data?.startDay ?: 0)
-            val endYear = data?.endYear ?: 0
-            val endMonth = String.format(TWO_DIGIT_FORMAT, data?.endMonth ?: 0)
-            val endDay = String.format(TWO_DIGIT_FORMAT, data?.endDay ?: 0)
-
-            startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
-            endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
-        }
+        title = data?.name
+        val startYear = data?.startYear ?: 0
+        val startMonth = String.format(TWO_DIGIT_FORMAT, data?.startMonth ?: 0)
+        val startDay = String.format(TWO_DIGIT_FORMAT, data?.startDay ?: 0)
+        val endYear = data?.endYear ?: 0
+        val endMonth = String.format(TWO_DIGIT_FORMAT, data?.endMonth ?: 0)
+        val endDay = String.format(TWO_DIGIT_FORMAT, data?.endDay ?: 0)
+        startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
+        endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
     }
 
 
