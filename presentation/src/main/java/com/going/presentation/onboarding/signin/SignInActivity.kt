@@ -33,7 +33,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
         initKakaoLoginBtnClickListener()
         initTermsBtnClickListener()
         observeInfo()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun clearToken() {

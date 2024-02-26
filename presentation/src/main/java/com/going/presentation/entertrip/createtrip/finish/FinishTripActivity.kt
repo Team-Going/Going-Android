@@ -40,7 +40,7 @@ class FinishTripActivity :
         initCopyCodeTvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun initCopyCodeTvClickListener() {
