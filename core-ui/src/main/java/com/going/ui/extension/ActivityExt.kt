@@ -13,6 +13,11 @@ fun Activity.setStatusBarColorFromResource(colorResId: Int) {
     window.statusBarColor = statusBarColor
 }
 
+fun Activity.setNavigationBarColorFromResource(colorResId: Int) {
+    val navigationBarColor = ContextCompat.getColor(this, colorResId)
+    window.navigationBarColor = navigationBarColor
+}
+
 fun Activity.getWindowHeight(): Int {
     val wm = this.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

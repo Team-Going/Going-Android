@@ -17,7 +17,7 @@ class TendencySplashActivity :
         super.onCreate(savedInstanceState)
 
         initStartBtnClickListener()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun initStartBtnClickListener() {

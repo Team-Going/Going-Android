@@ -13,6 +13,7 @@ import com.going.presentation.onboarding.signin.SignInActivity
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.setNavigationBarColorFromResource
 import com.going.ui.extension.setStatusBarColorFromResource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -26,11 +27,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         super.onCreate(savedInstanceState)
 
         setStatusBarColor()
+        setNavigationBarColor()
         checkConnectedNetwork()
         observeUserState()
     }
 
     private fun setStatusBarColor() = setStatusBarColorFromResource(R.color.red_500)
+
+    private fun setNavigationBarColor() = setNavigationBarColorFromResource(R.color.red_500)
 
     private fun checkConnectedNetwork() {
         if (NetworkManager.checkNetworkState(this)) {
