@@ -1,4 +1,4 @@
-package com.going.ui.extension
+package com.going.ui.util
 
 import androidx.recyclerview.widget.DiffUtil
 

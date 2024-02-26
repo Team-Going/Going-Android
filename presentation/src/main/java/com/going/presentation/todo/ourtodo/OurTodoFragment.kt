@@ -17,13 +17,14 @@ import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
-import com.going.presentation.todo.TodoDecoration
+import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
-import com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity
+import com.going.presentation.todo.create.TodoCreateActivity
+import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
@@ -85,9 +86,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initAddTodoBtnListener() {
         binding.btnOurTodoAddTodo.setOnSingleClickListener {
-            OurTodoCreateActivity.createIntent(
+            TodoCreateActivity.createIntent(
                 requireContext(),
                 viewModel.tripId,
+                true,
                 ArrayList(participantList.map { it.participantId.toInt() }),
                 ArrayList(participantList.map { it.name }),
                 ArrayList(participantList.map { it.result })
@@ -96,7 +98,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = TodoDecoration(requireContext(), 0, 0, 150, 0)
+        val itemDeco = RvItemDecoration(requireContext(), 0, 0, 150, 0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 

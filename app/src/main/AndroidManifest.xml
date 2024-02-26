@@ -134,7 +134,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.ourtodo.create.OurTodoCreateActivity"
+            android:name="com.going.presentation.todo.create.TodoCreateActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -144,7 +144,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.detail.PublicDetailActivity"
+            android:name="com.going.presentation.todo.detail.TodoDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

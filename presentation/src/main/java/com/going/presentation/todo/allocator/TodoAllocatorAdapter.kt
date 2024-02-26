@@ -1,24 +1,24 @@
-package com.going.presentation.todo.name
+package com.going.presentation.todo.allocator
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.databinding.ItemTodoNameBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
-class TodoNameAdapter(
+class TodoAllocatorAdapter(
     private val isCompleted: Boolean
-) : ListAdapter<TodoAllocatorModel, TodoNameViewHolder>(diffUtil) {
+) : ListAdapter<TodoAllocatorModel, TodoAllocatorViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoNameViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoAllocatorViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoNameBinding =
             ItemTodoNameBinding.inflate(inflater, parent, false)
-        return TodoNameViewHolder(binding, isCompleted)
+        return TodoAllocatorViewHolder(binding, isCompleted)
     }
 
-    override fun onBindViewHolder(holder: TodoNameViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TodoAllocatorViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 

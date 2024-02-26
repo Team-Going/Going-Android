@@ -1,11 +1,11 @@
-package com.going.presentation.todo
+package com.going.ui.util
 
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class TodoDecoration(
+class RvItemDecoration(
     val context: Context,
     private val top: Int,
     private val left: Int,

@@ -12,13 +12,12 @@ import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

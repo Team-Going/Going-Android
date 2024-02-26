@@ -18,7 +18,7 @@ import com.going.presentation.util.initOnBackPressedListener
 import com.going.presentation.util.navigateToScreen
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint

@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
-class TodoDetailNameAdapter : ListAdapter<TodoAllocatorModel, TodoDetailNameViewHolder>(diffUtil) {
+class TripAllocatorAdapter : ListAdapter<TodoAllocatorModel, TripAllocatorViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoDetailNameViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripAllocatorViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoCreateNameBinding =
             ItemTodoCreateNameBinding.inflate(inflater, parent, false)
-        return TodoDetailNameViewHolder(binding)
+        return TripAllocatorViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TodoDetailNameViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TripAllocatorViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 

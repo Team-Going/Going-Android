@@ -1,4 +1,4 @@
-package com.going.presentation.todo.ourtodo
+package com.going.presentation.todo.ourtodo.friendlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
