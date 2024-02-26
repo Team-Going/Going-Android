@@ -73,13 +73,15 @@
                     android:id="@+id/et_todo_create_todo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
                     app:canBlankError="true"
-                    android:layout_marginTop="8dp"
                     app:hint="@string/my_todo_create_tv_todo_hint"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:title="@string/my_todo_create_tv_todo"/>
+                    app:title="@string/my_todo_create_tv_todo" />
 
                 <TextView
                     android:id="@+id/tv_todo_create_date_title"
@@ -215,13 +217,15 @@
                     android:id="@+id/et_todo_create_memo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:imeOptions="actionDone"
                     app:canBlankError="false"
-                    android:layout_marginTop="8dp"
                     app:hint="@string/my_todo_create_tv_memo_hint"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:title="@string/my_todo_create_tv_memo"/>
+                    app:layout_constraintTop_toBottomOf="@id/rv_our_todo_create_person"
+                    app:minLines="6"
+                    app:title="@string/my_todo_create_tv_memo" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
