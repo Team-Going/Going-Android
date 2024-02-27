@@ -9,7 +9,7 @@ import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import java.util.Calendar
 
-class BottomSheetDateFragment(val viewModel: EditTripInfoViewModel, val isStart: Boolean) :
+class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isStart: Boolean) :
     BaseBottomSheet<FragmentBottomSheetEditDateTripBinding>(R.layout.fragment_bottom_sheet_edit_date_trip) {
 
     override fun onStart() {
@@ -102,7 +102,6 @@ class BottomSheetDateFragment(val viewModel: EditTripInfoViewModel, val isStart:
                     viewModel.checkStartDateAvailable()
                     viewModel.checkEndDateAvailable()
                 }
-                viewModel.checkIsAvailableDateRange()
             }
             viewModel.checkTripAvailable()
             dismiss()

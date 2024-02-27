@@ -215,13 +215,12 @@
     <!--edit_trip_info-->
     <string name="edit_trip_info_tb_title">여행 정보</string>
     <string name="edit_trip_info_tv_title">어떤 여행인가요?</string>
-    <string name="edit_trip_info_et_name_hint">이번 여행 이름을 입력해 주세요</string>
     <string name="edit_trip_info_one_line_info_tv_title">여행 일정을 알려주세요</string>
-    <string name="edit_trip_info_start_date">시작일</string>
+    <string name="edit_trip_info_et_name_hint">이번 여행 이름을 입력해 주세요</string>
     <string name="edit_trip_info_slash">-</string>
-    <string name="edit_trip_info_end_date">종료일</string>
     <string name="edit_trip_info_quit_btn">나가기</string>
     <string name="edit_trip_info_edit_btn">수정하기</string>
+    <string name="edit_trip_info_select_btn">선택하기</string>
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
     <string name="edit_trip_info_toast_error">시작일을 먼저 입력해 주세요</string>
 
