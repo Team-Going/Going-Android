@@ -19,12 +19,13 @@ class TodoCreateViewModel @Inject constructor(
     private val todoRepository: TodoRepository,
 ) : ViewModel() {
 
-    val todo = MutableLiveData("")
+    private val todo = MutableLiveData("")
+    private val memo = MutableLiveData("")
+
     val endDate = MutableLiveData("")
-    val memo = MutableLiveData("")
 
     private val isTodoAvailable = MutableLiveData(false)
-    private val isMemoAvailable = MutableLiveData(false)
+    private val isMemoAvailable = MutableLiveData(true)
     val isFinishAvailable = MutableLiveData(false)
 
     private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
@@ -43,7 +44,7 @@ class TodoCreateViewModel @Inject constructor(
 
     fun setMemoState(memoText: String, state: EditTextState) {
         memo.value = memoText
-        isMemoAvailable.value = state == EditTextState.SUCCESS
+        isMemoAvailable.value = state != EditTextState.OVER
         checkIsFinishAvailable()
     }
 
