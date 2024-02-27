@@ -81,7 +81,7 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        val data = intent?.getParcelable(TRIP_INTENT_DATA, TripIntentData::class.java)
+        val data = intent?.getParcelable(TRIP_INTENT_DATA, ParcelableTripData::class.java)
 
         title = data?.name
         val startYear = data?.startYear ?: 0
@@ -159,7 +159,7 @@ class EnterPreferenceActivity :
 
         @JvmStatic
         fun createIntent(
-            context: Context, data: TripIntentData
+            context: Context, data: ParcelableTripData
         ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
             putExtra(TRIP_INTENT_DATA, data)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class TripIntentData(
+data class ParcelableTripData(
     val name: String,
     val startYear: Int,
     val startMonth: Int,

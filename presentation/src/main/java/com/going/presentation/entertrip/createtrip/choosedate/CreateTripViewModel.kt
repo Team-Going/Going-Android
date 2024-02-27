@@ -3,7 +3,7 @@ package com.going.presentation.entertrip.createtrip.choosedate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.NameState
-import com.going.presentation.entertrip.createtrip.preference.TripIntentData
+import com.going.presentation.entertrip.createtrip.preference.ParcelableTripData
 import com.going.ui.extension.getGraphemeLength
 
 class CreateTripViewModel : ViewModel() {
@@ -18,7 +18,7 @@ class CreateTripViewModel : ViewModel() {
     val endMonth = MutableLiveData<Int>()
     val endDay = MutableLiveData<Int>()
 
-    var tripIntentData: TripIntentData? = null
+    var tripIntentData: ParcelableTripData? = null
 
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
@@ -83,7 +83,7 @@ class CreateTripViewModel : ViewModel() {
     }
 
     fun saveIntentData() {
-        tripIntentData = TripIntentData(
+        tripIntentData = ParcelableTripData(
             name = name.value.orEmpty(),
             startYear = startYear.value ?: 0,
             startMonth = startMonth.value ?: 0,
