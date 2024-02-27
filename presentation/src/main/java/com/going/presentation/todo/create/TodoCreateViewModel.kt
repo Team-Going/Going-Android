@@ -50,7 +50,7 @@ class TodoCreateViewModel @Inject constructor(
 
     fun checkIsFinishAvailable() {
         isFinishAvailable.value =
-            isTodoAvailable.value == true && isMemoAvailable.value == true && participantModelList.any { it.isSelected }
+            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty() && participantModelList.any { it.isSelected }
     }
 
     fun postToCreateTodoFromServer() {
