@@ -4,11 +4,9 @@ import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
-import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishTripBinding
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
@@ -39,13 +37,13 @@ class FinishTripActivity :
         super.onCreate(savedInstanceState)
 
         getTripInfo()
-        initCopyCodetvClickListener()
+        initCopyCodeTvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
         initOnBackPressedListener(binding.root)
     }
 
-    private fun initCopyCodetvClickListener() {
+    private fun initCopyCodeTvClickListener() {
         binding.clCopyCode.setOnSingleClickListener {
             val clipboardManager =
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -61,10 +59,6 @@ class FinishTripActivity :
     }
 
     private fun startKakaoInvite(context: Context) {
-        val test = HashMap<String, String>()
-        test.put(KEY, inviteCode)
-        test.put(NAME, title)
-
         if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
             ShareClient.instance.shareCustom(
                 context,
@@ -106,13 +100,10 @@ class FinishTripActivity :
 
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
-            Intent(this, DashBoardActivity::class.java).apply {
-                putExtra(TRIP_ID, tripId)
-                putExtra(IS_FIRST_ENTERED, true)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
-            }
-            finish()
+            DashBoardActivity.createIntent(
+                this,
+                tripId
+            ).apply { startActivity(this) }
         }
     }
 

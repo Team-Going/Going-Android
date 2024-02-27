@@ -12,10 +12,13 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileBinding
+import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.PERMISSION_REQUEST_CODE
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
+import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.UiState
 import com.going.ui.extension.setBulletPoint
@@ -76,43 +79,44 @@ class ProfileActivity :
                 tvProfileTag2.text = getString(R.string.tag, tags[1])
                 tvProfileTag3.text = getString(R.string.tag, tags[2])
 
-                tvFirstDescriptionTitle.text = profileBoxInfo[0].title
-                tvFirstDescriptionFirstText.text =
-                    profileBoxInfo[0].first.setBulletPoint()
-                tvFirstDescriptionSecondText.text =
-                    profileBoxInfo[0].second.setBulletPoint()
-                tvFirstDescriptionThirdText.text =
-                    profileBoxInfo[0].third.setBulletPoint()
+                with(profileBoxInfo[0]) {
+                    setChartInfo(tvChartFirst, title, first, second, third)
+                }
+                with(profileBoxInfo[1]) {
+                    setChartInfo(tvChartSecond, title, first, second, third)
+                }
+                with(profileBoxInfo[2]) {
+                    setChartInfo(tvChartThird, title, first, second, third)
+                }
 
-                tvSecondDescriptionTitle.text =
-                    profileBoxInfo[1].title
-                tvSecondDescriptionFirstText.text =
-                    profileBoxInfo[1].first.setBulletPoint()
-                tvSecondDescriptionSecondText.text =
-                    profileBoxInfo[1].second.setBulletPoint()
-                tvSecondDescriptionThirdText.text =
-                    profileBoxInfo[1].third.setBulletPoint()
-
-                tvThirdDescriptionTitle.text = profileBoxInfo[2].title
-                tvThirdDescriptionFirstText.text =
-                    profileBoxInfo[2].first.setBulletPoint()
-                tvThirdDescriptionSecondText.text =
-                    profileBoxInfo[2].second.setBulletPoint()
-                tvThirdDescriptionThirdText.text =
-                    profileBoxInfo[2].third.setBulletPoint()
             }
+        }
+    }
+
+    private fun setChartInfo(
+        chart: ChartTextView,
+        title: String,
+        first: String,
+        second: String,
+        third: String,
+    ) {
+        with(chart) {
+            setTitle(title)
+            setFirstDescription(first)
+            setSecondDescription(second)
+            setThirdDescription(third)
         }
     }
 
     private fun initRestartBtnClickListener() {
         binding.tvProfileRestart.setOnSingleClickListener {
-            navigateToTendencySplashScreen()
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
     private fun initSaveImgBtnClickListener() {
         binding.btnProfileDownload.setOnSingleClickListener {
-            downloadImage(profileViewModel.profileId.value ?: 0)
+            downloadImage(profileViewModel.profileId.value)
         }
     }
 
@@ -120,14 +124,6 @@ class ProfileActivity :
         binding.btnProfileBack.setOnSingleClickListener {
             finish()
         }
-    }
-
-    private fun navigateToTendencySplashScreen() {
-        Intent(this, TendencySplashActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(this)
-        }
-        finish()
     }
 
     override fun onRequestPermissionsResult(

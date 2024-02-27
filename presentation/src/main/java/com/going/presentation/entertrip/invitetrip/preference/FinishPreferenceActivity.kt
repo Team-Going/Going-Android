@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.invitetrip.preference
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -135,5 +136,15 @@ class FinishPreferenceActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
+    }
+
+    companion object {
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long
+        ): Intent = Intent(context, FinishPreferenceActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+        }
     }
 }
