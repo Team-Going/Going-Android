@@ -19,6 +19,7 @@ class EditTripInfoActivity :
 
     private lateinit var startBottomSheetDialog: BottomSheetEditDateFragment
     private lateinit var endBottomSheetDialog: BottomSheetEditDateFragment
+    private var quitDialog: TripQuitDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class EditTripInfoActivity :
         observeIsNameAvailable()
         initStartDateClickListener()
         initEndDateClickListener()
-        initNextBtnClickListener()
+        initEditBtnClickListener()
         initQuitBtnClickListener()
         initBackBtnClickListener()
     }
@@ -90,7 +91,7 @@ class EditTripInfoActivity :
         }
     }
 
-    private fun initNextBtnClickListener() {
+    private fun initEditBtnClickListener() {
         //어느 뷰로 보내는지 확실히
         binding.btnEditTripInfoEdit.setOnSingleClickListener {
             Intent(this, EnterPreferenceActivity::class.java).apply {
@@ -108,15 +109,25 @@ class EditTripInfoActivity :
     }
 
     private fun initQuitBtnClickListener() {
-        binding.btnEditTripInfoBack.setOnSingleClickListener {
-            //다이얼로그 띄우기
+        binding.btnEditTripInfoQuit.setOnSingleClickListener {
+            showQuitDialog()
         }
+    }
+
+    private fun showQuitDialog() {
+        quitDialog = TripQuitDialogFragment()
+        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
     }
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
     companion object {

@@ -223,6 +223,10 @@
     <string name="edit_trip_info_select_btn">선택하기</string>
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
     <string name="edit_trip_info_toast_error">시작일을 먼저 입력해 주세요</string>
+    <string name="edit_trip_info_quit_dialog_title">여행방 나가기</string>
+    <string name="edit_trip_info_quit_dialog_message">나가기를 하면 정보가 모두 삭제되고,\n 여행 목록에서도 삭제됩니다.</string>
+    <string name="edit_trip_info_quit_dialog_negative">나가기</string>
+    <string name="edit_trip_info_quit_dialog_positive">취소</string>
 
 
 </resources>
