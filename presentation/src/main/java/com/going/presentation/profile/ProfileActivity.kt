@@ -18,6 +18,7 @@ import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.UiState
 import com.going.ui.extension.setBulletPoint
@@ -109,7 +110,7 @@ class ProfileActivity :
 
     private fun initRestartBtnClickListener() {
         binding.tvProfileRestart.setOnSingleClickListener {
-            navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 

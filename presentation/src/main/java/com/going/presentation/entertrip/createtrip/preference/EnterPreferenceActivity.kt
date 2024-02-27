@@ -3,7 +3,6 @@ package com.going.presentation.entertrip.createtrip.preference
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
@@ -11,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.INTENT_DATA
+import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.TRIP_INTENT_DATA
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.DAY
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.END
@@ -27,7 +26,6 @@ import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.parcel.Parcelize
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -83,7 +81,7 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        val data = intent?.getParcelable(INTENT_DATA, IntentData::class.java)
+        val data = intent?.getParcelable(TRIP_INTENT_DATA, TripIntentData::class.java)
 
         title = data?.name
         val startYear = data?.startYear ?: 0
@@ -155,27 +153,15 @@ class EnterPreferenceActivity :
         _adapter = null
     }
 
-    @Parcelize
-    data class IntentData(
-        val name: String,
-        val startYear: Int,
-        val startMonth: Int,
-        val startDay: Int,
-        val endYear: Int,
-        val endMonth: Int,
-        val endDay: Int
-    ) : Parcelable
-
-
     companion object {
         const val SERVER_DATE = "%s.%s.%s"
         const val TWO_DIGIT_FORMAT = "%02d"
 
         @JvmStatic
         fun createIntent(
-            context: Context, data: IntentData
+            context: Context, data: TripIntentData
         ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
-            putExtra(INTENT_DATA, data)
+            putExtra(TRIP_INTENT_DATA, data)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
     }
