@@ -22,7 +22,6 @@ class CreateTripViewModel : ViewModel() {
 
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
-    val isAvailableDateRange = MutableLiveData<Boolean?>(null)
 
     val isNameAvailable = MutableLiveData(NameState.Empty)
     private val isTripAvailable = MutableLiveData(false)

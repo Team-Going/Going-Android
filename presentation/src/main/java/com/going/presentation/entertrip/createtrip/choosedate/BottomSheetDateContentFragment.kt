@@ -79,25 +79,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     private fun initFinishBtnClickListener() {
         binding.btnCreateTripFinish.setOnSingleClickListener {
             sendDateInfo()
-            if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
-                val calendar = Calendar.getInstance()
-
-                calendar.set(Calendar.YEAR, viewModel.startYear.value ?: 0)
-                calendar.set(Calendar.MONTH, viewModel.startMonth.value ?: 0)
-                calendar.set(Calendar.DAY_OF_MONTH, viewModel.startDay.value ?: 0)
-                val startDate = calendar.time
-
-                calendar.set(Calendar.YEAR, viewModel.endYear.value ?: 0)
-                calendar.set(Calendar.MONTH, viewModel.endMonth.value ?: 0)
-                calendar.set(Calendar.DAY_OF_MONTH, viewModel.endDay.value ?: 0)
-                val endDate = calendar.time
-
-                if (startDate.before(endDate) || startDate.equals(endDate)) {
-                    viewModel.checkStartDateAvailable()
-                    viewModel.checkEndDateAvailable()
-                }
-            }
-            viewModel.checkTripAvailable()
             dismiss()
         }
     }

@@ -139,7 +139,6 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
 
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
-
             if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
                 endBottomSheetDialog = BottomSheetDateContentFragment(viewModel, false)
                 endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
