@@ -5,24 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.going.domain.entity.response.DashBoardModel.DashBoardTripModel
 import com.going.presentation.databinding.ItemDashBoardOngoingBinding
-import com.going.ui.extension.ItemDiffCallback
+import com.going.ui.util.ItemDiffCallback
 
 class OngoingAdapter(
-    private val listener: OnDashBoardSelectedListener
+    private val itemDetailClick: (DashBoardTripModel) -> Unit
 ) : ListAdapter<DashBoardTripModel, OngoingViewHolder>(diffUtil) {
 
-    interface OnDashBoardSelectedListener {
-        fun onDashBoardSelectedListener(tripCreate: DashBoardTripModel)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemDashBoardOngoingBinding =
             ItemDashBoardOngoingBinding.inflate(
-                LayoutInflater.from(parent.context),
+                inflater,
                 parent,
                 false
             )
-        return OngoingViewHolder(binding, listener)
+        return OngoingViewHolder(binding, itemDetailClick)
     }
 
     override fun onBindViewHolder(holder: OngoingViewHolder, position: Int) {

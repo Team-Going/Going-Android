@@ -1,11 +1,10 @@
 package com.going.presentation.tendency.result
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.repository.ProfileRepository
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +19,7 @@ class TendencyResultViewModel @Inject constructor(
     private val _userInfoState = MutableStateFlow<UiState<UserProfileRequestModel>>(UiState.Empty)
     val userInfoState: StateFlow<UiState<UserProfileRequestModel>> = _userInfoState
 
-    val tendencyId = MutableLiveData(0)
+    val tendencyId = MutableStateFlow(0)
 
     fun getUserInfoState() {
         viewModelScope.launch {

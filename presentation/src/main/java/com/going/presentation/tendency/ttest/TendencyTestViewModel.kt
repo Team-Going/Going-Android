@@ -1,12 +1,11 @@
 package com.going.presentation.tendency.ttest
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.TendencyTestMock
 import com.going.domain.entity.request.TendencyRequestModel
 import com.going.domain.repository.TendencyRepository
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +17,7 @@ class TendencyTestViewModel @Inject constructor(
     private val tendencyRepository: TendencyRepository,
 ) : ViewModel() {
     val step = MutableStateFlow(1)
-    val isChecked = MutableLiveData(false)
+    val isChecked = MutableStateFlow(false)
     val isFirstChecked = MutableStateFlow(false)
     val isSecondChecked = MutableStateFlow(false)
     val isThirdChecked = MutableStateFlow(false)

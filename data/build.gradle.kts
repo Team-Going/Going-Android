@@ -14,13 +14,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        buildConfigField(
-            "String",
-            "BASE_URL",
-            com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir)
-                .getProperty("base.url"),
-        )
     }
 
     compileOptions {

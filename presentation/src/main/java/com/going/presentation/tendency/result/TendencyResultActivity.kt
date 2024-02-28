@@ -16,8 +16,9 @@ import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +38,7 @@ class TendencyResultActivity :
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
-        initOnBackPressedListener()
+        initOnBackPressedListener(binding.root)
     }
 
     private fun getUserInfo() {
@@ -49,7 +50,8 @@ class TendencyResultActivity :
             when (state) {
                 is UiState.Success -> bindTendencyInfo(state.data.name, state.data.result)
                 is UiState.Failure -> toast(state.msg)
-                else -> return@onEach
+                UiState.Empty -> return@onEach
+                UiState.Loading -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
@@ -97,13 +99,13 @@ class TendencyResultActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToScreen<TendencySplashActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTendencyResultDownload.setOnSingleClickListener {
-            downloadImage(viewModel.tendencyId.value ?: 0)
+            downloadImage(viewModel.tendencyId.value)
         }
     }
 
@@ -132,7 +134,7 @@ class TendencyResultActivity :
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
-                downloadImage(viewModel.tendencyId.value ?: 0)
+                downloadImage(viewModel.tendencyId.value)
             } else {
                 toast(getString(R.string.profile_image_download_error))
             }

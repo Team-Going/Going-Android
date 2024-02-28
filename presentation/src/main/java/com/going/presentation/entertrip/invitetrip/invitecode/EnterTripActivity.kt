@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.invitetrip.invitecode
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -15,7 +14,7 @@ import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_NO_EXIST
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.hideKeyboard
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -97,14 +96,15 @@ class EnterTripActivity : BaseActivity<ActivityEnterTripBinding>(R.layout.activi
         viewModel.tripState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    Intent(this, InviteFinishActivity::class.java).apply {
-                        putExtra(TRIP_ID, state.data.tripId)
-                        putExtra(TITLE, state.data.title)
-                        putExtra(START, state.data.startDate)
-                        putExtra(END, state.data.endDate)
-                        putExtra(DAY, state.data.day)
-                        startActivity(this)
-                    }
+                    InviteFinishActivity.createIntent(
+                        this,
+                        state.data.tripId,
+                        state.data.title,
+                        state.data.startDate,
+                        state.data.endDate,
+                        state.data.day
+                    ).apply { startActivity(this) }
+
                 }
 
                 is UiState.Failure -> {

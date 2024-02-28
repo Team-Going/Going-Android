@@ -1,5 +1,6 @@
 package com.going.presentation.entertrip.invitetrip.preference
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -12,13 +13,12 @@ import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.UiState
+import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -136,5 +136,15 @@ class FinishPreferenceActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
+    }
+
+    companion object {
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long
+        ): Intent = Intent(context, FinishPreferenceActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+        }
     }
 }

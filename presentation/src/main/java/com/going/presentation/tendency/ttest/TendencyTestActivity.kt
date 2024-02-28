@@ -2,7 +2,6 @@ package com.going.presentation.tendency.ttest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -15,9 +14,9 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.presentation.tendency.result.TendencyResultActivity
-import com.going.presentation.util.navigateToScreen
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.EnumUiState
+import com.going.ui.state.EnumUiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -112,7 +111,7 @@ class TendencyTestActivity :
     private fun initNextBtnClickListener() {
         binding.btnTendencyNext.setOnSingleClickListener {
             when (viewModel.step.value) {
-                9 -> viewModel.submitTendencyTest()
+                LAST_QUESTION -> viewModel.submitTendencyTest()
                 else -> fadeOutList[0].start()
             }
         }
@@ -140,9 +139,10 @@ class TendencyTestActivity :
     private fun observeIsSubmitTendencyState() {
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.SUCCESS -> navigateToScreen<TendencyResultActivity>(listOf(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                EnumUiState.SUCCESS -> navigateToScreenClear<TendencyResultActivity>()
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
-                else -> return@onEach
+                EnumUiState.EMPTY -> return@onEach
+                EnumUiState.LOADING -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }
@@ -155,9 +155,11 @@ class TendencyTestActivity :
     }
 
     companion object {
-        const val DURATION = 500L
+        private const val DURATION = 500L
 
-        const val PROGRESS = "progress"
-        const val ALPHA = "alpha"
+        private const val LAST_QUESTION = 9
+
+        private const val PROGRESS = "progress"
+        private const val ALPHA = "alpha"
     }
 }

@@ -28,25 +28,24 @@ class SignUpViewModel @Inject constructor(
     val isNameAvailable = MutableStateFlow(false)
     val isInfoAvailable = MutableStateFlow(false)
 
-    private val _isSignUpState = MutableStateFlow(AuthState.LOADING)
-    val isSignUpState: StateFlow<AuthState> = _isSignUpState
+    private val _isAuthState = MutableStateFlow(AuthState.LOADING)
+    val isAuthState: StateFlow<AuthState> = _isAuthState
 
     fun startSignUp() {
-        _isSignUpState.value = AuthState.LOADING
+        _isAuthState.value = AuthState.LOADING
 
         if (AuthApiClient.instance.hasToken()) {
             UserApiClient.instance.accessTokenInfo { _, error ->
                 if (error == null) {
                     val kakaoAccessToken =
-                        TokenManagerProvider.instance.manager.getToken()?.accessToken
-                    signUpWithServer(kakaoAccessToken.toString())
-                } else {
-                    _isSignUpState.value = AuthState.SIGNIN
+                        TokenManagerProvider.instance.manager.getToken()?.accessToken.toString()
+                    signUpWithServer(kakaoAccessToken)
+                    return@accessTokenInfo
                 }
             }
-        } else {
-            _isSignUpState.value = AuthState.SIGNIN
         }
+
+        _isAuthState.value = AuthState.OTHER_PAGE
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
@@ -57,9 +56,9 @@ class SignUpViewModel @Inject constructor(
             ).onSuccess {
                 tokenRepository.setTokens(it.accessToken, it.refreshToken)
                 tokenRepository.setUserId(it.userId)
-                _isSignUpState.value = AuthState.SUCCESS
+                _isAuthState.value = AuthState.SUCCESS
             }.onFailure {
-                _isSignUpState.value = AuthState.FAILURE
+                _isAuthState.value = AuthState.FAILURE
             }
         }
     }
