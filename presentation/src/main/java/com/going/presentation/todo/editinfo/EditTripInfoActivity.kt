@@ -2,10 +2,8 @@ package com.going.presentation.todo.editinfo
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.res.ResourcesCompat
-import com.going.domain.entity.NameState
+import androidx.core.widget.doAfterTextChanged
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
@@ -25,7 +23,8 @@ class EditTripInfoActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        observeIsNameAvailable()
+        setEtInfoNameArguments()
+        observeInfoNameTextChanged()
         initStartDateClickListener()
         initEndDateClickListener()
         initEditBtnClickListener()
@@ -37,40 +36,20 @@ class EditTripInfoActivity :
         binding.viewModel = viewModel
     }
 
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            setColors(
-                state,
-                binding.tvNameCounter,
-            ) { background ->
-                binding.etEditTripInfoName.background = ResourcesCompat.getDrawable(
-                    this.resources,
-                    background,
-                    theme,
-                )
-            }
+    private fun setEtInfoNameArguments() {
+        with(binding.etEditTripInfoName) {
+            setMaxLen(viewModel.getMaxTripLen())
+            overWarning = getString(R.string.trip_over_error)
+            blankWarning = getString(R.string.trip_blank_error)
         }
     }
 
-    private fun setColors(
-        state: NameState,
-        counter: TextView,
-        setBackground: (Int) -> Unit,
-    ) {
-        val (color, background) = when (state) {
-            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
+    private fun observeInfoNameTextChanged() {
+        binding.etEditTripInfoName.editText.doAfterTextChanged { text ->
+            viewModel.setNameState(text.toString(), binding.etEditTripInfoName.state)
         }
-
-        setCounterColor(counter, color)
-        setBackground(background)
     }
 
-    private fun setCounterColor(counter: TextView, color: Int) {
-        counter.setTextColor(getColor(color))
-    }
 
     private fun initStartDateClickListener() {
         binding.tvEditTripInfoStartDate.setOnSingleClickListener {

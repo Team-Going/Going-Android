@@ -66,17 +66,13 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     }
 
     private fun sendDateInfo() {
-        if (isStart) {
-            viewModel.startYear.value = binding.dpCreateTripDate.year
-            viewModel.startMonth.value = binding.dpCreateTripDate.month + 1
-            viewModel.startDay.value = binding.dpCreateTripDate.dayOfMonth
-            viewModel.checkStartDateAvailable()
-        } else {
-            customEndDate()
-            viewModel.endYear.value = binding.dpCreateTripDate.year
-            viewModel.endMonth.value = binding.dpCreateTripDate.month + 1
-            viewModel.endDay.value = binding.dpCreateTripDate.dayOfMonth
-            viewModel.checkEndDateAvailable()
+        with(binding.dpCreateTripDate) {
+            if (isStart) {
+                viewModel.setStartDate(year, month + 1, dayOfMonth)
+            } else {
+                customEndDate()
+                viewModel.setEndDate(year, month + 1, dayOfMonth)
+            }
         }
     }
 

@@ -2,12 +2,11 @@ package com.going.presentation.todo.editinfo
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.going.domain.entity.NameState
-import com.going.ui.extension.getGraphemeLength
+import com.going.presentation.designsystem.edittext.EditTextState
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class EditTripInfoViewModel : ViewModel() {
     val name = MutableLiveData<String>()
-    val nameLength = MutableLiveData(0)
 
     val startYear = MutableLiveData<Int>()
     val startMonth = MutableLiveData<Int>()
@@ -20,26 +19,15 @@ class EditTripInfoViewModel : ViewModel() {
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
 
-    val isNameAvailable = MutableLiveData(NameState.Empty)
+    val isNameAvailable = MutableStateFlow(false)
     private val isTripAvailable = MutableLiveData(false)
     var isCheckTripAvailable = MutableLiveData(false)
 
-    fun checkNameAvailable() {
-        nameLength.value = name.value?.getGraphemeLength()
+    fun getMaxTripLen() = MAX_TRIP_LEN
 
-        isNameAvailable.value = when {
-            nameLength.value == 0 -> NameState.Empty
-            (nameLength.value ?: 0) > MAX_TRIP_LEN -> NameState.OVER
-            name.value.isNullOrBlank() -> NameState.Blank
-            else -> NameState.Success
-        }
-
-        val isInfoAvailable = nameLength.value in 1..MAX_TRIP_LEN
-
-        isTripAvailable.value =
-            (isNameAvailable.value == NameState.Success) && isInfoAvailable
-
-        checkTripAvailable()
+    fun setNameState(newName: String, state: EditTextState) {
+        name.value = newName
+        isNameAvailable.value = state == EditTextState.SUCCESS
     }
 
     fun setStartDate(year: Int, month: Int, day: Int) {
