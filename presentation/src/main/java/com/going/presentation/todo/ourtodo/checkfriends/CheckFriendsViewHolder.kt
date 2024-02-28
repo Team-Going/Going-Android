@@ -15,14 +15,14 @@ class CheckFriendsViewHolder(val binding: ItemTodoFriendsBinding) :
             tvTodoFriend.text = item.name
 
             val profileImage = when (item.result) {
-                0 -> R.drawable.img_profile_1
-                1 -> R.drawable.img_profile_2
-                2 -> R.drawable.img_profile_3
+                0 -> R.drawable.img_profile_6
+                1 -> R.drawable.img_profile_1
+                2 -> R.drawable.img_profile_2
                 3 -> R.drawable.img_profile_4
-                4 -> R.drawable.img_profile_5
-                5 -> R.drawable.img_profile_6
+                4 -> R.drawable.img_profile_8
+                5 -> R.drawable.img_profile_5
                 6 -> R.drawable.img_profile_7
-                else -> R.drawable.img_profile_8
+                else -> R.drawable.img_profile_3
             }
             ivTodoFriend.load(profileImage) {
                 transformations(CircleCropTransformation())

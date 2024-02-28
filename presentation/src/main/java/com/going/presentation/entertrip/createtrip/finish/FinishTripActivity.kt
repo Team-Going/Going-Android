@@ -4,7 +4,9 @@ import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityFinishTripBinding
@@ -24,7 +26,6 @@ import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
 import timber.log.Timber
-
 
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
@@ -133,6 +134,20 @@ class FinishTripActivity :
         const val TEMPLATE_ID = 102829
         const val KEY = "KEY"
         const val NAME = "NAME"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            data: EnterPreferenceModel
+        ): Intent = Intent(context, FinishTripActivity::class.java).apply {
+            putExtra(TITLE, data.title)
+            putExtra(START, data.startDate)
+            putExtra(END, data.endDate)
+            putExtra(INVITE_CODE, data.code)
+            putExtra(DAY, data.day)
+            putExtra(TRIP_ID, data.tripId)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
 
     }
 
