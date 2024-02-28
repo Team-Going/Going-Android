@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import com.going.domain.entity.NameState
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
-import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -81,7 +81,6 @@ class EditTripInfoActivity :
 
     private fun initEndDateClickListener() {
         binding.tvEditTripInfoEndDate.setOnSingleClickListener {
-
             if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
                 endBottomSheetDialog = BottomSheetEditDateFragment(viewModel, false)
                 endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
@@ -92,9 +91,8 @@ class EditTripInfoActivity :
     }
 
     private fun initEditBtnClickListener() {
-        //어느 뷰로 보내는지 확실히
         binding.btnEditTripInfoEdit.setOnSingleClickListener {
-            Intent(this, EnterPreferenceActivity::class.java).apply {
+            Intent(this, DashBoardActivity::class.java).apply {
                 putExtra(NAME, viewModel.name.value)
                 putExtra(START_YEAR, viewModel.startYear.value)
                 putExtra(START_MONTH, viewModel.startMonth.value)
@@ -117,6 +115,10 @@ class EditTripInfoActivity :
     private fun showQuitDialog() {
         quitDialog = TripQuitDialogFragment()
         quitDialog?.show(supportFragmentManager, quitDialog?.tag)
+        Intent(this, DashBoardActivity::class.java).apply {
+            //정보 지워지게 구성
+            startActivity(this)
+        }
     }
 
     private fun initBackBtnClickListener() {

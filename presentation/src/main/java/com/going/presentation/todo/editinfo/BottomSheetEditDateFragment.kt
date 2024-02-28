@@ -6,7 +6,6 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentBottomSheetEditDateTripBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import java.util.Calendar
 
 class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isStart: Boolean) :
@@ -15,8 +14,9 @@ class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isSt
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        if (isStart) customStartDate() else customEndDate()
-        observeIsAvailableDateRange()
+        if (isStart)
+            customStartDate()
+        else customEndDate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +36,17 @@ class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isSt
         calendar.set(2000, 0, 1)
         datePicker.minDate = calendar.timeInMillis
 
-        calendar.set(2100, 0, 1)
-        datePicker.maxDate = calendar.timeInMillis
+        if (viewModel.endYear.value != null && viewModel.endMonth.value != null && viewModel.endDay.value != null) {
+            calendar.set(
+                viewModel.endYear.value ?: 0,
+                (viewModel.endMonth.value ?: 0) - 1,
+                viewModel.endDay.value ?: 0
+            )
+            datePicker.maxDate = calendar.timeInMillis
+        } else {
+            calendar.set(2100, 0, 1)
+            datePicker.maxDate = calendar.timeInMillis
+        }
 
         datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
@@ -57,22 +66,13 @@ class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isSt
         datePicker.maxDate = calendar.timeInMillis
     }
 
-    private fun observeIsAvailableDateRange() {
-        viewModel.isAvailableDateRange.observe(this) {
-            when (it) {
-                null -> return@observe
-                true -> return@observe
-                false -> toast(getString(R.string.date_set_error))
-            }
-        }
-    }
-
     private fun sendDateInfo() {
         if (isStart) {
             viewModel.startYear.value = binding.dpEditTripDate.year
             viewModel.startMonth.value = binding.dpEditTripDate.month + 1
             viewModel.startDay.value = binding.dpEditTripDate.dayOfMonth
             viewModel.checkStartDateAvailable()
+
         } else {
             customEndDate()
             viewModel.endYear.value = binding.dpEditTripDate.year
@@ -81,6 +81,7 @@ class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isSt
             viewModel.checkEndDateAvailable()
         }
     }
+
 
     private fun initFinishBtnClickListener() {
         binding.btnEditTripSelect.setOnSingleClickListener {

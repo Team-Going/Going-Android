@@ -71,11 +71,11 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
             android:afterTextChanged="@{(text) -> viewModel.checkNameAvailable()}"
+            android:background="@drawable/shape_rect_4_gray700_line"
             android:hint="@string/edit_trip_info_et_name_hint"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="3"
-            android:background="@drawable/shape_rect_4_gray700_line"
             android:text="@={viewModel.name}"
             android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +134,8 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}" />
+                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}"
+                android:textColor="@color/gray_700" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,7 +155,8 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}" />
+                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}"
+                android:textColor="@color/gray_700" />
         </LinearLayout>
 
         <TextView

@@ -102,7 +102,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
                     viewModel.checkStartDateAvailable()
                     viewModel.checkEndDateAvailable()
                 }
-                viewModel.checkIsAvailableDateRange()
             }
             viewModel.checkTripAvailable()
             dismiss()
