@@ -1,6 +1,5 @@
 package com.going.presentation.entertrip.createtrip.choosedate
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -13,8 +12,7 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 
-class CreateTripActivity :
-    BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
+class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
     private val viewModel by viewModels<CreateTripViewModel>()
 
     private lateinit var startBottomSheetDialog: BottomSheetDateContentFragment
@@ -153,16 +151,12 @@ class CreateTripActivity :
 
     private fun initNextBtnClickListener() {
         binding.btnCreateTripNext.setOnSingleClickListener {
-            Intent(this, EnterPreferenceActivity::class.java).apply {
-                putExtra(NAME, viewModel.name.value)
-                putExtra(START_YEAR, viewModel.startYear.value)
-                putExtra(START_MONTH, viewModel.startMonth.value)
-                putExtra(START_DAY, viewModel.startDay.value)
-                putExtra(END_YEAR, viewModel.endYear.value)
-                putExtra(END_MONTH, viewModel.endMonth.value)
-                putExtra(END_DAY, viewModel.endDay.value)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
+            viewModel.saveIntentData()
+            viewModel.tripIntentData?.let {
+                EnterPreferenceActivity.createIntent(
+                    this,
+                    it
+                ).apply { startActivity(this) }
             }
         }
     }
@@ -174,12 +168,6 @@ class CreateTripActivity :
     }
 
     companion object {
-        const val NAME = "name"
-        const val START_YEAR = "startYear"
-        const val START_MONTH = "startMonth"
-        const val START_DAY = "startDay"
-        const val END_YEAR = "endYear"
-        const val END_MONTH = "endMonth"
-        const val END_DAY = "endDay"
+        const val TRIP_INTENT_DATA = "tripIntentData"
     }
 }

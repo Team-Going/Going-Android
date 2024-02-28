@@ -1,5 +1,7 @@
 package com.going.presentation.entertrip.createtrip.preference
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -7,17 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEnterPreferenceBinding
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_DAY
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_MONTH
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.END_YEAR
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.NAME
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_DAY
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_MONTH
-import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.START_YEAR
+import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.TRIP_INTENT_DATA
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.getParcelable
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -46,7 +43,6 @@ class EnterPreferenceActivity :
 
         initAdapterWithClickListener()
         initItemDecoration()
-        getCreateTripInfo()
         initBackClickListener()
         initStartBtnClickListener()
         getCreateTripInfo()
@@ -84,19 +80,17 @@ class EnterPreferenceActivity :
     }
 
     private fun getCreateTripInfo() {
-        if (intent != null) {
-            title = intent.getStringExtra(NAME)
-            val startYear = intent.getIntExtra(START_YEAR, 0)
-            val startMonth =
-                String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_MONTH, 0))
-            val startDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(START_DAY, 0))
-            val endYear = intent.getIntExtra(END_YEAR, 0)
-            val endMonth = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_MONTH, 0))
-            val endDay = String.format(TWO_DIGIT_FORMAT, intent.getIntExtra(END_DAY, 0))
+        val data = intent?.getParcelable(TRIP_INTENT_DATA, ParcelableTripData::class.java)
 
-            startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
-            endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
-        }
+        title = data?.name
+        val startYear = data?.startYear ?: 0
+        val startMonth = String.format(TWO_DIGIT_FORMAT, data?.startMonth ?: 0)
+        val startDay = String.format(TWO_DIGIT_FORMAT, data?.startDay ?: 0)
+        val endYear = data?.endYear ?: 0
+        val endMonth = String.format(TWO_DIGIT_FORMAT, data?.endMonth ?: 0)
+        val endDay = String.format(TWO_DIGIT_FORMAT, data?.endDay ?: 0)
+        startDate = String.format(SERVER_DATE, startYear, startMonth, startDay)
+        endDate = String.format(SERVER_DATE, endYear, endMonth, endDay)
     }
 
     private fun observeEnterPreferenceListState() {
@@ -151,5 +145,13 @@ class EnterPreferenceActivity :
     companion object {
         const val SERVER_DATE = "%s.%s.%s"
         const val TWO_DIGIT_FORMAT = "%02d"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context, data: ParcelableTripData
+        ): Intent = Intent(context, EnterPreferenceActivity::class.java).apply {
+            putExtra(TRIP_INTENT_DATA, data)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
     }
 }
