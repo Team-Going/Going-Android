@@ -28,7 +28,6 @@ import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
 import timber.log.Timber
 
-
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
 
