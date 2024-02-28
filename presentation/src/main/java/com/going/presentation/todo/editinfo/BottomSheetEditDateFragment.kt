@@ -67,44 +67,19 @@ class BottomSheetEditDateFragment(val viewModel: EditTripInfoViewModel, val isSt
     }
 
     private fun sendDateInfo() {
-        if (isStart) {
-            viewModel.startYear.value = binding.dpEditTripDate.year
-            viewModel.startMonth.value = binding.dpEditTripDate.month + 1
-            viewModel.startDay.value = binding.dpEditTripDate.dayOfMonth
-            viewModel.checkStartDateAvailable()
-
-        } else {
-            customEndDate()
-            viewModel.endYear.value = binding.dpEditTripDate.year
-            viewModel.endMonth.value = binding.dpEditTripDate.month + 1
-            viewModel.endDay.value = binding.dpEditTripDate.dayOfMonth
-            viewModel.checkEndDateAvailable()
+        with(binding.dpEditTripDate) {
+            if (isStart) {
+                viewModel.setStartDate(year, month + 1, dayOfMonth)
+            } else {
+                customEndDate()
+                viewModel.setEndDate(year, month + 1, dayOfMonth)
+            }
         }
     }
-
 
     private fun initFinishBtnClickListener() {
         binding.btnEditTripSelect.setOnSingleClickListener {
             sendDateInfo()
-            if (viewModel.isStartDateAvailable.value == true && viewModel.isEndDateAvailable.value == true) {
-                val calendar = Calendar.getInstance()
-
-                calendar.set(Calendar.YEAR, viewModel.startYear.value ?: 0)
-                calendar.set(Calendar.MONTH, viewModel.startMonth.value ?: 0)
-                calendar.set(Calendar.DAY_OF_MONTH, viewModel.startDay.value ?: 0)
-                val startDate = calendar.time
-
-                calendar.set(Calendar.YEAR, viewModel.endYear.value ?: 0)
-                calendar.set(Calendar.MONTH, viewModel.endMonth.value ?: 0)
-                calendar.set(Calendar.DAY_OF_MONTH, viewModel.endDay.value ?: 0)
-                val endDate = calendar.time
-
-                if (startDate.before(endDate) || startDate.equals(endDate)) {
-                    viewModel.checkStartDateAvailable()
-                    viewModel.checkEndDateAvailable()
-                }
-            }
-            viewModel.checkTripAvailable()
             dismiss()
         }
     }

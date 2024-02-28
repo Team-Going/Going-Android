@@ -42,13 +42,27 @@ class EditTripInfoViewModel : ViewModel() {
         checkTripAvailable()
     }
 
+    fun setStartDate(year: Int, month: Int, day: Int) {
+        startYear.value = year
+        startMonth.value = month
+        startDay.value = day
+        checkStartDateAvailable()
+    }
+
+    fun setEndDate(year: Int, month: Int, day: Int) {
+        endYear.value = year
+        endMonth.value = month
+        endDay.value = day
+        checkEndDateAvailable()
+    }
+
+
     fun checkStartDateAvailable() {
         if (startYear.value != null && startMonth.value != null && startDay.value != null) {
             isStartDateAvailable.value = true
             checkTripAvailable()
         } else {
             isStartDateAvailable.value = false
-            checkTripAvailable()
         }
     }
 
@@ -59,7 +73,6 @@ class EditTripInfoViewModel : ViewModel() {
             checkTripAvailable()
         } else {
             isEndDateAvailable.value = false
-            checkTripAvailable()
         }
     }
 
