@@ -16,7 +16,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
         if (isStart) customStartDate() else customEndDate()
-        observeIsAvailableDateRange()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +35,17 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
         calendar.set(2000, 0, 1)
         datePicker.minDate = calendar.timeInMillis
 
-        calendar.set(2100, 0, 1)
-        datePicker.maxDate = calendar.timeInMillis
+        if (viewModel.endYear.value != null && viewModel.endMonth.value != null && viewModel.endDay.value != null) {
+            calendar.set(
+                viewModel.endYear.value ?: 0,
+                (viewModel.endMonth.value ?: 0) - 1,
+                viewModel.endDay.value ?: 0
+            )
+            datePicker.maxDate = calendar.timeInMillis
+        } else {
+            calendar.set(2100, 0, 1)
+            datePicker.maxDate = calendar.timeInMillis
+        }
 
         datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
@@ -55,16 +63,6 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
 
         calendar.set(2100, 0, 1)
         datePicker.maxDate = calendar.timeInMillis
-    }
-
-    private fun observeIsAvailableDateRange() {
-        viewModel.isAvailableDateRange.observe(this) {
-            when (it) {
-                null -> return@observe
-                true -> return@observe
-                false -> toast(getString(R.string.date_set_error))
-            }
-        }
     }
 
     private fun sendDateInfo() {
