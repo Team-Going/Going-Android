@@ -6,9 +6,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.going.domain.entity.response.EnterPreferenceModel
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
-import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishTripBinding
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.DATE_FORMAT
 import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity.Companion.D_DAY_FORMAT
@@ -27,7 +27,6 @@ import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
 import timber.log.Timber
 
-
 class FinishTripActivity :
     BaseActivity<ActivityFinishTripBinding>(R.layout.activity_finish_trip) {
 
@@ -39,13 +38,13 @@ class FinishTripActivity :
         super.onCreate(savedInstanceState)
 
         getTripInfo()
-        initCopyCodetvClickListener()
+        initCopyCodeTvClickListener()
         initSendCodeBtnClickListener()
         initEnterTripBtnClickListener()
         initOnBackPressedListener(binding.root)
     }
 
-    private fun initCopyCodetvClickListener() {
+    private fun initCopyCodeTvClickListener() {
         binding.clCopyCode.setOnSingleClickListener {
             val clipboardManager =
                 this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -61,10 +60,6 @@ class FinishTripActivity :
     }
 
     private fun startKakaoInvite(context: Context) {
-        val test = HashMap<String, String>()
-        test.put(KEY, inviteCode)
-        test.put(NAME, title)
-
         if (ShareClient.instance.isKakaoTalkSharingAvailable(context)) {
             ShareClient.instance.shareCustom(
                 context,
@@ -106,13 +101,10 @@ class FinishTripActivity :
 
     private fun initEnterTripBtnClickListener() {
         binding.btnFinishTripEnterTrip.setOnSingleClickListener {
-            Intent(this, DashBoardActivity::class.java).apply {
-                putExtra(TRIP_ID, tripId)
-                putExtra(IS_FIRST_ENTERED, true)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
-            }
-            finish()
+            DashBoardActivity.createIntent(
+                this,
+                tripId
+            ).apply { startActivity(this) }
         }
     }
 
@@ -142,6 +134,20 @@ class FinishTripActivity :
         const val TEMPLATE_ID = 102829
         const val KEY = "KEY"
         const val NAME = "NAME"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            data: EnterPreferenceModel
+        ): Intent = Intent(context, FinishTripActivity::class.java).apply {
+            putExtra(TITLE, data.title)
+            putExtra(START, data.startDate)
+            putExtra(END, data.endDate)
+            putExtra(INVITE_CODE, data.code)
+            putExtra(DAY, data.day)
+            putExtra(TRIP_ID, data.tripId)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
 
     }
 

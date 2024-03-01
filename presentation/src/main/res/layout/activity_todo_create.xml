@@ -46,6 +46,22 @@
                 app:layout_constraintStart_toEndOf="@id/btn_todo_create_back"
                 app:layout_constraintTop_toTopOf="@id/btn_todo_create_back" />
 
+            <TextView
+                android:id="@+id/btn_todo_memo_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.Doorip.Body2.Bold"
+                android:enabled="@{vm.isFinishAvailable()}"
+                android:text="@string/my_todo_create_btn_finish"
+                android:textColor="@{vm.isFinishAvailable() == true ? @color/red_500 : @color/gray_200}"
+                app:layout_constraintTop_toTopOf="@id/tv_todo_create_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_create_title"
+                android:layout_marginEnd="12dp"
+                android:paddingHorizontal="11dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="0dp"
                 android:layout_height="1dp"
@@ -60,7 +76,7 @@
             android:id="@+id/sv_todo_create"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_todo_memo_finish"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_todo_create">
@@ -230,24 +246,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_todo_memo_finish"
-            style="@style/button_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{vm.isFinishAvailable()}"
-            android:outlineProvider="none"
-            android:paddingVertical="10dp"
-            android:text="@string/my_todo_create_btn_finish"
-            android:textColor="@{vm.isFinishAvailable() == true ? @color/white_000 : @color/gray_200}"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

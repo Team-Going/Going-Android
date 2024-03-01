@@ -5,13 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoDetailBinding
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.colorOf
+import com.going.ui.extension.drawableOf
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.stringOf
 import com.going.ui.extension.toast
 import com.going.ui.state.EnumUiState
 import com.going.ui.state.UiState
@@ -94,11 +98,19 @@ class TodoDetailActivity :
 
                 is UiState.Success -> {
                     if (isPublic) {
-                        adapter.submitList(state.data)
+                        adapter.submitList(state.data.allocators)
                     } else {
                         with(binding) {
                             rvOurTodoDetailPerson.visibility = View.INVISIBLE
                             layoutMyTodoCreatePerson.visibility = View.VISIBLE
+                        }
+                    }
+                    if (state.data.memo.isBlank())  {
+                        with(binding) {
+                            etTodoCreateMemo.background = drawableOf(R.drawable.shape_rect_4_gray200_line)
+                            etTodoCreateMemo.text = stringOf(R.string.my_todo_create_tv_memo_hint)
+                            etTodoCreateMemo.setTextColor(colorOf(R.color.gray_200))
+                            tvTodoMemoCounter.isVisible = false
                         }
                     }
                 }

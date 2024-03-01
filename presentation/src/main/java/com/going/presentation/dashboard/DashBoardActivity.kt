@@ -1,5 +1,7 @@
 package com.going.presentation.dashboard
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
@@ -86,7 +88,17 @@ class DashBoardActivity :
     companion object {
         const val TAB_ONGOING = "진행 중인 여행"
         const val TAB_COMPLETED = "지나간 여행"
-
         const val IS_FIRST_ENTERED = "isFirstEntered"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long
+        ): Intent = Intent(context, DashBoardActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+            putExtra(IS_FIRST_ENTERED, true)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+
     }
 }

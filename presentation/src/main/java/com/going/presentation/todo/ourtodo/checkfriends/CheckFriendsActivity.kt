@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.response.CheckFriendsModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
@@ -55,12 +56,7 @@ class CheckFriendsActivity :
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    adapter.submitList(state.data.participants)
-                    val rate = state.data.styles.map { it.rate }
-                    val isLeft = state.data.styles.map { it.isLeft }
-                    setProgressBarStatus(rate, isLeft)
-                }
+                is UiState.Success -> setFriendsData(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -69,6 +65,13 @@ class CheckFriendsActivity :
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun setFriendsData(data: CheckFriendsModel) {
+        adapter.submitList(data.participants)
+        val rate = data.styles.map { it.rate }
+        val isLeft = data.styles.map { it.isLeft }
+        setProgressBarStatus(rate, isLeft)
     }
 
     private fun setProgressBarStatus(rate: List<Int>, isLeft: List<Boolean>) {

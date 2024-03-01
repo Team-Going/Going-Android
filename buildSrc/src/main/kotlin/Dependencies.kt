@@ -77,6 +77,8 @@ object ThirdPartyDependencies {
     const val kakaoShare = "com.kakao.sdk:v2-share:${Versions.kakaoVersion}"
 
     const val amplitude = "com.amplitude:android-sdk:${Versions.amplitudeVersion}"
+
+    const val flexbox = "com.google.android.flexbox:flexbox:${Versions.flexboxVersion}"
 }
 
 object ClassPathPlugins {
