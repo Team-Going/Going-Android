@@ -13,20 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tb_sign_up_profile_setting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/white_000"
-            android:elevation="2dp"
-            android:paddingVertical="12dp"
-            android:paddingStart="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/sign_up_tb_title"
-            app:titleTextAppearance="@style/TextAppearance.Doorip.Body1.Bold"
-            app:titleTextColor="@color/black_000" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_sign_up_title"
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/sign_up_tb_title"
+                app:layout_constraintBottom_toBottomOf="@id/tb_sign_up_profile_setting"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleTextColor="@color/gray_700" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/tv_sign_up_title_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:dividerColor="@color/gray_100"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.going.presentation.designsystem.edittext.EmojiCounterEditText
             android:id="@+id/et_sign_up_name"
