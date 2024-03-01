@@ -125,7 +125,7 @@ class ProfileActivity :
             ProfileEditActivity.createIntent(
                 this,
                 binding.tvProfileName.text.toString(),
-                binding.tvProfileType.text.toString()
+                binding.tvProfileOneLine.text.toString()
             ).apply {
                 startActivity(this)
             }
