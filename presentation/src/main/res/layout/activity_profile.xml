@@ -68,28 +68,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="23dp"
                     android:src="@drawable/img_profile_1"
+                    app:civ_border_color="@color/gray_100"
+                    app:civ_border_width="1dp"
+                    app:layout_constraintBottom_toTopOf="@id/view_gray"
                     app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_profile_name"
-                    style="@style/TextAppearance.Doorip.Head2"
+                    style="@style/TextAppearance.Doorip.Body1.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:textColor="@color/red_500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_profile"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/gray_500"
+                    app:layout_constraintStart_toEndOf="@id/iv_profile"
+                    app:layout_constraintTop_toTopOf="@id/iv_profile"
                     tools:text="@string/profile_tv_name" />
 
                 <TextView
@@ -100,21 +102,34 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center"
                     android:textColor="@color/gray_500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_profile_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
                     tools:text="@string/profile_tv_one_line" />
+
+                <TextView
+                    android:id="@+id/tv_profile_edit"
+                    style="@style/TextAppearance.Doorip.Detail1.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="7dp"
+                    android:textColor="@color/gray_400"
+                    android:background="@drawable/shape_rect_4_gray50_fill_gray100_line"
+                    android:text="@string/profile_tv_edit"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_profile" />
 
                 <View
                     android:id="@+id/view_gray"
                     android:layout_width="wrap_content"
                     android:layout_height="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="22dp"
                     android:background="@color/gray_100"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_profile_one_line" />
-
+                    app:layout_constraintTop_toBottomOf="@id/iv_profile" />
 
                 <TextView
                     android:id="@+id/tv_profile_type"
@@ -239,8 +254,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="@string/profile_tv_restart_button"
                     android:paddingHorizontal="24dp"
+                    android:text="@string/profile_tv_restart_button"
                     android:textColor="@color/gray_300"
                     app:layout_constraintEnd_toEndOf="@id/tv_chart_third"
                     app:layout_constraintTop_toBottomOf="@id/tv_chart_third" />

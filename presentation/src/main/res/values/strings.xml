@@ -172,6 +172,7 @@
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
     <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
+    <string name="profile_tv_edit">프로필 수정</string>
     <string name="profile_image_download_success">이미지가 저장되었어요\n친구들에게 공유해보세요!</string>
     <string name="profile_image_download_error">이미지를 저장할 수 없습니다\n안드로이드 버전을 확인해주세요</string>
 
