@@ -82,6 +82,7 @@
     <string name="our_todo_title_down_end">여행이 완료되었어요!</string>
     <string name="our_todo_date_form">%s - %s</string>
     <string name="our_todo_day_form">%s월 %s일</string>
+    <string name="our_todo_tv_empty_allocator">앗! 누가하지?</string>
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">혼자 할일</string>
