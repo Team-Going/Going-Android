@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TodoAllocatorModel
+import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.state.EnumUiState
 import com.going.ui.state.UiState
@@ -22,8 +23,8 @@ class TodoDetailViewModel @Inject constructor(
     val endDate = MutableLiveData("")
     val memo = MutableLiveData("")
 
-    private val _todoDetailState = MutableStateFlow<UiState<List<TodoAllocatorModel>>>(UiState.Empty)
-    val todoDetailState: StateFlow<UiState<List<TodoAllocatorModel>>> = _todoDetailState
+    private val _todoDetailState = MutableStateFlow<UiState<TodoDetailModel>>(UiState.Empty)
+    val todoDetailState: StateFlow<UiState<TodoDetailModel>> = _todoDetailState
 
     private val _todoDeleteState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoDeleteState: StateFlow<EnumUiState> = _todoDeleteState
@@ -36,7 +37,7 @@ class TodoDetailViewModel @Inject constructor(
                     todo.value = response.title
                     endDate.value = response.endDate
                     memo.value = response.memo
-                    _todoDetailState.value = UiState.Success(response.allocators)
+                    _todoDetailState.value = UiState.Success(response)
                 }
                 .onFailure {
                     _todoDetailState.value = UiState.Failure(it.message.toString())
