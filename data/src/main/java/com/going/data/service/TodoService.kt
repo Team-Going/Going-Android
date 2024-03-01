@@ -2,6 +2,7 @@ package com.going.data.service
 
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
+import com.going.data.dto.request.TodoChangeRequestDto
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.CheckFriendsResponseDto
 import com.going.data.dto.response.MyTripInfoResponseDto
@@ -11,6 +12,7 @@ import com.going.data.dto.response.TodoResponseDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -64,5 +66,11 @@ interface TodoService {
     suspend fun getFriendsList(
         @Path("tripId") tripId: Long
     ): BaseResponse<CheckFriendsResponseDto>
+
+    @PATCH("/api/trips/todos/{todoId}")
+    suspend fun patchTodo(
+        @Path("todoId") todoId: Long,
+        @Body request: TodoChangeRequestDto
+    ): NonDataBaseResponse
 
 }

@@ -1,7 +1,9 @@
 package com.going.data.repositoryImpl
 
 import com.going.data.datasource.TodoDataSource
+import com.going.data.dto.request.toTodoChangeRequestDto
 import com.going.data.dto.request.toTodoCreateRequestDto
+import com.going.domain.entity.request.TodoChangeRequestModel
 import com.going.domain.entity.request.TodoCreateRequestModel
 import com.going.domain.entity.response.CheckFriendsModel
 import com.going.domain.entity.response.MyTripInfoModel
@@ -79,6 +81,14 @@ class TodoRepositoryImpl @Inject constructor(
     ): Result<CheckFriendsModel> =
         runCatching {
             todoDataSource.getFriendsList(tripId).data.toCheckFriendsModel()
+        }
+
+    override suspend fun patchTodo(
+        todoId: Long,
+        request: TodoChangeRequestModel
+    ): Result<Unit> =
+        runCatching {
+            todoDataSource.patchTodoData(todoId, request.toTodoChangeRequestDto())
         }
 
 }
