@@ -83,8 +83,8 @@ class ProfileEditActivity :
     }
 
     companion object {
-        const val NICKNAME = "NICKNAME"
-        const val INFO = "INFO"
+        private const val NICKNAME = "NICKNAME"
+        private const val INFO = "INFO"
 
         @JvmStatic
         fun createIntent(
