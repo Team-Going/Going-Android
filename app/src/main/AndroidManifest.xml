@@ -150,6 +150,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.going.presentation.profile.ProfileEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

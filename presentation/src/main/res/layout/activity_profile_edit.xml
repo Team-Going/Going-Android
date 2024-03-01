@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tb_profile_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_profile_edit_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_tv_edit"
+                app:layout_constraintBottom_toBottomOf="@id/btn_profile_edit_back"
+                app:layout_constraintStart_toEndOf="@id/btn_profile_edit_back"
+                app:layout_constraintTop_toTopOf="@id/btn_profile_edit_back" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+            android:id="@+id/et_profile_edit_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:imeOptions="actionNext"
+            app:canBlankError="true"
+            app:hint="@string/sign_up_et_name_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_profile_edit"
+            app:title="@string/sign_up_name_tv_title" />
+
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+            android:id="@+id/et_profile_edit_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:imeOptions="actionDone"
+            app:canBlankError="false"
+            app:hint="@string/sign_up_one_line_et_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_profile_edit_nickname"
+            app:title="@string/sign_up_one_line_info_tv_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_sign_up_finish"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/sel_rounded_corner_button"
+            android:enabled="true"
+            android:outlineProvider="none"
+            android:paddingVertical="10dp"
+            android:text="@string/sign_up_finish_btn"
+            android:textColor="@color/gray_200"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
