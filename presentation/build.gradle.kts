@@ -83,6 +83,7 @@ dependencies {
         implementation(lottie)
         implementation(circularProgressBar)
         implementation(circleIndicator)
+        implementation(flexbox)
     }
 
     KakaoDependencies.run {

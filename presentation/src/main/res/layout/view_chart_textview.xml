@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/tv_chart_second_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_second_description_title"
+            app:layout_constraintStart_toEndOf="@id/tv_chart_second_description"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 

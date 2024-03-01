@@ -3,6 +3,7 @@ package com.going.presentation.entertrip.createtrip.choosedate
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.NameState
+import com.going.presentation.entertrip.createtrip.preference.ParcelableTripData
 import com.going.ui.extension.getGraphemeLength
 
 class CreateTripViewModel : ViewModel() {
@@ -16,6 +17,8 @@ class CreateTripViewModel : ViewModel() {
     val endYear = MutableLiveData<Int>()
     val endMonth = MutableLiveData<Int>()
     val endDay = MutableLiveData<Int>()
+
+    var tripIntentData: ParcelableTripData? = null
 
     val isStartDateAvailable = MutableLiveData(false)
     val isEndDateAvailable = MutableLiveData(false)
@@ -37,8 +40,7 @@ class CreateTripViewModel : ViewModel() {
 
         val isInfoAvailable = nameLength.value in 1..MAX_TRIP_LEN
 
-        isTripAvailable.value =
-            (isNameAvailable.value == NameState.Success) && isInfoAvailable
+        isTripAvailable.value = (isNameAvailable.value == NameState.Success) && isInfoAvailable
 
         checkTripAvailable()
     }
@@ -79,6 +81,19 @@ class CreateTripViewModel : ViewModel() {
         isCheckTripAvailable.value =
             (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true && isAvailableDateRange.value == true)
     }
+
+    fun saveIntentData() {
+        tripIntentData = ParcelableTripData(
+            name = name.value.orEmpty(),
+            startYear = startYear.value ?: 0,
+            startMonth = startMonth.value ?: 0,
+            startDay = startDay.value ?: 0,
+            endYear = endYear.value ?: 0,
+            endMonth = endMonth.value ?: 0,
+            endDay = endDay.value ?: 0
+        )
+    }
+
 
     companion object {
         const val MAX_TRIP_LEN = 15

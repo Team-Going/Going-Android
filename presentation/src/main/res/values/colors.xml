@@ -2,6 +2,7 @@
 <resources>
 
     <!-- Main _ Tangerine -->
+    <color name="red_50">#FFECE6</color>
     <color name="red_100">#FAD3C6</color>
     <color name="red_200">#FCAD95</color>
     <color name="red_300">#FE8763</color>
