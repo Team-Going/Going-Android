@@ -37,7 +37,6 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        setTodoCreateType()
         initDateClickBtnListener()
         initFinishBtnListener()
         initBackBtnListener()

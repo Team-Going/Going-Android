@@ -6,16 +6,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoChangeBinding
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_MEMO_LEN
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_TODO_LEN
 import com.going.presentation.todo.create.TripParticipantAdapter
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.colorOf
-import com.going.ui.extension.drawableOf
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.activity_todo_change) {
@@ -32,12 +36,11 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        setTodoCreateType()
         initDateClickBtnListener()
         initFinishBtnListener()
         initBackBtnListener()
         getTodoInfo()
-        setTodoCreateType()
+        observeTodoDetailState()
         setEtTodoNameArguments()
         setEtTodoMemoArguments()
         observeNameTextChanged()
@@ -57,10 +60,6 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            if (!viewModel.isSecret) {
-                viewModel.participantIdList =
-                    adapter.currentList.filter { it.isSelected }.map { it.participantId }
-            }
             // TODO 수정
         }
     }
@@ -73,16 +72,37 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private fun getTodoInfo() {
         viewModel.todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
-        // TODO 정보 수신
-        viewModel
+        viewModel.getTodoDetailFromServer()
     }
 
-    private fun setTodoCreateType() {
-        if (!viewModel.isSecret) {
-            initOurTodoNameListAdapter()
-        } else {
-            setMyTodoParticipant()
+    private fun observeTodoDetailState() {
+        viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Loading -> return@onEach
+
+                is UiState.Success -> {
+                    if (!state.data) {
+                        initOurTodoNameListAdapter()
+                        return@onEach
+                    }
+                    setMyTodoParticipant()
+                }
+
+                is UiState.Failure -> toast(getString(R.string.server_error))
+
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initOurTodoNameListAdapter() {
+        _adapter = TripParticipantAdapter(false) { position ->
+            // TODO 어댑터 수정
+            viewModel.allocatorModelList[position].also { it.isAllocated = !it.isAllocated }
+            viewModel.checkIsFinishAvailable()
         }
+        binding.rvOurTodoCreatePerson.adapter = adapter
+        adapter.submitList(viewModel.allocatorModelList)
     }
 
     private fun setMyTodoParticipant() {
@@ -90,15 +110,6 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
             rvOurTodoCreatePerson.visibility = View.INVISIBLE
             layoutMyTodoCreatePerson.visibility = View.VISIBLE
         }
-    }
-
-    private fun initOurTodoNameListAdapter() {
-        _adapter = TripParticipantAdapter(false) { position ->
-            viewModel.participantModelList[position].also { it.isSelected = !it.isSelected }
-            viewModel.checkIsFinishAvailable()
-        }
-        binding.rvOurTodoCreatePerson.adapter = adapter
-        adapter.submitList(viewModel.participantModelList)
     }
 
     private fun setEtTodoNameArguments() {
