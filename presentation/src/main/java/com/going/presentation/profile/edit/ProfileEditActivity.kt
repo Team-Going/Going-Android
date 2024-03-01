@@ -1,8 +1,9 @@
-package com.going.presentation.profile
+package com.going.presentation.profile.edit
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileEditBinding
 import com.going.ui.base.BaseActivity
@@ -12,6 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileEditActivity :
     BaseActivity<ActivityProfileEditBinding>(R.layout.activity_profile_edit) {
+    private val viewModel by viewModels<ProfileEditViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,7 +26,7 @@ class ProfileEditActivity :
 
     private fun setEtNameArguments() {
         with(binding.etProfileEditNickname) {
-            setMaxLen(3)
+            setMaxLen(viewModel.getMaxNameLen())
             overWarning = getString(R.string.name_over_error)
             blankWarning = getString(R.string.name_blank_error)
         }
@@ -31,7 +34,7 @@ class ProfileEditActivity :
 
     private fun setEtInfoArguments() {
         with(binding.etProfileEditInfo) {
-            setMaxLen(20)
+            setMaxLen(viewModel.getMaxInfoLen())
             overWarning = getString(R.string.info_over_error)
         }
     }

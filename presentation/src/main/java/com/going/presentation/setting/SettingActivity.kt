@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivitySettingBinding
-import com.going.presentation.profile.ProfileActivity
-import com.going.presentation.profile.ProfileViewModel
+import com.going.presentation.profile.my.ProfileActivity
+import com.going.presentation.profile.my.ProfileViewModel
 import com.going.presentation.util.openWebView
 import com.going.presentation.util.navigateToScreen
 import com.going.ui.base.BaseActivity

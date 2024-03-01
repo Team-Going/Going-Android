@@ -1,9 +1,10 @@
-package com.going.presentation.profile
+package com.going.presentation.profile.edit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.repository.ProfileRepository
+import com.going.presentation.onboarding.signup.SignUpViewModel
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
+class ProfileEditViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
 ) : ViewModel() {
 
@@ -21,15 +22,7 @@ class ProfileViewModel @Inject constructor(
 
     val profileId = MutableStateFlow(0)
 
-    fun getUserInfoState() {
-        viewModelScope.launch {
-            _userInfoState.value = UiState.Loading
-            profileRepository.getUserProfile().onSuccess {
-                profileId.value = it.result
-                _userInfoState.value = UiState.Success(it)
-            }.onFailure {
-                _userInfoState.value = UiState.Failure(it.message.toString())
-            }
-        }
-    }
+    fun getMaxNameLen() = SignUpViewModel.MAX_NAME_LEN
+
+    fun getMaxInfoLen() = SignUpViewModel.MAX_INFO_LEN
 }

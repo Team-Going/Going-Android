@@ -1,4 +1,4 @@
-package com.going.presentation.profile
+package com.going.presentation.profile.my
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,6 +12,7 @@ import coil.transform.CircleCropTransformation
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileBinding
 import com.going.presentation.designsystem.textview.ChartTextView
+import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.PERMISSION_REQUEST_CODE
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
