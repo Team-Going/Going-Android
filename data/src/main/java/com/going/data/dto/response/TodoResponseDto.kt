@@ -18,5 +18,5 @@ data class TodoResponseDto(
     val secret: Boolean
 ) {
     fun toTodoModel() =
-        TodoModel(todoId, title, endDate, allocators.map { it.toTodoAllocatorModel() }, secret)
+        TodoModel(todoId, title, endDate, allocators.map { it.toTodoListAllocatorModel() }, secret)
 }
