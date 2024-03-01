@@ -53,6 +53,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_splash_title" />
 
+        <TextView
+            android:id="@+id/btn_tendency_skip"
+            style="@style/TextAppearance.Doorip.Detail2.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_300"
+            android:text="@string/tendency_splash_skip_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_tendency_splash_start"
+            android:layout_marginBottom="20dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_splash_start"
             style="@style/button_style"
