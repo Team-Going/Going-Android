@@ -302,6 +302,7 @@
                             android:adjustViewBounds="true"
                             android:src="@drawable/img_trip_friends_banner"
                             app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginHorizontal="24dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/layout_our_trip_friend" />
 
@@ -338,6 +339,7 @@
                 android:id="@+id/vp_our_todo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
