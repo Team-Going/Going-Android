@@ -1,6 +1,9 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -10,6 +13,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.colorOf
 import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -34,6 +38,7 @@ class CheckFriendsActivity :
         initAdapter()
         getTripId()
         observeCheckFriendsListState()
+        setResultTextColor()
 
     }
 
@@ -100,6 +105,18 @@ class CheckFriendsActivity :
                 progressBars[i].visibility = View.INVISIBLE
                 progressBarsRevert[i].visibility = View.VISIBLE
                 progressBarsRevert[i].progress = rate[i]
+            }
+        }
+    }
+
+    private fun setResultTextColor(){
+        binding.tvCheckFriendsResult.apply {
+            text = SpannableStringBuilder(text).apply{
+                setSpan(
+                    ForegroundColorSpan(
+                        colorOf(R.color.red_500)
+                    ), 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
             }
         }
     }
