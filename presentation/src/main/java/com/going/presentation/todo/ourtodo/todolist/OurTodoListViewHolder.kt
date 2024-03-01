@@ -1,5 +1,6 @@
 package com.going.presentation.todo.ourtodo.todolist
 
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.R
@@ -18,8 +19,15 @@ class OurTodoListViewHolder(
         binding.run {
             tvOurTodoItemTitle.text = item.title
             tvOurTodoItemDate.text = item.endDate.replace("-", ".") + "까지"
-            rvOurTodoName.adapter = TodoAllocatorAdapter(isCompleted).apply {
-                submitList(item.allocators)
+            if (item.allocators.isEmpty()) {
+                rvOurTodoName.visibility = View.INVISIBLE
+                layoutOurTodoEmptyAllocator.visibility = View.VISIBLE
+            } else {
+                rvOurTodoName.visibility = View.VISIBLE
+                layoutOurTodoEmptyAllocator.visibility = View.INVISIBLE
+                rvOurTodoName.adapter = TodoAllocatorAdapter(isCompleted).apply {
+                    submitList(item.allocators)
+                }
             }
 
             if (isCompleted) {
