@@ -3,7 +3,6 @@ package com.going.presentation.todo.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.state.EnumUiState

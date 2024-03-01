@@ -36,6 +36,8 @@ class TodoCreateViewModel @Inject constructor(
 
     var tripId: Long = 0
 
+    var isOurTodo = true
+
     fun setNameState(name: String, state: EditTextState) {
         todo.value = name
         isTodoAvailable.value = state == EditTextState.SUCCESS
@@ -63,7 +65,7 @@ class TodoCreateViewModel @Inject constructor(
                     endDate = endDate.value.orEmpty(),
                     allocators = participantIdList,
                     memo = memo.value,
-                    secret = false,
+                    secret = !isOurTodo,
                 ),
             )
                 .onSuccess { response ->

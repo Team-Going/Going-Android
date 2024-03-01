@@ -33,8 +33,6 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private var todoNewDateBottomSheet: TodoNewDateBottomSheet? = null
 
-    private var isOurTodo = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -66,9 +64,11 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            if (isOurTodo) viewModel.participantIdList =
-                adapter.currentList.filter { it.isSelected }.map { it.participantId }
-            viewModel.postToCreateTodoFromServer()
+            with(viewModel) {
+                if (isOurTodo) participantIdList =
+                    adapter.currentList.filter { it.isSelected }.map { it.participantId }
+                postToCreateTodoFromServer()
+            }
         }
     }
 
@@ -81,13 +81,15 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private fun getTripInfoId() {
         with(viewModel) {
             tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
-            participantIdList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() } ?: listOf()
+            participantIdList =
+                intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() }
+                    ?: listOf()
         }
     }
 
     private fun setTodoCreateType() {
-        isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
-        if (isOurTodo) {
+        viewModel.isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
+        if (viewModel.isOurTodo) {
             initOurTodoNameListAdapter()
             setOurTodoParticipantList()
         } else {
