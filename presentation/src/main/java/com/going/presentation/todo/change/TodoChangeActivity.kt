@@ -12,7 +12,6 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoChangeBinding
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_MEMO_LEN
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_TODO_LEN
-import com.going.presentation.todo.create.TripParticipantAdapter
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -41,6 +40,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         initBackBtnListener()
         getTodoInfo()
         observeTodoDetailState()
+        observePatchTodoState()
         setEtTodoNameArguments()
         setEtTodoMemoArguments()
         observeNameTextChanged()
@@ -92,6 +92,17 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
                 is UiState.Empty -> return@onEach
             }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observePatchTodoState() {
+        viewModel.todoPatchState.flowWithLifecycle(lifecycle).onEach { result ->
+            if (result) {
+                toast(getString(R.string.todo_change_toast_success))
+                finish()
+                return@onEach
+            }
+            toast(getString(R.string.todo_change_toast_failure))
         }.launchIn(lifecycleScope)
     }
 

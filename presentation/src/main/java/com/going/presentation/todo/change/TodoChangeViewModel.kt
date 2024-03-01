@@ -3,13 +3,16 @@ package com.going.presentation.todo.change
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.request.TodoChangeRequestModel
 import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.presentation.designsystem.edittext.EditTextState
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +24,9 @@ class TodoChangeViewModel @Inject constructor(
 
     private val _todoDetailState = MutableStateFlow<UiState<Boolean>>(UiState.Empty)
     val todoDetailState: StateFlow<UiState<Boolean>> = _todoDetailState
+
+    private val _todoPatchState = MutableSharedFlow<Boolean>()
+    val todoPatchState: SharedFlow<Boolean> = _todoPatchState
 
     private val todo = MutableLiveData("")
     private val memo = MutableLiveData("")
@@ -77,6 +83,24 @@ class TodoChangeViewModel @Inject constructor(
 
     fun patchTodoToServer() {
         if (isFinishAvailable.value == false) return
+        viewModelScope.launch {
+            todoRepository.patchTodo(
+                todoId,
+                TodoChangeRequestModel(
+                    title = todo.value.orEmpty(),
+                    endDate = endDate.value.orEmpty(),
+                    allocators = allocatorModelList.filter { it.isAllocated }.map { it.participantId },
+                    memo = memo.value,
+                    secret = isSecret
+                )
+            )
+                .onSuccess {
+                    _todoPatchState.emit(true)
+                }
+                .onFailure {
+                    _todoPatchState.emit(false)
+                }
+        }
     }
 
 }
