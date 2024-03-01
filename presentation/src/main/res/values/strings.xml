@@ -44,6 +44,7 @@
     <string name="tendency_splash_title">여행을 할 때 우리는 어떤 모습일까?</string>
     <string name="tendency_splash_sub_title">9개의 질문으로\n나를 대신할 여행 캐릭터를 찾아보세요</string>
     <string name="tendency_splash_start_btn">테스트 시작하기</string>
+    <string name="tendency_splash_skip_btn">테스트 건너뛰기</string>
 
     <!--tendency_test-->
     <string name="tendency_test_title">나의 여행 캐릭터는?</string>
