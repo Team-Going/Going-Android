@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="8dp"
     android:background="@drawable/shape_rect_4_gray50_fill"
     android:paddingBottom="15dp">
 
@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@id/tv_our_todo_item_date"
         android:textColor="@color/gray_700"
+        app:layout_constraintEnd_toStartOf="@id/tv_our_todo_item_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="숙소 예약금 걸기" />
@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textColor="@color/gray_300"
+        app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_item_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_our_todo_item_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_our_todo_item_title"
         tools:text="2023.09.23까지" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -45,6 +45,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_our_todo_item_title"
-        tools:listitem="@layout/item_todo_name" />
+        tools:listitem="@layout/item_todo_name"
+        tools:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/layout_our_todo_empty_allocator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_rect_4_gray100_fill"
+        android:orientation="horizontal"
+        android:paddingStart="2dp"
+        android:paddingEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_our_todo_item_title"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_empty" />
+
+        <TextView
+            style="@style/TextAppearance.Doorip.Detail2.Regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/our_todo_tv_empty_allocator"
+            android:textColor="@color/gray_300" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

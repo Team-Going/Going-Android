@@ -64,6 +64,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
+        initTripInfoBtnClickListener()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
@@ -104,23 +105,33 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initInviteBtnListener() {
         binding.btnOurTodoAddFriend.setOnSingleClickListener {
-            friendInviteDialog = FriendInviteDialog()
-            friendInviteDialog?.show(parentFragmentManager, INVITE_DIALOG)
+            if (participantList.size > 5) {
+                toast(getString(R.string.our_todo_participant_over_six))
+            } else {
+                friendInviteDialog = FriendInviteDialog()
+                friendInviteDialog?.show(parentFragmentManager, INVITE_DIALOG)
+            }
         }
     }
 
     private fun initBackBtnClickListener() {
         binding.btnOurTodoBack.setOnSingleClickListener {
-            activity?.finish()
+            requireActivity().finish()
         }
     }
 
     private fun initTripFriendBtnClickListener() {
         binding.btnOurTripFriend.setOnSingleClickListener {
-            Intent(activity, CheckFriendsActivity::class.java).apply {
+            Intent(requireActivity(), CheckFriendsActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
+        }
+    }
+
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            // TODO : 여행정보 화면 이동
         }
     }
 

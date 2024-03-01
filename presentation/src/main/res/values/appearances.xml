@@ -107,4 +107,8 @@
         <item name="fontFamily">@font/font_pretendard_regular</item>
     </style>
 
+    <style name="TextAppearance.Doorip.Detail3.Semi">
+        <item name="fontFamily">@font/font_pretendard_semibold</item>
+    </style>
+
 </resources>
