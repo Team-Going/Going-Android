@@ -107,7 +107,7 @@
                     tools:text="@string/profile_tv_one_line" />
 
                 <TextView
-                    android:id="@+id/tv_profile_edit"
+                    android:id="@+id/btn_profile_edit"
                     style="@style/TextAppearance.Doorip.Detail1.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_chart_second" />
 
                 <TextView
-                    android:id="@+id/tv_profile_restart"
+                    android:id="@+id/btn_profile_restart"
                     style="@style/TextAppearance.Doorip.Detail2.Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,7 +274,7 @@
                     android:layout_height="17dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_profile_restart" />
+                    app:layout_constraintTop_toBottomOf="@id/btn_profile_restart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

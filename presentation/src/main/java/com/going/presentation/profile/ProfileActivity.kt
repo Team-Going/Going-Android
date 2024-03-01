@@ -1,7 +1,6 @@
 package com.going.presentation.profile
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -17,13 +16,11 @@ import com.going.presentation.tendency.result.TendencyResultActivity.Companion.P
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
-import com.going.presentation.util.navigateToScreen
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.UiState
-import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,9 +35,10 @@ class ProfileActivity :
 
         getUserInfo()
         observeUserInfoState()
-        initRestartBtnClickListener()
         initBackBtnClickListener()
         initSaveImgBtnClickListener()
+
+        initRestartBtnClickListener()
     }
 
     private fun getUserInfo() {
@@ -75,6 +73,8 @@ class ProfileActivity :
                 tvProfileType.text = profileTitle
                 tvProfileSubType.text = profileSubTitle
 
+                ivProfileBig.load(resultImage)
+
                 tvProfileTag1.text = getString(R.string.tag, tags[0])
                 tvProfileTag2.text = getString(R.string.tag, tags[1])
                 tvProfileTag3.text = getString(R.string.tag, tags[2])
@@ -108,9 +108,9 @@ class ProfileActivity :
         }
     }
 
-    private fun initRestartBtnClickListener() {
-        binding.tvProfileRestart.setOnSingleClickListener {
-            navigateToScreenClear<TendencySplashActivity>()
+    private fun initBackBtnClickListener() {
+        binding.btnProfileBack.setOnSingleClickListener {
+            finish()
         }
     }
 
@@ -120,9 +120,15 @@ class ProfileActivity :
         }
     }
 
-    private fun initBackBtnClickListener() {
-        binding.btnProfileBack.setOnSingleClickListener {
-            finish()
+    private fun initProfileEditBtnClickListener() {
+        binding.btnProfileEdit.setOnSingleClickListener {
+            // 페이지 이동 함수 구현 예정
+        }
+    }
+
+    private fun initRestartBtnClickListener() {
+        binding.btnProfileRestart.setOnSingleClickListener {
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
