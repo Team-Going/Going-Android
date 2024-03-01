@@ -54,6 +54,8 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     var state: EditTextState = EditTextState.EMPTY
         set(value) {
             field = value
+
+            binding.btnDeleteText.isVisible = value != EditTextState.EMPTY
             editTextStateMap[field]?.let { setEditTextState(it) }
         }
 
@@ -65,6 +67,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
             true,
         )
 
+        initDeleteBtnClickListener()
         setBindingContent(typedArray)
 
         typedArray.recycle()
@@ -72,8 +75,15 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         checkTextAvailable()
     }
 
+    private fun initDeleteBtnClickListener() = with(binding) {
+        btnDeleteText.setOnClickListener {
+            etEmojiCounterEtContent.text = null
+        }
+    }
+
     private fun setBindingContent(typedArray: TypedArray) {
         with(binding) {
+            btnDeleteText.isVisible = state != EditTextState.EMPTY
             tvEmojiCounterEtTitle.text =
                 typedArray.getString(R.styleable.EmojiCounterEditText_title)
             etEmojiCounterEtContent.hint =
