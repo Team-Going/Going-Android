@@ -13,6 +13,8 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoCreateBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.colorOf
+import com.going.ui.extension.drawableOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
@@ -48,6 +50,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         setEtTodoMemoArguments()
         observeNameTextChanged()
         observeMemoTextChanged()
+        observeEndDateSelected()
     }
 
     private fun initViewModel() {
@@ -160,6 +163,18 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private fun observeMemoTextChanged() {
         binding.etTodoCreateMemo.editText.doAfterTextChanged { text ->
             viewModel.setMemoState(text.toString(), binding.etTodoCreateMemo.state)
+        }
+    }
+
+    private fun observeEndDateSelected() {
+        viewModel.endDate.observe(this) {
+            if (!viewModel.endDate.value.isNullOrEmpty()) {
+                with(binding) {
+                    etTodoCreateDate.background = drawableOf(R.drawable.shape_rect_4_gray700_line)
+                    tvTodoCreateDateHint.setTextColor(colorOf(R.color.gray_700))
+                    ivTodoCreateDate.setImageResource(R.drawable.ic_dropdown_gray700)
+                }
+            }
         }
     }
 
