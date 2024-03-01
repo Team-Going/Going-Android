@@ -12,6 +12,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ViewEmojiCounterEdittextBinding
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getGraphemeLength
+import com.going.ui.extension.setOnSingleClickListener
 
 class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     ConstraintLayout(context, attrs) {
@@ -76,7 +77,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
     }
 
     private fun initDeleteBtnClickListener() = with(binding) {
-        btnDeleteText.setOnClickListener {
+        btnDeleteText.setOnSingleClickListener {
             etEmojiCounterEtContent.text = null
         }
     }
