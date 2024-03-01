@@ -31,7 +31,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private var todoDateBottomSheet: TodoDateBottomSheet? = null
+    private var todoNewDateBottomSheet: TodoNewDateBottomSheet? = null
 
     private var isOurTodo = true
 
@@ -59,8 +59,8 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initDateClickBtnListener() {
         binding.etTodoCreateDate.setOnSingleClickListener {
-            todoDateBottomSheet = TodoDateBottomSheet()
-            todoDateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
+            todoNewDateBottomSheet = TodoNewDateBottomSheet()
+            todoNewDateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
@@ -181,7 +181,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
-        if (todoDateBottomSheet?.isAdded == true) todoDateBottomSheet?.dismiss()
+        if (todoNewDateBottomSheet?.isAdded == true) todoNewDateBottomSheet?.dismiss()
     }
 
     companion object {
@@ -192,8 +192,8 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         private const val EXTRA_NAME = "EXTRA_NAME"
         private const val EXTRA_RESULT = "EXTRA_RESULT"
 
-        private const val MAX_TODO_LEN = 15
-        private const val MAX_MEMO_LEN = 1000
+        const val MAX_TODO_LEN = 15
+        const val MAX_MEMO_LEN = 1000
 
         @JvmStatic
         fun createIntent(

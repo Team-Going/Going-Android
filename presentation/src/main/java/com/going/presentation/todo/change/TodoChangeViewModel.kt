@@ -25,13 +25,12 @@ class TodoChangeViewModel @Inject constructor(
     private val isMemoAvailable = MutableLiveData(true)
     val isFinishAvailable = MutableLiveData(false)
 
-    private val _todoCreateState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
-    val todoCreateState: StateFlow<UiState<Unit>> = _todoCreateState
-
     var participantModelList: List<TripParticipantModel> = listOf()
     var participantIdList: List<Long> = listOf()
 
-    var tripId: Long = 0
+    var todoId: Long = 0
+
+    var isSecret: Boolean = false
 
     fun setNameState(name: String, state: EditTextState) {
         todo.value = name
