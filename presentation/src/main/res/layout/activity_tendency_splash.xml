@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_tendency_splash_title" />
 
         <TextView
-            android:id="@+id/btn_tendency_skip"
+            android:id="@+id/btn_tendency_splash_skip"
             style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
