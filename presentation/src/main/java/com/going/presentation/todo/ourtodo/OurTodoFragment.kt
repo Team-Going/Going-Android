@@ -64,6 +64,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
+        initTripInfoBtnClickListener()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
@@ -121,6 +122,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
+        }
+    }
+
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            // TODO : 여행정보 화면 이동
         }
     }
 
