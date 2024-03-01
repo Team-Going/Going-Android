@@ -131,6 +131,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_profile" />
 
+                <ImageView
+                    android:id="@+id/iv_profile_big"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.23"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_gray"/>
+
                 <TextView
                     android:id="@+id/tv_profile_type"
                     style="@style/TextAppearance.Doorip.Body1.Bold"
@@ -141,7 +150,7 @@
                     android:paddingHorizontal="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_gray" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_profile_big" />
 
                 <TextView
                     android:id="@+id/tv_profile_sub_type"
