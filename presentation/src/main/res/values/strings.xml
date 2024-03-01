@@ -83,6 +83,7 @@
     <string name="our_todo_date_form">%s - %s</string>
     <string name="our_todo_day_form">%s월 %s일</string>
     <string name="our_todo_tv_empty_allocator">앗! 누가하지?</string>
+    <string name="our_todo_participant_over_six">여행은 최대 6명까지 함께할 수 있어요</string>
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">혼자 할일</string>
