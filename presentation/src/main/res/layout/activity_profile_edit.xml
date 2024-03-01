@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.going.presentation.profile.edit.ProfileEditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,14 +69,14 @@
             app:title="@string/sign_up_one_line_info_tv_title" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_sign_up_finish"
+            android:id="@+id/btn_profile_edit_finish"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="true"
+            android:enabled="false"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/sign_up_finish_btn"
