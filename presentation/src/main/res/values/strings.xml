@@ -192,21 +192,22 @@
     <!--check friends-->
     <string name="check_friends_tool_bar">우리의 여행 취향</string>
     <string name="check_friends_check_member">프로필 사진을 눌러서 친구의 취향을 구경해보세요</string>
+    <string name="check_friends_preference_no_matter">아무렇게 %d명</string>
     <string name="check_friends_preference_1_title">여행 계획</string>
-    <string name="check_friends_preference_1_left">철저하게</string>
-    <string name="check_friends_preference_1_right">즉흥으로</string>
+    <string name="check_friends_preference_1_left">철저하게 %d명</string>
+    <string name="check_friends_preference_1_right">즉흥으로 %d명</string>
     <string name="check_friends_preference_2_title">여행 장소</string>
-    <string name="check_friends_preference_2_left">관광지</string>
-    <string name="check_friends_preference_2_right">로컬장소</string>
+    <string name="check_friends_preference_2_left">관광지 %d명</string>
+    <string name="check_friends_preference_2_right">로컬장소 %d명</string>
     <string name="check_friends_preference_3_title">식당</string>
-    <string name="check_friends_preference_3_left">유명 맛집</string>
-    <string name="check_friends_preference_3_right">가까운 곳</string>
+    <string name="check_friends_preference_3_left">유명 맛집 %d명</string>
+    <string name="check_friends_preference_3_right">가까운 곳 %d명</string>
     <string name="check_friends_preference_4_title">사진</string>
-    <string name="check_friends_preference_4_left">사진필수</string>
-    <string name="check_friends_preference_4_right">눈에 담기</string>
+    <string name="check_friends_preference_4_left">사진필수 %d명</string>
+    <string name="check_friends_preference_4_right">눈에 담기 %d명</string>
     <string name="check_friends_preference_5_title">여행 일정</string>
-    <string name="check_friends_preference_5_left">알차게</string>
-    <string name="check_friends_preference_5_right">여유롭게</string>
+    <string name="check_friends_preference_5_left">알차게 %d명</string>
+    <string name="check_friends_preference_5_right">여유롭게 %d명</string>
 
     <!--kakao-link-share-->
     <string name="invite_error_kakao"> 카카오톡 초대코드 오류 </string>

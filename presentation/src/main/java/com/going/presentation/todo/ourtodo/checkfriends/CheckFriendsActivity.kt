@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.view.View
+import android.view.Window
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,9 +14,9 @@ import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
-import com.going.ui.state.UiState
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -75,11 +75,11 @@ class CheckFriendsActivity :
     private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
         val rate = data.styles.map { it.rate }
-        val isLeft = data.styles.map { it.isLeft }
-        setProgressBarStatus(rate, isLeft)
+        setProgressBarStatus(rate)
     }
 
-    private fun setProgressBarStatus(rate: List<Int>, isLeft: List<Boolean>) {
+    private fun setProgressBarStatus(rate: List<Int>) {
+
         val progressBars = listOf(
             binding.progressBarCheckFriends1,
             binding.progressBarCheckFriends2,
@@ -88,30 +88,15 @@ class CheckFriendsActivity :
             binding.progressBarCheckFriends5
         )
 
-        val progressBarsRevert = listOf(
-            binding.progressBarCheckFriends1Revert,
-            binding.progressBarCheckFriends2Revert,
-            binding.progressBarCheckFriends3Revert,
-            binding.progressBarCheckFriends4Revert,
-            binding.progressBarCheckFriends5Revert
-        )
+//        for (i in rate.indices) {
+//            progressBars[i].progress = rate[i]
+//        }
 
-        for (i in rate.indices) {
-            if (isLeft[i]) {
-                progressBars[i].visibility = View.VISIBLE
-                progressBarsRevert[i].visibility = View.INVISIBLE
-                progressBars[i].progress = rate[i]
-            } else {
-                progressBars[i].visibility = View.INVISIBLE
-                progressBarsRevert[i].visibility = View.VISIBLE
-                progressBarsRevert[i].progress = rate[i]
-            }
-        }
     }
 
-    private fun setResultTextColor(){
+    private fun setResultTextColor() {
         binding.tvCheckFriendsResult.apply {
-            text = SpannableStringBuilder(text).apply{
+            text = SpannableStringBuilder(text).apply {
                 setSpan(
                     ForegroundColorSpan(
                         colorOf(R.color.red_500)
