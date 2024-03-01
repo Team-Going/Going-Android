@@ -10,6 +10,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoDetailBinding
+import com.going.presentation.todo.change.TodoChangeActivity
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
@@ -68,7 +69,9 @@ class TodoDetailActivity :
 
     private fun initModBtnClickListener() {
         binding.btnTodoDetailMod.setOnSingleClickListener {
-            toast(getString(R.string.will_be_update))
+            TodoChangeActivity.createIntent(
+                this, todoId
+            ).apply { startActivity(this) }
         }
     }
 
