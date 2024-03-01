@@ -13,7 +13,7 @@
         android:background="@color/white_000">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_profile_tag"
+            android:id="@+id/tb_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/layer_list_preference_tag_gray100_line"
@@ -33,10 +33,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/tv_profile_title"
                 style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:text="@string/profile_tv_title"
                 app:layout_constraintBottom_toBottomOf="@id/btn_profile_back"
                 app:layout_constraintStart_toEndOf="@id/btn_profile_back"
@@ -62,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_profile_tag">
+            app:layout_constraintTop_toBottomOf="@id/tb_profile">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

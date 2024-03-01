@@ -37,7 +37,7 @@ class ProfileActivity :
         observeUserInfoState()
         initBackBtnClickListener()
         initSaveImgBtnClickListener()
-
+        initProfileEditBtnClickListener()
         initRestartBtnClickListener()
     }
 
@@ -122,7 +122,13 @@ class ProfileActivity :
 
     private fun initProfileEditBtnClickListener() {
         binding.btnProfileEdit.setOnSingleClickListener {
-            // 페이지 이동 함수 구현 예정
+            ProfileEditActivity.createIntent(
+                this,
+                binding.tvProfileName.text.toString(),
+                binding.tvProfileType.text.toString()
+            ).apply {
+                startActivity(this)
+            }
         }
     }
 
