@@ -60,7 +60,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            // TODO 수정
+            viewModel.patchTodoToServer()
         }
     }
 

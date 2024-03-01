@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TodoAllocatorModel
+import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.presentation.designsystem.edittext.EditTextState
 import com.going.ui.state.UiState
@@ -26,10 +27,7 @@ class TodoChangeViewModel @Inject constructor(
 
     val endDate = MutableLiveData("")
 
-    private lateinit var oldTitle: String
-    private lateinit var oldEndDate: String
-    private lateinit var oldAllocatorList : List<Long>
-    private lateinit var oldMemo: String
+    private lateinit var oldTodoInfo: TodoDetailModel
     private var isSecret: Boolean = false
 
     private val isTodoAvailable = MutableLiveData(false)
@@ -53,9 +51,9 @@ class TodoChangeViewModel @Inject constructor(
     }
 
     fun checkIsFinishAvailable() {
-        // TODO 수정 여부 확인
         isFinishAvailable.value =
-            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty()
+            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty() &&
+                    todo.value != oldTodoInfo.title && endDate.value != oldTodoInfo.endDate && memo.value != oldTodoInfo.memo && allocatorModelList != oldTodoInfo.allocators
     }
 
     fun getTodoDetailFromServer() {
@@ -68,16 +66,17 @@ class TodoChangeViewModel @Inject constructor(
                     allocatorModelList = response.allocators
                     memo.value = response.memo
                     isSecret = response.secret
-                    oldTitle = response.title
-                    oldEndDate = response.endDate
-                    oldAllocatorList = response.allocators.map { it.participantId }
-                    oldMemo = response.memo
+                    oldTodoInfo = response
                     _todoDetailState.value = UiState.Success(response.secret)
                 }
                 .onFailure {
                     _todoDetailState.value = UiState.Failure(it.message.toString())
                 }
         }
+    }
+
+    fun patchTodoToServer() {
+        if (isFinishAvailable.value == false) return
     }
 
 }
