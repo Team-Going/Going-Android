@@ -1,7 +1,6 @@
-package com.going.presentation.profile
+package com.going.presentation.profile.my
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -13,17 +12,16 @@ import coil.transform.CircleCropTransformation
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileBinding
 import com.going.presentation.designsystem.textview.ChartTextView
+import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.tendency.result.TendencyResultActivity.Companion.PERMISSION_REQUEST_CODE
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
-import com.going.presentation.util.navigateToScreen
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.UiState
-import com.going.ui.extension.setBulletPoint
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,9 +36,10 @@ class ProfileActivity :
 
         getUserInfo()
         observeUserInfoState()
-        initRestartBtnClickListener()
         initBackBtnClickListener()
         initSaveImgBtnClickListener()
+        initProfileEditBtnClickListener()
+        initRestartBtnClickListener()
     }
 
     private fun getUserInfo() {
@@ -75,6 +74,8 @@ class ProfileActivity :
                 tvProfileType.text = profileTitle
                 tvProfileSubType.text = profileSubTitle
 
+                ivProfileBig.load(resultImage)
+
                 tvProfileTag1.text = getString(R.string.tag, tags[0])
                 tvProfileTag2.text = getString(R.string.tag, tags[1])
                 tvProfileTag3.text = getString(R.string.tag, tags[2])
@@ -108,9 +109,9 @@ class ProfileActivity :
         }
     }
 
-    private fun initRestartBtnClickListener() {
-        binding.tvProfileRestart.setOnSingleClickListener {
-            navigateToScreenClear<TendencySplashActivity>()
+    private fun initBackBtnClickListener() {
+        binding.btnProfileBack.setOnSingleClickListener {
+            finish()
         }
     }
 
@@ -120,9 +121,21 @@ class ProfileActivity :
         }
     }
 
-    private fun initBackBtnClickListener() {
-        binding.btnProfileBack.setOnSingleClickListener {
-            finish()
+    private fun initProfileEditBtnClickListener() {
+        binding.btnProfileEdit.setOnSingleClickListener {
+            ProfileEditActivity.createIntent(
+                this,
+                binding.tvProfileName.text.toString(),
+                binding.tvProfileOneLine.text.toString()
+            ).apply {
+                startActivity(this)
+            }
+        }
+    }
+
+    private fun initRestartBtnClickListener() {
+        binding.btnProfileRestart.setOnSingleClickListener {
+            navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
