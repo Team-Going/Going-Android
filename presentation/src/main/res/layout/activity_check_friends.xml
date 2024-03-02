@@ -118,7 +118,6 @@
                         style="@style/TextAppearance.Doorip.Body3.Bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:gravity="center"
                         android:text="@string/check_friends_preference_1_title"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -160,11 +159,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_1_left"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_1_left" />
+                                android:text="@string/check_friends_preference_1_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -182,11 +190,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_1_center"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter" />
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -205,11 +222,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_1_right"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_1_right" />
+                                android:text="@string/check_friends_preference_1_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -283,11 +309,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_2_left"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_2_left" />
+                                android:text="@string/check_friends_preference_2_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -305,11 +340,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_2_center"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter" />
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -328,11 +372,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_2_right"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_2_right" />
+                                android:text="@string/check_friends_preference_2_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -376,9 +429,7 @@
                         android:layout_width="0dp"
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
-                        android:progress="30"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:secondaryProgress="65"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_title" />
@@ -407,11 +458,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_3_left"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_3_left" />
+                                android:text="@string/check_friends_preference_3_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -429,11 +489,21 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_3_center"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter" />
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -451,11 +521,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_3_right"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_3_right" />
+                                android:text="@string/check_friends_preference_3_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -528,11 +607,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_4_left"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_4_left" />
+                                android:text="@string/check_friends_preference_4_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -550,11 +638,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_4_center"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter" />
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -573,11 +670,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_4_right"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_4_right" />
+                                android:text="@string/check_friends_preference_4_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -650,11 +756,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_5_left"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_5_left" />
+                                android:text="@string/check_friends_preference_5_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -672,11 +787,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_5_center"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter" />
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 
@@ -695,11 +819,20 @@
 
                             <TextView
                                 android:id="@+id/tv_check_friends_preference_5_right"
-                                style="@style/TextAppearance.Doorip.Detail2.Regular"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_5_right" />
+                                android:text="@string/check_friends_preference_5_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
 
                         </LinearLayout>
 

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import android.text.style.TextAppearanceSpan
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -39,7 +41,6 @@ class CheckFriendsActivity :
         getTripId()
         observeCheckFriendsListState()
         setResultTextColor()
-        setPreferenceTextColor()
 
     }
 
@@ -89,9 +90,9 @@ class CheckFriendsActivity :
             binding.progressBarCheckFriends5
         )
 
-//        for (i in rate.indices) {
-//            progressBars[i].progress = rate[i]
-//        }
+        for (i in rate.indices) {
+            progressBars[i].progress = rate[i]
+        }
 
     }
 
@@ -105,10 +106,6 @@ class CheckFriendsActivity :
                 )
             }
         }
-    }
-
-    private fun setPreferenceTextColor(){
-
     }
 
     override fun onDestroy() {
