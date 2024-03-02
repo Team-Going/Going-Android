@@ -16,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentMyTodoBinding
-import com.going.presentation.profile.ProfileActivity
+import com.going.presentation.profile.my.ProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.mytodo.todolist.MyTodoViewPagerAdapter

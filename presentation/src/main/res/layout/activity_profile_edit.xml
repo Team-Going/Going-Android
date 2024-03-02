@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
-            name="viewModel"
-            type="com.going.presentation.onboarding.signup.SignUpViewModel" />
+            name="vm"
+            type="com.going.presentation.profile.edit.ProfileEditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,41 +13,37 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tb_sign_up_profile_setting"
+            android:id="@+id/tb_profile_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white_000"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/btn_profile_edit_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:id="@+id/tv_sign_up_title"
                 style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:text="@string/sign_up_tb_title"
-                app:layout_constraintBottom_toBottomOf="@id/tb_sign_up_profile_setting"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:titleTextColor="@color/gray_700" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/tv_sign_up_title_divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                app:dividerColor="@color/gray_100"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                android:text="@string/profile_tv_edit"
+                app:layout_constraintBottom_toBottomOf="@id/btn_profile_edit_back"
+                app:layout_constraintStart_toEndOf="@id/btn_profile_edit_back"
+                app:layout_constraintTop_toTopOf="@id/btn_profile_edit_back" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.going.presentation.designsystem.edittext.EmojiCounterEditText
-            android:id="@+id/et_sign_up_name"
+            android:id="@+id/et_profile_edit_nickname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -57,11 +52,11 @@
             app:hint="@string/sign_up_et_name_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_sign_up_profile_setting"
+            app:layout_constraintTop_toBottomOf="@id/tb_profile_edit"
             app:title="@string/sign_up_name_tv_title" />
 
         <com.going.presentation.designsystem.edittext.EmojiCounterEditText
-            android:id="@+id/et_sign_up_info"
+            android:id="@+id/et_profile_edit_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -70,27 +65,25 @@
             app:hint="@string/sign_up_one_line_et_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_sign_up_name"
+            app:layout_constraintTop_toBottomOf="@id/et_profile_edit_nickname"
             app:title="@string/sign_up_one_line_info_tv_title" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_sign_up_finish"
+            android:id="@+id/btn_profile_edit_finish"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true}"
+            android:enabled="false"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
             android:text="@string/sign_up_finish_btn"
-            android:textColor="@{viewModel.isNameAvailable() == true &amp; viewModel.isInfoAvailable() == true ? @color/white_000 : @color/gray_200}"
+            android:textColor="@color/gray_200"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
