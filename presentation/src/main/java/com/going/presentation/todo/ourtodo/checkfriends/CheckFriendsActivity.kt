@@ -39,6 +39,7 @@ class CheckFriendsActivity :
         getTripId()
         observeCheckFriendsListState()
         setResultTextColor()
+        setPreferenceTextColor()
 
     }
 
@@ -104,6 +105,10 @@ class CheckFriendsActivity :
                 )
             }
         }
+    }
+
+    private fun setPreferenceTextColor(){
+
     }
 
     override fun onDestroy() {
