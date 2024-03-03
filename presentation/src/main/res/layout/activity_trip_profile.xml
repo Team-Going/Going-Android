@@ -157,7 +157,16 @@
                     app:tabRippleColor="@android:color/transparent"
                     app:tabSelectedTextColor="@color/gray_500"
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
-                    app:tabTextColor="@color/gray_200" />
+                    app:tabTextColor="@color/gray_200" >
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trip_profile_character"/>
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trip_profile_tag"/>
+                </com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.viewpager2.widget.ViewPager2
