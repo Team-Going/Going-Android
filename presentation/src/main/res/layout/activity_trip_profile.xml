@@ -58,9 +58,11 @@
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:accessibilityTraversalBefore="@id/tb_trip_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_trip_profile"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbar_trip_profile"
