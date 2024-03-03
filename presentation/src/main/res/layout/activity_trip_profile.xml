@@ -1,145 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/tb_trip_profile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layer_list_preference_tag_gray100_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/btn_profile_back"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tb_trip_profile"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="4dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_profile_title"
-            style="@style/TextAppearance.Doorip.Body1.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_tv_title"
-            app:layout_constraintBottom_toBottomOf="@id/btn_profile_back"
-            app:layout_constraintStart_toEndOf="@id/btn_profile_back"
-            app:layout_constraintTop_toTopOf="@id/btn_profile_back" />
-
-        <ImageView
-            android:id="@+id/btn_profile_download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="-5dp"
-            android:padding="24dp"
-            android:src="@drawable/ic_download"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/btn_trip_profile_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_trip_profile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_trip_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_50">
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/layout_trip_profile_collapsing_info"
+            <TextView
+                android:id="@+id/tv_trip_profile_title"
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_tv_title"
+                app:layout_constraintBottom_toBottomOf="@id/btn_trip_profile_back"
+                app:layout_constraintStart_toEndOf="@id/btn_trip_profile_back"
+                app:layout_constraintTop_toTopOf="@id/btn_trip_profile_back" />
+
+            <ImageView
+                android:id="@+id/btn_trip_profile_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="-5dp"
+                android:padding="24dp"
+                android:src="@drawable/ic_download"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_trip_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar_trip_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="@android:color/transparent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="@android:color/transparent">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@color/gray_50">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/layout_trip_profile_collapsing_info"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/iv_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="23dp"
-                        android:src="@drawable/img_profile_1"
-                        app:civ_border_color="@color/gray_100"
-                        app:civ_border_width="1dp"
-                        app:layout_constraintBottom_toTopOf="@id/view_gray"
-                        app:layout_constraintDimensionRatio="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@android:color/transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:statusBarScrim="@android:color/transparent">
 
-                    <TextView
-                        android:id="@+id/tv_profile_name"
-                        style="@style/TextAppearance.Doorip.Body1.Bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"
-                        android:textColor="@color/gray_500"
-                        app:layout_constraintStart_toEndOf="@id/iv_profile"
-                        app:layout_constraintTop_toTopOf="@id/iv_profile"
-                        tools:text="@string/profile_tv_name" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:background="@color/white_000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tv_profile_one_line"
-                        style="@style/TextAppearance.Doorip.Detail1.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:gravity="center"
-                        android:textColor="@color/gray_500"
-                        app:layout_constraintStart_toStartOf="@id/tv_profile_name"
-                        app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
-                        tools:text="@string/profile_tv_one_line" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="23dp"
+                            android:src="@drawable/img_profile_1"
+                            app:civ_border_color="@color/gray_100"
+                            app:civ_border_width="1dp"
+                            app:layout_constraintBottom_toTopOf="@id/view_gray"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/btn_profile_edit"
-                        style="@style/TextAppearance.Doorip.Detail1.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
-                        android:paddingVertical="2dp"
-                        android:paddingHorizontal="7dp"
-                        android:textColor="@color/gray_400"
-                        android:background="@drawable/shape_rect_4_gray50_fill_gray100_line"
-                        android:text="@string/profile_tv_edit"
-                        app:layout_constraintBottom_toBottomOf="@id/iv_profile"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/iv_profile" />
+                        <TextView
+                            android:id="@+id/tv_profile_name"
+                            style="@style/TextAppearance.Doorip.Body1.Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/gray_500"
+                            app:layout_constraintStart_toEndOf="@id/iv_profile"
+                            app:layout_constraintTop_toTopOf="@id/iv_profile"
+                            tools:text="@string/profile_tv_name" />
 
-                    <View
-                        android:id="@+id/view_gray"
-                        android:layout_width="wrap_content"
-                        android:layout_height="8dp"
-                        android:layout_marginTop="22dp"
-                        android:background="@color/gray_100"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_profile_one_line"
+                            style="@style/TextAppearance.Doorip.Detail1.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:textColor="@color/gray_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_profile_name"
+                            app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
+                            tools:text="@string/profile_tv_one_line" />
 
-                </androidx.appcompat.widget.Toolbar>
+                        <TextView
+                            android:id="@+id/btn_profile_edit"
+                            style="@style/TextAppearance.Doorip.Detail1.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:paddingVertical="2dp"
+                            android:paddingHorizontal="7dp"
+                            android:textColor="@color/gray_400"
+                            android:background="@drawable/shape_rect_4_gray50_fill_gray100_line"
+                            android:text="@string/profile_tv_edit"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+                        <View
+                            android:id="@+id/view_gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="8dp"
+                            android:layout_marginTop="22dp"
+                            android:background="@color/gray_50"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
                 <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_my_todo"
+                    android:id="@+id/tab_trip_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/layer_list_todo_unselected_indicator"
@@ -150,12 +158,13 @@
                     app:tabSelectedTextColor="@color/gray_500"
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
                     app:tabTextColor="@color/gray_200" />
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_trip_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_trip_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
