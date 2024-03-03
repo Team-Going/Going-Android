@@ -56,13 +56,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:accessibilityTraversalBefore="@id/tb_trip_profile"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_trip_profile"
-            android:layout_width="0dp"
-            android:layout_height="0dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_trip_profile">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbar_trip_profile"
@@ -79,9 +79,9 @@
                     app:statusBarScrim="@android:color/transparent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:background="@color/white_000"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_000">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/iv_profile"
@@ -89,13 +89,13 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="23dp"
-                            android:src="@drawable/img_profile_1"
                             app:civ_border_color="@color/gray_100"
                             app:civ_border_width="1dp"
                             app:layout_constraintBottom_toTopOf="@id/view_gray"
                             app:layout_constraintDimensionRatio="1"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/img_profile_1" />
 
                         <TextView
                             android:id="@+id/tv_profile_name"
@@ -127,11 +127,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="24dp"
-                            android:paddingVertical="2dp"
-                            android:paddingHorizontal="7dp"
-                            android:textColor="@color/gray_400"
                             android:background="@drawable/shape_rect_4_gray50_fill_gray100_line"
+                            android:paddingHorizontal="7dp"
+                            android:paddingVertical="2dp"
                             android:text="@string/profile_tv_edit"
+                            android:textColor="@color/gray_400"
                             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/iv_profile" />
@@ -148,6 +148,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_trip_profile"
                     android:layout_width="match_parent"
@@ -159,15 +160,17 @@
                     app:tabRippleColor="@android:color/transparent"
                     app:tabSelectedTextColor="@color/gray_500"
                     app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
-                    app:tabTextColor="@color/gray_200" >
+                    app:tabTextColor="@color/gray_200">
+
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/trip_profile_character"/>
+                        android:text="@string/trip_profile_character" />
+
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/trip_profile_tag"/>
+                        android:text="@string/trip_profile_tag" />
                 </com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
