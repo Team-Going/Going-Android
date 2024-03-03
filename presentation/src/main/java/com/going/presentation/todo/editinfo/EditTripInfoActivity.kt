@@ -15,8 +15,8 @@ class EditTripInfoActivity :
     BaseActivity<ActivityEditTripInfoBinding>(R.layout.activity_edit_trip_info) {
     private val viewModel by viewModels<EditTripInfoViewModel>()
 
-    private lateinit var startBottomSheetDialog: BottomSheetEditDateFragment
-    private lateinit var endBottomSheetDialog: BottomSheetEditDateFragment
+    private var startBottomSheetDialog: EditDateBottomSheet? = null
+    private var endBottomSheetDialog: EditDateBottomSheet? = null
     private var quitDialog: TripQuitDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,16 +53,16 @@ class EditTripInfoActivity :
 
     private fun initStartDateClickListener() {
         binding.tvEditTripInfoStartDate.setOnSingleClickListener {
-            startBottomSheetDialog = BottomSheetEditDateFragment(viewModel, true)
-            startBottomSheetDialog.show(supportFragmentManager, startBottomSheetDialog.tag)
+            startBottomSheetDialog = EditDateBottomSheet(true)
+            startBottomSheetDialog?.show(supportFragmentManager, startBottomSheetDialog?.tag)
         }
     }
 
     private fun initEndDateClickListener() {
         binding.tvEditTripInfoEndDate.setOnSingleClickListener {
             if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
-                endBottomSheetDialog = BottomSheetEditDateFragment(viewModel, false)
-                endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
+                endBottomSheetDialog = EditDateBottomSheet(false)
+                endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
             } else {
                 toast(getString(R.string.create_trip_toast_error))
             }

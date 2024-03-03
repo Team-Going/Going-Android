@@ -1,21 +1,23 @@
-package com.going.presentation.entertrip.createtrip.choosedate
+package com.going.presentation.todo.editinfo
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentBottomSheetDateContentBinding
+import com.going.presentation.databinding.FragmentEditDateTripBottomSheetBinding
 import com.going.ui.base.BaseBottomSheet
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import java.util.Calendar
 
-class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isStart: Boolean) :
-    BaseBottomSheet<FragmentBottomSheetDateContentBinding>(R.layout.fragment_bottom_sheet_date_content) {
+class EditDateBottomSheet(val isStart: Boolean) :
+    BaseBottomSheet<FragmentEditDateTripBottomSheetBinding>(R.layout.fragment_edit_date_trip_bottom_sheet) {
+    private val viewModel by activityViewModels<EditTripInfoViewModel>()
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
-        if (isStart) customStartDate() else customEndDate()
+        if (isStart) customStartDate()
+        else customEndDate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,13 +27,14 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     }
 
     private fun customStartDate() {
-        val datePicker = binding.dpCreateTripDate
         val calendar = Calendar.getInstance()
-
-        val currentStartYear = calendar.get(Calendar.YEAR)
-        val currentStartMonth = calendar.get(Calendar.MONTH)
-        val currentStartDay = calendar.get(Calendar.DAY_OF_MONTH)
-
+        val datePicker = binding.dpEditTripDate.apply {
+            updateDate(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        }
         calendar.set(2000, 0, 1)
         datePicker.minDate = calendar.timeInMillis
 
@@ -46,27 +49,25 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
             calendar.set(2100, 0, 1)
             datePicker.maxDate = calendar.timeInMillis
         }
-
-        datePicker.updateDate(currentStartYear, currentStartMonth, currentStartDay)
     }
 
     private fun customEndDate() {
-        val datePicker = binding.dpCreateTripDate
-        val calendar = Calendar.getInstance()
-
-        val currentEndYear = viewModel.startYear.value ?: 0
-        val currentEndMonth = viewModel.startMonth.value ?: 0
-        val currentEndDay = viewModel.startDay.value ?: 0
-
-        calendar.set(currentEndYear, currentEndMonth - 1, currentEndDay)
-        datePicker.minDate = calendar.timeInMillis
-
-        calendar.set(2100, 0, 1)
-        datePicker.maxDate = calendar.timeInMillis
+        binding.dpEditTripDate.apply {
+            minDate = Calendar.getInstance().apply {
+                set(
+                    viewModel.startYear.value ?: 0,
+                    (viewModel.startMonth.value ?: 0) - 1,
+                    viewModel.startDay.value ?: 0
+                )
+            }.timeInMillis
+            maxDate = Calendar.getInstance().apply {
+                set(2100, 0, 1)
+            }.timeInMillis
+        }
     }
 
     private fun sendDateInfo() {
-        with(binding.dpCreateTripDate) {
+        with(binding.dpEditTripDate) {
             if (isStart) {
                 viewModel.setStartDate(year, month + 1, dayOfMonth)
             } else {
@@ -77,9 +78,10 @@ class BottomSheetDateContentFragment(val viewModel: CreateTripViewModel, val isS
     }
 
     private fun initFinishBtnClickListener() {
-        binding.btnCreateTripFinish.setOnSingleClickListener {
+        binding.btnEditTripSelect.setOnSingleClickListener {
             sendDateInfo()
             dismiss()
         }
     }
 }
+

@@ -15,8 +15,8 @@ import com.going.ui.extension.toast
 class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.activity_create_trip) {
     private val viewModel by viewModels<CreateTripViewModel>()
 
-    private lateinit var startBottomSheetDialog: BottomSheetDateContentFragment
-    private lateinit var endBottomSheetDialog: BottomSheetDateContentFragment
+    private lateinit var startBottomSheetDialog: DateContentBottomSheet
+    private lateinit var endBottomSheetDialog: DateContentBottomSheet
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -132,7 +132,7 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
 
     private fun initStartDateClickListener() {
         binding.tvCreateTripStartDate.setOnSingleClickListener {
-            startBottomSheetDialog = BottomSheetDateContentFragment(viewModel, true)
+            startBottomSheetDialog = DateContentBottomSheet(true)
             startBottomSheetDialog.show(supportFragmentManager, startBottomSheetDialog.tag)
         }
     }
@@ -140,7 +140,7 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
     private fun initEndDateClickListener() {
         binding.tvCreateTripEndDate.setOnSingleClickListener {
             if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
-                endBottomSheetDialog = BottomSheetDateContentFragment(viewModel, false)
+                endBottomSheetDialog = DateContentBottomSheet(false)
                 endBottomSheetDialog.show(supportFragmentManager, endBottomSheetDialog.tag)
             } else {
                 toast(getString(R.string.create_trip_toast_error))
