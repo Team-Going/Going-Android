@@ -6,6 +6,7 @@ import com.going.presentation.databinding.ActivityTripProfileBinding
 import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,9 +16,27 @@ class TripProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setViewPager()
+        setViewPagerDebounce()
         initBackBtnClickListener()
         initSaveImgBtnClickListener()
         initProfileEditBtnClickListener()
+    }
+
+    private fun setViewPager() {
+        binding.vpTripProfile.adapter = TripProfileViewPagerAdapter(this)
+    }
+
+    private fun setViewPagerDebounce() {
+        binding.tabTripProfile.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.vpTripProfile.currentItem = tab.position
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 
     private fun initBackBtnClickListener() {
@@ -28,7 +47,7 @@ class TripProfileActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTripProfileDownload.setOnSingleClickListener {
-            // downloadImage(profileViewModel.profileId.value)
+            // downloadImage(tripProfileViewModel.profileId.value)
         }
     }
 
