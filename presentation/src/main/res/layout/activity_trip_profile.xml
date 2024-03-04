@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tb_trip_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_trip_profile_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_trip_profile_title"
+                style="@style/TextAppearance.Doorip.Body1.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_tv_title"
+                app:layout_constraintBottom_toBottomOf="@id/btn_trip_profile_back"
+                app:layout_constraintStart_toEndOf="@id/btn_trip_profile_back"
+                app:layout_constraintTop_toTopOf="@id/btn_trip_profile_back" />
+
+            <ImageView
+                android:id="@+id/btn_trip_profile_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="-5dp"
+                android:padding="24dp"
+                android:src="@drawable/ic_download"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:accessibilityTraversalBefore="@id/tb_trip_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_trip_profile">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar_trip_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_50">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/layout_trip_profile_collapsing_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:contentScrim="@android:color/transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:statusBarScrim="@android:color/transparent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_000">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="23dp"
+                            app:civ_border_color="@color/gray_100"
+                            app:civ_border_width="1dp"
+                            app:layout_constraintBottom_toTopOf="@id/view_gray"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/img_profile_1" />
+
+                        <TextView
+                            android:id="@+id/tv_profile_name"
+                            style="@style/TextAppearance.Doorip.Body1.Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/gray_500"
+                            app:layout_constraintStart_toEndOf="@id/iv_profile"
+                            app:layout_constraintTop_toTopOf="@id/iv_profile"
+                            tools:text="@string/profile_tv_name" />
+
+                        <TextView
+                            android:id="@+id/tv_profile_one_line"
+                            style="@style/TextAppearance.Doorip.Detail1.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:textColor="@color/gray_500"
+                            app:layout_constraintStart_toStartOf="@id/tv_profile_name"
+                            app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
+                            tools:text="@string/profile_tv_one_line" />
+
+                        <TextView
+                            android:id="@+id/btn_profile_edit"
+                            style="@style/TextAppearance.Doorip.Detail1.Regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:background="@drawable/shape_rect_4_gray50_fill_gray100_line"
+                            android:paddingHorizontal="7dp"
+                            android:paddingVertical="2dp"
+                            android:text="@string/profile_tv_edit"
+                            android:textColor="@color/gray_400"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+                        <View
+                            android:id="@+id/view_gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="8dp"
+                            android:layout_marginTop="22dp"
+                            android:background="@color/gray_50"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_trip_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layer_list_todo_unselected_indicator"
+                    app:tabIndicatorColor="@color/gray_500"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabRippleColor="@android:color/transparent"
+                    app:tabSelectedTextColor="@color/gray_500"
+                    app:tabTextAppearance="@style/TextAppearance.Doorip.Body2.Bold"
+                    app:tabTextColor="@color/gray_200">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trip_profile_character" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trip_profile_tag" />
+                </com.google.android.material.tabs.TabLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_trip_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -84,6 +84,7 @@ dependencies {
         implementation(circularProgressBar)
         implementation(circleIndicator)
         implementation(flexbox)
+        implementation(circleImageView)
     }
 
     KakaoDependencies.run {

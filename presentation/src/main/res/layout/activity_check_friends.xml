@@ -58,64 +58,66 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tv_check_friends_member"
-                    style="@style/TextAppearance.Doorip.Body3.Bold"
+                    android:id="@+id/tv_check_friends_result"
+                    style="@style/TextAppearance.Doorip.Detail1.Bold"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/check_friends_member"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_rect_6_gray50_fill"
+                    android:gravity="center"
+                    android:paddingVertical="14dp"
+                    android:text="식당, 여행 계획 취향이 잘 맞는 조합이네요!"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_check_friends_check_member"
+                    style="@style/TextAppearance.Doorip.Detail3.Regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/check_friends_check_member"
+                    android:textColor="@color/gray_400"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_check_friends_result" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_check_friends_member"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="14dp"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
                     android:paddingHorizontal="24dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_check_friends_member"
+                    app:layout_constraintTop_toBottomOf="@id/tv_check_friends_check_member"
                     tools:listitem="@layout/item_todo_friends" />
-
-                <TextView
-                    android:id="@+id/tv_check_friends_our_tag"
-                    style="@style/TextAppearance.Doorip.Body3.Bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/check_friends_our_tag"
-                    android:textColor="@color/gray_700"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rv_check_friends_member" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_check_friends_preference"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/shape_rect_6_white000_fill_gray200_line"
-                    android:paddingHorizontal="10dp"
+                    android:paddingHorizontal="16dp"
                     android:paddingVertical="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_check_friends_our_tag">
-
+                    app:layout_constraintTop_toBottomOf="@id/rv_check_friends_member">
 
                     <TextView
                         android:id="@+id/tv_check_friends_preference_1_title"
                         style="@style/TextAppearance.Doorip.Body3.Bold"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:gravity="center"
                         android:text="@string/check_friends_preference_1_title"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -129,47 +131,115 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_title" />
 
-
-                    <ProgressBar
-                        android:id="@+id/progress_bar_check_friends_1_revert"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    <LinearLayout
+                        android:id="@+id/layout_check_friends_preference_1"
                         android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:scaleX="-1"
-                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_title" />
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_1">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_1_left"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_1_left"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_1" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_400" />
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_1_right"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_1_right"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_1" />
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_1_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_1_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@color/gray_300" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_1_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_100" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_1_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_1_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_1_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_trip_friends_dash_1"
@@ -180,7 +250,7 @@
                         android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_1_right">
+                        app:layout_constraintTop_toBottomOf="@id/layout_check_friends_preference_1">
 
                         <ImageView
                             android:id="@+id/iv_trip_friends_dash_1"
@@ -190,7 +260,6 @@
                             android:src="@drawable/shape_line_gray100_fill_dash_5" />
 
                     </LinearLayout>
-
 
                     <TextView
                         android:id="@+id/tv_check_friends_preference_2_title"
@@ -211,44 +280,116 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_title" />
 
-                    <ProgressBar
-                        android:id="@+id/progress_bar_check_friends_2_revert"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    <LinearLayout
+                        android:id="@+id/layout_check_friends_preference_2"
                         android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:scaleX="-1"
-                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_title" />
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_2">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_2_left"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_2_left"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_2" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_2_right"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_2_right"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_2" />
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_400" />
+
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_2_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_2_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@color/gray_300" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_2_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_100" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_2_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_2_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_2_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_trip_friends_dash_2"
@@ -259,7 +400,7 @@
                         android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_2_right">
+                        app:layout_constraintTop_toBottomOf="@id/layout_check_friends_preference_2">
 
                         <ImageView
                             android:id="@+id/iv_trip_friends_dash_2"
@@ -289,45 +430,115 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_title" />
 
-                    <ProgressBar
-                        android:id="@+id/progress_bar_check_friends_3_revert"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    <LinearLayout
+                        android:id="@+id/layout_check_friends_preference_3"
                         android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:scaleX="-1"
-                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_title" />
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_3">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_3_left"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_3_left"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_3" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_3_right"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_3_right"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_3" />
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_3_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_3_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@color/gray_300" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_3_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_100" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_3_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_3_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_3_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_trip_friends_dash_3"
@@ -338,7 +549,7 @@
                         android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_3_right">
+                        app:layout_constraintTop_toBottomOf="@id/layout_check_friends_preference_3">
 
                         <ImageView
                             android:id="@+id/iv_trip_friends_dash_3"
@@ -368,45 +579,115 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_title" />
 
-                    <ProgressBar
-                        android:id="@+id/progress_bar_check_friends_4_revert"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    <LinearLayout
+                        android:id="@+id/layout_check_friends_preference_4"
                         android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:scaleX="-1"
-                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_title" />
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_4">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_4_left"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_4_left"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_4" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_4_right"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_4_right"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_4" />
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_4_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_4_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@color/gray_300" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_4_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_100" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_4_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_4_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_4_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_trip_friends_dash_4"
@@ -417,7 +698,7 @@
                         android:paddingVertical="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_4_right">
+                        app:layout_constraintTop_toBottomOf="@id/layout_check_friends_preference_4">
 
                         <ImageView
                             android:id="@+id/iv_trip_friends_dash_4"
@@ -447,45 +728,115 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="12dp"
                         android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:visibility="visible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_5_title" />
 
-                    <ProgressBar
-                        android:id="@+id/progress_bar_check_friends_5_revert"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    <LinearLayout
+                        android:id="@+id/layout_check_friends_preference_5"
                         android:layout_width="0dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="12dp"
-                        android:progressDrawable="@drawable/layer_list_trip_friends_progress_bar"
-                        android:scaleX="-1"
-                        android:visibility="invisible"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_check_friends_preference_5_title" />
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_5">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_5_left"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_5_left"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_5" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_check_friends_preference_5_right"
-                        style="@style/TextAppearance.Doorip.Detail2.Regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/check_friends_preference_5_right"
-                        android:textColor="@color/gray_700"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progress_bar_check_friends_5" />
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_5_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_5_left"
+                                android:textColor="@color/gray_500" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_left"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@color/gray_300" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_5_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_no_matter"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_center"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/gray_100" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_5_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Semi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/check_friends_preference_5_right"
+                                android:textColor="@color/gray_400" />
+
+                            <TextView
+                                android:id="@+id/tv_check_friends_preference_number_5_right"
+                                style="@style/TextAppearance.Doorip.Detail3.Regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/gray_400"
+                                tools:text="@string/check_friends_preference_number" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
