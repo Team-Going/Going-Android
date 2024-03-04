@@ -26,6 +26,7 @@ interface TodoRepository {
     ): Result<Unit>
 
     suspend fun getTodoDetail(
+        tripId: Long,
         todoId: Long
     ): Result<TodoDetailModel>
 
@@ -50,6 +51,7 @@ interface TodoRepository {
     ): Result<CheckFriendsModel>
 
     suspend fun patchTodo(
+        tripId: Long,
         todoId: Long,
         request: TodoChangeRequestModel
     ): Result<Unit>

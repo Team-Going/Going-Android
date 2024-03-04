@@ -36,9 +36,10 @@ class TodoDataSourceImpl @Inject constructor(
         todoService.deleteTodo(todoId)
 
     override suspend fun getTodoDetailData(
+        tripId: Long,
         todoId: Long
     ): BaseResponse<TodoDetailResponseDto> =
-        todoService.getTodoDetail(todoId)
+        todoService.getTodoDetail(tripId, todoId)
 
     override suspend fun getMyTripInfo(
         tripId: Long
@@ -66,9 +67,10 @@ class TodoDataSourceImpl @Inject constructor(
         todoService.getFriendsList(tripId)
 
     override suspend fun patchTodoData(
+        tripId: Long,
         todoId: Long,
         request: TodoChangeRequestDto
     ): NonDataBaseResponse =
-        todoService.patchTodo(todoId, request)
+        todoService.patchTodo(tripId, todoId, request)
 
 }

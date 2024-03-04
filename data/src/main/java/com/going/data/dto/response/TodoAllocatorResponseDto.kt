@@ -10,11 +10,11 @@ data class TodoAllocatorResponseDto(
     val participantId: Long,
     @SerialName("name")
     val name: String,
-    @SerialName("isAllocated")
-    val isAllocated: Boolean,
     @SerialName("isOwner")
-    val isOwner: Boolean
+    val isOwner: Boolean,
+    @SerialName("isAllocated")
+    val isAllocated: Boolean
 ) {
     fun toTodoAllocatorModel() =
-        TodoAllocatorModel(participantId, name, isAllocated, isOwner)
+        TodoAllocatorModel(participantId, name, isOwner, isAllocated)
 }

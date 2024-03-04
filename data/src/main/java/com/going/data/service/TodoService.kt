@@ -37,8 +37,9 @@ interface TodoService {
         @Path("todoId") todoId: Long
     ): NonDataBaseResponse
 
-    @GET("api/trips/todos/{todoId}")
+    @GET("api/trips/{tripId}/todos/{todoId}")
     suspend fun getTodoDetail(
+        @Path("tripId") tripId: Long,
         @Path("todoId") todoId: Long
     ): BaseResponse<TodoDetailResponseDto>
 
@@ -67,8 +68,9 @@ interface TodoService {
         @Path("tripId") tripId: Long
     ): BaseResponse<CheckFriendsResponseDto>
 
-    @PATCH("/api/trips/todos/{todoId}")
+    @PATCH("api/trips/{tripId}/todos/{todoId}")
     suspend fun patchTodo(
+        @Path("tripId") tripId: Long,
         @Path("todoId") todoId: Long,
         @Body request: TodoChangeRequestDto
     ): NonDataBaseResponse

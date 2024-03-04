@@ -42,10 +42,11 @@ class TodoRepositoryImpl @Inject constructor(
         }
 
     override suspend fun getTodoDetail(
+        tripId: Long,
         todoId: Long
     ): Result<TodoDetailModel> =
         runCatching {
-            todoDataSource.getTodoDetailData(todoId).data.toTodoDetailModel()
+            todoDataSource.getTodoDetailData(tripId, todoId).data.toTodoDetailModel()
         }
 
     override suspend fun getMyTripInfo(
@@ -84,11 +85,12 @@ class TodoRepositoryImpl @Inject constructor(
         }
 
     override suspend fun patchTodo(
+        tripId: Long,
         todoId: Long,
         request: TodoChangeRequestModel
     ): Result<Unit> =
         runCatching {
-            todoDataSource.patchTodoData(todoId, request.toTodoChangeRequestDto())
+            todoDataSource.patchTodoData(tripId, todoId, request.toTodoChangeRequestDto())
         }
 
 }

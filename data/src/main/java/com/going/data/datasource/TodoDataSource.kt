@@ -28,6 +28,7 @@ interface TodoDataSource {
     ): NonDataBaseResponse
 
     suspend fun getTodoDetailData(
+        tripId: Long,
         todoId: Long
     ): BaseResponse<TodoDetailResponseDto>
 
@@ -52,6 +53,7 @@ interface TodoDataSource {
     ): BaseResponse<CheckFriendsResponseDto>
 
     suspend fun patchTodoData(
+        tripId: Long,
         todoId: Long,
         request: TodoChangeRequestDto
     ): NonDataBaseResponse
