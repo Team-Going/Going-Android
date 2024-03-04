@@ -164,5 +164,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.todo.editinfo.EditTripInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>

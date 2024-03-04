@@ -125,6 +125,7 @@
 
             <TextView
                 android:id="@+id/tv_create_trip_start_date"
+                style="@style/TextAppearance.Doorip.Body3.Medi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
@@ -146,6 +147,7 @@
 
             <TextView
                 android:id="@+id/tv_create_trip_end_date"
+                style="@style/TextAppearance.Doorip.Body3.Medi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
