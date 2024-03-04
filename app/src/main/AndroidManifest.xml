@@ -154,6 +154,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.profile.trip.TripProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity"
@@ -166,5 +170,4 @@
             android:screenOrientation="portrait" />
 
     </application>
-
 </manifest>
