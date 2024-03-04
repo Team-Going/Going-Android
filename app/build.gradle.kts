@@ -24,11 +24,6 @@ android {
 
         buildConfigField(
             "String",
-            "BASE_URL",
-            gradleLocalProperties(rootDir).getProperty("base.url"),
-        )
-        buildConfigField(
-            "String",
             "NATIVE_APP_KEY",
             gradleLocalProperties(rootDir).getProperty("native.app.key"),
         )
@@ -37,7 +32,19 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                gradleLocalProperties(rootDir).getProperty("test.base.url")
+            )
+        }
         release {
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                gradleLocalProperties(rootDir).getProperty("base.url")
+            )
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
