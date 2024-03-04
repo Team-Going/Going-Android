@@ -50,7 +50,7 @@ class OurTodoCompleteFragment() :
             true
         ) { todoId ->
             TodoDetailActivity.createIntent(
-                requireContext(), todoId, true
+                requireContext(), viewModel.tripId, todoId, true
             ).apply { startActivity(this) }
         }
         binding.rvOurTodoComplete.adapter = adapter

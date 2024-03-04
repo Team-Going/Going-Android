@@ -42,6 +42,7 @@ class TodoChangeViewModel @Inject constructor(
 
     var allocatorModelList: List<TodoAllocatorModel> = listOf()
 
+    var tripId: Long = 0
     var todoId: Long = 0
 
     fun setNameState(name: String, state: EditTextState) {
@@ -65,7 +66,7 @@ class TodoChangeViewModel @Inject constructor(
     fun getTodoDetailFromServer() {
         _todoDetailState.value = UiState.Loading
         viewModelScope.launch {
-            todoRepository.getTodoDetail(todoId)
+            todoRepository.getTodoDetail(tripId, todoId)
                 .onSuccess { response ->
                     todo.value = response.title
                     endDate.value = response.endDate
@@ -85,6 +86,7 @@ class TodoChangeViewModel @Inject constructor(
         if (isFinishAvailable.value == false) return
         viewModelScope.launch {
             todoRepository.patchTodo(
+                tripId,
                 todoId,
                 TodoChangeRequestModel(
                     title = todo.value.orEmpty(),

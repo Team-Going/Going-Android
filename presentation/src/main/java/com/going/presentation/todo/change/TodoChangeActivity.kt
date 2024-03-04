@@ -71,6 +71,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
     }
 
     private fun getTodoInfo() {
+        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
         viewModel.todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
         viewModel.getTodoDetailFromServer()
     }
@@ -157,13 +158,16 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     companion object {
         private const val DATE_BOTTOM_SHEET = "DATE_BOTTOM_SHEET"
+        private const val EXTRA_TRIP_ID = "EXTRA_TRIP_ID"
         private const val EXTRA_TODO_ID = "EXTRA_TODO_ID"
 
         @JvmStatic
         fun createIntent(
             context: Context,
+            tripId: Long,
             todoId: Long
         ): Intent = Intent(context, TodoChangeActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripId)
             putExtra(EXTRA_TODO_ID, todoId)
         }
     }
