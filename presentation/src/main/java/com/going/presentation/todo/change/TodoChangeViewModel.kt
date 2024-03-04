@@ -22,8 +22,8 @@ class TodoChangeViewModel @Inject constructor(
     private val todoRepository: TodoRepository,
 ) : ViewModel() {
 
-    private val _todoDetailState = MutableStateFlow<UiState<Boolean>>(UiState.Empty)
-    val todoDetailState: StateFlow<UiState<Boolean>> = _todoDetailState
+    private val _todoDetailState = MutableStateFlow<UiState<TodoDetailModel>>(UiState.Empty)
+    val todoDetailState: StateFlow<UiState<TodoDetailModel>> = _todoDetailState
 
     private val _todoPatchState = MutableSharedFlow<Boolean>()
     val todoPatchState: SharedFlow<Boolean> = _todoPatchState
@@ -74,7 +74,7 @@ class TodoChangeViewModel @Inject constructor(
                     memo.value = response.memo
                     isSecret = response.secret
                     oldTodoInfo = response
-                    _todoDetailState.value = UiState.Success(response.secret)
+                    _todoDetailState.value = UiState.Success(response)
                 }
                 .onFailure {
                     _todoDetailState.value = UiState.Failure(it.message.toString())

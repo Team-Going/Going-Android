@@ -82,7 +82,11 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
                 is UiState.Loading -> return@onEach
 
                 is UiState.Success -> {
-                    if (!state.data) {
+                    with(binding) {
+                        etTodoCreateTodo.editText.setText(viewModel.todo.value)
+                        etTodoCreateMemo.editText.setText(viewModel.memo.value)
+                    }
+                    if (!state.data.secret) {
                         initOurTodoNameListAdapter()
                         return@onEach
                     }
