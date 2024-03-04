@@ -194,9 +194,10 @@
     <string name="invite_finish_tv_trip">여행 중</string>
 
     <!--check friends-->
-    <string name="check_friends_tool_bar">함께 하는 친구들</string>
-    <string name="check_friends_member">멤버</string>
-    <string name="check_friends_our_tag">우리의 이번 여행은!</string>
+    <string name="check_friends_tool_bar">우리의 여행 취향</string>
+    <string name="check_friends_check_member">프로필 사진을 눌러서 친구의 취향을 구경해보세요</string>
+    <string name="check_friends_preference_number">&#160;%d명</string>
+    <string name="check_friends_preference_no_matter">아무렇게</string>
     <string name="check_friends_preference_1_title">여행 계획</string>
     <string name="check_friends_preference_1_left">철저하게</string>
     <string name="check_friends_preference_1_right">즉흥으로</string>
