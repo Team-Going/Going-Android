@@ -28,8 +28,8 @@ class TodoChangeViewModel @Inject constructor(
     private val _todoPatchState = MutableSharedFlow<Boolean>()
     val todoPatchState: SharedFlow<Boolean> = _todoPatchState
 
-    private val todo = MutableLiveData("")
-    private val memo = MutableLiveData("")
+    val todo = MutableLiveData("")
+    val memo = MutableLiveData("")
 
     val endDate = MutableLiveData("")
 

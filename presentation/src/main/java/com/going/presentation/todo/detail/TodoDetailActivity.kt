@@ -95,7 +95,7 @@ class TodoDetailActivity :
 
                 is UiState.Success -> {
                     if (viewModel.isPublic) {
-                        adapter.submitList(state.data.allocators.filter { it.isAllocated })
+                        adapter.submitList(state.data.allocators)
                     } else {
                         with(binding) {
                             rvOurTodoDetailPerson.visibility = View.INVISIBLE
