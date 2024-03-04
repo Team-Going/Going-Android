@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoDetailBinding
 import com.going.presentation.todo.change.TodoChangeActivity
-import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.drawableOf
@@ -34,9 +33,6 @@ class TodoDetailActivity :
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private var todoId: Long = 0
-    private var isPublic = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,9 +40,9 @@ class TodoDetailActivity :
         initBackBtnClickListener()
         initDeleteBtnClickListener()
         initModBtnClickListener()
-        getTodoId()
+        getIntentData()
+        initAllocatorListAdapter()
         setDetailData()
-        setTodoDetailType()
         observeTodoDetailState()
         observeTodoDeleteState()
     }
@@ -63,36 +59,34 @@ class TodoDetailActivity :
 
     private fun initDeleteBtnClickListener() {
         binding.btnTodoDetailDelete.setOnSingleClickListener {
-            viewModel.deleteTodoFromServer(todoId)
+            viewModel.deleteTodoFromServer()
         }
     }
 
     private fun initModBtnClickListener() {
         binding.btnTodoDetailMod.setOnSingleClickListener {
             TodoChangeActivity.createIntent(
-                this, todoId
+                this, viewModel.tripId, viewModel.todoId
             ).apply { startActivity(this) }
         }
     }
 
-    private fun getTodoId() {
-        todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
-    }
-
-    private fun setDetailData() {
-        viewModel.getTodoDetailFromServer(todoId)
-    }
-
-    private fun setTodoDetailType() {
-        isPublic = intent.getBooleanExtra(EXTRA_IS_PUBLIC, true)
-        if (isPublic) initAllocatorListAdapter()
+    private fun getIntentData() {
+        viewModel.tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
+        viewModel.todoId = intent.getLongExtra(EXTRA_TODO_ID, 0)
+        viewModel.isPublic = intent.getBooleanExtra(EXTRA_IS_PUBLIC, true)
     }
 
     private fun initAllocatorListAdapter() {
-        _adapter = TripAllocatorAdapter()
-        binding.rvOurTodoDetailPerson.adapter = adapter
+        if (viewModel.isPublic) {
+            _adapter = TripAllocatorAdapter()
+            binding.rvOurTodoDetailPerson.adapter = adapter
+        }
     }
 
+    private fun setDetailData() {
+        viewModel.getTodoDetailFromServer()
+    }
 
     private fun observeTodoDetailState() {
         viewModel.todoDetailState.flowWithLifecycle(lifecycle).onEach { state ->
@@ -100,7 +94,7 @@ class TodoDetailActivity :
                 is UiState.Loading -> return@onEach
 
                 is UiState.Success -> {
-                    if (isPublic) {
+                    if (viewModel.isPublic) {
                         adapter.submitList(state.data.allocators.filter { it.isAllocated })
                     } else {
                         with(binding) {
@@ -148,15 +142,18 @@ class TodoDetailActivity :
     }
 
     companion object {
+        private const val EXTRA_TRIP_ID = "EXTRA_TRIP_ID"
         private const val EXTRA_TODO_ID = "EXTRA_TODO_ID"
         private const val EXTRA_IS_PUBLIC = "EXTRA_IS_PUBLIC"
 
         @JvmStatic
         fun createIntent(
             context: Context,
+            tripId: Long,
             todoId: Long,
             isPublic: Boolean,
         ): Intent = Intent(context, TodoDetailActivity::class.java).apply {
+            putExtra(EXTRA_TRIP_ID, tripId)
             putExtra(EXTRA_TODO_ID, todoId)
             putExtra(EXTRA_IS_PUBLIC, isPublic)
         }
