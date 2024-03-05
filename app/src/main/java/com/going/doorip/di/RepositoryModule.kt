@@ -2,6 +2,7 @@ package com.going.doorip.di
 
 import com.going.data.repositoryImpl.AuthRepositoryImpl
 import com.going.data.repositoryImpl.DashBoardRepositoryImpl
+import com.going.data.repositoryImpl.EditTripRepositoryImpl
 import com.going.data.repositoryImpl.EnterTripRepositoryImpl
 import com.going.data.repositoryImpl.ProfileRepositoryImpl
 import com.going.data.repositoryImpl.SettingRepositoryImpl
@@ -11,6 +12,7 @@ import com.going.data.repositoryImpl.TokenReissueRepositoryImpl
 import com.going.data.repositoryImpl.TokenRepositoryImpl
 import com.going.domain.repository.AuthRepository
 import com.going.domain.repository.DashBoardRepository
+import com.going.domain.repository.EditTripRepository
 import com.going.domain.repository.EnterTripRepository
 import com.going.domain.repository.ProfileRepository
 import com.going.domain.repository.SettingRepository
@@ -72,4 +74,9 @@ object RepositoryModule {
     @Singleton
     fun provideTokenReissueRepository(tokenReissueRepositoryImpl: TokenReissueRepositoryImpl): TokenReissueRepository =
         tokenReissueRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun provideEditTripRepository(EditTripRepositoryImpl: EditTripRepositoryImpl): EditTripRepository =
+        EditTripRepositoryImpl
 }
