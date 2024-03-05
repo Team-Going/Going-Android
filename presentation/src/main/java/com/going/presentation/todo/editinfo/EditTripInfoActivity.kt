@@ -17,7 +17,6 @@ class EditTripInfoActivity :
 
     private var startBottomSheetDialog: EditDateBottomSheet? = null
     private var endBottomSheetDialog: EditDateBottomSheet? = null
-    private var quitDialog: TripQuitDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,6 @@ class EditTripInfoActivity :
         initStartDateClickListener()
         initEndDateClickListener()
         initEditBtnClickListener()
-        initQuitBtnClickListener()
         initBackBtnClickListener()
     }
 
@@ -70,7 +68,7 @@ class EditTripInfoActivity :
     }
 
     private fun initEditBtnClickListener() {
-        binding.btnEditTripInfoEdit.setOnSingleClickListener {
+        binding.btnEditTripSave.setOnSingleClickListener {
             Intent(this, DashBoardActivity::class.java).apply {
                 putExtra(NAME, viewModel.name.value)
                 putExtra(START_YEAR, viewModel.startYear.value)
@@ -85,30 +83,13 @@ class EditTripInfoActivity :
         }
     }
 
-    private fun initQuitBtnClickListener() {
-        binding.btnEditTripInfoQuit.setOnSingleClickListener {
-            showQuitDialog()
-        }
-    }
-
-    private fun showQuitDialog() {
-        quitDialog = TripQuitDialogFragment()
-        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
-        Intent(this, DashBoardActivity::class.java).apply {
-            //정보 지워지게 구성
-            startActivity(this)
-        }
-    }
+    //받아온 인텐트를 기본 화면에 넣어서 보여줘야함
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
+            //다른 뷰로 이동
             finish()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
     companion object {
