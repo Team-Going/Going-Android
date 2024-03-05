@@ -42,9 +42,15 @@ class TodoDetailActivity :
         initModBtnClickListener()
         getIntentData()
         initAllocatorListAdapter()
-        setDetailData()
+        resetDetailData()
         observeTodoDetailState()
         observeTodoDeleteState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        resetDetailData()
     }
 
     private fun initViewModel() {
@@ -84,7 +90,7 @@ class TodoDetailActivity :
         }
     }
 
-    private fun setDetailData() {
+    private fun resetDetailData() {
         viewModel.getTodoDetailFromServer()
     }
 
