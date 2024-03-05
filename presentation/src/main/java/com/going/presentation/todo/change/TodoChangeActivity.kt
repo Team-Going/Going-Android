@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -118,6 +119,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         }
         binding.rvOurTodoCreatePerson.adapter = adapter
         adapter.submitList(viewModel.allocatorModelList)
+        binding.etTodoCreateMemo.isVisible = true
     }
 
     private fun setMyTodoParticipant() {

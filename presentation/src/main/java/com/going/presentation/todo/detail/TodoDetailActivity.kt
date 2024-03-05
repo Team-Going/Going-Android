@@ -102,6 +102,13 @@ class TodoDetailActivity :
                             layoutMyTodoCreatePerson.visibility = View.VISIBLE
                         }
                     }
+
+                    with(binding) {
+                        tvTodoCreateMemoTitle.isVisible = true
+                        etTodoCreateMemo.isVisible = true
+                        tvTodoMemoCounter.isVisible = true
+                    }
+
                     if (state.data.memo.isBlank())  {
                         with(binding) {
                             etTodoCreateMemo.background = drawableOf(R.drawable.shape_rect_4_gray200_line)
