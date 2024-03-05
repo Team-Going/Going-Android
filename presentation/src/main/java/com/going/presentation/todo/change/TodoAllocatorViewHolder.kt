@@ -16,20 +16,32 @@ class TodoAllocatorViewHolder(
             tvTodoName.text = item.name
             tvTodoName.isSelected = item.isAllocated
 
-            if (item.isOwner) {
-                tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
-            } else {
-                tvTodoName.setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)
-            }
+            setShapeColor(item.isOwner)
+            setTextColor()
 
             layoutTodoName.setOnClickListener {
                 itemClick(position)
                 tvTodoName.isSelected = !tvTodoName.isSelected
-                if (tvTodoName.isSelected) {
-                    tvTodoName.setTextColor(binding.root.context.colorOf(R.color.white_000))
-                } else {
-                    tvTodoName.setTextColor(binding.root.context.colorOf(R.color.gray_300))
-                }
+                setTextColor()
+            }
+        }
+    }
+
+    private fun setShapeColor(isOwner: Boolean) {
+        with(binding.tvTodoName) {
+            if (isOwner) {
+                setBackgroundResource(R.drawable.sel_todo_shape_red500_fill)
+            } else {
+                setBackgroundResource(R.drawable.sel_todo_shape_gray400_fill)
+            }
+        }
+    }
+    private fun setTextColor() {
+        with(binding.tvTodoName) {
+            if (isSelected) {
+                setTextColor(binding.root.context.colorOf(R.color.white_000))
+            } else {
+                setTextColor(binding.root.context.colorOf(R.color.gray_300))
             }
         }
     }

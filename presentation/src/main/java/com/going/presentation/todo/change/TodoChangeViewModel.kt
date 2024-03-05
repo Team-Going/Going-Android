@@ -30,7 +30,6 @@ class TodoChangeViewModel @Inject constructor(
 
     val todo = MutableLiveData("")
     val memo = MutableLiveData("")
-
     val endDate = MutableLiveData("")
 
     private lateinit var oldTodoInfo: TodoDetailModel
@@ -59,8 +58,19 @@ class TodoChangeViewModel @Inject constructor(
 
     fun checkIsFinishAvailable() {
         isFinishAvailable.value =
-            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty() &&
-                    todo.value != oldTodoInfo.title && endDate.value != oldTodoInfo.endDate && memo.value != oldTodoInfo.memo && allocatorModelList != oldTodoInfo.allocators
+            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty() && checkIsTodoChanged()
+    }
+
+    private fun checkIsTodoChanged(): Boolean =
+        todo.value != oldTodoInfo.title || endDate.value != oldTodoInfo.endDate || memo.value != oldTodoInfo.memo || checkIsListChanged()
+
+    private fun checkIsListChanged(): Boolean {
+        for (i in allocatorModelList.indices) {
+            if (oldTodoInfo.allocators[i].isAllocated != allocatorModelList[i].isAllocated) {
+                return true
+            }
+        }
+        return false
     }
 
     fun getTodoDetailFromServer() {
@@ -70,7 +80,7 @@ class TodoChangeViewModel @Inject constructor(
                 .onSuccess { response ->
                     todo.value = response.title
                     endDate.value = response.endDate
-                    allocatorModelList = response.allocators
+                    allocatorModelList = response.allocators.map { it.copy() }
                     memo.value = response.memo
                     isSecret = response.secret
                     oldTodoInfo = response
