@@ -29,7 +29,7 @@ class ChangeTagActivity :
     private fun initAdapter() {
         _adapter = ChangeTagAdapter()
         binding.rvChangeTag.adapter = adapter
-        adapter.submitList(viewModel.preferenceTagList)
+        adapter.submitList(viewModel.setPreferenceData(1, 2, 3, 4, 5))
     }
 
     private fun initItemDecoration() {

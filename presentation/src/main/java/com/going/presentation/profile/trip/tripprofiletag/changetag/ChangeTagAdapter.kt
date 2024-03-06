@@ -3,11 +3,11 @@ package com.going.presentation.profile.trip.tripprofiletag.changetag
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.going.domain.entity.PreferenceData
+import com.going.domain.entity.ProfilePreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.util.ItemDiffCallback
 
-class ChangeTagAdapter : ListAdapter<PreferenceData, ChangeTagViewHolder>(diffUtil) {
+class ChangeTagAdapter : ListAdapter<ProfilePreferenceData, ChangeTagViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChangeTagViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
@@ -23,7 +23,7 @@ class ChangeTagAdapter : ListAdapter<PreferenceData, ChangeTagViewHolder>(diffUt
     override fun getItemCount() = currentList.size
 
     companion object {
-        private val diffUtil = ItemDiffCallback<PreferenceData>(
+        private val diffUtil = ItemDiffCallback<ProfilePreferenceData>(
             onItemsTheSame = { old, new -> old.number == new.number },
             onContentsTheSame = { old, new -> old == new },
         )

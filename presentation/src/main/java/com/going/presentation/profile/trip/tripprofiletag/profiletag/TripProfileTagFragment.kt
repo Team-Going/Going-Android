@@ -31,7 +31,7 @@ class TripProfileTagFragment :
     private fun initAdapter() {
         _adapter = PreferenceTagAdapter()
         binding.rvPreferenceTag.adapter = adapter
-        adapter.submitList(viewModel.setPreferenceData(1,2,3,4,5))
+        adapter.submitList(viewModel.setPreferenceData(1, 2, 3, 4, 5))
     }
 
     private fun initItemDecoration() {
