@@ -1,5 +1,6 @@
 package com.going.presentation.todo.change
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -44,7 +45,6 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         getTodoInfo()
         observeTodoDetailState()
         observePatchTodoState()
-        setBackPressedBtnListener()
         setEtTodoNameArguments()
         setEtTodoMemoArguments()
         observeNameTextChanged()
@@ -70,7 +70,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private fun initBackBtnListener() {
         binding.btnTodoCreateBack.setOnSingleClickListener {
-            navigateBackToDetailActivity()
+            finish()
         }
     }
 
@@ -108,6 +108,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         viewModel.todoPatchState.flowWithLifecycle(lifecycle).onEach { result ->
             if (result) {
                 toast(getString(R.string.todo_change_toast_success))
+                setResult(Activity.RESULT_OK)
                 finish()
                 return@onEach
             }
@@ -130,22 +131,6 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
             rvOurTodoCreatePerson.visibility = View.INVISIBLE
             layoutMyTodoCreatePerson.visibility = View.VISIBLE
         }
-    }
-
-    private fun setBackPressedBtnListener() {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-               navigateBackToDetailActivity()
-            }
-        }
-        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
-    }
-
-    private fun navigateBackToDetailActivity() {
-        TodoDetailActivity.createIntent(
-            this, viewModel.tripId, viewModel.todoId, !viewModel.isSecret
-        ).apply { startActivity(this) }
-        finish()
     }
 
     private fun setEtTodoNameArguments() {

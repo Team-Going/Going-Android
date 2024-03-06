@@ -1,9 +1,11 @@
 package com.going.presentation.todo.detail
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
@@ -64,11 +66,18 @@ class TodoDetailActivity :
     }
 
     private fun initModBtnClickListener() {
+        val startForResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    finish()
+                }
+            }
         binding.btnTodoDetailMod.setOnSingleClickListener {
-            TodoChangeActivity.createIntent(
-                this, viewModel.tripId, viewModel.todoId
-            ).apply { startActivity(this) }
-            finish()
+            startForResult.launch(
+                TodoChangeActivity.createIntent(
+                    this, viewModel.tripId, viewModel.todoId
+                )
+            )
         }
     }
 
@@ -110,9 +119,10 @@ class TodoDetailActivity :
                         tvTodoMemoCounter.isVisible = true
                     }
 
-                    if (state.data.memo.isBlank())  {
+                    if (state.data.memo.isBlank()) {
                         with(binding) {
-                            etTodoCreateMemo.background = drawableOf(R.drawable.shape_rect_4_gray200_line)
+                            etTodoCreateMemo.background =
+                                drawableOf(R.drawable.shape_rect_4_gray200_line)
                             etTodoCreateMemo.text = stringOf(R.string.my_todo_create_tv_memo_hint)
                             etTodoCreateMemo.setTextColor(colorOf(R.color.gray_200))
                             tvTodoMemoCounter.isVisible = false
