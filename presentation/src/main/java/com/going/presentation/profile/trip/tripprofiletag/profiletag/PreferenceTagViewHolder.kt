@@ -1,10 +1,10 @@
-package com.going.presentation.profile.trip.tag
+package com.going.presentation.profile.trip.tripprofiletag.profiletag
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 
-class TripProfileTagViewHolder(
+class PreferenceTagViewHolder(
     val binding: ItemPreferenceTagBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 

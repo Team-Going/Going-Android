@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tag
+package com.going.presentation.profile.trip.tripprofiletag.profiletag
 
 import android.os.Bundle
 import android.view.View
@@ -14,7 +14,7 @@ class TripProfileTagFragment :
 
     private val viewModel by activityViewModels<TripProfileTagViewModel>()
 
-    private var _adapter: TripProfileTagAdapter? = null
+    private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class TripProfileTagFragment :
     }
 
     private fun initAdapter() {
-        _adapter = TripProfileTagAdapter(requireContext())
+        _adapter = PreferenceTagAdapter(requireContext())
         binding.rvPreferenceTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
     }

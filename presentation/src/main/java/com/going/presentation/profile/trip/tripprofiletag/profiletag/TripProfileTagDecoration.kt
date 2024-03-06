@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tag
+package com.going.presentation.profile.trip.tripprofiletag.profiletag
 
 import android.content.Context
 import android.graphics.Rect

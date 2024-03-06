@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tag
+package com.going.presentation.profile.trip.tripprofiletag.profiletag
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.util.ItemDiffCallback
 
-class TripProfileTagAdapter(
+class PreferenceTagAdapter(
     context: Context
-) : ListAdapter<PreferenceData, TripProfileTagViewHolder>(diffUtil) {
+) : ListAdapter<PreferenceData, PreferenceTagViewHolder>(diffUtil) {
 
     private val inflater by lazy { LayoutInflater.from(context) }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripProfileTagViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferenceTagViewHolder {
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)
-        return TripProfileTagViewHolder(binding)
+        return PreferenceTagViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TripProfileTagViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PreferenceTagViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 
