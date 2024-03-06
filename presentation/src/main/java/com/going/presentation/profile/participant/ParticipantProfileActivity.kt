@@ -51,7 +51,7 @@ class ParticipantProfileActivity :
     }
 
     private fun getParticipantProfile() =
-        participantProfileViewModel.getUserInfoState(419L) //participantId
+        participantProfileViewModel.getUserInfoState(participantId)
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
