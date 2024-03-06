@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.CheckFriendsModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
+import com.going.presentation.profile.trip.TripProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
@@ -34,7 +35,7 @@ class CheckFriendsActivity :
         super.onCreate(savedInstanceState)
 
         initBackClickListener()
-        initAdapter()
+        initAdapterWithClickListener()
         getTripId()
         observeCheckFriendsListState()
         setResultTextColor()
@@ -47,8 +48,13 @@ class CheckFriendsActivity :
         }
     }
 
-    private fun initAdapter() {
-        _adapter = CheckFriendsAdapter()
+    private fun initAdapterWithClickListener() {
+        _adapter = CheckFriendsAdapter { id ->
+            TripProfileActivity.createIntent(
+                this,
+                id.participantId
+            ).apply { startActivity(this) }
+        }
         binding.rvCheckFriendsMember.adapter = adapter
     }
 

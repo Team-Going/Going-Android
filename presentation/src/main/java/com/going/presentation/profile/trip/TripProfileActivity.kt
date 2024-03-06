@@ -1,5 +1,7 @@
 package com.going.presentation.profile.trip
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTripProfileBinding
@@ -60,6 +62,18 @@ class TripProfileActivity :
             ).apply {
                 startActivity(this)
             }
+        }
+    }
+
+    companion object {
+        private const val PARTICIPANT_ID = "PARTICIPANT_ID"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            participantId: Long
+        ): Intent = Intent(context, TripProfileActivity::class.java).apply {
+            putExtra(PARTICIPANT_ID, participantId)
         }
     }
 }
