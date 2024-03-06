@@ -21,11 +21,14 @@ class ParticipantProfileViewModel @Inject constructor(
     val participantProfileState: StateFlow<UiState<ParticipantProfileResponseModel>> =
         _participantProfileState
 
+    var number: Int = 0
+
     fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {
             _participantProfileState.value = UiState.Loading
             profileRepository.getParticipantProfile(ParticipantProfileRequestModel(participantId))
                 .onSuccess {
+                    number = it.result
                     _participantProfileState.value = UiState.Success(it)
                 }.onFailure {
                     _participantProfileState.value = UiState.Failure(it.message.toString())

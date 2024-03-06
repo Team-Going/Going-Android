@@ -15,6 +15,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityParticipantProfileBinding
 import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.tendency.result.UserTendencyResultList
+import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
@@ -50,7 +51,7 @@ class ParticipantProfileActivity :
     }
 
     private fun getParticipantProfile() =
-        participantProfileViewModel.getUserInfoState(420L) //participantId
+        participantProfileViewModel.getUserInfoState(419L) //participantId
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
@@ -84,7 +85,7 @@ class ParticipantProfileActivity :
             tvProfileOneLine.text = profile.intro
 
             profile.isOwner.run {
-                btnTripProfileDownload.isVisible = this
+                btnTripProfileDownload.isVisible = this && profile.result != -1
                 btnProfileEdit.isVisible = this
 
                 if (!this) tvTripProfileTitle.setText(getString(R.string.participant_profile_friend_title, profile.name))
@@ -159,7 +160,7 @@ class ParticipantProfileActivity :
 
     private fun initSaveImgBtnClickListener() {
         binding.btnTripProfileDownload.setOnSingleClickListener {
-            // downloadImage(tripProfileViewModel.profileId.value)
+            downloadImage(participantProfileViewModel.number)
         }
     }
 
