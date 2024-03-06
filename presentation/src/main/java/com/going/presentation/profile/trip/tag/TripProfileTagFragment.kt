@@ -23,7 +23,6 @@ class TripProfileTagFragment :
 
         initAdapter()
         initItemDecoration()
-
     }
 
     private fun initAdapter() {
