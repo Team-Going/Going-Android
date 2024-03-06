@@ -21,11 +21,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:background="@drawable/shape_rect_4_gray200_line"
-        android:paddingEnd="30dp"
         android:gravity="top"
         android:includeFontPadding="false"
         android:inputType="textMultiLine"
+        android:lineSpacingMultiplier="1.2"
         android:paddingVertical="20dp"
+        android:paddingEnd="30dp"
         android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
         android:textColorHint="@color/gray_200"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,11 +35,11 @@
 
     <ImageButton
         android:id="@+id/btn_delete_text"
-        android:src="@drawable/ic_delete"
-        android:backgroundTint="@color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_delete"
         app:layout_constraintEnd_toEndOf="@id/et_emoji_counter_et_content"
         app:layout_constraintTop_toTopOf="@id/et_emoji_counter_et_content" />
 
@@ -63,6 +64,5 @@
         android:textColor="@color/gray_200"
         app:layout_constraintEnd_toEndOf="@id/et_emoji_counter_et_content"
         app:layout_constraintTop_toBottomOf="@id/et_emoji_counter_et_content" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
