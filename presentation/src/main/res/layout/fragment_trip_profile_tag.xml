@@ -15,7 +15,7 @@
             android:id="@+id/rv_preference_tag"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/gray_50"
+            android:background="@color/white_000"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

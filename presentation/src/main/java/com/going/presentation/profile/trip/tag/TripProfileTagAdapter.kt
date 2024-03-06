@@ -13,6 +13,7 @@ class TripProfileTagAdapter(
 ) : ListAdapter<PreferenceData, TripProfileTagViewHolder>(diffUtil) {
 
     private val inflater by lazy { LayoutInflater.from(context) }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripProfileTagViewHolder {
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)

@@ -10,7 +10,7 @@ class TripProfileTagViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    val preferenceTagList = listOf<PreferenceData>(
+    val preferenceTagList = listOf(
         PreferenceData(
             number = "01",
             question = "계획은 어느 정도로 세울까요?",
