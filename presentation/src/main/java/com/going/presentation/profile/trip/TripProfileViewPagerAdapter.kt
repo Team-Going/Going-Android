@@ -2,6 +2,7 @@ package com.going.presentation.profile.trip
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.going.presentation.profile.trip.tag.TripProfileTagFragment
 
 class TripProfileViewPagerAdapter(activity: TripProfileActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int = 2
