@@ -16,5 +16,5 @@ class ProfileDataSourceImpl @Inject constructor(
         profileService.getUserProfile()
 
     override suspend fun getParticipantProfile(participantProfileRequestDto: ParticipantProfileRequestDto): BaseResponse<ParticipantProfileResponseDto> =
-        profileService.getParticipantProfile(participantProfileRequestDto)
+        profileService.getParticipantProfile(participantProfileRequestDto.participantId)
 }

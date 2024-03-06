@@ -14,6 +14,6 @@ interface ProfileService {
 
     @GET("api/trips/participants/{participantId}")
     suspend fun getParticipantProfile(
-        @Path("participantId") participantId: ParticipantProfileRequestDto
+        @Path("participantId") participantId: Long
     ): BaseResponse<ParticipantProfileResponseDto>
 }
