@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip
+package com.going.presentation.profile.participant
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityTripProfileBinding
+import com.going.presentation.databinding.ActivityParticipantProfileBinding
 import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.ui.base.BaseActivity
@@ -24,8 +24,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class TripProfileActivity :
-    BaseActivity<ActivityTripProfileBinding>(R.layout.activity_trip_profile) {
+class ParticipantProfileActivity :
+    BaseActivity<ActivityParticipantProfileBinding>(R.layout.activity_participant_profile) {
     private val participantProfileViewModel by viewModels<ParticipantProfileViewModel>()
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
@@ -43,7 +43,8 @@ class TripProfileActivity :
         initProfileEditBtnClickListener()
     }
 
-    private fun getParticipantProfile() = participantProfileViewModel.getUserInfoState(participantId)
+    private fun getParticipantProfile() =
+        participantProfileViewModel.getUserInfoState(participantId)
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)

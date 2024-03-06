@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip
+package com.going.presentation.profile.participant
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

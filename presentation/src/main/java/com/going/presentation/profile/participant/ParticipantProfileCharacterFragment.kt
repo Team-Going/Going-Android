@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip
+package com.going.presentation.profile.participant
 
 import android.os.Bundle
 import android.view.View
@@ -16,7 +16,7 @@ import com.going.ui.state.UiState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class TripProfileCharacterFragment :
+class ParticipantProfileCharacterFragment :
     BaseFragment<FragmentTripProfileCharacterBinding>(R.layout.fragment_trip_profile_character) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
