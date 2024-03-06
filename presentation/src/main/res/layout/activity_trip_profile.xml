@@ -49,6 +49,7 @@
                 android:layout_marginBottom="-5dp"
                 android:padding="24dp"
                 android:src="@drawable/ic_download"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -89,13 +90,13 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="23dp"
+                            android:src="@drawable/img_profile_guest"
                             app:civ_border_color="@color/gray_100"
                             app:civ_border_width="1dp"
                             app:layout_constraintBottom_toTopOf="@id/view_gray"
                             app:layout_constraintDimensionRatio="1"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:src="@drawable/img_profile_guest" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_profile_name"
@@ -132,6 +133,7 @@
                             android:paddingVertical="2dp"
                             android:text="@string/profile_tv_edit"
                             android:textColor="@color/gray_400"
+                            android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/iv_profile" />
