@@ -31,15 +31,12 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private var todoDateBottomSheet: TodoDateBottomSheet? = null
-
-    private var isOurTodo = true
+    private var todoNewDateBottomSheet: TodoNewDateBottomSheet? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initViewModel()
-        setTodoCreateType()
         initDateClickBtnListener()
         initFinishBtnListener()
         initBackBtnListener()
@@ -59,16 +56,18 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
 
     private fun initDateClickBtnListener() {
         binding.etTodoCreateDate.setOnSingleClickListener {
-            todoDateBottomSheet = TodoDateBottomSheet()
-            todoDateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
+            todoNewDateBottomSheet = TodoNewDateBottomSheet()
+            todoNewDateBottomSheet?.show(supportFragmentManager, DATE_BOTTOM_SHEET)
         }
     }
 
     private fun initFinishBtnListener() {
         binding.btnTodoMemoFinish.setOnSingleClickListener {
-            if (isOurTodo) viewModel.participantIdList =
-                adapter.currentList.filter { it.isSelected }.map { it.participantId }
-            viewModel.postToCreateTodoFromServer()
+            with(viewModel) {
+                if (isOurTodo) participantIdList =
+                    adapter.currentList.filter { it.isSelected }.map { it.participantId }
+                postToCreateTodoFromServer()
+            }
         }
     }
 
@@ -81,13 +80,15 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     private fun getTripInfoId() {
         with(viewModel) {
             tripId = intent.getLongExtra(EXTRA_TRIP_ID, 0)
-            participantIdList = intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() } ?: listOf()
+            participantIdList =
+                intent.getIntegerArrayListExtra(EXTRA_PARTICIPANT_ID)?.map { it.toLong() }
+                    ?: listOf()
         }
     }
 
     private fun setTodoCreateType() {
-        isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
-        if (isOurTodo) {
+        viewModel.isOurTodo = intent.getBooleanExtra(EXTRA_IS_OUR_TODO, true)
+        if (viewModel.isOurTodo) {
             initOurTodoNameListAdapter()
             setOurTodoParticipantList()
         } else {
@@ -181,7 +182,7 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
-        if (todoDateBottomSheet?.isAdded == true) todoDateBottomSheet?.dismiss()
+        if (todoNewDateBottomSheet?.isAdded == true) todoNewDateBottomSheet?.dismiss()
     }
 
     companion object {
@@ -192,8 +193,8 @@ class TodoCreateActivity : BaseActivity<ActivityTodoCreateBinding>(R.layout.acti
         private const val EXTRA_NAME = "EXTRA_NAME"
         private const val EXTRA_RESULT = "EXTRA_RESULT"
 
-        private const val MAX_TODO_LEN = 15
-        private const val MAX_MEMO_LEN = 1000
+        const val MAX_TODO_LEN = 15
+        const val MAX_MEMO_LEN = 1000
 
         @JvmStatic
         fun createIntent(

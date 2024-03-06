@@ -3,7 +3,6 @@ package com.going.presentation.todo.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.domain.entity.response.TodoDetailModel
 import com.going.domain.repository.TodoRepository
 import com.going.ui.state.EnumUiState
@@ -29,10 +28,14 @@ class TodoDetailViewModel @Inject constructor(
     private val _todoDeleteState = MutableStateFlow<EnumUiState>(EnumUiState.EMPTY)
     val todoDeleteState: StateFlow<EnumUiState> = _todoDeleteState
 
-    fun getTodoDetailFromServer(todoId: Long) {
+    var tripId: Long = 0
+    var todoId: Long = 0
+    var isPublic: Boolean = true
+
+    fun getTodoDetailFromServer() {
         _todoDetailState.value = UiState.Loading
         viewModelScope.launch {
-            todoRepository.getTodoDetail(todoId)
+            todoRepository.getTodoDetail(tripId, todoId)
                 .onSuccess { response ->
                     todo.value = response.title
                     endDate.value = response.endDate
@@ -45,7 +48,7 @@ class TodoDetailViewModel @Inject constructor(
         }
     }
 
-    fun deleteTodoFromServer(todoId: Long) {
+    fun deleteTodoFromServer() {
         _todoDeleteState.value = EnumUiState.LOADING
         viewModelScope.launch {
             todoRepository.deleteTodo(todoId)

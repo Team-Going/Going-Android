@@ -4,6 +4,6 @@ data class TodoModel(
     val todoId: Long,
     val title: String,
     val endDate: String,
-    val allocators: List<TodoAllocatorModel>,
+    val allocators: List<TodoListAllocatorModel>,
     val secret: Boolean
 )

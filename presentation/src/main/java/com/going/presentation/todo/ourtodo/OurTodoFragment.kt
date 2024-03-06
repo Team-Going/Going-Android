@@ -59,12 +59,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
+        initTripInfoBtnClickListener()
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
-        initTripInfoBtnClickListener()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
@@ -81,8 +81,18 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initAdapter() {
-        _adapter = OurTodoFriendAdapter()
+        _adapter = OurTodoFriendAdapter(::initFriendInfoListener)
         binding.rvOurTripFriend.adapter = adapter
+    }
+
+    private fun initFriendInfoListener(participantId: Long) {
+        // TODO: 친구 아이템 클릭 시 상세정보 구현
+    }
+
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            // TODO : 여행정보 화면 이동
+        }
     }
 
     private fun initAddTodoBtnListener() {
@@ -126,12 +136,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
-        }
-    }
-
-    private fun initTripInfoBtnClickListener() {
-        binding.btnOurTodoTripInfo.setOnSingleClickListener {
-            // TODO : 여행정보 화면 이동
         }
     }
 
@@ -201,9 +205,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
-                it.height = displayHeight - toolbarHeight - appBarHeight - 300
-            }
+            binding.layoutOurTodoEmpty.layoutParams =
+                (binding.layoutOurTodoEmpty.layoutParams).also {
+                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                }
 
             if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 setStatusBarColor(R.color.white_000)
@@ -253,7 +258,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
         when {
             day > 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                binding.tvOurTodoTitleDown.text =
+                    getString(R.string.our_todo_title_down_before).format(day)
                 setDateTextColor(6, 6)
             }
 

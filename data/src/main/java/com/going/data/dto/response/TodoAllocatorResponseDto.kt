@@ -6,11 +6,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TodoAllocatorResponseDto(
+    @SerialName("participantId")
+    val participantId: Long,
     @SerialName("name")
     val name: String,
     @SerialName("isOwner")
-    val isOwner: Boolean
+    val isOwner: Boolean,
+    @SerialName("isAllocated")
+    val isAllocated: Boolean
 ) {
     fun toTodoAllocatorModel() =
-        TodoAllocatorModel(name, isOwner)
+        TodoAllocatorModel(participantId, name, isOwner, isAllocated)
 }

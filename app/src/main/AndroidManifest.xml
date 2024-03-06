@@ -140,6 +140,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.going.presentation.todo.change.TodoChangeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.going.presentation.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
