@@ -50,7 +50,7 @@ class ParticipantProfileActivity :
     }
 
     private fun getParticipantProfile() =
-        participantProfileViewModel.getUserInfoState(420L) // participantId
+        participantProfileViewModel.getUserInfoState(420L) //participantId
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
@@ -86,6 +86,8 @@ class ParticipantProfileActivity :
             profile.isOwner.run {
                 btnTripProfileDownload.isVisible = this
                 btnProfileEdit.isVisible = this
+
+                if (!this) tvTripProfileTitle.setText(getString(R.string.participant_profile_friend_title, profile.name))
             }
         }
     }
