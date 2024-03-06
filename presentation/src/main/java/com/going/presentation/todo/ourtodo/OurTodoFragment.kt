@@ -201,10 +201,9 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.layoutOurTodoEmpty.layoutParams =
-                (binding.layoutOurTodoEmpty.layoutParams).also {
-                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
-                }
+            binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
+                it.height = displayHeight - toolbarHeight - appBarHeight - 300
+            }
 
             if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 setStatusBarColor(R.color.white_000)
@@ -254,8 +253,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
         when {
             day > 0 -> {
-                binding.tvOurTodoTitleDown.text =
-                    getString(R.string.our_todo_title_down_before).format(day)
+                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
                 setDateTextColor(6, 6)
             }
 
