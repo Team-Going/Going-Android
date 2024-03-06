@@ -95,7 +95,7 @@
                             app:layout_constraintDimensionRatio="1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            tools:src="@drawable/img_profile_1" />
+                            android:src="@drawable/img_profile_guest" />
 
                         <TextView
                             android:id="@+id/tv_profile_name"

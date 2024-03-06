@@ -134,7 +134,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_trip_profile_chart_first" />
 
             <com.going.presentation.designsystem.textview.ChartTextView
-                android:id="@+id/tv_trip_profile_third_second"
+                android:id="@+id/tv_trip_profile_chart_third"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="23dp"
@@ -152,8 +152,8 @@
                 android:paddingHorizontal="24dp"
                 android:text="@string/profile_tv_restart_button"
                 android:textColor="@color/gray_300"
-                app:layout_constraintEnd_toEndOf="@id/tv_trip_profile_third_second"
-                app:layout_constraintTop_toBottomOf="@id/tv_trip_profile_third_second" />
+                app:layout_constraintEnd_toEndOf="@id/tv_trip_profile_chart_third"
+                app:layout_constraintTop_toBottomOf="@id/tv_trip_profile_chart_third" />
 
             <androidx.legacy.widget.Space
                 android:layout_width="0dp"
