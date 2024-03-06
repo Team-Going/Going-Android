@@ -27,10 +27,14 @@ import kotlinx.coroutines.flow.onEach
 class TripProfileActivity :
     BaseActivity<ActivityTripProfileBinding>(R.layout.activity_trip_profile) {
     private val participantProfileViewModel by viewModels<ParticipantProfileViewModel>()
+    private val participantId: Long by lazy {
+        intent.let { intent.getLongExtra(PARTICIPANT_ID, 0) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getParticipantProfile()
         observeParticipantProfileState()
         setViewPager()
         setViewPagerDebounce()
@@ -39,13 +43,14 @@ class TripProfileActivity :
         initProfileEditBtnClickListener()
     }
 
+    private fun getParticipantProfile() = participantProfileViewModel.getUserInfoState(participantId)
+
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
             .onEach { state ->
                 when (state) {
                     is UiState.Loading -> return@onEach
                     is UiState.Success -> bindData(state.data)
-
                     is UiState.Failure -> toast(state.msg)
                     is UiState.Empty -> return@onEach
                 }
@@ -54,7 +59,7 @@ class TripProfileActivity :
 
     private fun bindData(profile: ParticipantProfileResponseModel) {
         binding.run {
-            if (profile.result != -1){
+            if (profile.result != -1) {
                 UserTendencyResultList[profile.result].run {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())

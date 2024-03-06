@@ -16,30 +16,20 @@ import javax.inject.Inject
 class ParticipantProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
 ) : ViewModel() {
-    private val _participantProfileState = MutableStateFlow<UiState<ParticipantProfileResponseModel>>(UiState.Empty)
-    val participantProfileState: StateFlow<UiState<ParticipantProfileResponseModel>> = _participantProfileState
+    private val _participantProfileState =
+        MutableStateFlow<UiState<ParticipantProfileResponseModel>>(UiState.Empty)
+    val participantProfileState: StateFlow<UiState<ParticipantProfileResponseModel>> =
+        _participantProfileState
 
-    val isOwner: Boolean by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.isOwner }
-    val result: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.result }
-    val styleA: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.styleA }
-    val styleB: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.styleA }
-    val styleC: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.styleA }
-    val styleD: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.styleA }
-    val styleE: Int by lazy { (participantProfileState.value as UiState.Success<ParticipantProfileResponseModel>).data.styleA }
-
-
-    init {
-        getUserInfoState()
-    }
-
-    private fun getUserInfoState() {
+    fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {
             _participantProfileState.value = UiState.Loading
-            profileRepository.getParticipantProfile(ParticipantProfileRequestModel(418L)).onSuccess {
-                _participantProfileState.value = UiState.Success(it)
-            }.onFailure {
-                _participantProfileState.value = UiState.Failure(it.message.toString())
-            }
+            profileRepository.getParticipantProfile(ParticipantProfileRequestModel(participantId))
+                .onSuccess {
+                    _participantProfileState.value = UiState.Success(it)
+                }.onFailure {
+                    _participantProfileState.value = UiState.Failure(it.message.toString())
+                }
         }
     }
 }
