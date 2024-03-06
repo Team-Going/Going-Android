@@ -27,7 +27,7 @@ class ChangeTagActivity :
     }
 
     private fun initAdapter() {
-        _adapter = ChangeTagAdapter(this)
+        _adapter = ChangeTagAdapter()
         binding.rvChangeTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
     }

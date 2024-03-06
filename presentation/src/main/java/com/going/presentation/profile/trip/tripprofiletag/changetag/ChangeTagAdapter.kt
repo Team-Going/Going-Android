@@ -1,6 +1,5 @@
 package com.going.presentation.profile.trip.tripprofiletag.changetag
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -8,13 +7,10 @@ import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.util.ItemDiffCallback
 
-class ChangeTagAdapter(
-    context: Context
-) : ListAdapter<PreferenceData, ChangeTagViewHolder>(diffUtil) {
-
-    private val inflater by lazy { LayoutInflater.from(context) }
+class ChangeTagAdapter : ListAdapter<PreferenceData, ChangeTagViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChangeTagViewHolder {
+        val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)
         return ChangeTagViewHolder(binding)
