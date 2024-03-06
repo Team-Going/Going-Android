@@ -28,7 +28,7 @@ class TripProfileActivity :
     BaseActivity<ActivityTripProfileBinding>(R.layout.activity_trip_profile) {
     private val participantProfileViewModel by viewModels<ParticipantProfileViewModel>()
     private val participantId: Long by lazy {
-        intent.let { intent.getLongExtra(PARTICIPANT_ID, 0) }
+        intent.getLongExtra(PARTICIPANT_ID, 0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
