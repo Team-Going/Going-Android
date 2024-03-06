@@ -6,12 +6,8 @@ import coil.transform.CircleCropTransformation
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoFriendsBinding
-import com.going.ui.extension.setOnSingleClickListener
 
-class OurTodoFriendViewHolder(
-    val binding: ItemTodoFriendsBinding,
-    private val itemDetailClick: (TripParticipantModel) -> Unit
-) :
+class OurTodoFriendViewHolder(val binding: ItemTodoFriendsBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: TripParticipantModel) {
@@ -31,10 +27,6 @@ class OurTodoFriendViewHolder(
             ivTodoFriend.load(profileImage) {
                 transformations(CircleCropTransformation())
             }
-            ivTodoFriend.setOnSingleClickListener {
-                itemDetailClick(item)
-            }
-
         }
     }
 

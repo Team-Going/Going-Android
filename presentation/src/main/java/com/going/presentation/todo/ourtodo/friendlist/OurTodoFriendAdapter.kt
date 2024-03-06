@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoFriendsBinding
 
-class OurTodoFriendAdapter(
-    private val itemDetailClick : (TripParticipantModel) -> Unit
-) : RecyclerView.Adapter<OurTodoFriendViewHolder>() {
+class OurTodoFriendAdapter : RecyclerView.Adapter<OurTodoFriendViewHolder>() {
 
     private var itemList = mutableListOf<TripParticipantModel>()
 
@@ -16,7 +14,7 @@ class OurTodoFriendAdapter(
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoFriendsBinding =
             ItemTodoFriendsBinding.inflate(inflater, parent, false)
-        return OurTodoFriendViewHolder(binding, itemDetailClick)
+        return OurTodoFriendViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: OurTodoFriendViewHolder, position: Int) {

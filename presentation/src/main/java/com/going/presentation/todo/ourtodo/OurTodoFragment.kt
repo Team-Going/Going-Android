@@ -16,7 +16,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
-import com.going.presentation.profile.trip.TripProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
@@ -59,7 +58,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapterWithClickListener()
+        initAdapter()
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
@@ -81,13 +80,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setOurTripInfo()
     }
 
-    private fun initAdapterWithClickListener() {
-        _adapter = OurTodoFriendAdapter { tripParticipantModel ->
-            TripProfileActivity.createIntent(
-                requireContext(),
-                tripParticipantModel.participantId
-            ).apply { startActivity(this) }
-        }
+    private fun initAdapter() {
+        _adapter = OurTodoFriendAdapter()
         binding.rvOurTripFriend.adapter = adapter
     }
 
@@ -167,7 +161,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun setViewPagerChangeListener() {
-        binding.vpOurTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.vpOurTodo.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
