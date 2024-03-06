@@ -237,5 +237,6 @@
     <string name="edit_trip_info_quit_dialog_positive">취소</string>
     <string name="trip_blank_error">여행 이름에는 공백만 입력할 수 없어요</string>
 
-
+    <!--change tag-->
+    <string name="change_tag_btn_change">취향태그 수정하기</string>
 </resources>

@@ -1,11 +1,14 @@
 package com.going.presentation.profile.trip.tripprofiletag.profiletag
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentTripProfileTagBinding
+import com.going.presentation.profile.trip.tripprofiletag.changetag.ChangeTagActivity
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +25,7 @@ class TripProfileTagFragment :
 
         initAdapter()
         initItemDecoration()
+        initRestartBtnClickListener()
     }
 
     private fun initAdapter() {
@@ -33,6 +37,14 @@ class TripProfileTagFragment :
     private fun initItemDecoration() {
         val itemDeco = TripProfileTagDecoration(requireContext())
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
+    }
+
+    private fun initRestartBtnClickListener() {
+        binding.btnTripProfileRestart.setOnSingleClickListener {
+            Intent(requireContext(), ChangeTagActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
     }
 
 }
