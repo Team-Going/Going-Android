@@ -16,20 +16,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.profile.trip.TripProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
-import com.going.ui.util.RvItemDecoration
-import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.create.TodoCreateActivity
+import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
 import com.going.ui.base.BaseFragment
-import com.going.ui.state.UiState
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
+import com.going.ui.util.RvItemDecoration
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +59,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
@@ -80,8 +81,13 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         setOurTripInfo()
     }
 
-    private fun initAdapter() {
-        _adapter = OurTodoFriendAdapter()
+    private fun initAdapterWithClickListener() {
+        _adapter = OurTodoFriendAdapter { tripParticipantModel ->
+            TripProfileActivity.createIntent(
+                requireContext(),
+                tripParticipantModel.participantId
+            ).apply { startActivity(this) }
+        }
         binding.rvOurTripFriend.adapter = adapter
     }
 
@@ -200,9 +206,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
-                it.height = displayHeight - toolbarHeight - appBarHeight - 300
-            }
+            binding.layoutOurTodoEmpty.layoutParams =
+                (binding.layoutOurTodoEmpty.layoutParams).also {
+                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                }
 
             if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 setStatusBarColor(R.color.white_000)
@@ -252,7 +259,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
         when {
             day > 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                binding.tvOurTodoTitleDown.text =
+                    getString(R.string.our_todo_title_down_before).format(day)
                 setDateTextColor(6, 6)
             }
 

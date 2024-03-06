@@ -49,10 +49,10 @@ class CheckFriendsActivity :
     }
 
     private fun initAdapterWithClickListener() {
-        _adapter = CheckFriendsAdapter { id ->
+        _adapter = CheckFriendsAdapter { tripParticipantModel ->
             TripProfileActivity.createIntent(
                 this,
-                id.participantId
+                tripParticipantModel.participantId
             ).apply { startActivity(this) }
         }
         binding.rvCheckFriendsMember.adapter = adapter
