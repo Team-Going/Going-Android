@@ -32,10 +32,11 @@
                 style="@style/TextAppearance.Doorip.Detail2.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:paddingHorizontal="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="22dp"
                 android:text="@string/profile_tv_restart_button"
                 android:textColor="@color/gray_300"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_preference_tag" />
 

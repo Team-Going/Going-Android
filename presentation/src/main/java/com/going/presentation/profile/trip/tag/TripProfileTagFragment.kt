@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentTripProfileTagBinding
-import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +31,7 @@ class TripProfileTagFragment :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = PreferenceTagDecoration(requireContext())
+        val itemDeco = TripProfileTagDecoration(requireContext())
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
