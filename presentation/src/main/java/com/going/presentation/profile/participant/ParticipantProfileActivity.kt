@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,13 +16,17 @@ import com.going.presentation.databinding.ActivityParticipantProfileBinding
 import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+
 
 @AndroidEntryPoint
 class ParticipantProfileActivity :
@@ -30,6 +35,7 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
+    var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +50,7 @@ class ParticipantProfileActivity :
     }
 
     private fun getParticipantProfile() =
-        participantProfileViewModel.getUserInfoState(participantId)
+        participantProfileViewModel.getUserInfoState(420L) // participantId
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
@@ -61,12 +67,14 @@ class ParticipantProfileActivity :
     private fun bindData(profile: ParticipantProfileResponseModel) {
         binding.run {
             if (profile.result != -1) {
+                isEmpty = false
                 UserTendencyResultList[profile.result].run {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())
                     }
                 }
             } else {
+                setEmptyFragment()
                 ivProfile.load(R.drawable.img_profile_guest) {
                     transformations(CircleCropTransformation())
                 }
@@ -74,9 +82,6 @@ class ParticipantProfileActivity :
 
             tvProfileName.text = profile.name
             tvProfileOneLine.text = profile.intro
-
-
-
 
             profile.isOwner.run {
                 btnTripProfileDownload.isVisible = this
@@ -86,12 +91,29 @@ class ParticipantProfileActivity :
     }
 
     private fun setViewPager() {
-        binding.vpTripProfile.adapter = TripProfileViewPagerAdapter(this)
+        binding.vpTripProfile.adapter = ParticipantProfileViewPagerAdapter(this)
+        binding.vpTripProfile.isUserInputEnabled = false
     }
 
     private fun setViewPagerDebounce() {
         binding.tabTripProfile.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                val params =
+                    binding.appbarTripProfile.layoutParams as CoordinatorLayout.LayoutParams
+                val behavior = params.behavior as AppBarLayout.Behavior?
+
+                with(tab.position == 0 && isEmpty) {
+                    behavior?.setDragCallback(object : DragCallback() {
+                        override fun canDrag(appBarLayout: AppBarLayout): Boolean {
+                            return !this@with
+                        }
+                    })
+                    setFragmentHeight(this)
+
+                    if (this) binding.appbarTripProfile.setExpanded(true)
+
+                }
+
                 binding.vpTripProfile.currentItem = tab.position
             }
 
@@ -99,6 +121,32 @@ class ParticipantProfileActivity :
 
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+    }
+
+    private fun setEmptyFragment() {
+        val params = binding.appbarTripProfile.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = params.behavior as AppBarLayout.Behavior?
+
+        behavior?.setDragCallback(object : DragCallback() {
+            override fun canDrag(appBarLayout: AppBarLayout): Boolean {
+                return false
+            }
+        })
+
+
+        setFragmentHeight()
+    }
+
+    private fun setFragmentHeight(temp: Boolean = true) {
+        val displayHeight = getWindowHeight()
+        val toolbarHeight = binding.tbTripProfile.height
+        val appBarHeight = binding.appbarTripProfile.totalScrollRange
+        val tabHeight = binding.tabTripProfile.height
+
+        binding.vpTripProfile.layoutParams = binding.vpTripProfile.layoutParams.also {
+            it.height =
+                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight
+        }
     }
 
     private fun initBackBtnClickListener() {

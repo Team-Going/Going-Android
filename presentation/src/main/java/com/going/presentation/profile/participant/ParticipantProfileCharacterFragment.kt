@@ -33,7 +33,12 @@ class ParticipantProfileCharacterFragment :
 
     private fun bindData(isOwner: Boolean, result: Int) {
         binding.run {
-            binding.btnTripProfileRestart.isVisible = isOwner
+            btnTripProfileRestart.isVisible = isOwner
+            btnParticipantProfileEmptyOwner.isVisible = isOwner
+            tvParticipantProfileEmptyOwner.isVisible = isOwner
+
+            viewParticipantProfileEmpty.isVisible = result == -1
+            viewParticipantProfile.isVisible = result != -1
 
             if (result != -1) {
                 UserTendencyResultList[result].run {
@@ -53,8 +58,6 @@ class ParticipantProfileCharacterFragment :
                         setChartInfo(tvTripProfileChartThird, title, first, second, third)
                     }
                 }
-            } else {
-                // empty view
             }
         }
     }
