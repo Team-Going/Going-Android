@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -13,6 +14,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoChangeBinding
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_MEMO_LEN
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_TODO_LEN
+import com.going.presentation.todo.detail.TodoDetailActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -42,6 +44,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
         getTodoInfo()
         observeTodoDetailState()
         observePatchTodoState()
+        setBackPressedBtnListener()
         setEtTodoNameArguments()
         setEtTodoMemoArguments()
         observeNameTextChanged()
@@ -67,7 +70,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private fun initBackBtnListener() {
         binding.btnTodoCreateBack.setOnSingleClickListener {
-            finish()
+            navigateBackToDetailActivity()
         }
     }
 
@@ -127,6 +130,22 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
             rvOurTodoCreatePerson.visibility = View.INVISIBLE
             layoutMyTodoCreatePerson.visibility = View.VISIBLE
         }
+    }
+
+    private fun setBackPressedBtnListener() {
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+               navigateBackToDetailActivity()
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+    }
+
+    private fun navigateBackToDetailActivity() {
+        TodoDetailActivity.createIntent(
+            this, viewModel.tripId, viewModel.todoId, !viewModel.isSecret
+        ).apply { startActivity(this) }
+        finish()
     }
 
     private fun setEtTodoNameArguments() {

@@ -47,12 +47,6 @@ class TodoDetailActivity :
         observeTodoDeleteState()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        resetDetailData()
-    }
-
     private fun initViewModel() {
         binding.vm = viewModel
     }
@@ -74,6 +68,7 @@ class TodoDetailActivity :
             TodoChangeActivity.createIntent(
                 this, viewModel.tripId, viewModel.todoId
             ).apply { startActivity(this) }
+            finish()
         }
     }
 

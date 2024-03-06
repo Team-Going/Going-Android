@@ -33,7 +33,7 @@ class TodoChangeViewModel @Inject constructor(
     val endDate = MutableLiveData("")
 
     private lateinit var oldTodoInfo: TodoDetailModel
-    private var isSecret: Boolean = false
+    var isSecret: Boolean = false
 
     private val isTodoAvailable = MutableLiveData(false)
     private val isMemoAvailable = MutableLiveData(true)
@@ -58,11 +58,11 @@ class TodoChangeViewModel @Inject constructor(
 
     fun checkIsFinishAvailable() {
         isFinishAvailable.value =
-            isTodoAvailable.value == true && isMemoAvailable.value == true && !endDate.value.isNullOrEmpty() && checkIsTodoChanged()
+            (isTodoAvailable.value == true) && (isMemoAvailable.value == true) && (!endDate.value.isNullOrEmpty()) && checkIsTodoChanged()
     }
 
     private fun checkIsTodoChanged(): Boolean =
-        todo.value != oldTodoInfo.title || endDate.value != oldTodoInfo.endDate || memo.value != oldTodoInfo.memo || checkIsListChanged()
+        (todo.value != oldTodoInfo.title) || (endDate.value != oldTodoInfo.endDate) || (memo.value != oldTodoInfo.memo) || checkIsListChanged()
 
     private fun checkIsListChanged(): Boolean {
         for (i in allocatorModelList.indices) {
