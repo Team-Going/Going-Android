@@ -10,7 +10,7 @@ import com.going.ui.extension.setOnSingleClickListener
 
 class CheckFriendsViewHolder(
     val binding: ItemTodoFriendsBinding,
-    private val itemDetailClick: (TripParticipantModel) -> Unit
+    private val onClicked: (Long) -> Unit
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -31,8 +31,8 @@ class CheckFriendsViewHolder(
             ivTodoFriend.load(profileImage) {
                 transformations(CircleCropTransformation())
             }
-            ivTodoFriend.setOnSingleClickListener {
-                itemDetailClick(item)
+            root.setOnSingleClickListener {
+                onClicked(item.participantId)
             }
         }
     }

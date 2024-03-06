@@ -165,8 +165,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun setViewPagerChangeListener() {
-        binding.vpOurTodo.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
+        binding.vpOurTodo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 

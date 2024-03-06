@@ -52,7 +52,7 @@ class CheckFriendsActivity :
         _adapter = CheckFriendsAdapter { tripParticipantModel ->
             TripProfileActivity.createIntent(
                 this,
-                tripParticipantModel.participantId
+                tripParticipantModel
             ).apply { startActivity(this) }
         }
         binding.rvCheckFriendsMember.adapter = adapter
