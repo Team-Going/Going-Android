@@ -155,7 +155,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.profile.trip.TripProfileActivity"
+            android:name="com.going.presentation.profile.participant.ParticipantProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

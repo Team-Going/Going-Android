@@ -11,6 +11,8 @@ import com.going.presentation.R
 import com.going.presentation.databinding.FragmentTripProfileCharacterBinding
 import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.tendency.result.UserTendencyResultList
+import com.going.presentation.tendency.splash.TendencySplashActivity
+import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseFragment
 import com.going.ui.state.UiState
 import kotlinx.coroutines.flow.launchIn
@@ -20,6 +22,12 @@ class ParticipantProfileCharacterFragment :
     BaseFragment<FragmentTripProfileCharacterBinding>(R.layout.fragment_trip_profile_character) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setViewModel()
+        btnParticipantProfileEmptyOwnerClickListener()
+    }
+
+    private fun setViewModel() {
         val participantViewModel =
             ViewModelProvider(requireActivity()).get(ParticipantProfileViewModel::class.java)
 
@@ -59,6 +67,12 @@ class ParticipantProfileCharacterFragment :
                     }
                 }
             }
+        }
+    }
+
+    private fun btnParticipantProfileEmptyOwnerClickListener() {
+        binding.btnParticipantProfileEmptyOwner.setOnClickListener {
+            requireActivity().navigateToScreenClear<TendencySplashActivity>()
         }
     }
 
