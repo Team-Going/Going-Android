@@ -3,10 +3,11 @@ package com.going.presentation.entertrip.preferencetag
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.PreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
+import com.going.ui.extension.setOnSingleClickListener
 
 class PreferenceTagViewHolder(
     val binding: ItemPreferenceTagBinding,
-    private val listener: PreferenceTagAdapter.OnPreferenceSelectedListener
+    private val itemSelect: (PreferenceData, Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(item: PreferenceData) {
@@ -33,17 +34,17 @@ class PreferenceTagViewHolder(
             )
 
             selectedButtonList.forEachIndexed { index, radioButton ->
-                radioButton.setOnClickListener {
+                radioButton.setOnSingleClickListener {
                     if (radioButton.isChecked) {
-                        listener.onPreferenceSelected(item, index)
+                        itemSelect(item, index)
                     }
                 }
             }
 
             selectedViewList.forEachIndexed { index, view ->
-                view.setOnClickListener {
+                view.setOnSingleClickListener {
                     selectedButtonList[index].isChecked = true
-                    listener.onPreferenceSelected(item, index)
+                    itemSelect(item, index)
                 }
             }
         }

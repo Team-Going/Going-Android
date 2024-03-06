@@ -37,9 +37,9 @@ class EnterPreferenceViewModel @Inject constructor(
         viewModelScope.launch {
             enterTripRepository.postEnterPreferenceTrip(
                 EnterPreferenceRequestModel(
-                    title.value ?: "",
-                    startDate.value ?: "",
-                    endDate.value ?: "",
+                    title.value.orEmpty(),
+                    startDate.value.orEmpty(),
+                    endDate.value.orEmpty(),
                     styleA.value ?: 0,
                     styleB.value ?: 0,
                     styleC.value ?: 0,

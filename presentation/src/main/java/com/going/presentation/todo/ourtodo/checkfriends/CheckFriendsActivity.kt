@@ -1,17 +1,21 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
 import android.os.Bundle
-import android.view.View
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.going.domain.entity.response.CheckFriendsModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.UiState
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,6 +37,7 @@ class CheckFriendsActivity :
         initAdapter()
         getTripId()
         observeCheckFriendsListState()
+        setResultTextColor()
 
     }
 
@@ -55,12 +60,7 @@ class CheckFriendsActivity :
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                is UiState.Success -> {
-                    adapter.submitList(state.data.participants)
-                    val rate = state.data.styles.map { it.rate }
-                    val isLeft = state.data.styles.map { it.isLeft }
-                    setProgressBarStatus(rate, isLeft)
-                }
+                is UiState.Success -> setFriendsData(state.data)
 
                 is UiState.Failure -> toast(getString(R.string.server_error))
 
@@ -71,7 +71,14 @@ class CheckFriendsActivity :
         }.launchIn(lifecycleScope)
     }
 
-    private fun setProgressBarStatus(rate: List<Int>, isLeft: List<Boolean>) {
+    private fun setFriendsData(data: CheckFriendsModel) {
+        adapter.submitList(data.participants)
+        val rate = data.styles.map { it.rate }
+        setProgressBarStatus(rate)
+    }
+
+    private fun setProgressBarStatus(rate: List<Int>) {
+
         val progressBars = listOf(
             binding.progressBarCheckFriends1,
             binding.progressBarCheckFriends2,
@@ -80,23 +87,20 @@ class CheckFriendsActivity :
             binding.progressBarCheckFriends5
         )
 
-        val progressBarsRevert = listOf(
-            binding.progressBarCheckFriends1Revert,
-            binding.progressBarCheckFriends2Revert,
-            binding.progressBarCheckFriends3Revert,
-            binding.progressBarCheckFriends4Revert,
-            binding.progressBarCheckFriends5Revert
-        )
-
         for (i in rate.indices) {
-            if (isLeft[i]) {
-                progressBars[i].visibility = View.VISIBLE
-                progressBarsRevert[i].visibility = View.INVISIBLE
-                progressBars[i].progress = rate[i]
-            } else {
-                progressBars[i].visibility = View.INVISIBLE
-                progressBarsRevert[i].visibility = View.VISIBLE
-                progressBarsRevert[i].progress = rate[i]
+            progressBars[i].progress = rate[i]
+        }
+
+    }
+
+    private fun setResultTextColor() {
+        binding.tvCheckFriendsResult.apply {
+            text = SpannableStringBuilder(text).apply {
+                setSpan(
+                    ForegroundColorSpan(
+                        colorOf(R.color.red_500)
+                    ), 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
             }
         }
     }

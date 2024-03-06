@@ -41,6 +41,8 @@ object Versions {
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
+    const val flexboxVersion = "3.0.0"
+    const val circleImageViewVersion = "3.1.0"
 
     val javaVersion = JavaVersion.VERSION_17
     const val jvmVersion = "17"

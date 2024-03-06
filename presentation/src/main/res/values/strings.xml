@@ -44,6 +44,7 @@
     <string name="tendency_splash_title">여행을 할 때 우리는 어떤 모습일까?</string>
     <string name="tendency_splash_sub_title">9개의 질문으로\n나를 대신할 여행 캐릭터를 찾아보세요</string>
     <string name="tendency_splash_start_btn">테스트 시작하기</string>
+    <string name="tendency_splash_skip_btn"><u>테스트 건너뛰기</u></string>
 
     <!--tendency_test-->
     <string name="tendency_test_title">나의 여행 캐릭터는?</string>
@@ -82,6 +83,8 @@
     <string name="our_todo_title_down_end">여행이 완료되었어요!</string>
     <string name="our_todo_date_form">%s - %s</string>
     <string name="our_todo_day_form">%s월 %s일</string>
+    <string name="our_todo_tv_empty_allocator">앗! 누가하지?</string>
+    <string name="our_todo_participant_over_six">여행은 최대 6명까지 함께할 수 있어요</string>
 
     <!--my_todo-->
     <string name="my_todo_btn_add_todo">혼자 할일</string>
@@ -100,7 +103,7 @@
     <string name="my_todo_create_tv_person_lock_description">나만 볼 수 있는 할일이에요</string>
     <string name="my_todo_create_tv_memo">메모</string>
     <string name="my_todo_create_tv_memo_hint">메모를 입력해 주세요</string>
-    <string name="my_todo_create_btn_finish">저장하기</string>
+    <string name="my_todo_create_btn_finish">저장</string>
     <string name="todo_create_toast">할일을 추가했어요</string>
 
     <!--todo_detail-->
@@ -171,8 +174,11 @@
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
     <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
+    <string name="profile_tv_edit">프로필 수정</string>
     <string name="profile_image_download_success">이미지가 저장되었어요\n친구들에게 공유해보세요!</string>
     <string name="profile_image_download_error">이미지를 저장할 수 없습니다\n안드로이드 버전을 확인해주세요</string>
+    <string name="trip_profile_character">나의 여행 캐릭터</string>
+    <string name="trip_profile_tag">여행 취향 태그</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
@@ -190,9 +196,10 @@
     <string name="invite_finish_tv_trip">여행 중</string>
 
     <!--check friends-->
-    <string name="check_friends_tool_bar">함께 하는 친구들</string>
-    <string name="check_friends_member">멤버</string>
-    <string name="check_friends_our_tag">우리의 이번 여행은!</string>
+    <string name="check_friends_tool_bar">우리의 여행 취향</string>
+    <string name="check_friends_check_member">프로필 사진을 눌러서 친구의 취향을 구경해보세요</string>
+    <string name="check_friends_preference_number">&#160;%d명</string>
+    <string name="check_friends_preference_no_matter">아무렇게</string>
     <string name="check_friends_preference_1_title">여행 계획</string>
     <string name="check_friends_preference_1_left">철저하게</string>
     <string name="check_friends_preference_1_right">즉흥으로</string>

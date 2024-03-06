@@ -4,13 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.PreferenceData
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
-import com.going.presentation.dashboard.DashBoardActivity.Companion.IS_FIRST_ENTERED
 import com.going.presentation.databinding.ActivityFinishPreferenceBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
@@ -19,6 +16,7 @@ import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
 import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.UiState
+import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,8 +25,7 @@ import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class FinishPreferenceActivity :
-    BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference),
-    PreferenceTagAdapter.OnPreferenceSelectedListener {
+    BaseActivity<ActivityFinishPreferenceBinding>(R.layout.activity_finish_preference) {
 
     private var _adapter: PreferenceTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
@@ -40,7 +37,7 @@ class FinishPreferenceActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initAdapter()
+        initAdapterWithClickListener()
         initItemDecoration()
         getTripId()
         initNextBtnClickListener()
@@ -49,8 +46,14 @@ class FinishPreferenceActivity :
         observeFinishPreferenceState()
     }
 
-    private fun initAdapter() {
-        _adapter = PreferenceTagAdapter(this, this)
+    private fun initAdapterWithClickListener() {
+        _adapter = PreferenceTagAdapter(
+            this
+        ) { item, checkedIndex ->
+            preferenceAnswers[item.number.toInt() - 1] = checkedIndex
+            isButtonValid()
+            sendStyleInfo()
+        }
         binding.rvPreferenceTag.adapter = adapter
         adapter.submitList(viewModel.preferenceTagList)
     }
@@ -68,9 +71,9 @@ class FinishPreferenceActivity :
         val isValid = preferenceAnswers.all { it != Int.MAX_VALUE }
 
         if (isValid) {
-            binding.btnPreferenceStart.isEnabled = isValid
+            binding.btnPreferenceStart.isEnabled = true
             binding.btnPreferenceStart.setTextColor(
-                ContextCompat.getColorStateList(this, R.color.white_000),
+                colorOf(R.color.white_000)
             )
         }
     }
@@ -98,12 +101,10 @@ class FinishPreferenceActivity :
     }
 
     private fun navigateToDashBoard(tripId: Long) {
-        Intent(this, DashBoardActivity::class.java).apply {
-            putExtra(TRIP_ID, tripId)
-            putExtra(IS_FIRST_ENTERED, true)
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(this)
-        }
+        DashBoardActivity.createIntent(
+            this,
+            tripId
+        ).apply { startActivity(this) }
         finish()
     }
 
@@ -125,12 +126,6 @@ class FinishPreferenceActivity :
         viewModel.styleC.value = preferenceAnswers[2]
         viewModel.styleD.value = preferenceAnswers[3]
         viewModel.styleE.value = preferenceAnswers[4]
-    }
-
-    override fun onPreferenceSelected(item: PreferenceData, checkList: Int) {
-        preferenceAnswers[item.number.toInt() - 1] = checkList
-        isButtonValid()
-        sendStyleInfo()
     }
 
     override fun onDestroy() {

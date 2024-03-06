@@ -145,7 +145,17 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.profile.ProfileActivity"
+            android:name="com.going.presentation.profile.my.ProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.profile.edit.ProfileEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.going.presentation.profile.trip.TripProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -161,5 +171,4 @@
 
 
     </application>
-
 </manifest>
