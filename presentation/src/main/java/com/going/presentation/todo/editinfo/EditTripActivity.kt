@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripBinding
+import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -75,11 +76,13 @@ class EditTripActivity :
 
     private fun initEditBtnClickListener() {
         binding.btnEditTripEdit.setOnSingleClickListener {
-            Intent(this, EditTripInfoActivity::class.java).apply {
-                //섭통 결과물
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
-            }
+            EditTripInfoActivity.createIntent(
+                this,
+                viewModel.title,
+                viewModel.startDate,
+                viewModel.endDate,
+            ).apply { startActivity(this) }
+
         }
     }
 

@@ -1,5 +1,6 @@
 package com.going.presentation.todo.editinfo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -24,6 +26,7 @@ class EditTripInfoActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
+        getServerList()
         setEtInfoNameArguments()
         observeInfoNameTextChanged()
         initStartDateClickListener()
@@ -36,6 +39,18 @@ class EditTripInfoActivity :
         binding.viewModel = viewModel
     }
 
+    private fun getServerList() {
+        val title = intent.getStringExtra(INFO_TITLE)
+        val startDate = intent.getStringExtra(INFO_START_DATE)
+        val endDate = intent.getStringExtra(INFO_END_DATE)
+
+        with(binding) {
+            etEditTripInfoName.editText?.setText(title)
+            tvEditTripInfoStartDate.text = startDate
+            tvEditTripInfoEndDate.text = endDate
+        }
+    }
+
     private fun setEtInfoNameArguments() {
         with(binding.etEditTripInfoName) {
             setMaxLen(viewModel.getMaxTripLen())
@@ -43,6 +58,7 @@ class EditTripInfoActivity :
             blankWarning = getString(R.string.trip_blank_error)
         }
     }
+
 
     private fun observeInfoNameTextChanged() {
         binding.etEditTripInfoName.editText.doAfterTextChanged { text ->
@@ -85,8 +101,6 @@ class EditTripInfoActivity :
         }
     }
 
-    //섭통 해서 화면에 넣어서 보여줘야함
-
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
             //다른 뷰로 이동
@@ -96,12 +110,27 @@ class EditTripInfoActivity :
 
     companion object {
         const val NAME = "name"
+        const val INFO_TITLE = "title"
         const val START_YEAR = "startYear"
         const val START_MONTH = "startMonth"
         const val START_DAY = "startDay"
+        const val INFO_START_DATE = "INFO_START_DATE"
         const val END_YEAR = "endYear"
         const val END_MONTH = "endMonth"
         const val END_DAY = "endDay"
+        const val INFO_END_DATE = "INFO_END_DATE"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            title: String,
+            startDate: String,
+            endDate: String,
+        ): Intent = Intent(context, EditTripActivity::class.java).apply {
+            putExtra(INFO_TITLE, title)
+            putExtra(INFO_START_DATE, startDate)
+            putExtra(INFO_END_DATE, endDate)
+        }
     }
 }
 
