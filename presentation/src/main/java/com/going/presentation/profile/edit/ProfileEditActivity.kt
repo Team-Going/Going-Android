@@ -11,6 +11,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileEditBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,6 +31,8 @@ class ProfileEditActivity :
         observeInfoTextChanged()
         observeIsValueChanged()
         initBackBtnClickListener()
+        initProfileEditBtnClickListener()
+        observeIsChangedSuccess()
     }
 
     private fun setEtNameArguments() {
@@ -80,6 +83,21 @@ class ProfileEditActivity :
         binding.btnProfileEditBack.setOnSingleClickListener {
             finish()
         }
+    }
+
+    private fun initProfileEditBtnClickListener() {
+        binding.btnProfileEditFinish.setOnSingleClickListener {
+            viewModel.patchUserInfo()
+        }
+    }
+
+    private fun observeIsChangedSuccess() {
+        viewModel.isChangedSuccess.flowWithLifecycle(lifecycle).onEach {
+            if (it) {
+                toast(getString(R.string.todo_change_toast_success))
+                finish()
+            } else toast(getString(R.string.server_error))
+        }.launchIn(lifecycleScope)
     }
 
     companion object {

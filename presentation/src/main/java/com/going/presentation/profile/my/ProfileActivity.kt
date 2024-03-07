@@ -42,6 +42,11 @@ class ProfileActivity :
         initRestartBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getUserInfo()
+    }
+
     private fun getUserInfo() {
         profileViewModel.getUserInfoState()
     }
