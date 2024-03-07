@@ -174,5 +174,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.profile.trip.tripprofiletag.changetag.ChangeTagActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
