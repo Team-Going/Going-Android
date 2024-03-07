@@ -15,6 +15,9 @@ class ProfileDataSourceImpl @Inject constructor(
     override suspend fun getUserProfile(): BaseResponse<UserProfileResponseDto> =
         profileService.getUserProfile()
 
+    override suspend fun patchUserProfile(): BaseResponse<UserProfileResponseDto> =
+        profileService.patchUserProfile()
+
     override suspend fun getParticipantProfile(participantProfileRequestDto: ParticipantProfileRequestDto): BaseResponse<ParticipantProfileResponseDto> =
         profileService.getParticipantProfile(participantProfileRequestDto.participantId)
 }

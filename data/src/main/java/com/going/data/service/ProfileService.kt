@@ -6,11 +6,15 @@ import com.going.data.dto.response.ParticipantProfileResponseDto
 import com.going.data.dto.response.UserProfileResponseDto
 import com.going.domain.entity.request.ParticipantProfileRequestModel
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface ProfileService {
     @GET("api/users/profile")
     suspend fun getUserProfile(): BaseResponse<UserProfileResponseDto>
+
+    @PATCH("api/users/profile")
+    suspend fun patchUserProfile(): BaseResponse<UserProfileResponseDto>
 
     @GET("api/trips/participants/{participantId}")
     suspend fun getParticipantProfile(

@@ -9,6 +9,8 @@ import com.going.domain.entity.request.ParticipantProfileRequestModel
 interface ProfileDataSource {
     suspend fun getUserProfile(): BaseResponse<UserProfileResponseDto>
 
+    suspend fun patchUserProfile(): BaseResponse<UserProfileResponseDto>
+
     suspend fun getParticipantProfile(
         participantProfileRequestModel: ParticipantProfileRequestDto
     ): BaseResponse<ParticipantProfileResponseDto>

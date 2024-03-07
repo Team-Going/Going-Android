@@ -16,6 +16,11 @@ class ProfileRepositoryImpl @Inject constructor(
             profileDataSource.getUserProfile().data.toProfileModel()
         }
 
+    override suspend fun patchUserProfile(): Result<UserProfileRequestModel> =
+        kotlin.runCatching {
+            profileDataSource.patchUserProfile().data.toProfileModel()
+        }
+
     override suspend fun getParticipantProfile(
         participantProfileRequestModel: ParticipantProfileRequestModel
     ): Result<ParticipantProfileResponseModel> =
