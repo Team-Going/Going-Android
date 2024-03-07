@@ -20,7 +20,6 @@ class EditTripInfoViewModel : ViewModel() {
     val isEndDateAvailable = MutableLiveData(false)
 
     val isNameAvailable = MutableStateFlow(false)
-    private val isTripAvailable = MutableLiveData(false)
     var isCheckTripAvailable = MutableLiveData(false)
 
     fun getMaxTripLen() = MAX_TRIP_LEN
@@ -66,7 +65,7 @@ class EditTripInfoViewModel : ViewModel() {
 
     fun checkTripAvailable() {
         isCheckTripAvailable.value =
-            (isTripAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
+            (isNameAvailable.value == true && isStartDateAvailable.value == true && isEndDateAvailable.value == true)
     }
 
     companion object {

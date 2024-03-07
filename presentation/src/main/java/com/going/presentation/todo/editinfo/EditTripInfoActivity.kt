@@ -10,7 +10,9 @@ import com.going.presentation.databinding.ActivityEditTripInfoBinding
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditTripInfoActivity :
     BaseActivity<ActivityEditTripInfoBinding>(R.layout.activity_edit_trip_info) {
     private val viewModel by viewModels<EditTripInfoViewModel>()
@@ -83,7 +85,7 @@ class EditTripInfoActivity :
         }
     }
 
-    //받아온 인텐트를 기본 화면에 넣어서 보여줘야함
+    //섭통 해서 화면에 넣어서 보여줘야함
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {

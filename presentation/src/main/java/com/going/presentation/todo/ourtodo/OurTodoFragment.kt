@@ -20,6 +20,7 @@ import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.util.RvItemDecoration
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
 import com.going.presentation.todo.create.TodoCreateActivity
+import com.going.presentation.todo.editinfo.EditTripActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
@@ -122,17 +123,35 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initTripFriendBtnClickListener() {
         binding.btnOurTripFriend.setOnSingleClickListener {
-            Intent(requireActivity(), CheckFriendsActivity::class.java).apply {
+            EditTripActivity.createIntent(
+                requireContext(),
+                viewModel.tripId,
+                viewModel.title,
+                viewModel.startDate,
+                viewModel.endDate).apply {
+                    startActivity(this)
+            }
+        }
+    }
+//여기 이슈
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            setTripInfo()
+            Intent(requireActivity(), EditTripActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+                putExtra(EXTRA_TRIP_ID, viewModel.title)
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }
     }
 
-    private fun initTripInfoBtnClickListener() {
-        binding.btnOurTodoTripInfo.setOnSingleClickListener {
-            // TODO : 여행정보 화면 이동
+    private fun setTripInfo() {
+        arguments?.let {
+            viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
         }
+        viewModel.getTripInfoFromServer()
     }
 
     private fun setOurTripInfo() {
@@ -200,9 +219,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             val displayHeight = activity?.getWindowHeight() ?: return@addOnOffsetChangedListener
             val toolbarHeight = binding.toolbarOurTodo.height
             val appBarHeight = appBarLayout.totalScrollRange + verticalOffset
-            binding.layoutOurTodoEmpty.layoutParams = (binding.layoutOurTodoEmpty.layoutParams).also {
-                it.height = displayHeight - toolbarHeight - appBarHeight - 300
-            }
+            binding.layoutOurTodoEmpty.layoutParams =
+                (binding.layoutOurTodoEmpty.layoutParams).also {
+                    it.height = displayHeight - toolbarHeight - appBarHeight - 300
+                }
 
             if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 setStatusBarColor(R.color.white_000)
@@ -252,7 +272,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun setTitleTextWithDay(day: Int, isComplete: Boolean) {
         when {
             day > 0 -> {
-                binding.tvOurTodoTitleDown.text = getString(R.string.our_todo_title_down_before).format(day)
+                binding.tvOurTodoTitleDown.text =
+                    getString(R.string.our_todo_title_down_before).format(day)
                 setDateTextColor(6, 6)
             }
 
