@@ -112,6 +112,11 @@
     <string name="my_todo_detail_btn_mod">수정하기</string>
     <string name="todo_delete_toast">할일을 삭제했어요</string>
 
+    <!--todo_change-->
+    <string name="todo_change_tv_title">할일 수정</string>
+    <string name="todo_change_toast_success">할일을 수정했어요</string>
+    <string name="todo_change_toast_failure">할일 수정에 실패했어요</string>
+
     <!--todo_invite-->
     <string name="todo_invite_tv_title">초대하기</string>
     <string name="todo_invite_tv_subtitle">초대코드를 보내 여행 친구를 추가해 보세요</string>

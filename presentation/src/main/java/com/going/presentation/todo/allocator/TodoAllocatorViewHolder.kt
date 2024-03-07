@@ -1,7 +1,7 @@
 package com.going.presentation.todo.allocator
 
 import androidx.recyclerview.widget.RecyclerView
-import com.going.domain.entity.response.TodoAllocatorModel
+import com.going.domain.entity.response.TodoListAllocatorModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
 import com.going.ui.extension.colorOf
@@ -11,7 +11,7 @@ class TodoAllocatorViewHolder(
     private val isCompleted: Boolean
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(item: TodoAllocatorModel) {
+    fun onBind(item: TodoListAllocatorModel) {
         with(binding.tvTodoName) {
             text = item.name
             when {
