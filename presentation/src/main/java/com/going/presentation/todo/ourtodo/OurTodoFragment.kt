@@ -7,6 +7,7 @@ import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -123,35 +124,20 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initTripFriendBtnClickListener() {
         binding.btnOurTripFriend.setOnSingleClickListener {
-            EditTripActivity.createIntent(
-                requireContext(),
-                viewModel.tripId,
-                viewModel.title,
-                viewModel.startDate,
-                viewModel.endDate).apply {
-                    startActivity(this)
-            }
-        }
-    }
-//여기 이슈
-    private fun initTripInfoBtnClickListener() {
-        binding.btnOurTodoTripInfo.setOnSingleClickListener {
-            setTripInfo()
-            Intent(requireActivity(), EditTripActivity::class.java).apply {
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
-                putExtra(EXTRA_TRIP_ID, viewModel.title)
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+            Intent(requireActivity(), CheckFriendsActivity::class.java).apply {
                 putExtra(EXTRA_TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }
     }
 
-    private fun setTripInfo() {
-        arguments?.let {
-            viewModel.tripId = it.getLong(EXTRA_TRIP_ID)
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            Intent(requireActivity(), EditTripActivity::class.java).apply {
+                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+                startActivity(this)
+            }
         }
-        viewModel.getTripInfoFromServer()
     }
 
     private fun setOurTripInfo() {
@@ -312,6 +298,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         const val TAB_UNCOMPLETE = "해야 해요"
         const val TAB_COMPLETE = "완료했어요"
         const val INVITE_DIALOG = "inviteDialog"
+
 
         const val debounceTime = 300L
     }

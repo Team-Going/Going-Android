@@ -3,15 +3,23 @@ package com.going.presentation.todo.editinfo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripBinding
-import com.going.presentation.todo.TodoActivity
-import com.going.presentation.todo.create.TodoCreateActivity
+import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.extension.toast
+import com.going.ui.state.UiState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class EditTripActivity :
     BaseActivity<ActivityEditTripBinding>(R.layout.activity_edit_trip) {
     private val viewModel by viewModels<EditTripViewModel>()
@@ -21,9 +29,11 @@ class EditTripActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
+        getIntentData()
+        observeTripinfoState()
         initEditBtnClickListener()
         initQuitBtnClickListener()
-        showQuitDialog()
+        //showQuitDialog()
         initBackBtnClickListener()
     }
 
@@ -31,9 +41,35 @@ class EditTripActivity :
         binding.viewModel = viewModel
     }
 
+    private fun getIntentData() {
+        val tripId = intent.getLongExtra(EXTRA_TRIP_ID, -1L)
+        viewModel.getTripInfoFromServer(tripId)
+    }
+
+    private fun observeTripinfoState() {
+        viewModel.tripInfoState.flowWithLifecycle(lifecycle).onEach { state ->
+            when (state) {
+                is UiState.Success -> {
+                    with(binding) {
+                        tvEditTripName.text = viewModel?.title
+                        tvEditTripInfoStartDate.text = viewModel?.startDate
+                        tvEditTripInfoEndDate.text = viewModel?.endDate
+                    }
+                }
+
+                is UiState.Failure -> {
+                    toast(getString(R.string.server_error))
+                }
+
+                is UiState.Loading -> return@onEach
+                is UiState.Empty -> return@onEach
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     private fun initQuitBtnClickListener() {
         binding.btnEditTripQuit.setOnSingleClickListener {
-            showQuitDialog()
+            //showQuitDialog()
         }
     }
 
@@ -47,22 +83,14 @@ class EditTripActivity :
         }
     }
 
-    private fun getTripInfo() {
-        //인텐트 보내면 받기
-    }
-
-    private fun setTripInfo() {
-        //binding.tv~  뷰에 직접적으로 넣어버리자
-    }
-
-    private fun showQuitDialog() {
-        quitDialog = TripQuitDialogFragment()
-        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
-        Intent(this, DashBoardActivity::class.java).apply {
-            //정보 지워지게 구성
-            startActivity(this)
-        }
-    }
+//    private fun showQuitDialog() {
+//        quitDialog = TripQuitDialogFragment()
+//        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
+//        Intent(this, DashBoardActivity::class.java).apply {
+//            //정보 지워지게 구성
+//            startActivity(this)
+//        }
+//    }
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
@@ -76,24 +104,8 @@ class EditTripActivity :
         if (quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
-    companion object{
-        private const val TRIP_ID = "TRIP_ID"
-        private const val TITLE = "TITLE"
-        private const val START_DATE = "START_DATE"
-        private const val END_DATE = "END_DATE"
+    companion object {
+        private const val EDIT_INFO_TRIP_ID = "TRIP_ID"
 
-        @JvmStatic
-        fun createIntent(
-            context: Context,
-            tripId: Long,
-            title: String,
-            startDate: String,
-            endDate: String
-        ): Intent = Intent(context, EditTripActivity::class.java).apply {
-            putExtra(TRIP_ID, tripId)
-            putExtra(TITLE, title)
-            putExtra(START_DATE, startDate)
-            putExtra(END_DATE, endDate)
-        }
     }
 }

@@ -1,11 +1,9 @@
 package com.going.presentation.todo.ourtodo
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.OurTripInfoModel
 import com.going.domain.entity.response.TodoModel
-import com.going.domain.entity.response.TripInfoModel
 import com.going.domain.repository.EditTripRepository
 import com.going.domain.repository.TodoRepository
 import com.going.ui.state.UiState
@@ -17,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OurTodoViewModel @Inject constructor(
-    private val todoRepository: TodoRepository,
-    private val editTripRepository: EditTripRepository
+    private val todoRepository: TodoRepository
 ) : ViewModel() {
 
     private val _ourTripInfoState = MutableStateFlow<UiState<OurTripInfoModel>>(UiState.Empty)
@@ -30,13 +27,8 @@ class OurTodoViewModel @Inject constructor(
     private val _todoCompleteListState = MutableStateFlow<UiState<List<TodoModel>>>(UiState.Empty)
     val todoCompleteListState: StateFlow<UiState<List<TodoModel>>> = _todoCompleteListState
 
-    private val _TripInfoState = MutableStateFlow<UiState<TripInfoModel>>(UiState.Empty)
-
-    var inviteCode : String = ""
-    var tripId : Long = 0
-    var title : String = ""
-    var startDate : String = ""
-    var endDate : String = ""
+    var inviteCode: String = ""
+    var tripId: Long = 0
 
     fun getOurTripInfoFromServer() {
         _ourTripInfoState.value = UiState.Loading
@@ -70,24 +62,6 @@ class OurTodoViewModel @Inject constructor(
                 }
                 .onFailure {
                     todoListState.value = UiState.Failure(it.message.orEmpty())
-                }
-        }
-    }
-
-    fun getTripInfoFromServer() {
-        _TripInfoState.value = UiState.Loading
-        viewModelScope.launch {
-            editTripRepository.getTripInfo(tripId)
-                .onSuccess { response ->
-                    tripId = response.tripId
-                    title = response.title
-                    startDate = response.startDate
-                    endDate = response.endDate
-                    _TripInfoState.value = UiState.Success(response)
-                    Log.d("sy",tripId.toString() )
-                }
-                .onFailure {
-                    _TripInfoState.value = UiState.Failure(it.message.orEmpty())
                 }
         }
     }

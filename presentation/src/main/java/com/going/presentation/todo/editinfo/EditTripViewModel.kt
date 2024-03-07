@@ -2,9 +2,21 @@ package com.going.presentation.todo.editinfo
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.going.domain.entity.response.TripInfoModel
+import com.going.domain.repository.EditTripRepository
 import com.going.presentation.entertrip.createtrip.preference.ParcelableTripData
+import com.going.ui.state.UiState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EditTripViewModel: ViewModel() {
+@HiltViewModel
+class EditTripViewModel @Inject constructor(
+    private val editTripRepository: EditTripRepository
+) : ViewModel() {
     val name = MutableLiveData<String>()
     val nameLength = MutableLiveData(0)
 
@@ -16,19 +28,31 @@ class EditTripViewModel: ViewModel() {
     val endMonth = MutableLiveData<Int>()
     val endDay = MutableLiveData<Int>()
 
-    var tripIntentData: ParcelableTripData? = null
+    var tripId: Long = 0
+    var title: String = ""
+    var startDate: String = ""
+    var endDate: String = ""
 
 
-    fun saveIntentData() {
-        tripIntentData = ParcelableTripData( //paecelable 안써도 됨
-            name = name.value.orEmpty(),
-            startYear = startYear.value ?: 0,
-            startMonth = startMonth.value ?: 0,
-            startDay = startDay.value ?: 0,
-            endYear = endYear.value ?: 0,
-            endMonth = endMonth.value ?: 0,
-            endDay = endDay.value ?: 0
-        )
+    private val _tripInfoState = MutableStateFlow<UiState<TripInfoModel>>(UiState.Empty)
+    val tripInfoState: StateFlow<UiState<TripInfoModel>> get() = _tripInfoState
+
+
+    fun getTripInfoFromServer(tripId: Long) {
+        _tripInfoState.value = UiState.Loading
+        viewModelScope.launch {
+            editTripRepository.getTripInfo(tripId)
+                .onSuccess {
+                    //tripId = response.tripId
+                    title = it.title
+                    startDate = it.startDate
+                    endDate = it.endDate
+                    _tripInfoState.value = UiState.Success(it)
+                }
+                .onFailure {
+                    _tripInfoState.value = UiState.Failure(it.message.orEmpty())
+                }
+        }
     }
 
     companion object {
