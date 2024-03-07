@@ -94,7 +94,7 @@ class ProfileEditActivity :
     private fun observeIsChangedSuccess() {
         viewModel.isChangedSuccess.flowWithLifecycle(lifecycle).onEach {
             if (it) {
-                toast(getString(R.string.todo_change_toast_success))
+                toast(getString(R.string.edit_profile_finish))
                 finish()
             } else toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
