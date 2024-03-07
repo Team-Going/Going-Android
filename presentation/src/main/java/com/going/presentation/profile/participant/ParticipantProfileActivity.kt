@@ -179,7 +179,7 @@ class ParticipantProfileActivity :
         @JvmStatic
         fun createIntent(
             context: Context,
-            participantId: String,
+            participantId: Long,
         ): Intent = Intent(context, ProfileEditActivity::class.java).apply {
             putExtra(PARTICIPANT_ID, participantId)
         }

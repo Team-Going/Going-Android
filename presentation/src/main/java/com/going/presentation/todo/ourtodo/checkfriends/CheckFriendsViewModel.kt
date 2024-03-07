@@ -1,5 +1,6 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.CheckFriendsModel
@@ -26,9 +27,11 @@ class CheckFriendsViewModel @Inject constructor(
         viewModelScope.launch {
             todoRepository.getFriendsList(tripId)
                 .onSuccess {
+                    Log.e("TAG", "success", )
                     _checkFriendsListState.value = UiState.Success(it)
                 }
                 .onFailure {
+                    Log.e("TAG", "fail", )
                     _checkFriendsListState.value = UiState.Failure(it.message.orEmpty())
                 }
         }
