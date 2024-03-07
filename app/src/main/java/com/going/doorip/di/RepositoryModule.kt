@@ -77,6 +77,6 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideEditTripRepository(EditTripRepositoryImpl: EditTripRepositoryImpl): EditTripRepository =
-        EditTripRepositoryImpl
+    fun provideEditTripRepository(editTripRepositoryImpl: EditTripRepositoryImpl): EditTripRepository =
+        editTripRepositoryImpl
 }

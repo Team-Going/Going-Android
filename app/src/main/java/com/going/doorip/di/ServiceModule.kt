@@ -62,7 +62,6 @@ object ServiceModule {
     fun provideTokenReissueService(@REISSUE retrofit: Retrofit): TokenReissueService =
         retrofit.create(TokenReissueService::class.java)
 
-
     @Provides
     @Singleton
     fun provideEditTripService(@JWT retrofit: Retrofit): EditTripService =
