@@ -7,7 +7,9 @@ import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.domain.repository.ProfileRepository
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,22 +18,20 @@ import javax.inject.Inject
 class ParticipantProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
 ) : ViewModel() {
-    private val _participantProfileState =
-        MutableStateFlow<UiState<ParticipantProfileResponseModel>>(UiState.Empty)
-    val participantProfileState: StateFlow<UiState<ParticipantProfileResponseModel>> =
-        _participantProfileState
+    private val _participantProfile =
+        MutableSharedFlow<ParticipantProfileResponseModel?>()
+    val participantProfile: SharedFlow<ParticipantProfileResponseModel?> = _participantProfile
 
     var number: Int = 0
 
     fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {
-            _participantProfileState.value = UiState.Loading
             profileRepository.getParticipantProfile(ParticipantProfileRequestModel(participantId))
                 .onSuccess {
                     number = it.result
-                    _participantProfileState.value = UiState.Success(it)
+                    _participantProfile.emit(it)
                 }.onFailure {
-                    _participantProfileState.value = UiState.Failure(it.message.toString())
+                    _participantProfile.emit(null)
                 }
         }
     }

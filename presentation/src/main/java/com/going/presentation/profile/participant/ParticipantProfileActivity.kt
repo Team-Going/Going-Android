@@ -20,7 +20,6 @@ import com.going.ui.base.BaseActivity
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
-import com.going.ui.state.UiState
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.google.android.material.tabs.TabLayout
@@ -54,15 +53,9 @@ class ParticipantProfileActivity :
         participantProfileViewModel.getUserInfoState(participantId)
 
     private fun observeParticipantProfileState() {
-        participantProfileViewModel.participantProfileState.flowWithLifecycle(lifecycle)
-            .onEach { state ->
-                when (state) {
-                    is UiState.Loading -> return@onEach
-                    is UiState.Success -> bindData(state.data)
-                    is UiState.Failure -> toast(state.msg)
-                    is UiState.Empty -> return@onEach
-                }
-            }.launchIn(lifecycleScope)
+        participantProfileViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
+            it?.let { bindData(it) } ?: toast(getString(R.string.server_error))
+        }.launchIn(lifecycleScope)
     }
 
     private fun bindData(profile: ParticipantProfileResponseModel) {
@@ -88,7 +81,12 @@ class ParticipantProfileActivity :
                 btnTripProfileDownload.isVisible = this && profile.result != -1
                 btnProfileEdit.isVisible = this
 
-                if (!this) tvTripProfileTitle.setText(getString(R.string.participant_profile_friend_title, profile.name))
+                if (!this) tvTripProfileTitle.setText(
+                    getString(
+                        R.string.participant_profile_friend_title,
+                        profile.name
+                    )
+                )
             }
         }
     }

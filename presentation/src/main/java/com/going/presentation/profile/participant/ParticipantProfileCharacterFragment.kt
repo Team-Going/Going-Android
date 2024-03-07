@@ -14,7 +14,7 @@ import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseFragment
-import com.going.ui.state.UiState
+import com.going.ui.extension.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -32,11 +32,8 @@ class ParticipantProfileCharacterFragment :
     }
 
     private fun setViewModel() {
-        participantViewModel.participantProfileState.flowWithLifecycle(lifecycle).onEach { state ->
-            when (state) {
-                is UiState.Success -> bindData(state.data.isOwner, state.data.result)
-                else -> return@onEach
-            }
+        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
+            it?.let { bindData(it.isOwner, it.result) } ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
 
