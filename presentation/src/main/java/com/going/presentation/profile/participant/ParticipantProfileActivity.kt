@@ -35,6 +35,7 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
+    var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,7 @@ class ParticipantProfileActivity :
     private fun bindData(profile: ParticipantProfileResponseModel) {
         binding.run {
             if (profile.result != -1) {
+                isEmpty = false
                 UserTendencyResultList[profile.result].run {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())
@@ -101,7 +103,7 @@ class ParticipantProfileActivity :
                     binding.appbarTripProfile.layoutParams as CoordinatorLayout.LayoutParams
                 val behavior = params.behavior as AppBarLayout.Behavior?
 
-                with(tab.position == 0 && participantProfileViewModel.isEmpty) {
+                with(tab.position == 0 && isEmpty) {
                     behavior?.setDragCallback(object : DragCallback() {
                         override fun canDrag(appBarLayout: AppBarLayout): Boolean {
                             return !this@with
@@ -110,7 +112,6 @@ class ParticipantProfileActivity :
                     setFragmentHeight(this)
 
                     if (this) binding.appbarTripProfile.setExpanded(true)
-
                 }
 
                 binding.vpTripProfile.currentItem = tab.position
@@ -144,7 +145,7 @@ class ParticipantProfileActivity :
 
         binding.vpTripProfile.layoutParams = binding.vpTripProfile.layoutParams.also {
             it.height =
-                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight
+                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight
         }
     }
 
