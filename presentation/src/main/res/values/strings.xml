@@ -30,6 +30,7 @@
 
     <string name="notice">안내</string>
     <string name="okay">확인</string>
+    <string name="save">저장</string>
     <string name="internet_connect_error">인터넷 연결을 확인해주세요</string>
 
     <!--sign_up-->
