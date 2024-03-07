@@ -3,6 +3,7 @@ package com.going.data.datasourceImpl
 import com.going.data.datasource.TodoDataSource
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
+import com.going.data.dto.request.TodoChangeRequestDto
 import com.going.data.dto.request.TodoCreateRequestDto
 import com.going.data.dto.response.CheckFriendsResponseDto
 import com.going.data.dto.response.MyTripInfoResponseDto
@@ -35,9 +36,10 @@ class TodoDataSourceImpl @Inject constructor(
         todoService.deleteTodo(todoId)
 
     override suspend fun getTodoDetailData(
+        tripId: Long,
         todoId: Long
     ): BaseResponse<TodoDetailResponseDto> =
-        todoService.getTodoDetail(todoId)
+        todoService.getTodoDetail(tripId, todoId)
 
     override suspend fun getMyTripInfo(
         tripId: Long
@@ -63,5 +65,12 @@ class TodoDataSourceImpl @Inject constructor(
         tripId: Long
     ): BaseResponse<CheckFriendsResponseDto> =
         todoService.getFriendsList(tripId)
+
+    override suspend fun patchTodoData(
+        tripId: Long,
+        todoId: Long,
+        request: TodoChangeRequestDto
+    ): NonDataBaseResponse =
+        todoService.patchTodo(tripId, todoId, request)
 
 }

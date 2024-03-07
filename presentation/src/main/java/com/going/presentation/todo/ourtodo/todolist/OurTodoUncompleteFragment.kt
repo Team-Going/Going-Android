@@ -50,7 +50,7 @@ class OurTodoUncompleteFragment() :
             false
         ) { todoId ->
             TodoDetailActivity.createIntent(
-                requireContext(), todoId, true
+                requireContext(), viewModel.tripId, todoId, true
             ).apply { startActivity(this) }
         }
         binding.rvOurTodoUncomplete.adapter = adapter
