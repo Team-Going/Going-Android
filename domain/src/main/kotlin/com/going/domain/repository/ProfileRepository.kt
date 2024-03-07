@@ -3,11 +3,12 @@ package com.going.domain.repository
 import com.going.domain.entity.request.ParticipantProfileRequestModel
 import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.entity.response.ParticipantProfileResponseModel
+import com.going.domain.entity.response.UserProfileResponseModel
 
 interface ProfileRepository {
-    suspend fun getUserProfile(): Result<UserProfileRequestModel>
+    suspend fun getUserProfile(): Result<UserProfileResponseModel>
 
-    suspend fun patchUserProfile(): Result<UserProfileRequestModel>
+    suspend fun patchUserProfile(userProfileResponseModel: UserProfileRequestModel): Result<Unit>
 
     suspend fun getParticipantProfile(participantProfileRequestModel: ParticipantProfileRequestModel): Result<ParticipantProfileResponseModel>
 }
