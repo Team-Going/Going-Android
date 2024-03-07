@@ -23,6 +23,9 @@ class ParticipantProfileViewModel @Inject constructor(
     val participantProfile: SharedFlow<ParticipantProfileResponseModel?> = _participantProfile
 
     var number: Int = 0
+    val isEmpty: Boolean by lazy {
+        number == -1
+    }
 
     fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {

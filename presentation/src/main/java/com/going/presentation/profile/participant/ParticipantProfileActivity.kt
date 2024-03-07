@@ -35,7 +35,6 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
-    var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +60,6 @@ class ParticipantProfileActivity :
     private fun bindData(profile: ParticipantProfileResponseModel) {
         binding.run {
             if (profile.result != -1) {
-                isEmpty = false
                 UserTendencyResultList[profile.result].run {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())
@@ -103,7 +101,7 @@ class ParticipantProfileActivity :
                     binding.appbarTripProfile.layoutParams as CoordinatorLayout.LayoutParams
                 val behavior = params.behavior as AppBarLayout.Behavior?
 
-                with(tab.position == 0 && isEmpty) {
+                with(tab.position == 0 && participantProfileViewModel.isEmpty) {
                     behavior?.setDragCallback(object : DragCallback() {
                         override fun canDrag(appBarLayout: AppBarLayout): Boolean {
                             return !this@with
