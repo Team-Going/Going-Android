@@ -20,6 +20,10 @@ import kotlinx.coroutines.flow.onEach
 
 class ParticipantProfileCharacterFragment :
     BaseFragment<FragmentTripProfileCharacterBinding>(R.layout.fragment_trip_profile_character) {
+    private val participantViewModel by lazy {
+        ViewModelProvider(requireActivity())[ParticipantProfileViewModel::class.java]
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,9 +32,6 @@ class ParticipantProfileCharacterFragment :
     }
 
     private fun setViewModel() {
-        val participantViewModel =
-            ViewModelProvider(requireActivity()).get(ParticipantProfileViewModel::class.java)
-
         participantViewModel.participantProfileState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> bindData(state.data.isOwner, state.data.result)
