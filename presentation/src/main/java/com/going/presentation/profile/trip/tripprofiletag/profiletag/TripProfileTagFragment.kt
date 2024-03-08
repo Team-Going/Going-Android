@@ -47,7 +47,5 @@ class TripProfileTagFragment :
         }
     }
 
-    fun scrollTop() {
-        binding.testNV.scrollTo(0, 0)
-    }
+    fun scrollTop() = binding.nsvPreferenceTag.scrollTo(0, 0)
 }

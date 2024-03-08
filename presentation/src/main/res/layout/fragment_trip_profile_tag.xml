@@ -8,7 +8,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/testNV"
+        android:id="@+id/nsv_preference_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never">
