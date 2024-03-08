@@ -19,7 +19,7 @@ class ParticipantProfileTagViewHolder(
                 listOf(rbPreference1, rbPreference2, rbPreference3, rbPreference4, rbPreference5)
 
             preferenceList.forEachIndexed { index, radioButton ->
-                radioButton.isChecked = index + 1 == item.preferenceIndex
+                radioButton.isChecked = index == item.preferenceIndex
                 radioButton.isClickable = false
             }
         }

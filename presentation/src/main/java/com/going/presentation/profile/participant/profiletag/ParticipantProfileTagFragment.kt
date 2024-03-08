@@ -2,6 +2,7 @@ package com.going.presentation.profile.participant.profiletag
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -41,7 +42,9 @@ class ParticipantProfileTagFragment :
 
     private fun setViewModel() {
         participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let { setPreferenceIndex(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE) }
+            it?.let {
+                setPreferenceIndex(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE)
+            }
                 ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
