@@ -221,6 +221,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     fun showEmptyView(show: Boolean) {
         binding.layoutOurTodoEmpty.isVisible = show
+        if (show) binding.appbarOurTodo.setExpanded(true)
     }
 
     private fun observeOurTripInfoState() {
