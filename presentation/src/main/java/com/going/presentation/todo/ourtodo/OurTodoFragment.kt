@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
@@ -86,7 +87,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initFriendInfoListener(participantId: Long) {
-        // TODO: 친구 아이템 클릭 시 상세정보 구현
+        ParticipantProfileActivity.createIntent(
+            requireContext(),
+            participantId
+        ).apply { startActivity(this) }
     }
 
     private fun initTripInfoBtnClickListener() {

@@ -180,7 +180,7 @@ class ParticipantProfileActivity :
         fun createIntent(
             context: Context,
             participantId: Long,
-        ): Intent = Intent(context, ProfileEditActivity::class.java).apply {
+        ): Intent = Intent(context, ParticipantProfileActivity::class.java).apply {
             putExtra(PARTICIPANT_ID, participantId)
         }
     }
