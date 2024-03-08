@@ -1,11 +1,11 @@
-package com.going.presentation.profile.trip.tripprofiletag.profiletag
+package com.going.presentation.profile.participant.profiletag
 
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class TripProfileTagDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+class ParticipantProfileTagDecoration(val context: Context) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

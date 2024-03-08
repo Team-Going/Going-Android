@@ -1,10 +1,10 @@
-package com.going.presentation.profile.trip.tripprofiletag.changetag
+package com.going.presentation.profile.participant.profiletag
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.ProfilePreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 
-class ChangeTagViewHolder(
+class ParticipantProfileTagViewHolder(
     val binding: ItemPreferenceTagBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -20,6 +20,7 @@ class ChangeTagViewHolder(
 
             preferenceList.forEachIndexed { index, radioButton ->
                 radioButton.isChecked = index + 1 == item.preferenceIndex
+                radioButton.isClickable = false
             }
         }
     }

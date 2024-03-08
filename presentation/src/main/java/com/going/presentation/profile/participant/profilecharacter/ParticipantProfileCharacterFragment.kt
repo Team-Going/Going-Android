@@ -1,4 +1,4 @@
-package com.going.presentation.profile.participant
+package com.going.presentation.profile.participant.profilecharacter
 
 import android.os.Bundle
 import android.view.View
@@ -10,6 +10,7 @@ import coil.load
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentTripProfileCharacterBinding
 import com.going.presentation.designsystem.textview.ChartTextView
+import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear

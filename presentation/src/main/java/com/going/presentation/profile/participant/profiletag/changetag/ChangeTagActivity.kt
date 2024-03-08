@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tripprofiletag.changetag
+package com.going.presentation.profile.participant.profiletag.changetag
 
 import android.os.Bundle
 import androidx.activity.viewModels

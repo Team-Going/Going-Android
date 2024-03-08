@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tripprofiletag.profiletag
+package com.going.presentation.profile.participant.profiletag
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.ProfilePreferenceData
@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class TripProfileTagViewModel @Inject constructor(
+class ParticipantProfileTagViewModel @Inject constructor(
 
 ) : ViewModel() {
 

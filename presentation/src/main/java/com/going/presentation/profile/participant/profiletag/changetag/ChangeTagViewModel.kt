@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tripprofiletag.changetag
+package com.going.presentation.profile.participant.profiletag.changetag
 
 import androidx.lifecycle.ViewModel
 import com.going.domain.entity.ProfilePreferenceData
