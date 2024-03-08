@@ -2,7 +2,6 @@ package com.going.presentation.profile.participant.profiletag
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -42,7 +41,8 @@ class ParticipantProfileTagFragment :
 
     private fun setViewModel() {
         participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let {  setPreferenceIndex(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE)} ?: toast(getString(R.string.server_error))
+            it?.let { setPreferenceIndex(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE) }
+                ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
 
@@ -62,9 +62,19 @@ class ParticipantProfileTagFragment :
 //        setPreferenceIndex()
     }
 
-    private fun setPreferenceIndex(){
+    private fun setPreferenceIndex() {
         participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let { adapter.submitList(tagViewModel.setPreferenceData(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE) )}
+            it?.let {
+                adapter.submitList(
+                    tagViewModel.setPreferenceData(
+                        it.styleA,
+                        it.styleB,
+                        it.styleC,
+                        it.styleD,
+                        it.styleE
+                    )
+                )
+            }
                 ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
@@ -81,5 +91,7 @@ class ParticipantProfileTagFragment :
             }
         }
     }
+
+    fun scrollTop() = binding.nsvPreferenceTag.scrollTo(0, 0)
 
 }

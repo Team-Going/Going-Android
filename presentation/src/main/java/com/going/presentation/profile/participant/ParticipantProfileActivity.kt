@@ -13,13 +13,14 @@ import coil.transform.CircleCropTransformation
 import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityParticipantProfileBinding
+import com.going.presentation.designsystem.snackbar.customSnackBar
 import com.going.presentation.profile.edit.ProfileEditActivity
+import com.going.presentation.profile.participant.profiletag.ParticipantProfileTagFragment
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.google.android.material.tabs.TabLayout
@@ -35,6 +36,7 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
+    var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +55,17 @@ class ParticipantProfileActivity :
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let { bindData(it) } ?: toast(getString(R.string.server_error))
+            it?.let { bindData(it) } ?: customSnackBar(
+                binding.root,
+                getString(R.string.server_error)
+            )
         }.launchIn(lifecycleScope)
     }
 
     private fun bindData(profile: ParticipantProfileResponseModel) {
         binding.run {
             if (profile.result != -1) {
+                isEmpty = false
                 UserTendencyResultList[profile.result].run {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())
@@ -101,7 +107,7 @@ class ParticipantProfileActivity :
                     binding.appbarTripProfile.layoutParams as CoordinatorLayout.LayoutParams
                 val behavior = params.behavior as AppBarLayout.Behavior?
 
-                with(tab.position == 0 && participantProfileViewModel.isEmpty) {
+                with(tab.position == 0 && isEmpty) {
                     behavior?.setDragCallback(object : DragCallback() {
                         override fun canDrag(appBarLayout: AppBarLayout): Boolean {
                             return !this@with
@@ -111,6 +117,9 @@ class ParticipantProfileActivity :
 
                     if (this) binding.appbarTripProfile.setExpanded(true)
 
+                    val myFragment =
+                        supportFragmentManager.findFragmentByTag("f" + binding.vpTripProfile.currentItem)
+                    if (myFragment is ParticipantProfileTagFragment) myFragment.scrollTop()
                 }
 
                 binding.vpTripProfile.currentItem = tab.position
@@ -143,7 +152,7 @@ class ParticipantProfileActivity :
 
         binding.vpTripProfile.layoutParams = binding.vpTripProfile.layoutParams.also {
             it.height =
-                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight
+                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight - tabHeight
         }
     }
 

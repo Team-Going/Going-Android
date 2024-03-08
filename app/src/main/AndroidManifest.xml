@@ -157,6 +157,7 @@
         <activity
             android:name="com.going.presentation.profile.edit.ProfileEditActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
 
         <activity

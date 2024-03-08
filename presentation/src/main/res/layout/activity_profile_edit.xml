@@ -79,7 +79,7 @@
             android:enabled="false"
             android:outlineProvider="none"
             android:paddingVertical="10dp"
-            android:text="@string/sign_up_finish_btn"
+            android:text="@string/save"
             android:textColor="@color/gray_200"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
