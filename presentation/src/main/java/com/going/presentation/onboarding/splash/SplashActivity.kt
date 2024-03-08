@@ -5,12 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.going.domain.entity.AuthState
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySplashBinding
 import com.going.presentation.onboarding.signin.SignInActivity
-import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setNavigationBarColorFromResource
@@ -46,12 +44,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     private fun observeUserState() {
         viewModel.userState.flowWithLifecycle(lifecycle).onEach { state ->
-            when (state) {
-                AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
-                AuthState.FAILURE -> navigateToScreenClear<SignInActivity>()
-                AuthState.OTHER_PAGE -> navigateToScreenClear<TendencySplashActivity>()
-            }
+            if (state) navigateToScreenClear<DashBoardActivity>()
+            else navigateToScreenClear<SignInActivity>()
         }.launchIn(lifecycleScope)
     }
 

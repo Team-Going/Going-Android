@@ -34,7 +34,7 @@ class OurTodoListViewHolder(
                 tvOurTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.gray_300))
                 tvOurTodoItemDate.setTextColor(binding.root.context.colorOf(R.color.gray_200))
             } else {
-                tvOurTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.black_000))
+                tvOurTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.gray_700))
                 tvOurTodoItemDate.setTextColor(binding.root.context.colorOf(R.color.gray_300))
             }
 

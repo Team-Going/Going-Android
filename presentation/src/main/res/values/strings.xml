@@ -30,6 +30,7 @@
 
     <string name="notice">안내</string>
     <string name="okay">확인</string>
+    <string name="save">저장</string>
     <string name="internet_connect_error">인터넷 연결을 확인해주세요</string>
 
     <!--sign_up-->
@@ -239,6 +240,7 @@
     <string name="edit_trip_info_slash">-</string>
     <string name="edit_trip_info_quit_btn">나가기</string>
     <string name="edit_trip_info_edit_btn">수정하기</string>
+    <string name="edit_profile_finish">프로필을 수정했어요</string>
     <string name="edit_trip_info_select_btn">선택하기</string>
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
     <string name="edit_trip_info_toast_error">시작일을 먼저 입력해 주세요</string>
