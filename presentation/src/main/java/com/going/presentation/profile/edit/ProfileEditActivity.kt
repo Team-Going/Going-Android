@@ -9,6 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityProfileEditBinding
+import com.going.presentation.designsystem.snackbar.customSnackBar
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -96,7 +97,7 @@ class ProfileEditActivity :
             if (it) {
                 toast(getString(R.string.edit_profile_finish))
                 finish()
-            } else toast(getString(R.string.server_error))
+            } else customSnackBar(binding.root, getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
 

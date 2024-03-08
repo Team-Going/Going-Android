@@ -3,7 +3,6 @@ package com.going.presentation.profile.participant
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
@@ -14,6 +13,7 @@ import coil.transform.CircleCropTransformation
 import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityParticipantProfileBinding
+import com.going.presentation.designsystem.snackbar.customSnackBar
 import com.going.presentation.profile.edit.ProfileEditActivity
 import com.going.presentation.profile.trip.tripprofiletag.profiletag.TripProfileTagFragment
 import com.going.presentation.tendency.result.UserTendencyResultList
@@ -56,7 +56,7 @@ class ParticipantProfileActivity :
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let { bindData(it) } ?: toast(getString(R.string.server_error))
+            it?.let { bindData(it) } ?: customSnackBar(binding.root, getString(R.string.server_error))
         }.launchIn(lifecycleScope)
     }
 
@@ -115,7 +115,8 @@ class ParticipantProfileActivity :
 
                     if (this) binding.appbarTripProfile.setExpanded(true)
 
-                    val myFragment = supportFragmentManager.findFragmentByTag("f" + binding.vpTripProfile.currentItem)
+                    val myFragment =
+                        supportFragmentManager.findFragmentByTag("f" + binding.vpTripProfile.currentItem)
                     if (myFragment is TripProfileTagFragment) myFragment.scrollTop()
                 }
 
