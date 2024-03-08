@@ -3,6 +3,7 @@ package com.going.presentation.profile.participant
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
@@ -14,6 +15,7 @@ import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityParticipantProfileBinding
 import com.going.presentation.profile.edit.ProfileEditActivity
+import com.going.presentation.profile.trip.tripprofiletag.profiletag.TripProfileTagFragment
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
@@ -112,6 +114,9 @@ class ParticipantProfileActivity :
                     setFragmentHeight(this)
 
                     if (this) binding.appbarTripProfile.setExpanded(true)
+
+                    val myFragment = supportFragmentManager.findFragmentByTag("f" + binding.vpTripProfile.currentItem)
+                    if (myFragment is TripProfileTagFragment) myFragment.scrollTop()
                 }
 
                 binding.vpTripProfile.currentItem = tab.position
@@ -145,7 +150,7 @@ class ParticipantProfileActivity :
 
         binding.vpTripProfile.layoutParams = binding.vpTripProfile.layoutParams.also {
             it.height =
-                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight
+                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight - tabHeight
         }
     }
 
