@@ -19,7 +19,7 @@ class ProfileRepositoryImpl @Inject constructor(
         }
 
     override suspend fun patchUserProfile(userProfileResponseModel: UserProfileRequestModel): Result<Unit> =
-        kotlin.runCatching {
+        runCatching {
             profileDataSource.patchUserProfile(userProfileResponseModel.toDto())
         }
 
