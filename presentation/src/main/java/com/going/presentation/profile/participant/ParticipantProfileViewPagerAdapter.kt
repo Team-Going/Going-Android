@@ -11,8 +11,7 @@ class ParticipantProfileViewPagerAdapter(activity: ParticipantProfileActivity) :
 
     override fun createFragment(position: Int): Fragment =
         when (position) {
-            0 ->ParticipantProfileTagFragment()
-            //    ParticipantProfileCharacterFragment()
+            0 -> ParticipantProfileCharacterFragment()
             else -> ParticipantProfileTagFragment()
         }
 }

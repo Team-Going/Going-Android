@@ -13,7 +13,6 @@ import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.profile.participant.profiletag.changetag.ChangeTagActivity
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,34 +37,39 @@ class ParticipantProfileTagFragment :
         initItemDecoration()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
+            getPreferenceIndex()
+        }.launchIn(lifecycleScope)
+    }
+
     private fun initAdapter() {
         _adapter = ParticipantProfileTagAdapter()
         binding.rvPreferenceTag.adapter = adapter
     }
 
     private fun getPreferenceIndex() {
-        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let {
-                adapter.submitList(
-                    tagViewModel.setPreferenceData(
-                        it.styleA,
-                        it.styleB,
-                        it.styleC,
-                        it.styleD,
-                        it.styleE
-                    )
+        participantViewModel.profileTmp.run {
+            adapter.submitList(
+                tagViewModel.setPreferenceData(
+                    this.styleA,
+                    this.styleB,
+                    this.styleC,
+                    this.styleD,
+                    this.styleE
                 )
-                sendPreferenceWithClickListener(
-                    it.styleA,
-                    it.styleB,
-                    it.styleC,
-                    it.styleD,
-                    it.styleE
-                )
-                checkIsOwner(it.isOwner)
-            }
-                ?: toast(getString(R.string.server_error))
-        }.launchIn(lifecycleScope)
+            )
+            sendPreferenceWithClickListener(
+                this.styleA,
+                this.styleB,
+                this.styleC,
+                this.styleD,
+                this.styleE
+            )
+            checkIsOwner(this.isOwner)
+        }
     }
 
     private fun sendPreferenceWithClickListener(

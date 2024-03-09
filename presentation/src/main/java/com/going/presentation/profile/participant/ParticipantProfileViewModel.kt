@@ -19,6 +19,8 @@ class ParticipantProfileViewModel @Inject constructor(
         MutableSharedFlow<ParticipantProfileResponseModel?>()
     val participantProfile: SharedFlow<ParticipantProfileResponseModel?> = _participantProfile
 
+    lateinit var profileTmp: ParticipantProfileResponseModel
+
     var number: Int = 0
     var tripId: Long = 0
 
@@ -27,6 +29,7 @@ class ParticipantProfileViewModel @Inject constructor(
             profileRepository.getParticipantProfile(ParticipantProfileRequestModel(participantId))
                 .onSuccess {
                     number = it.result
+                    profileTmp = it
                     _participantProfile.emit(it)
                 }.onFailure {
                     _participantProfile.emit(null)
