@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -38,7 +39,6 @@ class ChangeTagActivity :
         initItemDecoration()
         initChangeClickListener()
         initBackClickListener()
-        sendPreferenceInfo()
         observePreferencePatchState()
     }
 
@@ -74,8 +74,9 @@ class ChangeTagActivity :
     }
 
     private fun preferenceTagClickListener(item: ProfilePreferenceData, checkedIndex: Int) {
-        setButtonValid()
         preferenceAnswers[item.number.toInt() - 1] = checkedIndex
+        setButtonValid()
+        sendPreferenceInfo()
     }
 
     private fun setButtonValid() {
