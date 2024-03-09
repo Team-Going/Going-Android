@@ -52,6 +52,7 @@ class EditTripActivity :
                         tvEditTripName.text = viewModel?.title
                         tvEditTripInfoStartDate.text = viewModel?.startDate
                         tvEditTripInfoEndDate.text = viewModel?.endDate
+                        viewModel?.gettitleLength()
                     }
                 }
 

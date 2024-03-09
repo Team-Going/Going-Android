@@ -69,7 +69,7 @@
             android:paddingVertical="16dp"
             android:background="@drawable/shape_rect_4_gray700_line"
             android:maxLines="3"
-            android:text="@={viewModel.name}"
+            android:text="@={viewModel.title}"
             android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{@string/counter(viewModel.nameLength, viewModel.MAX_TRIP_LEN)}"
+            android:text="@{@string/counter(viewModel.titleLength, viewModel.MAX_TRIP_LEN)}"
             android:textColor="@color/gray_400"
             app:layout_constraintEnd_toEndOf="@id/tv_edit_trip_name"
             app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name" />

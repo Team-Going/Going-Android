@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TripInfoModel
 import com.going.domain.repository.EditTripRepository
+import com.going.ui.extension.getGraphemeLength
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,8 +17,7 @@ import javax.inject.Inject
 class EditTripViewModel @Inject constructor(
     private val editTripRepository: EditTripRepository
 ) : ViewModel() {
-    val name = MutableLiveData<String>()
-    val nameLength = MutableLiveData(0)
+    val titleLength = MutableLiveData(0)
 
     val startYear = MutableLiveData<Int>()
     val startMonth = MutableLiveData<Int>()
@@ -36,13 +36,15 @@ class EditTripViewModel @Inject constructor(
     private val _tripInfoState = MutableStateFlow<UiState<TripInfoModel>>(UiState.Empty)
     val tripInfoState: StateFlow<UiState<TripInfoModel>> get() = _tripInfoState
 
+    fun gettitleLength(){
+        titleLength.value = title.getGraphemeLength()
+    }
 
     fun getTripInfoFromServer(tripId: Long) {
         _tripInfoState.value = UiState.Loading
         viewModelScope.launch {
             editTripRepository.getTripInfo(tripId)
                 .onSuccess {
-                    //tripId = it.tripId
                     title = it.title
                     startDate = it.startDate
                     endDate = it.endDate

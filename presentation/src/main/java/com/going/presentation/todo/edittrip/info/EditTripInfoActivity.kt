@@ -30,10 +30,10 @@ class EditTripInfoActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        getTripInfoData()
         observePatchEditState()
         setEtInfoNameArguments()
         observeInfoNameTextChanged()
+        getTripInfoData()
         initStartDateClickListener()
         initEndDateClickListener()
         initEditBtnClickListener()
@@ -46,11 +46,11 @@ class EditTripInfoActivity :
 
     private fun getTripInfoData() {
         viewModel.tripId = intent.getLongExtra(TRIP_ID, -1L)
-        val currentTitle = intent.getStringExtra(TITLE)
+        viewModel.currentTitle = intent.getStringExtra(TITLE) ?:""
         viewModel.currentStartDate = intent.getStringExtra(START_DATE) ?: ""
         viewModel.currentEndDate = intent.getStringExtra(END_DATE) ?: ""
 
-        //binding.etEditTripInfoName.editText.setText(currentTitle)
+        binding.etEditTripInfoName.editText.setText(viewModel.currentTitle)
 
         val (startYear, startMonth, startDay) = splitDate(viewModel.currentStartDate)
         viewModel.currentStartYear.value = startYear
@@ -98,6 +98,7 @@ class EditTripInfoActivity :
         binding.etEditTripInfoName.editText.doAfterTextChanged { text ->
             viewModel.setTitleState(text.toString(), binding.etEditTripInfoName.state)
         }
+        viewModel.checkTripAvailable()
     }
 
 
@@ -106,6 +107,9 @@ class EditTripInfoActivity :
             startBottomSheetDialog = EditDateBottomSheet(true)
             startBottomSheetDialog?.show(supportFragmentManager, startBottomSheetDialog?.tag)
         }
+        viewModel.checkStartDateAvailable()
+        viewModel.checkTripAvailable()
+
     }
 
     private fun initEndDateClickListener() {
@@ -113,6 +117,9 @@ class EditTripInfoActivity :
                 endBottomSheetDialog = EditDateBottomSheet(false)
                 endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
         }
+        viewModel.checkEndDateAvailable()
+        viewModel.checkTripAvailable()
+
     }
 
     private fun initEditBtnClickListener() {

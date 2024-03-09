@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EditTripInfoViewModel @Inject constructor(
     private val editTripRepository: EditTripRepository,
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _tripEditState = MutableSharedFlow<Boolean>()
     val tripEditState: SharedFlow<Boolean> = _tripEditState
@@ -114,9 +114,12 @@ class EditTripInfoViewModel @Inject constructor(
         }
     }
 
-    fun checkTripAvailable() { //버튼 활성화
-        isCheckTripAvailable.value =
-            (currentTitle != title.value || currentStartDate != startDate.value || currentEndDate != endDate.value)
+    fun checkTripAvailable() {
+        isCheckTripAvailable.value = !title.value.isNullOrEmpty() && (
+                (title.value != null && currentTitle != title.value) ||
+                        currentStartDate != startDate.value ||
+                        currentEndDate != endDate.value
+                )
     }
 
     companion object {
