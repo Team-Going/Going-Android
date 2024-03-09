@@ -80,7 +80,7 @@ class InviteFinishActivity :
             startDate: String,
             endDate: String,
             day: Int,
-        ): Intent = Intent(context, EnterTripActivity::class.java).apply {
+        ): Intent = Intent(context, InviteFinishActivity::class.java).apply {
             putExtra(TRIP_ID, tripId)
             putExtra(TITLE, title)
             putExtra(START, startDate)
