@@ -30,15 +30,12 @@ class EditDateBottomSheet(val isStart: Boolean) :
         val calendar = Calendar.getInstance()
         val datePicker = binding.dpEditTripDate.apply {
             updateDate(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                viewModel.currentStartYear.value ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentStartMonth.value ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentStartDay.value ?: calendar.get(Calendar.DAY_OF_MONTH)
             )
         }
-        calendar.set(2000, 0, 1)
-        datePicker.minDate = calendar.timeInMillis
-
-        if (viewModel.endYear.value != null && viewModel.endMonth.value != null && viewModel.endDay.value != null) {
+        if (viewModel.endYear.value != viewModel.currentEndYear.value || viewModel.endMonth.value != viewModel.currentEndMonth.value || viewModel.endDay.value != viewModel.currentEndDay.value) {
             calendar.set(
                 viewModel.endYear.value ?: 0,
                 (viewModel.endMonth.value ?: 0) - 1,
@@ -52,17 +49,24 @@ class EditDateBottomSheet(val isStart: Boolean) :
     }
 
     private fun customEndDate() {
-        binding.dpEditTripDate.apply {
-            minDate = Calendar.getInstance().apply {
-                set(
-                    viewModel.startYear.value ?: 0,
-                    (viewModel.startMonth.value ?: 0) - 1,
-                    viewModel.startDay.value ?: 0
-                )
-            }.timeInMillis
-            maxDate = Calendar.getInstance().apply {
-                set(2100, 0, 1)
-            }.timeInMillis
+        val calendar = Calendar.getInstance()
+        val datePicker = binding.dpEditTripDate.apply {
+            updateDate(
+                viewModel.currentEndYear.value ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentEndMonth.value ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentEndDay.value ?: calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        }
+        if (viewModel.startYear.value != viewModel.currentStartYear.value || viewModel.startMonth.value != viewModel.currentStartMonth.value || viewModel.startDay.value != viewModel.currentStartDay.value) {
+            calendar.set(
+                viewModel.startYear.value ?: 0,
+                (viewModel.startMonth.value ?: 0) - 1,
+                viewModel.startDay.value ?: 0
+            )
+            datePicker.minDate = calendar.timeInMillis
+        } else {
+            calendar.set(2000, 0, 1)
+            datePicker.minDate = calendar.timeInMillis
         }
     }
 
@@ -71,7 +75,6 @@ class EditDateBottomSheet(val isStart: Boolean) :
             if (isStart) {
                 viewModel.setStartDate(year, month + 1, dayOfMonth)
             } else {
-                customEndDate()
                 viewModel.setEndDate(year, month + 1, dayOfMonth)
             }
         }

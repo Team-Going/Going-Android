@@ -21,7 +21,6 @@ class EditTripInfoViewModel @Inject constructor(
     private val _tripEditState = MutableSharedFlow<Boolean>()
     val tripEditState: SharedFlow<Boolean> = _tripEditState
 
-
     var tripId: Long = 0
 
     var currentTitle: String = ""
@@ -29,6 +28,13 @@ class EditTripInfoViewModel @Inject constructor(
     var currentEndDate: String = ""
 
     val title = MutableLiveData<String>()
+
+    var currentStartYear = MutableLiveData<Int>()
+    var currentStartMonth = MutableLiveData<Int>()
+    var currentStartDay = MutableLiveData<Int>()
+    var currentEndYear = MutableLiveData<Int>()
+    var currentEndMonth = MutableLiveData<Int>()
+    var currentEndDay = MutableLiveData<Int>()
 
     val startYear = MutableLiveData<Int>()
     val startMonth = MutableLiveData<Int>()
@@ -70,6 +76,7 @@ class EditTripInfoViewModel @Inject constructor(
     fun setTitleState(newTitle: String, state: EditTextState) {
         title.value = newTitle
         isTitleAvailable.value = state == EditTextState.SUCCESS
+        checkTripAvailable()
     }
 
     fun setStartDate(year: Int, month: Int, day: Int) {
@@ -109,7 +116,7 @@ class EditTripInfoViewModel @Inject constructor(
 
     fun checkTripAvailable() { //버튼 활성화
         isCheckTripAvailable.value =
-            (currentTitle != title.value && currentStartDate != startDate.value && currentEndDate != endDate.value)
+            (currentTitle != title.value || currentStartDate != startDate.value || currentEndDate != endDate.value)
     }
 
     companion object {

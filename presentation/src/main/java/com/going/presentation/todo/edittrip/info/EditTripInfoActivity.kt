@@ -1,18 +1,22 @@
-package com.going.presentation.todo.editinfo
+package com.going.presentation.todo.edittrip.info
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
-import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class EditTripInfoActivity :
@@ -26,7 +30,8 @@ class EditTripInfoActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        getServerList()
+        getTripInfoData()
+        observePatchEditState()
         setEtInfoNameArguments()
         observeInfoNameTextChanged()
         initStartDateClickListener()
@@ -39,16 +44,45 @@ class EditTripInfoActivity :
         binding.viewModel = viewModel
     }
 
-    private fun getServerList() {
-        val title = intent.getStringExtra(INFO_TITLE)
-        val startDate = intent.getStringExtra(INFO_START_DATE)
-        val endDate = intent.getStringExtra(INFO_END_DATE)
+    private fun getTripInfoData() {
+        viewModel.tripId = intent.getLongExtra(TRIP_ID, -1L)
+        val currentTitle = intent.getStringExtra(TITLE)
+        viewModel.currentStartDate = intent.getStringExtra(START_DATE) ?: ""
+        viewModel.currentEndDate = intent.getStringExtra(END_DATE) ?: ""
 
-        with(binding) {
-            etEditTripInfoName.editText?.setText(title)
-            tvEditTripInfoStartDate.text = startDate
-            tvEditTripInfoEndDate.text = endDate
-        }
+        //binding.etEditTripInfoName.editText.setText(currentTitle)
+
+        val (startYear, startMonth, startDay) = splitDate(viewModel.currentStartDate)
+        viewModel.currentStartYear.value = startYear
+        viewModel.currentStartMonth.value = startMonth
+        viewModel.currentStartDay.value = startDay
+        viewModel.setStartDate(startYear,startMonth,startDay)
+
+        val (endYear, endMonth, endDay) = splitDate(viewModel.currentEndDate)
+        viewModel.currentEndYear.value = endYear
+        viewModel.currentEndMonth.value = endMonth
+        viewModel.currentEndDay.value = endDay
+        viewModel.setEndDate(endYear,endMonth,endDay)
+    }
+
+    fun splitDate(date: String): Triple<Int, Int, Int> {
+        val parts = date.split(".")
+        val year = parts[0].toInt()
+        val month = parts[1].toInt()
+        val day = parts[2].toInt()
+        return Triple(year, month, day)
+    }
+
+    private fun observePatchEditState() {
+        viewModel.tripEditState.flowWithLifecycle(lifecycle).onEach { result ->
+            if (result) {
+                toast(getString(R.string.edit_trip_toast_success))
+                setResult(Activity.RESULT_OK)
+                finish()
+                return@onEach
+            }
+            toast(getString(R.string.edit_trip_toast_failure))
+        }.launchIn(lifecycleScope)
     }
 
     private fun setEtInfoNameArguments() {
@@ -62,7 +96,7 @@ class EditTripInfoActivity :
 
     private fun observeInfoNameTextChanged() {
         binding.etEditTripInfoName.editText.doAfterTextChanged { text ->
-            viewModel.setNameState(text.toString(), binding.etEditTripInfoName.state)
+            viewModel.setTitleState(text.toString(), binding.etEditTripInfoName.state)
         }
     }
 
@@ -76,60 +110,43 @@ class EditTripInfoActivity :
 
     private fun initEndDateClickListener() {
         binding.tvEditTripInfoEndDate.setOnSingleClickListener {
-            if (viewModel.startYear.value != null && viewModel.startMonth.value != null && viewModel.startDay.value != null) {
                 endBottomSheetDialog = EditDateBottomSheet(false)
                 endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
-            } else {
-                toast(getString(R.string.create_trip_toast_error))
-            }
         }
     }
 
     private fun initEditBtnClickListener() {
         binding.btnEditTripSave.setOnSingleClickListener {
-            Intent(this, DashBoardActivity::class.java).apply {
-                putExtra(NAME, viewModel.name.value)
-                putExtra(START_YEAR, viewModel.startYear.value)
-                putExtra(START_MONTH, viewModel.startMonth.value)
-                putExtra(START_DAY, viewModel.startDay.value)
-                putExtra(END_YEAR, viewModel.endYear.value)
-                putExtra(END_MONTH, viewModel.endMonth.value)
-                putExtra(END_DAY, viewModel.endDay.value)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(this)
-            }
+            viewModel.patchTodoToServer()
+            val intent = Intent(this, DashBoardActivity::class.java)
+            startActivity(intent)
         }
     }
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
-            //다른 뷰로 이동
             finish()
         }
     }
 
     companion object {
-        const val NAME = "name"
-        const val INFO_TITLE = "title"
-        const val START_YEAR = "startYear"
-        const val START_MONTH = "startMonth"
-        const val START_DAY = "startDay"
-        const val INFO_START_DATE = "INFO_START_DATE"
-        const val END_YEAR = "endYear"
-        const val END_MONTH = "endMonth"
-        const val END_DAY = "endDay"
-        const val INFO_END_DATE = "INFO_END_DATE"
+        const val TRIP_ID = "TRIP_ID"
+        const val TITLE = "TITLE"
+        const val START_DATE = "START_DATE"
+        const val END_DATE = "END_DATE"
 
         @JvmStatic
         fun createIntent(
             context: Context,
+            tripId: Long,
             title: String,
             startDate: String,
-            endDate: String,
-        ): Intent = Intent(context, EditTripActivity::class.java).apply {
-            putExtra(INFO_TITLE, title)
-            putExtra(INFO_START_DATE, startDate)
-            putExtra(INFO_END_DATE, endDate)
+            endDate: String
+        ): Intent = Intent(context, EditTripInfoActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+            putExtra(TITLE, title)
+            putExtra(START_DATE, startDate)
+            putExtra(END_DATE, endDate)
         }
     }
 }
