@@ -67,7 +67,6 @@ class CheckFriendsActivity :
 
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
-            Log.e("TAG", "$state")
             when (state) {
                 is UiState.Success -> setFriendsData(state.data)
 

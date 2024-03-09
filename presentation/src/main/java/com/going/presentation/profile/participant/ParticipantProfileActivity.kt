@@ -59,7 +59,6 @@ class ParticipantProfileActivity :
         getParticipantProfile()
     }
 
-
     private fun getParticipantProfile() =
         participantProfileViewModel.getUserInfoState(participantId)
 
