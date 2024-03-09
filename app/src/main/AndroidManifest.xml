@@ -170,12 +170,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.editinfo.EditTripInfoActivity"
+            android:name="com.going.presentation.todo.edittrip.info.EditTripInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.todo.editinfo.EditTripActivity"
+            android:name="com.going.presentation.todo.edittrip.edit.EditTripActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

@@ -250,6 +250,8 @@
     <string name="edit_trip_edit_btn">수정하기</string>
     <string name="edit_trip_select_btn">선택하기</string>
     <string name="edit_trip_date">%1$d.%2$d.%3$d</string>
+    <string name="edit_trip_toast_success">여행 정보 수정되었어요</string>
+    <string name="edit_trip_toast_failure">여행 정보 수정에 실패했어요</string>
 
 
 </resources>

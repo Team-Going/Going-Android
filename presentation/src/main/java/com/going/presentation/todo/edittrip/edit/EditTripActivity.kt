@@ -1,17 +1,14 @@
-package com.going.presentation.todo.editinfo
+package com.going.presentation.todo.edittrip.edit
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripBinding
-import com.going.presentation.entertrip.invitetrip.finish.InviteFinishActivity
-import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.todo.edittrip.TripQuitDialogFragment
+import com.going.presentation.todo.edittrip.info.EditTripInfoActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -43,8 +40,8 @@ class EditTripActivity :
     }
 
     private fun getIntentData() {
-        val tripId = intent.getLongExtra(EXTRA_TRIP_ID, -1L)
-        viewModel.getTripInfoFromServer(tripId)
+        viewModel.tripId = intent.getLongExtra(TRIP_ID, -1L)
+        viewModel.getTripInfoFromServer(viewModel.tripId)
     }
 
     private fun observeTripinfoState() {
@@ -74,13 +71,15 @@ class EditTripActivity :
         }
     }
 
+
     private fun initEditBtnClickListener() {
         binding.btnEditTripEdit.setOnSingleClickListener {
             EditTripInfoActivity.createIntent(
                 this,
+                viewModel.tripId,
                 viewModel.title,
                 viewModel.startDate,
-                viewModel.endDate,
+                viewModel.endDate
             ).apply { startActivity(this) }
 
         }
@@ -107,8 +106,4 @@ class EditTripActivity :
         if (quitDialog?.isAdded == true) quitDialog?.dismiss()
     }
 
-    companion object {
-        private const val EDIT_INFO_TRIP_ID = "TRIP_ID"
-
-    }
 }

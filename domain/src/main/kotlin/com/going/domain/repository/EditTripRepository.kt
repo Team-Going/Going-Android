@@ -8,7 +8,7 @@ interface EditTripRepository {
     suspend fun getTripInfo(
         tripId: Long
     ): Result<TripInfoModel>
-    suspend fun postEditTripInfo(
+    suspend fun patchEditTripInfo(
         tripId: Long,
         request: EditTripRequestModel
     ): Result<Unit>

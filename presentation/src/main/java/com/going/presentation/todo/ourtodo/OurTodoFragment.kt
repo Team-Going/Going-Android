@@ -16,10 +16,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
-import com.going.presentation.todo.editinfo.EditTripActivity
+import com.going.presentation.todo.edittrip.edit.EditTripActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
@@ -137,7 +138,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun initTripInfoBtnClickListener() {
         binding.btnOurTodoTripInfo.setOnSingleClickListener {
             Intent(requireActivity(), EditTripActivity::class.java).apply {
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
+                putExtra(TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }

@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -15,7 +14,6 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTodoChangeBinding
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_MEMO_LEN
 import com.going.presentation.todo.create.TodoCreateActivity.Companion.MAX_TODO_LEN
-import com.going.presentation.todo.detail.TodoDetailActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast

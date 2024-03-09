@@ -1,6 +1,5 @@
 package com.going.data.dto.response
 
-import com.going.domain.entity.request.TripInfoRequestModel
 import com.going.domain.entity.response.TripInfoModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

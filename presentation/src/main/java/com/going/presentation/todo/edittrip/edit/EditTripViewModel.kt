@@ -1,11 +1,10 @@
-package com.going.presentation.todo.editinfo
+package com.going.presentation.todo.edittrip.edit
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TripInfoModel
 import com.going.domain.repository.EditTripRepository
-import com.going.presentation.entertrip.createtrip.preference.ParcelableTripData
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,7 +42,7 @@ class EditTripViewModel @Inject constructor(
         viewModelScope.launch {
             editTripRepository.getTripInfo(tripId)
                 .onSuccess {
-                    //tripId = response.tripId
+                    //tripId = it.tripId
                     title = it.title
                     startDate = it.startDate
                     endDate = it.endDate
