@@ -86,6 +86,15 @@ class ChangeTagActivity :
         )
     }
 
+    private fun sendPreferenceInfo() {
+        tagViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
+        tagViewModel.styleA.value = preferenceAnswers[0]
+        tagViewModel.styleB.value = preferenceAnswers[1]
+        tagViewModel.styleC.value = preferenceAnswers[2]
+        tagViewModel.styleD.value = preferenceAnswers[3]
+        tagViewModel.styleE.value = preferenceAnswers[4]
+    }
+
     private fun initItemDecoration() {
         val itemDeco = PreferenceTagDecoration(this)
         binding.rvChangeTag.addItemDecoration(itemDeco)
@@ -101,15 +110,6 @@ class ChangeTagActivity :
         binding.btnChangeTagBack.setOnSingleClickListener {
             finish()
         }
-    }
-
-    private fun sendPreferenceInfo() {
-        tagViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
-        tagViewModel.styleA.value = preferenceAnswers[0]
-        tagViewModel.styleB.value = preferenceAnswers[1]
-        tagViewModel.styleC.value = preferenceAnswers[2]
-        tagViewModel.styleD.value = preferenceAnswers[3]
-        tagViewModel.styleE.value = preferenceAnswers[4]
     }
 
     private fun observePreferencePatchState() {

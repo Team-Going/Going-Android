@@ -2,6 +2,7 @@ package com.going.presentation.profile.participant.profiletag
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.flowWithLifecycle
@@ -61,14 +62,10 @@ class ParticipantProfileTagFragment :
                     it.styleD,
                     it.styleE
                 )
+                checkIsOwner(it.isOwner)
             }
                 ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
-    }
-
-    private fun initItemDecoration() {
-        val itemDeco = ParticipantProfileTagDecoration(requireContext())
-        binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
     private fun sendPreferenceWithClickListener(
@@ -84,6 +81,15 @@ class ParticipantProfileTagFragment :
                 styleA, styleB, styleC, styleD, styleE, participantViewModel.tripId
             ).apply { startActivity(this) }
         }
+    }
+
+    private fun checkIsOwner(isOwner: Boolean) {
+        binding.btnTripProfileRestart.isVisible = isOwner
+    }
+
+    private fun initItemDecoration() {
+        val itemDeco = ParticipantProfileTagDecoration(requireContext())
+        binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
     fun scrollTop() = binding.nsvPreferenceTag.scrollTo(0, 0)
