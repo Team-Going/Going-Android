@@ -30,6 +30,7 @@
 
     <string name="notice">안내</string>
     <string name="okay">확인</string>
+    <string name="save">저장</string>
     <string name="internet_connect_error">인터넷 연결을 확인해주세요</string>
 
     <!--sign_up-->
@@ -185,6 +186,12 @@
     <string name="trip_profile_character">나의 여행 캐릭터</string>
     <string name="trip_profile_tag">여행 취향 태그</string>
 
+    <!--participant_profilt -->
+    <string name="participant_profile_btn">여행 캐릭터 검사하러 가기</string>
+    <string name="participant_profile_common">여행 캐릭터 검사를 아직 진행하지 않았어요</string>
+    <string name="participant_profile_owner">지금 바로 나를 대신 할 여행 캐릭터를 만나보세요!</string>
+    <string name="participant_profile_friend_title">%s의 여행 프로필</string>
+
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
     <string name="enter_trip_tv_invite_code">초대코드</string>
@@ -231,6 +238,9 @@
     <string name="edit_trip_info_one_line_info_tv_title">여행 일정을 알려주세요</string>
     <string name="edit_trip_info_et_name_hint">이번 여행 이름을 입력해 주세요</string>
     <string name="edit_trip_info_slash">-</string>
+    <string name="edit_trip_info_quit_btn">나가기</string>
+    <string name="edit_trip_info_edit_btn">수정하기</string>
+    <string name="edit_profile_finish">프로필을 수정했어요</string>
     <string name="edit_trip_info_save_btn">저장하기</string>
     <string name="edit_trip_info_select_btn">선택하기</string>
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
@@ -240,6 +250,9 @@
     <string name="edit_trip_info_quit_dialog_negative">나가기</string>
     <string name="edit_trip_info_quit_dialog_positive">취소</string>
     <string name="trip_blank_error">여행 이름에는 공백만 입력할 수 없어요</string>
+
+    <!--change tag-->
+    <string name="change_tag_btn_change">취향태그 수정하기</string>
 
     <!--edit_trip-->
     <string name="edit_trip_tb_title">여행 정보</string>

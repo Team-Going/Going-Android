@@ -39,7 +39,7 @@ class MyTodoListViewHolder(
                 ivMyTodoLock.setImageResource(R.drawable.ic_lock_complete)
                 tvMyTodoLock.setTextColor(binding.root.context.colorOf(R.color.gray_300))
             } else {
-                tvMyTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.black_000))
+                tvMyTodoItemTitle.setTextColor(binding.root.context.colorOf(R.color.gray_700))
                 tvMyTodoItemDate.setTextColor(binding.root.context.colorOf(R.color.gray_300))
                 layoutMyTodoLock.setBackgroundResource(R.drawable.shape_rect_2_gray400_line)
                 ivMyTodoLock.setImageResource(R.drawable.ic_lock_uncomplete)

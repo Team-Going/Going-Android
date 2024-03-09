@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.CheckFriendsModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
+import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
@@ -34,7 +36,7 @@ class CheckFriendsActivity :
         super.onCreate(savedInstanceState)
 
         initBackClickListener()
-        initAdapter()
+        initAdapterWithClickListener()
         getTripId()
         observeCheckFriendsListState()
         setResultTextColor()
@@ -47,8 +49,13 @@ class CheckFriendsActivity :
         }
     }
 
-    private fun initAdapter() {
-        _adapter = CheckFriendsAdapter()
+    private fun initAdapterWithClickListener() {
+        _adapter = CheckFriendsAdapter { participantId ->
+            ParticipantProfileActivity.createIntent(
+                this,
+                participantId
+            ).apply { startActivity(this) }
+        }
         binding.rvCheckFriendsMember.adapter = adapter
     }
 
@@ -59,6 +66,7 @@ class CheckFriendsActivity :
 
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
+            Log.e("TAG", "$state", )
             when (state) {
                 is UiState.Success -> setFriendsData(state.data)
 

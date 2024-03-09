@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
     <data>
-        <variable
-            name="vm"
-            type="com.going.presentation.profile.edit.ProfileEditViewModel" />
+
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray_50"
+        tools:context=".entertrip.createtrip.preference.EnterPreferenceActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tb_profile_edit"
+            android:id="@+id/toolbar_change_tag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/layer_list_preference_tag_gray100_line"
+            android:backgroundTint="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/btn_profile_edit_back"
+                android:id="@+id/btn_change_tag_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -36,54 +39,51 @@
                 style="@style/TextAppearance.Doorip.Body1.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/profile_tv_edit"
-                app:layout_constraintBottom_toBottomOf="@id/btn_profile_edit_back"
-                app:layout_constraintStart_toEndOf="@id/btn_profile_edit_back"
-                app:layout_constraintTop_toTopOf="@id/btn_profile_edit_back" />
+                android:layout_marginStart="4dp"
+                android:text="@string/preference_tv_title"
+                android:textColor="@color/gray_700"
+                app:layout_constraintBottom_toBottomOf="@id/btn_change_tag_back"
+                app:layout_constraintStart_toEndOf="@id/btn_change_tag_back"
+                app:layout_constraintTop_toTopOf="@id/btn_change_tag_back" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
-            android:id="@+id/et_profile_edit_nickname"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_change_tag"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:imeOptions="actionNext"
-            app:canBlankError="true"
-            app:hint="@string/sign_up_et_name_hint"
+            android:layout_height="0dp"
+            android:background="@color/gray_50"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/btn_change_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_profile_edit"
-            app:title="@string/sign_up_name_tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_change_tag"
+            tools:listitem="@layout/item_preference_tag" />
 
-        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
-            android:id="@+id/et_profile_edit_info"
+        <ImageView
+            android:id="@+id/iv_change_blur"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:imeOptions="actionDone"
-            app:canBlankError="false"
-            app:hint="@string/sign_up_one_line_et_info"
+            android:src="@drawable/ic_preference_tag_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_profile_edit_nickname"
-            app:title="@string/sign_up_one_line_info_tv_title" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_profile_edit_finish"
+            android:id="@+id/btn_change_start"
             style="@style/button_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
             android:enabled="false"
             android:outlineProvider="none"
-            android:paddingVertical="10dp"
-            android:text="@string/save"
+            android:text="@string/change_tag_btn_change"
             android:textColor="@color/gray_200"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

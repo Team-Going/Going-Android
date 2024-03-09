@@ -157,10 +157,11 @@
         <activity
             android:name="com.going.presentation.profile.edit.ProfileEditActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.going.presentation.profile.trip.TripProfileActivity"
+            android:name="com.going.presentation.profile.participant.ParticipantProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -179,6 +180,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.going.presentation.profile.trip.tripprofiletag.changetag.ChangeTagActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>
