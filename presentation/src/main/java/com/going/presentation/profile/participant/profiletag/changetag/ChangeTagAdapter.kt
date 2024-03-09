@@ -7,13 +7,15 @@ import com.going.domain.entity.ProfilePreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.util.ItemDiffCallback
 
-class ChangeTagAdapter : ListAdapter<ProfilePreferenceData, ChangeTagViewHolder>(diffUtil) {
+class ChangeTagAdapter(
+    private val itemSelect: (ProfilePreferenceData, Int) -> Unit
+) : ListAdapter<ProfilePreferenceData, ChangeTagViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChangeTagViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)
-        return ChangeTagViewHolder(binding)
+        return ChangeTagViewHolder(binding, itemSelect)
     }
 
     override fun onBindViewHolder(holder: ChangeTagViewHolder, position: Int) {

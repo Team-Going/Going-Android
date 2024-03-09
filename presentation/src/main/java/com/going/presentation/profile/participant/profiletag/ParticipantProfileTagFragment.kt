@@ -1,8 +1,6 @@
 package com.going.presentation.profile.participant.profiletag
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -34,38 +32,17 @@ class ParticipantProfileTagFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setViewModel()
         initAdapter()
+        getPreferenceIndex()
         initItemDecoration()
-        initRestartBtnClickListener()
-    }
-
-    private fun setViewModel() {
-        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let {
-                setPreferenceIndex(it.styleA, it.styleB, it.styleC, it.styleD, it.styleE)
-            }
-                ?: toast(getString(R.string.server_error))
-        }.launchIn(lifecycleScope)
-    }
-
-    private fun setPreferenceIndex(
-        styleA: Int,
-        styleB: Int,
-        styleC: Int,
-        styleD: Int,
-        styleE: Int
-    ) {
-        adapter.submitList(tagViewModel.setPreferenceData(styleA, styleB, styleC, styleD, styleE))
     }
 
     private fun initAdapter() {
         _adapter = ParticipantProfileTagAdapter()
         binding.rvPreferenceTag.adapter = adapter
-//        setPreferenceIndex()
     }
 
-    private fun setPreferenceIndex() {
+    private fun getPreferenceIndex() {
         participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
             it?.let {
                 adapter.submitList(
@@ -77,6 +54,13 @@ class ParticipantProfileTagFragment :
                         it.styleE
                     )
                 )
+                sendPreferenceWithClickListener(
+                    it.styleA,
+                    it.styleB,
+                    it.styleC,
+                    it.styleD,
+                    it.styleE
+                )
             }
                 ?: toast(getString(R.string.server_error))
         }.launchIn(lifecycleScope)
@@ -87,11 +71,19 @@ class ParticipantProfileTagFragment :
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
-    private fun initRestartBtnClickListener() {
+    private fun sendPreferenceWithClickListener(
+        styleA: Int,
+        styleB: Int,
+        styleC: Int,
+        styleD: Int,
+        styleE: Int
+    ) {
         binding.btnTripProfileRestart.setOnSingleClickListener {
-            Intent(requireContext(), ChangeTagActivity::class.java).apply {
-                startActivity(this)
-            }
+            ChangeTagActivity.createIntent(
+                requireContext(),
+                styleA, styleB, styleC, styleD, styleE
+            ).apply { startActivity(this) }
+
         }
     }
 
