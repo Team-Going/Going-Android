@@ -5,12 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.ParticipantProfileRequestModel
 import com.going.domain.entity.response.ParticipantProfileResponseModel
 import com.going.domain.repository.ProfileRepository
-import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +20,7 @@ class ParticipantProfileViewModel @Inject constructor(
     val participantProfile: SharedFlow<ParticipantProfileResponseModel?> = _participantProfile
 
     var number: Int = 0
-    var tripId : Long = 0
+    var tripId: Long = 0
 
     fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {

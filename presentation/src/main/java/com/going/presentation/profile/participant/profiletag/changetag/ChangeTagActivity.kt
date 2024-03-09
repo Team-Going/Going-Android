@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -120,6 +119,7 @@ class ChangeTagActivity :
                 finish()
                 return@onEach
             }
+            toast(getString(R.string.change_tag_failure))
         }.launchIn(lifecycleScope)
     }
 

@@ -53,6 +53,13 @@ class ParticipantProfileActivity :
         initProfileEditBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        getParticipantProfile()
+    }
+
+
     private fun getParticipantProfile() =
         participantProfileViewModel.getUserInfoState(participantId)
 
