@@ -25,4 +25,13 @@ class EditTripRepositoryImpl @Inject constructor(
                 tripId, request.toEditTrioRequestDto()
             )
         }
+
+    override suspend fun patchQuitTrip(
+        tripId: Long
+    ): Result<Unit> =
+        runCatching {
+            editTripDataSource.patchQuitTrip(
+                tripId
+            )
+        }
 }

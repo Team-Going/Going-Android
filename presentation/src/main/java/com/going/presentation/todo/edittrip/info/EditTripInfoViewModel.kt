@@ -54,7 +54,7 @@ class EditTripInfoViewModel @Inject constructor(
 
     fun getMaxTripLen() = MAX_TRIP_LEN
 
-    fun patchTodoToServer() {
+    fun patchTripInfoFromServer() {
         viewModelScope.launch {
             editTripRepository.patchEditTripInfo(
                 tripId,

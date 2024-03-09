@@ -46,7 +46,7 @@ class EditTripInfoActivity :
 
     private fun getTripInfoData() {
         viewModel.tripId = intent.getLongExtra(TRIP_ID, -1L)
-        viewModel.currentTitle = intent.getStringExtra(TITLE) ?:""
+        viewModel.currentTitle = intent.getStringExtra(TITLE) ?: ""
         viewModel.currentStartDate = intent.getStringExtra(START_DATE) ?: ""
         viewModel.currentEndDate = intent.getStringExtra(END_DATE) ?: ""
 
@@ -56,13 +56,13 @@ class EditTripInfoActivity :
         viewModel.currentStartYear.value = startYear
         viewModel.currentStartMonth.value = startMonth
         viewModel.currentStartDay.value = startDay
-        viewModel.setStartDate(startYear,startMonth,startDay)
+        viewModel.setStartDate(startYear, startMonth, startDay)
 
         val (endYear, endMonth, endDay) = splitDate(viewModel.currentEndDate)
         viewModel.currentEndYear.value = endYear
         viewModel.currentEndMonth.value = endMonth
         viewModel.currentEndDay.value = endDay
-        viewModel.setEndDate(endYear,endMonth,endDay)
+        viewModel.setEndDate(endYear, endMonth, endDay)
     }
 
     fun splitDate(date: String): Triple<Int, Int, Int> {
@@ -114,8 +114,8 @@ class EditTripInfoActivity :
 
     private fun initEndDateClickListener() {
         binding.tvEditTripInfoEndDate.setOnSingleClickListener {
-                endBottomSheetDialog = EditDateBottomSheet(false)
-                endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
+            endBottomSheetDialog = EditDateBottomSheet(false)
+            endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
         }
         viewModel.checkEndDateAvailable()
         viewModel.checkTripAvailable()
@@ -124,7 +124,7 @@ class EditTripInfoActivity :
 
     private fun initEditBtnClickListener() {
         binding.btnEditTripSave.setOnSingleClickListener {
-            viewModel.patchTodoToServer()
+            viewModel.patchTripInfoFromServer()
             val intent = Intent(this, DashBoardActivity::class.java)
             startActivity(intent)
         }

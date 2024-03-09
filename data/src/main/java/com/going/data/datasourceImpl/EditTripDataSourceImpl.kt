@@ -23,4 +23,10 @@ class EditTripDataSourceImpl @Inject constructor(
     ): NonDataBaseResponse = editTripService.patchEditTripInfo(
         tripId, request
     )
+
+    override suspend fun patchQuitTrip(
+        tripId: Long
+    ): NonDataBaseResponse = editTripService.patchQuitTrip(
+        tripId
+    )
 }

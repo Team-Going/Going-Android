@@ -15,4 +15,8 @@ interface EditTripDataSource {
         request: EditTripInfoRequestDto
     ): NonDataBaseResponse
 
+    suspend fun patchQuitTrip(
+        tripId: Long
+    ): NonDataBaseResponse
+
 }

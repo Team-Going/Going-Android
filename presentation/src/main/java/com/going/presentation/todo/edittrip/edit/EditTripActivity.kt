@@ -1,5 +1,6 @@
 package com.going.presentation.todo.edittrip.edit
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
@@ -7,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEditTripBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.todo.edittrip.TripQuitDialogFragment
+import com.going.presentation.todo.edittrip.QuitTripDialogFragment
 import com.going.presentation.todo.edittrip.info.EditTripInfoActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
@@ -21,7 +22,7 @@ import kotlinx.coroutines.flow.onEach
 class EditTripActivity :
     BaseActivity<ActivityEditTripBinding>(R.layout.activity_edit_trip) {
     private val viewModel by viewModels<EditTripViewModel>()
-    private var quitDialog: TripQuitDialogFragment? = null
+    private var quitDialog: QuitTripDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +30,9 @@ class EditTripActivity :
         initBindingViewModel()
         getIntentData()
         observeTripinfoState()
+        observePatchQuitState()
         initEditBtnClickListener()
         initQuitBtnClickListener()
-        //showQuitDialog()
         initBackBtnClickListener()
     }
 
@@ -66,9 +67,21 @@ class EditTripActivity :
         }.launchIn(lifecycleScope)
     }
 
+    private fun observePatchQuitState() {
+        viewModel.quittripState.flowWithLifecycle(lifecycle).onEach { result ->
+            if (result) {
+                toast(getString(R.string.quit_trip_toast_success))
+                setResult(Activity.RESULT_OK)
+                finish()
+                return@onEach
+            }
+            toast(getString(R.string.quit_trip_toast_failure))
+        }.launchIn(lifecycleScope)
+    }
+
     private fun initQuitBtnClickListener() {
         binding.btnEditTripQuit.setOnSingleClickListener {
-            //showQuitDialog()
+            showQuitDialog()
         }
     }
 
@@ -86,18 +99,13 @@ class EditTripActivity :
         }
     }
 
-//    private fun showQuitDialog() {
-//        quitDialog = TripQuitDialogFragment()
-//        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
-//        Intent(this, DashBoardActivity::class.java).apply {
-//            //정보 지워지게 구성
-//            startActivity(this)
-//        }
-//    }
+    private fun showQuitDialog() {
+        quitDialog = QuitTripDialogFragment()
+        quitDialog?.show(supportFragmentManager, quitDialog?.tag)
+    }
 
     private fun initBackBtnClickListener() {
         binding.btnEditTripInfoBack.setOnSingleClickListener {
-            //어느 뷰로 가는지
             finish()
         }
     }

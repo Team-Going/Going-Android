@@ -21,4 +21,10 @@ interface EditTripService {
         @Path("tripId") tripId: Long,
         @Body request: EditTripInfoRequestDto,
     ): NonDataBaseResponse
+
+    @PATCH("api/trips/{tripId}/leave")
+    suspend fun patchQuitTrip(
+        @Path("tripId") tripId: Long,
+    ): NonDataBaseResponse
+
 }

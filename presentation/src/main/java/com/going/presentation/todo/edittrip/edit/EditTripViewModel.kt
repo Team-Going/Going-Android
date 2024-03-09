@@ -8,7 +8,9 @@ import com.going.domain.repository.EditTripRepository
 import com.going.ui.extension.getGraphemeLength
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,6 +38,9 @@ class EditTripViewModel @Inject constructor(
     private val _tripInfoState = MutableStateFlow<UiState<TripInfoModel>>(UiState.Empty)
     val tripInfoState: StateFlow<UiState<TripInfoModel>> get() = _tripInfoState
 
+    private val _quittripState = MutableSharedFlow<Boolean>()
+    val quittripState: SharedFlow<Boolean> = _quittripState
+
     fun gettitleLength(){
         titleLength.value = title.getGraphemeLength()
     }
@@ -52,6 +57,20 @@ class EditTripViewModel @Inject constructor(
                 }
                 .onFailure {
                     _tripInfoState.value = UiState.Failure(it.message.orEmpty())
+                }
+        }
+    }
+
+    fun patchQuitTripFromServer() {
+        viewModelScope.launch {
+            editTripRepository.patchQuitTrip(
+                tripId
+            )
+                .onSuccess {
+                    _quittripState.emit(true)
+                }
+                .onFailure {
+                    _quittripState.emit(false)
                 }
         }
     }

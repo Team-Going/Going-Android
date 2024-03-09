@@ -12,4 +12,7 @@ interface EditTripRepository {
         tripId: Long,
         request: EditTripRequestModel
     ): Result<Unit>
+    suspend fun patchQuitTrip(
+        tripId: Long
+    ): Result<Unit>
 }

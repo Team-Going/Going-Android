@@ -253,5 +253,7 @@
     <string name="edit_trip_toast_success">여행 정보 수정되었어요</string>
     <string name="edit_trip_toast_failure">여행 정보 수정에 실패했어요</string>
 
-
+    <!--quit_trip-->
+    <string name="quit_trip_toast_success">여행방에서 나왔어요</string>
+    <string name="quit_trip_toast_failure">여행방에서 나오지 못했어요</string>
 </resources>
