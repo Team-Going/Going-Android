@@ -2,10 +2,10 @@ package com.going.presentation.tendency.splash
 
 import androidx.lifecycle.ViewModel
 
-class TendencySplashViewModel: ViewModel() {
-    lateinit var quarter: String
+class TendencySplashViewModel : ViewModel() {
+    var quarter: String = ""
 
-    fun setQuarter(type: String) {
+    fun setQuarters(type: String) {
         quarter = type
     }
 }

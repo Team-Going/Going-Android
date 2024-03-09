@@ -24,11 +24,11 @@ class TendencySplashActivity :
         setBtnString()
         initSkipBtnClickListener()
         initStartBtnClickListener()
-        initOnBackPressedListener(binding.root)
+        initOnBackPressedListen()
     }
 
     private fun setQuarter() =
-        tendencySplashViewModel.setQuarter(
+        tendencySplashViewModel.setQuarters(
             intent.getStringExtra(QUARTER) ?: ""
         )
 
@@ -53,6 +53,11 @@ class TendencySplashActivity :
         binding.btnTendencySplashStart.setOnSingleClickListener {
             navigateToScreenClear<TendencyTestActivity>()
         }
+
+
+    private fun initOnBackPressedListen() {
+        if (tendencySplashViewModel.quarter == TENDENCY) initOnBackPressedListener(binding.root)
+    }
 
     companion object {
         const val TENDENCY = "TENDENCY"

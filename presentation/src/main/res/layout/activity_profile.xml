@@ -83,7 +83,7 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="23dp"
-                        android:src="@drawable/img_profile_1"
+                        android:src="@drawable/img_profile_guest"
                         app:civ_border_color="@color/gray_100"
                         app:civ_border_width="1dp"
                         app:layout_constraintBottom_toTopOf="@id/view_gray"
@@ -149,7 +149,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_profile_info">
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/img_participant_profile_empty"
+                            android:id="@+id/img_profile_empty"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
@@ -163,7 +163,7 @@
                             app:layout_constraintWidth_percent="0.33" />
 
                         <TextView
-                            android:id="@+id/tv_participant_profile_empty_common"
+                            android:id="@+id/tv_profile_empty_common"
                             style="@style/TextAppearance.Doorip.Body3.Medi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -172,10 +172,10 @@
                             android:textColor="@color/gray_200"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/img_participant_profile_empty" />
+                            app:layout_constraintTop_toBottomOf="@id/img_profile_empty" />
 
                         <TextView
-                            android:id="@+id/tv_participant_profile_empty_owner"
+                            android:id="@+id/tv_profile_empty_text"
                             style="@style/TextAppearance.Doorip.Body3.Medi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -183,11 +183,10 @@
                             android:textColor="@color/gray_200"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_participant_profile_empty_common" />
-
+                            app:layout_constraintTop_toBottomOf="@id/tv_profile_empty_common" />
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btn_participant_profile_empty_owner"
+                            android:id="@+id/btn_empty_profile_test"
                             style="@style/button_style"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
