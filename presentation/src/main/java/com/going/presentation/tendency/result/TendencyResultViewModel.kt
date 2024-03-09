@@ -21,6 +21,7 @@ class TendencyResultViewModel @Inject constructor(
     val userInfoState: StateFlow<UiState<UserProfileResponseModel>> = _userInfoState
 
     val tendencyId = MutableStateFlow(0)
+    var quarter: String = ""
 
     fun getUserInfoState() {
         viewModelScope.launch {
@@ -32,5 +33,9 @@ class TendencyResultViewModel @Inject constructor(
                 _userInfoState.value = UiState.Failure(it.message.toString())
             }
         }
+    }
+
+    fun setQuarters(type: String) {
+        quarter = type
     }
 }

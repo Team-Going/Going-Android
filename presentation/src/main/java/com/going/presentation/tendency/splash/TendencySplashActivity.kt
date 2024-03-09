@@ -51,7 +51,11 @@ class TendencySplashActivity :
 
     private fun initStartBtnClickListener() =
         binding.btnTendencySplashStart.setOnSingleClickListener {
-            navigateToScreenClear<TendencyTestActivity>()
+            TendencyTestActivity.createIntent(
+                this,
+                tendencySplashViewModel.quarter
+            ).apply { startActivity(this) }
+            finish()
         }
 
 
@@ -62,7 +66,7 @@ class TendencySplashActivity :
     companion object {
         const val TENDENCY = "TENDENCY"
         const val PROFILE = "PROFILE"
-        private const val QUARTER = "QUARTER"
+        const val QUARTER = "QUARTER"
 
         @JvmStatic
         fun createIntent(

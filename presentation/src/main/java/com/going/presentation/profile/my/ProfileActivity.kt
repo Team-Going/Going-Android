@@ -18,7 +18,6 @@ import com.going.presentation.tendency.result.TendencyResultActivity.Companion.P
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
-import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
@@ -47,10 +46,15 @@ class ProfileActivity :
     override fun onResume() {
         super.onResume()
         getUserInfo()
+        scrollTop()
     }
 
     private fun getUserInfo() {
         profileViewModel.getUserInfoState()
+    }
+
+    private fun scrollTop() {
+        binding.svProfile.scrollTo(0, 0)
     }
 
     private fun observeUserInfoState() {
@@ -163,7 +167,10 @@ class ProfileActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnProfileRestart.setOnSingleClickListener {
-            navigateToScreenClear<TendencySplashActivity>()
+            TendencySplashActivity.createIntent(
+                this,
+                TendencySplashActivity.PROFILE
+            ).apply { startActivity(this) }
         }
 
         binding.btnEmptyProfileTest.setOnSingleClickListener {

@@ -57,6 +57,7 @@
     <string name="tendency_test_result_toolbar">나의 여행 캐릭터</string>
     <string name="tendency_test_result_title">%1$s님의 여행 캐릭터는</string>
     <string name="tendency_test_result_finish_button">doorip 시작하기</string>
+    <string name="tendency_test_result_profile_finish_button">내 여행 프로필로 돌아가기</string>
     <string name="tendency_test_result_restart_button"><u>다시 해볼래요</u></string>
     <string name="tendency_test_result_save">이미지로 저장</string>
 

@@ -22,6 +22,7 @@ class TendencyTestViewModel @Inject constructor(
     val isSecondChecked = MutableStateFlow(false)
     val isThirdChecked = MutableStateFlow(false)
     val isFourthChecked = MutableStateFlow(false)
+    var quarter: String = ""
 
     private val tendencyResultList: MutableList<Int> = MutableList(9) { 0 }
 
@@ -93,6 +94,10 @@ class TendencyTestViewModel @Inject constructor(
             "이것도 추억이지, 근처 가까운 식당으로 간다",
         ),
     )
+
+    fun setQuarters(type: String) {
+        quarter = type
+    }
 
     fun plusStepValue() {
         step.value = step.value.plus(1)
