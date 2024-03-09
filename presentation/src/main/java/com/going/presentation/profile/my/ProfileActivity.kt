@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
@@ -19,6 +20,7 @@ import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
+import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
@@ -72,30 +74,50 @@ class ProfileActivity :
             tvProfileName.text = name
             tvProfileOneLine.text = intro
 
-            UserTendencyResultList[number].apply {
-                ivProfile.load(profileImage) {
-                    transformations(CircleCropTransformation())
-                }
-                tvProfileType.text = profileTitle
-                tvProfileSubType.text = profileSubTitle
+            if (profileViewModel.profileId.value != -1) {
+                viewProfileEmpty.isVisible = false
+                UserTendencyResultList[number].apply {
+                    ivProfile.load(profileImage) {
+                        transformations(CircleCropTransformation())
+                    }
+                    tvProfileType.text = profileTitle
+                    tvProfileSubType.text = profileSubTitle
 
-                ivProfileBig.load(resultImage)
+                    ivProfileBig.load(resultImage)
 
-                tvProfileTag1.text = getString(R.string.tag, tags[0])
-                tvProfileTag2.text = getString(R.string.tag, tags[1])
-                tvProfileTag3.text = getString(R.string.tag, tags[2])
+                    tvProfileTag1.text = getString(R.string.tag, tags[0])
+                    tvProfileTag2.text = getString(R.string.tag, tags[1])
+                    tvProfileTag3.text = getString(R.string.tag, tags[2])
 
-                with(profileBoxInfo[0]) {
-                    setChartInfo(tvChartFirst, title, first, second, third)
+                    with(profileBoxInfo[0]) {
+                        setChartInfo(tvChartFirst, title, first, second, third)
+                    }
+                    with(profileBoxInfo[1]) {
+                        setChartInfo(tvChartSecond, title, first, second, third)
+                    }
+                    with(profileBoxInfo[2]) {
+                        setChartInfo(tvChartThird, title, first, second, third)
+                    }
+
                 }
-                with(profileBoxInfo[1]) {
-                    setChartInfo(tvChartSecond, title, first, second, third)
-                }
-                with(profileBoxInfo[2]) {
-                    setChartInfo(tvChartThird, title, first, second, third)
-                }
+            } else {
+                setFragmentHeight()
+                viewProfile.isVisible = false
+                viewProfileEmpty.isVisible = true
 
             }
+        }
+    }
+
+    private fun setFragmentHeight() {
+        val displayHeight = getWindowHeight()
+        val toolbarHeight = binding.tbProfile.height
+        val appBarHeight = binding.viewProfileInfo.height
+        val tabHeight = binding.viewGray.height
+
+        binding.viewProfileEmpty.layoutParams = binding.viewProfileEmpty.layoutParams.also {
+            it.height =
+                displayHeight - toolbarHeight - appBarHeight - tabHeight
         }
     }
 
