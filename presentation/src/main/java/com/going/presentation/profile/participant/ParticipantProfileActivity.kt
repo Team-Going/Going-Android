@@ -28,7 +28,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-
 @AndroidEntryPoint
 class ParticipantProfileActivity :
     BaseActivity<ActivityParticipantProfileBinding>(R.layout.activity_participant_profile) {
@@ -36,12 +35,16 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
+    private val tripId: Long by lazy {
+        intent.getLongExtra(TRIP_ID, 0)
+    }
     var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         getParticipantProfile()
+        setTripId()
         observeParticipantProfileState()
         setViewPager()
         setViewPagerDebounce()
@@ -52,6 +55,10 @@ class ParticipantProfileActivity :
 
     private fun getParticipantProfile() =
         participantProfileViewModel.getUserInfoState(participantId)
+
+    private fun setTripId(){
+        participantProfileViewModel.tripId = tripId
+    }
 
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
@@ -183,13 +190,16 @@ class ParticipantProfileActivity :
 
     companion object {
         private const val PARTICIPANT_ID = "PARTICIPANT_ID"
+        private const val TRIP_ID = "TRIP_ID"
 
         @JvmStatic
         fun createIntent(
             context: Context,
             participantId: Long,
+            tripId: Long
         ): Intent = Intent(context, ParticipantProfileActivity::class.java).apply {
             putExtra(PARTICIPANT_ID, participantId)
+            putExtra(TRIP_ID, tripId)
         }
     }
 }

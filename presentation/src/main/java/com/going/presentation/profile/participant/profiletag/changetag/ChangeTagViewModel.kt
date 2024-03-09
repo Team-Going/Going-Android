@@ -2,22 +2,51 @@ package com.going.presentation.profile.participant.profiletag.changetag
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.ProfilePreferenceData
+import com.going.domain.entity.request.PreferenceChangeRequestModel
+import com.going.domain.repository.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ChangeTagViewModel @Inject constructor(
-
+    private val profileRepository: ProfileRepository
 ) : ViewModel() {
+
+    private val _preferencePatchState = MutableSharedFlow<Boolean>()
+    val preferencePatchState: SharedFlow<Boolean> = _preferencePatchState
+
+    var tripId: Long = 0
 
     val styleA = MutableLiveData(0)
     val styleB = MutableLiveData(0)
     val styleC = MutableLiveData(0)
     val styleD = MutableLiveData(0)
     val styleE = MutableLiveData(0)
-    fun patchPreferenceTagToServer() {
 
+    fun patchPreferenceTagToServer() {
+        viewModelScope.launch {
+            profileRepository.patchPreferenceTag(
+                tripId,
+                PreferenceChangeRequestModel(
+                    styleA.value ?: 0,
+                    styleB.value ?: 0,
+                    styleC.value ?: 0,
+                    styleD.value ?: 0,
+                    styleE.value ?: 0
+                )
+            )
+                .onSuccess {
+                    _preferencePatchState.emit(true)
+                }
+                .onFailure {
+                    _preferencePatchState.emit(false)
+                }
+        }
     }
 
     fun initPreferenceData(styleA: Int, styleB: Int, styleC: Int, styleD: Int, styleE: Int) =

@@ -1,10 +1,11 @@
 package com.going.data.dto.request
 
+import com.going.domain.entity.request.PreferenceChangeRequestModel
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProfilePreferenceRequestDto(
+data class PreferenceChangeRequestDto(
     @SerialName("styleA")
     val styleA: Int,
     @SerialName("styleB")
@@ -16,3 +17,6 @@ data class ProfilePreferenceRequestDto(
     @SerialName("styleE")
     val styleE: Int
 )
+
+fun PreferenceChangeRequestModel.toPreferenceChangeRequestDto(): PreferenceChangeRequestDto =
+    PreferenceChangeRequestDto(styleA, styleB, styleC, styleD, styleE)

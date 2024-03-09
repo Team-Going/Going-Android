@@ -2,7 +2,7 @@ package com.going.data.service
 
 import com.going.data.dto.BaseResponse
 import com.going.data.dto.NonDataBaseResponse
-import com.going.data.dto.request.ProfilePreferenceRequestDto
+import com.going.data.dto.request.PreferenceChangeRequestDto
 import com.going.data.dto.request.UserProfileRequestDto
 import com.going.data.dto.response.ParticipantProfileResponseDto
 import com.going.data.dto.response.UserProfileResponseDto
@@ -28,6 +28,6 @@ interface ProfileService {
     @PATCH("api/trips/{tripId}/participant")
     suspend fun patchPreferenceTag(
         @Path("tripId") tripId: Long,
-        @Body request: ProfilePreferenceRequestDto
+        @Body request: PreferenceChangeRequestDto
     ): NonDataBaseResponse
 }

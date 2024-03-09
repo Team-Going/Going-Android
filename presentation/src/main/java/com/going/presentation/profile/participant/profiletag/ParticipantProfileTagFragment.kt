@@ -81,9 +81,8 @@ class ParticipantProfileTagFragment :
         binding.btnTripProfileRestart.setOnSingleClickListener {
             ChangeTagActivity.createIntent(
                 requireContext(),
-                styleA, styleB, styleC, styleD, styleE
+                styleA, styleB, styleC, styleD, styleE, participantViewModel.tripId
             ).apply { startActivity(this) }
-
         }
     }
 

@@ -89,7 +89,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     private fun initFriendInfoListener(participantId: Long) {
         ParticipantProfileActivity.createIntent(
             requireContext(),
-            participantId
+            participantId,
+            viewModel.tripId
         ).apply { startActivity(this) }
     }
 

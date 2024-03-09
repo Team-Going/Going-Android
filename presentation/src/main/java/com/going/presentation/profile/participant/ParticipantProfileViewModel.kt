@@ -23,6 +23,7 @@ class ParticipantProfileViewModel @Inject constructor(
     val participantProfile: SharedFlow<ParticipantProfileResponseModel?> = _participantProfile
 
     var number: Int = 0
+    var tripId : Long = 0
 
     fun getUserInfoState(participantId: Long) {
         viewModelScope.launch {
