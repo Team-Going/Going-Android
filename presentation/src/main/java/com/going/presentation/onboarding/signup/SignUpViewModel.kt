@@ -1,5 +1,6 @@
 package com.going.presentation.onboarding.signup
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.AuthState
@@ -40,12 +41,15 @@ class SignUpViewModel @Inject constructor(
                     val kakaoAccessToken =
                         TokenManagerProvider.instance.manager.getToken()?.accessToken.toString()
                     signUpWithServer(kakaoAccessToken)
-                    return@accessTokenInfo
+
+
+                } else {
+                    _isAuthState.value = AuthState.FAILURE
                 }
             }
+        } else {
+            _isAuthState.value = AuthState.FAILURE
         }
-
-        _isAuthState.value = AuthState.OTHER_PAGE
     }
 
     private fun signUpWithServer(kakaoAccessToken: String) {
