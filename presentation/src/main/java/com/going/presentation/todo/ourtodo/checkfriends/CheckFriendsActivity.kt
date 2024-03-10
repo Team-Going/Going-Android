@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -81,11 +80,11 @@ class CheckFriendsActivity :
 
     private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
-        val rate = data.styles.map { it.rate }
-        setProgressBarStatus(rate)
+        val rates = data.styles.map { it.rates }
+        setProgressBarStatus(rates)
     }
 
-    private fun setProgressBarStatus(rate: List<Int>) {
+    private fun setProgressBarStatus(rates: List<List<Int>>) {
 
         val progressBars = listOf(
             binding.progressBarCheckFriends1,
@@ -95,8 +94,9 @@ class CheckFriendsActivity :
             binding.progressBarCheckFriends5
         )
 
-        for (i in rate.indices) {
-            progressBars[i].progress = rate[i]
+        for (i in rates.indices) {
+            progressBars[i].progress = rates[i][0]
+            progressBars[i].secondaryProgress = rates[i][0] + rates[i][1]
         }
 
     }
