@@ -1,11 +1,13 @@
-package com.going.presentation.profile.trip.tripprofiletag.profiletag
+package com.going.ui.util
 
-import android.content.Context
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class TripProfileTagDecoration(val context: Context) : RecyclerView.ItemDecoration() {
+class RVItemFirstLastDecoration(
+    private val top: Int,
+    private val bottom: Int
+) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -16,7 +18,12 @@ class TripProfileTagDecoration(val context: Context) : RecyclerView.ItemDecorati
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
 
-        if (position == 0) outRect.top = 50
-        else outRect.top = 0
+        if (position == 0) {
+            outRect.top = top
+        }
+
+        if (position == parent.adapter?.itemCount?.minus(1)) {
+            outRect.bottom = bottom
+        }
     }
 }

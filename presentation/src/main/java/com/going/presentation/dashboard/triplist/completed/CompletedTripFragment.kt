@@ -8,12 +8,12 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardViewModel
-import com.going.presentation.dashboard.triplist.DashBoardDecoration
 import com.going.presentation.databinding.FragmentCompletedTripBinding
 import com.going.presentation.todo.TodoActivity
 import com.going.ui.base.BaseFragment
-import com.going.ui.state.UiState
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
+import com.going.ui.util.RVItemFirstLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -47,7 +47,7 @@ class CompletedTripFragment :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = DashBoardDecoration(requireContext())
+        val itemDeco = RVItemFirstLastDecoration(50, 20)
         binding.rvDashboardCompletedTrip.addItemDecoration(itemDeco)
     }
 

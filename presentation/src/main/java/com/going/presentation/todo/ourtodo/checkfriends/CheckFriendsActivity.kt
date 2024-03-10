@@ -53,7 +53,8 @@ class CheckFriendsActivity :
         _adapter = CheckFriendsAdapter { participantId ->
             ParticipantProfileActivity.createIntent(
                 this,
-                participantId
+                participantId,
+                0
             ).apply { startActivity(this) }
         }
         binding.rvCheckFriendsMember.adapter = adapter
@@ -66,7 +67,6 @@ class CheckFriendsActivity :
 
     private fun observeCheckFriendsListState() {
         viewModel.checkFriendsListState.flowWithLifecycle(lifecycle).onEach { state ->
-            Log.e("TAG", "$state", )
             when (state) {
                 is UiState.Success -> setFriendsData(state.data)
 
