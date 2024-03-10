@@ -80,23 +80,66 @@ class CheckFriendsActivity :
 
     private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
+
         val rates = data.styles.map { it.rates }
+        val counts = data.styles.map { it.counts }
+
         setProgressBarStatus(rates)
+        setCountStatus(counts)
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {
+        with(binding) {
+            val progressBars = listOf(
+                progressBarCheckFriends1,
+                progressBarCheckFriends2,
+                progressBarCheckFriends3,
+                progressBarCheckFriends4,
+                progressBarCheckFriends5
+            )
 
-        val progressBars = listOf(
-            binding.progressBarCheckFriends1,
-            binding.progressBarCheckFriends2,
-            binding.progressBarCheckFriends3,
-            binding.progressBarCheckFriends4,
-            binding.progressBarCheckFriends5
-        )
+            for (i in rates.indices) {
+                progressBars[i].progress = rates[i][0]
+                progressBars[i].secondaryProgress = rates[i][0] + rates[i][1]
+            }
+        }
+    }
 
-        for (i in rates.indices) {
-            progressBars[i].progress = rates[i][0]
-            progressBars[i].secondaryProgress = rates[i][0] + rates[i][1]
+    private fun setCountStatus(counts: List<List<Int>>) {
+        with(binding) {
+            val countsLeftList = mutableListOf(
+                tvCheckFriendsPreferenceNumber1Left,
+                tvCheckFriendsPreferenceNumber2Left,
+                tvCheckFriendsPreferenceNumber3Left,
+                tvCheckFriendsPreferenceNumber4Left,
+                tvCheckFriendsPreferenceNumber5Left,
+            )
+
+            val countsCenterList = mutableListOf(
+                tvCheckFriendsPreferenceNumber1Center,
+                tvCheckFriendsPreferenceNumber2Center,
+                tvCheckFriendsPreferenceNumber3Center,
+                tvCheckFriendsPreferenceNumber4Center,
+                tvCheckFriendsPreferenceNumber5Center,
+            )
+
+            val countsRightList = mutableListOf(
+                tvCheckFriendsPreferenceNumber1Right,
+                tvCheckFriendsPreferenceNumber2Right,
+                tvCheckFriendsPreferenceNumber3Right,
+                tvCheckFriendsPreferenceNumber4Right,
+                tvCheckFriendsPreferenceNumber5Right
+            )
+
+            for (i in counts.indices) {
+                countsLeftList[i].text =
+                    getString(R.string.check_friends_preference_number, counts[i][0])
+                countsCenterList[i].text =
+                    getString(R.string.check_friends_preference_number, counts[i][1])
+                countsRightList[i].text =
+                    getString(R.string.check_friends_preference_number, counts[i][2])
+            }
+
         }
 
     }
