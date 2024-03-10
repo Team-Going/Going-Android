@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
@@ -29,7 +30,7 @@ import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
-import com.going.ui.util.RvItemDecoration
+import com.going.ui.util.RvItemLastDecoration
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -86,7 +87,11 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initFriendInfoListener(participantId: Long) {
-        // TODO: 친구 아이템 클릭 시 상세정보 구현
+        ParticipantProfileActivity.createIntent(
+            requireContext(),
+            participantId,
+            viewModel.tripId
+        ).apply { startActivity(this) }
     }
 
     private fun initTripInfoBtnClickListener() {
@@ -109,7 +114,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = RvItemDecoration(requireContext(), 0, 0, 150, 0)
+        val itemDeco = RvItemLastDecoration(requireContext(), 0, 0, 150, 0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 

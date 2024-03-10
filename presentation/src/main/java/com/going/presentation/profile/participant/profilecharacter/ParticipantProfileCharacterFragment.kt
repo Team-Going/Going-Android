@@ -1,4 +1,4 @@
-package com.going.presentation.profile.participant
+package com.going.presentation.profile.participant.profilecharacter
 
 import android.os.Bundle
 import android.view.View
@@ -8,18 +8,21 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.going.presentation.R
-import com.going.presentation.databinding.FragmentTripProfileCharacterBinding
+import com.going.presentation.databinding.FragmentParticipantProfileCharacterBinding
 import com.going.presentation.designsystem.textview.ChartTextView
+import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class ParticipantProfileCharacterFragment :
-    BaseFragment<FragmentTripProfileCharacterBinding>(R.layout.fragment_trip_profile_character) {
+    BaseFragment<FragmentParticipantProfileCharacterBinding>(R.layout.fragment_participant_profile_character) {
     private val participantViewModel by lazy {
         ViewModelProvider(requireActivity())[ParticipantProfileViewModel::class.java]
     }

@@ -15,20 +15,18 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityParticipantProfileBinding
 import com.going.presentation.designsystem.snackbar.customSnackBar
 import com.going.presentation.profile.edit.ProfileEditActivity
-import com.going.presentation.profile.trip.tripprofiletag.profiletag.TripProfileTagFragment
+import com.going.presentation.profile.participant.profiletag.ParticipantProfileTagFragment
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.util.downloadImage
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.getWindowHeight
 import com.going.ui.extension.setOnSingleClickListener
-import com.going.ui.extension.toast
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-
 
 @AndroidEntryPoint
 class ParticipantProfileActivity :
@@ -37,12 +35,13 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
+
     var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getParticipantProfile()
+        setTripId()
         observeParticipantProfileState()
         setViewPager()
         setViewPagerDebounce()
@@ -51,12 +50,25 @@ class ParticipantProfileActivity :
         initProfileEditBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        getParticipantProfile()
+    }
+
     private fun getParticipantProfile() =
         participantProfileViewModel.getUserInfoState(participantId)
 
+    private fun setTripId() {
+        participantProfileViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
+    }
+
     private fun observeParticipantProfileState() {
         participantProfileViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            it?.let { bindData(it) } ?: customSnackBar(binding.root, getString(R.string.server_error))
+            it?.let { bindData(it) } ?: customSnackBar(
+                binding.root,
+                getString(R.string.server_error)
+            )
         }.launchIn(lifecycleScope)
     }
 
@@ -117,7 +129,7 @@ class ParticipantProfileActivity :
 
                     val myFragment =
                         supportFragmentManager.findFragmentByTag("f" + binding.vpTripProfile.currentItem)
-                    if (myFragment is TripProfileTagFragment) myFragment.scrollTop()
+                    if (myFragment is ParticipantProfileTagFragment) myFragment.scrollTop()
                 }
 
                 binding.vpTripProfile.currentItem = tab.position
@@ -138,7 +150,6 @@ class ParticipantProfileActivity :
                 return false
             }
         })
-
 
         setFragmentHeight()
     }
@@ -182,13 +193,16 @@ class ParticipantProfileActivity :
 
     companion object {
         private const val PARTICIPANT_ID = "PARTICIPANT_ID"
+        private const val TRIP_ID = "TRIP_ID"
 
         @JvmStatic
         fun createIntent(
             context: Context,
             participantId: Long,
-        ): Intent = Intent(context, ProfileEditActivity::class.java).apply {
+            tripId: Long
+        ): Intent = Intent(context, ParticipantProfileActivity::class.java).apply {
             putExtra(PARTICIPANT_ID, participantId)
+            putExtra(TRIP_ID, tripId)
         }
     }
 }

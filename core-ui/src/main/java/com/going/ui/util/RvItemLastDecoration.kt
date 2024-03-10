@@ -5,7 +5,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class RvItemDecoration(
+class RvItemLastDecoration(
     val context: Context,
     private val top: Int,
     private val left: Int,
