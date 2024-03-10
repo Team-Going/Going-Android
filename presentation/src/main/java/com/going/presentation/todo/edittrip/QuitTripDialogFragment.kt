@@ -43,8 +43,9 @@ class QuitTripDialogFragment :
     private fun initNegativeClickListener() {
         binding.tvDialogNegative.setOnSingleClickListener {
             viewModel.patchQuitTripFromServer()
-            val intent = Intent(requireActivity(), DashBoardActivity::class.java)
-            startActivity(intent)
+            Intent(requireActivity(), DashBoardActivity::class.java).apply {
+                requireActivity().startActivity(this)
+            }
         }
     }
 }

@@ -30,16 +30,16 @@ class EditDateBottomSheet(val isStart: Boolean) :
         val calendar = Calendar.getInstance()
         val datePicker = binding.dpEditTripDate.apply {
             updateDate(
-                viewModel.currentStartYear.value ?: calendar.get(Calendar.YEAR),
-                (viewModel.currentStartMonth.value ?: calendar.get(Calendar.MONTH)) - 1,
-                viewModel.currentStartDay.value ?: calendar.get(Calendar.DAY_OF_MONTH)
+                viewModel.currentStartYear ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentStartMonth ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentStartDay ?: calendar.get(Calendar.DAY_OF_MONTH)
             )
         }
-        if (viewModel.endYear.value != viewModel.currentEndYear.value || viewModel.endMonth.value != viewModel.currentEndMonth.value || viewModel.endDay.value != viewModel.currentEndDay.value) {
+        if (viewModel.endYear != viewModel.currentEndYear || viewModel.endMonth != viewModel.currentEndMonth || viewModel.endDay != viewModel.currentEndDay) {
             calendar.set(
-                viewModel.endYear.value ?: 0,
-                (viewModel.endMonth.value ?: 0) - 1,
-                viewModel.endDay.value ?: 0
+                viewModel.endYear ?: 0,
+                (viewModel.endMonth ?: 0) - 1,
+                viewModel.endDay ?: 0
             )
             datePicker.maxDate = calendar.timeInMillis
         } else {
@@ -52,16 +52,16 @@ class EditDateBottomSheet(val isStart: Boolean) :
         val calendar = Calendar.getInstance()
         val datePicker = binding.dpEditTripDate.apply {
             updateDate(
-                viewModel.currentEndYear.value ?: calendar.get(Calendar.YEAR),
-                (viewModel.currentEndMonth.value ?: calendar.get(Calendar.MONTH)) - 1,
-                viewModel.currentEndDay.value ?: calendar.get(Calendar.DAY_OF_MONTH)
+                viewModel.currentEndYear ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentEndMonth ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentEndDay ?: calendar.get(Calendar.DAY_OF_MONTH)
             )
         }
-        if (viewModel.startYear.value != viewModel.currentStartYear.value || viewModel.startMonth.value != viewModel.currentStartMonth.value || viewModel.startDay.value != viewModel.currentStartDay.value) {
+        if (viewModel.startYear != viewModel.currentStartYear || viewModel.startMonth != viewModel.currentStartMonth || viewModel.startDay != viewModel.currentStartDay) {
             calendar.set(
-                viewModel.startYear.value ?: 0,
-                (viewModel.startMonth.value ?: 0) - 1,
-                viewModel.startDay.value ?: 0
+                viewModel.startYear ?: 0,
+                (viewModel.startMonth ?: 0) - 1,
+                viewModel.startDay ?: 0
             )
             datePicker.minDate = calendar.timeInMillis
         } else {

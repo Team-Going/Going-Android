@@ -51,26 +51,8 @@ class EditTripInfoActivity :
         viewModel.currentEndDate = intent.getStringExtra(END_DATE) ?: ""
 
         binding.etEditTripInfoName.editText.setText(viewModel.currentTitle)
-
-        val (startYear, startMonth, startDay) = splitDate(viewModel.currentStartDate)
-        viewModel.currentStartYear.value = startYear
-        viewModel.currentStartMonth.value = startMonth
-        viewModel.currentStartDay.value = startDay
-        viewModel.setStartDate(startYear, startMonth, startDay)
-
-        val (endYear, endMonth, endDay) = splitDate(viewModel.currentEndDate)
-        viewModel.currentEndYear.value = endYear
-        viewModel.currentEndMonth.value = endMonth
-        viewModel.currentEndDay.value = endDay
-        viewModel.setEndDate(endYear, endMonth, endDay)
-    }
-
-    fun splitDate(date: String): Triple<Int, Int, Int> {
-        val parts = date.split(".")
-        val year = parts[0].toInt()
-        val month = parts[1].toInt()
-        val day = parts[2].toInt()
-        return Triple(year, month, day)
+        viewModel.splitStartDate()
+        viewModel.splitEndDate()
     }
 
     private fun observePatchEditState() {
@@ -125,8 +107,9 @@ class EditTripInfoActivity :
     private fun initEditBtnClickListener() {
         binding.btnEditTripSave.setOnSingleClickListener {
             viewModel.patchTripInfoFromServer()
-            val intent = Intent(this, DashBoardActivity::class.java)
-            startActivity(intent)
+            Intent(this, DashBoardActivity::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 
@@ -137,10 +120,10 @@ class EditTripInfoActivity :
     }
 
     companion object {
-        const val TRIP_ID = "TRIP_ID"
-        const val TITLE = "TITLE"
-        const val START_DATE = "START_DATE"
-        const val END_DATE = "END_DATE"
+        private const val TRIP_ID = "TRIP_ID"
+        private const val TITLE = "TITLE"
+        private const val START_DATE = "START_DATE"
+        private const val END_DATE = "END_DATE"
 
         @JvmStatic
         fun createIntent(

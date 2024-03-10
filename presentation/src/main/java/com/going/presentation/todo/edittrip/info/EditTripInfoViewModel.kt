@@ -27,23 +27,23 @@ class EditTripInfoViewModel @Inject constructor(
     var currentStartDate: String = ""
     var currentEndDate: String = ""
 
-    val title = MutableLiveData<String>()
+    var title: String? = null
 
-    var currentStartYear = MutableLiveData<Int>()
-    var currentStartMonth = MutableLiveData<Int>()
-    var currentStartDay = MutableLiveData<Int>()
-    var currentEndYear = MutableLiveData<Int>()
-    var currentEndMonth = MutableLiveData<Int>()
-    var currentEndDay = MutableLiveData<Int>()
+    var currentStartYear: Int? = null
+    var currentStartMonth: Int? = null
+    var currentStartDay: Int? = null
+    var currentEndYear: Int? = null
+    var currentEndMonth: Int? = null
+    var currentEndDay: Int? = null
 
-    val startYear = MutableLiveData<Int>()
-    val startMonth = MutableLiveData<Int>()
-    val startDay = MutableLiveData<Int>()
+    var startYear: Int? = null
+    var startMonth: Int? = null
+    var startDay: Int? = null
     var startDate = MutableLiveData<String>()
 
-    val endYear = MutableLiveData<Int>()
-    val endMonth = MutableLiveData<Int>()
-    val endDay = MutableLiveData<Int>()
+    var endYear: Int? = null
+    var endMonth: Int? = null
+    var endDay: Int? = null
     var endDate = MutableLiveData<String>()
 
     val isStartDateAvailable = MutableLiveData(false)
@@ -59,7 +59,7 @@ class EditTripInfoViewModel @Inject constructor(
             editTripRepository.patchEditTripInfo(
                 tripId,
                 EditTripRequestModel(
-                    title = title.value.orEmpty(),
+                    title = title.orEmpty(),
                     startDate = startDate.value.orEmpty(),
                     endDate = endDate.value.orEmpty()
                 )
@@ -73,31 +73,61 @@ class EditTripInfoViewModel @Inject constructor(
         }
     }
 
+    fun splitStartDate() {
+        val (startYear, startMonth, startDay) = splitDate(currentStartDate)
+        currentStartYear = startYear
+        currentStartMonth = startMonth
+        currentStartDay = startDay
+        setStartDate(startYear, startMonth, startDay)
+
+        val (endYear, endMonth, endDay) = splitDate(currentEndDate)
+        currentEndYear = endYear
+        currentEndMonth = endMonth
+        currentEndDay = endDay
+        setEndDate(endYear, endMonth, endDay)
+    }
+
+    fun splitEndDate() {
+        val (endYear, endMonth, endDay) = splitDate(currentEndDate)
+        currentEndYear = endYear
+        currentEndMonth = endMonth
+        currentEndDay = endDay
+        setEndDate(endYear, endMonth, endDay)
+    }
+
+    fun splitDate(date: String): Triple<Int, Int, Int> {
+        val parts = date.split(".")
+        val year = parts[0].toInt()
+        val month = parts[1].toInt()
+        val day = parts[2].toInt()
+        return Triple(year, month, day)
+    }
+
     fun setTitleState(newTitle: String, state: EditTextState) {
-        title.value = newTitle
+        title = newTitle
         isTitleAvailable.value = state == EditTextState.SUCCESS
         checkTripAvailable()
     }
 
     fun setStartDate(year: Int, month: Int, day: Int) {
-        startYear.value = year
-        startMonth.value = month
-        startDay.value = day
+        startYear = year
+        startMonth = month
+        startDay = day
         checkStartDateAvailable()
         startDate.value = String.format("%04d.%02d.%02d", year, month, day)
     }
 
 
     fun setEndDate(year: Int, month: Int, day: Int) {
-        endYear.value = year
-        endMonth.value = month
-        endDay.value = day
+        endYear = year
+        endMonth = month
+        endDay = day
         checkEndDateAvailable()
         endDate.value = String.format("%04d.%02d.%02d", year, month, day)
     }
 
     fun checkStartDateAvailable() {
-        if (startYear.value != null && startMonth.value != null && startDay.value != null) {
+        if (startYear != null && startMonth != null && startDay != null) {
             isStartDateAvailable.value = true
             checkTripAvailable()
         } else {
@@ -106,7 +136,7 @@ class EditTripInfoViewModel @Inject constructor(
     }
 
     fun checkEndDateAvailable() {
-        if (endYear.value != null && endMonth.value != null && endDay.value != null) {
+        if (endYear != null && endMonth != null && endDay != null) {
             isEndDateAvailable.value = true
             checkTripAvailable()
         } else {
@@ -115,8 +145,8 @@ class EditTripInfoViewModel @Inject constructor(
     }
 
     fun checkTripAvailable() {
-        isCheckTripAvailable.value = !title.value.isNullOrEmpty() && (
-                (title.value != null && currentTitle != title.value) ||
+        isCheckTripAvailable.value = !title.isNullOrEmpty() && (
+                (title != null && currentTitle != title) ||
                         currentStartDate != startDate.value ||
                         currentEndDate != endDate.value
                 )
