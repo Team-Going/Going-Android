@@ -1,5 +1,7 @@
 package com.going.presentation.todo.ourtodo.checkfriends
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -38,7 +40,6 @@ class CheckFriendsActivity :
         initAdapterWithClickListener()
         getTripId()
         observeCheckFriendsListState()
-        setResultTextColor()
 
     }
 
@@ -53,7 +54,7 @@ class CheckFriendsActivity :
             ParticipantProfileActivity.createIntent(
                 this,
                 participantId,
-                0
+                intent.getLongExtra(TRIP_ID, 0)
             ).apply { startActivity(this) }
         }
         binding.rvCheckFriendsMember.adapter = adapter
@@ -86,6 +87,7 @@ class CheckFriendsActivity :
 
         setProgressBarStatus(rates)
         setCountStatus(counts)
+        setResultTextColor()
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {
@@ -159,6 +161,18 @@ class CheckFriendsActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
+    }
+
+    companion object {
+        private const val TRIP_ID = "TRIP_ID"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            tripId: Long
+        ): Intent = Intent(context, CheckFriendsActivity::class.java).apply {
+            putExtra(TRIP_ID, tripId)
+        }
     }
 
 }

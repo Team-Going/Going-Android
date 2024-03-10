@@ -1,6 +1,5 @@
 package com.going.presentation.todo.ourtodo
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -137,10 +136,10 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initTripFriendBtnClickListener() {
         binding.btnOurTripFriend.setOnSingleClickListener {
-            Intent(requireActivity(), CheckFriendsActivity::class.java).apply {
-                putExtra(EXTRA_TRIP_ID, viewModel.tripId)
-                startActivity(this)
-            }
+            CheckFriendsActivity.createIntent(
+                requireContext(),
+                viewModel.tripId
+            ).apply { startActivity(this) }
         }
     }
 
