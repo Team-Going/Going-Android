@@ -86,13 +86,9 @@ class CheckFriendsActivity :
     private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
 
-        val rates = data.styles.map { it.rates }
-        val counts = data.styles.map { it.counts }
-        val bestPrefer = data.bestPrefer
-
-        setProgressBarStatus(rates)
-        setCountStatus(counts)
-        setResultTextColor(bestPrefer)
+        setProgressBarStatus(data.styles.map { it.rates })
+        setCountStatus(data.styles.map { it.counts })
+        setResultTextColor(data.bestPrefer)
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {
