@@ -194,7 +194,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter"
+                                android:text="@string/check_friends_preference_1_center"
                                 android:textColor="@color/gray_400" />
 
                             <TextView
@@ -344,7 +344,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter"
+                                android:text="@string/check_friends_preference_2_center"
                                 android:textColor="@color/gray_400" />
 
                             <TextView
@@ -493,7 +493,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter"
+                                android:text="@string/check_friends_preference_3_center"
                                 android:textColor="@color/gray_400" />
 
                             <TextView
@@ -642,7 +642,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter"
+                                android:text="@string/check_friends_preference_4_5_center"
                                 android:textColor="@color/gray_400" />
 
                             <TextView
@@ -791,7 +791,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
-                                android:text="@string/check_friends_preference_no_matter"
+                                android:text="@string/check_friends_preference_4_5_center"
                                 android:textColor="@color/gray_400" />
 
                             <TextView
