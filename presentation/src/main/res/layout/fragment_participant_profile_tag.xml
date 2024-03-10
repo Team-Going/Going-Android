@@ -10,8 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_preference_tag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,6 +21,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white_000"
+                android:nestedScrollingEnabled="true"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

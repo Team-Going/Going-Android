@@ -252,4 +252,6 @@
 
     <!--change tag-->
     <string name="change_tag_btn_change">취향태그 수정하기</string>
+    <string name="change_tag_success">취향태그를 수정했어요</string>
+    <string name="change_tag_failure">취향태그 수정에 실패했어요</string>
 </resources>

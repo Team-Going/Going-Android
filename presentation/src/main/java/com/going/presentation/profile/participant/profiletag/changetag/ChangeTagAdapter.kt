@@ -1,4 +1,4 @@
-package com.going.presentation.profile.trip.tripprofiletag.profiletag
+package com.going.presentation.profile.participant.profiletag.changetag
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,16 +7,18 @@ import com.going.domain.entity.ProfilePreferenceData
 import com.going.presentation.databinding.ItemPreferenceTagBinding
 import com.going.ui.util.ItemDiffCallback
 
-class PreferenceTagAdapter : ListAdapter<ProfilePreferenceData, PreferenceTagViewHolder>(diffUtil) {
+class ChangeTagAdapter(
+    private val itemSelect: (ProfilePreferenceData, Int) -> Unit
+) : ListAdapter<ProfilePreferenceData, ChangeTagViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PreferenceTagViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChangeTagViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemPreferenceTagBinding =
             ItemPreferenceTagBinding.inflate(inflater, parent, false)
-        return PreferenceTagViewHolder(binding)
+        return ChangeTagViewHolder(binding, itemSelect)
     }
 
-    override fun onBindViewHolder(holder: PreferenceTagViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChangeTagViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 
@@ -28,5 +30,4 @@ class PreferenceTagAdapter : ListAdapter<ProfilePreferenceData, PreferenceTagVie
             onContentsTheSame = { old, new -> old == new },
         )
     }
-
 }
