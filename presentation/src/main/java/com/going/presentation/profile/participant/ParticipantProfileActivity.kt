@@ -35,15 +35,12 @@ class ParticipantProfileActivity :
     private val participantId: Long by lazy {
         intent.getLongExtra(PARTICIPANT_ID, 0)
     }
-    private val tripId: Long by lazy {
-        intent.getLongExtra(TRIP_ID, 0)
-    }
+
     var isEmpty: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getParticipantProfile()
         setTripId()
         observeParticipantProfileState()
         setViewPager()
@@ -62,8 +59,8 @@ class ParticipantProfileActivity :
     private fun getParticipantProfile() =
         participantProfileViewModel.getUserInfoState(participantId)
 
-    private fun setTripId(){
-        participantProfileViewModel.tripId = tripId
+    private fun setTripId() {
+        participantProfileViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
     }
 
     private fun observeParticipantProfileState() {

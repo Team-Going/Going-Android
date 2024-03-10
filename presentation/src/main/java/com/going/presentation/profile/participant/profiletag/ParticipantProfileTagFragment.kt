@@ -13,6 +13,7 @@ import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.profile.participant.profiletag.changetag.ChangeTagActivity
 import com.going.ui.base.BaseFragment
 import com.going.ui.extension.setOnSingleClickListener
+import com.going.ui.util.RVItemFirstLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -54,21 +55,21 @@ class ParticipantProfileTagFragment :
         participantViewModel.profileTmp.run {
             adapter.submitList(
                 tagViewModel.setPreferenceData(
-                    this.styleA,
-                    this.styleB,
-                    this.styleC,
-                    this.styleD,
-                    this.styleE
+                    styleA,
+                    styleB,
+                    styleC,
+                    styleD,
+                    styleE
                 )
             )
             sendPreferenceWithClickListener(
-                this.styleA,
-                this.styleB,
-                this.styleC,
-                this.styleD,
-                this.styleE
+                styleA,
+                styleB,
+                styleC,
+                styleD,
+                styleE
             )
-            checkIsOwner(this.isOwner)
+            checkIsOwner(isOwner)
         }
     }
 
@@ -92,7 +93,7 @@ class ParticipantProfileTagFragment :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = ParticipantProfileTagDecoration(requireContext())
+        val itemDeco = RVItemFirstLastDecoration(50, 0)
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 

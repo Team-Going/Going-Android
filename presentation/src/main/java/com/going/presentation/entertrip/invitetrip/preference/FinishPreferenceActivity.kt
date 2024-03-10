@@ -13,12 +13,12 @@ import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_ALREADY_EXIST
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripViewModel.Companion.ERROR_OVER_SIX
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
-import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.state.UiState
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.state.UiState
+import com.going.ui.util.RVItemFirstLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -59,7 +59,7 @@ class FinishPreferenceActivity :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = PreferenceTagDecoration(this)
+        val itemDeco = RVItemFirstLastDecoration(50, 30)
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 

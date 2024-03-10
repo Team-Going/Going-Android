@@ -10,11 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.ProfilePreferenceData
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityChangeTagBinding
-import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
+import com.going.ui.util.RVItemFirstLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -95,7 +95,7 @@ class ChangeTagActivity :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = PreferenceTagDecoration(this)
+        val itemDeco = RVItemFirstLastDecoration(50, 30)
         binding.rvChangeTag.addItemDecoration(itemDeco)
     }
 

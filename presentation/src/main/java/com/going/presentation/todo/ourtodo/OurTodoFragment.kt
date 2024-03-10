@@ -30,7 +30,7 @@ import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.setStatusBarColor
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
-import com.going.ui.util.RvItemDecoration
+import com.going.ui.util.RvItemLastDecoration
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -114,7 +114,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
     }
 
     private fun initItemDecoration() {
-        val itemDeco = RvItemDecoration(requireContext(), 0, 0, 150, 0)
+        val itemDeco = RvItemLastDecoration(requireContext(), 0, 0, 150, 0)
         binding.rvOurTripFriend.addItemDecoration(itemDeco)
     }
 

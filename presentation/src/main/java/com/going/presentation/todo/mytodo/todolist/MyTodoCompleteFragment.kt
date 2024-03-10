@@ -17,7 +17,7 @@ import com.going.ui.base.BaseFragment
 import com.going.ui.extension.toast
 import com.going.ui.state.EnumUiState
 import com.going.ui.state.UiState
-import com.going.ui.util.RvItemDecoration
+import com.going.ui.util.RvItemLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -62,7 +62,7 @@ class MyTodoCompleteFragment() :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = RvItemDecoration(requireContext(), 0, 0, 0, 30)
+        val itemDeco = RvItemLastDecoration(requireContext(), 0, 0, 0, 30)
         binding.rvMyTodoComplete.addItemDecoration(itemDeco)
     }
 

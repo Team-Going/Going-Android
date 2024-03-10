@@ -12,13 +12,13 @@ import com.going.presentation.databinding.ActivityEnterPreferenceBinding
 import com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity.Companion.TRIP_INTENT_DATA
 import com.going.presentation.entertrip.createtrip.finish.FinishTripActivity
 import com.going.presentation.entertrip.preferencetag.PreferenceTagAdapter
-import com.going.presentation.entertrip.preferencetag.PreferenceTagDecoration
 import com.going.ui.base.BaseActivity
-import com.going.ui.extension.getParcelable
 import com.going.ui.extension.colorOf
+import com.going.ui.extension.getParcelable
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import com.going.ui.state.UiState
+import com.going.ui.util.RVItemFirstLastDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -63,7 +63,7 @@ class EnterPreferenceActivity :
     }
 
     private fun initItemDecoration() {
-        val itemDeco = PreferenceTagDecoration(this)
+        val itemDeco = RVItemFirstLastDecoration(50, 30)
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
     }
 
