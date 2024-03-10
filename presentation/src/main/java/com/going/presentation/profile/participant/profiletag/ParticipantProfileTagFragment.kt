@@ -3,7 +3,6 @@ package com.going.presentation.profile.participant.profiletag
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,8 +24,6 @@ class ParticipantProfileTagFragment :
         ViewModelProvider(requireActivity())[ParticipantProfileViewModel::class.java]
     }
 
-    private val tagViewModel by activityViewModels<ParticipantProfileTagViewModel>()
-
     private var _adapter: ParticipantProfileTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -36,14 +33,7 @@ class ParticipantProfileTagFragment :
         initAdapter()
         getPreferenceIndex()
         initItemDecoration()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
-            getPreferenceIndex()
-        }.launchIn(lifecycleScope)
+        observePreferenceChange()
     }
 
     private fun initAdapter() {
@@ -54,7 +44,7 @@ class ParticipantProfileTagFragment :
     private fun getPreferenceIndex() {
         participantViewModel.profileTmp.run {
             adapter.submitList(
-                tagViewModel.setPreferenceData(
+                participantViewModel.setPreferenceData(
                     styleA,
                     styleB,
                     styleC,
@@ -95,6 +85,12 @@ class ParticipantProfileTagFragment :
     private fun initItemDecoration() {
         val itemDeco = RVItemFirstLastDecoration(50, 0)
         binding.rvPreferenceTag.addItemDecoration(itemDeco)
+    }
+
+    private fun observePreferenceChange() {
+        participantViewModel.participantProfile.flowWithLifecycle(lifecycle).onEach {
+            getPreferenceIndex()
+        }.launchIn(lifecycleScope)
     }
 
     fun scrollTop() = binding.nsvPreferenceTag.scrollTo(0, 0)
