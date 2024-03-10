@@ -67,10 +67,10 @@
                     android:background="@drawable/shape_rect_6_gray50_fill"
                     android:gravity="center"
                     android:paddingVertical="14dp"
-                    android:text="식당, 여행 계획 취향이 잘 맞는 조합이네요!"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/check_friends_result_perfect" />
 
                 <TextView
                     android:id="@+id/tv_check_friends_check_member"

@@ -84,10 +84,11 @@ class CheckFriendsActivity :
 
         val rates = data.styles.map { it.rates }
         val counts = data.styles.map { it.counts }
+        val bestPrefer = data.bestPrefer
 
         setProgressBarStatus(rates)
         setCountStatus(counts)
-        setResultTextColor()
+        setResultTextColor(bestPrefer)
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {
@@ -146,14 +147,55 @@ class CheckFriendsActivity :
 
     }
 
-    private fun setResultTextColor() {
-        binding.tvCheckFriendsResult.apply {
-            text = SpannableStringBuilder(text).apply {
-                setSpan(
-                    ForegroundColorSpan(
-                        colorOf(R.color.red_500)
-                    ), 0, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+    private fun setResultTextColor(bestPrefer: List<String>) {
+        binding.tvCheckFriendsResult.text = when {
+            bestPrefer.isEmpty() -> {
+                SpannableStringBuilder(getString(R.string.check_friends_result_no_match)).apply {
+                    setSpan(
+                        ForegroundColorSpan(
+                            colorOf(R.color.red_500)
+                        ), 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+            }
+
+            bestPrefer.size < 5 -> {
+                val bestPreferList = setBestPreferList(bestPrefer)
+                val bestPreferString = bestPreferList.joinToString(separator = ", ")
+                SpannableStringBuilder(
+                    getString(
+                        R.string.check_friends_result_match,
+                        bestPreferString
+                    )
+                ).apply {
+                    setSpan(
+                        ForegroundColorSpan(colorOf(R.color.red_500)),
+                        0,
+                        bestPreferString.length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+            }
+
+            else -> {
+                SpannableStringBuilder(getString(R.string.check_friends_result_perfect)).apply {
+                    setSpan(
+                        ForegroundColorSpan(
+                            colorOf(R.color.red_500)
+                        ), 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setBestPreferList(bestPrefer: List<String>): List<String> {
+        return bestPrefer.map { prefer ->
+            when (prefer) {
+                getString(R.string.check_friends_preference_1_title) -> getString(R.string.check_friends_result_match_1)
+                getString(R.string.check_friends_preference_2_title) -> getString(R.string.check_friends_result_match_2)
+                getString(R.string.check_friends_preference_5_title) -> getString(R.string.check_friends_result_match_5)
+                else -> prefer
             }
         }
     }
