@@ -38,9 +38,13 @@ class CheckFriendsActivity :
 
         initBackClickListener()
         initAdapterWithClickListener()
-        getTripId()
         observeCheckFriendsListState()
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        getTripId()
     }
 
     private fun initBackClickListener() {
