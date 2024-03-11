@@ -106,7 +106,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
     }
 
     companion object {
-        private const val VERSION_CODE = "v1.1"
+        private const val VERSION_CODE = "v1.2"
         private const val FAQ =
             "https://goinggoing.notion.site/FAQ-920f6ad93fea46a983061f412e15cad1?pvs=74"
         private const val PRIVACY_POLICY_URL =
