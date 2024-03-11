@@ -6,28 +6,31 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CheckFriendsResponseDto(
+    @SerialName("bestPrefer")
+    val bestPrefer: List<String>,
     @SerialName("participants")
     val participants: List<TripParticipantResponseDto>,
     @SerialName("styles")
     val styles: List<StylesResponseDto>
 ) {
-
     @Serializable
     data class StylesResponseDto(
-        @SerialName("rate")
-        val rate: Int,
-        @SerialName("isLeft")
-        val isLeft: Boolean
+        @SerialName("rates")
+        val rates: List<Int>,
+        @SerialName("counts")
+        val counts: List<Int>
     ) {
         fun toStyleModel() =
-            CheckFriendsModel.StylesModel(rate, isLeft)
+            CheckFriendsModel.StylesModel(rates, counts)
     }
 
     fun toCheckFriendsModel() =
-        CheckFriendsModel(participants.map {
-            it.toTripParticipantModel()
-        }, styles.map {
-            it.toStyleModel()
-        })
+        CheckFriendsModel(
+            bestPrefer,
+            participants.map {
+                it.toTripParticipantModel()
+            }, styles.map {
+                it.toStyleModel()
+            })
 
 }
