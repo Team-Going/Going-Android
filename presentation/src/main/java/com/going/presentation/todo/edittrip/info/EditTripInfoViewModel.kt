@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -106,7 +108,14 @@ class EditTripInfoViewModel @Inject constructor(
     fun setTitleState(newTitle: String, state: EditTextState) {
         title = newTitle
         isTitleAvailable.value = state == EditTextState.SUCCESS
-        checkTripAvailable()
+        checkTripAvailable(
+            title,
+            currentTitle,
+            startDate,
+            endDate,
+            currentStartDate,
+            currentEndDate
+        )
     }
 
     fun setStartDate(year: Int, month: Int, day: Int) {
@@ -129,7 +138,14 @@ class EditTripInfoViewModel @Inject constructor(
     fun checkStartDateAvailable() {
         if (startYear != null && startMonth != null && startDay != null) {
             isStartDateAvailable.value = true
-            checkTripAvailable()
+            checkTripAvailable(
+                title,
+                currentTitle,
+                startDate,
+                endDate,
+                currentStartDate,
+                currentEndDate
+            )
         } else {
             isStartDateAvailable.value = false
         }
@@ -138,19 +154,41 @@ class EditTripInfoViewModel @Inject constructor(
     fun checkEndDateAvailable() {
         if (endYear != null && endMonth != null && endDay != null) {
             isEndDateAvailable.value = true
-            checkTripAvailable()
+            checkTripAvailable(
+                title,
+                currentTitle,
+                startDate,
+                endDate,
+                currentStartDate,
+                currentEndDate
+            )
         } else {
             isEndDateAvailable.value = false
         }
     }
 
-    fun checkTripAvailable() {
-        isCheckTripAvailable.value = !title.isNullOrEmpty() && (
-                (title != null && currentTitle != title) ||
-                        currentStartDate != startDate.value ||
-                        currentEndDate != endDate.value
-                )
+    fun checkTripAvailable(
+        title: String?,
+        currentTitle: String?,
+        startDate: MutableLiveData<String>,
+        endDate: MutableLiveData<String>,
+        currentStartDate: String,
+        currentEndDate: String
+    ) {
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+        val currentStart = LocalDate.parse(currentStartDate, formatter)
+        val currentEnd = LocalDate.parse(currentEndDate, formatter)
+        val start = startDate.value?.let { LocalDate.parse(it, formatter) }
+        val end = endDate.value?.let { LocalDate.parse(it, formatter) }
+
+        val titleCondition = !title.isNullOrEmpty() && title != currentTitle
+        val startDateCondition = start != null && start != currentStart && start.isBefore(currentEnd)
+        val endDateCondition = end != null && end != currentEnd && currentStart.isBefore(end)
+        val bothDatesCondition = start != null && end != null && start != currentStart && end != currentEnd && start.isBefore(end)
+
+        isCheckTripAvailable.value = titleCondition || startDateCondition || endDateCondition || bothDatesCondition
     }
+
 
     companion object {
         const val MAX_TRIP_LEN = 15

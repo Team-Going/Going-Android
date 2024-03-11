@@ -20,7 +20,7 @@
             android:id="@+id/tb_edit_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_rect_4_gray200_line"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -80,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.Doorip.Detail3.Regular"
             android:text="@{@string/counter(viewModel.titleLength, viewModel.MAX_TRIP_LEN)}"
             android:textColor="@color/gray_400"
             app:layout_constraintEnd_toEndOf="@id/tv_edit_trip_name"
@@ -92,11 +93,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="16dp"
             android:text="@string/edit_trip_info_one_line_info_tv_title"
             android:textColor="@color/gray_700"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_name_counter" />
 
         <LinearLayout
             android:layout_width="0dp"

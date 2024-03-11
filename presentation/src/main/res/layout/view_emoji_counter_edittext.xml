@@ -19,7 +19,7 @@
         style="@style/edit_text_style"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/shape_rect_4_gray200_line"
         android:gravity="top"
         android:includeFontPadding="false"
