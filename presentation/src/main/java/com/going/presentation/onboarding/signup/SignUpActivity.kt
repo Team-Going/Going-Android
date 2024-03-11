@@ -79,9 +79,14 @@ class SignUpActivity :
         viewModel.isAuthState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 AuthState.LOADING -> return@onEach
-                AuthState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
+                AuthState.SUCCESS -> {
+                    TendencySplashActivity.createIntent(
+                        this,
+                        TendencySplashActivity.TENDENCY
+                    ).apply { startActivity(this) }
+                }
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
-                AuthState.OTHER_PAGE -> navigateToScreenClear<TendencySplashActivity>()
+                AuthState.OTHER_PAGE -> return@onEach
             }
         }.launchIn(lifecycleScope)
     }

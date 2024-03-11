@@ -70,7 +70,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sig
                 SignInState.SUCCESS -> navigateToScreenClear<DashBoardActivity>()
                 SignInState.FAILURE -> toast(getString(R.string.server_error))
                 SignInState.SIGNUP -> navigateToScreenClear<SignUpActivity>()
-                SignInState.TENDENCY -> navigateToScreenClear<TendencySplashActivity>()
+                SignInState.TENDENCY -> {
+                    TendencySplashActivity.createIntent(this, TendencySplashActivity.TENDENCY)
+                }
             }
         }.launchIn(lifecycleScope)
     }

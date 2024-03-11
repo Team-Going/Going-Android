@@ -65,6 +65,14 @@
             app:layout_constraintBottom_toTopOf="@id/btn_tendency_splash_start"
             android:layout_marginBottom="20dp"/>
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:dividerColor="@color/gray_300"
+            app:layout_constraintTop_toBottomOf="@id/btn_tendency_splash_skip"
+            app:layout_constraintEnd_toEndOf="@id/btn_tendency_splash_skip"
+            app:layout_constraintStart_toStartOf="@id/btn_tendency_splash_skip" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tendency_splash_start"
             style="@style/button_style"
