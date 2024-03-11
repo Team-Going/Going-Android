@@ -2,6 +2,7 @@ package com.going.doorip.di
 
 import com.going.data.service.AuthService
 import com.going.data.service.DashBoardService
+import com.going.data.service.EditTripService
 import com.going.data.service.EnterTripService
 import com.going.data.service.ProfileService
 import com.going.data.service.SettingService
@@ -60,4 +61,9 @@ object ServiceModule {
     @Singleton
     fun provideTokenReissueService(@REISSUE retrofit: Retrofit): TokenReissueService =
         retrofit.create(TokenReissueService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideEditTripService(@JWT retrofit: Retrofit): EditTripService =
+        retrofit.create(EditTripService::class.java)
 }

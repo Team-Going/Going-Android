@@ -15,10 +15,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.FragmentOurTodoBinding
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
+import com.going.presentation.todo.edittrip.edit.EditTripActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
@@ -59,12 +61,12 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
-        initTripInfoBtnClickListener()
         initAddTodoBtnListener()
         initItemDecoration()
         initInviteBtnListener()
         initBackBtnClickListener()
         initTripFriendBtnClickListener()
+        initTripInfoBtnClickListener()
         setTabLayout()
         setViewPager()
         setViewPagerChangeListener()
@@ -91,12 +93,6 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
             participantId,
             viewModel.tripId
         ).apply { startActivity(this) }
-    }
-
-    private fun initTripInfoBtnClickListener() {
-        binding.btnOurTodoTripInfo.setOnSingleClickListener {
-            // TODO : 여행정보 화면 이동
-        }
     }
 
     private fun initAddTodoBtnListener() {
@@ -140,6 +136,15 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
                 requireContext(),
                 viewModel.tripId
             ).apply { startActivity(this) }
+        }
+    }
+
+    private fun initTripInfoBtnClickListener() {
+        binding.btnOurTodoTripInfo.setOnSingleClickListener {
+            Intent(requireActivity(), EditTripActivity::class.java).apply {
+                putExtra(TRIP_ID, viewModel.tripId)
+                startActivity(this)
+            }
         }
     }
 

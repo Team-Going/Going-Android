@@ -244,7 +244,7 @@
     <string name="invite_error_browser"> 브라우저 오류 </string>
 
     <!--edit_trip_info-->
-    <string name="edit_trip_info_tb_title">여행 정보</string>
+    <string name="edit_trip_info_tb_title">여행 정보 수정</string>
     <string name="edit_trip_info_tv_title">어떤 여행인가요?</string>
     <string name="edit_trip_info_one_line_info_tv_title">여행 일정을 알려주세요</string>
     <string name="edit_trip_info_et_name_hint">이번 여행 이름을 입력해 주세요</string>
@@ -252,6 +252,7 @@
     <string name="edit_trip_info_quit_btn">나가기</string>
     <string name="edit_trip_info_edit_btn">수정하기</string>
     <string name="edit_profile_finish">프로필을 수정했어요</string>
+    <string name="edit_trip_info_save_btn">저장하기</string>
     <string name="edit_trip_info_select_btn">선택하기</string>
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
     <string name="edit_trip_info_toast_error">시작일을 먼저 입력해 주세요</string>
@@ -265,4 +266,20 @@
     <string name="change_tag_btn_change">취향태그 수정하기</string>
     <string name="change_tag_success">취향태그를 수정했어요</string>
     <string name="change_tag_failure">취향태그 수정에 실패했어요</string>
+
+    <!--edit_trip-->
+    <string name="edit_trip_tb_title">여행 정보</string>
+    <string name="edit_trip_tv_title">어떤 여행인가요?</string>
+    <string name="edit_trip_one_line_info_tv_title">여행 일정을 알려주세요</string>
+    <string name="edit_trip_slash">-</string>
+    <string name="edit_trip_quit_btn">나가기</string>
+    <string name="edit_trip_edit_btn">수정하기</string>
+    <string name="edit_trip_select_btn">선택하기</string>
+    <string name="edit_trip_date">%1$d.%2$d.%3$d</string>
+    <string name="edit_trip_toast_success">여행 정보 수정되었어요</string>
+    <string name="edit_trip_toast_failure">여행 정보 수정에 실패했어요</string>
+
+    <!--quit_trip-->
+    <string name="quit_trip_toast_success">여행방에서 나왔어요</string>
+    <string name="quit_trip_toast_failure">여행방에서 나오지 못했어요</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.going.presentation.todo.editinfo
+package com.going.presentation.todo.edittrip.info
 
 import android.os.Bundle
 import android.view.View
@@ -30,19 +30,16 @@ class EditDateBottomSheet(val isStart: Boolean) :
         val calendar = Calendar.getInstance()
         val datePicker = binding.dpEditTripDate.apply {
             updateDate(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                viewModel.currentStartYear ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentStartMonth ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentStartDay ?: calendar.get(Calendar.DAY_OF_MONTH)
             )
         }
-        calendar.set(2000, 0, 1)
-        datePicker.minDate = calendar.timeInMillis
-
-        if (viewModel.endYear.value != null && viewModel.endMonth.value != null && viewModel.endDay.value != null) {
+        if (viewModel.endYear != viewModel.currentEndYear || viewModel.endMonth != viewModel.currentEndMonth || viewModel.endDay != viewModel.currentEndDay) {
             calendar.set(
-                viewModel.endYear.value ?: 0,
-                (viewModel.endMonth.value ?: 0) - 1,
-                viewModel.endDay.value ?: 0
+                viewModel.endYear ?: 0,
+                (viewModel.endMonth ?: 0) - 1,
+                viewModel.endDay ?: 0
             )
             datePicker.maxDate = calendar.timeInMillis
         } else {
@@ -52,17 +49,24 @@ class EditDateBottomSheet(val isStart: Boolean) :
     }
 
     private fun customEndDate() {
-        binding.dpEditTripDate.apply {
-            minDate = Calendar.getInstance().apply {
-                set(
-                    viewModel.startYear.value ?: 0,
-                    (viewModel.startMonth.value ?: 0) - 1,
-                    viewModel.startDay.value ?: 0
-                )
-            }.timeInMillis
-            maxDate = Calendar.getInstance().apply {
-                set(2100, 0, 1)
-            }.timeInMillis
+        val calendar = Calendar.getInstance()
+        val datePicker = binding.dpEditTripDate.apply {
+            updateDate(
+                viewModel.currentEndYear ?: calendar.get(Calendar.YEAR),
+                (viewModel.currentEndMonth ?: calendar.get(Calendar.MONTH)) - 1,
+                viewModel.currentEndDay ?: calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        }
+        if (viewModel.startYear != viewModel.currentStartYear || viewModel.startMonth != viewModel.currentStartMonth || viewModel.startDay != viewModel.currentStartDay) {
+            calendar.set(
+                viewModel.startYear ?: 0,
+                (viewModel.startMonth ?: 0) - 1,
+                viewModel.startDay ?: 0
+            )
+            datePicker.minDate = calendar.timeInMillis
+        } else {
+            calendar.set(2000, 0, 1)
+            datePicker.minDate = calendar.timeInMillis
         }
     }
 
@@ -71,7 +75,6 @@ class EditDateBottomSheet(val isStart: Boolean) :
             if (isStart) {
                 viewModel.setStartDate(year, month + 1, dayOfMonth)
             } else {
-                customEndDate()
                 viewModel.setEndDate(year, month + 1, dayOfMonth)
             }
         }

@@ -7,17 +7,17 @@
 
         <variable
             name="viewModel"
-            type="com.going.presentation.todo.edittrip.info.EditTripInfoViewModel" />
+            type="com.going.presentation.todo.edittrip.edit.EditTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".todo.edittrip.info.EditTripInfoActivity">
+        tools:context=".todo.edittrip.edit.EditTripActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/tb_edit_trip_info"
+            android:id="@+id/tb_edit_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_rect_4_gray200_line"
@@ -41,38 +41,62 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="@string/edit_trip_info_tb_title"
+                android:text="@string/edit_trip_tb_title"
                 app:layout_constraintBottom_toBottomOf="@id/btn_edit_trip_info_back"
                 app:layout_constraintStart_toEndOf="@id/btn_edit_trip_info_back"
                 app:layout_constraintTop_toTopOf="@id/btn_edit_trip_info_back" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
-            android:id="@+id/et_edit_trip_info_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:imeOptions="actionNext"
-            app:canBlankError="true"
-            app:hint="@string/edit_trip_info_et_name_hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_edit_trip_info"
-            app:title="@string/edit_trip_info_tv_title" />
-
         <TextView
-            android:id="@+id/tv_edit_trip_info_on_line_info_title"
+            android:id="@+id/tv_edit_trip_name_title"
             style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/create_trip_name_tv_title"
+            app:layout_constraintStart_toStartOf="@id/tb_edit_info"
+            app:layout_constraintTop_toBottomOf="@id/tb_edit_info" />
+
+        <TextView
+            android:id="@+id/tv_edit_trip_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="16dp"
+            android:background="@drawable/shape_rect_4_gray700_line"
+            android:maxLines="3"
+            android:text="@={viewModel.title}"
+            android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name_title" />
+
+        <TextView
+            android:id="@+id/tv_name_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{@string/counter(viewModel.titleLength, viewModel.MAX_TRIP_LEN)}"
+            android:textColor="@color/gray_400"
+            app:layout_constraintEnd_toEndOf="@id/tv_edit_trip_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name" />
+
+
+        <TextView
+            android:id="@+id/tv_edit_trip_on_line_info_title"
+            style="@style/TextAppearance.Doorip.Body3.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="37dp"
             android:text="@string/edit_trip_info_one_line_info_tv_title"
             android:textColor="@color/gray_700"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_edit_trip_info_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -81,7 +105,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_info_on_line_info_title">
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_on_line_info_title">
 
             <TextView
                 android:id="@+id/tv_edit_trip_info_start_date"
@@ -94,7 +118,7 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.startDate}"
+                android:text="@{@string/edit_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay)}"
                 android:textColor="@color/gray_700" />
 
             <TextView
@@ -116,27 +140,44 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.endDate}"
+                android:text="@{@string/edit_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay)}"
                 android:textColor="@color/gray_700" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_edit_trip_save"
-            style="@style/button_style"
+        <TextView
+            android:id="@+id/btn_edit_trip_quit"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/shape_rect_4_white000_fill"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp"
+            android:text="@string/edit_trip_quit_btn"
+            android:textColor="@color/gray_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_edit_trip_edit"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_edit_trip_edit"
+            style="@style/TextAppearance.Doorip.Body1.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="@{viewModel.isCheckTripAvailable()}"
-            android:outlineProvider="none"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
             android:paddingVertical="10dp"
-            android:text="@string/edit_trip_info_save_btn"
-            android:textColor="@{viewModel.isCheckTripAvailable() == true ? @color/white_000 : @color/gray_200}"
-            android:textSize="16sp"
+            android:text="@string/edit_trip_edit_btn"
+            android:textColor="@color/white_000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/btn_edit_trip_quit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
