@@ -1,6 +1,7 @@
 package com.going.presentation.tendency.result
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -13,6 +14,7 @@ import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityTendencyResultBinding
 import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.tendency.splash.TendencySplashActivity
+import com.going.presentation.tendency.ttest.TendencyTestActivity
 import com.going.presentation.util.downloadImage
 import com.going.presentation.util.initOnBackPressedListener
 import com.going.presentation.util.navigateToScreen
@@ -34,7 +36,9 @@ class TendencyResultActivity :
         super.onCreate(savedInstanceState)
 
         getUserInfo()
+        setQuarter()
         observeUserInfoState()
+        setBtnString()
         initRestartBtnClickListener()
         initSaveImgBtnClickListener()
         initFinishBtnClickListener()
@@ -44,6 +48,11 @@ class TendencyResultActivity :
     private fun getUserInfo() {
         viewModel.getUserInfoState()
     }
+
+    private fun setQuarter() =
+        viewModel.setQuarters(
+            intent.getStringExtra(TendencySplashActivity.QUARTER) ?: ""
+        )
 
     private fun observeUserInfoState() {
         viewModel.userInfoState.flowWithLifecycle(lifecycle).onEach { state ->
@@ -97,6 +106,14 @@ class TendencyResultActivity :
         }
     }
 
+    private fun setBtnString() {
+        binding.btnTendencyResultFinish.text = when (viewModel.quarter) {
+            TendencySplashActivity.TENDENCY -> getString(R.string.tendency_test_result_finish_button)
+            TendencySplashActivity.PROFILE -> getString(R.string.tendency_test_result_profile_finish_button)
+            else -> getString(R.string.tendency_splash_skip_btn)
+        }
+    }
+
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
             navigateToScreenClear<TendencySplashActivity>()
@@ -111,13 +128,20 @@ class TendencyResultActivity :
 
     private fun initFinishBtnClickListener() {
         binding.btnTendencyResultFinish.setOnSingleClickListener {
-            navigateToScreen<DashBoardActivity>(
-                listOf(
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP,
-                    Intent.FLAG_ACTIVITY_NEW_TASK,
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK,
-                ),
-            )
+            when (viewModel.quarter) {
+                TendencySplashActivity.TENDENCY -> {
+                    navigateToScreen<DashBoardActivity>(
+                        listOf(
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP,
+                            Intent.FLAG_ACTIVITY_NEW_TASK,
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK,
+                        ),
+                    )
+                }
+                TendencySplashActivity.PROFILE -> finish()
+                else -> finish()
+            }
+
         }
     }
 
@@ -143,5 +167,13 @@ class TendencyResultActivity :
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 200
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            quarter: String,
+        ): Intent = Intent(context, TendencyResultActivity::class.java).apply {
+            putExtra(TendencySplashActivity.QUARTER, quarter)
+        }
     }
 }

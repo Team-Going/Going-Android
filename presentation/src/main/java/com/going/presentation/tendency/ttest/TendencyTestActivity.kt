@@ -2,6 +2,8 @@ package com.going.presentation.tendency.ttest
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -14,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityTendencyTestBinding
 import com.going.presentation.tendency.result.TendencyResultActivity
+import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.state.EnumUiState
@@ -37,6 +40,7 @@ class TendencyTestActivity :
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
+        setQuarter()
         initFadeAnimation()
         initFadeListener()
         initNextBtnClickListener()
@@ -48,6 +52,12 @@ class TendencyTestActivity :
     private fun initBindingViewModel() {
         binding.viewModel = viewModel
     }
+
+    private fun setQuarter() =
+        viewModel.setQuarters(
+            intent.getStringExtra(TendencySplashActivity.QUARTER) ?: ""
+        )
+
 
     private fun initFadeAnimation() {
         fadeOutList = listOf(
@@ -139,7 +149,13 @@ class TendencyTestActivity :
     private fun observeIsSubmitTendencyState() {
         viewModel.isSubmitTendencyState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
-                EnumUiState.SUCCESS -> navigateToScreenClear<TendencyResultActivity>()
+                EnumUiState.SUCCESS -> {
+                   TendencyResultActivity.createIntent(
+                        this,
+                        viewModel.quarter
+                    ).apply { startActivity(this) }
+                    finish()
+                }
                 EnumUiState.FAILURE -> toast(getString(R.string.server_error))
                 EnumUiState.EMPTY -> return@onEach
                 EnumUiState.LOADING -> return@onEach
@@ -161,5 +177,13 @@ class TendencyTestActivity :
 
         private const val PROGRESS = "progress"
         private const val ALPHA = "alpha"
+
+        @JvmStatic
+        fun createIntent(
+            context: Context,
+            quarter: String,
+        ): Intent = Intent(context, TendencyTestActivity::class.java).apply {
+            putExtra(TendencySplashActivity.QUARTER, quarter)
+        }
     }
 }
