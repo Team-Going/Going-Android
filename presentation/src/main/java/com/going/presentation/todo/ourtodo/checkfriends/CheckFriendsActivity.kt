@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.CheckFriendsModel
@@ -94,8 +95,11 @@ class CheckFriendsActivity :
     }
 
     private fun setEmptyView(participants: List<TripParticipantModel>) {
-        if(participants.size == 1){
-
+        if (participants.size == 1) {
+            with(binding) {
+                svCheckFriends.isVisible = false
+                layoutCheckFriendsEmpty.isVisible = true
+            }
         }
     }
 
