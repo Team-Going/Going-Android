@@ -102,9 +102,9 @@ class CheckFriendsActivity :
             with(binding) {
                 svCheckFriends.isVisible = false
                 layoutCheckFriendsEmpty.isVisible = true
-                setInviteCode()
-                initInviteBtnListener()
             }
+            setInviteCode()
+            initInviteBtnListener()
         }
     }
 
@@ -237,7 +237,7 @@ class CheckFriendsActivity :
     companion object {
         private const val TRIP_ID = "TRIP_ID"
         private const val INVITE_CODE = "INVITE_CODE"
-        private const val INVITE_DIALOG = "inviteDialog"
+        private const val INVITE_DIALOG = "INVITE_DIALOG"
 
         @JvmStatic
         fun createIntent(
