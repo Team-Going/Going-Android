@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.CheckFriendsModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.profile.participant.ParticipantProfileActivity
@@ -86,9 +87,16 @@ class CheckFriendsActivity :
     private fun setFriendsData(data: CheckFriendsModel) {
         adapter.submitList(data.participants)
 
+        setEmptyView(data.participants)
         setProgressBarStatus(data.styles.map { it.rates })
         setCountStatus(data.styles.map { it.counts })
         setResultTextColor(data.bestPrefer)
+    }
+
+    private fun setEmptyView(participants: List<TripParticipantModel>) {
+        if(participants.size == 1){
+
+        }
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {

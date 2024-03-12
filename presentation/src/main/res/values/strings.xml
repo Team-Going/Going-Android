@@ -238,6 +238,8 @@
     <string name="check_friends_result_match">%s에 대한 여행 취향이 잘 맞네요!</string>
     <string name="check_friends_result_no_match">달라서 즐거운 여행! 친구와 서로의 취향을 이야기해 봐요</string>
     <string name="check_friends_result_perfect">최고의 여행 친구! 모든 여행 취향이 일치해요</string>
+    <string name="check_friends_empty">아직 함께하는 친구들이 없어요!\n친구를 초대하고 함께 여행 취향을 알아보세요</string>
+    <string name="check_friends_btn_invite">여행 친구 초대하기</string>
 
     <!--kakao-link-share-->
     <string name="invite_error_kakao"> 카카오톡 초대코드 오류 </string>
