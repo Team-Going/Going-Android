@@ -16,7 +16,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
-import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
+import com.going.presentation.todo.ourtodo.invite.FriendInviteEmptyDialog
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
@@ -36,7 +36,7 @@ class CheckFriendsActivity :
 
     private val viewModel by viewModels<CheckFriendsViewModel>()
 
-    private var friendInviteDialog: FriendInviteDialog? = null
+    private var friendInviteDialog: FriendInviteEmptyDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,14 +102,19 @@ class CheckFriendsActivity :
             with(binding) {
                 svCheckFriends.isVisible = false
                 layoutCheckFriendsEmpty.isVisible = true
+                setInviteCode()
                 initInviteBtnListener()
             }
         }
     }
 
+    private fun setInviteCode() {
+        viewModel.inviteCode = intent.getStringExtra(INVITE_CODE)
+    }
+
     private fun initInviteBtnListener() {
         binding.btnCheckFriendsInvite.setOnSingleClickListener {
-            friendInviteDialog = FriendInviteDialog()
+            friendInviteDialog = FriendInviteEmptyDialog()
             friendInviteDialog?.show(supportFragmentManager, INVITE_DIALOG)
         }
     }
@@ -231,14 +236,17 @@ class CheckFriendsActivity :
 
     companion object {
         private const val TRIP_ID = "TRIP_ID"
+        private const val INVITE_CODE = "INVITE_CODE"
         private const val INVITE_DIALOG = "inviteDialog"
 
         @JvmStatic
         fun createIntent(
             context: Context,
-            tripId: Long
+            tripId: Long,
+            inviteCode: String
         ): Intent = Intent(context, CheckFriendsActivity::class.java).apply {
             putExtra(TRIP_ID, tripId)
+            putExtra(INVITE_CODE, inviteCode)
         }
     }
 
