@@ -16,6 +16,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
@@ -34,6 +35,8 @@ class CheckFriendsActivity :
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
     private val viewModel by viewModels<CheckFriendsViewModel>()
+
+    private var friendInviteDialog: FriendInviteDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +102,15 @@ class CheckFriendsActivity :
             with(binding) {
                 svCheckFriends.isVisible = false
                 layoutCheckFriendsEmpty.isVisible = true
+                initInviteBtnListener()
             }
+        }
+    }
+
+    private fun initInviteBtnListener() {
+        binding.btnCheckFriendsInvite.setOnSingleClickListener {
+            friendInviteDialog = FriendInviteDialog()
+            friendInviteDialog?.show(supportFragmentManager, INVITE_DIALOG)
         }
     }
 
@@ -215,10 +226,12 @@ class CheckFriendsActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
+        if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
     }
 
     companion object {
         private const val TRIP_ID = "TRIP_ID"
+        private const val INVITE_DIALOG = "inviteDialog"
 
         @JvmStatic
         fun createIntent(
