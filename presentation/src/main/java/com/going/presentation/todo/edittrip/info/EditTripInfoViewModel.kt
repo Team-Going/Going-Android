@@ -181,12 +181,12 @@ class EditTripInfoViewModel @Inject constructor(
         val start = startDate.value?.let { LocalDate.parse(it, formatter) }
         val end = endDate.value?.let { LocalDate.parse(it, formatter) }
 
-        val titleCondition = !title.isNullOrEmpty() && title != currentTitle
+        val titleCondition = title != currentTitle
         val startDateCondition = start != null && start != currentStart && start.isBefore(currentEnd)
         val endDateCondition = end != null && end != currentEnd && currentStart.isBefore(end)
         val bothDatesCondition = start != null && end != null && start != currentStart && end != currentEnd && start.isBefore(end)
 
-        isCheckTripAvailable.value = titleCondition || startDateCondition || endDateCondition || bothDatesCondition
+        isCheckTripAvailable.value = (!title.isNullOrEmpty() && (titleCondition || startDateCondition || endDateCondition || bothDatesCondition))
     }
 
 
