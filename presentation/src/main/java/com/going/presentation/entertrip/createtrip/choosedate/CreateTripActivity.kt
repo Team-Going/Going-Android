@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
-import com.going.domain.entity.NameState
+import androidx.core.widget.doAfterTextChanged
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCreateTripBinding
 import com.going.presentation.entertrip.createtrip.preference.EnterPreferenceActivity
@@ -22,7 +22,8 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
 
         initBindingViewModel()
-        observeIsNameAvailable()
+        setEtInfoNameArguments()
+        observeInfoNameTextChanged()
         observeCheckStartDateAvailable()
         observeCheckEndDateAvailable()
         initStartDateClickListener()
@@ -35,21 +36,20 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
         binding.viewModel = viewModel
     }
 
-    private fun observeIsNameAvailable() {
-        viewModel.isNameAvailable.observe(this) { state ->
-            setColors(
-                state,
-                binding.tvNameCounter,
-            ) { background ->
-                binding.etCreateTripName.background = ResourcesCompat.getDrawable(
-                    this.resources,
-                    background,
-                    theme,
-                )
-            }
+    private fun setEtInfoNameArguments() {
+        with(binding.etCreateTripNameTitle) {
+            setMaxLen(viewModel.getMaxTripLen())
+            overWarning = getString(R.string.trip_over_error)
+            blankWarning = getString(R.string.trip_blank_error)
         }
     }
 
+
+    private fun observeInfoNameTextChanged() {
+        binding.etCreateTripNameTitle.editText.doAfterTextChanged { text ->
+            viewModel.setTitleState(text.toString(), binding.etCreateTripNameTitle.state)
+        }
+    }
     private fun observeCheckStartDateAvailable() {
         viewModel.isStartDateAvailable.observe(this) { isAvailable ->
             if (isAvailable) {
@@ -82,22 +82,6 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
         }
     }
 
-    private fun setColors(
-        state: NameState,
-        counter: TextView,
-        setBackground: (Int) -> Unit,
-    ) {
-        val (color, background) = when (state) {
-            NameState.Empty -> R.color.gray_200 to R.drawable.shape_rect_4_gray200_line
-            NameState.Success -> R.color.gray_700 to R.drawable.shape_rect_4_gray700_line
-            NameState.Blank -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-            NameState.OVER -> R.color.red_500 to R.drawable.shape_rect_4_red500_line
-        }
-
-        setCounterColor(counter, color)
-        setBackground(background)
-    }
-
     private fun setStartDateColors(
         date: TextView,
         setDatecolor: (Int) -> Unit,
@@ -124,10 +108,6 @@ class CreateTripActivity : BaseActivity<ActivityCreateTripBinding>(R.layout.acti
 
     private fun setDateColor(date: TextView, color: Int) {
         date.setTextColor(getColor(color))
-    }
-
-    private fun setCounterColor(counter: TextView, color: Int) {
-        counter.setTextColor(getColor(color))
     }
 
     private fun initStartDateClickListener() {

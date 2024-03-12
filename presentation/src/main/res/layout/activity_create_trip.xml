@@ -52,67 +52,31 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_create_trip_name_title"
-            style="@style/TextAppearance.Doorip.Body3.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/create_trip_name_tv_title"
-            app:layout_constraintStart_toStartOf="@id/tb_create_trip"
-            app:layout_constraintTop_toBottomOf="@id/tb_create_trip" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_create_trip_name"
-            style="@style/edit_text_style"
+        <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+            android:id="@+id/et_create_trip_name_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:afterTextChanged="@{(text) -> viewModel.checkNameAvailable()}"
-            android:hint="@string/create_trip_et_name_hint"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="3"
-            android:text="@={viewModel.name}"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail1.Regular"
+            android:layout_marginTop="40dp"
+            android:imeOptions="actionNext"
+            app:canBlankError="true"
+            app:hint="@string/edit_trip_info_et_name_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_create_trip_name_title" />
+            app:layout_constraintTop_toBottomOf="@id/tb_create_trip"
+            app:title="@string/edit_trip_info_tv_title" />
 
-        <TextView
-            style="@style/TextAppearance.Doorip.Detail3.Regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:text="@{viewModel.isNameAvailable() == NameState.Blank ? @string/name_blank_error : @string/trip_over_error}"
-            android:textColor="@color/red_500"
-            android:visibility="@{(viewModel.isNameAvailable() == NameState.Blank) || (viewModel.isNameAvailable() == NameState.OVER) ? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
-            app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
-
-        <TextView
-            android:id="@+id/tv_name_counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{@string/counter(viewModel.nameLength, viewModel.MAX_TRIP_LEN)}"
-            android:textColor="@color/gray_200"
-            app:layout_constraintEnd_toEndOf="@id/et_create_trip_name"
-            app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
 
         <TextView
             android:id="@+id/tv_create_trip_on_line_info_title"
             style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="16dp"
             android:text="@string/create_trip_one_line_info_tv_title"
             android:textColor="@color/gray_700"
-            app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
-            app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
+            app:layout_constraintStart_toStartOf="@id/et_create_trip_name_title"
+            app:layout_constraintTop_toBottomOf="@id/et_create_trip_name_title" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -142,8 +106,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/create_trip_slash"
                 android:textColor="@color/gray_700"
-                app:layout_constraintStart_toStartOf="@id/et_create_trip_name"
-                app:layout_constraintTop_toBottomOf="@id/et_create_trip_name" />
+                app:layout_constraintStart_toStartOf="@id/et_create_trip_name_title"
+                app:layout_constraintTop_toBottomOf="@id/et_create_trip_name_title" />
 
             <TextView
                 android:id="@+id/tv_create_trip_end_date"
