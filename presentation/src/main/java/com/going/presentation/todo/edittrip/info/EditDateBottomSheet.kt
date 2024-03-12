@@ -83,6 +83,7 @@ class EditDateBottomSheet(val isStart: Boolean) :
     private fun initFinishBtnClickListener() {
         binding.btnEditTripSelect.setOnSingleClickListener {
             sendDateInfo()
+            viewModel.checkTripAvailable(viewModel.title, viewModel.currentTitle, viewModel.startDate, viewModel.endDate, viewModel.currentStartDate, viewModel.currentEndDate)
             dismiss()
         }
     }

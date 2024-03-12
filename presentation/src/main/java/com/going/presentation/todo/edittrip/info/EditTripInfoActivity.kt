@@ -80,7 +80,6 @@ class EditTripInfoActivity :
         binding.etEditTripInfoName.editText.doAfterTextChanged { text ->
             viewModel.setTitleState(text.toString(), binding.etEditTripInfoName.state)
         }
-        viewModel.checkTripAvailable()
     }
 
 
@@ -90,7 +89,6 @@ class EditTripInfoActivity :
             startBottomSheetDialog?.show(supportFragmentManager, startBottomSheetDialog?.tag)
         }
         viewModel.checkStartDateAvailable()
-        viewModel.checkTripAvailable()
 
     }
 
@@ -100,8 +98,6 @@ class EditTripInfoActivity :
             endBottomSheetDialog?.show(supportFragmentManager, endBottomSheetDialog?.tag)
         }
         viewModel.checkEndDateAvailable()
-        viewModel.checkTripAvailable()
-
     }
 
     private fun initEditBtnClickListener() {

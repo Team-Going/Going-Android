@@ -20,7 +20,7 @@
             android:id="@+id/tb_edit_trip_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_rect_4_gray200_line"
+            android:background="@drawable/layer_list_preference_tag_gray100_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
