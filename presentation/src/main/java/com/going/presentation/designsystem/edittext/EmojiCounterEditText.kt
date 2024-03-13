@@ -2,6 +2,7 @@ package com.going.presentation.designsystem.edittext
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.text.method.ScrollingMovementMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +92,9 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
                 typedArray.getString(R.styleable.EmojiCounterEditText_hint)
             etEmojiCounterEtContent.minLines =
                 typedArray.getInt(R.styleable.EmojiCounterEditText_minLines, 1)
+            etEmojiCounterEtContent.maxLines =
+                typedArray.getInt(R.styleable.EmojiCounterEditText_minLines, 2)
+            etEmojiCounterEtContent.movementMethod = ScrollingMovementMethod()
             tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
         }
         canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
