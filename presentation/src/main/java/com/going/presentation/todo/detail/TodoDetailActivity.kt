@@ -31,7 +31,7 @@ class TodoDetailActivity :
 
     private val viewModel by viewModels<TodoDetailViewModel>()
 
-    private var _adapter: TripAllocatorAdapter? = null
+    private var _adapter: DetailAllocatorAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -89,7 +89,7 @@ class TodoDetailActivity :
 
     private fun initAllocatorListAdapter() {
         if (viewModel.isPublic) {
-            _adapter = TripAllocatorAdapter()
+            _adapter = DetailAllocatorAdapter()
             binding.rvOurTodoDetailPerson.adapter = adapter
         }
     }
