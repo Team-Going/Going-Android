@@ -28,13 +28,13 @@ class ChangeTagActivity :
     private var _adapter: ChangeTagAdapter? = null
     private val adapter get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
-    private val preferenceAnswers = MutableList(5) { 0 }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initAdapter()
+        setTripId()
         initPreferenceList()
+        observeIsButtonValid()
         initItemDecoration()
         initChangeClickListener()
         initBackClickListener()
@@ -44,6 +44,10 @@ class ChangeTagActivity :
     private fun initAdapter() {
         _adapter = ChangeTagAdapter(::preferenceTagClickListener)
         binding.rvChangeTag.adapter = adapter
+    }
+
+    private fun setTripId() {
+        tagViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
     }
 
     private fun initPreferenceList() {
@@ -64,34 +68,28 @@ class ChangeTagActivity :
                 )
             )
 
-            preferenceAnswers[0] = styleA
-            preferenceAnswers[1] = styleB
-            preferenceAnswers[2] = styleC
-            preferenceAnswers[3] = styleD
-            preferenceAnswers[4] = styleE
+            tagViewModel.setDefaultPreference(styleA, styleB, styleC, styleD, styleE)
         }
     }
 
     private fun preferenceTagClickListener(item: ProfilePreferenceData, checkedIndex: Int) {
-        preferenceAnswers[item.number.toInt() - 1] = checkedIndex
-        setButtonValid()
-        sendPreferenceInfo()
+        tagViewModel.checkIsPreferenceChange(item.number.toInt(), checkedIndex)
     }
 
-    private fun setButtonValid() {
-        binding.btnChangeStart.isEnabled = true
-        binding.btnChangeStart.setTextColor(
-            colorOf(R.color.white_000)
-        )
-    }
-
-    private fun sendPreferenceInfo() {
-        tagViewModel.tripId = intent.getLongExtra(TRIP_ID, 0)
-        tagViewModel.styleA.value = preferenceAnswers[0]
-        tagViewModel.styleB.value = preferenceAnswers[1]
-        tagViewModel.styleC.value = preferenceAnswers[2]
-        tagViewModel.styleD.value = preferenceAnswers[3]
-        tagViewModel.styleE.value = preferenceAnswers[4]
+    private fun observeIsButtonValid() {
+        tagViewModel.isButtonValid.flowWithLifecycle(lifecycle).onEach { state ->
+            if (state) {
+                binding.btnChangeStart.isEnabled = true
+                binding.btnChangeStart.setTextColor(
+                    colorOf(R.color.white_000)
+                )
+            } else {
+                binding.btnChangeStart.isEnabled = false
+                binding.btnChangeStart.setTextColor(
+                    colorOf(R.color.gray_200)
+                )
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initItemDecoration() {
