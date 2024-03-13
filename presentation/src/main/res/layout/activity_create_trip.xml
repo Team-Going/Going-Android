@@ -70,8 +70,8 @@
             android:id="@+id/tv_create_trip_on_line_info_title"
             style="@style/TextAppearance.Doorip.Body3.Bold"
             android:layout_width="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="@string/create_trip_one_line_info_tv_title"
             android:textColor="@color/gray_700"
@@ -99,7 +99,8 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}" />
+                android:text="@{viewModel.isStartDateAvailable() == true ? @string/create_trip_date(viewModel.startYear, viewModel.startMonth, viewModel.startDay) : @string/create_trip_start_date}"
+                android:textColor="@color/gray_200" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +122,8 @@
                 android:maxLines="2"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="16dp"
-                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}" />
+                android:text="@{viewModel.isEndDateAvailable() == true ? @string/create_trip_date(viewModel.endYear, viewModel.endMonth, viewModel.endDay) : @string/create_trip_end_date}"
+                android:textColor="@color/gray_200" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

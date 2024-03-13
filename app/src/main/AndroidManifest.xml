@@ -86,7 +86,8 @@
         <activity
             android:name="com.going.presentation.entertrip.createtrip.choosedate.CreateTripActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name="com.going.presentation.entertrip.StartTripSplashActivity"
@@ -157,8 +158,8 @@
         <activity
             android:name="com.going.presentation.profile.edit.ProfileEditActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name="com.going.presentation.profile.participant.ParticipantProfileActivity"
@@ -173,7 +174,8 @@
         <activity
             android:name="com.going.presentation.todo.edittrip.info.EditTripInfoActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name="com.going.presentation.todo.edittrip.edit.EditTripActivity"
