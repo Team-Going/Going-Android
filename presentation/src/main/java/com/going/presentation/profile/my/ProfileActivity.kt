@@ -35,7 +35,6 @@ class ProfileActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getUserInfo()
         observeUserInfoState()
         initBackBtnClickListener()
         initSaveImgBtnClickListener()
@@ -80,6 +79,7 @@ class ProfileActivity :
 
             if (profileViewModel.profileId.value != -1) {
                 viewProfileEmpty.isVisible = false
+                viewProfile.isVisible = true
                 UserTendencyResultList[number].apply {
                     ivProfile.load(profileImage) {
                         transformations(CircleCropTransformation())
