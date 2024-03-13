@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
@@ -107,7 +106,6 @@ class EditTripInfoActivity :
             viewModel.patchTripInfoFromServer()
             Intent(this, EditTripActivity::class.java).apply {
                 putExtra(TRIP_ID, viewModel.tripId)
-                Log.d("sy", viewModel.tripId.toString())
                 startActivity(this)
             }
         }
