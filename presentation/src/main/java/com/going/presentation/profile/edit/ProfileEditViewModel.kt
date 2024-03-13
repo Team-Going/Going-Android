@@ -56,7 +56,7 @@ class ProfileEditViewModel @Inject constructor(
 
     private fun checkIsValueChanged() {
         _isValueChanged.value =
-            nowName.length <= getMaxNameLen() && nowInfo.length <= getMaxInfoLen() && (isInfoChanged || isNameChanged)
+            nowName.isNotBlank() && nowName.length <= getMaxNameLen() && nowInfo.isNotBlank() && nowInfo.length <= getMaxInfoLen() && (isInfoChanged || isNameChanged)
     }
 
     fun patchUserInfo() {
