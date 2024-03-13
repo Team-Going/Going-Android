@@ -1,6 +1,5 @@
 package com.going.presentation.profile.participant.profiletag.changetag
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.ProfilePreferenceData
@@ -27,17 +26,17 @@ class ChangeTagViewModel @Inject constructor(
 
     var tripId: Long = 0
 
-    private val defaultStyleA = MutableLiveData(0)
-    private val defaultStyleB = MutableLiveData(0)
-    private val defaultStyleC = MutableLiveData(0)
-    private val defaultStyleD = MutableLiveData(0)
-    private val defaultStyleE = MutableLiveData(0)
+    private var defaultStyleA: Int? = 0
+    private var defaultStyleB: Int? = 0
+    private var defaultStyleC: Int? = 0
+    private var defaultStyleD: Int? = 0
+    private var defaultStyleE: Int? = 0
 
-    private val styleA = MutableLiveData(0)
-    private val styleB = MutableLiveData(0)
-    private val styleC = MutableLiveData(0)
-    private val styleD = MutableLiveData(0)
-    private val styleE = MutableLiveData(0)
+    private var styleA: Int? = 0
+    private var styleB: Int? = 0
+    private var styleC: Int? = 0
+    private var styleD: Int? = 0
+    private var styleE: Int? = 0
 
     private var isStyleAChanged: Boolean = false
     private var isStyleBChanged: Boolean = false
@@ -46,47 +45,47 @@ class ChangeTagViewModel @Inject constructor(
     private var isStyleEChanged: Boolean = false
 
     fun setDefaultPreference(styleA: Int, styleB: Int, styleC: Int, styleD: Int, styleE: Int) {
-        defaultStyleA.value = styleA
-        this.styleA.value = styleA
+        defaultStyleA = styleA
+        this.styleA = styleA
 
-        defaultStyleB.value = styleB
-        this.styleB.value = styleB
+        defaultStyleB = styleB
+        this.styleB = styleB
 
-        defaultStyleC.value = styleC
-        this.styleC.value = styleC
+        defaultStyleC = styleC
+        this.styleC = styleC
 
-        defaultStyleD.value = styleD
-        this.styleD.value = styleD
+        defaultStyleD = styleD
+        this.styleD = styleD
 
-        defaultStyleE.value = styleE
-        this.styleE.value = styleE
+        defaultStyleE = styleE
+        this.styleE = styleE
     }
 
     fun checkIsPreferenceChange(number: Int, index: Int) {
         when (number) {
             1 -> {
-                styleA.value = index
-                isStyleAChanged = index != defaultStyleA.value
+                styleA = index
+                isStyleAChanged = index != defaultStyleA
             }
 
             2 -> {
-                styleB.value = index
-                isStyleBChanged = index != defaultStyleB.value
+                styleB = index
+                isStyleBChanged = index != defaultStyleB
             }
 
             3 -> {
-                styleC.value = index
-                isStyleCChanged = index != defaultStyleC.value
+                styleC = index
+                isStyleCChanged = index != defaultStyleC
             }
 
             4 -> {
-                styleD.value = index
-                isStyleDChanged = index != defaultStyleD.value
+                styleD = index
+                isStyleDChanged = index != defaultStyleD
             }
 
             5 -> {
-                styleE.value = index
-                isStyleEChanged = index != defaultStyleE.value
+                styleE = index
+                isStyleEChanged = index != defaultStyleE
             }
         }
         checkIsButtonValid()
@@ -102,11 +101,11 @@ class ChangeTagViewModel @Inject constructor(
             profileRepository.patchPreferenceTag(
                 tripId,
                 PreferenceChangeRequestModel(
-                    styleA.value ?: 0,
-                    styleB.value ?: 0,
-                    styleC.value ?: 0,
-                    styleD.value ?: 0,
-                    styleE.value ?: 0
+                    styleA ?: 0,
+                    styleB ?: 0,
+                    styleC ?: 0,
+                    styleD ?: 0,
+                    styleE ?: 0
                 )
             )
                 .onSuccess {
