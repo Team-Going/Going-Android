@@ -54,6 +54,9 @@ class ParticipantProfileCharacterFragment :
                 UserTendencyResultList[result].run {
                     ivTripProfileBig.load(resultImage)
 
+                    tvTripProfileType.text = profileTitle
+                    tvTripProfileSubType.text = profileSubTitle
+
                     tvTripProfileTag1.text = getString(R.string.tag, tags[0])
                     tvTripProfileTag2.text = getString(R.string.tag, tags[1])
                     tvTripProfileTag3.text = getString(R.string.tag, tags[2])
