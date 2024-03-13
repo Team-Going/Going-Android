@@ -192,7 +192,7 @@
     <string name="participant_profile_btn">여행 캐릭터 검사하러 가기</string>
     <string name="participant_profile_common">여행 캐릭터 검사를 아직 진행하지 않았어요</string>
     <string name="participant_profile_owner">지금 바로 나를 대신 할 여행 캐릭터를 만나보세요!</string>
-    <string name="participant_profile_friend_title">%s의 여행 프로필</string>
+    <string name="participant_profile_friend_title">친구 여행 프로필</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
