@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoModel
 import com.going.presentation.R
 import com.going.presentation.databinding.ItemMyTodoBinding
-import com.going.presentation.todo.allocator.TodoAllocatorAdapter
+import com.going.presentation.todo.list.ListAllocatorAdapter
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
 
@@ -28,7 +28,7 @@ class MyTodoListViewHolder(
             cbMyTodoSelected.isVisible = isCompleted
             cbMyTodoUnselected.isVisible = !isCompleted
 
-            rvMyTodoName.adapter = TodoAllocatorAdapter(isCompleted).apply {
+            rvMyTodoName.adapter = ListAllocatorAdapter(isCompleted).apply {
                 submitList(item.allocators)
             }
 

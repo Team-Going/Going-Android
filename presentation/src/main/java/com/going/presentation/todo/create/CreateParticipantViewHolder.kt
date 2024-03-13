@@ -6,7 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.colorOf
 
-class TripParticipantViewHolder(
+class CreateParticipantViewHolder(
     val binding: ItemTodoCreateNameBinding,
     private val isFixed: Boolean,
     private val itemClick: (Int) -> Unit

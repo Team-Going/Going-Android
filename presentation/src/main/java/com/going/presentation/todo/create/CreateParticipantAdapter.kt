@@ -1,28 +1,29 @@
-package com.going.presentation.todo.change
+package com.going.presentation.todo.create
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.going.domain.entity.response.TodoAllocatorModel
+import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.util.ItemDiffCallback
 
-class TodoAllocatorAdapter(
+class CreateParticipantAdapter(
+    private val isFixed: Boolean,
     private val itemClick: (Int) -> Unit
-) : ListAdapter<TodoAllocatorModel, TodoAllocatorViewHolder>(diffUtil) {
+) : ListAdapter<TripParticipantModel, CreateParticipantViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoAllocatorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreateParticipantViewHolder {
         val binding: ItemTodoCreateNameBinding =
             ItemTodoCreateNameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TodoAllocatorViewHolder(binding, itemClick)
+        return CreateParticipantViewHolder(binding, isFixed, itemClick)
     }
 
-    override fun onBindViewHolder(holder: TodoAllocatorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CreateParticipantViewHolder, position: Int) {
         holder.onBind(getItem(position), position)
     }
 
     companion object {
-        private val diffUtil = ItemDiffCallback<TodoAllocatorModel>(
+        private val diffUtil = ItemDiffCallback<TripParticipantModel>(
             onItemsTheSame = { old, new -> old.participantId == new.participantId },
             onContentsTheSame = { old, new -> old == new },
         )
