@@ -48,19 +48,19 @@
 
             <TextView
                 android:id="@+id/btn_todo_memo_finish"
+                style="@style/TextAppearance.Doorip.Body2.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.Doorip.Body2.Bold"
-                android:enabled="@{vm.isFinishAvailable()}"
-                android:text="@string/my_todo_create_btn_finish"
-                android:textColor="@{vm.isFinishAvailable() == true ? @color/red_500 : @color/gray_200}"
-                app:layout_constraintTop_toTopOf="@id/tv_todo_create_title"
-                app:layout_constraintBottom_toBottomOf="@id/tv_todo_create_title"
                 android:layout_marginEnd="12dp"
+                android:enabled="@{vm.isFinishAvailable()}"
                 android:paddingHorizontal="11dp"
                 android:paddingTop="13dp"
                 android:paddingBottom="12dp"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:text="@string/my_todo_create_btn_finish"
+                android:textColor="@{vm.isFinishAvailable() == true ? @color/red_500 : @color/gray_200}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_create_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_todo_create_title" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="0dp"
@@ -235,6 +235,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:imeOptions="actionDone"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
                     app:canBlankError="false"
                     app:hint="@string/my_todo_create_tv_memo_hint"
                     app:layout_constraintEnd_toEndOf="parent"
