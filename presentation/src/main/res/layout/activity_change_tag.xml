@@ -76,7 +76,6 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="false"
             android:outlineProvider="none"
             android:text="@string/change_tag_btn_change"
             android:textColor="@color/gray_200"
