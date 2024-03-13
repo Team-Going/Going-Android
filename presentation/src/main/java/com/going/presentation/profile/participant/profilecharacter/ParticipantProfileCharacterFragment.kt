@@ -14,6 +14,7 @@ import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -31,6 +32,7 @@ class ParticipantProfileCharacterFragment :
 
         setViewModel()
         btnParticipantProfileEmptyOwnerClickListener()
+        btnTripProfileRestartClickListener()
     }
 
     private fun setViewModel() {
@@ -72,6 +74,15 @@ class ParticipantProfileCharacterFragment :
 
     private fun btnParticipantProfileEmptyOwnerClickListener() {
         binding.btnParticipantProfileEmptyOwner.setOnClickListener {
+            TendencySplashActivity.createIntent(
+                requireActivity(),
+                TendencySplashActivity.PROFILE
+            ).apply { startActivity(this) }
+        }
+    }
+
+    private fun btnTripProfileRestartClickListener() {
+        binding.btnTripProfileRestart.setOnSingleClickListener {
             TendencySplashActivity.createIntent(
                 requireActivity(),
                 TendencySplashActivity.PROFILE
