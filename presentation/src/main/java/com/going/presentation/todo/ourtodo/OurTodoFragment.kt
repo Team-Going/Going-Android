@@ -135,7 +135,8 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         binding.btnOurTripFriend.setOnSingleClickListener {
             CheckFriendsActivity.createIntent(
                 requireContext(),
-                viewModel.tripId
+                viewModel.tripId,
+                viewModel.inviteCode
             ).apply { startActivity(this) }
         }
     }

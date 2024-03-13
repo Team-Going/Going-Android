@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.response.CheckFriendsModel
@@ -14,6 +15,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ActivityCheckFriendsBinding
 import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
+import com.going.presentation.todo.ourtodo.invite.FriendInviteEmptyDialog
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.setOnSingleClickListener
@@ -32,6 +34,8 @@ class CheckFriendsActivity :
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
     private val viewModel by viewModels<CheckFriendsViewModel>()
+
+    private var friendInviteDialog: FriendInviteEmptyDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,11 +88,28 @@ class CheckFriendsActivity :
     }
 
     private fun setFriendsData(data: CheckFriendsModel) {
-        adapter.submitList(data.participants)
+        if (data.participants.size == 1) {
+            binding.layoutCheckFriendsEmpty.isVisible = true
+            setInviteCode()
+            initInviteBtnListener()
+        } else {
+            binding.svCheckFriends.isVisible = true
+            adapter.submitList(data.participants)
+            setProgressBarStatus(data.styles.map { it.rates })
+            setCountStatus(data.styles.map { it.counts })
+            setResultTextColor(data.bestPrefer)
+        }
+    }
 
-        setProgressBarStatus(data.styles.map { it.rates })
-        setCountStatus(data.styles.map { it.counts })
-        setResultTextColor(data.bestPrefer)
+    private fun setInviteCode() {
+        viewModel.inviteCode = intent.getStringExtra(INVITE_CODE)
+    }
+
+    private fun initInviteBtnListener() {
+        binding.btnCheckFriendsInvite.setOnSingleClickListener {
+            friendInviteDialog = FriendInviteEmptyDialog()
+            friendInviteDialog?.show(supportFragmentManager, INVITE_DIALOG)
+        }
     }
 
     private fun setProgressBarStatus(rates: List<List<Int>>) {
@@ -203,17 +224,22 @@ class CheckFriendsActivity :
     override fun onDestroy() {
         super.onDestroy()
         _adapter = null
+        if (friendInviteDialog?.isAdded == true) friendInviteDialog?.dismiss()
     }
 
     companion object {
         private const val TRIP_ID = "TRIP_ID"
+        private const val INVITE_CODE = "INVITE_CODE"
+        private const val INVITE_DIALOG = "INVITE_DIALOG"
 
         @JvmStatic
         fun createIntent(
             context: Context,
-            tripId: Long
+            tripId: Long,
+            inviteCode: String
         ): Intent = Intent(context, CheckFriendsActivity::class.java).apply {
             putExtra(TRIP_ID, tripId)
+            putExtra(INVITE_CODE, inviteCode)
         }
     }
 
