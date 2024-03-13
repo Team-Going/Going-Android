@@ -40,7 +40,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="4dp"
-                android:src="@drawable/ic_profile"
+                android:src="@drawable/ic_trip_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +77,7 @@
 
                         <TextView
                             android:id="@+id/tv_my_todo_title_up"
-                            style="@style/TextAppearance.Doorip.Head1"
+                            style="@style/TextAppearance.Doorip.Head2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="24dp"
@@ -89,7 +89,7 @@
 
                         <TextView
                             android:id="@+id/tv_my_todo_title_down"
-                            style="@style/TextAppearance.Doorip.Head1"
+                            style="@style/TextAppearance.Doorip.Head2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="28dp"
