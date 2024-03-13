@@ -45,6 +45,7 @@ class ProfileActivity :
     override fun onResume() {
         super.onResume()
         getUserInfo()
+        setFragmentHeight()
         scrollTop()
     }
 
