@@ -26,7 +26,8 @@ class CheckFriendsViewHolder(
                 4 -> R.drawable.img_profile_8
                 5 -> R.drawable.img_profile_5
                 6 -> R.drawable.img_profile_7
-                else -> R.drawable.img_profile_3
+                7 -> R.drawable.img_profile_3
+                else -> R.drawable.img_profile_guest
             }
             ivTodoFriend.load(profileImage) {
                 transformations(CircleCropTransformation())

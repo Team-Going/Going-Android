@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View.OnFocusChangeListener
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
@@ -56,7 +57,11 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
         set(value) {
             field = value
 
-            binding.btnDeleteText.isVisible = value != EditTextState.EMPTY
+            binding.run {
+                btnDeleteText.isVisible =
+                    (value != EditTextState.EMPTY) && etEmojiCounterEtContent.hasFocus()
+            }
+
             editTextStateMap[field]?.let { setEditTextState(it) }
         }
 
@@ -70,6 +75,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
         initDeleteBtnClickListener()
         setBindingContent(typedArray)
+        initEtFocusChangeListener()
 
         typedArray.recycle()
 
@@ -84,7 +90,6 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
     private fun setBindingContent(typedArray: TypedArray) {
         with(binding) {
-            btnDeleteText.isVisible = state != EditTextState.EMPTY
             tvEmojiCounterEtTitle.text =
                 typedArray.getString(R.styleable.EmojiCounterEditText_title)
             etEmojiCounterEtContent.hint =
@@ -94,6 +99,13 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
             tvEmojiCounterEtNameCounter.text = context.getString(R.string.counter, 0, maxLen)
         }
         canBlankError = typedArray.getBoolean(R.styleable.EmojiCounterEditText_canBlankError, false)
+    }
+
+    private fun initEtFocusChangeListener() {
+        binding.etEmojiCounterEtContent.onFocusChangeListener =
+            OnFocusChangeListener { _, hasFocus ->
+                binding.btnDeleteText.isVisible = hasFocus && (state != EditTextState.EMPTY)
+            }
     }
 
     private fun checkTextAvailable() {
