@@ -19,7 +19,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/layer_list_preference_tag_gray100_line"
-            android:backgroundTint="@color/white_000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -77,7 +76,6 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="22dp"
             android:background="@drawable/sel_rounded_corner_button"
-            android:enabled="false"
             android:outlineProvider="none"
             android:text="@string/change_tag_btn_change"
             android:textColor="@color/gray_200"

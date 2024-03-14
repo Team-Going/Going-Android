@@ -7,16 +7,16 @@ import com.going.domain.entity.response.TodoAllocatorModel
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.util.ItemDiffCallback
 
-class TripAllocatorAdapter : ListAdapter<TodoAllocatorModel, TripAllocatorViewHolder>(diffUtil) {
+class DetailAllocatorAdapter : ListAdapter<TodoAllocatorModel, DetailAllocatorViewHolder>(diffUtil) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripAllocatorViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailAllocatorViewHolder {
         val inflater by lazy { LayoutInflater.from(parent.context) }
         val binding: ItemTodoCreateNameBinding =
             ItemTodoCreateNameBinding.inflate(inflater, parent, false)
-        return TripAllocatorViewHolder(binding)
+        return DetailAllocatorViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TripAllocatorViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DetailAllocatorViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 

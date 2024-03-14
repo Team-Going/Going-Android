@@ -19,6 +19,8 @@ class CheckFriendsViewModel @Inject constructor(
     private val _checkFriendsListState = MutableStateFlow<UiState<CheckFriendsModel>>(UiState.Empty)
     val checkFriendsListState: StateFlow<UiState<CheckFriendsModel>> get() = _checkFriendsListState
 
+    var inviteCode: String? = ""
+
     fun getFriendsListFromServer(
         tripId: Long
     ) {

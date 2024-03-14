@@ -31,10 +31,15 @@ class DashBoardActivity :
         checkIsFirstEntered()
         setTabLayout()
         setViewPager()
-        setTravelerName()
         initSettingBtnClickListener()
         initCreateTripBtnClickListener()
         initOnBackPressedListener(binding.root)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setTravelerName()
     }
 
     private fun checkIsFirstEntered() {

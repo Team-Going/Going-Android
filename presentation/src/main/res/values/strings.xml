@@ -213,21 +213,18 @@
     <string name="check_friends_tool_bar">우리의 여행 취향</string>
     <string name="check_friends_check_member">프로필 사진을 눌러서 친구의 취향을 구경해보세요</string>
     <string name="check_friends_preference_number">&#160;%d명</string>
+    <string name="check_friends_preference_no_matter">상관없어</string>
     <string name="check_friends_preference_1_title">여행 계획</string>
     <string name="check_friends_preference_1_left">철저하게</string>
-    <string name="check_friends_preference_1_center">아무렇게</string>
     <string name="check_friends_preference_1_right">즉흥으로</string>
     <string name="check_friends_preference_2_title">여행 장소</string>
     <string name="check_friends_preference_2_left">관광지</string>
-    <string name="check_friends_preference_2_center">어디든</string>
     <string name="check_friends_preference_2_right">로컬장소</string>
     <string name="check_friends_preference_3_title">식당</string>
     <string name="check_friends_preference_3_left">유명 맛집</string>
-    <string name="check_friends_preference_3_center">아무데나</string>
     <string name="check_friends_preference_3_right">가까운 곳</string>
     <string name="check_friends_preference_4_title">사진</string>
-    <string name="check_friends_preference_4_left">사진필수</string>
-    <string name="check_friends_preference_4_5_center">상관없어</string>
+    <string name="check_friends_preference_4_left">사진 필수</string>
     <string name="check_friends_preference_4_right">눈에 담기</string>
     <string name="check_friends_preference_5_title">여행 일정</string>
     <string name="check_friends_preference_5_left">알차게</string>
@@ -238,6 +235,8 @@
     <string name="check_friends_result_match">%s에 대한 여행 취향이 잘 맞네요!</string>
     <string name="check_friends_result_no_match">달라서 즐거운 여행! 친구와 서로의 취향을 이야기해 봐요</string>
     <string name="check_friends_result_perfect">최고의 여행 친구! 모든 여행 취향이 일치해요</string>
+    <string name="check_friends_empty">아직 함께하는 친구들이 없어요!\n친구를 초대하고 함께 여행 취향을 알아보세요</string>
+    <string name="check_friends_btn_invite">여행 친구 초대하기</string>
 
     <!--kakao-link-share-->
     <string name="invite_error_kakao"> 카카오톡 초대코드 오류 </string>
