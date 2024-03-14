@@ -27,7 +27,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
 
     private val viewModel by viewModels<TodoChangeViewModel>()
 
-    private var _adapter: TodoAllocatorAdapter? = null
+    private var _adapter: ChangeAllocatorAdapter? = null
     private val adapter
         get() = requireNotNull(_adapter) { getString(R.string.adapter_not_initialized_error_msg) }
 
@@ -115,7 +115,7 @@ class TodoChangeActivity : BaseActivity<ActivityTodoChangeBinding>(R.layout.acti
     }
 
     private fun initOurTodoNameListAdapter() {
-        _adapter = TodoAllocatorAdapter { position ->
+        _adapter = ChangeAllocatorAdapter { position ->
             viewModel.allocatorModelList[position].also { it.isAllocated = !it.isAllocated }
             viewModel.checkIsFinishAvailable()
         }

@@ -7,11 +7,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.domain.entity.AuthState
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivitySignUpBinding
 import com.going.presentation.tendency.splash.TendencySplashActivity
 import com.going.presentation.util.initOnBackPressedListener
-import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -83,8 +81,12 @@ class SignUpActivity :
                     TendencySplashActivity.createIntent(
                         this,
                         TendencySplashActivity.TENDENCY
-                    ).apply { startActivity(this) }
+                    ).apply {
+                        startActivity(this)
+                        finish()
+                    }
                 }
+
                 AuthState.FAILURE -> toast(getString(R.string.server_error))
                 AuthState.OTHER_PAGE -> return@onEach
             }

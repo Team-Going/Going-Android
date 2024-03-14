@@ -82,25 +82,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="23dp"
                         android:src="@drawable/img_profile_guest"
                         app:civ_border_color="@color/gray_100"
                         app:civ_border_width="1dp"
-                        app:layout_constraintBottom_toTopOf="@id/view_gray"
                         app:layout_constraintDimensionRatio="1"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="@id/tv_profile_name"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_profile_one_line"/>
 
                     <TextView
                         android:id="@+id/tv_profile_name"
                         style="@style/TextAppearance.Doorip.Body1.Bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="29dp"
                         android:textColor="@color/gray_500"
                         app:layout_constraintStart_toEndOf="@id/iv_profile"
-                        app:layout_constraintTop_toTopOf="@id/iv_profile"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/tv_profile_one_line"
                         tools:text="@string/profile_tv_name" />
 
                     <TextView
@@ -108,8 +108,8 @@
                         style="@style/TextAppearance.Doorip.Detail1.Regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:gravity="center"
+                        android:gravity="start"
+                        android:layout_marginTop="3dp"
                         android:textColor="@color/gray_500"
                         app:layout_constraintStart_toStartOf="@id/tv_profile_name"
                         app:layout_constraintTop_toBottomOf="@id/tv_profile_name"
@@ -134,73 +134,75 @@
                         android:id="@+id/view_gray"
                         android:layout_width="wrap_content"
                         android:layout_height="8dp"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="26dp"
                         android:background="@color/gray_50"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_profile_one_line"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/view_profile_empty"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/view_profile_info">
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/img_profile_empty"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:src="@drawable/img_participate_profile_empty"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.4"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.3"
-                            app:layout_constraintWidth_percent="0.33" />
 
-                        <TextView
-                            android:id="@+id/tv_profile_empty_common"
-                            style="@style/TextAppearance.Doorip.Body3.Medi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/participant_profile_common"
-                            android:textColor="@color/gray_200"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/img_profile_empty" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_profile_empty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/img_participate_profile_empty"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.3"
+                        app:layout_constraintWidth_percent="0.33" />
 
-                        <TextView
-                            android:id="@+id/tv_profile_empty_text"
-                            style="@style/TextAppearance.Doorip.Body3.Medi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/participant_profile_owner"
-                            android:textColor="@color/gray_200"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_profile_empty_common" />
+                    <TextView
+                        android:id="@+id/tv_profile_empty_common"
+                        style="@style/TextAppearance.Doorip.Body3.Medi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/participant_profile_common"
+                        android:textColor="@color/gray_200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img_profile_empty" />
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btn_empty_profile_test"
-                            style="@style/button_style"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
-                            android:layout_marginBottom="24dp"
-                            android:background="@drawable/shape_rect_4_gray500_fill"
-                            android:outlineProvider="none"
-                            android:paddingVertical="10dp"
-                            android:text="@string/participant_profile_btn"
-                            android:textColor="@color/white_000"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_profile_empty_text"
+                        style="@style/TextAppearance.Doorip.Body3.Medi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/participant_profile_owner"
+                        android:textColor="@color/gray_200"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_profile_empty_common" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_empty_profile_test"
+                        style="@style/button_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/shape_rect_4_gray500_fill"
+                        android:outlineProvider="none"
+                        android:paddingVertical="10dp"
+                        android:text="@string/participant_profile_btn"
+                        android:textColor="@color/white_000"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -311,7 +313,7 @@
                         android:id="@+id/tv_chart_first"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
+                        android:layout_marginTop="24dp"
                         android:paddingHorizontal="24dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -321,7 +323,7 @@
                         android:id="@+id/tv_chart_second"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
+                        android:layout_marginTop="8dp"
                         android:paddingHorizontal="24dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -331,7 +333,7 @@
                         android:id="@+id/tv_chart_third"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
+                        android:layout_marginTop="8dp"
                         android:paddingHorizontal="24dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.going.presentation.todo.allocator
+package com.going.presentation.todo.list
 
 import androidx.recyclerview.widget.RecyclerView
 import com.going.domain.entity.response.TodoListAllocatorModel
@@ -6,7 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoNameBinding
 import com.going.ui.extension.colorOf
 
-class TodoAllocatorViewHolder(
+class ListAllocatorViewHolder(
     val binding: ItemTodoNameBinding,
     private val isCompleted: Boolean
 ) : RecyclerView.ViewHolder(binding.root) {

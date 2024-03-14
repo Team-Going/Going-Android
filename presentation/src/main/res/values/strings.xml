@@ -6,15 +6,15 @@
     <string name="to_string">%s</string>
     <string name="dummy">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
-    <string name="server_error">서버 통신에 실패했습니다</string>
+    <string name="server_error">서버 통신에 실패했어요</string>
     <string name="name_blank_error">닉네임에는 공백만 입력할 수 없어요</string>
-    <string name="name_over_error">닉네임은 3자 이하여야 합니다</string>
-    <string name="info_over_error">자기소개는 20자 이하여야 합니다</string>
-    <string name="trip_over_error">여행 이름은 15자 이하여야 합니다</string>
-    <string name="todo_over_error">할일은 15자 이하여야 합니다</string>
+    <string name="name_over_error">닉네임은 3자 이하여야 해요</string>
+    <string name="info_over_error">자기소개는 20자 이하여야 해요</string>
+    <string name="trip_over_error">여행 이름은 15자 이하여야 해요</string>
+    <string name="todo_over_error">할일은 15자 이하여야 해요</string>
     <string name="todo_blank_error">제목에는 공백만 입력할 수 없어요</string>
-    <string name="memo_over_error">메모는 1000자 이하여야 합니다</string>
-    <string name="date_set_error">종료일이 시작일보다 빨라야합니다</string>
+    <string name="memo_over_error">메모는 1000자 이하여야 해요</string>
+    <string name="date_set_error">종료일이 시작일보다 빨라야해요</string>
 
     <string name="will_be_update">해당 기능은 추후 업데이트 예정이에요 :)</string>
 
@@ -23,7 +23,7 @@
 
     <string name="sign_in_tv_terms">개인정보처리방침</string>
 
-    <string name="toast_back_pressed">버튼을 한번 더 누르면 종료됩니다</string>
+    <string name="toast_back_pressed">버튼을 한번 더 누르면 종료돼요</string>
 
     <string name="tag">#%s</string>
     <string name="counter">%1$d/%2$d</string>
@@ -181,10 +181,10 @@
     <string name="profile_tv_name">두릅이</string>
     <string name="profile_tv_one_line">나는 두릅이 좋다.</string>
     <string name="profile_tv_restart_button"><u>다시 해볼래요</u></string>
-    <string name="profile_tv_no_trip">존재하지 않는 여행입니다.</string>
+    <string name="profile_tv_no_trip">존재하지 않는 여행이에요</string>
     <string name="profile_tv_edit">프로필 수정</string>
     <string name="profile_image_download_success">이미지가 저장되었어요\n친구들에게 공유해보세요!</string>
-    <string name="profile_image_download_error">이미지를 저장할 수 없습니다\n안드로이드 버전을 확인해주세요</string>
+    <string name="profile_image_download_error">이미지를 저장할 수 없어요\n안드로이드 버전을 확인해주세요</string>
     <string name="trip_profile_character">나의 여행 캐릭터</string>
     <string name="trip_profile_tag">여행 취향 태그</string>
 
@@ -192,7 +192,7 @@
     <string name="participant_profile_btn">여행 캐릭터 검사하러 가기</string>
     <string name="participant_profile_common">여행 캐릭터 검사를 아직 진행하지 않았어요</string>
     <string name="participant_profile_owner">지금 바로 나를 대신 할 여행 캐릭터를 만나보세요!</string>
-    <string name="participant_profile_friend_title">%s의 여행 프로필</string>
+    <string name="participant_profile_friend_title">친구 여행 프로필</string>
 
     <!--enter_trip-->
     <string name="enter_trip_tv_layout">여행 입장하기</string>
@@ -200,9 +200,9 @@
     <string name="enter_trip_tv_hint">친구에게 받은 초대코드 6자리를 입력해 주세요</string>
     <string name="enter_trip_tv_error">잘못된 초대코드예요</string>
     <string name="enter_trip_tv_next_button">초대코드 확인하기</string>
-    <string name="enter_trip_invite_code_exist_toast">존재하지 않는 여행입니다</string>
-    <string name="enter_trip_invite_code_over_toast">입장할 수 있는 최대 인원은 6명입니다</string>
-    <string name="enter_trip_my_code_toast">이미 존재하는 참가자입니다</string>
+    <string name="enter_trip_invite_code_exist_toast">존재하지 않는 여행이에요</string>
+    <string name="enter_trip_invite_code_over_toast">입장할 수 있는 최대 인원은 6명이에요</string>
+    <string name="enter_trip_my_code_toast">이미 존재하는 참가자에요</string>
 
     <!--invite_finish-->
     <string name="invite_finish_tv_title">초대받은 여행이 맞는지\n 확인해 주세요</string>
@@ -213,21 +213,18 @@
     <string name="check_friends_tool_bar">우리의 여행 취향</string>
     <string name="check_friends_check_member">프로필 사진을 눌러서 친구의 취향을 구경해보세요</string>
     <string name="check_friends_preference_number">&#160;%d명</string>
+    <string name="check_friends_preference_no_matter">상관없어</string>
     <string name="check_friends_preference_1_title">여행 계획</string>
     <string name="check_friends_preference_1_left">철저하게</string>
-    <string name="check_friends_preference_1_center">아무렇게</string>
     <string name="check_friends_preference_1_right">즉흥으로</string>
     <string name="check_friends_preference_2_title">여행 장소</string>
     <string name="check_friends_preference_2_left">관광지</string>
-    <string name="check_friends_preference_2_center">어디든</string>
     <string name="check_friends_preference_2_right">로컬장소</string>
     <string name="check_friends_preference_3_title">식당</string>
     <string name="check_friends_preference_3_left">유명 맛집</string>
-    <string name="check_friends_preference_3_center">아무데나</string>
     <string name="check_friends_preference_3_right">가까운 곳</string>
     <string name="check_friends_preference_4_title">사진</string>
-    <string name="check_friends_preference_4_left">사진필수</string>
-    <string name="check_friends_preference_4_5_center">상관없어</string>
+    <string name="check_friends_preference_4_left">사진 필수</string>
     <string name="check_friends_preference_4_right">눈에 담기</string>
     <string name="check_friends_preference_5_title">여행 일정</string>
     <string name="check_friends_preference_5_left">알차게</string>
@@ -238,6 +235,8 @@
     <string name="check_friends_result_match">%s에 대한 여행 취향이 잘 맞네요!</string>
     <string name="check_friends_result_no_match">달라서 즐거운 여행! 친구와 서로의 취향을 이야기해 봐요</string>
     <string name="check_friends_result_perfect">최고의 여행 친구! 모든 여행 취향이 일치해요</string>
+    <string name="check_friends_empty">아직 함께하는 친구들이 없어요!\n친구를 초대하고 함께 여행 취향을 알아보세요</string>
+    <string name="check_friends_btn_invite">여행 친구 초대하기</string>
 
     <!--kakao-link-share-->
     <string name="invite_error_kakao"> 카카오톡 초대코드 오류 </string>
@@ -257,7 +256,7 @@
     <string name="edit_trip_info_date">%1$d.%2$d.%3$d</string>
     <string name="edit_trip_info_toast_error">시작일을 먼저 입력해 주세요</string>
     <string name="edit_trip_info_quit_dialog_title">여행방 나가기</string>
-    <string name="edit_trip_info_quit_dialog_message">나가기를 하면 정보가 모두 삭제되고,\n여행 목록에서도 삭제됩니다</string>
+    <string name="edit_trip_info_quit_dialog_message">나가기를 하면 정보가 모두 삭제되고,\n 여행 목록에서도 삭제돼요</string>
     <string name="edit_trip_info_quit_dialog_negative">나가기</string>
     <string name="edit_trip_info_quit_dialog_positive">취소</string>
     <string name="trip_blank_error">여행 이름에는 공백만 입력할 수 없어요</string>

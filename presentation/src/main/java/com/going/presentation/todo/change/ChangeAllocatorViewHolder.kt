@@ -6,7 +6,7 @@ import com.going.presentation.R
 import com.going.presentation.databinding.ItemTodoCreateNameBinding
 import com.going.ui.extension.colorOf
 
-class TodoAllocatorViewHolder(
+class ChangeAllocatorViewHolder(
     val binding: ItemTodoCreateNameBinding,
     private val itemClick: (Int) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
