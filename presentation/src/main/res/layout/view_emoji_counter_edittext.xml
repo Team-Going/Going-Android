@@ -42,6 +42,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/transparent"
         android:src="@drawable/ic_delete"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/et_emoji_counter_et_content"
         app:layout_constraintTop_toTopOf="@id/et_emoji_counter_et_content" />
 

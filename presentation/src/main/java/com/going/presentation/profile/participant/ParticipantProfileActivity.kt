@@ -95,12 +95,7 @@ class ParticipantProfileActivity :
                 btnTripProfileDownload.isVisible = this && profile.result != -1
                 btnProfileEdit.isVisible = this
 
-                if (!this) tvTripProfileTitle.setText(
-                    getString(
-                        R.string.participant_profile_friend_title,
-                        profile.name
-                    )
-                )
+                if (!this) tvTripProfileTitle.text = getString(R.string.participant_profile_friend_title)
             }
         }
     }

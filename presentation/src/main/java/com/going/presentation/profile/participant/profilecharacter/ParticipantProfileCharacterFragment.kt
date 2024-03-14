@@ -13,8 +13,8 @@ import com.going.presentation.designsystem.textview.ChartTextView
 import com.going.presentation.profile.participant.ParticipantProfileViewModel
 import com.going.presentation.tendency.result.UserTendencyResultList
 import com.going.presentation.tendency.splash.TendencySplashActivity
-import com.going.presentation.util.navigateToScreenClear
 import com.going.ui.base.BaseFragment
+import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -32,6 +32,7 @@ class ParticipantProfileCharacterFragment :
 
         setViewModel()
         btnParticipantProfileEmptyOwnerClickListener()
+        btnTripProfileRestartClickListener()
     }
 
     private fun setViewModel() {
@@ -53,6 +54,9 @@ class ParticipantProfileCharacterFragment :
                 UserTendencyResultList[result].run {
                     ivTripProfileBig.load(resultImage)
 
+                    tvTripProfileType.text = profileTitle
+                    tvTripProfileSubType.text = profileSubTitle
+
                     tvTripProfileTag1.text = getString(R.string.tag, tags[0])
                     tvTripProfileTag2.text = getString(R.string.tag, tags[1])
                     tvTripProfileTag3.text = getString(R.string.tag, tags[2])
@@ -73,7 +77,19 @@ class ParticipantProfileCharacterFragment :
 
     private fun btnParticipantProfileEmptyOwnerClickListener() {
         binding.btnParticipantProfileEmptyOwner.setOnClickListener {
-            requireActivity().navigateToScreenClear<TendencySplashActivity>()
+            TendencySplashActivity.createIntent(
+                requireActivity(),
+                TendencySplashActivity.PROFILE
+            ).apply { startActivity(this) }
+        }
+    }
+
+    private fun btnTripProfileRestartClickListener() {
+        binding.btnTripProfileRestart.setOnSingleClickListener {
+            TendencySplashActivity.createIntent(
+                requireActivity(),
+                TendencySplashActivity.PROFILE
+            ).apply { startActivity(this) }
         }
     }
 
