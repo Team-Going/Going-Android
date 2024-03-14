@@ -9,8 +9,9 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
+import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
+import com.going.presentation.todo.edittrip.edit.EditTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -103,7 +104,8 @@ class EditTripInfoActivity :
     private fun initEditBtnClickListener() {
         binding.btnEditTripSave.setOnSingleClickListener {
             viewModel.patchTripInfoFromServer()
-            Intent(this, DashBoardActivity::class.java).apply {
+            Intent(this, EditTripActivity::class.java).apply {
+                putExtra(TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }
         }
@@ -116,7 +118,6 @@ class EditTripInfoActivity :
     }
 
     companion object {
-        private const val TRIP_ID = "TRIP_ID"
         private const val TITLE = "TITLE"
         private const val START_DATE = "START_DATE"
         private const val END_DATE = "END_DATE"
