@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -46,6 +47,7 @@ class TodoDetailActivity :
         initAllocatorListAdapter()
         resetDetailData()
         observeTodoDetailState()
+        observeMemoBinding()
         observeTodoDeleteState()
     }
 
@@ -135,6 +137,12 @@ class TodoDetailActivity :
                 is UiState.Empty -> return@onEach
             }
         }.launchIn(lifecycleScope)
+    }
+
+    private fun observeMemoBinding() {
+        viewModel.memo.observe(this) {
+            binding.etTodoCreateMemo.movementMethod = ScrollingMovementMethod()
+        }
     }
 
     private fun observeTodoDeleteState() {

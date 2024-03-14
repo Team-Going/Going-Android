@@ -64,8 +64,8 @@
         tools:visibility="visible">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_empty" />
 
@@ -73,7 +73,9 @@
             style="@style/TextAppearance.Doorip.Detail2.Regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:paddingVertical="0dp"
             android:text="@string/our_todo_tv_empty_allocator"
             android:textColor="@color/gray_300" />
 
