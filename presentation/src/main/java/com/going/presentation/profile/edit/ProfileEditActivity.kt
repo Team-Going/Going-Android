@@ -53,13 +53,13 @@ class ProfileEditActivity :
 
     private fun observeNameTextChanged() {
         binding.etProfileEditNickname.editText.doAfterTextChanged { name ->
-            viewModel.checkIsNameChanged(name.toString())
+            viewModel.checkIsNameChanged(name.toString(), binding.etProfileEditNickname.state, binding.etProfileEditInfo.state)
         }
     }
 
     private fun observeInfoTextChanged() {
         binding.etProfileEditInfo.editText.doAfterTextChanged { info ->
-            viewModel.checkIsInfoChanged(info.toString())
+            viewModel.checkIsInfoChanged(info.toString(), binding.etProfileEditNickname.state, binding.etProfileEditInfo.state)
         }
     }
 

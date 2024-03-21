@@ -2,7 +2,6 @@ package com.going.presentation.designsystem.edittext
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.text.InputType
 import android.text.method.ScrollingMovementMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -12,15 +11,15 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.going.presentation.R
-import com.going.presentation.databinding.ViewEmojiCounterEdittextBinding
+import com.going.presentation.databinding.ViewEmojiCounterEdittextMultilineBinding
 import com.going.ui.extension.colorOf
 import com.going.ui.extension.getGraphemeLength
 import com.going.ui.extension.setOnSingleClickListener
 
-class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
+class EmojiCounterEditTextMultiLine(context: Context, attrs: AttributeSet) :
     ConstraintLayout(context, attrs) {
 
-    private val binding: ViewEmojiCounterEdittextBinding
+    private val binding: ViewEmojiCounterEdittextMultilineBinding
 
     private var maxLen: Int = 0
     private var canBlankError: Boolean = false
@@ -69,7 +68,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EmojiCounterEditText)
-        binding = ViewEmojiCounterEdittextBinding.inflate(
+        binding = ViewEmojiCounterEdittextMultilineBinding.inflate(
             LayoutInflater.from(context),
             this,
             true,
@@ -143,7 +142,7 @@ class EmojiCounterEditText(context: Context, attrs: AttributeSet) :
             tvEmojiCounterEtWarningMessage.isVisible = color == R.color.red_500
             tvEmojiCounterEtNameCounter.setTextColor(context.colorOf(color))
             etEmojiCounterEtContent.background = ResourcesCompat.getDrawable(
-                this@EmojiCounterEditText.resources,
+                this@EmojiCounterEditTextMultiLine.resources,
                 background,
                 context.theme,
             )
