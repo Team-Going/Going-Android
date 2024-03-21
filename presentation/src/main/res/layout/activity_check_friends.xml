@@ -68,6 +68,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/shape_rect_6_gray50_fill"
                     android:gravity="center"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
