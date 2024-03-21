@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.request.UserProfileRequestModel
 import com.going.domain.repository.ProfileRepository
+import com.going.presentation.designsystem.edittext.EditTextState
 import com.going.presentation.onboarding.signup.SignUpViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -40,23 +41,23 @@ class ProfileEditViewModel @Inject constructor(
         defaultInfo = info
     }
 
-    fun checkIsNameChanged(name: String) {
+    fun checkIsNameChanged(name: String, nameState: EditTextState, infoState: EditTextState) {
         nowName = name
         isNameChanged = name != defaultName
 
-        checkIsValueChanged()
+        checkIsValueChanged(nameState, infoState)
     }
 
-    fun checkIsInfoChanged(info: String) {
+    fun checkIsInfoChanged(info: String, nameState: EditTextState, infoState: EditTextState) {
         nowInfo = info
         isInfoChanged = info != defaultInfo
 
-        checkIsValueChanged()
+        checkIsValueChanged(nameState, infoState)
     }
 
-    private fun checkIsValueChanged() {
+    private fun checkIsValueChanged(nameState: EditTextState, infoState: EditTextState) {
         _isValueChanged.value =
-            nowName.isNotBlank() && nowName.length <= getMaxNameLen() && nowInfo.isNotBlank() && nowInfo.length <= getMaxInfoLen() && (isInfoChanged || isNameChanged)
+            nowName.isNotBlank() && nameState == EditTextState.SUCCESS && nowInfo.isNotBlank() && infoState == EditTextState.SUCCESS && (isInfoChanged || isNameChanged)
     }
 
     fun patchUserInfo() {
