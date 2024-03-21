@@ -60,10 +60,4 @@ class TodoDetailViewModel @Inject constructor(
                 }
         }
     }
-
-    companion object {
-        const val MAX_TODO_LEN = 15
-        const val MAX_MEMO_LEN = 1000
-    }
-
 }
