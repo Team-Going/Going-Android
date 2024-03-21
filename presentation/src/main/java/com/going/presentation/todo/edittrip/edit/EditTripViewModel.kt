@@ -19,7 +19,6 @@ import javax.inject.Inject
 class EditTripViewModel @Inject constructor(
     private val editTripRepository: EditTripRepository
 ) : ViewModel() {
-    val titleLength = MutableLiveData(0)
 
     val startYear = MutableLiveData<Int>()
     val startMonth = MutableLiveData<Int>()
@@ -40,10 +39,6 @@ class EditTripViewModel @Inject constructor(
 
     private val _quittripState = MutableSharedFlow<Boolean>()
     val quittripState: SharedFlow<Boolean> = _quittripState
-
-    fun gettitleLength(){
-        titleLength.value = title.getGraphemeLength()
-    }
 
     fun getTripInfoFromServer(tripId: Long) {
         _tripInfoState.value = UiState.Loading
@@ -74,9 +69,4 @@ class EditTripViewModel @Inject constructor(
                 }
         }
     }
-
-    companion object {
-        const val MAX_TRIP_LEN = 15
-    }
-
 }

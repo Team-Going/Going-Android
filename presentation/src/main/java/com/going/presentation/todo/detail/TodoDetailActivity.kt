@@ -118,7 +118,6 @@ class TodoDetailActivity :
                     with(binding) {
                         tvTodoCreateMemoTitle.isVisible = true
                         etTodoCreateMemo.isVisible = true
-                        tvTodoMemoCounter.isVisible = true
                     }
 
                     if (state.data.memo.isBlank()) {
@@ -127,7 +126,6 @@ class TodoDetailActivity :
                                 drawableOf(R.drawable.shape_rect_4_gray200_line)
                             etTodoCreateMemo.text = stringOf(R.string.my_todo_create_tv_memo_hint)
                             etTodoCreateMemo.setTextColor(colorOf(R.color.gray_200))
-                            tvTodoMemoCounter.isVisible = false
                         }
                     }
                 }
