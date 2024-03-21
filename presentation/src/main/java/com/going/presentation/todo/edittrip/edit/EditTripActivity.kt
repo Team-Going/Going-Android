@@ -37,7 +37,7 @@ class EditTripActivity :
     }
 
     private fun initBindingViewModel() {
-        binding.viewModel = viewModel
+        binding.vm = viewModel
     }
 
     private fun getIntentData() {
@@ -50,10 +50,9 @@ class EditTripActivity :
             when (state) {
                 is UiState.Success -> {
                     with(binding) {
-                        tvEditTripName.text = viewModel?.title
-                        tvEditTripInfoStartDate.text = viewModel?.startDate
-                        tvEditTripInfoEndDate.text = viewModel?.endDate
-                        viewModel?.gettitleLength()
+                        tvEditTripName.text = viewModel.title
+                        tvEditTripInfoStartDate.text = viewModel.startDate
+                        tvEditTripInfoEndDate.text = viewModel.endDate
                     }
                 }
 

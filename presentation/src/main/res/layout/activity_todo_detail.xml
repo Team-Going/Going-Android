@@ -89,7 +89,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/shape_rect_4_gray700_line"
                     android:paddingVertical="20dp"
                     android:paddingStart="16dp"
@@ -107,11 +107,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
-                    android:text="@{@string/counter(vm.todo.length, vm.MAX_TODO_LEN)}"
-                    android:textColor="@color/gray_400"
+                    android:text="@string/empty_string"
+                    android:textColor="@color/white_000"
                     app:layout_constraintEnd_toEndOf="@id/et_todo_detail_todo"
-                    app:layout_constraintTop_toBottomOf="@id/et_todo_detail_todo"
-                    tools:text="0/15" />
+                    app:layout_constraintTop_toBottomOf="@id/et_todo_detail_todo" />
 
                 <TextView
                     android:id="@+id/tv_todo_detail_date_title"
@@ -253,7 +252,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:autoLink="web"
                     android:background="@drawable/shape_rect_4_gray700_line"
                     android:gravity="top"
@@ -269,22 +268,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_todo_create_memo_title"
                     tools:text="오늘 완전 완전 맛있는 파스타를 먹었는데 완전 아주 그냥 이게 말이지"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_todo_memo_counter"
-                    style="@style/TextAppearance.Doorip.Detail3.Regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:paddingBottom="20dp"
-                    android:text="@{@string/counter(vm.memo.length, vm.MAX_MEMO_LEN)}"
-                    android:textColor="@color/gray_400"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="@id/et_todo_create_memo"
-                    app:layout_constraintTop_toBottomOf="@id/et_todo_create_memo"
-                    tools:text="0/1000"
                     tools:visibility="visible" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
