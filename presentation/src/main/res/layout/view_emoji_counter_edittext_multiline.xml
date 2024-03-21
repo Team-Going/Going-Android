@@ -23,7 +23,7 @@
         android:background="@drawable/shape_rect_4_gray200_line"
         android:gravity="top"
         android:includeFontPadding="false"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:lineSpacingMultiplier="1.2"
         android:overScrollMode="always"
         android:paddingVertical="20dp"

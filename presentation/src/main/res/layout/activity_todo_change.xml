@@ -229,7 +229,7 @@
 
                 </LinearLayout>
 
-                <com.going.presentation.designsystem.edittext.EmojiCounterEditText
+                <com.going.presentation.designsystem.edittext.EmojiCounterEditTextMultiLine
                     android:id="@+id/et_todo_create_memo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
