@@ -61,16 +61,17 @@
 
         <TextView
             android:id="@+id/tv_edit_trip_name"
+            style="@style/TextAppearance.Doorip.Body3.Medi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="8dp"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp"
             android:background="@drawable/shape_rect_4_gray700_line"
             android:maxLines="3"
+            android:paddingVertical="20dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="30dp"
             android:text="@={vm.title}"
-            android:textAppearance="@style/TextAppearance.Doorip.Body3.Medi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name_title" />
@@ -80,12 +81,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textAppearance="@style/TextAppearance.Doorip.Detail3.Regular"
             android:text="@string/empty_string"
+            style="@style/TextAppearance.Doorip.Detail3.Regular"
             android:textColor="@color/white_000"
             app:layout_constraintEnd_toEndOf="@id/tv_edit_trip_name"
             app:layout_constraintTop_toBottomOf="@id/tv_edit_trip_name" />
-
 
         <TextView
             android:id="@+id/tv_edit_trip_on_line_info_title"
