@@ -88,6 +88,8 @@ class ParticipantProfileActivity :
                 }
             }
 
+            setFragmentHeight(profile.result == -1)
+
             tvProfileName.text = profile.name
             tvProfileOneLine.text = profile.intro
 
@@ -149,7 +151,7 @@ class ParticipantProfileActivity :
         setFragmentHeight()
     }
 
-    private fun setFragmentHeight(temp: Boolean = true) {
+    private fun setFragmentHeight(isEmpty: Boolean = true) {
         val displayHeight = getWindowHeight()
         val toolbarHeight = binding.tbTripProfile.height
         val appBarHeight = binding.appbarTripProfile.totalScrollRange
@@ -157,7 +159,7 @@ class ParticipantProfileActivity :
 
         binding.vpTripProfile.layoutParams = binding.vpTripProfile.layoutParams.also {
             it.height =
-                if (temp) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight - tabHeight
+                if (isEmpty) displayHeight - toolbarHeight - appBarHeight - tabHeight else displayHeight - toolbarHeight - tabHeight
         }
     }
 
