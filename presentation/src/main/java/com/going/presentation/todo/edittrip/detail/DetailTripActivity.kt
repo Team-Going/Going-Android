@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip.edit
+package com.going.presentation.todo.edittrip.detail
 
 import android.app.Activity
 import android.os.Bundle
@@ -6,10 +6,10 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
-import com.going.presentation.databinding.ActivityEditTripBinding
+import com.going.presentation.databinding.ActivityDetailTripBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.todo.edittrip.QuitTripDialogFragment
-import com.going.presentation.todo.edittrip.info.EditTripInfoActivity
+import com.going.presentation.todo.edittrip.editinfo.EditTripInfoActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -19,9 +19,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class EditTripActivity :
-    BaseActivity<ActivityEditTripBinding>(R.layout.activity_edit_trip) {
-    private val viewModel by viewModels<EditTripViewModel>()
+class DetailTripActivity :
+    BaseActivity<ActivityDetailTripBinding>(R.layout.activity_detail_trip) {
+    private val viewModel by viewModels<DetailTripViewModel>()
     private var quitDialog: QuitTripDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,6 +108,7 @@ class EditTripActivity :
             finish()
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

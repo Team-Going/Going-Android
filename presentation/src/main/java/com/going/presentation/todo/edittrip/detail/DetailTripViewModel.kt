@@ -1,11 +1,10 @@
-package com.going.presentation.todo.edittrip.edit
+package com.going.presentation.todo.edittrip.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.going.domain.entity.response.TripInfoModel
 import com.going.domain.repository.EditTripRepository
-import com.going.ui.extension.getGraphemeLength
 import com.going.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EditTripViewModel @Inject constructor(
+class DetailTripViewModel @Inject constructor(
     private val editTripRepository: EditTripRepository
 ) : ViewModel() {
 

@@ -1,8 +1,9 @@
-package com.going.presentation.todo.edittrip.info
+package com.going.presentation.todo.edittrip.editinfo
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
@@ -11,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.todo.edittrip.edit.EditTripActivity
+import com.going.presentation.todo.edittrip.detail.DetailTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
@@ -104,8 +105,9 @@ class EditTripInfoActivity :
     private fun initEditBtnClickListener() {
         binding.btnEditTripSave.setOnSingleClickListener {
             viewModel.patchTripInfoFromServer()
-            Intent(this, EditTripActivity::class.java).apply {
+            Intent(this, DetailTripActivity::class.java).apply {
                 putExtra(TRIP_ID, viewModel.tripId)
+                addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
         }
