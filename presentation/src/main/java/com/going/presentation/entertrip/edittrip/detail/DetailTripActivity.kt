@@ -36,6 +36,12 @@ class DetailTripActivity :
         initBackBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+
+    }
+
     private fun initBindingViewModel() {
         binding.vm = viewModel
     }
