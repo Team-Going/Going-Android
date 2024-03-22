@@ -15,13 +15,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.going.domain.entity.response.TripParticipantModel
 import com.going.presentation.R
+import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.FragmentOurTodoBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
 import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
-import com.going.presentation.todo.edittrip.edit.EditTripActivity
+import com.going.presentation.entertrip.edittrip.detail.DetailTripActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter
@@ -125,8 +126,16 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
         }
     }
 
+    private fun sendTripId() {
+        Intent(requireActivity(), DashBoardActivity::class.java).apply {
+            putExtra(TRIP_ID, viewModel.tripId)
+            startActivity(this)
+        }
+    }
+
     private fun initBackBtnClickListener() {
         binding.btnOurTodoBack.setOnSingleClickListener {
+            sendTripId()
             requireActivity().finish()
         }
     }
@@ -143,7 +152,7 @@ class OurTodoFragment() : BaseFragment<FragmentOurTodoBinding>(R.layout.fragment
 
     private fun initTripInfoBtnClickListener() {
         binding.btnOurTodoTripInfo.setOnSingleClickListener {
-            Intent(requireActivity(), EditTripActivity::class.java).apply {
+            Intent(requireActivity(), DetailTripActivity::class.java).apply {
                 putExtra(TRIP_ID, viewModel.tripId)
                 startActivity(this)
             }

@@ -7,14 +7,14 @@
 
         <variable
             name="vm"
-            type="com.going.presentation.todo.edittrip.edit.EditTripViewModel" />
+            type="com.going.presentation.entertrip.edittrip.detail.DetailTripViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_000"
-        tools:context=".todo.edittrip.edit.EditTripActivity">
+        tools:context=".entertrip.edittrip.detail.DetailTripActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/tb_edit_info"
