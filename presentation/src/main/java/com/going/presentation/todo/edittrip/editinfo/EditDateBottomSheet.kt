@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip.info
+package com.going.presentation.todo.edittrip.editinfo
 
 import android.os.Bundle
 import android.view.View

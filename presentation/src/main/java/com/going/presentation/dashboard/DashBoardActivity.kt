@@ -78,6 +78,14 @@ class DashBoardActivity :
         }
     }
 
+    private fun setChangeTripInfo() {
+        val progress = DashBoardViewModel.COMPLETED
+        viewModel.getTravelerNameFromServer(progress)
+        viewModel.name.observe(this) { travelerName ->
+            binding.tvDashboardTitle.text = getString(R.string.dashboard_tv_title, travelerName)
+        }
+    }
+
     private fun initSettingBtnClickListener() {
         binding.btnDashboardSetting.setOnSingleClickListener {
             navigateToScreen<SettingActivity>(isFinish = false)

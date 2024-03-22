@@ -8,14 +8,14 @@ import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.FragmentQuitTripDialogBinding
-import com.going.presentation.todo.edittrip.edit.EditTripViewModel
+import com.going.presentation.todo.edittrip.detail.DetailTripViewModel
 import com.going.ui.base.BaseDialog
 import com.going.ui.extension.setOnSingleClickListener
 
 class QuitTripDialogFragment :
     BaseDialog<FragmentQuitTripDialogBinding>(R.layout.fragment_quit_trip_dialog) {
 
-    private val viewModel by activityViewModels<EditTripViewModel>()
+    private val viewModel by activityViewModels<DetailTripViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
