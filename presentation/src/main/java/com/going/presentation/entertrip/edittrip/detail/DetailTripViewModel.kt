@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip.detail
+package com.going.presentation.entertrip.edittrip.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

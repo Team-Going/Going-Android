@@ -22,7 +22,7 @@ import com.going.presentation.profile.participant.ParticipantProfileActivity
 import com.going.presentation.todo.TodoActivity.Companion.EXTRA_TRIP_ID
 import com.going.presentation.todo.create.TodoCreateActivity
 import com.going.presentation.todo.ourtodo.checkfriends.CheckFriendsActivity
-import com.going.presentation.todo.edittrip.detail.DetailTripActivity
+import com.going.presentation.entertrip.edittrip.detail.DetailTripActivity
 import com.going.presentation.todo.ourtodo.friendlist.OurTodoFriendAdapter
 import com.going.presentation.todo.ourtodo.invite.FriendInviteDialog
 import com.going.presentation.todo.ourtodo.todolist.OurTodoViewPagerAdapter

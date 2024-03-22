@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip
+package com.going.presentation.entertrip.edittrip
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import com.going.presentation.R
 import com.going.presentation.dashboard.DashBoardActivity
 import com.going.presentation.databinding.FragmentQuitTripDialogBinding
-import com.going.presentation.todo.edittrip.detail.DetailTripViewModel
+import com.going.presentation.entertrip.edittrip.detail.DetailTripViewModel
 import com.going.ui.base.BaseDialog
 import com.going.ui.extension.setOnSingleClickListener
 

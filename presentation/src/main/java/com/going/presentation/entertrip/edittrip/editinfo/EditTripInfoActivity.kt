@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip.editinfo
+package com.going.presentation.entertrip.edittrip.editinfo
 
 import android.app.Activity
 import android.content.Context
@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityEditTripInfoBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.todo.edittrip.detail.DetailTripActivity
+import com.going.presentation.entertrip.edittrip.detail.DetailTripActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast

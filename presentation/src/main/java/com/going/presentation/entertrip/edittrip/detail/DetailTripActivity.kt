@@ -1,4 +1,4 @@
-package com.going.presentation.todo.edittrip.detail
+package com.going.presentation.entertrip.edittrip.detail
 
 import android.app.Activity
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import com.going.presentation.R
 import com.going.presentation.databinding.ActivityDetailTripBinding
 import com.going.presentation.entertrip.invitetrip.invitecode.EnterTripActivity.Companion.TRIP_ID
-import com.going.presentation.todo.edittrip.QuitTripDialogFragment
-import com.going.presentation.todo.edittrip.editinfo.EditTripInfoActivity
+import com.going.presentation.entertrip.edittrip.QuitTripDialogFragment
+import com.going.presentation.entertrip.edittrip.editinfo.EditTripInfoActivity
 import com.going.ui.base.BaseActivity
 import com.going.ui.extension.setOnSingleClickListener
 import com.going.ui.extension.toast
