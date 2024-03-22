@@ -39,10 +39,10 @@ class ParticipantProfileViewModel @Inject constructor(
     }
 
     fun setPreferenceData(styleA: Int, styleB: Int, styleC: Int, styleD: Int, styleE: Int) = listOf(
-        ProfilePreferenceData("01", "계획은 어느 정도로 세울까요?", "철저하게", "즉흥으로", styleA),
-        ProfilePreferenceData("02", "장소 선택의 기준은 무엇인가요?", "관광지", "로컬장소", styleB),
-        ProfilePreferenceData("03", "어느 식당을 갈까요?", "유명 맛집", "가까운 곳", styleC),
-        ProfilePreferenceData("04", "기억하고 싶은 순간에!", "사진필수", "눈에 담기", styleD),
-        ProfilePreferenceData("05", "하루 일정을 어떻게 채우나요?", "알차게", "여유롭게", styleE)
+        ProfilePreferenceData("01", "계획은 어느 정도로 세울까요?", "즉흥으로", "철저하게", styleA),
+        ProfilePreferenceData("02", "장소 선택의 기준은 무엇인가요?", "로컬장소", "관광지", styleB),
+        ProfilePreferenceData("03", "어느 식당을 갈까요?", "가까운 곳", "유명 맛집", styleC),
+        ProfilePreferenceData("04", "기억하고 싶은 순간에!", "눈에 담기", "사진 필수", styleD),
+        ProfilePreferenceData("05", "하루 일정을 어떻게 채우나요?", "여유롭게", "알차게", styleE)
     )
 }
