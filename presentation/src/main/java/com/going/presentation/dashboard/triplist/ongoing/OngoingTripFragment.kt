@@ -32,9 +32,14 @@ class OngoingTripFragment :
 
         initAdapterWithClickListener()
         initItemDecoration()
-        setTripList()
         observeDashBoardListState()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setTripList()
     }
 
     private fun initAdapterWithClickListener() {
