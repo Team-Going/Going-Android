@@ -116,7 +116,10 @@ class TendencyResultActivity :
 
     private fun initRestartBtnClickListener() {
         binding.btnTendencyTestRestart.setOnSingleClickListener {
-            navigateToScreenClear<TendencySplashActivity>()
+            TendencySplashActivity.createIntent(
+                this,
+                viewModel.quarter
+            ).apply { startActivity(this) }
         }
     }
 
