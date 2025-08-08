@@ -49,7 +49,7 @@ dependencies {
     ThirdPartyDependencies.run {
         implementation(retrofit)
         implementation(okHttp)
-        implementation(okHttpBom)
+        implementation(platform(okHttpBom))
         implementation(okHttpLoggingInterceptor)
         implementation(retrofitJsonConverter)
         implementation(timber)

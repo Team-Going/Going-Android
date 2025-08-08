@@ -22,28 +22,33 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        // 👇 공식 API + providers 사용
+        val localProps = gradleLocalProperties(rootDir, providers)
+
         buildConfigField(
             "String",
             "NATIVE_APP_KEY",
-            gradleLocalProperties(rootDir).getProperty("native.app.key"),
+            "\"${localProps.getProperty("native.app.key")}\""
         )
-        manifestPlaceholders["NATIVE_APP_KEY"] =
-            gradleLocalProperties(rootDir).getProperty("nativeAppKey")
+        // manifestPlaceholders는 문자열 그 자체를 넣으면 됨(따옴표 불필요)
+        manifestPlaceholders["NATIVE_APP_KEY"] = localProps.getProperty("nativeAppKey")
     }
 
     buildTypes {
         debug {
+            val localProps = gradleLocalProperties(rootDir, providers)
             buildConfigField(
                 "String",
                 "BASE_URL",
-                gradleLocalProperties(rootDir).getProperty("test.base.url")
+                "\"${localProps.getProperty("test.base.url")}\""
             )
         }
         release {
+            val localProps = gradleLocalProperties(rootDir, providers)
             buildConfigField(
                 "String",
                 "BASE_URL",
-                gradleLocalProperties(rootDir).getProperty("base.url")
+                "\"${localProps.getProperty("base.url")}\""
             )
             isMinifyEnabled = false
             proguardFiles(
